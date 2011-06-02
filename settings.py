@@ -22,8 +22,6 @@ MEDIA_ROOT = os.path.join(BASE_PATH, 'media')
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 
-SECRET_KEY = 'm5w4e9^9r69f!6b9qio%)_p%a*1d(waqki+r_g11=qijh=#wuk'
-
 SESSION_COOKIE_AGE = 31556926
 
 TEMPLATE_CONTEXT_PROCESSORS = (
