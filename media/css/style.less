@@ -1,0 +1,81 @@
+// Fonts
+@Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+
+// Focus
+*:focus {
+    .box-shadow(0, 0, 10px, #47B7F2);
+}
+
+// Mixins
+.border-radius(@radius: 5px) {
+    -webkit-background-clip: padding-box;
+    -webkit-border-radius: @radius;
+    -moz-background-clip: padding-box;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+    background-clip: padding-box;
+}
+.box-shadow(@horizontal: 0px, @vertical: 1px, @blur: 2px, @color: #CCC) {
+  -webkit-box-shadow: @horizontal @vertical @blur @color;
+  -moz-box-shadow: @horizontal @vertical @blur @color;
+  box-shadow: @horizontal @vertical @blur @color;
+}
+.inset-box-shadow(@horizontal: 0px, @vertical: 1px, @blur: 2px, @color: #CCC) {
+  -webkit-box-shadow: inset @horizontal @vertical @blur @color;
+  -moz-box-shadow: inset @horizontal @vertical @blur @color;
+  box-shadow: inset @horizontal @vertical @blur @color;
+}
+.multi-color-border(@top, @sides, @bottom) {
+    border-top: 1px solid @top;
+    border-left: 1px solid @sides;
+    border-right: 1px solid @sides;
+    border-bottom: 1px solid @bottom;
+}
+.multi-border-radius(@topLeft: 5px, @topRight: 5px, @bottomRight: 5px, @bottomLeft: 5px) {
+    -webkit-border-top-left-radius: @topLeft;
+    -webkit-border-top-right-radius: @topRight;
+    -webkit-border-bottom-right-radius: @bottomRight;
+    -webkit-border-bottom-left-radius: @bottomLeft;
+    -moz-border-radius-topleft: @topLeft;
+    -moz-border-radius-topright: @topRight;
+    -moz-border-radius-bottomright: @bottomRight;
+    -moz-border-radius-bottomleft: @bottomLeft;
+    border-top-left-radius: @topLeft;
+    border-top-right-radius: @topRight;
+    border-bottom-right-radius: @bottomRight;
+    border-bottom-left-radius: @bottomLeft;
+}
+.vertical-gradient(@start: #000, @stop: #FFF) { background: (@start + @stop) / 2;
+    background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@stop));
+    background: -moz-linear-gradient(center top, @start 0%, @stop 100%);
+    background: -moz-gradient(center top, @start 0%, @stop 100%);
+}
+.vertical-gradient-with-image(@start: #000, @stop: #FFF, @image) {
+    background: (@start + @stop) / 2 @image;
+    background: @image, -webkit-gradient(linear, left top, left bottom, from(@start), to(@stop));
+    background: @image, -moz-linear-gradient(center top, @start 0%, @stop 100%);
+    background: @image, -moz-gradient(center top, @start 0%, @stop 100%);
+}
+
+// Page
+html, body {
+    background-color: #FFF;
+}
+body {
+    color: #666;
+    font: normal 14px @Helvetica;
+    overflow-y: scroll;
+    text-rendering: optimizeLegibility;
+}
+
+// Utils
+.group:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.hidden {
+    display: none;
+}

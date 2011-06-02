@@ -1,0 +1,24 @@
+# Django
+-e git://github.com/django/django.git@1.3.X#egg=django
+-e git://github.com/dziegler/django-css.git#egg=django-css
+-e git://github.com/django-extensions/django-extensions.git#egg=django_extensions
+-e hg+http://bitbucket.org/offline/django-annoying#egg=django-annoying
+-e git://github.com/alex/django-templatetag-sugar.git#egg=templatetag_sugar
+-e hg+http://bitbucket.org/dwaiter/django-bcrypt#egg=django-bcrypt
+-e hg+ssh://hg@bitbucket.org/nicksergeant/django-registration#egg=django-registration
+
+# Admin
+-e svn+http://django-grappelli.googlecode.com/svn/trunk#egg=django-grappelli
+-e hg+http://bitbucket.org/fetzig/grappelli-admin-tools#egg=admin_tools
+
+# Deployment
+-e git://github.com/bitprophet/fabric.git#egg=fabric
+-e git+http://github.com/benoitc/gunicorn.git#egg=gunicorn
+-e hg+ssh://hg@bitbucket.org/nicksergeant/dwfab#egg=dwfab
+
+BeautifulSoup
+django-postmark
+johnny-cache
+python-memcached
+South
+Werkzeug

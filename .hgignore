@@ -1,0 +1,12 @@
+syntax: glob
+
+*.json
+*.gunicorn.*
+*.pyc
+
+db.db
+local_settings.py
+logs
+media/admin
+media/cache
+media/css/style.css

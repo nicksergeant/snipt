@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="{% block html-class %}{% endblock %}">
+<head>
+    <title>{% block page-title %}Snipt{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
+
+    {% load compress %}
+
+    {% compress css %}
+        <link rel="stylesheet" href="/media/css/reset.css" />
+        {% if not debug %}
+            <link rel="stylesheet" href="/media/css/style.less" />
+        {% endif %}
+    {% endcompress %}
+    {% if debug %}
+        <link rel="stylesheet/less" href="/media/css/style.less" />
+    {% endif %}
+
+    {% compress js %}
+        <script type="text/javascript" src="/media/js/jquery.js"></script>
+        <script type="text/javascript" src="/media/js/script.js"></script>
+        {% if debug %}
+            <script type="text/javascript" src="/media/js/less.js"></script>
+        {% endif %}
+    {% endcompress %}
+
+    <!--[if IE]>
+        <style type="text/css">
+            .group {
+                display: block;
+                zoom: 1;
+            }
+        </style>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body class="{% block body-class %}{% endblock %}">
+
+    {% block content %}{% endblock %}
+
+    {% if not debug %}
+        <script type="text/javascript">
+            //<![CDATA[
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-514462-44']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+            })();
+            //]]>
+        </script>
+    {% endif %}
+
+</body>
+</html>
