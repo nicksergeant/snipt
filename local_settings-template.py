@@ -6,6 +6,8 @@ TEMPLATE_DEBUG = DEBUG
 EMAIL_BACKEND = 'postmark.backends.PostmarkBackend'
 POSTMARK_API_KEY = ''
 
+SECRET_KEY = ''
+
 DATABASES = {
     'default': {
         'ENGINE': 'sqlite3',
