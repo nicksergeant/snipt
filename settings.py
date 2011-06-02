@@ -32,7 +32,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
-    'grappelli.context_processors.admin_template_path',
 )
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -53,8 +52,6 @@ TEMPLATE_DIRS = os.path.join(BASE_PATH, 'templates')
 
 INSTALLED_APPS = (
     'grappelli',
-    'admin_tools.theming',
-    'admin_tools.menu',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

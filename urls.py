@@ -9,7 +9,6 @@ from views import home
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^grappelli/', include('grappelli.urls')),
 
     url(r'^404/$', direct_to_template, {'template': '404.html'}),
