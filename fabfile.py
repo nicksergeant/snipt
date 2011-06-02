@@ -17,7 +17,7 @@ def prod():
     '''Run on the production site.'''
     env.env_name = 'production'
     env.hosts = ['nick@beta.snipt.net:38038']
-    env.process_name = 'beta-snipt'
+    env.process_name = 'beta_snipt'
     env.site_path = '/var/www/beta-snipt'
     env.venv_path = '/home/nick/.virtualenvs/beta-snipt'
     env.site_url = 'https://beta.snipt.net/'
