@@ -3,6 +3,7 @@ syntax: glob
 *.json
 *.gunicorn.*
 *.pyc
+*.sql
 
 db.db
 local_settings.py

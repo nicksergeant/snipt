@@ -61,6 +61,8 @@ INSTALLED_APPS = (
     'compressor',
     'django_bcrypt',
     'south',
+
+    'snipts',
 )
 
 # CSS compression

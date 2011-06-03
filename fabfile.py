@@ -7,10 +7,10 @@ from dwfab.misc import growl as _growl
 
 UPLOADS_DIR = 'media/uploads'
 APPS_TO_SYNC = [
-    'auth',
     'contenttypes',
+    'auth',
     'redirects',
-    'registration',
+    'sites',
 ]
 
 def prod():
@@ -19,7 +19,7 @@ def prod():
     env.hosts = ['nick@beta.snipt.net:38038']
     env.process_name = 'beta_snipt'
     env.site_path = '/var/www/beta-snipt'
-    env.venv_path = '/home/nick/.virtualenvs/beta-snipt'
+    env.venv_path = '/home/nick/virtualenvs/beta-snipt'
     env.site_url = 'https://beta.snipt.net/'
     env.uploads_path = env.site_path + '/' + UPLOADS_DIR
 
