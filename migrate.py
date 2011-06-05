@@ -4,7 +4,7 @@ import MySQLdb
 
 from django.contrib.auth.models import User
 
-from snipts.models import Snipt
+from snipts.models import Comment, Snipt
 
 conn = MySQLdb.connect(host='localhost', user='root', passwd='root', db='sniptold')
 cursor = conn.cursor()
@@ -12,6 +12,7 @@ cursor = conn.cursor()
 def i():
     users()
     snipts()
+    comments()
 
 def users():
 
@@ -90,3 +91,32 @@ def snipts():
         snipt.save()
 
     print 'Done with snipts'
+
+def comments():
+
+    print "Deleting existing comments"
+    comments = Comment.objects.all()
+    for c in comments:
+        c.delete()
+
+    cursor.execute("SELECT * FROM django_comments")
+    rows = cursor.fetchall()
+
+    for row in rows:
+        snipt_id = row[2]
+        user_id = row[4]
+        cmt = row[8]
+        created = row[9]
+
+        try:
+            comment = Comment(
+                snipt=Snipt.objects.get(id=snipt_id),
+                user=User.objects.get(id=user_id),
+                comment=cmt,
+                created=created,
+            )
+            comment.save()
+        except:
+            print "Couldn't get snipt " + str(snipt_id)
+
+    print 'Done with comments'
