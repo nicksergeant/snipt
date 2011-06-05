@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'compressor',
     'django_bcrypt',
     'south',
+    'taggit',
 
     'snipts',
 )

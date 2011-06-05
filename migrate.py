@@ -5,6 +5,7 @@ import MySQLdb
 from django.contrib.auth.models import User
 
 from snipts.models import Comment, Snipt
+from taggit.models import Tag, TaggedItem
 
 conn = MySQLdb.connect(host='localhost', user='root', passwd='root', db='sniptold')
 cursor = conn.cursor()
@@ -61,6 +62,16 @@ def snipts():
     for s in snipts:
         s.delete()
 
+    print "Deleting existing tags"
+    existing_tags = Tag.objects.all()
+    existing_tagged_items = Tag.objects.all()
+
+    for t in existing_tags:
+        t.delete()
+
+    for t in existing_tagged_items:
+        t.delete()
+
     cursor.execute("SELECT * FROM snippet_snippet")
     rows = cursor.fetchall()
 
@@ -84,10 +95,14 @@ def snipts():
             lexer=lexer,
             key=key,
             user=User.objects.get(id=user_id),
-            tags=tags,
             public=public,
             created=created,
         )
+
+        tags = tags.split(',')
+        for t in tags:
+            snipt.tags.add(t.strip())
+
         snipt.save()
 
     print 'Done with snipts'
