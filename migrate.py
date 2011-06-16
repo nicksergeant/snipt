@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from snipts.models import Comment, Snipt
 from taggit.models import Tag, TaggedItem
+from taggit.utils import parse_tags
 
 conn = MySQLdb.connect(host='localhost', user='root', passwd='root', db='sniptold')
 cursor = conn.cursor()
@@ -98,11 +99,8 @@ def snipts():
             public=public,
             created=created,
         )
-
-        tags = tags.split(',')
-        for t in tags:
-            snipt.tags.add(t.strip())
-
+        for t in parse_tags(tags):
+            snipt.tags.add(t)
         snipt.save()
 
     print 'Done with snipts'

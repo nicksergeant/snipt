@@ -11,7 +11,6 @@ class Snipt(models.Model):
     title    = models.CharField(max_length=255)
     slug     = models.SlugField()
     tags     = TaggableManager()
-    old_tags = models.CharField(max_length=255)
 
     lexer    = models.CharField(max_length=50)
     code     = models.TextField()
