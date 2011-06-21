@@ -9,6 +9,8 @@ class CommentInline(admin.TabularInline):
     allow_add = False
 
 class SniptAdmin(admin.ModelAdmin):
+    # TODO: Make user readonly
+    #readonly_fields = ('user',)
     list_display = ('title', 'slug', 'user', 'lexer', 'public', 'created', 'modified',)
     search_fields = ('title', 'user__username', 'tags', 'lexer', 'id',)
     ordering = ('created',)

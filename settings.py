@@ -58,9 +58,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.redirects',
 
+    'api',
     'compressor',
     'django_bcrypt',
-    'piston',
     'south',
     'taggit',
 
