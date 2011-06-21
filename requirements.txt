@@ -13,6 +13,9 @@
 -e git+http://github.com/benoitc/gunicorn.git#egg=gunicorn
 -e hg+ssh://hg@bitbucket.org/nicksergeant/dwfab#egg=dwfab
 
+# API
+-e hg+ssh://hg@bitbucket.org/jespern/django-piston#egg=django-piston
+
 BeautifulSoup
 django-taggit
 django-postmark
