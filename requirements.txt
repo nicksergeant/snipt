@@ -14,7 +14,7 @@
 -e hg+ssh://hg@bitbucket.org/nicksergeant/dwfab#egg=dwfab
 
 # API
--e hg+ssh://hg@bitbucket.org/jespern/django-piston#egg=django-piston
+-e git://github.com/toastdriven/django-tastypie.git#egg=django-tastypie
 
 BeautifulSoup
 django-taggit
