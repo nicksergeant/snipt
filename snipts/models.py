@@ -1,15 +1,16 @@
+from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db import models
 
 from taggit.managers import TaggableManager
 
 class Snipt(models.Model):
-    """An individual code snippet."""
+    """An individual Snipt."""
 
     user     = models.ForeignKey(User)
 
     title    = models.CharField(max_length=255)
-    slug     = models.SlugField()
+    slug     = models.SlugField(blank=True)
     tags     = TaggableManager()
 
     lexer    = models.CharField(max_length=50)
@@ -23,8 +24,14 @@ class Snipt(models.Model):
     created  = models.DateTimeField(auto_now_add=False, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)[:50]
+
+        return super(Entry, self).save(*args, **kwargs)
+
     def __unicode__(self):
-        return u'%s' %(self.title)
+        return self.title
 
 class Comment(models.Model):
     """A comment on a Snipt"""
@@ -37,3 +44,6 @@ class Comment(models.Model):
     # TODO Set auto_now_add back to True for production!
     created  = models.DateTimeField(auto_now_add=False, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
+
+    def __unicode__(self):
+        return u'%s on %s' %(self.user, self.snipt)

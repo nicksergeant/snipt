@@ -20,6 +20,9 @@ BeautifulSoup
 django-taggit
 django-postmark
 johnny-cache
+lxml
 python-memcached
+pyyaml
 South
+uuid
 Werkzeug
