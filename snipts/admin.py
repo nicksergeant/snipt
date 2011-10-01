@@ -19,7 +19,7 @@ class SniptAdmin(admin.ModelAdmin):
 admin.site.register(Snipt, SniptAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
-    readonly_fields = ('user', 'snipt',)
+    #readonly_fields = ('user', 'snipt',)
     list_display = ('comment', 'user', 'snipt', 'created', 'modified',)
     search_fields = ('comment', 'user__username',)
     ordering = ('created',)

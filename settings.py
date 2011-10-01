@@ -36,6 +36,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.load_template_source',
 )
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.CacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfResponseMiddleware',

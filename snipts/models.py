@@ -33,6 +33,9 @@ class Snipt(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return "https://snipt.net/%s/%s/" % (self.user.username, self.slug)
+
 class Comment(models.Model):
     """A comment on a Snipt"""
 
@@ -42,7 +45,7 @@ class Comment(models.Model):
     comment = models.TextField()
 
     # TODO Set auto_now_add back to True for production!
-    created  = models.DateTimeField(auto_now_add=False, editable=False)
+    created  = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
