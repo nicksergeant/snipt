@@ -1,6 +1,7 @@
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from snipts.models import Comment, Snipt
+from tastypie.cache import SimpleCache
 from django.db.models import Count
 from tastypie import fields
 from taggit.models import Tag
@@ -12,6 +13,7 @@ class PublicUserResource(ModelResource):
         resource_name = 'user'
         fields = ['username',]
         include_absolute_url = True
+        cache = SimpleCache()
 
 class PublicCommentSniptResource(ModelResource):
     class Meta:
@@ -19,6 +21,7 @@ class PublicCommentSniptResource(ModelResource):
         resource_name = 'snipt'
         fields = ['id',]
         include_absolute_url = True
+        cache = SimpleCache()
 
 class PublicTagResource(ModelResource):
     class Meta:
@@ -27,6 +30,7 @@ class PublicTagResource(ModelResource):
         queryset = annotated.order_by('-count')
         resource_name = 'tag'
         fields = ['name',]
+        cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
@@ -43,6 +47,7 @@ class PublicCommentResource(ModelResource):
         resource_name = 'comment'
         fields = ['user', 'snipt', 'comment', 'created', 'modified',]
         include_absolute_url = True
+        cache = SimpleCache()
 
 class PublicSniptResource(ModelResource):
     comments = fields.ToManyField(PublicCommentResource, 'comment_set',
@@ -54,6 +59,7 @@ class PublicSniptResource(ModelResource):
         fields = ['user', 'title', 'slug', 'tags', 'lexer', 'code', 'created',
                   'modified',]
         include_absolute_url = True
+        cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['user'] = {
