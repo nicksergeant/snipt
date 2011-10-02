@@ -23,7 +23,7 @@ class Snipt(models.Model):
     
     # TODO Set auto_now_add back to True for production!
     created  = models.DateTimeField(auto_now_add=False, editable=False)
-    modified = models.DateTimeField(auto_now=True, editable=False)
+    modified = models.DateTimeField(auto_now=False, editable=False)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -35,7 +35,7 @@ class Snipt(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "https://snipt.net/%s/%s/" % (self.user.username, self.slug)
+        return "/%s/%s/" % (self.user.username, self.slug)
 
 class Comment(models.Model):
     """A comment on a Snipt"""
@@ -47,7 +47,7 @@ class Comment(models.Model):
 
     # TODO Set auto_now_add back to True for production!
     created  = models.DateTimeField(auto_now_add=False, editable=False)
-    modified = models.DateTimeField(auto_now=True, editable=False)
+    modified = models.DateTimeField(auto_now=False, editable=False)
 
     def __unicode__(self):
         return u'%s on %s' %(self.user, self.snipt)

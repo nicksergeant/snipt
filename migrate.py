@@ -111,6 +111,7 @@ def snipts():
             user=User.objects.get(id=user_id),
             public=public,
             created=created,
+            modified=created,
         )
         for t in parse_tag_input(tags):
             snipt.tags.add(t)
@@ -142,6 +143,7 @@ def comments():
                 user=User.objects.get(id=user_id),
                 comment=cmt,
                 created=created,
+                modified=created,
             )
             comment.save()
         except:
