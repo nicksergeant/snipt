@@ -9,22 +9,21 @@ class PublicUserResource(ModelResource):
         queryset = User.objects.all()
         resource_name = 'user'
         fields = ['username',]
-
-    def dehydrate(self, bundle):
-        bundle.data['url'] = 'https://snipt.net/%s/' % bundle.obj.username
-        return bundle
+        include_absolute_url = True
 
 class PublicCommentSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
         fields = ['id',]
+        include_absolute_url = True
 
 class PublicTagResource(ModelResource):
     class Meta:
         queryset = Tag.objects.all()
         resource_name = 'tag'
-        fields = ['name', '']
+        fields = ['name',]
+        include_absolute_url = True
 
 class PublicCommentResource(ModelResource):
     user = fields.ForeignKey(PublicUserResource, 'user')
@@ -34,20 +33,30 @@ class PublicCommentResource(ModelResource):
         queryset = Comment.objects.all()
         resource_name = 'comment'
         fields = ['user', 'snipt', 'comment', 'created', 'modified',]
+        include_absolute_url = True
 
 class PublicSniptResource(ModelResource):
-    user = fields.ForeignKey(PublicUserResource, 'user')
     comments = fields.ToManyField(PublicCommentResource, 'comment_set',related_name='comment')
-    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag')
 
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
-        fields = ['user', 'title', 'slug', 'tags', 'lexer', 'code', 'stylized'
+        fields = ['user', 'title', 'slug', 'tags', 'lexer', 'code', 'stylized',
                   'created', 'modified',]
+        include_absolute_url = True
 
     def dehydrate(self, bundle):
-        bundle.data['url'] = bundle.obj.get_absolute_url()
-        bundle.data['user_username'] = bundle.obj.user.username
-        bundle.data['user_url'] = 'https://snipt.net/%s/' % bundle.obj.user.username
+        bundle.data['user'] = {
+            'username': bundle.obj.user.username,
+            'resource_uri': '/api/public/user/%d/' % bundle.obj.user.id,
+            'absolute_url': bundle.obj.user.get_absolute_url(),
+        }
+
+        bundle.data['tags'] = []
+        for tag in bundle.obj.tags.all():
+            bundle.data['tags'].append({
+                'name': tag.name,
+                'resource_uri': '/api/public/tag/%d/' % tag.id,
+            })
+
         return bundle
