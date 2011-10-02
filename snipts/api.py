@@ -22,7 +22,7 @@ class PublicCommentSniptResource(ModelResource):
 
 class PublicTagResource(ModelResource):
     class Meta:
-        tags = Tag.objects.all()
+        tags = Tag.objects.filter(snipt__public=True)
         annotated = tags.annotate(count=Count('taggit_taggeditem_items__id'))
         queryset = annotated.order_by('-count')
         resource_name = 'tag'
@@ -31,6 +31,7 @@ class PublicTagResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
         bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
+        bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(snipt__public=True).count()
         return bundle
 
 class PublicCommentResource(ModelResource):
@@ -68,6 +69,7 @@ class PublicSniptResource(ModelResource):
         for tag in bundle.obj.tags.all():
             bundle.data['tags'].append({
                 'name': tag.name,
+                'count': tag.taggit_taggeditem_items.filter(snipt__public=True).count(),
                 'absolute_url': '/public/tag/%s/' % tag.slug,
                 'resource_uri': '/api/public/tag/%d/' % tag.id,
                 'snipts': '/api/public/snipt/?tag=%d' % tag.id,
