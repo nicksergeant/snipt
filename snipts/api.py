@@ -1,8 +1,10 @@
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from snipts.models import Comment, Snipt
+from django.db.models import Count
 from tastypie import fields
 from taggit.models import Tag
+
 
 class PublicUserResource(ModelResource):
     class Meta:
@@ -20,10 +22,16 @@ class PublicCommentSniptResource(ModelResource):
 
 class PublicTagResource(ModelResource):
     class Meta:
-        queryset = Tag.objects.all()
+        tags = Tag.objects.all()
+        annotated = tags.annotate(count=Count('taggit_taggeditem_items__id'))
+        queryset = annotated.order_by('-count')
         resource_name = 'tag'
         fields = ['name',]
-        include_absolute_url = True
+
+    def dehydrate(self, bundle):
+        bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
+        bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
+        return bundle
 
 class PublicCommentResource(ModelResource):
     user = fields.ForeignKey(PublicUserResource, 'user')
@@ -36,13 +44,14 @@ class PublicCommentResource(ModelResource):
         include_absolute_url = True
 
 class PublicSniptResource(ModelResource):
-    comments = fields.ToManyField(PublicCommentResource, 'comment_set',related_name='comment')
+    comments = fields.ToManyField(PublicCommentResource, 'comment_set',
+                                  related_name='comment')
 
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
-        fields = ['user', 'title', 'slug', 'tags', 'lexer', 'code', 'stylized',
-                  'created', 'modified',]
+        fields = ['user', 'title', 'slug', 'tags', 'lexer', 'code', 'created',
+                  'modified',]
         include_absolute_url = True
 
     def dehydrate(self, bundle):
@@ -52,11 +61,29 @@ class PublicSniptResource(ModelResource):
             'absolute_url': bundle.obj.user.get_absolute_url(),
         }
 
+        bundle.data['embed_url'] = bundle.obj.embed_url
+        bundle.data['stylized'] = bundle.obj.get_stylized()
+
         bundle.data['tags'] = []
         for tag in bundle.obj.tags.all():
             bundle.data['tags'].append({
                 'name': tag.name,
+                'absolute_url': '/public/tag/%s/' % tag.slug,
                 'resource_uri': '/api/public/tag/%d/' % tag.id,
+                'snipts': '/api/public/snipt/?tag=%d' % tag.id,
             })
 
         return bundle
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(PublicSniptResource, self).build_filters(filters)
+
+        if 'tag' in filters:
+            tag = Tag.objects.get(pk=filters['tag'])
+            tagged_items = tag.taggit_taggeditem_items.all()
+            orm_filters['pk__in'] = [i.object_id for i in tagged_items]
+
+        return orm_filters

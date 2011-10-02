@@ -82,6 +82,12 @@ COMPILER_FORMATS = {
 
 GRAPPELLI_ADMIN_TITLE = '<a href="/">Snipt</a>'
 
+# User absolute URLs
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: "/%s/" % u.username,
+}
+
 # Local settings and debug
 
 from local_settings import *

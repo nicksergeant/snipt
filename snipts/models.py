@@ -1,8 +1,17 @@
 from django.template.defaultfilters import slugify
+from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 
 from taggit.managers import TaggableManager
+
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+
+
+site = Site.objects.all()[0]
 
 class Snipt(models.Model):
     """An individual Snipt."""
@@ -36,6 +45,23 @@ class Snipt(models.Model):
 
     def get_absolute_url(self):
         return "/%s/%s/" % (self.user.username, self.slug)
+
+    def get_stylized(self):
+        if self.stylized == '':
+            self.stylized = highlight(self.code,
+                                      get_lexer_by_name(self.lexer,
+                                      encoding='UTF-8'),
+                                      HtmlFormatter())
+            self.save()
+            return self.stylized
+        else:
+            return self.stylized
+
+    @property
+    def embed_url(self):
+        return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
+                                          site.domain,
+                                          self.key)
 
 class Comment(models.Model):
     """A comment on a Snipt"""
