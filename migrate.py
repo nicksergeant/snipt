@@ -28,6 +28,8 @@ def users():
     cursor.execute("SELECT * FROM auth_user")
     rows = cursor.fetchall()
 
+    print "Adding users"
+
     for row in rows:
         user_id      = row[0]
         username     = row[1]
@@ -56,7 +58,7 @@ def users():
         )
         user.save()
 
-    print 'Done with users'
+    print "Done with users"
 
 def snipts():
 
@@ -78,6 +80,8 @@ def snipts():
     cursor.execute("SELECT * FROM snippet_snippet")
     rows = cursor.fetchall()
 
+    print "Adding snipts"
+
     for row in rows:
         snipt_id = row[0]
         code     = row[1]
@@ -90,10 +94,17 @@ def snipts():
         key      = row[8]
         slug     = row[9]
 
+        if len(title) > 255:
+            description = title
+            title = 'Unknown (original title was too long)'
+        else:
+            description = ''
+
         snipt = Snipt(
             id=snipt_id,
             code=code,
             title=title,
+            description=description,
             slug=slug,
             lexer=lexer,
             key=key,
@@ -116,6 +127,8 @@ def comments():
 
     cursor.execute("SELECT * FROM django_comments")
     rows = cursor.fetchall()
+
+    print "Adding comments"
 
     for row in rows:
         snipt_id = row[2]

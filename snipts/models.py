@@ -10,7 +10,8 @@ class Snipt(models.Model):
     user     = models.ForeignKey(User)
 
     title    = models.CharField(max_length=255)
-    slug     = models.SlugField(blank=True)
+    description = models.TextField(blank=True, null=True)
+    slug     = models.SlugField(max_length=255, blank=True)
     tags     = TaggableManager()
 
     lexer    = models.CharField(max_length=50)
@@ -28,7 +29,7 @@ class Snipt(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)[:50]
 
-        return super(Entry, self).save(*args, **kwargs)
+        return super(Snipt, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.title
@@ -45,7 +46,7 @@ class Comment(models.Model):
     comment = models.TextField()
 
     # TODO Set auto_now_add back to True for production!
-    created  = models.DateTimeField(auto_now_add=True, editable=False)
+    created  = models.DateTimeField(auto_now_add=False, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
