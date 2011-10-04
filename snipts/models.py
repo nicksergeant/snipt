@@ -30,7 +30,7 @@ class Snipt(models.Model):
     key      = models.CharField(max_length=100)
     public   = models.BooleanField(default=False)
     
-    # TODO Set auto_now_add back to True for production!
+    # TODO Set back to True for production!
     created  = models.DateTimeField(auto_now_add=False, editable=False)
     modified = models.DateTimeField(auto_now=False, editable=False)
 
@@ -57,8 +57,7 @@ class Snipt(models.Model):
         else:
             return self.stylized
 
-    @property
-    def embed_url(self):
+    def get_embed_url(self):
         return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
                                           site.domain,
                                           self.key)
@@ -71,9 +70,12 @@ class Comment(models.Model):
 
     comment = models.TextField()
 
-    # TODO Set auto_now_add back to True for production!
+    # TODO Set back to True for production!
     created  = models.DateTimeField(auto_now_add=False, editable=False)
     modified = models.DateTimeField(auto_now=False, editable=False)
 
     def __unicode__(self):
         return u'%s on %s' %(self.user, self.snipt)
+
+    def get_absolute_url(self):
+        return '%s#comment-%d' % (self.snipt.get_absolute_url(), self.id)

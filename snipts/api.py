@@ -1,4 +1,4 @@
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, ALL_WITH_RELATIONS
 from django.contrib.auth.models import User
 from snipts.models import Comment, Snipt
 from tastypie.cache import SimpleCache
@@ -13,74 +13,61 @@ class PublicUserResource(ModelResource):
         resource_name = 'user'
         fields = ['username',]
         include_absolute_url = True
+        allowed_methods = ['get']
+        list_allowed_methods = []
         cache = SimpleCache()
 
-class PublicCommentSniptResource(ModelResource):
-    class Meta:
-        queryset = Snipt.objects.filter(public=True).order_by('-created')
-        resource_name = 'snipt'
-        fields = ['id',]
-        include_absolute_url = True
-        cache = SimpleCache()
+    def dehydrate(self, bundle):
+        bundle.data['snipts'] = '/api/public/snipt/?user=%d' % bundle.obj.id
+        return bundle
 
 class PublicTagResource(ModelResource):
     class Meta:
-        tags = Tag.objects.filter(snipt__public=True)
-        annotated = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-        queryset = annotated.order_by('-count')
+        queryset = Tag.objects.filter(snipt__public=True)
+        queryset = queryset.annotate(count=Count('taggit_taggeditem_items__id'))
+        queryset = queryset.order_by('-count')
         resource_name = 'tag'
         fields = ['name',]
+        allowed_methods = ['get']
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
         bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
-        bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(snipt__public=True).count()
+        bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
+                               snipt__public=True).count()
         return bundle
 
 class PublicCommentResource(ModelResource):
     user = fields.ForeignKey(PublicUserResource, 'user')
-    snipt = fields.ForeignKey(PublicCommentSniptResource, 'snipt')
+    snipt = fields.ForeignKey('snipts.api.PublicSniptResource', 'snipt')
 
     class Meta:
-        queryset = Comment.objects.all()
+        queryset = Comment.objects.filter(snipt__public=True).order_by('-created')
         resource_name = 'comment'
         fields = ['user', 'snipt', 'comment', 'created', 'modified',]
         include_absolute_url = True
+        allowed_methods = ['get']
         cache = SimpleCache()
 
 class PublicSniptResource(ModelResource):
+    user = fields.ForeignKey(PublicUserResource, 'user', full=True)
+    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag', full=True)
     comments = fields.ToManyField(PublicCommentResource, 'comment_set',
-                                  related_name='comment')
+                                  related_name='comment', full=True)
 
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
-        fields = ['user', 'title', 'slug', 'tags', 'lexer', 'code', 'created',
-                  'modified',]
+        fields = ['title', 'slug', 'lexer', 'code', 'created', 'modified',]
         include_absolute_url = True
+        allowed_methods = ['get']
+        filtering = { 'user': 'exact', }
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
-        bundle.data['user'] = {
-            'username': bundle.obj.user.username,
-            'resource_uri': '/api/public/user/%d/' % bundle.obj.user.id,
-            'absolute_url': bundle.obj.user.get_absolute_url(),
-        }
-
-        bundle.data['embed_url'] = bundle.obj.embed_url
+        bundle.data['embed_url'] = bundle.obj.get_embed_url()
         bundle.data['stylized'] = bundle.obj.get_stylized()
-
-        bundle.data['tags'] = []
-        for tag in bundle.obj.tags.all():
-            bundle.data['tags'].append({
-                'name': tag.name,
-                'count': tag.taggit_taggeditem_items.filter(snipt__public=True).count(),
-                'absolute_url': '/public/tag/%s/' % tag.slug,
-                'resource_uri': '/api/public/tag/%d/' % tag.id,
-                'snipts': '/api/public/snipt/?tag=%d' % tag.id,
-            })
-
         return bundle
 
     def build_filters(self, filters=None):
