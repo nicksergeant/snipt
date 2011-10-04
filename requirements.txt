@@ -22,6 +22,7 @@ django-taggit
 django-postmark
 johnny-cache
 lxml
+MySQL-python
 python-memcached
 pyyaml
 South
