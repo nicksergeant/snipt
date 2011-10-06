@@ -59,13 +59,48 @@
 
 // Page
 html, body {
-    background-color: #FFF;
+    background: #FFF url('/media/images/bg.gif') top left repeat;
 }
 body {
     color: #666;
     font: normal 14px @Helvetica;
     overflow-y: scroll;
     text-rendering: optimizeLegibility;
+}
+
+// Global
+header {
+    background: #12343D url('/media/images/header-bg.gif') top left repeat-x;
+    border-bottom: 1px solid #DDDDDD;
+    height: 66px;
+
+    div.inner {
+        background: transparent url('/media/images/header-inner-bg.png') top left no-repeat;
+        border-left: 1px solid rgba(229, 229, 229, .25);
+        height: 65px;
+        margin: 0 auto;
+        width: 939px;
+
+        h1 {
+            float: left;
+            
+            a {
+                background: transparent url('/media/images/logo.png') top left no-repeat;
+                display: block;
+                float: left;
+                height: 35px;
+                margin: 16px 0 0 16px;
+                text-indent: -1000em;
+                width: 87px;
+            }
+        }
+    }
+}
+section.main {
+    border-left: 1px solid #DDDDDD;
+    height: 100%;
+    margin: 0 auto;
+    width: 939px;
 }
 
 // Utils
