@@ -3,7 +3,7 @@
 
 // Focus
 *:focus {
-    .box-shadow(0, 0, 10px, #47B7F2);
+    .box-shadow(0, 0, 10px, #46CD46);
 }
 
 // Mixins
@@ -73,16 +73,29 @@ header {
     background: #12343D url('/media/images/header-bg.gif') top left repeat-x;
     border-bottom: 1px solid #DDDDDD;
     height: 66px;
+    position: relative;
+    z-index: 50;
 
     div.inner {
-        background: transparent url('/media/images/header-inner-bg.png') top left no-repeat;
         border-left: 1px solid rgba(229, 229, 229, .25);
         height: 65px;
         margin: 0 auto;
+        position: relative;
         width: 939px;
 
+        div.shadey {
+            background: transparent url('/media/images/header-inner-bg.png') top left no-repeat;
+            height: 65px;
+            left: -157px;
+            position: absolute;
+            top: 0;
+            width: 432px;
+            z-index: 49;
+        }
         h1 {
             float: left;
+            position: relative;
+            z-index: 50;
             
             a {
                 background: transparent url('/media/images/logo.png') top left no-repeat;
@@ -94,13 +107,185 @@ header {
                 width: 87px;
             }
         }
+        form.search {
+            float: left;
+            padding: 17px 0 0 20px;
+            position: relative;
+            z-index: 50;
+            
+            div.infield {
+                position: relative;
+
+                label {
+                    color: #72979C;
+                    cursor: text;
+                    font: normal 12px @Helvetica;
+                    left: 30px;
+                    position: absolute;
+                    top: 8px;
+                }
+                input {
+                    background: #17484F url('/media/images/search-icon.png') top left no-repeat;
+                    background: rgba(43, 82, 93, .5) url('/media/images/search-icon.png') 8px center no-repeat;
+                    border: 1px solid #3A5E67;
+                    color: #FFF;
+                    font: normal 12px @Helvetica;
+                    margin: 0;
+                    padding: 7px;
+                    padding-left: 28px;
+                    width: 175px;
+                    .border-radius(3px);
+                    .inset-box-shadow(0, 1px, 0px, #1D4249);
+                }
+            }
+        }
+        nav.public {
+            float: left;
+
+            ul {
+                margin: 0;
+                padding: 17px 0 0 20px;
+
+                li {
+                    display: block;
+                    float: left;
+
+                    a {
+                        border-bottom: 2px solid transparent;
+                        color: #FFF;
+                        display: block;
+                        float: left;
+                        font: normal 14px @Helvetica;
+                        padding: 7px;
+                        padding-bottom: 5px;
+                        margin-right: 20px;
+                        text-decoration: none;
+                        -webkit-transition: border .08s linear;
+                        -moz-transition: border .08s linear;
+                        -o-transition: border .08s linear;
+                        transition: border .08s linear;
+
+                        &:hover {
+                            border-bottom: 2px solid #3A5E67;
+                        }
+                        &.active {
+                            border-bottom: 2px solid #85D2DD;
+                        }
+                    }
+                }
+            }
+        }
+        aside.nav {
+            border-left: 1px solid rgba(229, 229, 229, .25);
+            float: right;
+            height: 65px;
+            width: 189px;
+        }
     }
 }
 section.main {
-    border-left: 1px solid #DDDDDD;
     height: 100%;
     margin: 0 auto;
-    width: 939px;
+    padding-top: 30px;
+    position: relative;
+    width: 940px;
+
+    div.ruler {
+        background: #DDDDDD;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        width: 1px;
+        z-index: 48;
+    }
+    div.right-y {
+        margin-left: 750px;
+    }
+    div.inner {
+        float: left;
+        width: 750px;
+    }
+    aside.main {
+        float: right;
+        width: 190px;
+
+        section.ad {
+            div.asset {
+                background: #FFF url('/media/images/ad.jpg') center center no-repeat;
+                border: 1px solid #DDDDDD;
+                height: 130px;
+                margin: 15px 15px 6px;
+                width: 158px;
+                .border-radius(3px);
+            }
+            div.meta {
+                color: #CCC;
+                font: normal 12px @Helvetica;
+                margin-right: 15px;
+                text-align: right;
+                text-transform: uppercase;
+            }
+        }
+        section.tags {
+            margin: 45px 15px;
+
+            h1 {
+                background: transparent url('/media/images/tags-icon.png') 0 0 no-repeat;
+                color: #3BAAF3;
+                font: bold 12px @Helvetica;
+                padding-bottom: 5px;
+                padding-left: 22px;
+            }
+            ul {
+                margin: 0 0 15px 0;
+
+                li {
+                    margin: 6px 0 6px 22px;
+                }
+            }
+            a {
+                border-bottom: 1px solid #5AB6F4;
+                color: #5AB6F4;
+                font: normal 12px @Helvetica;
+                text-decoration: none;
+
+                &:hover {
+                    border-bottom: 1px solid #2B6E9B;
+                    color: #2B6E9B;
+                }
+                &.view-all {
+                    font-weight: bold;
+                    margin: 0 0 0 22px;
+                }
+            }
+        }
+        nav.footer {
+            margin: 45px 15px 32px;
+
+            ul {
+                margin: 0;
+
+                li {
+                    background: transparent url('/media/images/api-icon.png') center left no-repeat;
+                    margin: 6px 0 6px 0;
+                    padding-left: 22px;
+
+                    a {
+                        border-bottom: 1px solid #C5C5C6;
+                        color: #999;
+                        font: bold 12px @Helvetica;
+                        text-decoration: none;
+                    }
+                    &.twitter {
+                        background: transparent url('/media/images/twitter-icon.png') 4px center no-repeat;
+                    }
+                    &.pro {
+                        background: transparent url('/media/images/upgrade-icon.png') 2px center no-repeat;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Utils

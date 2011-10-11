@@ -3,7 +3,6 @@ from django.views.generic.simple import direct_to_template
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from tastypie.api import Api
-from views import home
 
 admin.autodiscover()
 
@@ -22,5 +21,5 @@ urlpatterns = patterns('',
 
     url(r'^api/', include(public_api.urls)),
 
-    url(r'^$', home),
+    url(r'^', include('snipts.urls')),
 )

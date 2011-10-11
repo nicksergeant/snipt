@@ -19,7 +19,10 @@
 
     {% compress js %}
         <script type="text/javascript" src="/media/js/jquery.js"></script>
-        <script type="text/javascript" src="/media/js/script.js"></script>
+        <script type="text/javascript" src="/media/js/jquery.infieldlabel.js"></script>
+        <script type="text/javascript" src="/media/js/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="/media/js/coffee-script.js"></script>
+        <script type="text/coffeescript" src="/media/js/script.coffee"></script>
         {% if debug %}
             <script type="text/javascript" src="/media/js/less.js"></script>
         {% endif %}
@@ -43,12 +46,73 @@
 
     <header>
         <div class="inner">
+            <div class="shadey"></div>
             <h1><a href="/">Snipt</a></h1> 
+            <form  class="search" action="/public/search/" method="get">
+                <fieldset>
+                    <div class="fields infield">
+                        <label for="search-query">Search public snipts</label>
+                        <input type="text" id="search-query" name="q" value="" />
+                    </div>
+                </fieldset>
+            </form>
+            <nav class="public">
+                <ul>
+                    <li>
+                        <a href="/" class="active">Public snipts</a>
+                    </li>
+                    {% if not request.user.is_authenticated %}
+                        <li>
+                            <a href="/login/">Log in</a>
+                        </li>
+                        <li>
+                            <a href="/signup/">Sign up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <aside class="nav"></aside>
         </div>
     </header>
 
-    <section class="main">
-        {% block content %}{% endblock %}
+    <section class="main group">
+        <div class="inner">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="left-y ruler"></div>
+        <div class="right-y ruler"></div>
+        <aside class="main">
+            <section class="ad">
+                <div class="asset"></div>
+                <div class="meta">
+                    Ads by Carbon
+                </div>
+            </section>
+            <section class="tags">
+                <h1>Popular public tags</h1>
+                <ul>
+                    {% for tag in tags %}
+                        <li>
+                            <a href="{{ tag.data.absolute_url }}">{{ tag.data.name }} ({{ tag.data.count }})</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="/public/tags/" class="view-all">View all &raquo;</a>
+            </section>
+            <nav class="footer">
+                <ul>
+                    <li class="api">
+                        <a href="/api/">API</a>
+                    </li>
+                    <li class="twitter">
+                        <a href="https://twitter.com/#!/snipt">@snipt</a>
+                    </li>
+                    <li class="pro">
+                        <a href="/pro/">Go Pro</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
     </section>
 
     {% if not debug %}

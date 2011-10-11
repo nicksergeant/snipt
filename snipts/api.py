@@ -33,7 +33,7 @@ class PublicTagResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
-        bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
+        #bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
         bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
                                snipt__public=True).count()
         return bundle
