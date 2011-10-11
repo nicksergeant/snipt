@@ -271,10 +271,15 @@ section.main {
                     padding-left: 22px;
 
                     a {
-                        border-bottom: 1px solid #C5C5C6;
+                        border-bottom: 1px solid #999;
                         color: #999;
                         font: bold 12px @Helvetica;
                         text-decoration: none;
+
+                        &:hover {
+                            border-bottom: 1px solid #333;
+                            color: #333;
+                        }
                     }
                     &.twitter {
                         background: transparent url('/media/images/twitter-icon.png') 4px center no-repeat;
@@ -287,6 +292,11 @@ section.main {
                     }
                 }
             }
+        }
+    }
+    section.snipts {
+        article.snipt {
+            margin: 20px;
         }
     }
 }

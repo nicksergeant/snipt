@@ -1,4 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <section class="snipts">
+        {% for snipt in snipts %}
+            <article class="snipt">
+                {{ snipt.data.title }}
+            </article>
+        {% endfor %}
+    </section>
 {% endblock %}
