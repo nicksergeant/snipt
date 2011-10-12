@@ -1,0 +1,11 @@
+<section class="tags">
+    <h1>Popular public tags</h1>
+    <ul>
+        {% for tag in tags %}
+            <li>
+                <a href="/public/tag/{{ tag.slug }}/">{{ tag.name }} ({{ tag.count }})</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/public/tags/" class="view-all">View all &raquo;</a>
+</section>

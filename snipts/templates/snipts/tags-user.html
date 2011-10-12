@@ -1,0 +1,10 @@
+<section class="tags">
+    <h1>{{ user.username }}'s tags</h1>
+    <ul>
+        {% for tag in tags %}
+            <li>
+                <a href="/{{ user.username }}/tag/{{ tag.slug }}/">{{ tag.name }} ({{ tag.count }})</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

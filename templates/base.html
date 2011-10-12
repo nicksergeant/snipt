@@ -68,6 +68,10 @@
                         <li>
                             <a href="/signup/">Sign up</a>
                         </li>
+                    {% else %}
+                        <li>
+                            <a href="/">My snipts</a>
+                        </li>
                     {% endif %}
                 </ul>
             </nav>
@@ -88,17 +92,7 @@
                     Ads by Yoggrt
                 </div>
             </section>
-            <section class="tags">
-                <h1>Popular public tags</h1>
-                <ul>
-                    {% for tag in tags %}
-                        <li>
-                            <a href="/public/tag/{{ tag.slug }}/">{{ tag.name }} ({{ tag.count }})</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href="/public/tags/" class="view-all">View all &raquo;</a>
-            </section>
+            {% block tags %}{% endblock %}
             <nav class="footer">
                 <ul>
                     <li class="api">

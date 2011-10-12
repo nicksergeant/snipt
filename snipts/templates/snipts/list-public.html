@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load pagination_tags %}
+
+{% block tags %}
+    {% include "snipts/tags-public.html" %}
+{% endblock %}
+
+{% block content %}
+    <section class="snipts">
+        {% autopaginate snipts 20 %}
+        {% for snipt in snipts %}
+            {% include "snipts/snipt-list.html" %}
+        {% endfor %}
+        {% paginate %}
+    </section>
+{% endblock %}
