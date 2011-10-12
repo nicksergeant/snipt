@@ -43,6 +43,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
+    'pagination.middleware.PaginationMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -62,6 +63,7 @@ INSTALLED_APPS = (
     'compressor',
     'django_bcrypt',
     'south',
+    'pagination',
     'taggit',
     'tastypie',
 

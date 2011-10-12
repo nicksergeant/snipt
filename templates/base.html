@@ -93,7 +93,7 @@
                 <ul>
                     {% for tag in tags %}
                         <li>
-                            <a href="{{ tag.data.absolute_url }}">{{ tag.data.name }} ({{ tag.data.count }})</a>
+                            <a href="/public/tag/{{ tag.slug }}/">{{ tag.name }} ({{ tag.count }})</a>
                         </li>
                     {% endfor %}
                 </ul>

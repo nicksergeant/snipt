@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
+{% load pagination_tags %}
+
 {% block content %}
     <section class="snipts">
+        {% autopaginate snipts 20 %}
         {% for snipt in snipts %}
             <article class="snipt">
-                {{ snipt.data.title }}
+                {{ snipt.title }}
             </article>
         {% endfor %}
+        {% paginate %}
     </section>
 {% endblock %}

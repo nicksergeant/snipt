@@ -7,6 +7,7 @@
 -e hg+http://bitbucket.org/dwaiter/django-bcrypt#egg=django-bcrypt
 -e hg+ssh://hg@bitbucket.org/nicksergeant/django-registration#egg=django-registration
 -e svn+http://django-grappelli.googlecode.com/svn/trunk#egg=django-grappelli
+-e svn+http://django-pagination.googlecode.com/svn/trunk#egg=django-pagination
 -e hg+https://bitbucket.org/birkenfeld/pygments-main#egg=Pygments
 
 # Deployment
