@@ -69,7 +69,7 @@ body {
 }
 
 // Global
-header {
+header.main {
     background: #12343D url('/media/images/header-bg.gif') top left repeat-x;
     border-bottom: 1px solid #DDDDDD;
     height: 66px;
@@ -155,9 +155,9 @@ header {
                         color: #FFF;
                         display: block;
                         float: left;
-                        font: normal 14px @Helvetica;
+                        font: 500 14px @Helvetica;
                         padding: 7px;
-                        padding-bottom: 5px;
+                        padding-bottom: 4px;
                         margin-right: 20px;
                         text-decoration: none;
                         -webkit-transition: border .08s linear;
@@ -186,7 +186,6 @@ header {
 section.main {
     height: 100%;
     margin: 0 auto;
-    padding-top: 30px;
     position: relative;
     width: 940px;
 
@@ -207,6 +206,7 @@ section.main {
     }
     aside.main {
         float: right;
+        padding-top: 30px;
         width: 190px;
 
         section.ad {
@@ -214,7 +214,7 @@ section.main {
                 background: #FFF url('/media/images/ad.jpg') center center no-repeat;
                 border: 1px solid #DDDDDD;
                 height: 130px;
-                margin: 15px 15px 6px;
+                margin: 0 15px 6px;
                 width: 158px;
                 .border-radius(3px);
             }
@@ -294,10 +294,42 @@ section.main {
             }
         }
     }
-    section.snipts {
-        article.snipt {
-            margin: 20px;
+}
+article.snipt {
+    margin: 30px 0;
+
+    div.container {
+        background: #FFF;
+        border: 1px solid #DDD;
+        float: left;
+        width: 618px;
+
+        header {
+            border-bottom: 1px solid #F1F1EE;
+            .inset-box-shadow(0, -1px, 0, #FFF);
+            .vertical-gradient(#FFF, #FFFAF2);
+
+            h1 {
+                color: #666;
+                clear: left;
+                float: left;
+                font: bold 16px/20px @Helvetica;
+                margin: 8px 15px 10px 15px;
+            }
+            h2 {
+                border: 1px solid #E9E9E9;
+                border-top: 0;
+                color: #73BBC5;
+                float: left;
+                font: normal 12px @Helvetica;
+                margin-left: 15px;
+                padding: 3px 8px 2px 8px;
+            }
         }
+    }
+    aside {
+        float: right;
+        width: 130px;
     }
 }
 

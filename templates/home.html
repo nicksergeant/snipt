@@ -6,8 +6,22 @@
     <section class="snipts">
         {% autopaginate snipts 20 %}
         {% for snipt in snipts %}
-            <article class="snipt">
-                {{ snipt.title }}
+            <article class="snipt group">
+                <div class="container">
+                    <header class="group">
+                        <h2>Javascript</h2>
+                        <h1>{{ snipt.title }}</h1>
+                    </header>
+                    <section class="code">
+                        <br /><br /><br /><br /><br /><br /><br /><br />
+                    </section>
+                </div>
+                <aside>
+                    Aside 
+                </aside>
+                <footer>
+                    Footer
+                </footer>
             </article>
         {% endfor %}
         {% paginate %}
