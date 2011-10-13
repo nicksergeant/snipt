@@ -46,6 +46,7 @@ class Snipt(models.Model):
     def get_absolute_url(self):
         return "/%s/%s/" % (self.user.username, self.slug)
 
+    #TODO This needs to be deprecated - render stylized version on save
     def get_stylized(self):
         if self.stylized == '':
             self.stylized = highlight(self.code,
@@ -61,6 +62,10 @@ class Snipt(models.Model):
         return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
                                           site.domain,
                                           self.key)
+
+    @property
+    def lexer_name(self):
+        return get_lexer_by_name(self.lexer).name
 
 class Comment(models.Model):
     """A comment on a Snipt"""

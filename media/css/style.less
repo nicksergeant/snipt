@@ -197,12 +197,16 @@ section.main {
         width: 1px;
         z-index: 48;
     }
+    div.left-y {
+        margin-left: 0;
+    }
     div.right-y {
         margin-left: 750px;
     }
     div.inner {
         float: left;
-        width: 750px;
+        margin-left: 1px;
+        width: 749px;
     }
     aside.main {
         float: right;
@@ -297,39 +301,112 @@ section.main {
 }
 article.snipt {
     margin: 30px 0;
+    position: relative;
 
+    div.number {
+        color: #CCC;
+        font: normal 12px @Helvetica;
+        left: -115px;
+        position: absolute;
+        text-align: right;
+        top: 4px;
+        width: 100px;
+    }
     div.container {
         background: #FFF;
         border: 1px solid #DDD;
+        border-left: 0;
         float: left;
+        position: relative;
         width: 618px;
 
+        div.ruler {
+            background: #DDD;
+            height: 1px;
+            left: -3000px;
+            position: absolute;
+            top: auto;
+            width: 3000px;
+        }
+        div.top-x {
+            top: -1px;
+        }
+        div.bottom-x {
+            bottom: -1px;
+        }
         header {
             border-bottom: 1px solid #F1F1EE;
             .inset-box-shadow(0, -1px, 0, #FFF);
             .vertical-gradient(#FFF, #FFFAF2);
 
             h1 {
-                color: #666;
                 clear: left;
-                float: left;
                 font: bold 16px/20px @Helvetica;
                 margin: 8px 15px 10px 15px;
+
+                a {
+                    color: #666;
+                    display: block;
+                    text-decoration: none;
+                    -webkit-transition: color .08s linear;
+                    -moz-transition: color .08s linear;
+                    -o-transition: color .08s linear;
+                    transition: color .08s linear;
+
+                    &:hover {
+                        color: #3BAAF3;
+                    }
+                }
             }
             h2 {
                 border: 1px solid #E9E9E9;
                 border-top: 0;
                 color: #73BBC5;
-                float: left;
+                display: inline-block;
                 font: normal 12px @Helvetica;
                 margin-left: 15px;
                 padding: 3px 8px 2px 8px;
             }
         }
+        section.code {
+            max-height: 200px;
+            margin: 20px;
+            overflow: hidden;
+        }
     }
     aside {
         float: right;
         width: 130px;
+    }
+    footer {
+        clear: both;
+        padding-bottom: 20px;
+
+        ul.attrs {
+            margin: 15px 0 0 15px;
+
+            li {
+                background: transparent url('/media/images/calendar-icon.png') top left no-repeat;
+                color: #999;
+                display: inline;
+                font: normal 12px @Helvetica;
+                margin-right: 15px;
+                padding: 1px 0 0 24px;
+
+                a {
+                    color: #999;
+                    font: normal 12px @Helvetica;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                &.comments {
+                    background: transparent url('/media/images/comments-icon.png') 0 2px no-repeat;
+                }
+            }
+        }
     }
 }
 
