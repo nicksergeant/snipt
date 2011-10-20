@@ -8,7 +8,14 @@
                 <h2>{{ snipt.lexer_name }}</h2>
                 <h1><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></h1>
             </header>
-            <section class="code">{{ snipt.get_stylized|safe }}</section>
+            <section class="code autumn">
+                {{ snipt.get_stylized|safe }}
+                {% if snipt.get_line_count > 9 %}
+                    <a href="#" class="shade">
+                        Expand
+                    </a>
+                {% endif %}
+            </section>
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
         </div>

@@ -26,6 +26,7 @@ class Snipt(models.Model):
     lexer    = models.CharField(max_length=50)
     code     = models.TextField()
     stylized = models.TextField()
+    line_count = models.IntegerField(blank=True, null=True, default=None)
 
     key      = models.CharField(max_length=100)
     public   = models.BooleanField(default=False)
@@ -50,13 +51,21 @@ class Snipt(models.Model):
     def get_stylized(self):
         if self.stylized == '':
             self.stylized = highlight(self.code,
-                                      get_lexer_by_name(self.lexer,
-                                      encoding='UTF-8'),
+                                      get_lexer_by_name(self.lexer, encoding='UTF-8'),
                                       HtmlFormatter())
             self.save()
             return self.stylized
         else:
             return self.stylized
+
+    #TODO This needs to be deprecated - render line count on save
+    def get_line_count(self):
+        if not self.line_count:
+            self.line_count = len(self.code.split('\n'))
+            self.save()
+            return self.line_count
+        else:
+            return self.line_count
 
     def get_embed_url(self):
         return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',

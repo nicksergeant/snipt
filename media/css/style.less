@@ -1,5 +1,17 @@
 // Fonts
 @Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+@Inconsolata: 'InconsolataMedium', Consolas, Menlo, "Courier New", monospace;
+@font-face {
+    font-family: 'InconsolataMedium';
+    src: url('/media/fonts/Inconsolata-webfont.eot');
+    src: url('/media/fonts/Inconsolata-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/Inconsolata-webfont.woff') format('woff'),
+         url('/media/fonts/Inconsolata-webfont.ttf') format('truetype'),
+         url('/media/fonts/Inconsolata-webfont.svg#InconsolataMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 // Focus
 *:focus {
@@ -370,8 +382,36 @@ article.snipt {
         }
         section.code {
             height: 200px;
-            margin: 20px;
             overflow: hidden;
+            position: relative;
+
+            div.highlight {
+                pre {
+                    font: normal 14px @Inconsolata;
+                    overflow-x: auto;
+                    margin: 0 15px;
+                    padding: 13px 0;
+                }
+            }
+            a.shade {
+                background: #FFF url('/media/images/expand.png') 15px 18px no-repeat;
+                border-top: 1px solid #EEE;
+                bottom: 0;
+                color: #999999;
+                display: block;
+                font: bold 12px @Helvetica;
+                padding: 15px 40px 15px 40px;
+                position: absolute;
+                text-decoration: none;
+                text-transform: uppercase;
+                width: 100%;
+                .box-shadow(0, -25px, 25px, #FFF);
+
+                &:hover {
+                    color: #3BAAF3;
+                    font-weight: bold;
+                }
+            }
         }
     }
     aside {
