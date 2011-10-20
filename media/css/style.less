@@ -387,9 +387,10 @@ article.snipt {
 
             div.highlight {
                 pre {
-                    font: normal 14px @Inconsolata;
+                    font: normal 14px/18px @Inconsolata;
                     overflow-x: auto;
                     margin: 0 15px;
+                    min-height: 173px;
                     padding: 13px 0;
                 }
             }
@@ -414,6 +415,41 @@ article.snipt {
             }
         }
         section.emacs, section.default {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #F8F8F8);
+            }
+        }
+        section.friendly {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #F0F0F0);
+            }
+        }
+        section.fruity {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #111111);
+            }
+        }
+        section.manni {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #F0F3F3);
+            }
+        }
+        section.monokai {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #272822);
+            }
+        }
+        section.native {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #202020);
+            }
+        }
+        section.perldoc {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #EEEEDD);
+            }
+        }
+        section.tango {
             a.expand {
                 .box-shadow(0, -25px, 25px, #F8F8F8);
             }
