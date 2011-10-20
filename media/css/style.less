@@ -393,9 +393,9 @@ article.snipt {
                     padding: 13px 0;
                 }
             }
-            a.shade {
+            a.expand {
                 background: #FFF url('/media/images/expand.png') 15px 18px no-repeat;
-                border-top: 1px solid #EEE;
+                border-top: 1px solid #F1F1EE;
                 bottom: 0;
                 color: #999999;
                 display: block;
@@ -411,6 +411,24 @@ article.snipt {
                     color: #3BAAF3;
                     font-weight: bold;
                 }
+            }
+        }
+        section.emacs, section.default {
+            a.expand {
+                .box-shadow(0, -25px, 25px, #F8F8F8);
+            }
+        }
+        section.expanded {
+            div.highlight {
+                pre {
+                    padding-bottom: 60px;
+                }
+            }
+            a.expand {
+                background-image: url('/media/images/collapse.png');
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
             }
         }
     }
