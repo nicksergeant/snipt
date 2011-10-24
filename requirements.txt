@@ -3,7 +3,7 @@ boto
 Django
 django-annoying
 django-bcrypt
-django-css
+django-compressor
 django-grappelli
 django-pagination
 django-postmark

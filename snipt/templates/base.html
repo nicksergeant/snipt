@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}">
 <head>
+
+    {% load compress %}
+
     <title>{% block page-title %}Snipt{% endblock %}</title>
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
 
-    {% load compress %}
-
     {% compress css %}
-        <link rel="stylesheet" href="/media/css/reset.css" />
-        <link rel="stylesheet" href="/media/css/themes.css" />
-        {% if not debug %}
-            <link rel="stylesheet" href="/media/css/style.less" />
-        {% endif %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/style.less" />
     {% endcompress %}
-    {% if debug %}
-        <link rel="stylesheet/less" href="/media/css/style.less" />
-    {% endif %}
-
     {% compress js %}
-        <script type="text/javascript" src="/media/js/jquery.js"></script>
-        <script type="text/javascript" src="/media/js/jquery.infieldlabel.js"></script>
-        <script type="text/javascript" src="/media/js/jquery.hotkeys.js"></script>
-        <script type="text/javascript" src="/media/js/coffee-script.js"></script>
-        <script type="text/coffeescript" src="/media/js/script.coffee"></script>
-        {% if debug %}
-            <script type="text/javascript" src="/media/js/less.js"></script>
-        {% endif %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.infieldlabel.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/coffee-script.js"></script>
+        <script type="text/coffeescript" src="{{ STATIC_URL }}js/script.coffee"></script>
     {% endcompress %}
 
     <!--[if IE]>

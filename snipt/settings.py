@@ -4,6 +4,7 @@ import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+BASE_PATH = os.path.dirname(__file__)
 
 ADMINS = (
     ('Nick Sergeant', 'nick@snipt.net'),
@@ -49,20 +50,22 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/Users/Nick/Code/snipt/snipt/media/'
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/Users/Nick/Code/snipt/snipt/static/'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATIC_ROOT = os.path.join(BASE_PATH, 'static')
+STATICFILES_STORAGE = 'snipt.storage.CachedS3BotoStorage'
 STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
+
+# S3 Settings
 AWS_ACCESS_KEY_ID = 'AKIAJTFDHBCXHJLXINKQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'snipt'
@@ -74,7 +77,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/Users/Nick/Code/snipt/snipt/media',
+    os.path.join(BASE_PATH, 'media'),
 )
 
 # List of finder classes that know how to find static files in
@@ -82,7 +85,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -94,12 +97,21 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+    'django.core.context_processors.static',
+)
 
 MIDDLEWARE_CLASSES = (
     'snipt.middleware.www.WWWMiddleware',
     'django.middleware.cache.CacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -169,19 +181,17 @@ GRAPPELLI_ADMIN_TITLE = '<a href="/">Snipt</a>'
 # Virtualenv
 VIRTUALENV_PATH = '/Users/Nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
 
+# Compressor
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = 'cache'
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_URL = STATIC_URL
+COMPRESS_STORAGE = STATICFILES_STORAGE
+
 # Account settings
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
-
-# CSS compression
-COMPRESS_OUTPUT_DIR = 'cache'
-COMPILER_FORMATS = {
-    '.less': {
-        'binary_path':'lessc',
-        'arguments': '*.less *.css'
-    },
-}
 
 # User absolute URLs
 ABSOLUTE_URL_OVERRIDES = {
