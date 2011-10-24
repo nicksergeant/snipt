@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-gunicorn -c gunicorn.conf.py debug_wsgi:application
+gunicorn_django snipt/settings.py -c gunicorn.conf.py debug_wsgi:application
