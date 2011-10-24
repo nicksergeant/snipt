@@ -9,8 +9,8 @@ project_dir = parent(parent(os.path.abspath(__file__)))
 sys.path.insert(0, project_dir)
 sys.path.insert(0, site_dir)
 
-import local_settings
-site.addsitedir(local_settings.VIRTUALENV_PATH)
+import settings
+site.addsitedir(settings.VIRTUALENV_PATH)
 
 from django.core.management import setup_environ
 import settings

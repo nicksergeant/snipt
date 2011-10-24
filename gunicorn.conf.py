@@ -15,7 +15,7 @@ tmp_upload_dir = None            # Set path used to store temporary uploads
 def post_fork(server, worker):
     server.log.info("Worker spawned (pid: %s)" % worker.pid)
     
-    import local_settings, monitor
-    if local_settings.DEBUG:
+    import settings, monitor
+    if settings.DEBUG:
         server.log.info("Starting change monitor.")
         monitor.start(interval=1.0)
