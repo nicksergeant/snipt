@@ -62,7 +62,7 @@ MEDIA_URL = ''
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = '/Users/Nick/Code/snipt/snipt/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-TODO #STATIC_URL = 'https://d36uyda506kfod.cloudfront.net/'
+STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
 AWS_ACCESS_KEY_ID = 'AKIAJTFDHBCXHJLXINKQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'snipt'
