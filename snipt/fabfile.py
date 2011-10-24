@@ -15,7 +15,7 @@ def staticfiles():
         local('hg push')
     except:
         pass
-    #local('%s/manage.py collectstatic' % BASE_PATH)
+    local('%s/manage.py collectstatic' % BASE_PATH)
 
 def deployall():
     staticfiles()
