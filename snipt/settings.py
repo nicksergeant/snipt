@@ -1,8 +1,11 @@
 # Django settings for sidepros project.
 
-import os
+import os, socket
 
-DEBUG = True
+if socket.gethostname() == 'nickmba.local':
+    DEBUG = True
+else:
+    DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 BASE_PATH = os.path.dirname(__file__)
 
