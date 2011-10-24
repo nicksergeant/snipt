@@ -11,7 +11,7 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
 
-site = Site.objects.all()[0]
+#site = Site.objects.all()[0]
 
 class Snipt(models.Model):
     """An individual Snipt."""
@@ -67,10 +67,10 @@ class Snipt(models.Model):
         else:
             return self.line_count
 
-    def get_embed_url(self):
-        return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
-                                          site.domain,
-                                          self.key)
+    #def get_embed_url(self):
+        #return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
+                                          #site.domain,
+                                          #self.key)
 
     @property
     def lexer_name(self):
