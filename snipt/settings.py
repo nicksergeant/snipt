@@ -62,8 +62,11 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-STATICFILES_STORAGE = 'snipt.storage.CachedS3BotoStorage'
-STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+if DEBUG:
+    STATIC_URL = '/media/'
+else:
+    STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
 
 # S3 Settings
 AWS_ACCESS_KEY_ID = 'AKIAJTFDHBCXHJLXINKQ'

@@ -2,24 +2,26 @@
 <html lang="en" class="{% block html-class %}{% endblock %}">
 <head>
 
-    {% load compress %}
-
     <title>{% block page-title %}Snipt{% endblock %}</title>
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
 
-    {% compress css %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/style.less" />
-    {% endcompress %}
-    {% compress js %}
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.infieldlabel.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.hotkeys.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.infieldlabel.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.hotkeys.js"></script>
+
+    {% if debug %}
+        <link rel="stylesheet/less" href="{{ STATIC_URL }}css/style.less" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/less.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/coffee-script.js"></script>
         <script type="text/coffeescript" src="{{ STATIC_URL }}js/script.coffee"></script>
-    {% endcompress %}
+    {% else %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/script.js"></script>
+    {% endif %}
+
 
     <!--[if IE]>
         <style type="text/css">
