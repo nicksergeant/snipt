@@ -69,7 +69,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 if DEBUG:
     STATIC_URL = '/media/'
 else:
-    STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
+    #STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
+    STATIC_URL = 'https://snipt.s3.amazonaws.com/'
 
 # S3 Settings
 AWS_ACCESS_KEY_ID = 'AKIAJTFDHBCXHJLXINKQ'
