@@ -13,5 +13,5 @@ def deployall():
     deployapp()
 
 def deployapp():
-    local('hgp')
+    local('hg push')
     local('hg push-heroku')
