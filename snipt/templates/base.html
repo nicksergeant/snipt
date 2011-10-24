@@ -5,22 +5,21 @@
     <title>{% block page-title %}Snipt{% endblock %}</title>
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
-
     {% if debug %}
-        <link rel="stylesheet/less" href="{{ STATIC_URL }}css/style.less" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
-        <script type="text/javascript" src="{{ STATIC_URL }}css/less.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/coffee-script.javascript"></script>
-        <script type="text/coffeescript" src="{{ STATIC_URL }}js/script.coffee"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.infieldlabel.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.hotkeys.js"></script>
-    {% else %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
-        <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
-    {% endif %}
+    <link rel="stylesheet/less" href="{{ STATIC_URL }}css/style.less" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
 
+    <script type="text/javascript" src="{{ STATIC_URL }}css/less.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/coffee-script.javascript"></script>
+    <script type="text/coffeescript" src="{{ STATIC_URL }}js/script.coffee"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.infieldlabel.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.hotkeys.js"></script>
+    {% else %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
+    {% endif %}
     <!--[if IE]>
         <style type="text/css">
             .group {
