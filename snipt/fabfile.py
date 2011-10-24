@@ -8,10 +8,10 @@ def staticfiles():
     local('coffee -c %s/media/js/script.coffee' % BASE_PATH)
     local('%s/manage.py collectstatic' % BASE_PATH)
 
-def deployall()
+def deployall():
     staticfiles()
     deployapp()
 
-def deployapp()
+def deployapp():
     local('hgp')
     local('hg push-heroku')
