@@ -115,6 +115,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'snipt.middleware.www.WWWMiddleware',
+    'johnny.middleware.LocalStoreClearMiddleware',
+    'johnny.middleware.QueryCacheMiddleware',
     'django.middleware.cache.CacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -204,3 +206,13 @@ LOGOUT_URL = '/logout/'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: "/%s/" % u.username,
 }
+
+# Caching
+CACHES = {
+    'default': dict(
+        BACKEND = 'johnny.backends.memcached.MemcachedCache',
+        LOCATION = [':11211'],
+        JOHNNY_CACHE = True,
+    )
+}
+JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'
