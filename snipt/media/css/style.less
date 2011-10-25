@@ -384,6 +384,7 @@ article.snipt {
             height: 200px;
             overflow: hidden;
             position: relative;
+            z-index: 49;
 
             div.highlight {
                 pre {
@@ -466,6 +467,17 @@ article.snipt {
                 -moz-box-shadow: none;
                 box-shadow: none;
             }
+        }
+        &:after {
+            bottom: 8px;
+            content: "";
+            height: 20px;
+            position: absolute;
+            right: 3px;
+            width: 50%;
+            z-index: 48;
+            .box-shadow(0, 6px, 12px, rgba(184, 184, 184, .6));
+            -webkit-transform: rotate(3deg);
         }
     }
     aside {
