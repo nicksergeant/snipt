@@ -364,6 +364,7 @@ article.snipt div.container section.code {
   height: 200px;
   overflow: hidden;
   position: relative;
+  z-index: 49;
 }
 article.snipt div.container section.code div.highlight pre {
   font: normal 14px/18px 'InconsolataMedium', Consolas, Menlo, "Courier New", monospace;
@@ -440,6 +441,19 @@ article.snipt div.container section.expanded a.expand {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+article.snipt div.container:after {
+  bottom: 8px;
+  content: "";
+  height: 20px;
+  position: absolute;
+  right: 3px;
+  width: 50%;
+  z-index: 48;
+  -webkit-box-shadow: 0 6px 12px rgba(184, 184, 184, 0.6);
+  -moz-box-shadow: 0 6px 12px rgba(184, 184, 184, 0.6);
+  box-shadow: 0 6px 12px rgba(184, 184, 184, 0.6);
+  -webkit-transform: rotate(3deg);
 }
 article.snipt aside {
   float: right;
