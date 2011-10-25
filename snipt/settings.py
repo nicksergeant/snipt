@@ -211,7 +211,7 @@ ABSOLUTE_URL_OVERRIDES = {
 CACHES = {
     'default': dict(
         BACKEND = 'johnny.backends.memcached.MemcachedCache',
-        LOCATION = [':11211'],
+        LOCATION = ['app1575260%40heroku.com@mc7.ec2.northscale.net:11211'],
         JOHNNY_CACHE = True,
     )
 }
