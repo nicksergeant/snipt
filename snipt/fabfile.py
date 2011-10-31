@@ -22,7 +22,7 @@ def deployapp(m):
     except:
         pass
     local('hg push')
-    local('git push heroku')
+    local('git push -f heroku')
 
 def deploy(m):
     staticfiles()
