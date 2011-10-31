@@ -6,21 +6,24 @@ def staticfiles():
     BASE_PATH = os.path.dirname(__file__)
     local('lessc %s/media/css/style.less %s/media/css/style.css' % (BASE_PATH, BASE_PATH))
     local('coffee -c %s/media/js/script.coffee' % BASE_PATH)
-    local('sed -i -e \'s/\/media\//https:\/\/dn2p0mzo970os.cloudfront.net\//g\' %s/media/css/style.css' % BASE_PATH)
+    local('sed -i -e \'s/\/media\//https:\/\/snipt.s3.amazonaws.com\//g\' %s/media/css/style.css' % BASE_PATH)
     local('rm %s/media/css/style.css-e' % BASE_PATH)
     local('cat %s/media/css/*.css > %s/media/cache/snipt.css' % (BASE_PATH, BASE_PATH))
     local('cat %s/media/js/jquery.js %s/media/js/jquery.*.js %s/media/js/script.js > %s/media/cache/snipt.js' % (BASE_PATH, BASE_PATH, BASE_PATH, BASE_PATH))
+    local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --noinput' % BASE_PATH)
+
+def deployapp(m):
     try:
-        local('hg commit -m "Autocommit by [fab staticfiles]"')
-        local('hg push')
+        local('hg commit -m \'%s\'' % m)
     except:
         pass
-    local('%s/manage.py collectstatic' % BASE_PATH)
-
-def deployall():
-    staticfiles()
-    deployapp()
-
-def deployapp():
+    try:
+        local('git commit -am \'%s\'' % m)
+    except:
+        pass
     local('hg push')
-    local('hg push-heroku')
+    local('git push heroku')
+
+def deploy(m):
+    staticfiles()
+    deployapp(m)
