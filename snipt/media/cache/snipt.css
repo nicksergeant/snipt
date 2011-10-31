@@ -48,8 +48,8 @@ table {
 }
 @font-face {
   font-family: 'InconsolataMedium';
-  src: url('https://dn2p0mzo970os.cloudfront.net/fonts/Inconsolata-webfont.eot');
-  src: url('https://dn2p0mzo970os.cloudfront.net/fonts/Inconsolata-webfont.eot?#iefix') format('embedded-opentype'), url('https://dn2p0mzo970os.cloudfront.net/fonts/Inconsolata-webfont.woff') format('woff'), url('https://dn2p0mzo970os.cloudfront.net/fonts/Inconsolata-webfont.ttf') format('truetype'), url('https://dn2p0mzo970os.cloudfront.net/fonts/Inconsolata-webfont.svg#InconsolataMedium') format('svg');
+  src: url('https://snipt.s3.amazonaws.com/fonts/Inconsolata-webfont.eot');
+  src: url('https://snipt.s3.amazonaws.com/fonts/Inconsolata-webfont.eot?#iefix') format('embedded-opentype'), url('https://snipt.s3.amazonaws.com/fonts/Inconsolata-webfont.woff') format('woff'), url('https://snipt.s3.amazonaws.com/fonts/Inconsolata-webfont.ttf') format('truetype'), url('https://snipt.s3.amazonaws.com/fonts/Inconsolata-webfont.svg#InconsolataMedium') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -59,7 +59,7 @@ table {
   box-shadow: 0 0 10px #46cd46;
 }
 html, body {
-  background: #ffffff url('https://dn2p0mzo970os.cloudfront.net/images/bg.gif') top left repeat;
+  background: #ffffff url('https://snipt.s3.amazonaws.com/images/bg.gif') top left repeat;
 }
 body {
   color: #666;
@@ -68,7 +68,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 header.main {
-  background: #12343d url('https://dn2p0mzo970os.cloudfront.net/images/header-bg.gif') top left repeat-x;
+  background: #12343d url('https://snipt.s3.amazonaws.com/images/header-bg.gif') top left repeat-x;
   border-bottom: 1px solid #DDDDDD;
   height: 66px;
   position: relative;
@@ -82,7 +82,7 @@ header.main div.inner {
   width: 939px;
 }
 header.main div.inner div.shadey {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/header-inner-bg.png') top left no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/header-inner-bg.png') top left no-repeat;
   height: 65px;
   left: -157px;
   position: absolute;
@@ -96,7 +96,7 @@ header.main div.inner h1 {
   z-index: 50;
 }
 header.main div.inner h1 a {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/logo.png') top left no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/logo.png') top left no-repeat;
   display: block;
   float: left;
   height: 35px;
@@ -122,8 +122,8 @@ header.main div.inner form.search div.infield label {
   top: 8px;
 }
 header.main div.inner form.search div.infield input {
-  background: #17484f url('https://dn2p0mzo970os.cloudfront.net/images/search-icon.png') top left no-repeat;
-  background: rgba(43, 82, 93, 0.5) url('https://dn2p0mzo970os.cloudfront.net/images/search-icon.png') 8px center no-repeat;
+  background: #17484f url('https://snipt.s3.amazonaws.com/images/search-icon.png') top left no-repeat;
+  background: rgba(43, 82, 93, 0.5) url('https://snipt.s3.amazonaws.com/images/search-icon.png') 8px center no-repeat;
   border: 1px solid #3A5E67;
   color: #FFF;
   font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
@@ -210,7 +210,7 @@ section.main aside.main {
   width: 190px;
 }
 section.main aside.main section.ad div.asset {
-  background: #ffffff url('https://dn2p0mzo970os.cloudfront.net/images/ad.jpg') center center no-repeat;
+  background: #ffffff url('https://snipt.s3.amazonaws.com/images/ad.jpg') center center no-repeat;
   border: 1px solid #DDDDDD;
   height: 130px;
   margin: 0 15px 6px;
@@ -233,7 +233,7 @@ section.main aside.main section.tags {
   margin: 45px 15px;
 }
 section.main aside.main section.tags h1 {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/tags-icon.png') 0 0 no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/tags-icon.png') 0 0 no-repeat;
   color: #3BAAF3;
   font: bold 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
   padding-bottom: 5px;
@@ -266,7 +266,7 @@ section.main aside.main nav.footer ul {
   margin: 0;
 }
 section.main aside.main nav.footer ul li {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/api-icon.png') center left no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/api-icon.png') center left no-repeat;
   margin: 6px 0 6px 0;
   padding-left: 22px;
 }
@@ -281,13 +281,13 @@ section.main aside.main nav.footer ul li a:hover {
   color: #333;
 }
 section.main aside.main nav.footer ul li.twitter {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/twitter-icon.png') 4px center no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/twitter-icon.png') 4px center no-repeat;
 }
 section.main aside.main nav.footer ul li.pro {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/upgrade-icon.png') 2px center no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/upgrade-icon.png') 2px center no-repeat;
 }
 section.main aside.main nav.footer ul li.groups {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/groups-icon.png') 2px center no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/groups-icon.png') 2px center no-repeat;
 }
 article.snipt {
   margin: 30px 0;
@@ -374,7 +374,7 @@ article.snipt div.container section.code div.highlight pre {
   padding: 13px 0;
 }
 article.snipt div.container section.code a.expand {
-  background: #ffffff url('https://dn2p0mzo970os.cloudfront.net/images/expand.png') 15px 18px no-repeat;
+  background: #ffffff url('https://snipt.s3.amazonaws.com/images/expand.png') 15px 18px no-repeat;
   border-top: 1px solid #F1F1EE;
   bottom: 0;
   color: #999999;
@@ -437,7 +437,7 @@ article.snipt div.container section.expanded div.highlight pre {
   padding-bottom: 60px;
 }
 article.snipt div.container section.expanded a.expand {
-  background-image: url('https://dn2p0mzo970os.cloudfront.net/images/collapse.png');
+  background-image: url('https://snipt.s3.amazonaws.com/images/collapse.png');
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -467,7 +467,7 @@ article.snipt footer ul.attrs {
   margin: 15px 0 0 15px;
 }
 article.snipt footer ul.attrs li {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/calendar-icon.png') top left no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/calendar-icon.png') top left no-repeat;
   color: #999;
   display: inline;
   font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
@@ -483,7 +483,7 @@ article.snipt footer ul.attrs li a:hover {
   text-decoration: underline;
 }
 article.snipt footer ul.attrs li.comments {
-  background: transparent url('https://dn2p0mzo970os.cloudfront.net/images/comments-icon.png') 0 2px no-repeat;
+  background: transparent url('https://snipt.s3.amazonaws.com/images/comments-icon.png') 0 2px no-repeat;
 }
 .group:after {
   content: ".";
