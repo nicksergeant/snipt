@@ -18,7 +18,7 @@ def deployapp(m):
     except:
         pass
     try:
-        local('git commit -am \'%s\'' % m)
+        local('git commit -a -m \'%s\'' % m)
     except:
         pass
     local('hg push')
