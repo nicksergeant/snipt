@@ -18,6 +18,7 @@ def deployapp(m):
     except:
         pass
     try:
+        local('git add .')
         local('git commit -a -m \'%s\'' % m)
     except:
         pass
