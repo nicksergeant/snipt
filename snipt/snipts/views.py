@@ -6,8 +6,6 @@ from django.db.models import Count
 from snipts.models import Snipt
 from taggit.models import Tag
 
-TODO: MUST UPGRADE TASTYPIE.
-
 def home(request):
     if request.user.is_authenticated():
         return list_user(request, user=request.user)
