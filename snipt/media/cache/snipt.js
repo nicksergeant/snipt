@@ -131,12 +131,15 @@ jQuery(function($) {
 
         initialize: function(opts) {
 
+            // Site variables
             $search_query = $('input#search-query', this.el);
             $snipts = $('section#snipts article.snipt', this.el);
 
+            // Init functions
             this.keyboardShortcuts();
             this.inFieldLabels();
 
+            // Init snipts
             if ($snipts.length) {
                 SniptListView = Snipt.Views.SniptListView;
                 Snipts = new SniptListView({ 'snipts': $snipts });
