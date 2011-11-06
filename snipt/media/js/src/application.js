@@ -1,4 +1,3 @@
-// Memoizing technique from http://weblog.bocoup.com/organizing-your-backbone-js-application-with-modules
 var snipt = {
     module: function() {
         var modules = {};
@@ -13,12 +12,9 @@ var snipt = {
     }()
 };
 
-// Init application
 jQuery(function($) {
 
-    //if ($('body').hasClass('apply')) {
-        //AppView = sidepros.module('apply').Views.AppView;
-        //App = new AppView();
-    //}
+    var SiteView = snipt.module('site').Views.SiteView;
+    var Site = new SiteView();
 
 });

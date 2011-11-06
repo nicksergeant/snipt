@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <section class="snipts">
+    <section class="snipts" id="snipts">
         {% autopaginate snipts 20 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}
