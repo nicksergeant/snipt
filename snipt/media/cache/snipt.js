@@ -97,12 +97,11 @@ if(special){possible[modif+special]=true;}else{possible[modif+character]=true;po
 for(var i=0,l=keys.length;i<l;i++){if(possible[keys[i]]){return origHandler.apply(this,arguments);}}};}
 jQuery.each(["keydown","keyup","keypress"],function(){jQuery.event.special[this]={add:keyHandler};});})(jQuery);
 (function($){$.InFieldLabels=function(label,field,options){var base=this;base.$label=$(label);base.label=label;base.$field=$(field);base.field=field;base.$label.data("InFieldLabels",base);base.showing=true;base.init=function(){base.options=$.extend({},$.InFieldLabels.defaultOptions,options);if(base.$field.val()!==""){base.$label.hide();base.showing=false;}
-base.$field.focus(function(){base.fadeOnFocus();}).blur(function(){base.checkForEmpty(true);}).bind('keydown.infieldlabel',function(e){base.hideOnChange(e);}).bind('paste',function(e){base.setOpacity(0.0);}).change(function(e){base.checkForEmpty();}).bind('onPropertyChange',function(){base.checkForEmpty();});};base.fadeOnFocus=function(){if(base.showing){base.setOpacity(base.options.fadeOpacity);}};base.setOpacity=function(opacity){base.$label.stop().animate({opacity:opacity},base.options.fadeDuration);base.showing=(opacity>0.0);};base.checkForEmpty=function(blur){if(base.$field.val()===""){base.prepForShow();base.setOpacity(blur?1.0:base.options.fadeOpacity);}else{base.setOpacity(0.0);}};base.prepForShow=function(e){if(!base.showing){base.$label.css({opacity:0.0}).show();base.$field.bind('keydown.infieldlabel',function(e){base.hideOnChange(e);});}};base.hideOnChange=function(e){if((e.keyCode===16)||(e.keyCode===9)){return;}
+base.$field.focus(function(){base.fadeOnFocus();}).blur(function(){base.checkForEmpty(true);}).bind('keydown.infieldlabel',function(e){base.hideOnChange(e);}).bind('paste',function(e){base.setOpacity(0.0);}).change(function(e){base.checkForEmpty();}).bind('onPropertyChange',function(){base.checkForEmpty();});};base.fadeOnFocus=function(){if(base.showing){base.setOpacity(base.options.fadeOpacity);}};base.setOpacity=function(opacity){base.$label.stop().animate({opacity:opacity},base.options.fadeDuration);base.showing=(opacity>0.0);};base.checkForEmpty=function(blur){if(base.$field.val()===""){base.prepForShow();base.setOpacity(blur?1.0:base.options.fadeOpacity);}else{base.setOpacity(0.0);}};base.prepForShow=function(e){if(!base.showing){base.$label.css({opacity:0.0}).show();base.$field.bind('keydown.infieldlabel',function(e){base.hideOnChange(e);});}};base.hideOnChange=function(e){if((e.keyCode===16)||(e.keyCode===9)||(e.keyCode===27)){return;}
 if(base.showing){base.$label.hide();base.showing=false;}
 base.$field.unbind('keydown.infieldlabel');};base.init();};$.InFieldLabels.defaultOptions={fadeOpacity:0.5,fadeDuration:300};$.fn.inFieldLabels=function(options){return this.each(function(){var for_attr=$(this).attr('for'),$field;if(!for_attr){return;}
 $field=$("input#"+for_attr+"[type='text'],"+"input#"+for_attr+"[type='search'],"+"input#"+for_attr+"[type='tel'],"+"input#"+for_attr+"[type='url'],"+"input#"+for_attr+"[type='email'],"+"input#"+for_attr+"[type='password'],"+"textarea#"+for_attr);if($field.length===0){return;}
 (new $.InFieldLabels(this,$field[0],options));});};}(jQuery));
-// Memoizing technique from http://weblog.bocoup.com/organizing-your-backbone-js-application-with-modules
 var snipt = {
     module: function() {
         var modules = {};
@@ -117,71 +116,91 @@ var snipt = {
     }()
 };
 
-// Init application
 jQuery(function($) {
 
-    //if ($('body').hasClass('apply')) {
-        //AppView = sidepros.module('apply').Views.AppView;
-        //App = new AppView();
-    //}
+    var SiteView = snipt.module('site').Views.SiteView;
+    var Site = new SiteView();
 
 });
-(function(Apply) {
+(function(Site) {
 
-    Apply.FieldModel = Backbone.Model.extend({
-        group: null
-    });
-    FieldView = Backbone.View.extend({
-        initialize: function() {
-            this.model = new Apply.FieldModel({
-                group: $(this.el).parents('div.group').attr('id')
-            });
-            this.model.view = this;
+    var Snipt = snipt.module('snipt');
 
-            this.$tooltip = $('div.tooltip', $('#' + this.model.get('group')));
-        },
-        events: {
-            'focus': 'focused',
-            'blur' : 'blurred',
-            'keyup': 'updateTooltip'
-        },
-        focused: function() {
-            App.$tooltips.hide();
-            this.$tooltip.show();
-        },
-        blurred: function() {
-            App.$tooltips.hide();
-        },
-        updateTooltip: function() {
-            if (this.model.get('group') == 'name') {
-                short_name = $.trim(App.$first_name.val() + ' ' + App.$last_name.val().charAt(0));
-                if (short_name !== '') {
-                    short_name = ': ' + short_name;
-                }
-                App.$name_preview.text($.trim(short_name));
-            }
-        }
-    });
-
-    AppView = Backbone.View.extend({
-        el: '#app',
+    SiteView = Backbone.View.extend({
+        el: 'body',
 
         initialize: function(opts) {
-            $('input, select, textarea', this.el).each(this.addField);
 
-            this.$first_name   = $('input#id_first_name', this.el);
-            this.$last_name    = $('input#id_last_name', this.el);
-            this.$name_preview = $('strong#name-preview', this.el);
-            this.$tooltips     = $('div.tooltip', this.el);
+            $search_query = $('input#search-query', this.el);
+            $snipts = $('section#snipts article.snipt', this.el);
+
+            this.keyboardShortcuts();
+            this.inFieldLabels();
+
+            if ($snipts.length) {
+                SniptListView = Snipt.Views.SniptListView;
+                Snipts = new SniptListView({ 'snipts': $snipts });
+            }
+
         },
-        addField: function() {
-            model = new FieldView({ el: this });
+        keyboardShortcuts: function() {
+
+            // Search
+            $(document).bind('keydown', '/', function(e) {
+                e.preventDefault();
+                $search_query.focus();
+            });
+
+            // Escape
+            $('input').bind('keydown', 'esc', function(e) {
+                e.preventDefault();
+                this.blur();
+            });
+        },
+        inFieldLabels: function () {
+            $('div.infield label', this.el).inFieldLabels();
         }
     });
 
-    Apply.Views = {
-        'AppView': AppView,
-        'FieldView': FieldView
+    Site.Views = {
+        'SiteView': SiteView
     };
 
-})(sidepros.module('apply'));
+})(snipt.module('site'));
+(function(Snipt) {
+
+    Snipt.SniptModel = Backbone.Model.extend({
+    });
+
+    SniptView = Backbone.View.extend({
+        initialize: function() {
+            this.model = new Snipt.SniptModel();
+            this.model.view = this;
+            this.$el = $(this.el);
+            this.$expand_button = $('a.expand', this.$el);
+        },
+        events: {
+            'click a.expand': 'expand'
+        },
+        expand: function() {
+            this.$el.toggleClass('expanded');
+            return false;
+        }
+    });
+
+    SniptListView = Backbone.View.extend({
+        el: 'section#snipts',
+
+        initialize: function(opts) {
+            opts.snipts.each(this.addSnipt);
+        },
+        addSnipt: function() {
+            model = new SniptView({ el: this });
+        }
+    });
+
+    Snipt.Views = {
+        'SniptListView': SniptListView
+    };
+
+})(snipt.module('snipt'));

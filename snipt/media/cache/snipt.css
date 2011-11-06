@@ -364,7 +364,7 @@ article.snipt div.container section.code {
   height: 200px;
   overflow: hidden;
   position: relative;
-  z-index: 49;
+  z-index: 51;
 }
 article.snipt div.container section.code div.highlight pre {
   font: normal 14px/18px 'InconsolataMedium', Consolas, Menlo, "Courier New", monospace;
@@ -388,6 +388,9 @@ article.snipt div.container section.code a.expand {
   -webkit-box-shadow: 0 -25px 25px #ffffff;
   -moz-box-shadow: 0 -25px 25px #ffffff;
   box-shadow: 0 -25px 25px #ffffff;
+}
+article.snipt div.container section.code a.expand span.collapse {
+  display: none;
 }
 article.snipt div.container section.code a.expand:hover {
   color: #3BAAF3;
@@ -433,15 +436,6 @@ article.snipt div.container section.tango a.expand {
   -moz-box-shadow: 0 -25px 25px #f8f8f8;
   box-shadow: 0 -25px 25px #f8f8f8;
 }
-article.snipt div.container section.expanded div.highlight pre {
-  padding-bottom: 60px;
-}
-article.snipt div.container section.expanded a.expand {
-  background-image: url('https://snipt.s3.amazonaws.com/images/collapse.png');
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
 article.snipt div.container:after {
   bottom: 8px;
   content: "";
@@ -484,6 +478,24 @@ article.snipt footer ul.attrs li a:hover {
 }
 article.snipt footer ul.attrs li.comments {
   background: transparent url('https://snipt.s3.amazonaws.com/images/comments-icon.png') 0 2px no-repeat;
+}
+article.snipt.expanded div.container section.code {
+  height: auto;
+}
+article.snipt.expanded div.container section.code div.highlight pre {
+  padding-bottom: 60px;
+}
+article.snipt.expanded div.container section.code a.expand {
+  background-image: url('https://snipt.s3.amazonaws.com/images/collapse.png');
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+article.snipt.expanded div.container section.code a.expand span.expand {
+  display: none;
+}
+article.snipt.expanded div.container section.code a.expand span.collapse {
+  display: inline;
 }
 .group:after {
   content: ".";
