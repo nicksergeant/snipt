@@ -8,7 +8,7 @@
         initialize: function(opts) {
 
             $search_query = $('input#search-query', this.el);
-            $snipts = $('section#snipts', this.el);
+            $snipts = $('section#snipts article.snipt', this.el);
 
             this.keyboardShortcuts();
             this.inFieldLabels();

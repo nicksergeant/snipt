@@ -12,7 +12,8 @@
                 {{ snipt.get_stylized|safe }}
                 {% if snipt.get_line_count > 9 %}
                     <a href="#" class="expand">
-                        Expand
+                        <span class="expand">Expand</span>
+                        <span class="collapse">Collapse</span>
                     </a>
                 {% endif %}
             </section>
