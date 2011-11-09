@@ -2,7 +2,7 @@
 
 import os, socket
 
-if socket.gethostname() == 'nickmba.local':
+if socket.gethostname() in ['nickmba.local', 'nickimac.local']:
     DEBUG = True
 else:
     DEBUG = False

@@ -8,13 +8,14 @@
             this.model = new Snipt.SniptModel();
             this.model.view = this;
             this.$el = $(this.el);
+            this.$container = $('div.container', this.$el);
             this.$expand_button = $('a.expand', this.$el);
         },
         events: {
             'click a.expand': 'expand'
         },
         expand: function() {
-            this.$el.toggleClass('expanded');
+            this.$container.toggleClass('expanded', 100);
             return false;
         }
     });
