@@ -131,10 +131,12 @@ header.main {
                 label {
                     color: #72979C;
                     cursor: text;
+                    float: none;
                     font: normal 12px @Helvetica;
                     left: 30px;
                     position: absolute;
                     top: 8px;
+                    width: auto;
                 }
                 input {
                     background: #17484F url('/media/images/search-icon.png') top left no-repeat;
@@ -142,6 +144,7 @@ header.main {
                     border: 1px solid #3A5E67;
                     color: #FFF;
                     font: normal 12px @Helvetica;
+                    height: auto;
                     margin: 0;
                     padding: 7px;
                     padding-left: 28px;
@@ -191,6 +194,7 @@ header.main {
             border-left: 1px solid rgba(229, 229, 229, .25);
             float: right;
             height: 65px;
+            margin: 0;
             width: 189px;
         }
     }
@@ -388,6 +392,8 @@ article.snipt {
 
             div.highlight {
                 pre {
+                    background: transparent;
+                    border: none;
                     font: normal 14px/18px @Inconsolata;
                     overflow-x: auto;
                     margin: 0 15px;
@@ -527,6 +533,26 @@ article.snipt {
                         display: inline;
                     }
                 }
+            }
+        }
+    }
+}
+div.pagination {
+    margin: 0 15px 35px 15px;
+    text-align: center;
+
+    ul {
+        background: #FFF;
+        display: inline-block;
+        float: none;
+        
+        li {
+            a {
+                color: #3BAAF3;
+                padding: 0 8px;
+            }
+            &.prev {
+                line-height: 2px;
             }
         }
     }
