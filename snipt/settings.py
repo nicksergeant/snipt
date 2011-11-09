@@ -202,6 +202,9 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
+# HTTPS
+USE_HTTPS = False
+
 # User absolute URLs
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: "/%s/" % u.username,

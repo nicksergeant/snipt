@@ -418,6 +418,11 @@ article.snipt {
                 span.collapse {
                     display: none;
                 }
+                span.lines {
+                    font: normal 10px @Helvetica;
+                    margin-left: 5px;
+                    vertical-align: 1px;
+                }
                 &:hover {
                     color: #3BAAF3;
                     font-weight: bold;
@@ -478,7 +483,27 @@ article.snipt {
     }
     aside {
         float: right;
-        width: 130px;
+        margin: 29px 30px 0 0;
+        width: 100px;
+
+        ul {
+            li {
+                margin: 2px 0;
+
+                a {
+                    background: rgba(128, 128, 128, .08);
+                    color: #999;
+                    display: block;
+                    font: bold 12px @Helvetica;
+                    padding: 7px 10px 7px 35px;
+
+                    &:hover {
+                        background: rgba(128, 128, 128, .15);
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
     }
     footer {
         clear: both;
@@ -530,6 +555,9 @@ article.snipt {
                 }
                 span.collapse {
                     display: inline;
+                }
+                span.lines {
+                    display: none;
                 }
             }
         }

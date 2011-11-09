@@ -14,16 +14,30 @@
                     <a href="#" class="expand">
                         <span class="expand">Expand</span>
                         <span class="collapse">Collapse</span>
+                        <span class="lines">({{ snipt.get_line_count }} lines)</span>
                     </a>
                 {% endif %}
             </section>
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
         </div>
-        <aside></aside>
+        <aside>
+            <ul>
+                <li>
+                    <a href="#">Edit</a>
+                </li>
+                <li>
+                    <a href="{{ snipt.get_embed_url }}">Embed</a>
+                </li>
+                <li>
+                    <a href="#">Copy</a>
+                </li>
+            </ul>
+        </aside>
     </div>
     <footer>
         <ul class="attrs">
+            <li class="author"><a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a></li>
             <li class="created">{{ snipt.created|naturalday }}</li>
             <li class="comments"><a href="{{ snipt.get_absolute_url }}#comments">Comments ({{ snipt.comment_set.all|length }})</a></li>
         </ul>
