@@ -5,11 +5,6 @@
   font-weight: normal;
   font-style: normal;
 }
-*:focus {
-  -webkit-box-shadow: 0 0 10px #46cd46;
-  -moz-box-shadow: 0 0 10px #46cd46;
-  box-shadow: 0 0 10px #46cd46;
-}
 html, body {
   background: #f5f2f3 url('https://snipt.s3.amazonaws.com/images/bg.gif') top left repeat;
 }
@@ -429,7 +424,7 @@ article.snipt aside ul.options li a {
   padding: 7px 10px 7px 35px;
   position: relative;
 }
-article.snipt aside ul.options li a:hover {
+article.snipt aside ul.options li a:hover, article.snipt aside ul.options li a.hover {
   background-color: rgba(128, 128, 128, 0.18);
   opacity: 1;
   text-decoration: none;
@@ -449,6 +444,9 @@ article.snipt aside ul.options li a.embed {
 }
 article.snipt aside ul.options li a.copy {
   background-image: url('https://snipt.s3.amazonaws.com/images/copy-icon.png');
+}
+article.snipt aside ul.options li a.copy span.done {
+  display: none;
 }
 article.snipt aside section.tags {
   padding-top: 15px;
