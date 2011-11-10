@@ -1,7 +1,9 @@
 from snipts.api import PublicCommentResource, PublicSniptResource, PublicUserResource, PublicTagResource
 from django.views.generic.simple import direct_to_template
+from django.conf.urls.static import static
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.conf import settings
 from tastypie.api import Api
 
 admin.autodiscover()
@@ -22,4 +24,4 @@ urlpatterns = patterns('',
     url(r'^api/', include(public_api.urls)),
 
     url(r'^', include('snipts.urls')),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
