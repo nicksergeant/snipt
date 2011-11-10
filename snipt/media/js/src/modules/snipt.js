@@ -16,6 +16,7 @@
             this.$copy_done = $('span.done', this.$copy_button);
             this.$expand_button = $('a.expand', this.$aside);
             this.$raw = $('div.raw', this.$container);
+            this.$tags = $('section.tags ul', this.$aside);
 
             this.setupCopy();
         },
@@ -24,10 +25,11 @@
         },
         expand: function() {
             this.$container.toggleClass('expanded', 100);
-            this.$aside.toggleClass('expanded');
+            this.$tags.toggleClass('expanded');
             return false;
         },
         setupCopy: function() {
+
             var copy_do = this.$copy_do;
             var copy_done = this.$copy_done;
 
