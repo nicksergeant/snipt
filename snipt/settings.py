@@ -92,7 +92,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -148,7 +147,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'storages',
 
-    'compressor',
     'django_bcrypt',
     'pagination',
     'south',
@@ -189,13 +187,6 @@ GRAPPELLI_ADMIN_TITLE = '<a href="/">Snipt</a>'
 
 # Virtualenv
 VIRTUALENV_PATH = '/Users/Nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
-
-# Compressor
-COMPRESS_ENABLED = True
-COMPRESS_OUTPUT_DIR = 'cache'
-COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_URL = STATIC_URL
-COMPRESS_STORAGE = STATICFILES_STORAGE
 
 # Account settings
 LOGIN_REDIRECT_URL = '/'
