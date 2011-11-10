@@ -758,6 +758,9 @@ article.snipt div.container section.code a.expand:hover {
   color: #3BAAF3;
   font-weight: bold;
 }
+article.snipt div.container section.code div.raw {
+  display: none;
+}
 article.snipt div.container section.emacs a.expand, article.snipt div.container section.default a.expand {
   -webkit-box-shadow: 0 -25px 25px #f8f8f8;
   -moz-box-shadow: 0 -25px 25px #f8f8f8;
@@ -879,7 +882,7 @@ article.snipt aside section.tags ul li a:hover {
   border-color: #000;
   color: #000;
 }
-article.snipt aside.expanded li {
+article.snipt aside section.tags ul.expanded li {
   display: block;
 }
 article.snipt footer {
