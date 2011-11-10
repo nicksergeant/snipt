@@ -8,10 +8,12 @@
 
 {% block content %}
     <section class="snipts" id="snipts">
-        {% autopaginate snipts 20 %}
-        {% for snipt in snipts %}
-            {% include "snipts/snipt-list.html" %}
-        {% endfor %}
-        {% paginate %}
+        {% with public='true' %}
+            {% autopaginate snipts 20 %}
+            {% for snipt in snipts %}
+                {% include "snipts/snipt-list.html" %}
+            {% endfor %}
+            {% paginate %}
+        {% endwith %}
     </section>
 {% endblock %}

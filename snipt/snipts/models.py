@@ -73,6 +73,10 @@ class Snipt(models.Model):
                                           self.key)
 
     @property
+    def sorted_tags(self):
+        return self.tags.all().order_by('name')
+
+    @property
     def lexer_name(self):
         return get_lexer_by_name(self.lexer).name
 

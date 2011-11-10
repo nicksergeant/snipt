@@ -76,7 +76,6 @@ html, body {
 body {
     color: #666;
     font: normal 14px @Helvetica;
-    overflow-y: scroll;
     text-rendering: optimizeLegibility;
 }
 
@@ -484,7 +483,7 @@ article.snipt {
     }
     aside {
         float: right;
-        margin: 29px 30px 0 0;
+        margin: 23px 30px 0 0;
         width: 100px;
 
         ul.options {
@@ -542,10 +541,25 @@ article.snipt {
                     a {
                         border-bottom: 1px solid #999;
                         color: #999;
+                        display: inline-block;
                         font: normal 12px @Helvetica;
+                        max-width: 72px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         text-decoration: none;
+                        white-space: nowrap;
+
+                        &:hover {
+                            border-color: #000;
+                            color: #000;
+                        }
                     }
                 }
+            }
+        }
+        &.expanded {
+            li {
+                display: block;
             }
         }
     }
