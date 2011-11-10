@@ -40,8 +40,7 @@
                         copy_do.fadeIn(500);
                     }, 1500);
                 },
-                copy: this.$raw.text(),
-                path: '/media/swfs/zero-clipboard.swf'
+                copy: this.$raw.text()
             });
         }
     });
