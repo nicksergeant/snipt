@@ -11,7 +11,7 @@
   box-shadow: 0 0 10px #46cd46;
 }
 html, body {
-  background: #ffffff url('https://snipt.s3.amazonaws.com/images/bg.gif') top left repeat;
+  background: #f5f2f3 url('https://snipt.s3.amazonaws.com/images/bg.gif') top left repeat;
 }
 body {
   color: #666;
@@ -68,10 +68,12 @@ header.main div.inner form.search div.infield {
 header.main div.inner form.search div.infield label {
   color: #72979C;
   cursor: text;
+  float: none;
   font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
   left: 30px;
   position: absolute;
   top: 8px;
+  width: auto;
 }
 header.main div.inner form.search div.infield input {
   background: #17484f url('https://snipt.s3.amazonaws.com/images/search-icon.png') top left no-repeat;
@@ -79,6 +81,7 @@ header.main div.inner form.search div.infield input {
   border: 1px solid #3A5E67;
   color: #FFF;
   font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  height: auto;
   margin: 0;
   padding: 7px;
   padding-left: 28px;
@@ -129,6 +132,7 @@ header.main div.inner aside.nav {
   border-left: 1px solid rgba(229, 229, 229, 0.25);
   float: right;
   height: 65px;
+  margin: 0;
   width: 189px;
 }
 section.main {
@@ -319,7 +323,10 @@ article.snipt div.container section.code {
   z-index: 51;
 }
 article.snipt div.container section.code div.highlight pre {
+  background: transparent;
+  border: none;
   font: normal 14px/18px 'InconsolataMedium', Consolas, Menlo, "Courier New", monospace;
+  font-weight: normal !important;
   overflow-x: auto;
   margin: 0 15px;
   min-height: 173px;
@@ -343,6 +350,11 @@ article.snipt div.container section.code a.expand {
 }
 article.snipt div.container section.code a.expand span.collapse {
   display: none;
+}
+article.snipt div.container section.code a.expand span.lines {
+  font: normal 10px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  margin-left: 5px;
+  vertical-align: 1px;
 }
 article.snipt div.container section.code a.expand:hover {
   color: #3BAAF3;
@@ -403,7 +415,41 @@ article.snipt div.container:after {
 }
 article.snipt aside {
   float: right;
-  width: 130px;
+  margin: 29px 30px 0 0;
+  width: 100px;
+}
+article.snipt aside ul li {
+  margin: 2px 0;
+}
+article.snipt aside ul li a {
+  background: rgba(128, 128, 128, 0.15) url('https://snipt.s3.amazonaws.com/images/edit-icon.png') 14px center no-repeat;
+  color: #000;
+  display: block;
+  font: bold 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  opacity: .5;
+  padding: 7px 10px 7px 35px;
+  position: relative;
+}
+article.snipt aside ul li a:hover {
+  background-color: rgba(128, 128, 128, 0.18);
+  opacity: 1;
+  text-decoration: none;
+}
+article.snipt aside ul li a.edit:after {
+  background: #f5f2f3 url('https://snipt.s3.amazonaws.com/images/bg.gif') top left repeat;
+  content: "";
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  top: -3px;
+  width: 3px;
+  -webkit-transform: rotate(-45deg);
+}
+article.snipt aside ul li a.embed {
+  background-image: url('https://snipt.s3.amazonaws.com/images/embed-icon.png');
+}
+article.snipt aside ul li a.copy {
+  background-image: url('https://snipt.s3.amazonaws.com/images/copy-icon.png');
 }
 article.snipt footer {
   clear: both;
@@ -428,26 +474,54 @@ article.snipt footer ul.attrs li a {
 article.snipt footer ul.attrs li a:hover {
   text-decoration: underline;
 }
+article.snipt footer ul.attrs li.author {
+  background: transparent url('https://snipt.s3.amazonaws.com/images/author-icon.png') 0 1px no-repeat;
+}
 article.snipt footer ul.attrs li.comments {
   background: transparent url('https://snipt.s3.amazonaws.com/images/comments-icon.png') 0 2px no-repeat;
 }
-article.snipt.expanded div.container section.code {
+article.snipt div.expanded section.code {
   height: auto;
 }
-article.snipt.expanded div.container section.code div.highlight pre {
+article.snipt div.expanded section.code div.highlight pre {
   padding-bottom: 60px;
 }
-article.snipt.expanded div.container section.code a.expand {
+article.snipt div.expanded section.code a.expand {
   background-image: url('https://snipt.s3.amazonaws.com/images/collapse.png');
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
-article.snipt.expanded div.container section.code a.expand span.expand {
+article.snipt div.expanded section.code a.expand span.expand {
   display: none;
 }
-article.snipt.expanded div.container section.code a.expand span.collapse {
+article.snipt div.expanded section.code a.expand span.collapse {
   display: inline;
+}
+article.snipt div.expanded section.code a.expand span.lines {
+  display: none;
+}
+div.pagination {
+  margin: 0 15px 35px 15px;
+  text-align: center;
+}
+div.pagination ul {
+  background: #FFF;
+  display: inline-block;
+  float: none;
+}
+div.pagination ul li a {
+  color: #3BAAF3;
+  padding: 0 8px;
+}
+div.pagination ul li a:hover {
+  background: #EAE8EB;
+}
+div.pagination ul li.active a {
+  background: #E0E1E1;
+}
+div.pagination ul li.prev {
+  line-height: 2px;
 }
 .group:after {
   content: ".";
