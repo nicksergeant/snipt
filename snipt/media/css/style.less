@@ -13,11 +13,6 @@
 
 }
 
-// Focus
-*:focus {
-    .box-shadow(0, 0, 10px, #46CD46);
-}
-
 // Mixins
 .border-radius(@radius: 5px) {
     -webkit-background-clip: padding-box;
@@ -499,7 +494,7 @@ article.snipt {
                     padding: 7px 10px 7px 35px;
                     position: relative;
 
-                    &:hover {
+                    &:hover, &.hover {
                         background-color: rgba(128, 128, 128, .18);
                         opacity: 1;
                         text-decoration: none;
@@ -521,6 +516,10 @@ article.snipt {
                     }
                     &.copy {
                         background-image: url('/media/images/copy-icon.png');
+
+                        span.done {
+                            display: none;
+                        }
                     }
                 }
             }

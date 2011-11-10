@@ -17,6 +17,7 @@
                         <span class="lines">({{ snipt.get_line_count }} lines)</span>
                     </a>
                 {% endif %}
+                <div class="raw">{{ snipt.code }}</div>
             </section>
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
@@ -32,7 +33,7 @@
                     <a class="embed" href="#">Embed</a>
                 </li>
                 <li>
-                    <a class="copy" href="#">Copy</a>
+                    <a class="copy" href="#"><span class="do">Copy</span><span class="done">Copied!</span></a>
                 </li>
             </ul>
             <section class="tags">
