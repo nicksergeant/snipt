@@ -420,7 +420,6 @@ html, body {
 body {
   color: #666;
   font: normal 14px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-  overflow-y: scroll;
   text-rendering: optimizeLegibility;
 }
 header.main {
@@ -819,7 +818,7 @@ article.snipt div.container:after {
 }
 article.snipt aside {
   float: right;
-  margin: 29px 30px 0 0;
+  margin: 23px 30px 0 0;
   width: 100px;
 }
 article.snipt aside ul.options li {
@@ -870,8 +869,20 @@ article.snipt aside section.tags ul li {
 article.snipt aside section.tags ul li a {
   border-bottom: 1px solid #999;
   color: #999;
+  display: inline-block;
   font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-decoration: none;
+  white-space: nowrap;
+}
+article.snipt aside section.tags ul li a:hover {
+  border-color: #000;
+  color: #000;
+}
+article.snipt aside.expanded li {
+  display: block;
 }
 article.snipt footer {
   clear: both;

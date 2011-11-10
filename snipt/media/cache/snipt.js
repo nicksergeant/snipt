@@ -971,6 +971,7 @@ jQuery(function($) {
             this.model.view = this;
             this.$el = $(this.el);
             this.$container = $('div.container', this.$el);
+            this.$aside = $('aside', this.$el);
             this.$expand_button = $('a.expand', this.$el);
         },
         events: {
@@ -978,6 +979,7 @@ jQuery(function($) {
         },
         expand: function() {
             this.$container.toggleClass('expanded', 100);
+            this.$aside.toggleClass('expanded');
             return false;
         }
     });
