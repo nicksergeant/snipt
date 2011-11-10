@@ -22,7 +22,7 @@
             <div class="ruler bottom-x"></div>
         </div>
         <aside>
-            <ul>
+            <ul class="options">
                 {% if snipt.user == request.user %}
                     <li>
                         <a class="edit" href="#">Edit</a>
@@ -35,6 +35,16 @@
                     <a class="copy" href="#">Copy</a>
                 </li>
             </ul>
+            <section class="tags">
+                <h2>Tags</h2>
+                <ul>
+                    {% for tag in snipt.tags.all %}
+                        <li>
+                            <a href="">{{ tag }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
         </aside>
     </div>
     <footer>

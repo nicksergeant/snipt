@@ -487,7 +487,7 @@ article.snipt {
         margin: 29px 30px 0 0;
         width: 100px;
 
-        ul {
+        ul.options {
             li {
                 margin: 2px 0;
 
@@ -522,6 +522,28 @@ article.snipt {
                     }
                     &.copy {
                         background-image: url('/media/images/copy-icon.png');
+                    }
+                }
+            }
+        }
+        section.tags {
+            padding-top: 15px;
+
+            h2 {
+                background: transparent url('/media/images/snipt-tags-icon.png') 15px center no-repeat;
+                color: #999999;
+                font: bold 12px @Helvetica;
+                padding: 7px 0 7px 35px;
+            }
+            ul {
+                li {
+                    margin: 6px 10px 6px 35px;
+
+                    a {
+                        border-bottom: 1px solid #999;
+                        color: #999;
+                        font: normal 12px @Helvetica;
+                        text-decoration: none;
                     }
                 }
             }
