@@ -418,10 +418,10 @@ article.snipt aside {
   margin: 29px 30px 0 0;
   width: 100px;
 }
-article.snipt aside ul li {
+article.snipt aside ul.options li {
   margin: 2px 0;
 }
-article.snipt aside ul li a {
+article.snipt aside ul.options li a {
   background: rgba(128, 128, 128, 0.15) url('https://snipt.s3.amazonaws.com/images/edit-icon.png') 14px center no-repeat;
   color: #000;
   display: block;
@@ -430,12 +430,12 @@ article.snipt aside ul li a {
   padding: 7px 10px 7px 35px;
   position: relative;
 }
-article.snipt aside ul li a:hover {
+article.snipt aside ul.options li a:hover {
   background-color: rgba(128, 128, 128, 0.18);
   opacity: 1;
   text-decoration: none;
 }
-article.snipt aside ul li a.edit:after {
+article.snipt aside ul.options li a.edit:after {
   background: #f5f2f3 url('https://snipt.s3.amazonaws.com/images/bg.gif') top left repeat;
   content: "";
   height: 20px;
@@ -445,11 +445,29 @@ article.snipt aside ul li a.edit:after {
   width: 3px;
   -webkit-transform: rotate(-45deg);
 }
-article.snipt aside ul li a.embed {
+article.snipt aside ul.options li a.embed {
   background-image: url('https://snipt.s3.amazonaws.com/images/embed-icon.png');
 }
-article.snipt aside ul li a.copy {
+article.snipt aside ul.options li a.copy {
   background-image: url('https://snipt.s3.amazonaws.com/images/copy-icon.png');
+}
+article.snipt aside section.tags {
+  padding-top: 15px;
+}
+article.snipt aside section.tags h2 {
+  background: transparent url('https://snipt.s3.amazonaws.com/images/snipt-tags-icon.png') 15px center no-repeat;
+  color: #999999;
+  font: bold 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  padding: 7px 0 7px 35px;
+}
+article.snipt aside section.tags ul li {
+  margin: 6px 10px 6px 35px;
+}
+article.snipt aside section.tags ul li a {
+  border-bottom: 1px solid #999;
+  color: #999;
+  font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  text-decoration: none;
 }
 article.snipt footer {
   clear: both;
