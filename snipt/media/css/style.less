@@ -71,7 +71,7 @@
 
 // Page
 html, body {
-    background: #FFF url('/media/images/bg.gif') top left repeat;
+    background: #F5F2F3 url('/media/images/bg.gif') top left repeat;
 }
 body {
     color: #666;
@@ -395,6 +395,7 @@ article.snipt {
                     background: transparent;
                     border: none;
                     font: normal 14px/18px @Inconsolata;
+                    font-weight: normal !important;
                     overflow-x: auto;
                     margin: 0 15px;
                     min-height: 173px;
@@ -491,15 +492,36 @@ article.snipt {
                 margin: 2px 0;
 
                 a {
-                    background: rgba(128, 128, 128, .08);
-                    color: #999;
+                    background: rgba(128, 128, 128, .15) url('/media/images/edit-icon.png') 14px center no-repeat;
+                    color: #000;
                     display: block;
                     font: bold 12px @Helvetica;
+                    opacity: .5;
                     padding: 7px 10px 7px 35px;
+                    position: relative;
 
                     &:hover {
-                        background: rgba(128, 128, 128, .15);
+                        background-color: rgba(128, 128, 128, .18);
+                        opacity: 1;
                         text-decoration: none;
+                    }
+                    &.edit {
+                        &:after {
+                            background: #F5F2F3 url('/media/images/bg.gif') top left repeat;
+                            content: "";
+                            height: 20px;
+                            position: absolute;
+                            right: 5px;
+                            top: -3px;
+                            width: 3px;
+                            -webkit-transform: rotate(-45deg);
+                        }
+                    }
+                    &.embed {
+                        background-image: url('/media/images/embed-icon.png');
+                    }
+                    &.copy {
+                        background-image: url('/media/images/copy-icon.png');
                     }
                 }
             }
@@ -528,6 +550,9 @@ article.snipt {
                     &:hover {
                         text-decoration: underline;
                     }
+                }
+                &.author {
+                    background: transparent url('/media/images/author-icon.png') 0 1px no-repeat;
                 }
                 &.comments {
                     background: transparent url('/media/images/comments-icon.png') 0 2px no-repeat;
@@ -576,6 +601,15 @@ div.pagination {
             a {
                 color: #3BAAF3;
                 padding: 0 8px;
+
+                &:hover {
+                    background: #EAE8EB;
+                }
+            }
+            &.active {
+                a {
+                    background: #E0E1E1;
+                }
             }
             &.prev {
                 line-height: 2px;
