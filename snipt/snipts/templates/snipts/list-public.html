@@ -2,7 +2,7 @@
 
 {% load pagination_tags %}
 
-{% block page-title %}/ public{% if tag %} / {{ tag }} - {% endif %}{{ block.super }}{% endblock %}
+{% block page-title %}/ public{% if tag %} / {{ tag }}{% endif %} - {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
     <li><a href="/public/">public</a></li>
