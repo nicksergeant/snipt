@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<article class="snipt">
+<article class="snipt {% if not snipt.public %}private-snipt{% endif %}">
     <div class="number">#{{ snipt.id }}</div>
     <div class="group">
         <div class="container">
@@ -44,7 +44,7 @@
                             {% if public %}
                                 <a href="/public/tag/{{ tag.slug }}/">{{ tag }}</a>
                             {% else %}
-                                <a href="/{{ request.user.username }}/tag/{{ tag.slug }}/">{{ tag }}</a>
+                                <a href="/{{ snipt.user.username }}/tag/{{ tag.slug }}/">{{ tag }}</a>
                             {% endif %}
                         </li>
                     {% endfor %}

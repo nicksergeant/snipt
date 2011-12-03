@@ -1,5 +1,5 @@
-from snipts.api import PublicSniptResource, PublicTagResource
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from annoying.decorators import render_to
 from django.db.models import Count
@@ -8,12 +8,12 @@ from taggit.models import Tag
 
 def home(request):
     if request.user.is_authenticated():
-        return list_user(request, user=request.user)
+        return HttpResponseRedirect('/%s/' % request.user.username)
     else:
         return list_public(request)
 
 @render_to('snipts/list-public.html')
-def list_public(request):
+def list_public(request, tag=None):
 
     tags = Tag.objects.filter(snipt__public=True)
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
@@ -21,17 +21,19 @@ def list_public(request):
 
     snipts = Snipt.objects.filter(public=True).order_by('-created')
 
+    if tag:
+        snipts = snipts.filter(tags__name__in=[tag])
+
     return {
         'snipts': snipts,
         'tags': tags,
+        'tag': tag,
     }
 
 @render_to('snipts/list-user.html')
-def list_user(request, user):
+def list_user(request, user, tag=None):
 
-    if type(user) == unicode:
-        user = get_object_or_404(User, username=user.strip('/'))
-
+    user = get_object_or_404(User, username=user)
     tags = Tag.objects
     snipts = Snipt.objects
 
@@ -46,8 +48,12 @@ def list_user(request, user):
     tags = tags.order_by('-count')
     snipts = snipts.order_by('-created')
 
+    if tag:
+        snipts = snipts.filter(tags__name__in=[tag])
+
     return {
         'snipts': snipts,
         'tags': tags,
+        'tag': tag,
         'user': user,
     }

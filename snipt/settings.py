@@ -69,7 +69,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 if DEBUG:
     STATIC_URL = '/media/'
 else:
-    #STATIC_URL = 'https://dn2p0mzo970os.cloudfront.net/'
     STATIC_URL = 'https://snipt.s3.amazonaws.com/'
 
 # S3 Settings
@@ -80,7 +79,7 @@ AWS_STORAGE_BUCKET_NAME = 'snipt'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
+ADMIN_MEDIA_PREFIX = 'https://snipt.s3.amazonaws.com/grappelli/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -114,8 +113,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'snipt.middleware.www.WWWMiddleware',
-    'johnny.middleware.LocalStoreClearMiddleware',
-    'johnny.middleware.QueryCacheMiddleware',
+    #'johnny.middleware.LocalStoreClearMiddleware',
+    #'johnny.middleware.QueryCacheMiddleware',
     'django.middleware.cache.CacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -154,6 +153,9 @@ INSTALLED_APPS = (
     'tastypie',
     'snipts',
 )
+
+if DEBUG:
+    INSTALLED_APPS += ('django_extensions',)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -202,11 +204,11 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 # Caching
-CACHES = {
-    'default': dict(
-        BACKEND = 'johnny.backends.memcached.MemcachedCache',
-        LOCATION = ['app1575260%40heroku.com@mc7.ec2.northscale.net:11211'],
-        JOHNNY_CACHE = True,
-    )
-}
-JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'
+#CACHES = {
+    #'default': dict(
+        #BACKEND = 'johnny.backends.memcached.MemcachedCache',
+        #LOCATION = ['127.0.0.1:11211'],
+        #JOHNNY_CACHE = True,
+    #)
+#}
+#JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'

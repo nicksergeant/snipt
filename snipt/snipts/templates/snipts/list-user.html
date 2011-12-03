@@ -2,6 +2,15 @@
 
 {% load pagination_tags %}
 
+{% block page-title %}/ {{ user.username }}{% if tag %} / {{ tag }}{% endif %} - {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
+    {% if tag %}
+        <li>/ <a href="/{{ user.username }}/{{ tag }}/">{{ tag }}</a></li>
+    {% endif %}
+{% endblock %}
+
 {% block tags %}
     {% include "snipts/tags-user.html" %}
 {% endblock %}

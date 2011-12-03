@@ -42,7 +42,6 @@
 
 </head>
 <body class="{% block body-class %}{% endblock %}">
-
     <header class="main">
         <div class="inner">
             <div class="shadey"></div>
@@ -58,7 +57,7 @@
             <nav class="public">
                 <ul>
                     <li>
-                        <a href="/" class="active">Public snipts</a>
+                        <a href="/public/" {% if '/public/' in request.path or not request.user.is_authenticated %} class="active"{% endif %}>Public snipts</a>
                     </li>
                     {% if not request.user.is_authenticated %}
                         <li>
@@ -69,7 +68,7 @@
                         </li>
                     {% else %}
                         <li>
-                            <a href="/">My snipts</a>
+                            <a href="/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -77,18 +76,19 @@
             <aside class="nav"></aside>
         </div>
     </header>
-
+    <header class="sub">
+        <div class="inner">
+            <ul>
+                <li class="prompt">/</li>
+                {% block breadcrumb %}{% endblock %}
+            </ul>
+        </div>
+    </header>
     <section class="main group">
         <div class="inner">
             {% block content %}{% endblock %}
         </div>
         <aside class="main">
-            <section class="ad">
-                <div class="asset"></div>
-                <div class="meta">
-                    Ads by Yoggrt
-                </div>
-            </section>
             {% block tags %}{% endblock %}
             <nav class="footer">
                 <ul>
@@ -98,8 +98,11 @@
                     <li class="twitter">
                         <a href="https://twitter.com/#!/snipt">@snipt</a>
                     </li>
-                    <li class="pro">
-                        <a href="/pro/">Go Pro</a>
+                    <li class="twitter">
+                        <a href="https://twitter.com/#!/nicksergeant">@nicksergeant</a>
+                    </li>
+                    <li class="twitter">
+                        <a href="https://twitter.com/#!/nickadamssays">@nickadamssays</a>
                     </li>
                 </ul>
             </nav>
@@ -107,7 +110,6 @@
         <div class="left-y ruler"></div>
         <div class="right-y ruler"></div>
     </section>
-
     {% if not debug %}
         <script type="text/javascript">
             //<![CDATA[
@@ -122,6 +124,5 @@
             //]]>
         </script>
     {% endif %}
-
 </body>
 </html>
