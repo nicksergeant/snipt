@@ -113,9 +113,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'snipt.middleware.www.WWWMiddleware',
-    #'johnny.middleware.LocalStoreClearMiddleware',
-    #'johnny.middleware.QueryCacheMiddleware',
-    'django.middleware.cache.CacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfResponseMiddleware',
@@ -153,9 +150,6 @@ INSTALLED_APPS = (
     'tastypie',
     'snipts',
 )
-
-if DEBUG:
-    INSTALLED_APPS += ('django_extensions',)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -204,11 +198,22 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 # Caching
-#CACHES = {
-    #'default': dict(
-        #BACKEND = 'johnny.backends.memcached.MemcachedCache',
-        #LOCATION = ['127.0.0.1:11211'],
-        #JOHNNY_CACHE = True,
-    #)
-#}
-#JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'
+if not DEBUG:
+    INSTALLED_APPS += ('johnny',)
+    JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'
+    MIDDLEWARE_CLASSES += (
+        'johnny.middleware.LocalStoreClearMiddleware',
+        'johnny.middleware.QueryCacheMiddleware',
+        'django.middleware.cache.CacheMiddleware',
+    )
+    CACHES = {
+        'default': dict(
+            BACKEND = 'johnny.backends.memcached.MemcachedCache',
+            LOCATION = ['127.0.0.1:11211'],
+            JOHNNY_CACHE = True,
+        )
+    }
+
+# Extensions
+if DEBUG:
+    INSTALLED_APPS += ('django_extensions',)
