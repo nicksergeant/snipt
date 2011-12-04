@@ -198,21 +198,20 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 # Caching
-if not DEBUG:
-    INSTALLED_APPS += ('johnny',)
-    JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'
-    MIDDLEWARE_CLASSES += (
-        'johnny.middleware.LocalStoreClearMiddleware',
-        'johnny.middleware.QueryCacheMiddleware',
-        'django.middleware.cache.CacheMiddleware',
-    )
-    CACHES = {
-        'default': dict(
-            BACKEND = 'johnny.backends.memcached.MemcachedCache',
-            LOCATION = ['127.0.0.1:11211'],
-            JOHNNY_CACHE = True,
-        )
-    }
+#INSTALLED_APPS += ('johnny',)
+#JOHNNY_MIDDLEWARE_KEY_PREFIX='johnny_snipt'
+#MIDDLEWARE_CLASSES += (
+    #'johnny.middleware.LocalStoreClearMiddleware',
+    #'johnny.middleware.QueryCacheMiddleware',
+    #'django.middleware.cache.CacheMiddleware',
+#)
+#CACHES = {
+    #'default': dict(
+        #BACKEND = 'johnny.backends.memcached.MemcachedCache',
+        #LOCATION = ['127.0.0.1:11211'],
+        #JOHNNY_CACHE = True,
+    #)
+#}
 
 # Extensions
 if DEBUG:
