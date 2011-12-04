@@ -1007,17 +1007,17 @@ jQuery(function($) {
             var copy_do = this.$copy_do;
             var copy_done = this.$copy_done;
 
-            this.$copy_button.zclip({
-                afterCopy: function() {
-                    copy_do.hide();
-                    copy_done.fadeIn(500);
-                    setTimeout(function() {
-                        copy_done.hide();
-                        copy_do.fadeIn(500);
-                    }, 1500);
-                },
-                copy: this.$raw.text()
-            });
+            //this.$copy_button.zclip({
+                //afterCopy: function() {
+                    //copy_do.hide();
+                    //copy_done.fadeIn(500);
+                    //setTimeout(function() {
+                        //copy_done.hide();
+                        //copy_do.fadeIn(500);
+                    //}, 1500);
+                //},
+                //copy: this.$raw.text()
+            //});
         }
     });
 

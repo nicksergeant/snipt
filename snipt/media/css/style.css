@@ -242,6 +242,10 @@ section.main aside.main section.tags a.view-all {
   font-weight: bold;
   margin: 0 0 0 22px;
 }
+section.main aside.main section.tags a.active {
+  border-bottom: 1px solid #2B6E9B;
+  color: #2B6E9B;
+}
 section.main aside.main nav.footer {
   margin: 45px 15px 32px;
 }
