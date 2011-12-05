@@ -7,9 +7,6 @@ from snipts.models import Snipt
 from taggit.models import Tag
 
 def home(request):
-    from django.core.mail import send_mail
-    send_mail('Subject here', 'Here is the message.', 'site@snipt.net',
-        ['nick@nicksergeant.com'], fail_silently=False)
     if request.user.is_authenticated():
         return HttpResponseRedirect('/%s/' % request.user.username)
     else:

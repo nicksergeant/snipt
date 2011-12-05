@@ -5,7 +5,6 @@ django-annoying
 django-bcrypt
 django-grappelli
 django-pagination
-django-postmark
 django-registration
 django-storages
 django-taggit
@@ -17,6 +16,7 @@ lxml
 psycopg2
 Pygments
 python-memcached
+python-postmark
 pyyaml
 South
 uuid
