@@ -998,7 +998,15 @@ jQuery(function($) {
             return false;
         },
         copy: function() {
-            window.prompt('Text is selected. To copy: press Ctrl+C then <Enter>', this.$raw.text());
+            var cmd;
+            if (navigator.platform == 'MacPPC' ||
+                navigator.platform == 'MacIntel') {
+                cmd = 'Cmd';
+            }
+            else {
+                cmd = 'Ctrl';
+            }
+            window.prompt('Text is selected. To copy: press ' + cmd + '+C then <Enter>', this.$raw.text());
             return false;
         }
     });
