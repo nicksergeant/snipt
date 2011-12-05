@@ -3,7 +3,7 @@
 import os, socket
 
 if socket.gethostname() in ['nickmba.local', 'nickimac.local']:
-    DEBUG = True
+    DEBUG = False
 else:
     DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -12,10 +12,9 @@ BASE_PATH = os.path.dirname(__file__)
 ADMINS = (
     ('Nick Sergeant', 'nick@snipt.net'),
 )
+MANAGERS = ADMINS
 
 INTERNAL_IPS = ('127.0.0.1',)
-
-MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
@@ -176,6 +175,7 @@ LOGGING = {
 }
 
 # Email
+SERVER_EMAIL = 'site@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 POSTMARK_API_KEY = '608d3101-1706-4a96-819f-f2f36fe00fe0'
 SEND_BROKEN_LINK_EMAILS = True
