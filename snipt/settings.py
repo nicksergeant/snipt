@@ -177,6 +177,7 @@ LOGGING = {
 # Email
 EMAIL_BACKEND = 'postmark.backends.PostmarkBackend'
 POSTMARK_API_KEY = '608d3101-1706-4a96-819f-f2f36fe00fe0'
+SEND_BROKEN_LINK_EMAILS = True
 
 # Grappelli settings
 GRAPPELLI_ADMIN_TITLE = '<a href="/">Snipt</a>'
