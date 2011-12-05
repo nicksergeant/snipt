@@ -5,7 +5,7 @@ import os, socket
 if socket.gethostname() in ['nickmba.local', 'nickimac.local']:
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 BASE_PATH = os.path.dirname(__file__)
 
