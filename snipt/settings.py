@@ -145,6 +145,7 @@ INSTALLED_APPS = (
 
     'django_bcrypt',
     'pagination',
+    'postmark',
     'south',
     'taggit',
     'tastypie',
