@@ -3,7 +3,7 @@
 import os, socket
 
 if socket.gethostname() in ['nickmba.local', 'nickimac.local']:
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = False
 TEMPLATE_DEBUG = DEBUG
