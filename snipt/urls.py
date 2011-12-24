@@ -14,9 +14,6 @@ public_api.register(PublicCommentResource())
 public_api.register(PublicSniptResource())
 
 private_api = Api(api_name='private')
-private_api.register(PrivateUserResource())
-private_api.register(PrivateTagResource())
-private_api.register(PrivateCommentResource())
 private_api.register(PrivateSniptResource())
 
 urlpatterns = patterns('',
