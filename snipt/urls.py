@@ -8,13 +8,14 @@ from snipts.api import *
 admin.autodiscover()
 
 public_api = Api(api_name='public')
-public_api.register(PublicUserResource())
-public_api.register(PublicTagResource())
-public_api.register(PublicCommentResource())
 public_api.register(PublicSniptResource())
+public_api.register(PublicTagResource())
+public_api.register(PublicUserResource())
 
 private_api = Api(api_name='private')
 private_api.register(PrivateSniptResource())
+private_api.register(PrivateTagResource())
+private_api.register(PrivateUserResource())
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),

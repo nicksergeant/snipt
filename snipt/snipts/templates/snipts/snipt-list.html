@@ -56,15 +56,6 @@
         <ul class="attrs">
             <li class="author"><a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a></li>
             <li class="created">{{ snipt.created|naturalday }}</li>
-            <li class="comments">
-                <a href="{{ snipt.get_absolute_url }}#comments">
-                    {% if snipt.comment_set.all|length > 0 %}
-                        {{ snipt.comment_set.all|length }} Comment{{ snipt.comment_set.all|pluralize }}
-                    {% else %}
-                        No comments
-                    {% endif %}
-                </a>
-            </li>
         </ul>
     </footer>
 </article>
