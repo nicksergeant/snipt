@@ -215,6 +215,8 @@ ABSOLUTE_URL_OVERRIDES = {
     #)
 #}
 
+COMPRESS_CSS = True
+
 # Extensions
 if DEBUG:
     INSTALLED_APPS += ('django_extensions',)

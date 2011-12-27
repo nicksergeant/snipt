@@ -10,7 +10,7 @@
             </header>
             <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
                 {{ snipt.get_stylized|safe }}
-                {% if snipt.get_line_count > 9 %}
+                {% if snipt.get_line_count > 8 %}
                     <a href="#" class="expand">
                         <span class="expand">Expand</span>
                         <span class="collapse">Collapse</span>

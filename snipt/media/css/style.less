@@ -1,16 +1,6 @@
 // Fonts
 @Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-@Inconsolata: 'InconsolataMedium', Consolas, Menlo, "Courier New", monospace;
-@font-face {
-    font-family: 'InconsolataMedium';
-    src: url('/media/fonts/Inconsolata-webfont.eot');
-    src: url('/media/fonts/Inconsolata-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/media/fonts/Inconsolata-webfont.woff') format('woff'),
-         url('/media/fonts/Inconsolata-webfont.ttf') format('truetype'),
-         url('/media/fonts/Inconsolata-webfont.svg#InconsolataMedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+@Consolas: Consolas, Menlo, "Courier New", monospace;
 
 // Mixins
 .border-radius(@radius: 5px) {
@@ -213,12 +203,12 @@ header.sub {
 
                 a {
                     color: #999999;
-                    font: bold 14px @Inconsolata;
+                    font: bold 12px/16px @Consolas;
                     text-shadow: 0 1px 0 #FFF;
                 }
                 &.prompt {
                     color: #999999;
-                    font: bold 14px @Inconsolata;
+                    font: bold 12px/16px @Consolas;
                     margin-right: 3px;
                     text-shadow: 0 1px 0 #FFF;
                 }
@@ -425,7 +415,7 @@ article.snipt {
                 pre {
                     background: transparent;
                     border: none;
-                    font: normal 14px/18px @Inconsolata;
+                    font: normal 12px/16px @Consolas;
                     font-weight: normal !important;
                     overflow-x: auto;
                     margin: 0 15px;
@@ -458,6 +448,9 @@ article.snipt {
                 &:hover {
                     color: #3BAAF3;
                     font-weight: bold;
+                }
+                &:focus {
+                    outline: none;
                 }
             }
             div.raw {
