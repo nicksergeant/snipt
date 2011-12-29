@@ -104,12 +104,16 @@ class PrivateTagResource(ModelResource):
         bundle.data['snipts'] = '/api/private/snipt/?tag=%d' % bundle.obj.id
 
         bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
-                               snipt__user=bundle.request.user).count()
-                              
+                                       snipt__user=bundle.request.user
+                                   ).count()
+
         return bundle
 
     def apply_authorization_limits(self, request, object_list):
-        return object_list.filter(snipt__user=request.user)
+        object_list = object_list.filter(snipt__user=request.user)
+        object_list = object_list.annotate(count=Count('taggit_taggeditem_items__id'))
+        object_list = object_list.order_by('-count')
+        return object_list
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)

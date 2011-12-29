@@ -1,4 +1,5 @@
 BeautifulSoup
+biplist
 boto
 Django
 django-annoying
