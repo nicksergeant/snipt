@@ -7,22 +7,22 @@
 
         initialize: function(opts) {
 
-            // Site variables
-            $search_query = $('input#search-query', this.el);
-            $snipts = $('section#snipts article.snipt', this.el);
+            this.$search_query = $('input#search-query', this.el);
+            this.$snipts = $('section#snipts article.snipt', this.el);
 
-            // Init functions
             this.keyboardShortcuts();
             this.inFieldLabels();
 
             // Init snipts
-            if ($snipts.length) {
+            if (this.$snipts.length) {
                 SniptListView = Snipt.Views.SniptListView;
-                Snipts = new SniptListView({ 'snipts': $snipts });
+                SniptList = new SniptListView({ 'snipts': this.$snipts });
             }
 
         },
         keyboardShortcuts: function() {
+
+            $search_query = this.$search_query;
 
             // Search
             $(document).bind('keydown', '/', function(e) {
