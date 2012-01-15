@@ -971,6 +971,12 @@ article.snipt div.expanded section.code a.expand span.collapse {
 article.snipt div.expanded section.code a.expand span.lines {
   display: none;
 }
+article.snipt.selected div.container {
+  -webkit-box-shadow: 0 0 20px #85D2DD;
+}
+article.snipt.selected div.container:after {
+  display: none;
+}
 article.private-snipt div.container header {
   background: #fffdf9 url('https://snipt.s3.amazonaws.com/images/private-icon.png') top right no-repeat;
   background: url('https://snipt.s3.amazonaws.com/images/private-icon.png') top right no-repeat, -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fffaf2));
