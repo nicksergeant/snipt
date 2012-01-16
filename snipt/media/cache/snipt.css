@@ -487,6 +487,9 @@ header.main div.inner form.search div.infield input {
   -moz-box-shadow: inset 0 1px 0px #1d4249;
   box-shadow: inset 0 1px 0px #1d4249;
 }
+header.main div.inner form.search div.infield input:focus {
+  border-color: #62D5E1;
+}
 header.main div.inner nav.public {
   float: left;
 }
@@ -726,7 +729,10 @@ article.snipt div.container header h1 {
 article.snipt div.container header h1 a {
   color: #666;
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-decoration: none;
+  white-space: nowrap;
   -webkit-transition: color .08s linear;
   -moz-transition: color .08s linear;
   -o-transition: color .08s linear;
@@ -753,7 +759,7 @@ article.snipt div.container section.code {
 article.snipt div.container section.code div.highlight pre {
   background: transparent;
   border: none;
-  font: normal 12px Consolas, Menlo, "Courier New", monospace;
+  font: normal 12px/16px Consolas, Menlo, "Courier New", monospace;
   font-weight: normal !important;
   overflow-x: auto;
   margin: 0 15px;
@@ -973,6 +979,8 @@ article.snipt div.expanded section.code a.expand span.lines {
 }
 article.snipt.selected div.container {
   -webkit-box-shadow: 0 0 20px #85D2DD;
+  -moz-box-shadow: 0 0 20px #85D2DD;
+  box-shadow: 0 0 20px #85D2DD;
 }
 article.snipt.selected div.container:after {
   display: none;
