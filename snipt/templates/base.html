@@ -87,25 +87,27 @@
         <div class="inner">
             {% block content %}{% endblock %}
         </div>
-        <aside class="main">
-            {% block tags %}{% endblock %}
-            <nav class="footer">
-                <ul>
-                    <li class="api">
-                        <a href="/api/">API</a>
-                    </li>
-                    <li class="twitter">
-                        <a href="https://twitter.com/#!/snipt">@snipt</a>
-                    </li>
-                    <li class="twitter">
-                        <a href="https://twitter.com/#!/nicksergeant">@nicksergeant</a>
-                    </li>
-                    <li class="twitter">
-                        <a href="https://twitter.com/#!/nickadamssays">@nickadamssays</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+        {% block aside %}
+            <aside class="main">
+                {% block tags %}{% endblock %}
+                <nav class="footer">
+                    <ul>
+                        <li class="api">
+                            <a href="/api/">API</a>
+                        </li>
+                        <li class="twitter">
+                            <a href="https://twitter.com/#!/snipt">@snipt</a>
+                        </li>
+                        <li class="twitter">
+                            <a href="https://twitter.com/#!/nicksergeant">@nicksergeant</a>
+                        </li>
+                        <li class="twitter">
+                            <a href="https://twitter.com/#!/nickadamssays">@nickadamssays</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        {% endblock %}
         <div class="left-y ruler"></div>
         <div class="right-y ruler"></div>
     </section>

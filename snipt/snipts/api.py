@@ -27,7 +27,7 @@ class PublicTagResource(ModelResource):
     class Meta:
         queryset = Tag.objects.filter(snipt__public=True)
         queryset = queryset.annotate(count=Count('taggit_taggeditem_items__id'))
-        queryset = queryset.order_by('-count')
+        queryset = queryset.order_by('-count', 'name')
         resource_name = 'tag'
         fields = ['name',]
         allowed_methods = ['get']
@@ -112,7 +112,7 @@ class PrivateTagResource(ModelResource):
     def apply_authorization_limits(self, request, object_list):
         object_list = object_list.filter(snipt__user=request.user)
         object_list = object_list.annotate(count=Count('taggit_taggeditem_items__id'))
-        object_list = object_list.order_by('-count')
+        object_list = object_list.order_by('-count', 'name')
         return object_list
 
 class PrivateSniptResource(ModelResource):

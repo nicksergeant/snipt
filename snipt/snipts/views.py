@@ -13,27 +13,27 @@ def home(request):
         return list_public(request)
 
 @render_to('snipts/list-public.html')
-def list_public(request, tag=None):
+def list_public(request, tag_slug=None):
 
     tags = Tag.objects.filter(snipt__public=True)
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count')[:20]
+    tags = tags.order_by('-count', 'name')[:20]
 
     snipts = Snipt.objects.filter(public=True).order_by('-created')
 
-    if tag:
-        snipts = snipts.filter(tags__name__in=[tag])
+    if tag_slug:
+        snipts = snipts.filter(tags__name__in=[tag_slug])
 
     return {
         'snipts': snipts,
         'tags': tags,
-        'tag': tag,
+        'tag': tag_slug,
     }
 
 @render_to('snipts/list-user.html')
-def list_user(request, user, tag=None):
+def list_user(request, username, tag_slug=None):
 
-    user = get_object_or_404(User, username=user)
+    user = get_object_or_404(User, username=username)
     tags = Tag.objects
     snipts = Snipt.objects
 
@@ -45,21 +45,36 @@ def list_user(request, user, tag=None):
         snipts = snipts.filter(user=user, public=True)
 
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count')
+    tags = tags.order_by('-count', 'name')
     snipts = snipts.order_by('-created')
 
-    if tag:
-        snipts = snipts.filter(tags__name__in=[tag])
+    if tag_slug:
+        snipts = snipts.filter(tags__name__in=[tag_slug])
 
     return {
         'snipts': snipts,
         'tags': tags,
-        'tag': tag,
+        'tag': tag_slug,
         'user': user,
     }
 
 @render_to('snipts/detail.html')
-def detail(request, slug):
+def detail(request, username, snipt_slug):
+
+    snipt = get_object_or_404(Snipt, user__username=username, slug=snipt_slug)
+    user = snipt.user
+    tags = Tag.objects
+
+    if user == request.user:
+        tags = tags.filter(snipt__user=user)
+    else:
+        tags = tags.filter(snipt__user=user, snipt__public=True)
+
+    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
+    tags = tags.order_by('-count', 'name')
+
     return {
-        'snipt': slug
+        'snipt': snipt,
+        'user': user,
+        'tags': tags,
     }

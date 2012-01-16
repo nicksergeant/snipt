@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page-title %}/ {{ user.username }} / {{ snipt.title }} - {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
+    <li>/ <a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>
+{% endblock %}
+
+{% block aside %}{% endblock %}
+
+{% block content %}
+    <section class="snipts" id="snipts">
+        {% include "snipts/snipt-detail.html" %}
+    </section>
+{% endblock %}
+
