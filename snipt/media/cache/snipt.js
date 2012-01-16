@@ -1052,9 +1052,7 @@ jQuery(function($) {
 
             if (fromClick !== true) {
                 if (SniptList.$snipts.index(this.$el) === 0) {
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 0);
+                    window.scrollTo(0, 0);
                 } else {
                     $('html, body').animate({
                         scrollTop: this.$el.offset().top - 50
@@ -1100,6 +1098,18 @@ jQuery(function($) {
                 if ($selected) {
                     $selected.trigger('deselect');
                 }
+            });
+            $document.bind('keydown', 'g', function() {
+                if (window.$selected) {
+                    window.$selected.trigger('deselect');
+                }
+                window.scrollTo(0, 0);
+            });
+            $document.bind('keydown', 'Shift+g', function() {
+                if (window.$selected) {
+                    window.$selected.trigger('deselect');
+                }
+                window.scrollTo(0, document.body.scrollHeight);
             });
             $document.bind('keydown', 'j', function() {
                 if (!$selected) {
