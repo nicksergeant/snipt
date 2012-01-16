@@ -19,6 +19,13 @@
                 SniptList = new SniptListView({ 'snipts': this.$snipts });
             }
 
+            // Search
+            this.$search_query.focus(function() {
+                if (window.$selected) {
+                    $selected.trigger('deselect');
+                }
+            });
+
         },
         keyboardShortcuts: function() {
 
@@ -37,7 +44,9 @@
             });
         },
         inFieldLabels: function () {
-            $('div.infield label', this.el).inFieldLabels();
+            $('div.infield label', this.el).inFieldLabels({
+                fadeDuration: 200
+            });
         }
     });
 

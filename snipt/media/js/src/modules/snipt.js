@@ -27,6 +27,7 @@
             'click .container': 'clickSelect',
             'copy':             'copy',
             'detail':           'detail',
+            'deselect':         'deselect',
             'expand':           'expand',
             'next':             'next',
             'prev':             'prev',
@@ -47,6 +48,10 @@
             }
             window.prompt('Text is selected. To copy: press ' + cmd + '+C then <Enter>', this.$raw.text());
             return false;
+        },
+        deselect: function() {
+            this.$el.removeClass('selected');
+            window.$selected = false;
         },
         detail: function() {
             window.location = this.model.get('url');
@@ -122,8 +127,7 @@
             });
             $(document).bind('keydown', 'esc', function() {
                 if ($selected) {
-                    $selected.removeClass('selected');
-                    $selected = false;
+                    $selected.trigger('deselect');
                 }
             });
             $(document).bind('keydown', 'j', function() {
