@@ -139,6 +139,9 @@
                 }
                 window.scrollTo(0, document.body.scrollHeight);
             });
+            $document.bind('keydown', 'h', function() {
+                window.location = '/';
+            });
             $document.bind('keydown', 'j', function() {
                 if (!$selected) {
                     SniptList.$snipts.eq(0).trigger('select');
