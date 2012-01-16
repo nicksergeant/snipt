@@ -30,9 +30,10 @@
         keyboardShortcuts: function() {
 
             $search_query = this.$search_query;
+            $document = $(document);
 
             // Search
-            $(document).bind('keydown', '/', function(e) {
+            $document.bind('keydown', '/', function(e) {
                 e.preventDefault();
                 $search_query.focus();
             });

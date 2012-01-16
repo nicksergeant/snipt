@@ -4,7 +4,7 @@
     <ul>
         {% if page_obj.has_previous %}
             <li class="prev">
-                <a href="?page={{ page_obj.previous_page_number }}{{ getvars }}">&larr;</a>
+                <a id="prev-page" href="?page={{ page_obj.previous_page_number }}{{ getvars }}">&larr;</a>
             </li>
         {% else %}
             <li class="disabled prev">
@@ -30,7 +30,7 @@
         {% endfor %}
         {% if page_obj.has_next %}
             <li class="next">
-                <a href="?page={{ page_obj.next_page_number }}{{ getvars }}">&rarr;</a>
+                <a id="next-page" href="?page={{ page_obj.next_page_number }}{{ getvars }}">&rarr;</a>
             </li>
         {% else %}
             <li class="disabled next">

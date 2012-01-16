@@ -110,46 +110,57 @@
         keyboardShortcuts: function() {
 
             $selected = window.selected;
-            $snipts = this.$snipts;
-            $el = this.$el;
+            $document = $(document);
 
-            $(document).bind('keydown', 'c', function() {
+            $document.bind('keydown', 'c', function() {
                 if ($selected) {
                     $selected.trigger('copy');
                 }
             });
-            $(document).bind('keydown', 'e', function() {
+            $document.bind('keydown', 'e', function() {
                 if ($selected) {
                     if ($selected.hasClass('expandable')) {
                         $selected.trigger('expand');
                     }
                 }
             });
-            $(document).bind('keydown', 'esc', function() {
+            $document.bind('keydown', 'esc', function() {
                 if ($selected) {
                     $selected.trigger('deselect');
                 }
             });
-            $(document).bind('keydown', 'j', function() {
+            $document.bind('keydown', 'j', function() {
                 if (!$selected) {
-                    $snipts.eq(0).trigger('select');
+                    SniptList.$snipts.eq(0).trigger('select');
                 } else {
                     $selected.trigger('next');
                 }
             });
-            $(document).bind('keydown', 'k', function() {
+            $document.bind('keydown', 'k', function() {
                 if (!$selected) {
-                    $snipts.eq(0).trigger('select');
+                    SniptList.$snipts.eq(0).trigger('select');
                 } else {
                     $selected.trigger('prev');
                 }
             });
-            $(document).bind('keydown', 'o', function(e) {
+            $document.bind('keydown', 'n', function() {
+                var $anc = $('li.next a');
+                if ($anc.attr('href') !== '#') {
+                    window.location = $anc.attr('href');
+                }
+            });
+            $document.bind('keydown', 'o', function() {
                 if ($selected) {
                     $selected.trigger('detail');
                 }
             });
-            $(document).bind('keydown', 'return', function(e) {
+            $document.bind('keydown', 'p', function() {
+                var $anc = $('li.prev a');
+                if ($anc.attr('href') !== '#') {
+                    window.location = $anc.attr('href');
+                }
+            });
+            $document.bind('keydown', 'return', function() {
                 if ($selected) {
                     $selected.trigger('detail');
                 }
