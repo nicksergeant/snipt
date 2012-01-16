@@ -933,6 +933,13 @@ jQuery(function($) {
                 SniptList = new SniptListView({ 'snipts': this.$snipts });
             }
 
+            // Search
+            this.$search_query.focus(function() {
+                if (window.$selected) {
+                    $selected.trigger('deselect');
+                }
+            });
+
         },
         keyboardShortcuts: function() {
 
@@ -951,7 +958,9 @@ jQuery(function($) {
             });
         },
         inFieldLabels: function () {
-            $('div.infield label', this.el).inFieldLabels();
+            $('div.infield label', this.el).inFieldLabels({
+                fadeDuration: 200
+            });
         }
     });
 
@@ -989,6 +998,7 @@ jQuery(function($) {
             'click .container': 'clickSelect',
             'copy':             'copy',
             'detail':           'detail',
+            'deselect':         'deselect',
             'expand':           'expand',
             'next':             'next',
             'prev':             'prev',
@@ -1009,6 +1019,10 @@ jQuery(function($) {
             }
             window.prompt('Text is selected. To copy: press ' + cmd + '+C then <Enter>', this.$raw.text());
             return false;
+        },
+        deselect: function() {
+            this.$el.removeClass('selected');
+            window.$selected = false;
         },
         detail: function() {
             window.location = this.model.get('url');
@@ -1084,8 +1098,7 @@ jQuery(function($) {
             });
             $(document).bind('keydown', 'esc', function() {
                 if ($selected) {
-                    $selected.removeClass('selected');
-                    $selected = false;
+                    $selected.trigger('deselect');
                 }
             });
             $(document).bind('keydown', 'j', function() {
