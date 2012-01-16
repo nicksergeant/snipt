@@ -57,3 +57,9 @@ def list_user(request, user, tag=None):
         'tag': tag,
         'user': user,
     }
+
+@render_to('snipts/detail.html')
+def detail(request, slug):
+    return {
+        'snipt': slug
+    }
