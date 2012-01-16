@@ -134,6 +134,10 @@ header.main {
                     width: 175px;
                     .border-radius(3px);
                     .inset-box-shadow(0, 1px, 0px, #1D4249);
+
+                    &:focus {
+                        border-color: #62D5E1;
+                    }
                 }
             }
         }
@@ -384,7 +388,10 @@ article.snipt {
                 a {
                     color: #666;
                     display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     text-decoration: none;
+                    white-space: nowrap;
                     -webkit-transition: color .08s linear;
                     -moz-transition: color .08s linear;
                     -o-transition: color .08s linear;
@@ -415,7 +422,7 @@ article.snipt {
                 pre {
                     background: transparent;
                     border: none;
-                    font: normal 12px @Consolas;
+                    font: normal 12px/16px @Consolas;
                     font-weight: normal !important;
                     overflow-x: auto;
                     margin: 0 15px;
@@ -661,6 +668,8 @@ article.snipt {
     &.selected {
         div.container {
             -webkit-box-shadow: 0 0 20px #85D2DD;
+            -moz-box-shadow: 0 0 20px #85D2DD;
+            box-shadow: 0 0 20px #85D2DD;
 
             &:after {
                 display: none;
