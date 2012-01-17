@@ -188,25 +188,49 @@ section.main aside.main {
   padding-top: 30px;
   width: 190px;
 }
+section.main aside.main section.ad {
+  margin-bottom: 28px;
+}
 section.main aside.main section.ad div.asset {
-  background: #ffffff url('https://snipt.s3.amazonaws.com/images/ad.jpg') center center no-repeat;
+  background: #FFF;
   border: 1px solid #DDDDDD;
-  height: 130px;
   margin: 0 15px 6px;
-  width: 158px;
+  padding: 15px 14px;
+  width: 130px;
   -webkit-background-clip: padding-box;
-  -webkit-border-radius: 3px;
+  -webkit-border-radius: 4px;
   -moz-background-clip: padding-box;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   background-clip: padding-box;
 }
+section.main aside.main section.ad div.asset a {
+  color: #939393;
+  display: block;
+  font: normal 11px/12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  text-decoration: none;
+}
+section.main aside.main section.ad div.asset a img {
+  display: block;
+  margin-bottom: 10px;
+}
+section.main aside.main section.ad div.asset a:hover {
+  color: #666;
+  text-decoration: none;
+}
 section.main aside.main section.ad div.meta {
-  color: #CCC;
-  font: normal 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-  margin-right: 15px;
-  text-align: right;
+  color: #939393;
+  font: normal 11px/12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+  margin: 0 15px;
+  text-align: center;
   text-transform: uppercase;
+}
+section.main aside.main section.ad div.meta a {
+  color: #CCC;
+  text-decoration: none;
+}
+section.main aside.main section.ad div.meta a:hover {
+  text-decoration: underline;
 }
 section.main aside.main section.tags {
   margin: 0 15px 45px 15px;
