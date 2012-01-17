@@ -18,8 +18,11 @@
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'snipt-net';
-            var disqus_developer = 1;
+            {% if debug %}
+                var disqus_developer = 1;
+            {% endif %}
             var disqus_url = ('https:' == document.location.protocol ? 'https' : 'http') + '://snipt.net{{ request.path }}';
+            var disqus_title = '{{ snipt.title }}';
             var disqus_identifier = {{ snipt.id }};
 
             (function() {
