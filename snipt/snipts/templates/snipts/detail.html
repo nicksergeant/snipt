@@ -21,7 +21,7 @@
             {% if debug %}
                 var disqus_developer = 1;
             {% endif %}
-            var disqus_url = ('https:' == document.location.protocol ? 'https' : 'http') + '://snipt.net{{ request.path }}';
+            var disqus_url = ('https:' == document.location.protocol ? 'https' : 'http') + '://snipt.net{{ snipt.get_absolute_url }}';
             var disqus_title = '{{ snipt.title }}';
             var disqus_identifier = {{ snipt.id }};
 
