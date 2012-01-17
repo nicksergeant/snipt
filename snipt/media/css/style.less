@@ -251,20 +251,47 @@ section.main {
         width: 190px;
 
         section.ad {
+            margin-bottom: 28px;
+
             div.asset {
-                background: #FFF url('/media/images/ad.jpg') center center no-repeat;
+                background: #FFF;
                 border: 1px solid #DDDDDD;
-                height: 130px;
                 margin: 0 15px 6px;
-                width: 158px;
-                .border-radius(3px);
+                padding: 15px 14px;
+                width: 130px;
+                .border-radius(4px);
+
+                a {
+                    color: #939393;
+                    display: block;
+                    font: normal 11px/12px @Helvetica;
+                    text-decoration: none;
+
+                    img {
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+                    &:hover {
+                        color: #666;
+                        text-decoration: none;
+                    }
+                }
             }
             div.meta {
-                color: #CCC;
-                font: normal 12px @Helvetica;
-                margin-right: 15px;
-                text-align: right;
+                color: #939393;
+                font: normal 11px/12px @Helvetica;
+                margin: 0 15px;
+                text-align: center;
                 text-transform: uppercase;
+
+                a {
+                    color: #CCC;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
         }
         section.tags {
