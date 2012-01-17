@@ -47,6 +47,16 @@ class Snipt(models.Model):
     def get_absolute_url(self):
         return "/%s/%s/" % (self.user.username, self.slug)
 
+    def get_full_absolute_url(self):
+        if settings.DEBUG:
+            root = 'http://snipt.localhost'
+        else:
+            if settings.USE_HTTPS:
+                root = 'https://snipt.net'
+            else:
+                root = 'http://snipt.net'
+        return "%s/%s/%s/" % (root, self.user.username, self.slug)
+
     #TODO This needs to be deprecated - render stylized version on save
     def get_stylized(self):
         if self.stylized == '':
