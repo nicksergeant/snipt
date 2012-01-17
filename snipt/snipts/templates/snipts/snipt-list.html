@@ -56,8 +56,7 @@
         <ul class="attrs">
             <li class="author"><a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a></li>
             <li class="created">{{ snipt.created|naturalday }}</li>
+            <li class="comments"><a href="{{ snipt.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.id }}"></a></li>
         </ul>
     </footer>
 </article>
-
-{% block comments %}{% endblock %}
