@@ -1,16 +1,16 @@
 {% load humanize %}
 
-<article class="snipt {% if not snipt.public %}private-snipt{% endif %}{% if snipt.get_line_count > 8 %}expandable{% endif %}">
+<article class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.get_line_count > 8 and not detail %}expandable{% endif %}">
     <div class="number">#{{ snipt.id }}</div>
     <div class="group">
         <div class="container">
             <header>
                 <h2>{{ snipt.lexer_name }}</h2>
-                <h1><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></h1>
+                <h1><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }} fdsauif odpsaufiodpsa ufiopdsa ufiopds uaiopfu dsaiopf udiospa ufiopdsau fiopdsa</a></h1>
             </header>
             <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
                 {{ snipt.get_stylized|safe }}
-                {% if snipt.get_line_count > 8 %}
+                {% if snipt.get_line_count > 8 and not detail %}
                     <a href="#" class="expand">
                         <span class="expand">Expand</span>
                         <span class="collapse">Collapse</span>
@@ -40,7 +40,7 @@
                 <h2>{{ snipt.tags.all|length }} tag{{ snipt.tags.all|pluralize }}</h2>
                 <ul>
                     {% for tag in snipt.sorted_tags %}
-                        <li {% if forloop.counter > 4 %}class="hidden"{% endif %}>
+                        <li {% if forloop.counter > 4 and not detail %}class="hidden"{% endif %}>
                             {% if public %}
                                 <a href="/public/tag/{{ tag.slug }}/">{{ tag }}</a>
                             {% else %}
@@ -59,3 +59,5 @@
         </ul>
     </footer>
 </article>
+
+{% block comments %}{% endblock %}

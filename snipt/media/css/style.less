@@ -681,6 +681,12 @@ article.private-snipt {
     div.container {
         header {
             .vertical-gradient-with-image(#FFF, #FFFAF2, url('/media/images/private-icon.png') top right no-repeat);
+
+            h1 {
+                a {
+                    padding-right: 25px;
+                }
+            }
         }
     }
 }
@@ -709,6 +715,72 @@ div.pagination {
             }
             &.prev {
                 line-height: 2px;
+            }
+        }
+    }
+}
+
+// Pages
+body.detail {
+    div.right-y {
+        display: none;
+    }
+    section.main {
+        div.inner {
+            width: 100%;
+
+            section.snipts {
+                div#disqus_thread {
+                    margin-bottom: 0;
+                    margin-left: 15px;
+                    width: 825px;
+
+                    #dsq-content {
+                        margin-top: -38px;
+
+                        #dsq-global-toolbar {
+                            margin-bottom: 18px;
+                            margin-top: 0;
+                        }
+                        #dsq-sort-by {
+                            display: none;
+                        }
+                        .dsq-comment-text {
+                            color: #666;
+                        }
+                        h3 {
+                            display: none;
+                        }
+                    }
+                    #dsq-footer {
+                        display: none;
+                    }
+                }
+                article.snipt {
+                    margin-bottom: 0;
+
+                    div.container {
+                        width: 839px;
+
+                        header {
+                            h1 {
+                                a {
+                                    white-space: normal;
+                                }
+                            }
+                        }
+                        section.code {
+                            height: auto;
+                        }
+                        &:after {
+                            bottom: 11px;
+                            height: 23px;
+                        }
+                    }
+                    aside {
+                        margin-right: 0;
+                    }
+                }
             }
         }
     }

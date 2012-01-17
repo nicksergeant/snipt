@@ -24,7 +24,7 @@
         events: {
             'click a.copy':     'copy',
             'click a.expand':   'expand',
-            'click .container': 'clickSelect',
+            'click .container': 'selectFromClick',
             'copy':             'copy',
             'detail':           'detail',
             'deselect':         'deselect',
@@ -34,9 +34,6 @@
             'select':           'select'
         },
 
-        clickSelect: function() {
-            this.select(true);
-        },
         copy: function() {
             var cmd;
             if (navigator.platform == 'MacPPC' ||
@@ -59,6 +56,7 @@
         expand: function() {
             this.$container.toggleClass('expanded', 100);
             this.$tags.toggleClass('expanded');
+            this.select();
             return false;
         },
         next: function() {
@@ -89,6 +87,9 @@
             }
 
             window.$selected = this.$el;
+        },
+        selectFromClick: function() {
+            this.select(true);
         }
     });
     SniptListView = Backbone.View.extend({
