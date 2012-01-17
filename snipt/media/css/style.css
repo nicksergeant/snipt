@@ -587,6 +587,9 @@ article.private-snipt div.container header {
   background: url('https://snipt.s3.amazonaws.com/images/private-icon.png') top right no-repeat, -moz-linear-gradient(center top, #ffffff 0%, #fffaf2 100%);
   background: url('https://snipt.s3.amazonaws.com/images/private-icon.png') top right no-repeat, -moz-gradient(center top, #ffffff 0%, #fffaf2 100%);
 }
+article.private-snipt div.container header h1 a {
+  padding-right: 25px;
+}
 div.pagination {
   margin: 0 15px 35px 15px;
   text-align: center;
@@ -608,6 +611,55 @@ div.pagination ul li.active a {
 }
 div.pagination ul li.prev {
   line-height: 2px;
+}
+body.detail div.right-y {
+  display: none;
+}
+body.detail section.main div.inner {
+  width: 100%;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread {
+  margin-bottom: 0;
+  margin-left: 15px;
+  width: 825px;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content {
+  margin-top: -38px;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content #dsq-global-toolbar {
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content #dsq-sort-by {
+  display: none;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content .dsq-comment-text {
+  color: #666;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content h3 {
+  display: none;
+}
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-footer {
+  display: none;
+}
+body.detail section.main div.inner section.snipts article.snipt {
+  margin-bottom: 0;
+}
+body.detail section.main div.inner section.snipts article.snipt div.container {
+  width: 839px;
+}
+body.detail section.main div.inner section.snipts article.snipt div.container header h1 a {
+  white-space: normal;
+}
+body.detail section.main div.inner section.snipts article.snipt div.container section.code {
+  height: auto;
+}
+body.detail section.main div.inner section.snipts article.snipt div.container:after {
+  bottom: 11px;
+  height: 23px;
+}
+body.detail section.main div.inner section.snipts article.snipt aside {
+  margin-right: 0;
 }
 .group:after {
   content: ".";
