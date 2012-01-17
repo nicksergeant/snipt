@@ -1131,8 +1131,10 @@ jQuery(function($) {
             });
             $document.bind('keydown', 'n', function() {
                 var $anc = $('li.next a');
-                if ($anc.attr('href') !== '#') {
-                    window.location = $anc.attr('href');
+                if ($anc.length) {
+                    if ($anc.attr('href') !== '#') {
+                        window.location = $anc.attr('href');
+                    }
                 }
             });
             $document.bind('keydown', 'o', function() {
@@ -1142,8 +1144,10 @@ jQuery(function($) {
             });
             $document.bind('keydown', 'p', function() {
                 var $anc = $('li.prev a');
-                if ($anc.attr('href') !== '#') {
-                    window.location = $anc.attr('href');
+                if ($anc.length) {
+                    if ($anc.attr('href') !== '#') {
+                        window.location = $anc.attr('href');
+                    }
                 }
             });
             $document.bind('keydown', 'return', function() {

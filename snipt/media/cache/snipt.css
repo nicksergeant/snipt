@@ -1043,6 +1043,9 @@ body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content
 body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content h3 {
   display: none;
 }
+body.detail section.main div.inner section.snipts div#disqus_thread #dsq-content .dsq-textarea-wrapper {
+  overflow: hidden;
+}
 body.detail section.main div.inner section.snipts div#disqus_thread #dsq-footer {
   display: none;
 }
