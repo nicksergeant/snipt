@@ -7,8 +7,9 @@
 
         initialize: function(opts) {
 
-            this.$search_query = $('input#search-query', this.el);
-            this.$snipts = $('section#snipts article.snipt', this.el);
+            this.$el = $(this.el);
+            this.$search_query = $('input#search-query', this.$el);
+            this.$snipts = $('section#snipts article.snipt', this.$el);
 
             this.keyboardShortcuts();
             this.inFieldLabels();
@@ -17,6 +18,12 @@
             if (this.$snipts.length) {
                 SniptListView = Snipt.Views.SniptListView;
                 SniptList = new SniptListView({ 'snipts': this.$snipts });
+
+                $('body').click(function() {
+                    if (window.$selected) {
+                        window.$selected.trigger('deselect');
+                    }
+                });
             }
 
             // Search
@@ -45,12 +52,11 @@
             });
         },
         inFieldLabels: function () {
-            $('div.infield label', this.el).inFieldLabels({
+            $('div.infield label', this.$el).inFieldLabels({
                 fadeDuration: 200
             });
         }
     });
-
     Site.Views = {
         'SiteView': SiteView
     };

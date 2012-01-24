@@ -88,8 +88,9 @@
 
             window.$selected = this.$el;
         },
-        selectFromClick: function() {
+        selectFromClick: function(e) {
             this.select(true);
+            e.stopPropagation();
         }
     });
     SniptListView = Backbone.View.extend({
@@ -103,6 +104,7 @@
 
             this.keyboardShortcuts();
         },
+
         addSnipt: function() {
             model = new SniptView({ el: this });
         },
