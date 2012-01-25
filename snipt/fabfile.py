@@ -14,7 +14,6 @@ def staticfiles():
         '%s/media/js/libs/b_jquery.js' % BASE_PATH,
         '%s/media/js/libs/c_json2.js' % BASE_PATH,
         '%s/media/js/libs/d_backbone.js' % BASE_PATH,
-        '%s/media/js/libs/e_bootstrap.js' % BASE_PATH,
         '%s/media/js/plugins/*.js' % BASE_PATH,
         '%s/media/js/src/*.js' % BASE_PATH,
         '%s/media/js/src/modules/*.js' % BASE_PATH
