@@ -8,7 +8,18 @@ def staticfiles():
     local('sed -i -e \'s/\/media\//https:\/\/snipt.s3.amazonaws.com\//g\' %s/media/css/style.css' % BASE_PATH)
     local('rm %s/media/css/style.css-e' % BASE_PATH)
     local('cat %s/media/css/*.css > %s/media/cache/snipt.css' % (BASE_PATH, BASE_PATH))
-    local('cat %s/media/js/libs/*.js %s/media/js/plugins/*.js %s/media/js/src/*.js %s/media/js/src/modules/*.js > %s/media/cache/snipt.js' % (BASE_PATH, BASE_PATH, BASE_PATH, BASE_PATH, BASE_PATH))
+    
+    js = [
+        '%s/media/js/libs/a_underscore.js' % BASE_PATH,
+        '%s/media/js/libs/b_jquery.js' % BASE_PATH,
+        '%s/media/js/libs/c_json2.js' % BASE_PATH,
+        '%s/media/js/libs/d_backbone.js' % BASE_PATH,
+        '%s/media/js/libs/e_bootstrap.js' % BASE_PATH,
+        '%s/media/js/plugins/*.js' % BASE_PATH,
+        '%s/media/js/src/*.js' % BASE_PATH,
+        '%s/media/js/src/modules/*.js' % BASE_PATH
+    ]
+    local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
     local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --noinput' % BASE_PATH)
 
 def deployapp(m):

@@ -1,3 +1,4 @@
+
 (function(Snipt) {
 
     Snipt.SniptModel = Backbone.Model.extend({
