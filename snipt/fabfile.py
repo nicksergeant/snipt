@@ -4,11 +4,20 @@ from fabric.api import local
 
 def staticfiles():
     BASE_PATH = os.path.dirname(__file__)
+
+    # CSS
     local('lessc %s/media/css/style.less %s/media/css/style.css' % (BASE_PATH, BASE_PATH))
     local('sed -i -e \'s/\/media\//https:\/\/snipt.s3.amazonaws.com\//g\' %s/media/css/style.css' % BASE_PATH)
     local('rm %s/media/css/style.css-e' % BASE_PATH)
-    local('cat %s/media/css/*.css > %s/media/cache/snipt.css' % (BASE_PATH, BASE_PATH))
+    css = [
+        '%s/media/css/reset.css' % BASE_PATH,
+        '%s/media/css/style.css' % BASE_PATH,
+        '%s/media/css/bootstrap.css' % BASE_PATH,
+        '%s/media/css/themes.css' % BASE_PATH,
+    ]
+    local('cat %s > %s/media/cache/snipt.css' % (' '.join(css), BASE_PATH))
     
+    # JS
     js = [
         '%s/media/js/libs/a_underscore.js' % BASE_PATH,
         '%s/media/js/libs/b_jquery.js' % BASE_PATH,
@@ -16,7 +25,8 @@ def staticfiles():
         '%s/media/js/libs/d_backbone.js' % BASE_PATH,
         '%s/media/js/plugins/*.js' % BASE_PATH,
         '%s/media/js/src/*.js' % BASE_PATH,
-        '%s/media/js/src/modules/*.js' % BASE_PATH
+        '%s/media/js/src/modules/*.js' % BASE_PATH,
+        '%s/media/js/libs/e_bootstrap.js' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
     local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --noinput' % BASE_PATH)
