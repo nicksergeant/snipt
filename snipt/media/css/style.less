@@ -61,6 +61,10 @@ body {
     color: #666;
     font: normal 14px @Helvetica;
     text-rendering: optimizeLegibility;
+
+    li {
+        line-height: normal;
+    }
 }
 
 // Global
@@ -196,19 +200,31 @@ header.sub {
         width: 939px;
         z-index: 49;
 
-        ul {
+        ul.bcrumb {
             border-right: 1px solid #d0d0d0;
+            float: left;
+            margin: 0;
             padding-left: 16px;
             width: 733px;
 
             li {
                 display: inline-block;
-                padding: 4px 0 6px 0;
+                max-width: 490px;
+                line-height: normal;
+                overflow: hidden;
+                padding: 4px 0 7px 0;
+                text-overflow: ellipsis;
+                white-space: nowrap;
 
                 a {
                     color: #999999;
                     font: bold 12px @Consolas;
+                    text-decoration: none;
                     text-shadow: 0 1px 0 #FFF;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
                 &.prompt {
                     color: #999999;
@@ -217,6 +233,13 @@ header.sub {
                     text-shadow: 0 1px 0 #FFF;
                 }
             }
+        }
+        div.shortcuts {
+            color: #999999;
+            float: right;
+            font: bold 12px @Consolas;
+            padding-top: 6px;
+            text-shadow: 0 1px 0 #FFF;
         }
     }
 }
@@ -308,6 +331,7 @@ section.main {
                 margin: 0 0 15px 0;
 
                 li {
+                    list-style-type: none;
                     margin: 6px 0 6px 22px;
                 }
             }
@@ -553,7 +577,10 @@ article.snipt {
         width: 100px;
 
         ul.options {
+            margin: 0;
+
             li {
+                list-style-type: none;
                 margin: 2px 0;
 
                 a {
@@ -564,6 +591,7 @@ article.snipt {
                     opacity: .5;
                     padding: 7px 10px 7px 35px;
                     position: relative;
+                    text-decoration: none;
 
                     &:hover, &.hover {
                         background-color: rgba(128, 128, 128, .18);
@@ -605,8 +633,11 @@ article.snipt {
                 padding: 7px 0 7px 35px;
             }
             ul {
+                margin: 0;
+
                 li {
-                    margin: 6px 10px 6px 35px;
+                    list-style-type: none;
+                    margin: 5px 10px 5px 35px;
 
                     a {
                         border-bottom: 1px solid #999;
@@ -724,25 +755,10 @@ div.pagination {
 
     ul {
         background: #FFF;
-        display: inline-block;
-        float: none;
         
         li {
             a {
                 color: #3BAAF3;
-                padding: 0 8px;
-
-                &:hover {
-                    background: #EAE8EB;
-                }
-            }
-            &.active {
-                a {
-                    background: #E0E1E1;
-                }
-            }
-            &.prev {
-                line-height: 2px;
             }
         }
     }

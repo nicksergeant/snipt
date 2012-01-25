@@ -6,15 +6,16 @@
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     {% if debug %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
-    <link rel="stylesheet/less" href="{{ STATIC_URL }}css/style.less" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
+    <link rel="stylesheet/less" href="{{ STATIC_URL }}css/style.less" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/a_underscore.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/b_jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/c_json2.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/d_backbone.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/e_bootstrap.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.infieldlabel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.hotkeys.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.ui.js"></script>
@@ -76,11 +77,14 @@
         </div>
     </header>
     <header class="sub">
-        <div class="inner">
-            <ul>
+        <div class="inner group">
+            <ul class="bcrumb">
                 <li class="prompt">/</li>
                 {% block breadcrumb %}{% endblock %}
             </ul>
+            <div class="shortcuts">
+                Type "?" for KB shortcuts
+            </div>
         </div>
     </header>
     <section class="main group">
@@ -122,6 +126,19 @@
         <div class="left-y ruler"></div>
         <div class="right-y ruler"></div>
     </section>
+    <div class="modal hide" id="keyboard-shortcuts">
+        <div class="modal-header">
+            <a href="#" class="close js-dismiss">×</a>
+            <h3>Modal header</h3>
+        </div>
+        <div class="modal-body">
+            <p>One fine body…</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn primary">Save changes</a>
+            <a href="#" class="btn">Close</a>
+        </div>
+    </div>
     {% if not debug %}
         <script type="text/javascript">
             //<![CDATA[

@@ -61,7 +61,7 @@
             });
         },
         showKeyboardShortcuts: function() {
-            alert('Keyboard shortcut modal.');
+            $('#keyboard-shortcuts').modal('toggle');
         },
         inFieldLabels: function () {
             $('div.infield label', this.$el).inFieldLabels({
