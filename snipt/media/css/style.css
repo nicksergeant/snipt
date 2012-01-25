@@ -6,6 +6,9 @@ body {
   font: normal 14px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
   text-rendering: optimizeLegibility;
 }
+body li {
+  line-height: normal;
+}
 header.main {
   background: #12343d url('https://snipt.s3.amazonaws.com/images/header-bg.gif') top left repeat-x;
   border-bottom: 1px solid #DDDDDD;
@@ -138,24 +141,42 @@ header.sub div.inner {
   width: 939px;
   z-index: 49;
 }
-header.sub div.inner ul {
+header.sub div.inner ul.bcrumb {
   border-right: 1px solid #d0d0d0;
+  float: left;
+  margin: 0;
   padding-left: 16px;
   width: 733px;
 }
-header.sub div.inner ul li {
+header.sub div.inner ul.bcrumb li {
   display: inline-block;
-  padding: 4px 0 6px 0;
+  max-width: 490px;
+  line-height: normal;
+  overflow: hidden;
+  padding: 4px 0 7px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-header.sub div.inner ul li a {
+header.sub div.inner ul.bcrumb li a {
   color: #999999;
   font: bold 12px Consolas, Menlo, "Courier New", monospace;
+  text-decoration: none;
   text-shadow: 0 1px 0 #FFF;
 }
-header.sub div.inner ul li.prompt {
+header.sub div.inner ul.bcrumb li a:hover {
+  text-decoration: underline;
+}
+header.sub div.inner ul.bcrumb li.prompt {
   color: #999999;
   font: bold 12px Consolas, Menlo, "Courier New", monospace;
   margin-right: 3px;
+  text-shadow: 0 1px 0 #FFF;
+}
+header.sub div.inner div.shortcuts {
+  color: #999999;
+  float: right;
+  font: bold 12px Consolas, Menlo, "Courier New", monospace;
+  padding-top: 6px;
   text-shadow: 0 1px 0 #FFF;
 }
 section.main {
@@ -246,6 +267,7 @@ section.main aside.main section.tags ul {
   margin: 0 0 15px 0;
 }
 section.main aside.main section.tags ul li {
+  list-style-type: none;
   margin: 6px 0 6px 22px;
 }
 section.main aside.main section.tags a {
@@ -371,6 +393,7 @@ article.snipt div.container header h2 {
   padding: 3px 8px 2px 8px;
 }
 article.snipt div.container section.code {
+  background-color: #FFF;
   height: 200px;
   overflow: hidden;
   position: relative;
@@ -481,7 +504,11 @@ article.snipt aside {
   margin: 23px 30px 0 0;
   width: 100px;
 }
+article.snipt aside ul.options {
+  margin: 0;
+}
 article.snipt aside ul.options li {
+  list-style-type: none;
   margin: 2px 0;
 }
 article.snipt aside ul.options li a {
@@ -492,6 +519,7 @@ article.snipt aside ul.options li a {
   opacity: .5;
   padding: 7px 10px 7px 35px;
   position: relative;
+  text-decoration: none;
 }
 article.snipt aside ul.options li a:hover, article.snipt aside ul.options li a.hover {
   background-color: rgba(128, 128, 128, 0.18);
@@ -526,8 +554,12 @@ article.snipt aside section.tags h2 {
   font: bold 12px 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
   padding: 7px 0 7px 35px;
 }
+article.snipt aside section.tags ul {
+  margin: 0;
+}
 article.snipt aside section.tags ul li {
-  margin: 6px 10px 6px 35px;
+  list-style-type: none;
+  margin: 5px 10px 5px 35px;
 }
 article.snipt aside section.tags ul li a {
   border-bottom: 1px solid #999;
@@ -620,21 +652,9 @@ div.pagination {
 }
 div.pagination ul {
   background: #FFF;
-  display: inline-block;
-  float: none;
 }
 div.pagination ul li a {
   color: #3BAAF3;
-  padding: 0 8px;
-}
-div.pagination ul li a:hover {
-  background: #EAE8EB;
-}
-div.pagination ul li.active a {
-  background: #E0E1E1;
-}
-div.pagination ul li.prev {
-  line-height: 2px;
 }
 body.detail div.right-y {
   display: none;
