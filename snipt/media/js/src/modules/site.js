@@ -34,7 +34,12 @@
             });
 
         },
+        events: {
+            'showKeyboardShortcuts': 'showKeyboardShortcuts'
+        },
+
         keyboardShortcuts: function() {
+            var $el = this.$el;
 
             $search_query = this.$search_query;
             $document = $(document);
@@ -45,11 +50,18 @@
                 $search_query.focus();
             });
 
+            $document.bind('keydown', 'Shift+/', function(e) {
+                $el.trigger('showKeyboardShortcuts');
+            });
+
             // Escape
             $('input').bind('keydown', 'esc', function(e) {
                 e.preventDefault();
                 this.blur();
             });
+        },
+        showKeyboardShortcuts: function() {
+            alert('Keyboard shortcut modal.');
         },
         inFieldLabels: function () {
             $('div.infield label', this.$el).inFieldLabels({
