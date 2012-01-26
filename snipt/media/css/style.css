@@ -296,6 +296,7 @@ section.main aside.main nav.footer ul {
 }
 section.main aside.main nav.footer ul li {
   background: transparent url('https://snipt.s3.amazonaws.com/images/api-icon.png') center left no-repeat;
+  list-style-type: none;
   margin: 6px 0 6px 0;
   padding-left: 22px;
 }
@@ -637,6 +638,11 @@ article.snipt.selected div.container {
 article.snipt.selected div.container:after {
   display: none;
 }
+article.snipt div.copy-modal textarea {
+  height: 200px;
+  margin: 0;
+  width: 520px;
+}
 article.private-snipt div.container header {
   background: #fffdf9 url('https://snipt.s3.amazonaws.com/images/private-icon.png') top right no-repeat;
   background: url('https://snipt.s3.amazonaws.com/images/private-icon.png') top right no-repeat, -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fffaf2));
@@ -655,6 +661,27 @@ div.pagination ul {
 }
 div.pagination ul li a {
   color: #3BAAF3;
+}
+div.modal .modal-header .close {
+  line-height: 20px;
+  margin-top: 0;
+}
+div.modal .modal-header h3 span {
+  display: inline-block;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+div.modal .modal-header h4 {
+  color: #AAA;
+  margin-top: 1px;
+}
+div#keyboard-shortcuts {
+  max-height: 501px;
+}
+div#keyboard-shortcuts table {
+  margin-bottom: 0;
 }
 body.detail div.right-y {
   display: none;
