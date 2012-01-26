@@ -16,7 +16,6 @@
             this.keyboardShortcuts();
             this.inFieldLabels();
 
-            // Init snipts
             if (this.$snipts.length) {
                 SniptListView = Snipt.Views.SniptListView;
                 SniptList = new SniptListView({ 'snipts': this.$snipts });
@@ -28,11 +27,15 @@
                 });
             }
 
-            // Search
             this.$search_query.focus(function() {
                 if (window.$selected) {
                     $selected.trigger('deselect');
                 }
+            });
+
+            $('div.modal a.close').click(function() {
+                $(this).parent().parent().modal('hide');
+                return false;
             });
 
         },

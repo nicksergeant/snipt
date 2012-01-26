@@ -29,10 +29,6 @@
             this.$copyModal.on('hidden', function(e) {
                 $(this).parent().trigger('copyClose');
             });
-            this.$copyModalClose.click(function() {
-                $(this).parent().parent().modal('hide');
-                return false;
-            });
         },
         events: {
             'click a.copy':     'copyFromClick',
