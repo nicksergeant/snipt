@@ -11,6 +11,7 @@
             this.$el = $(this.el);
             this.$search_query = $('input#search-query', this.$el);
             this.$snipts = $('section#snipts article.snipt', this.$el);
+            this.$copyModals = $('div.copy-modal', this.$snipts);
 
             this.keyboardShortcuts();
             this.inFieldLabels();
@@ -45,20 +46,19 @@
             $search_query = this.$search_query;
             $document = $(document);
 
-            // Search
             $document.bind('keydown', '/', function(e) {
                 e.preventDefault();
                 $search_query.focus();
             });
-
             $document.bind('keydown', 'Shift+/', function(e) {
                 $el.trigger('showKeyboardShortcuts');
             });
-
-            // Escape
             $('input').bind('keydown', 'esc', function(e) {
                 e.preventDefault();
                 this.blur();
+            });
+            $document.bind('keydown', 'Shift+h', function(e) {
+                history.go(-1);
             });
         },
         showKeyboardShortcuts: function() {

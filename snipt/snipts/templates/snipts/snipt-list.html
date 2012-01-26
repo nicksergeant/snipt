@@ -59,4 +59,12 @@
             <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.id }}"></a></li>
         </ul>
     </footer>
+    <div class="modal hide copy-modal">
+        <div class="modal-header">
+            <a href="#" class="close">×</a>
+            <h3>Copy snipt <span>&ldquo;{{ snipt.title }}&rdquo;</span></h3>
+            <h4>(Text is selected. <span></span>+c to copy.)</h4>
+        </div>
+        <div class="modal-body"></div>
+    </div>
 </article>

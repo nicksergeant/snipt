@@ -363,6 +363,7 @@ section.main {
 
                 li {
                     background: transparent url('/media/images/api-icon.png') center left no-repeat;
+                    list-style-type: none;
                     margin: 6px 0 6px 0;
                     padding-left: 22px;
 
@@ -735,6 +736,13 @@ article.snipt {
             }
         }
     }
+    div.copy-modal {
+        textarea {
+            height: 200px;
+            margin: 0;
+            width: 520px;
+        }
+    }
 }
 article.private-snipt {
     div.container {
@@ -761,6 +769,34 @@ div.pagination {
                 color: #3BAAF3;
             }
         }
+    }
+}
+div.modal {
+    .modal-header {
+        .close {
+            line-height: 20px;
+            margin-top: 0;
+        }
+        h3 {
+            span {
+                display: inline-block;
+                max-width: 400px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        h4 {
+            color: #AAA;
+            margin-top: 1px;
+        }
+    }
+}
+div#keyboard-shortcuts {
+    max-height: 501px;
+
+    table {
+        margin-bottom: 0;
     }
 }
 

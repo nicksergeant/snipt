@@ -19,37 +19,68 @@
 
             this.$aside = $('aside', this.$el);
             this.$container = $('div.container', this.$el);
-            this.$raw = $('div.raw', this.$container);
+            this.$copyModal = $('div.copy-modal', this.$el);
+            this.$copyModalBody = $('div.modal-body', this.$copyModal);
+            this.$copyModalClose = $('a.close', this.$copyModal);
+            this.$copyModalType = $('h4 span', this.$copyModal);
+            this.$raw = $('div.raw', this.$el);
             this.$tags = $('section.tags ul', this.$aside);
+
+            this.$copyModal.on('hidden', function(e) {
+                $(this).parent().trigger('copyClose');
+            });
+            this.$copyModalClose.click(function() {
+                $(this).parent().parent().modal('hide');
+                return false;
+            });
         },
         events: {
-            'click a.copy':     'copy',
+            'click a.copy':     'copyFromClick',
+            'click a.embed':    'embed',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
             'copy':             'copy',
+            'copyClose':        'copyClose',
             'detail':           'detail',
             'deselect':         'deselect',
+            'embed':            'embed',
             'expand':           'expand',
             'next':             'next',
             'prev':             'prev',
-            'select':           'select'
+            'selectSnipt':      'select'
         },
 
         copy: function() {
-            var cmd;
-            if (navigator.platform == 'MacPPC' ||
-                navigator.platform == 'MacIntel') {
-                cmd = 'Cmd';
+            if (!this.$copyModal.is(':visible')) {
+                var cmd;
+                if (navigator.platform == 'MacPPC' ||
+                    navigator.platform == 'MacIntel') {
+                    cmd = 'Cmd';
+                }
+                else {
+                    cmd = 'Ctrl';
+                }
+
+                this.$copyModalBody.append('<textarea class="raw"></textarea>');
+                $textarea = $('textarea.raw', this.$copyModalBody).val(this.$raw.text());
+
+                this.$copyModalType.text(cmd);
+                this.$copyModal.modal('show');
+                $textarea.select();
             }
-            else {
-                cmd = 'Ctrl';
-            }
-            window.prompt('Text is selected. To copy: press ' + cmd + '+C then <Enter>', this.$raw.text());
+        },
+        copyClose: function() {
+            $('textarea', this.$copyModal).remove();
+        },
+        copyFromClick: function() {
+            this.copy();
             return false;
         },
         deselect: function() {
-            this.$el.removeClass('selected');
-            window.$selected = false;
+            if (!this.$copyModal.is(':visible')) {
+                this.$el.removeClass('selected');
+                window.$selected = false;
+            }
         },
         detail: function() {
             window.location = this.model.get('url');
@@ -58,18 +89,22 @@
             this.$container.toggleClass('expanded', 100);
             this.$tags.toggleClass('expanded');
             this.select();
-            return false;
+        },
+        embed: function() {
+            alert('TODO');
         },
         next: function() {
+            window.site.$copyModals.modal('hide');
             nextSnipt = this.$el.next('article.snipt');
             if (nextSnipt.length) {
-                return nextSnipt.trigger('select');
+                return nextSnipt.trigger('selectSnipt');
             }
         },
         prev: function() {
+            window.site.$copyModals.modal('hide');
             prevSnipt = this.$el.prev('article.snipt');
             if (prevSnipt.length) {
-                return prevSnipt.trigger('select');
+                return prevSnipt.trigger('selectSnipt');
             }
         },
         select: function(fromClick) {
@@ -114,8 +149,23 @@
             $selected = window.selected;
             $document = $(document);
 
-            $document.bind('keydown', 'c', function() {
+            $document.bind('keydown', 'j', function() {
+                if (!$selected) {
+                    SniptList.$snipts.eq(0).trigger('selectSnipt');
+                } else {
+                    $selected.trigger('next');
+                }
+            });
+            $document.bind('keydown', 'k', function() {
+                if (!$selected) {
+                    SniptList.$snipts.eq(0).trigger('selectSnipt');
+                } else {
+                    $selected.trigger('prev');
+                }
+            });
+            $document.bind('keydown', 'c', function(e) {
                 if ($selected) {
+                    e.preventDefault();
                     $selected.trigger('copy');
                 }
             });
@@ -146,20 +196,6 @@
             $document.bind('keydown', 'h', function() {
                 window.location = '/';
             });
-            $document.bind('keydown', 'j', function() {
-                if (!$selected) {
-                    SniptList.$snipts.eq(0).trigger('select');
-                } else {
-                    $selected.trigger('next');
-                }
-            });
-            $document.bind('keydown', 'k', function() {
-                if (!$selected) {
-                    SniptList.$snipts.eq(0).trigger('select');
-                } else {
-                    $selected.trigger('prev');
-                }
-            });
             $document.bind('keydown', 'n', function() {
                 var $anc = $('li.next a');
                 if ($anc.length) {
@@ -179,6 +215,11 @@
                     if ($anc.attr('href') !== '#') {
                         window.location = $anc.attr('href');
                     }
+                }
+            });
+            $document.bind('keydown', 'v', function() {
+                if ($selected) {
+                    $selected.trigger('embed');
                 }
             });
             $document.bind('keydown', 'return', function() {

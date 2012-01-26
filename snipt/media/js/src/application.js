@@ -16,6 +16,6 @@ var snipt = {
 jQuery(function($) {
 
     var SiteView = snipt.module('site').Views.SiteView;
-    var Site = new SiteView();
+    window.site = new SiteView();
 
 });
