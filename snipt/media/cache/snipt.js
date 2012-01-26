@@ -942,7 +942,6 @@ jQuery(function($) {
             this.keyboardShortcuts();
             this.inFieldLabels();
 
-            // Init snipts
             if (this.$snipts.length) {
                 SniptListView = Snipt.Views.SniptListView;
                 SniptList = new SniptListView({ 'snipts': this.$snipts });
@@ -954,11 +953,15 @@ jQuery(function($) {
                 });
             }
 
-            // Search
             this.$search_query.focus(function() {
                 if (window.$selected) {
                     $selected.trigger('deselect');
                 }
+            });
+
+            $('div.modal a.close').click(function() {
+                $(this).parent().parent().modal('hide');
+                return false;
             });
 
         },
@@ -1031,10 +1034,6 @@ jQuery(function($) {
 
             this.$copyModal.on('hidden', function(e) {
                 $(this).parent().trigger('copyClose');
-            });
-            this.$copyModalClose.click(function() {
-                $(this).parent().parent().modal('hide');
-                return false;
             });
         },
         events: {
