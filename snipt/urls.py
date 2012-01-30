@@ -5,6 +5,8 @@ from django.conf import settings
 from tastypie.api import Api
 from snipts.api import *
 
+import admin as custom_admin
+
 admin.autodiscover()
 
 public_api = Api(api_name='public')

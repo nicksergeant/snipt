@@ -1,12 +1,15 @@
-from tastypie.authentication import BasicAuthentication
+from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
-from snipts.models import Snipt
+from tastypie.models import create_api_key
 from tastypie.cache import SimpleCache
-from django.db.models import Count
-from tastypie import fields
+from snipts.models import Snipt
 from taggit.models import Tag
+from django.db import models
+from tastypie import fields
+
+models.signals.post_save.connect(create_api_key, sender=User)
 
 
 class PublicUserResource(ModelResource):
@@ -26,7 +29,7 @@ class PublicUserResource(ModelResource):
 class PublicTagResource(ModelResource):
     class Meta:
         queryset = Tag.objects.filter(snipt__public=True)
-        queryset = queryset.annotate(count=Count('taggit_taggeditem_items__id'))
+        queryset = queryset.annotate(count=models.Count('taggit_taggeditem_items__id'))
         queryset = queryset.order_by('-count', 'name')
         resource_name = 'tag'
         fields = ['name',]
@@ -81,7 +84,7 @@ class PrivateUserResource(ModelResource):
         include_absolute_url = True
         allowed_methods = ['get']
         list_allowed_methods = []
-        authentication = BasicAuthentication()
+        authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
         cache = SimpleCache()
 
@@ -94,7 +97,7 @@ class PrivateTagResource(ModelResource):
         resource_name = 'tag'
         fields = ['name',]
         allowed_methods = ['get']
-        authentication = BasicAuthentication()
+        authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
         cache = SimpleCache()
 
@@ -111,7 +114,7 @@ class PrivateTagResource(ModelResource):
 
     def apply_authorization_limits(self, request, object_list):
         object_list = object_list.filter(snipt__user=request.user)
-        object_list = object_list.annotate(count=Count('taggit_taggeditem_items__id'))
+        object_list = object_list.annotate(count=models.Count('taggit_taggeditem_items__id'))
         object_list = object_list.order_by('-count', 'name')
         return object_list
 
@@ -125,10 +128,11 @@ class PrivateSniptResource(ModelResource):
         fields = ['title', 'description', 'slug', 'lexer', 'code', 'line_count',
                   'key', 'public', 'created', 'modified',]
         include_absolute_url = True
-        allowed_methods = ['get',]
-        authentication = BasicAuthentication()
+        detail_allowed_methods = ['get', 'put', 'delete']
+        list_allowed_methods = ['get', 'post']
+        authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
-        cache = SimpleCache()
+        #cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()

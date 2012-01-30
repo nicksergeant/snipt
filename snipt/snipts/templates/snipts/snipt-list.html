@@ -67,4 +67,13 @@
         </div>
         <div class="modal-body"></div>
     </div>
+    <div class="modal hide embed-modal">
+        <div class="modal-header">
+            <a href="#" class="close">×</a>
+            <h3>Embed snipt <span>&ldquo;{{ snipt.title }}&rdquo;</span></h3>
+        </div>
+        <div class="modal-body">
+        <textarea><script type="text/javascript">{{ snipt.get_embed_url }}</script></textarea>
+        </div>
+    </div>
 </article>

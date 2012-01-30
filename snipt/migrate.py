@@ -9,12 +9,14 @@ from django.contrib.auth.models import User
 from snipts.models import Comment, Snipt
 from taggit.models import Tag, TaggedItem
 from taggit.utils import parse_tags
+from tastypie.models import ApiKey 
 
 conn = MySQLdb.connect(host='localhost', user='root', passwd='', db='sniptold')
 cursor = conn.cursor()
 
 def i():
     users()
+    create_api_keys()
     snipts()
     comments()
 
@@ -231,3 +233,7 @@ def split_strip(input, delimiter=u','):
 
     words = [w.strip() for w in input.split(delimiter)]
     return [w for w in words if w]
+
+def create_api_keys():
+    for user in User.objects.all(): 
+            ApiKey.objects.create(user=user)
