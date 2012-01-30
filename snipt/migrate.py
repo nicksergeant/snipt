@@ -18,7 +18,6 @@ def i():
     users()
     create_api_keys()
     snipts()
-    comments()
 
 def users():
 

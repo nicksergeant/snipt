@@ -120,7 +120,6 @@ class PrivateTagResource(ModelResource):
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
-    tags = fields.ToManyField(PrivateTagResource, 'tags', related_name='tag', full=True)
 
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
@@ -132,7 +131,7 @@ class PrivateSniptResource(ModelResource):
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
-        #cache = SimpleCache()
+        cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
