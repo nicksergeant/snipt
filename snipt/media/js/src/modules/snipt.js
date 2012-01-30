@@ -35,7 +35,7 @@
             'click a.embed':    'embed',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
-            'copy':             'copy',
+            'copyRaw':          'copy',
             'copyClose':        'copyClose',
             'detail':           'detail',
             'deselect':         'deselect',
@@ -162,7 +162,7 @@
             $document.bind('keydown', 'c', function(e) {
                 if ($selected) {
                     e.preventDefault();
-                    $selected.trigger('copy');
+                    $selected.trigger('copyRaw');
                 }
             });
             $document.bind('keydown', 'e', function() {
