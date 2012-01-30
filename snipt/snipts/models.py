@@ -10,13 +10,15 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
+import md5
+
 
 site = Site.objects.all()[0]
 
 class Snipt(models.Model):
     """An individual Snipt."""
 
-    user     = models.ForeignKey(User)
+    user     = models.ForeignKey(User, blank=True, null=True)
 
     title    = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -25,18 +27,27 @@ class Snipt(models.Model):
 
     lexer    = models.CharField(max_length=50)
     code     = models.TextField()
-    stylized = models.TextField()
+    stylized = models.TextField(blank=True, null=True)
     line_count = models.IntegerField(blank=True, null=True, default=None)
 
-    key      = models.CharField(max_length=100)
+    key      = models.CharField(max_length=100, blank=True, null=True)
     public   = models.BooleanField(default=False)
     
     created  = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
     def save(self, *args, **kwargs):
+
+        if not self.key:
+            self.key = md5.new(self.slug).hexdigest()
+
         if not self.slug:
             self.slug = slugify(self.title)[:50]
+
+        self.stylized = highlight(self.code,
+                                  get_lexer_by_name(self.lexer, encoding='UTF-8'),
+                                  HtmlFormatter())
+        self.line_count = len(self.code.split('\n'))
 
         return super(Snipt, self).save(*args, **kwargs)
 
@@ -55,26 +66,6 @@ class Snipt(models.Model):
             else:
                 root = 'http://snipt.net'
         return "%s/%s/%s/" % (root, self.user.username, self.slug)
-
-    #TODO This needs to be deprecated - render stylized version on save
-    def get_stylized(self):
-        if self.stylized == '':
-            self.stylized = highlight(self.code,
-                                      get_lexer_by_name(self.lexer, encoding='UTF-8'),
-                                      HtmlFormatter())
-            self.save()
-            return self.stylized
-        else:
-            return self.stylized
-
-    #TODO This needs to be deprecated - render line count on save
-    def get_line_count(self):
-        if not self.line_count:
-            self.line_count = len(self.code.split('\n'))
-            self.save()
-            return self.line_count
-        else:
-            return self.line_count
 
     def get_embed_url(self):
         return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',

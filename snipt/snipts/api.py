@@ -1,9 +1,13 @@
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import DjangoAuthorization
+from tastypie.validation import FormValidation
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from tastypie.models import create_api_key
 from tastypie.cache import SimpleCache
+from tastypie.fields import ListField
+from taggit.utils import parse_tags
+from snipts.forms import SniptForm
 from snipts.models import Snipt
 from taggit.models import Tag
 from django.db import models
@@ -51,7 +55,7 @@ class PublicSniptResource(ModelResource):
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
         fields = ['title', 'description', 'slug', 'lexer', 'code', 'line_count',
-                  'created', 'modified',]
+                  'stylized', 'created', 'modified',]
         include_absolute_url = True
         allowed_methods = ['get']
         filtering = { 'user': 'exact', }
@@ -59,7 +63,6 @@ class PublicSniptResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
-        bundle.data['stylized'] = bundle.obj.get_stylized()
         return bundle
 
     def build_filters(self, filters=None):
@@ -120,12 +123,15 @@ class PrivateTagResource(ModelResource):
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
+    tags = fields.ToManyField(PrivateTagResource, 'tags', related_name='tag', full=True)
+    tags_list = ListField()
 
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
         fields = ['title', 'description', 'slug', 'lexer', 'code', 'line_count',
-                  'key', 'public', 'created', 'modified',]
+                  'stylized', 'key', 'public', 'created', 'modified',]
+        validation = FormValidation(form_class=SniptForm)
         include_absolute_url = True
         detail_allowed_methods = ['get', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
@@ -135,10 +141,11 @@ class PrivateSniptResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
-        bundle.data['stylized'] = bundle.obj.get_stylized()
         return bundle
 
     def obj_create(self, bundle, request=None, **kwargs):
+        bundle.data['tags_list'] = bundle.data['tags']
+        bundle.data['tags'] = ''
         return super(PrivateSniptResource, self).obj_create(bundle, request,
                      user=request.user)
 
@@ -157,3 +164,7 @@ class PrivateSniptResource(ModelResource):
 
     def apply_authorization_limits(self, request, object_list):
         return object_list.filter(user=request.user)
+
+    def save_m2m(self, bundle):
+        tags = bundle.data.get('tags_list', [])
+        bundle.obj.tags.set(*parse_tags(tags))

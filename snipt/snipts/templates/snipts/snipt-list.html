@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<article class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.get_line_count > 8 and not detail %}expandable{% endif %}">
+<article class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.line_count > 8 and not detail %}expandable{% endif %}">
     <div class="number">#{{ snipt.id }}</div>
     <div class="group">
         <div class="container">
@@ -9,12 +9,12 @@
                 <h1><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></h1>
             </header>
             <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
-                {{ snipt.get_stylized|safe }}
-                {% if snipt.get_line_count > 8 and not detail %}
+                {{ snipt.stylized|safe }}
+                {% if snipt.line_count > 8 and not detail %}
                     <a href="#" class="expand">
                         <span class="expand">Expand</span>
                         <span class="collapse">Collapse</span>
-                        <span class="lines">({{ snipt.get_line_count }} lines)</span>
+                        <span class="lines">({{ snipt.line_count }} lines)</span>
                     </a>
                 {% endif %}
                 <div class="raw">{{ snipt.code }}</div>
