@@ -1,12 +1,12 @@
+from taggit.utils import edit_string_for_tags, parse_tags
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import DjangoAuthorization
-from tastypie.validation import FormValidation
+from tastypie.validation import Validation
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from tastypie.models import create_api_key
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
-from taggit.utils import parse_tags
 from snipts.forms import SniptForm
 from snipts.models import Snipt
 from taggit.models import Tag
@@ -131,9 +131,9 @@ class PrivateSniptResource(ModelResource):
         resource_name = 'snipt'
         fields = ['title', 'description', 'slug', 'lexer', 'code', 'line_count',
                   'stylized', 'key', 'public', 'created', 'modified',]
-        validation = FormValidation(form_class=SniptForm)
+        validation = Validation()
         include_absolute_url = True
-        detail_allowed_methods = ['get', 'put', 'delete']
+        detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
@@ -141,13 +141,23 @@ class PrivateSniptResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
+        bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
         return bundle
 
     def obj_create(self, bundle, request=None, **kwargs):
-        bundle.data['tags_list'] = bundle.data['tags']
+        bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
         return super(PrivateSniptResource, self).obj_create(bundle, request,
                      user=request.user)
+
+    def obj_update(self, bundle, request=None, **kwargs):
+        bundle.data['user'] = request.user
+        if type(bundle.data['tags']) == unicode:
+            bundle.data['tags_list'] = bundle.data['tags']
+        else:
+            bundle.data['tags_list'] = ''
+        bundle.data['tags'] = ''
+        return super(PrivateSniptResource, self).obj_update(bundle, request, **kwargs)
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -167,4 +177,5 @@ class PrivateSniptResource(ModelResource):
 
     def save_m2m(self, bundle):
         tags = bundle.data.get('tags_list', [])
-        bundle.obj.tags.set(*parse_tags(tags))
+        if tags != '':
+            bundle.obj.tags.set(*parse_tags(tags))
