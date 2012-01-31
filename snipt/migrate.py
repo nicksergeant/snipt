@@ -6,7 +6,7 @@ import MySQLdb
 
 from django.contrib.auth.models import User
 
-from snipts.models import Comment, Snipt
+from snipts.models import Snipt
 from taggit.models import Tag, TaggedItem
 from taggit.utils import parse_tags
 from tastypie.models import ApiKey 
@@ -119,38 +119,6 @@ def snipts():
         snipt.save()
 
     print 'Done with snipts'
-
-def comments():
-
-    print "Deleting existing comments"
-    comments = Comment.objects.all()
-    for c in comments:
-        c.delete()
-
-    cursor.execute("SELECT * FROM django_comments")
-    rows = cursor.fetchall()
-
-    print "Adding comments"
-
-    for row in rows:
-        snipt_id = row[2]
-        user_id = row[4]
-        cmt = row[8]
-        created = row[9]
-
-        try:
-            comment = Comment(
-                snipt=Snipt.objects.get(id=snipt_id),
-                user=User.objects.get(id=user_id),
-                comment=cmt,
-                created=created,
-                modified=created,
-            )
-            comment.save()
-        except:
-            print "Couldn't get snipt " + str(snipt_id)
-
-    print 'Done with comments'
 
 def parse_tag_input(input):
     """
