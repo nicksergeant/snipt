@@ -1,56 +1,58 @@
+@import 'bootstrap', 'themes';
+
 // Fonts
-@Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-@Consolas: Consolas, Menlo, "Courier New", monospace;
+$Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+$Consolas: Consolas, Menlo, "Courier New", monospace;
 
 // Mixins
-.border-radius(@radius: 5px) {
+@mixin border-radius($radius: 5px) {
     -webkit-background-clip: padding-box;
-    -webkit-border-radius: @radius;
+    -webkit-border-radius: $radius;
     -moz-background-clip: padding-box;
-    -moz-border-radius: @radius;
-    border-radius: @radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
     background-clip: padding-box;
 }
-.box-shadow(@horizontal: 0px, @vertical: 1px, @blur: 2px, @color: #CCC) {
-  -webkit-box-shadow: @horizontal @vertical @blur @color;
-  -moz-box-shadow: @horizontal @vertical @blur @color;
-  box-shadow: @horizontal @vertical @blur @color;
+@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
+  -webkit-box-shadow: $horizontal $vertical $blur $color;
+  -moz-box-shadow: $horizontal $vertical $blur $color;
+  box-shadow: $horizontal $vertical $blur $color;
 }
-.inset-box-shadow(@horizontal: 0px, @vertical: 1px, @blur: 2px, @color: #CCC) {
-  -webkit-box-shadow: inset @horizontal @vertical @blur @color;
-  -moz-box-shadow: inset @horizontal @vertical @blur @color;
-  box-shadow: inset @horizontal @vertical @blur @color;
+@mixin inset-box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
+  -webkit-box-shadow: inset $horizontal $vertical $blur $color;
+  -moz-box-shadow: inset $horizontal $vertical $blur $color;
+  box-shadow: inset $horizontal $vertical $blur $color;
 }
-.multi-color-border(@top, @sides, @bottom) {
-    border-top: 1px solid @top;
-    border-left: 1px solid @sides;
-    border-right: 1px solid @sides;
-    border-bottom: 1px solid @bottom;
+@mixin multi-color-border($top, $sides, $bottom) {
+    border-top: 1px solid $top;
+    border-left: 1px solid $sides;
+    border-right: 1px solid $sides;
+    border-bottom: 1px solid $bottom;
 }
-.multi-border-radius(@topLeft: 5px, @topRight: 5px, @bottomRight: 5px, @bottomLeft: 5px) {
-    -webkit-border-top-left-radius: @topLeft;
-    -webkit-border-top-right-radius: @topRight;
-    -webkit-border-bottom-right-radius: @bottomRight;
-    -webkit-border-bottom-left-radius: @bottomLeft;
-    -moz-border-radius-topleft: @topLeft;
-    -moz-border-radius-topright: @topRight;
-    -moz-border-radius-bottomright: @bottomRight;
-    -moz-border-radius-bottomleft: @bottomLeft;
-    border-top-left-radius: @topLeft;
-    border-top-right-radius: @topRight;
-    border-bottom-right-radius: @bottomRight;
-    border-bottom-left-radius: @bottomLeft;
+@mixin multi-border-radius($topLeft: 5px, $topRight: 5px, $bottomRight: 5px, $bottomLeft: 5px) {
+    -webkit-border-top-left-radius: $topLeft;
+    -webkit-border-top-right-radius: $topRight;
+    -webkit-border-bottom-right-radius: $bottomRight;
+    -webkit-border-bottom-left-radius: $bottomLeft;
+    -moz-border-radius-topleft: $topLeft;
+    -moz-border-radius-topright: $topRight;
+    -moz-border-radius-bottomright: $bottomRight;
+    -moz-border-radius-bottomleft: $bottomLeft;
+    border-top-left-radius: $topLeft;
+    border-top-right-radius: $topRight;
+    border-bottom-right-radius: $bottomRight;
+    border-bottom-left-radius: $bottomLeft;
 }
-.vertical-gradient(@start: #000, @stop: #FFF) { background: (@start + @stop) / 2;
-    background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@stop));
-    background: -moz-linear-gradient(center top, @start 0%, @stop 100%);
-    background: -moz-gradient(center top, @start 0%, @stop 100%);
+@mixin vertical-gradient($start: #000, $stop: #FFF) { background: ($start + $stop) / 2;
+    background: -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
+    background: -moz-linear-gradient(center top, $start 0%, $stop 100%);
+    background: -moz-gradient(center top, $start 0%, $stop 100%);
 }
-.vertical-gradient-with-image(@start: #000, @stop: #FFF, @image) {
-    background: (@start + @stop) / 2 @image;
-    background: @image, -webkit-gradient(linear, left top, left bottom, from(@start), to(@stop));
-    background: @image, -moz-linear-gradient(center top, @start 0%, @stop 100%);
-    background: @image, -moz-gradient(center top, @start 0%, @stop 100%);
+@mixin vertical-gradient-with-image($image, $start: #000, $stop: #FFF) {
+    background: ($start + $stop) / 2 $image;
+    background: $image, -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
+    background: $image, -moz-linear-gradient(center top, $start 0%, $stop 100%);
+    background: $image, -moz-gradient(center top, $start 0%, $stop 100%);
 }
 
 // Page
@@ -59,12 +61,24 @@ html, body {
 }
 body {
     color: #666;
-    font: normal 14px @Helvetica;
+    font: normal 14px $Helvetica;
     text-rendering: optimizeLegibility;
 
     li {
         line-height: normal;
     }
+}
+
+// Utils
+.group:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.hidden {
+    display: none;
 }
 
 // Global
@@ -119,7 +133,7 @@ header.main {
                     color: #72979C;
                     cursor: text;
                     float: none;
-                    font: normal 12px @Helvetica;
+                    font: normal 12px $Helvetica;
                     left: 30px;
                     position: absolute;
                     top: 8px;
@@ -130,14 +144,14 @@ header.main {
                     background: rgba(43, 82, 93, .5) url('/media/images/search-icon.png') 8px center no-repeat;
                     border: 1px solid #3A5E67;
                     color: #FFF;
-                    font: normal 12px @Helvetica;
+                    font: normal 12px $Helvetica;
                     height: auto;
                     margin: 0;
                     padding: 7px;
                     padding-left: 28px;
                     width: 175px;
-                    .border-radius(3px);
-                    .inset-box-shadow(0, 1px, 0px, #1D4249);
+                    @include border-radius(3px);
+                    @include inset-box-shadow(0, 1px, 0px, #1D4249);
 
                     &:focus {
                         border-color: #62D5E1;
@@ -161,7 +175,7 @@ header.main {
                         color: #FFF;
                         display: block;
                         float: left;
-                        font: 500 14px @Helvetica;
+                        font: 500 14px $Helvetica;
                         padding: 7px;
                         padding-bottom: 4px;
                         margin-right: 20px;
@@ -191,7 +205,7 @@ header.main {
     }
 }
 header.sub {
-    .vertical-gradient(#ECECEC, #DBDBDB);
+    @include vertical-gradient(#ECECEC, #DBDBDB);
 
     div.inner {
         border-left: 1px solid #d0d0d0;
@@ -218,7 +232,7 @@ header.sub {
 
                 a {
                     color: #999999;
-                    font: bold 12px @Consolas;
+                    font: bold 12px $Consolas;
                     text-decoration: none;
                     text-shadow: 0 1px 0 #FFF;
 
@@ -228,7 +242,7 @@ header.sub {
                 }
                 &.prompt {
                     color: #999999;
-                    font: bold 12px @Consolas;
+                    font: bold 12px $Consolas;
                     margin-right: 3px;
                     text-shadow: 0 1px 0 #FFF;
                 }
@@ -237,7 +251,7 @@ header.sub {
         div.shortcuts {
             color: #999999;
             float: right;
-            font: bold 12px @Consolas;
+            font: bold 12px $Consolas;
             padding-top: 6px;
             text-shadow: 0 1px 0 #FFF;
         }
@@ -282,12 +296,12 @@ section.main {
                 margin: 0 15px 6px;
                 padding: 15px 14px;
                 width: 130px;
-                .border-radius(4px);
+                @include border-radius(4px);
 
                 a {
                     color: #939393;
                     display: block;
-                    font: normal 11px/12px @Helvetica;
+                    font: normal 11px/12px $Helvetica;
                     text-decoration: none;
 
                     img {
@@ -302,7 +316,7 @@ section.main {
             }
             div.meta {
                 color: #939393;
-                font: normal 11px/12px @Helvetica;
+                font: normal 11px/12px $Helvetica;
                 margin: 0 15px;
                 text-align: center;
                 text-transform: uppercase;
@@ -323,7 +337,7 @@ section.main {
             h1 {
                 background: transparent url('/media/images/tags-icon.png') 0 0 no-repeat;
                 color: #3BAAF3;
-                font: bold 12px @Helvetica;
+                font: bold 12px $Helvetica;
                 padding-bottom: 5px;
                 padding-left: 22px;
             }
@@ -338,7 +352,7 @@ section.main {
             a {
                 border-bottom: 1px solid #5AB6F4;
                 color: #5AB6F4;
-                font: normal 12px @Helvetica;
+                font: normal 12px $Helvetica;
                 text-decoration: none;
 
                 &:hover {
@@ -370,7 +384,7 @@ section.main {
                     a {
                         border-bottom: 1px solid #999;
                         color: #999;
-                        font: bold 12px @Helvetica;
+                        font: bold 12px $Helvetica;
                         text-decoration: none;
 
                         &:hover {
@@ -398,7 +412,7 @@ article.snipt {
 
     div.number {
         color: #CCC;
-        font: normal 12px @Helvetica;
+        font: normal 12px $Helvetica;
         left: -115px;
         position: absolute;
         text-align: right;
@@ -429,12 +443,12 @@ article.snipt {
         }
         header {
             border-bottom: 1px solid #F1F1EE;
-            .inset-box-shadow(0, -1px, 0, #FFF);
-            .vertical-gradient(#FFF, #FFFAF2);
+            @include inset-box-shadow(0, -1px, 0, #FFF);
+            @include vertical-gradient(#FFF, #FFFAF2);
 
             h1 {
                 clear: left;
-                font: bold 16px/20px @Helvetica;
+                font: bold 16px/20px $Helvetica;
                 margin: 8px 15px 10px 15px;
 
                 a {
@@ -459,7 +473,7 @@ article.snipt {
                 border-top: 0;
                 color: #73BBC5;
                 display: inline-block;
-                font: normal 12px @Helvetica;
+                font: normal 12px $Helvetica;
                 margin-left: 15px;
                 padding: 3px 8px 2px 8px;
             }
@@ -475,7 +489,7 @@ article.snipt {
                 pre {
                     background: transparent;
                     border: none;
-                    font: normal 12px/16px @Consolas;
+                    font: normal 12px/16px $Consolas;
                     font-weight: normal !important;
                     overflow-x: auto;
                     margin: 0 15px;
@@ -489,19 +503,19 @@ article.snipt {
                 bottom: 0;
                 color: #999999;
                 display: block;
-                font: bold 12px @Helvetica;
+                font: bold 12px $Helvetica;
                 padding: 15px 40px 15px 40px;
                 position: absolute;
                 text-decoration: none;
                 text-transform: uppercase;
                 width: 100%;
-                .box-shadow(0, -25px, 25px, #FFF);
+                @include box-shadow(0, -25px, 25px, #FFF);
 
                 span.collapse {
                     display: none;
                 }
                 span.lines {
-                    font: normal 10px @Helvetica;
+                    font: normal 10px $Helvetica;
                     margin-left: 5px;
                     vertical-align: 1px;
                 }
@@ -519,42 +533,42 @@ article.snipt {
         }
         section.emacs, section.default {
             a.expand {
-                .box-shadow(0, -25px, 25px, #F8F8F8);
+                @include box-shadow(0, -25px, 25px, #F8F8F8);
             }
         }
         section.friendly {
             a.expand {
-                .box-shadow(0, -25px, 25px, #F0F0F0);
+                @include box-shadow(0, -25px, 25px, #F0F0F0);
             }
         }
         section.fruity {
             a.expand {
-                .box-shadow(0, -25px, 25px, #111111);
+                @include box-shadow(0, -25px, 25px, #111111);
             }
         }
         section.manni {
             a.expand {
-                .box-shadow(0, -25px, 25px, #F0F3F3);
+                @include box-shadow(0, -25px, 25px, #F0F3F3);
             }
         }
         section.monokai {
             a.expand {
-                .box-shadow(0, -25px, 25px, #272822);
+                @include box-shadow(0, -25px, 25px, #272822);
             }
         }
         section.native {
             a.expand {
-                .box-shadow(0, -25px, 25px, #202020);
+                @include box-shadow(0, -25px, 25px, #202020);
             }
         }
         section.perldoc {
             a.expand {
-                .box-shadow(0, -25px, 25px, #EEEEDD);
+                @include box-shadow(0, -25px, 25px, #EEEEDD);
             }
         }
         section.tango {
             a.expand {
-                .box-shadow(0, -25px, 25px, #F8F8F8);
+                @include box-shadow(0, -25px, 25px, #F8F8F8);
             }
         }
         &:after {
@@ -565,7 +579,7 @@ article.snipt {
             right: 3px;
             width: 50%;
             z-index: 48;
-            .box-shadow(0, 6px, 12px, rgba(184, 184, 184, .6));
+            @include box-shadow(0, 6px, 12px, rgba(184, 184, 184, .6));
             -webkit-transform: rotate(3deg);
             -moz-transform: rotate(3deg);
             -o-transform: rotate(3deg);
@@ -588,7 +602,7 @@ article.snipt {
                     background: rgba(128, 128, 128, .15) url('/media/images/edit-icon.png') 14px center no-repeat;
                     color: #000;
                     display: block;
-                    font: bold 12px @Helvetica;
+                    font: bold 12px $Helvetica;
                     opacity: .5;
                     padding: 7px 10px 7px 35px;
                     position: relative;
@@ -630,7 +644,7 @@ article.snipt {
             h2 {
                 background: transparent url('/media/images/snipt-tags-icon.png') 15px center no-repeat;
                 color: #999999;
-                font: bold 12px @Helvetica;
+                font: bold 12px $Helvetica;
                 padding: 7px 0 7px 35px;
             }
             ul {
@@ -644,7 +658,7 @@ article.snipt {
                         border-bottom: 1px solid #999;
                         color: #999;
                         display: inline-block;
-                        font: normal 12px @Helvetica;
+                        font: normal 12px $Helvetica;
                         max-width: 72px;
                         overflow: hidden;
                         text-overflow: ellipsis;
@@ -676,13 +690,13 @@ article.snipt {
                 background: transparent url('/media/images/calendar-icon.png') top left no-repeat;
                 color: #999;
                 display: inline;
-                font: normal 12px @Helvetica;
+                font: normal 12px $Helvetica;
                 margin-right: 15px;
                 padding: 1px 0 0 24px;
 
                 a {
                     color: #999;
-                    font: normal 12px @Helvetica;
+                    font: normal 12px $Helvetica;
                     text-decoration: none;
 
                     &:hover {
@@ -747,7 +761,7 @@ article.snipt {
 article.private-snipt {
     div.container {
         header {
-            .vertical-gradient-with-image(#FFF, #FFFAF2, url('/media/images/private-icon.png') top right no-repeat);
+            @include vertical-gradient-with-image(#FFF, #FFFAF2, url('/media/images/private-icon.png') top right no-repeat);
 
             h1 {
                 a {
@@ -867,16 +881,4 @@ body.detail {
             }
         }
     }
-}
-
-// Utils
-.group:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-.hidden {
-    display: none;
 }

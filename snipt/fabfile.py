@@ -6,14 +6,11 @@ def staticfiles():
     BASE_PATH = os.path.dirname(__file__)
 
     # CSS
-    local('lessc %s/media/css/style.less %s/media/css/style.css' % (BASE_PATH, BASE_PATH))
+    local('sass %s/media/css/style.scss %s/media/css/style.css' % (BASE_PATH, BASE_PATH))
     local('sed -i -e \'s/\/media\//https:\/\/snipt.s3.amazonaws.com\//g\' %s/media/css/style.css' % BASE_PATH)
     local('rm %s/media/css/style.css-e' % BASE_PATH)
     css = [
-        '%s/media/css/reset.css' % BASE_PATH,
         '%s/media/css/style.css' % BASE_PATH,
-        '%s/media/css/bootstrap.css' % BASE_PATH,
-        '%s/media/css/themes.css' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.css' % (' '.join(css), BASE_PATH))
     

@@ -6,10 +6,7 @@
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     {% if debug %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
-    <link rel="stylesheet/less" href="{{ STATIC_URL }}css/style.less" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/a_underscore.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/b_jquery.js"></script>
@@ -22,7 +19,6 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}css/less.js"></script>
     {% else %}
     <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
