@@ -7546,7 +7546,7 @@ a.thumbnail:hover {
 
 /* Literal.String.Symbol */
 html, body {
-  background: #f5f2f3 url("/media/images/bg.gif") top left repeat; }
+  background: #f5f2f3 url("https://snipt.s3.amazonaws.com/images/bg.gif") top left repeat; }
 
 body {
   color: #666;
@@ -7566,7 +7566,7 @@ body {
   display: none; }
 
 header.main {
-  background: #12343d url("/media/images/header-bg.gif") top left repeat-x;
+  background: #12343d url("https://snipt.s3.amazonaws.com/images/header-bg.gif") top left repeat-x;
   border-bottom: 1px solid #DDDDDD;
   height: 66px;
   position: relative;
@@ -7578,7 +7578,7 @@ header.main {
     position: relative;
     width: 939px; }
     header.main div.inner div.shadey {
-      background: transparent url("/media/images/header-inner-bg.png") top left no-repeat;
+      background: transparent url("https://snipt.s3.amazonaws.com/images/header-inner-bg.png") top left no-repeat;
       height: 65px;
       left: -157px;
       position: absolute;
@@ -7590,7 +7590,7 @@ header.main {
       position: relative;
       z-index: 50; }
       header.main div.inner h1 a {
-        background: transparent url("/media/images/logo.png") top left no-repeat;
+        background: transparent url("https://snipt.s3.amazonaws.com/images/logo.png") top left no-repeat;
         display: block;
         float: left;
         height: 35px;
@@ -7614,8 +7614,8 @@ header.main {
           top: 8px;
           width: auto; }
         header.main div.inner form.search div.infield input {
-          background: #17484f url("/media/images/search-icon.png") top left no-repeat;
-          background: rgba(43, 82, 93, 0.5) url("/media/images/search-icon.png") 8px center no-repeat;
+          background: #17484f url("https://snipt.s3.amazonaws.com/images/search-icon.png") top left no-repeat;
+          background: rgba(43, 82, 93, 0.5) url("https://snipt.s3.amazonaws.com/images/search-icon.png") 8px center no-repeat;
           border: 1px solid #3A5E67;
           color: #FFF;
           font: normal 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
@@ -7775,7 +7775,7 @@ section.main {
     section.main aside.main section.tags {
       margin: 0 15px 45px 15px; }
       section.main aside.main section.tags h1 {
-        background: transparent url("/media/images/tags-icon.png") 0 0 no-repeat;
+        background: transparent url("https://snipt.s3.amazonaws.com/images/tags-icon.png") 0 0 no-repeat;
         color: #3BAAF3;
         font: bold 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
         padding-bottom: 5px;
@@ -7804,7 +7804,7 @@ section.main {
       section.main aside.main nav.footer ul {
         margin: 0; }
         section.main aside.main nav.footer ul li {
-          background: transparent url("/media/images/api-icon.png") center left no-repeat;
+          background: transparent url("https://snipt.s3.amazonaws.com/images/api-icon.png") center left no-repeat;
           list-style-type: none;
           margin: 6px 0 6px 0;
           padding-left: 22px; }
@@ -7817,11 +7817,11 @@ section.main {
               border-bottom: 1px solid #333;
               color: #333; }
           section.main aside.main nav.footer ul li.twitter {
-            background: transparent url("/media/images/twitter-icon.png") 4px center no-repeat; }
+            background: transparent url("https://snipt.s3.amazonaws.com/images/twitter-icon.png") 4px center no-repeat; }
           section.main aside.main nav.footer ul li.pro {
-            background: transparent url("/media/images/upgrade-icon.png") 2px center no-repeat; }
+            background: transparent url("https://snipt.s3.amazonaws.com/images/upgrade-icon.png") 2px center no-repeat; }
           section.main aside.main nav.footer ul li.groups {
-            background: transparent url("/media/images/groups-icon.png") 2px center no-repeat; }
+            background: transparent url("https://snipt.s3.amazonaws.com/images/groups-icon.png") 2px center no-repeat; }
 
 article.snipt {
   margin: 30px 0;
@@ -7902,7 +7902,7 @@ article.snipt {
         min-height: 173px;
         padding: 13px 0; }
       article.snipt div.container section.code a.expand {
-        background: white url("/media/images/expand.png") 15px 18px no-repeat;
+        background: white url("https://snipt.s3.amazonaws.com/images/expand.png") 15px 18px no-repeat;
         border-top: 1px solid #F1F1EE;
         bottom: 0;
         color: #999999;
@@ -7986,7 +7986,7 @@ article.snipt {
         list-style-type: none;
         margin: 2px 0; }
         article.snipt aside ul.options li a {
-          background: rgba(128, 128, 128, 0.15) url("/media/images/edit-icon.png") 14px center no-repeat;
+          background: rgba(128, 128, 128, 0.15) url("https://snipt.s3.amazonaws.com/images/edit-icon.png") 14px center no-repeat;
           color: #000;
           display: block;
           font: bold 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
@@ -7999,7 +7999,7 @@ article.snipt {
             opacity: 1;
             text-decoration: none; }
           article.snipt aside ul.options li a.edit:after {
-            background: #f5f2f3 url("/media/images/bg.gif") top left repeat;
+            background: #f5f2f3 url("https://snipt.s3.amazonaws.com/images/bg.gif") top left repeat;
             content: "";
             height: 20px;
             position: absolute;
@@ -8008,15 +8008,15 @@ article.snipt {
             width: 3px;
             -webkit-transform: rotate(-45deg); }
           article.snipt aside ul.options li a.embed {
-            background-image: url("/media/images/embed-icon.png"); }
+            background-image: url("https://snipt.s3.amazonaws.com/images/embed-icon.png"); }
           article.snipt aside ul.options li a.copy {
-            background-image: url("/media/images/copy-icon.png"); }
+            background-image: url("https://snipt.s3.amazonaws.com/images/copy-icon.png"); }
             article.snipt aside ul.options li a.copy span.done {
               display: none; }
     article.snipt aside section.tags {
       padding-top: 15px; }
       article.snipt aside section.tags h2 {
-        background: transparent url("/media/images/snipt-tags-icon.png") 15px center no-repeat;
+        background: transparent url("https://snipt.s3.amazonaws.com/images/snipt-tags-icon.png") 15px center no-repeat;
         color: #999999;
         font: bold 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
         padding: 7px 0 7px 35px; }
@@ -8046,7 +8046,7 @@ article.snipt {
     article.snipt footer ul.attrs {
       margin: 15px 0 0 15px; }
       article.snipt footer ul.attrs li {
-        background: transparent url("/media/images/calendar-icon.png") top left no-repeat;
+        background: transparent url("https://snipt.s3.amazonaws.com/images/calendar-icon.png") top left no-repeat;
         color: #999;
         display: inline;
         font: normal 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
@@ -8059,15 +8059,15 @@ article.snipt {
           article.snipt footer ul.attrs li a:hover {
             text-decoration: underline; }
         article.snipt footer ul.attrs li.author {
-          background: transparent url("/media/images/author-icon.png") 0 1px no-repeat; }
+          background: transparent url("https://snipt.s3.amazonaws.com/images/author-icon.png") 0 1px no-repeat; }
         article.snipt footer ul.attrs li.comments {
-          background: transparent url("/media/images/comments-icon.png") 0 2px no-repeat; }
+          background: transparent url("https://snipt.s3.amazonaws.com/images/comments-icon.png") 0 2px no-repeat; }
   article.snipt div.expanded section.code {
     height: auto; }
     article.snipt div.expanded section.code div.highlight pre {
       padding-bottom: 60px; }
     article.snipt div.expanded section.code a.expand {
-      background-image: url("/media/images/collapse.png");
+      background-image: url("https://snipt.s3.amazonaws.com/images/collapse.png");
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none; }
@@ -8089,10 +8089,10 @@ article.snipt {
     width: 520px; }
 
 article.private-snipt div.container header {
-  background: #fffaf2url("/media/images/private-icon.png") top right no-repeat/2 white;
-  background: white, -webkit-gradient(linear, left top, left bottom, from(#fffaf2), to(url("/media/images/private-icon.png") top right no-repeat));
-  background: white, -moz-linear-gradient(center top, #fffaf2 0%, url("/media/images/private-icon.png") top right no-repeat 100%);
-  background: white, -moz-gradient(center top, #fffaf2 0%, url("/media/images/private-icon.png") top right no-repeat 100%); }
+  background: #fffaf2url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat/2 white;
+  background: white, -webkit-gradient(linear, left top, left bottom, from(#fffaf2), to(url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat));
+  background: white, -moz-linear-gradient(center top, #fffaf2 0%, url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat 100%);
+  background: white, -moz-gradient(center top, #fffaf2 0%, url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat 100%); }
   article.private-snipt div.container header h1 a {
     padding-right: 25px; }
 
