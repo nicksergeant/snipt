@@ -1,6 +1,3 @@
-@import 'bootstrap.css';
-@import 'themes.css';
-
 // Fonts
 $Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
 $Consolas: Consolas, Menlo, "Courier New", monospace;
@@ -882,3 +879,7 @@ body.detail {
         }
     }
 }
+
+@import 'bootstrap.css';
+@import 'themes.css';
+
