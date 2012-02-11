@@ -10,6 +10,8 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
+from snipts.utils import slugify_uniquely
+
 import md5
 
 
@@ -42,7 +44,7 @@ class Snipt(models.Model):
             self.key = md5.new(self.slug).hexdigest()
 
         if not self.slug:
-            self.slug = slugify(self.title)[:50]
+            self.slug = slugify_uniquely(self.title)
 
         self.stylized = highlight(self.code,
                                   get_lexer_by_name(self.lexer, encoding='UTF-8'),
@@ -55,7 +57,7 @@ class Snipt(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/%s/%s/" % (self.user.username, self.slug)
+        return '/%s/%s/' % (self.user.username, self.slug)
 
     def get_full_absolute_url(self):
         if settings.DEBUG:
@@ -65,7 +67,7 @@ class Snipt(models.Model):
                 root = 'https://snipt.net'
             else:
                 root = 'http://snipt.net'
-        return "%s/%s/%s/" % (root, self.user.username, self.slug)
+        return '%s/%s/%s/' % (root, self.user.username, self.slug)
 
     def get_embed_url(self):
         return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
