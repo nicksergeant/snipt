@@ -61,7 +61,7 @@ html, body {
 }
 body {
     color: #666;
-    font: normal 14px $Helvetica;
+    font: normal 14px/16px $Helvetica;
     text-rendering: optimizeLegibility;
 
     li {
@@ -226,7 +226,7 @@ header.sub {
                 max-width: 490px;
                 line-height: normal;
                 overflow: hidden;
-                padding: 4px 0 7px 0;
+                padding: 5px 0 7px 0;
                 text-overflow: ellipsis;
                 white-space: nowrap;
 
@@ -252,7 +252,7 @@ header.sub {
             color: #999999;
             float: right;
             font: bold 12px $Consolas;
-            padding-top: 6px;
+            padding-top: 7px;
             text-shadow: 0 1px 0 #FFF;
         }
     }
@@ -793,7 +793,6 @@ div.modal {
         }
         h3 {
             span {
-                display: inline-block;
                 max-width: 400px;
                 overflow: hidden;
                 text-overflow: ellipsis;

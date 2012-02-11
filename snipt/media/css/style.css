@@ -1,50 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block; }
-
-body {
-  line-height: 1; }
-
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
 /*
  * Bootstrap @VERSION
  *
@@ -7597,7 +7550,7 @@ html, body {
 
 body {
   color: #666;
-  font: normal 14px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  font: normal 14px/16px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
   text-rendering: optimizeLegibility; }
   body li {
     line-height: normal; }
@@ -7737,7 +7690,7 @@ header.sub {
         max-width: 490px;
         line-height: normal;
         overflow: hidden;
-        padding: 4px 0 7px 0;
+        padding: 5px 0 7px 0;
         text-overflow: ellipsis;
         white-space: nowrap; }
         header.sub div.inner ul.bcrumb li a {
@@ -7756,7 +7709,7 @@ header.sub {
       color: #999999;
       float: right;
       font: bold 12px Consolas, Menlo, "Courier New", monospace;
-      padding-top: 6px;
+      padding-top: 7px;
       text-shadow: 0 1px 0 #FFF; }
 
 section.main {
@@ -8155,7 +8108,6 @@ div.modal .modal-header .close {
   line-height: 20px;
   margin-top: 0; }
 div.modal .modal-header h3 span {
-  display: inline-block;
   max-width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
