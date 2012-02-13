@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page-title %}Logged Out - {{ block.super }}{% endblock %}
+
+{% block body-class %}{{ block.super }} signin{% endblock %}
+
+{% block content %}
+    <section class="box">
+        <div class="inner">
+            <div class="top group">
+                Successfully logged out. <a href="{% url auth_login %}">Log in again?</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

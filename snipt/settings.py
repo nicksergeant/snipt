@@ -132,6 +132,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'gunicorn',
     'grappelli',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.humanize',
@@ -140,14 +141,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'storages',
 
     'django_bcrypt',
     'pagination',
     'postmark',
+    'registration',
     'south',
+    'storages',
     'taggit',
     'tastypie',
+
     'snipts',
 )
 

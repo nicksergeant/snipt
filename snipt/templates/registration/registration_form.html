@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block page-title %}Sign up - {{ block.super }}{% endblock %}
+
+{% block html-class %}account{% endblock %}
+{% block body-class %}{{ block.super }} account signup{% endblock %}
+
+{% block content %}
+    <h1 class="logo"><a href="/">Smooth Wallet</a></h1>
+    <div class="modal">
+        <form method="post" action="">
+            <div class="modal-header">
+                <h3>Signup</h3>
+            </div>
+            <div class="modal-body {% if form.errors %}modal-body-errors{% endif %}">
+                {% if form.errors %}
+                    <div class="alert-message error">
+                        <p>Please fix the errors below.</p>
+                    </div>
+                    {% if form.non_field_errors %}
+                        <div class="alert-message block-message error">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <fieldset>
+                    <div class="clearfix {% if form.errors.username %}error{% endif %}">
+                        <label for="id_username">Username</label>
+                        <div class="input">
+                            {{ form.username }}
+                            {% if form.errors.username %}
+                                <span class="help-inline">
+                                    {% for error in form.errors.username  %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                            <span class="help-block">You'll use this to log in.</span>
+                        </div>
+                    </div>
+                    <div class="clearfix {% if form.errors.email %}error{% endif %}">
+                        <label for="id_email">Email Address</label>
+                        <div class="input">
+                            {{ form.email }}
+                            {% if form.errors.email %}
+                                <span class="help-inline">
+                                    {% for error in form.errors.email  %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                            <span class="help-block">We hate spam as much as you.</span>
+                        </div>
+                    </div>
+                    <div class="clearfix {% if form.errors.password1 %}error{% endif %}">
+                        <label for="id_password1">Password</label>
+                        <div class="input">
+                            {{ form.password1 }}
+                            {% if form.errors.password1 %}
+                                <span class="help-inline">
+                                    {% for error in form.errors.password1  %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="clearfix {% if form.errors.password2 %}error{% endif %}">
+                        <label for="id_password2">Confirm Password</label>
+                        <div class="input">
+                            {{ form.password2 }}
+                            {% if form.errors.password2 %}
+                                <span class="help-inline">
+                                    {% for error in form.errors.password2  %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <a class="btn secondary login" href="/login/">Already have an account?</a>
+                {% csrf_token %}
+                <input class="btn primary submit" type="submit" value="Sign up" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

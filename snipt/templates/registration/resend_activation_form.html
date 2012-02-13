@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page-title %}Resend Activation Email - {{ block.super }}{% endblock %}
+
+{% block body-class %}{{ block.super }} signup resend-confirmation{% endblock %}
+
+{% block content %}
+    <section class="box">
+        <h1>Sign up for Smooth Wallet</h1>
+        <div class="inner">
+            <div class="top group">
+                {% if form.errors or form.non_field_errors or resend_msg %}
+                    <div class="errors">
+                        {{ form.email.errors }}
+                        {{ form.non_field_errors }}
+                        {% if resend_msg %}
+                            {{ resend_msg }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <div class="legend top-legend">
+                    Please note: New user accounts that have not been activated are purged every 7 days. If this is the case, simply <a href="{% url registration_register %}">sign up again</a>.
+                </div>
+                <form method="post" action="/accounts/resend/">
+                    <div class="fields">
+                        <div class="field">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <input class="submit" type="submit" value="Send New Confirmation Email" />
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

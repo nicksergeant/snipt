@@ -29,6 +29,12 @@ urlpatterns = patterns('',
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
 
+    url(r'^signup/$',
+         'registration.views.register', {
+         'backend': 'registration.backends.default.DefaultBackend'},
+          name='registration_register'),
+    url(r'', include('registration.backends.default.urls')),
+
     url(r'^', include('snipts.urls')),
 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
