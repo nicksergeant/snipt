@@ -893,7 +893,12 @@ body.static {
 
         div.form-actions {
             margin-bottom: 0;
+            padding-bottom: 0;
             @include vertical-gradient(#F5F5F5, #FBFBFB);
+
+            a.pull-right {
+                margin-left: 5px;
+            }
         }
         div.alert {
             ul {
@@ -916,5 +921,13 @@ body.static {
     }
     div.alert-alone {
         margin: 0;
+    }
+    form.form-horizontal {
+        legend + .control-group {
+            margin-top: 0;
+        }
+        div.form-actions {
+            margin-top: 27px;
+        }
     }
 }

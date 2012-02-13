@@ -22,4 +22,4 @@ South
 uuid
 Werkzeug
 
-hg+ssh://hg@bitbucket.org/ubernostrum/django-registration#egg=django-registration
+hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
