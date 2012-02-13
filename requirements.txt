@@ -6,7 +6,6 @@ django-annoying
 django-bcrypt
 django-grappelli
 django-pagination
-django-registration
 django-storages
 django-taggit
 django-tastypie
@@ -22,3 +21,5 @@ pyyaml
 South
 uuid
 Werkzeug
+
+hg+ssh://hg@bitbucket.org/ubernostrum/django-registration#egg=django-registration
