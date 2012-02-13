@@ -1,5 +1,3 @@
-@import 'bootstrap.scss';
-
 // Fonts
 $Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
 $Consolas: Consolas, Menlo, "Courier New", monospace;
@@ -67,6 +65,11 @@ body {
     li {
         line-height: normal;
     }
+    a, button {
+        &:focus {
+            outline: none;
+        }
+    }
 }
 
 // Utils
@@ -118,6 +121,10 @@ header.main {
                 margin: 16px 0 0 16px;
                 text-indent: -1000em;
                 width: 87px;
+
+                &:focus {
+                    outline: none;
+                }
             }
         }
         form.search {
@@ -881,7 +888,24 @@ body.detail {
     }
 }
 body.account {
-    
-}
+    form.account-form {
+        background: rgba(#FFF, .65);
+        margin: 20px;
+        padding: 20px;
+        @include border-radius(10px);
 
-@import 'themes.scss';
+        div.form-actions {
+            margin-bottom: 0;
+            @include multi-border-radius(0, 0, 5px, 5px);
+        }
+        div.alert {
+            ul {
+                margin: 0;
+
+                li {
+                    list-style-type: none;
+                }
+            }
+        }
+    }
+}

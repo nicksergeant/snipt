@@ -25,6 +25,7 @@ def list_public(request, tag_slug=None):
         snipts = snipts.filter(tags__name__in=[tag_slug])
 
     return {
+        'public': True,
         'snipts': snipts,
         'tags': tags,
         'tag': tag_slug,

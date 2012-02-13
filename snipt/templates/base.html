@@ -6,7 +6,9 @@
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     {% if debug %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/a_underscore.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/b_jquery.js"></script>
@@ -53,14 +55,14 @@
             <nav class="public">
                 <ul>
                     <li>
-                        <a href="/public/" {% if '/public/' in request.path or not request.user.is_authenticated %} class="active"{% endif %}>Public snipts</a>
+                        <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
                     </li>
                     {% if not request.user.is_authenticated %}
                         <li>
-                            <a href="/login/">Log in</a>
+                            <a href="/login/" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
                         </li>
                         <li>
-                            <a href="/signup/">Sign up</a>
+                            <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
                         </li>
                     {% else %}
                         <li>
@@ -72,17 +74,19 @@
             <aside class="nav"></aside>
         </div>
     </header>
-    <header class="sub">
-        <div class="inner group">
-            <ul class="bcrumb">
-                <li class="prompt">/</li>
-                {% block breadcrumb %}{% endblock %}
-            </ul>
-            <div class="shortcuts">
-                Type "?" for KB shortcuts
+    {% block sub-header %}
+        <header class="sub">
+            <div class="inner group">
+                <ul class="bcrumb">
+                    <li class="prompt">/</li>
+                    {% block breadcrumb %}{% endblock %}
+                </ul>
+                <div class="shortcuts">
+                    Type "?" for KB shortcuts
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
+    {% endblock %}
     <section class="main group">
         <div class="inner">
             {% block content %}{% endblock %}
