@@ -1236,10 +1236,13 @@ body.static .static-box {
   background-clip: padding-box; }
   body.static .static-box div.form-actions {
     margin-bottom: 0;
+    padding-bottom: 0;
     background: #7f7f7f;
     background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#fbfbfb));
     background: -moz-linear-gradient(center top, #f5f5f5 0%, #fbfbfb 100%);
     background: -moz-gradient(center top, #f5f5f5 0%, #fbfbfb 100%); }
+    body.static .static-box div.form-actions a.pull-right {
+      margin-left: 5px; }
   body.static .static-box div.alert ul {
     margin: 0; }
     body.static .static-box div.alert ul li {
@@ -1251,6 +1254,10 @@ body.static aside.main {
   padding-top: 20px; }
 body.static div.alert-alone {
   margin: 0; }
+body.static form.form-horizontal legend + .control-group {
+  margin-top: 0; }
+body.static form.form-horizontal div.form-actions {
+  margin-top: 27px; }
 .autumn { background-color: #FFF; color: #000; }
 .autumn .hll { background-color: #ffffcc }
 .autumn .c { color: #aaaaaa; font-style: italic } /* Comment */
