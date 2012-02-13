@@ -54,10 +54,10 @@
             </form>
             <nav class="public">
                 <ul>
-                    <li>
-                        <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
-                    </li>
                     {% if not request.user.is_authenticated %}
+                        <li>
+                            <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
+                        </li>
                         <li>
                             <a href="/login/" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
                         </li>
@@ -67,6 +67,12 @@
                     {% else %}
                         <li>
                             <a href="/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
+                        </li>
+                        <li>
+                            <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
+                        </li>
+                        <li>
+                            <a href="/logout/">Log out</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -82,7 +88,7 @@
                     {% block breadcrumb %}{% endblock %}
                 </ul>
                 <div class="shortcuts">
-                    Type "?" for KB shortcuts
+                    Type "h" for KB shortcuts
                 </div>
             </div>
         </header>
@@ -138,7 +144,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>?</td>
+                        <td>h</td>
                         <td>Show keyboard shortcuts</td>
                     </tr>
                     <tr>
@@ -156,14 +162,6 @@
                     <tr>
                         <td>G</td>
                         <td>Scroll to bottom of page</td>
-                    </tr>
-                    <tr>
-                        <td>H</td>
-                        <td>Go back</td>
-                    </tr>
-                    <tr>
-                        <td>h</td>
-                        <td>Go to home</td>
                     </tr>
                     <tr>
                         <td>n</td>

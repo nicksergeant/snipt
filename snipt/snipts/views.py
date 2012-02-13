@@ -41,9 +41,11 @@ def list_user(request, username, tag_slug=None):
     if user == request.user:
         tags = tags.filter(snipt__user=user)
         snipts = snipts.filter(user=user)
+        public = False
     else:
         tags = tags.filter(snipt__user=user, snipt__public=True)
         snipts = snipts.filter(user=user, public=True)
+        public = True
 
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
     tags = tags.order_by('-count', 'name')
@@ -53,6 +55,7 @@ def list_user(request, username, tag_slug=None):
         snipts = snipts.filter(tags__name__in=[tag_slug])
 
     return {
+        'public': public,
         'snipts': snipts,
         'tags': tags,
         'tag': tag_slug,

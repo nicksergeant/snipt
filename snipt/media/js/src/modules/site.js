@@ -53,15 +53,12 @@
                 e.preventDefault();
                 $search_query.focus();
             });
-            $document.bind('keydown', 'Shift+/', function(e) {
+            $document.bind('keydown', 'h', function(e) {
                 $el.trigger('showKeyboardShortcuts');
             });
             $('input').bind('keydown', 'esc', function(e) {
                 e.preventDefault();
                 this.blur();
-            });
-            $document.bind('keydown', 'Shift+h', function(e) {
-                history.go(-1);
             });
         },
         showKeyboardShortcuts: function() {

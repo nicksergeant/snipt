@@ -1,16 +1,11 @@
-Hi,
+Hey there,
 
-You recently signed up for LivePlay using this email address. Just to make sure that this is in fact a valid email, we need you to confirm it.
+Welcome to Snipt. If you ever have any thoughts or issues with the site whatsoever, please feel free to contact me directly.
 
-To do so, just click the following link:
-https://{{site.domain}}/accounts/activate/{{ activation_key }}
+Thanks!
 
-That link will expire in {{ expiration_days}} days, so if you don't confirm your email within that time, your account will be marked inactive and you'll need to sign up again.
-
-If you didn't sign up for LivePlay using this email address, then you can safely ignore this email. As long as you don't click that link above, the account will not be confirmed and you won't have an account opened using your email address.
-
-But if you continue to receive these emails, don't hesitate to yell at us and we'll straighten it out. To do so just reply to this email and let us know what's going on.
-
-Thanks again for trying out LivePlay.
-
-The LivePlay Team
+Nick Sergeant
+http://twitter.com/nicksergeant
+http://twitter.com/snipt
+nick@snipt.net
+http://snipt.net

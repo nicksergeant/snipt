@@ -189,9 +189,6 @@
                 }
                 window.scrollTo(0, document.body.scrollHeight);
             });
-            $document.bind('keydown', 'h', function() {
-                window.location = '/';
-            });
             $document.bind('keydown', 'n', function() {
                 var $anc = $('li.next a');
                 if ($anc.length) {

@@ -1,11 +1,13 @@
-{% extends "base.html" %}
+{% extends "registration/registration_base.html" %}
 
-{% block page-title %}Registration Complete - {{ block.super }}{% endblock %}
+{% block page-title %}Signup complete - {{ block.super }}{% endblock %}
 
-{% block body-class %}{{ block.super }} signup signup-complete{% endblock %}
+{% block body-class %}{{ block.super }} static{% endblock %}
 
 {% block content %}
-    <section class="box">
-    All done!
-    </section>
+    <div class="static-box">
+        <div class="alert alert-info alert-alone">
+            Signup complete! You're now logged in. Go <a href="/">home</a>, perhaps?
+        </div>
+    </div>
 {% endblock %}

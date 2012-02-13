@@ -2,11 +2,13 @@
 
 {% block page-title %}Login - {{ block.super }}{% endblock %}
 
-{% block html-class %}account{% endblock %}
-{% block body-class %}{{ block.super }} account login {% if request.GET.activationcomplete %}activation-complete{% endif %}{% endblock %}
+{% block body-class %}{{ block.super }} static{% endblock %}
 
 {% block content %}
-    <form class="account-form" method="post" action="{% url django.contrib.auth.views.login %}">
+    <form class="static-box" method="post" action="{% url django.contrib.auth.views.login %}">
+        <div class="alert alert-info">
+            <strong>Notice:</strong> OpenID is no longer supported. You can <a href="{% url auth_password_reset %}">reset your password here</a>.
+        </div>
         {% if request.GET.activationcomplete %}
             <div class="alert alert-success">
                 Successfully confirmed email! Log in below.
@@ -24,7 +26,7 @@
             {% endif %}
         {% endif %}
         <fieldset>
-            <legend>Login</legend>
+            <legend>Log in</legend>
             <div class="control-group {% if form.username.errors %}error{% endif %}">
                 <label class="control-label" for="id_username">Username</label>
                 <div class="controls">

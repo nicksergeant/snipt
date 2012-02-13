@@ -1,4 +1,6 @@
 from django.views.generic.simple import direct_to_template
+from registration.forms import RegistrationFormUniqueEmail
+from django.http import HttpResponseRedirect
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
@@ -26,12 +28,16 @@ urlpatterns = patterns('',
     url(r'^404/$', direct_to_template, {'template': '404.html'}),
     url(r'^500/$', direct_to_template, {'template': '500.html'}),
 
+    url(r'^api/$', direct_to_template, {'template': 'api.html'}),
+
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
 
+    url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
     url(r'^signup/$',
         'registration.views.register', {
-            'backend': 'registration.backends.default.DefaultBackend'
+            'backend': 'registration.backends.default.DefaultBackend',
+            'form_class': RegistrationFormUniqueEmail,
         },
         name='registration_register'),
     url(r'', include('registration.backends.default.urls')),

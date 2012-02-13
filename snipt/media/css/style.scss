@@ -65,11 +65,6 @@ body {
     li {
         line-height: normal;
     }
-    a, button {
-        &:focus {
-            outline: none;
-        }
-    }
 }
 
 // Utils
@@ -155,7 +150,7 @@ header.main {
                     height: auto;
                     margin: 0;
                     padding: 7px;
-                    padding-left: 28px;
+                    text-indent: 21px;
                     width: 175px;
                     @include border-radius(3px);
                     @include inset-box-shadow(0, 1px, 0px, #1D4249);
@@ -233,7 +228,7 @@ header.sub {
                 max-width: 490px;
                 line-height: normal;
                 overflow: hidden;
-                padding: 5px 0 7px 0;
+                padding: 2px 0 4px 0;
                 text-overflow: ellipsis;
                 white-space: nowrap;
 
@@ -259,7 +254,7 @@ header.sub {
             color: #999999;
             float: right;
             font: bold 12px $Consolas;
-            padding-top: 7px;
+            padding-top: 4px;
             text-shadow: 0 1px 0 #FFF;
         }
     }
@@ -629,6 +624,7 @@ article.snipt {
                             top: -3px;
                             width: 3px;
                             -webkit-transform: rotate(-45deg);
+                            -moz-transform: rotate(-45deg);
                         }
                     }
                     &.embed {
@@ -887,16 +883,17 @@ body.detail {
         }
     }
 }
-body.account {
-    form.account-form {
+body.static {
+    .static-box {
         background: rgba(#FFF, .65);
+        border: 1px solid #DDDDDD;
         margin: 20px;
         padding: 20px;
-        @include border-radius(10px);
+        @include border-radius(4px);
 
         div.form-actions {
             margin-bottom: 0;
-            @include multi-border-radius(0, 0, 5px, 5px);
+            @include vertical-gradient(#F5F5F5, #FBFBFB);
         }
         div.alert {
             ul {
@@ -907,5 +904,17 @@ body.account {
                 }
             }
         }
+        div.alert-info {
+            a {
+                color: #3A87AD;
+                text-decoration: underline;
+            }
+        }
+    }
+    aside.main {
+        padding-top: 20px;
+    }
+    div.alert-alone {
+        margin: 0;
     }
 }

@@ -1,90 +1,81 @@
-{% extends "base.html" %}
+{% extends "registration/registration_base.html" %}
 
-{% block page-title %}Sign up - {{ block.super }}{% endblock %}
+{% block page-title %}Signup - {{ block.super }}{% endblock %}
 
-{% block html-class %}account{% endblock %}
-{% block body-class %}{{ block.super }} account signup{% endblock %}
+{% block body-class %}{{ block.super }} static{% endblock %}
 
 {% block content %}
-    <h1 class="logo"><a href="/">Smooth Wallet</a></h1>
-    <div class="modal">
-        <form method="post" action="">
-            <div class="modal-header">
-                <h3>Signup</h3>
-            </div>
-            <div class="modal-body {% if form.errors %}modal-body-errors{% endif %}">
-                {% if form.errors %}
-                    <div class="alert-message error">
-                        <p>Please fix the errors below.</p>
-                    </div>
-                    {% if form.non_field_errors %}
-                        <div class="alert-message block-message error">
-                            {{ form.non_field_errors }}
-                        </div>
+    <form class="static-box" method="post" action="">
+        {% if form.errors %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-error">
+                    {{ form.non_field_errors }}
+                </div>
+            {% else %}
+                <div class="alert alert-error">
+                    Please fix the errors below.
+                </div>
+            {% endif %}
+        {% endif %}
+        <fieldset>
+            <legend>Sign up</legend>
+            <div class="control-group {% if form.errors.username %}error{% endif %}">
+                <label class="control-label" for="id_username">Username</label>
+                <div class="controls">
+                    {{ form.username }}
+                    {% if form.errors.username %}
+                        <span class="help-inline">
+                            {% for error in form.errors.username  %}
+                                {{ error }}
+                            {% endfor %}
+                        </span>
                     {% endif %}
-                {% endif %}
-                <fieldset>
-                    <div class="clearfix {% if form.errors.username %}error{% endif %}">
-                        <label for="id_username">Username</label>
-                        <div class="input">
-                            {{ form.username }}
-                            {% if form.errors.username %}
-                                <span class="help-inline">
-                                    {% for error in form.errors.username  %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </span>
-                            {% endif %}
-                            <span class="help-block">You'll use this to log in.</span>
-                        </div>
-                    </div>
-                    <div class="clearfix {% if form.errors.email %}error{% endif %}">
-                        <label for="id_email">Email Address</label>
-                        <div class="input">
-                            {{ form.email }}
-                            {% if form.errors.email %}
-                                <span class="help-inline">
-                                    {% for error in form.errors.email  %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </span>
-                            {% endif %}
-                            <span class="help-block">We hate spam as much as you.</span>
-                        </div>
-                    </div>
-                    <div class="clearfix {% if form.errors.password1 %}error{% endif %}">
-                        <label for="id_password1">Password</label>
-                        <div class="input">
-                            {{ form.password1 }}
-                            {% if form.errors.password1 %}
-                                <span class="help-inline">
-                                    {% for error in form.errors.password1  %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="clearfix {% if form.errors.password2 %}error{% endif %}">
-                        <label for="id_password2">Confirm Password</label>
-                        <div class="input">
-                            {{ form.password2 }}
-                            {% if form.errors.password2 %}
-                                <span class="help-inline">
-                                    {% for error in form.errors.password2  %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </fieldset>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a class="btn secondary login" href="/login/">Already have an account?</a>
-                {% csrf_token %}
-                <input class="btn primary submit" type="submit" value="Sign up" />
+            <div class="control-group {% if form.errors.email %}error{% endif %}">
+                <label class="control-label" for="id_email">Email address</label>
+                <div class="controls">
+                    {{ form.email }}
+                    {% if form.errors.email %}
+                        <span class="help-inline">
+                            {% for error in form.errors.email  %}
+                                {{ error }}
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                </div>
             </div>
-        </form>
-    </div>
+            <div class="control-group {% if form.errors.password1 %}error{% endif %}">
+                <label class="control-label"l for="id_password1">Password</label>
+                <div class="controls">
+                    {{ form.password1 }}
+                    {% if form.errors.password1 %}
+                        <span class="help-inline">
+                            {% for error in form.errors.password1  %}
+                                {{ error }}
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="control-group {% if form.errors.password2 %}error{% endif %}">
+                <label class="control-label" for="id_password2">Confirm password</label>
+                <div class="controls">
+                    {{ form.password2 }}
+                    {% if form.errors.password2 %}
+                        <span class="help-inline">
+                            {% for error in form.errors.password2  %}
+                                {{ error }}
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-actions group">
+                <a class="btn" href="/login/">Log in</a>
+                <button class="btn btn-primary pull-right" type="submit">Sign up</button>
+            </div>
+        </fieldset>
+        {% csrf_token %}
+    </form>
 {% endblock %}

@@ -193,6 +193,7 @@ VIRTUALENV_PATH = '/Users/Nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
+ACCOUNT_ACTIVATION_DAYS = 0
 
 # HTTPS
 USE_HTTPS = False
