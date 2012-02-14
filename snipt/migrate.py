@@ -6,7 +6,7 @@ import MySQLdb
 
 from django.contrib.auth.models import User
 
-from snipts.models import Snipt
+from snipts.models import Favorite, Snipt
 from taggit.models import Tag, TaggedItem
 from taggit.utils import parse_tags
 from tastypie.models import ApiKey 
@@ -119,6 +119,35 @@ def snipts():
         snipt.save()
 
     print 'Done with snipts'
+
+def favs():
+
+    print "Deleting existing favorites"
+    favs = Favorite.objects.all()
+    for f in favs:
+        f.delete()
+
+    cursor.execute("SELECT * FROM favsnipt_favsnipt")
+    rows = cursor.fetchall()
+
+    print "Adding favorites"
+
+    for row in rows:
+        fav_id   = row[0]
+        snipt_id = row[1]
+        user_id  = row[2]
+        created  = row[3]
+
+        fav = Favorite(
+            id=fav_id,
+            snipt_id=snipt_id,
+            user_id=user_id,
+            created=created,
+            modified=created,
+        )
+        fav.save()
+
+    print 'Done with favorites'
 
 def parse_tag_input(input):
     """

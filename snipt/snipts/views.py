@@ -2,8 +2,9 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from annoying.decorators import render_to
+from snipts.models import Favorite, Snipt
 from django.db.models import Count
-from snipts.models import Snipt
+from django.db.models import Q
 from taggit.models import Tag
 
 def home(request):
@@ -40,8 +41,11 @@ def list_user(request, username, tag_slug=None):
 
     if user == request.user:
         tags = tags.filter(snipt__user=user)
-        snipts = snipts.filter(user=user)
         public = False
+
+        favorites = Favorite.objects.filter(user=user).values('snipt')
+        favorites = [f['snipt'] for f in favorites]
+        snipts = snipts.filter(Q(user=user) | Q(pk__in=favorites))
     else:
         tags = tags.filter(snipt__user=user, snipt__public=True)
         snipts = snipts.filter(user=user, public=True)

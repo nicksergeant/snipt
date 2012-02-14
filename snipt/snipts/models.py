@@ -1,4 +1,3 @@
-from django.template.defaultfilters import slugify
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -22,21 +21,22 @@ class Snipt(models.Model):
 
     user     = models.ForeignKey(User, blank=True, null=True)
 
-    title    = models.CharField(max_length=255)
+    title       = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    slug     = models.SlugField(max_length=255, blank=True)
-    tags     = TaggableManager()
+    slug        = models.SlugField(max_length=255, blank=True)
+    tags        = TaggableManager()
 
-    lexer    = models.CharField(max_length=50)
-    code     = models.TextField()
-    stylized = models.TextField(blank=True, null=True)
+    lexer      = models.CharField(max_length=50)
+    code       = models.TextField()
+    stylized   = models.TextField(blank=True, null=True)
     line_count = models.IntegerField(blank=True, null=True, default=None)
 
     key      = models.CharField(max_length=100, blank=True, null=True)
     public   = models.BooleanField(default=False)
     
-    created  = models.DateTimeField(auto_now_add=True, editable=False)
-    modified = models.DateTimeField(auto_now=True, editable=False)
+    # TODO: Change back auto
+    created  = models.DateTimeField(auto_now_add=False, editable=False)
+    modified = models.DateTimeField(auto_now=False, editable=False)
 
     def save(self, *args, **kwargs):
 
@@ -57,7 +57,7 @@ class Snipt(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return '/%s/%s/' % (self.user.username, self.slug)
+        return '/{}/{}/'.format(self.user.username, self.slug)
 
     def get_full_absolute_url(self):
         if settings.DEBUG:
@@ -67,12 +67,12 @@ class Snipt(models.Model):
                 root = 'https://snipt.net'
             else:
                 root = 'http://snipt.net'
-        return '%s/%s/%s/' % (root, self.user.username, self.slug)
+        return '{}/{}/{}/'.format(root, self.user.username, self.slug)
 
     def get_embed_url(self):
-        return 'http%s://%s/embed/%s/' % ('s' if settings.USE_HTTPS else '',
-                                          site.domain,
-                                          self.key)
+        return 'http{}://{}/embed/{}/'.format('s' if settings.USE_HTTPS else '',
+                                              site.domain,
+                                              self.key)
 
     @property
     def sorted_tags(self):
@@ -81,3 +81,14 @@ class Snipt(models.Model):
     @property
     def lexer_name(self):
         return get_lexer_by_name(self.lexer).name
+
+class Favorite(models.Model):
+    snipt = models.ForeignKey(Snipt)
+    user  = models.ForeignKey(User)
+
+    # TODO: Change back auto
+    created  = models.DateTimeField(auto_now_add=False, editable=False)
+    modified = models.DateTimeField(auto_now=False, editable=False)
+    
+    def __unicode__(self):
+        return u'{} favorited by {}'.format(self.snipt.title, self.user.username)
