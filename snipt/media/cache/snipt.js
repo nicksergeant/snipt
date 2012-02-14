@@ -936,6 +936,7 @@ jQuery(function($) {
         initialize: function(opts) {
 
             this.$el = $(this.el);
+            this.$search_form = $('form.search', this.$el);
             this.$search_query = $('input#search-query', this.$el);
             this.$snipts = $('section#snipts article.snipt', this.$el);
             this.$copyModals = $('div.copy-modal', this.$snipts);
@@ -954,17 +955,21 @@ jQuery(function($) {
                 });
             }
 
-            this.$search_query.focus(function() {
+            $search_query = this.$search_query;
+            $search_query.focus(function() {
                 if (window.$selected) {
                     $selected.trigger('deselect');
                 }
+            });
+            this.$search_form.submit(function() {
+                window.location = 'https://www.google.com/search?q=' + $search_query.val() + ' site:snipt.net%20';
+                return false;
             });
 
             $('div.modal a.close').click(function() {
                 $(this).parent().parent().modal('hide');
                 return false;
             });
-
         },
         events: {
             'showKeyboardShortcuts': 'showKeyboardShortcuts'

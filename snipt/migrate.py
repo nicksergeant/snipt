@@ -18,6 +18,7 @@ def i():
     users()
     create_api_keys()
     snipts()
+    favs()
 
 def users():
 
