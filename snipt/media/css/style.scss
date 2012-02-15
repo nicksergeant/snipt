@@ -929,5 +929,12 @@ body.static {
         div.form-actions {
             margin-top: 27px;
         }
+        fieldset {
+            padding-top: 27px;
+
+            legend {
+                margin: 0;
+            }
+        }
     }
 }
