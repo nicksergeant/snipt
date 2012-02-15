@@ -61,6 +61,21 @@
             $document.bind('keydown', 'h', function(e) {
                 $el.trigger('showKeyboardShortcuts');
             });
+            $document.bind('keydown', 'Shift+h', function(e) {
+                window.location = '/';
+            });
+            $document.bind('keydown', 't', function(e) {
+                window.open('', '_blank');
+            });
+            $document.bind('keydown', 'r', function(e) {
+                location.reload(true);
+            });
+            $document.bind('keydown', 'Ctrl+h', function(e) {
+                history.go(-1);
+            });
+            $document.bind('keydown', 'Ctrl+l', function(e) {
+                history.go(1);
+            });
             $('input').bind('keydown', 'esc', function(e) {
                 e.preventDefault();
                 this.blur();
