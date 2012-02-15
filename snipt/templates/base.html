@@ -1,3 +1,5 @@
+{% load verbatim %}
+
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}">
 <head>
@@ -220,6 +222,25 @@
             </table>
         </div>
     </div>
+    {% if snipts or snipt %}
+        {% verbatim %}
+            <article id="snipt-template" class="snipt">
+                <div class="number">#0</div>
+                <div class="group">
+                    <div class="container">
+                        <header>
+                            <h2></h2>
+                            <h1><a href="{{url}}">{{title}}</a></h1>
+                        </header>
+                        <section class="code autumn">
+                        </section>
+                        <div class="ruler top-x"></div>
+                        <div class="ruler bottom-x"></div>
+                    </div>
+                </div>
+            </article>
+        {% endverbatim %}
+    {% endif %}
     {% if not debug %}
         <script type="text/javascript">
             //<![CDATA[

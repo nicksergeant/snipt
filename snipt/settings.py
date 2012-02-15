@@ -152,6 +152,7 @@ INSTALLED_APPS = (
     'tastypie',
 
     'snipts',
+    'utils',
 )
 
 # A sample logging configuration. The only tangible logging

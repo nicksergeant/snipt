@@ -1,28 +1,26 @@
 
 (function(Snipt) {
 
-    Snipt.SniptModel = Backbone.Model.extend({
-        url: '',
-        title: ''
+    SniptModel = Backbone.Model.extend({
     });
     SniptView = Backbone.View.extend({
 
+        tagName: 'article',
+
         initialize: function() {
-            this.$el = $(this.el);
-            this.$h1 = $('header h1 a', this.$el);
-
-            this.model = new Snipt.SniptModel({
-                title: this.$h1.text(),
-                url: this.$h1.attr('href')
-            });
             this.model.view = this;
+            this.model.bind('change', this.render, this);
+            this.model.bind('destroy', this.remove, this);
+            this.template = _.template($('#snipt-template').html());
 
+            this.$el = $(this.el);
             this.$aside = $('aside', this.$el);
             this.$container = $('div.container', this.$el);
             this.$copyModal = $('div.copy-modal', this.$el);
             this.$copyModalBody = $('div.modal-body', this.$copyModal);
             this.$copyModalClose = $('a.close', this.$copyModal);
             this.$copyModalType = $('h4 span', this.$copyModal);
+            this.$h1 = $('header h1 a', this.$el);
             this.$raw = $('div.raw', this.$el);
             this.$tags = $('section.tags ul', this.$aside);
 
@@ -43,7 +41,8 @@
             'expand':           'expand',
             'next':             'next',
             'prev':             'prev',
-            'selectSnipt':      'select'
+            'selectSnipt':      'select',
+            'test':             'test'
         },
 
         copy: function() {
@@ -103,6 +102,14 @@
                 return prevSnipt.trigger('selectSnipt');
             }
         },
+        remove: function() {
+            console.log('SniptView.remove() called');
+        },
+        render: function() {
+            console.log('SniptView.render() called');
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        },
         select: function(fromClick) {
 
             $('article.selected', SniptList.$el).removeClass('selected');
@@ -123,6 +130,10 @@
         selectFromClick: function(e) {
             this.select(true);
             e.stopPropagation();
+        },
+        test: function() {
+            console.log('test triggered');
+            this.model.set({'title': 'Changed title!'});
         }
     });
     SniptListView = Backbone.View.extend({
@@ -131,20 +142,33 @@
         initialize: function(opts) {
 
             this.$snipts = opts.snipts;
-            this.$snipts.each(this.addSnipt);
+            this.$snipts.each(this.addExistingSnipt);
             this.$el = $(this.el);
 
             this.keyboardShortcuts();
         },
 
-        addSnipt: function() {
-            model = new SniptView({ el: this });
+        addExistingSnipt: function() {
+            var $h1 = $('header h1 a', this);
+            var data = {
+                title: $h1.text(),
+                url: $h1.attr('href')
+            };
+            var view = new SniptView({
+                el: this,
+                model: new SniptModel(data)
+            });
         },
         keyboardShortcuts: function() {
 
             $selected = window.selected;
             $document = $(document);
 
+            $document.bind('keydown', 'Shift+t', function() {
+                if ($selected) {
+                    $selected.trigger('test');
+                }
+            });
             $document.bind('keydown', 'j', function() {
                 if (!$selected) {
                     SniptList.$snipts.eq(0).trigger('selectSnipt');
