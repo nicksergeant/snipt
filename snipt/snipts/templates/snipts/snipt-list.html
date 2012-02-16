@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<article class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.line_count > 8 and not detail %}expandable{% endif %}">
+<article class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.line_count > 8 and not detail %}expandable{% endif %} {% if snipt.user == request.user %}editable{% endif %}">
     <div class="number">#{{ snipt.id }}</div>
     <div class="group">
         <div class="container">

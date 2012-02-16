@@ -207,7 +207,7 @@
                         <td>Go to snipt</td>
                     </tr>
                     <tr>
-                        <td>e</td>
+                        <td>o</td>
                         <td>Expand / collapse snipt</td>
                     </tr>
                     <tr>
@@ -218,27 +218,41 @@
                         <td>c</td>
                         <td>Copy snipt</td>
                     </tr>
+                    <tr>
+                        <td>e</td>
+                        <td>Edit snipt</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
     {% if snipts or snipt %}
         {% verbatim %}
-            <article id="snipt-template" class="snipt">
-                <div class="number">#0</div>
-                <div class="group">
-                    <div class="container">
-                        <header>
-                            <h2></h2>
-                            <h1><a href="{{url}}">{{title}}</a></h1>
-                        </header>
-                        <section class="code autumn">
-                        </section>
-                        <div class="ruler top-x"></div>
-                        <div class="ruler bottom-x"></div>
+            <div class="hidden" id="templates">
+                <div id="snipt">
+                    <div class="number">#0</div>
+                    <div class="group">
+                        <div class="container">
+                            <header>
+                                <h2></h2>
+                                <h1><a href="{{url}}">{{title}}</a></h1>
+                            </header>
+                            <section class="code autumn">
+                            </section>
+                            <div class="ruler top-x"></div>
+                            <div class="ruler bottom-x"></div>
+                        </div>
                     </div>
                 </div>
-            </article>
+                <div id="edit">
+                    <section class="main main-edit">
+                        <div class="inner">
+                            {{url}}<br />
+                            {{title}}
+                        </div>
+                    </section>
+                </div>
+            </div>
         {% endverbatim %}
     {% endif %}
     {% if not debug %}

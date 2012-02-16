@@ -11,7 +11,9 @@
             this.model.view = this;
             this.model.bind('change', this.render, this);
             this.model.bind('destroy', this.remove, this);
-            this.template = _.template($('#snipt-template').html());
+
+            this.template     = _.template($('#snipt').html());
+            this.editTemplate = _.template($('#edit').html());
 
             this.$el = $(this.el);
             this.$aside = $('aside', this.$el);
@@ -30,6 +32,7 @@
         },
         events: {
             'click a.copy':     'copyFromClick',
+            'click a.edit':     'edit',
             'click a.embed':    'embed',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
@@ -37,6 +40,7 @@
             'copyClose':        'copyClose',
             'detail':           'detail',
             'deselect':         'deselect',
+            'edit':             'edit',
             'embed':            'embed',
             'expand':           'expand',
             'next':             'next',
@@ -80,13 +84,22 @@
         detail: function() {
             window.location = this.model.get('url');
         },
+        edit: function() {
+            if (!$('section.main-edit:visible').length) {
+                var editPane = this.editTemplate(this.model.toJSON());
+                $main = $('section.main');
+                $main.hide();
+                $main.after(editPane);
+            }
+            return false;
+        },
+        embed: function() {
+            alert('TODO');
+        },
         expand: function() {
             this.$container.toggleClass('expanded', 100);
             this.$tags.toggleClass('expanded');
             this.select();
-        },
-        embed: function() {
-            alert('TODO');
         },
         next: function() {
             window.site.$copyModals.modal('hide');
@@ -106,7 +119,6 @@
             console.log('SniptView.remove() called');
         },
         render: function() {
-            console.log('SniptView.render() called');
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         },
@@ -132,7 +144,6 @@
             e.stopPropagation();
         },
         test: function() {
-            console.log('test triggered');
             this.model.set({'title': 'Changed title!'});
         }
     });
@@ -191,14 +202,18 @@
             });
             $document.bind('keydown', 'e', function() {
                 if ($selected) {
-                    if ($selected.hasClass('expandable')) {
-                        $selected.trigger('expand');
+                    if ($selected.hasClass('editable')) {
+                        $selected.trigger('edit');
                     }
                 }
             });
             $document.bind('keydown', 'esc', function() {
                 if ($selected) {
                     $selected.trigger('deselect');
+                }
+                if ($('section.main-edit:visible').length) {
+                    $('section.main-edit').remove();
+                    $('section.main').show();
                 }
             });
             $document.bind('keydown', 'g', function() {
@@ -223,7 +238,9 @@
             });
             $document.bind('keydown', 'o', function() {
                 if ($selected) {
-                    $selected.trigger('detail');
+                    if ($selected.hasClass('expandable')) {
+                        $selected.trigger('expand');
+                    }
                 }
             });
             $document.bind('keydown', 'p', function() {

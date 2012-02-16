@@ -408,6 +408,12 @@ section.main {
         }
     }
 }
+section.main-edit {
+    div.inner {
+        float: none;
+        width: 100%;
+    }
+}
 article.snipt {
     margin: 30px 0;
     position: relative;
@@ -808,7 +814,8 @@ div.modal {
     }
 }
 div#keyboard-shortcuts {
-    max-height: 590px;
+    max-height: 617px;
+    top: 43%;
 
     table {
         margin-bottom: 0;
