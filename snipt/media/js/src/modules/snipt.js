@@ -208,12 +208,16 @@
                 }
             });
             $document.bind('keydown', 'esc', function() {
-                if ($selected) {
-                    $selected.trigger('deselect');
-                }
                 if ($('section.main-edit:visible').length) {
                     $('section.main-edit').remove();
                     $('section.main').show();
+                    $('html, body').animate({
+                        scrollTop: $selected.offset().top - 50
+                    }, 0);
+                } else {
+                    if ($selected) {
+                        $selected.trigger('deselect');
+                    }
                 }
             });
             $document.bind('keydown', 'g', function() {
