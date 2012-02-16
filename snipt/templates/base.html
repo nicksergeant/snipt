@@ -96,7 +96,7 @@
             </div>
         </header>
     {% endblock %}
-    <section class="main group">
+    <section class="main group" id="main">
         <div class="inner">
             {% block content %}{% endblock %}
         </div>
@@ -132,6 +132,9 @@
         <div class="left-y ruler"></div>
         <div class="right-y ruler"></div>
     </section>
+    {% if snipts or snipt %}
+        <section class="main group hidden" id="main-edit"></section>
+    {% endif %}
     <div class="modal hide" id="keyboard-shortcuts">
         <div class="modal-header">
             <a href="#" class="close">×</a>
@@ -245,12 +248,10 @@
                     </div>
                 </div>
                 <div id="edit">
-                    <section class="main main-edit">
-                        <div class="inner">
-                            {{url}}<br />
-                            {{title}}
-                        </div>
-                    </section>
+                    <div class="inner">
+                        {{url}}<br />
+                        {{title}}
+                    </div>
                 </div>
             </div>
         {% endverbatim %}

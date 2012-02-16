@@ -86,10 +86,10 @@
         },
         edit: function() {
             if (!$('section.main-edit:visible').length) {
+                this.select();
                 var editPane = this.editTemplate(this.model.toJSON());
-                $main = $('section.main');
-                $main.hide();
-                $main.after(editPane);
+                $('section#main').hide();
+                $('section#main-edit').html(editPane).show();
             }
             return false;
         },
@@ -208,9 +208,9 @@
                 }
             });
             $document.bind('keydown', 'esc', function() {
-                if ($('section.main-edit:visible').length) {
-                    $('section.main-edit').remove();
-                    $('section.main').show();
+                if ($('section#main-edit:visible').length) {
+                    $('section#main-edit').hide();
+                    $('section#main').show();
                     $('html, body').animate({
                         scrollTop: $selected.offset().top - 50
                     }, 0);

@@ -769,7 +769,7 @@ article.snipt {
 article.private-snipt {
     div.container {
         header {
-            @include vertical-gradient-with-image(#FFF, #FFFAF2, url('/media/images/private-icon.png') top right no-repeat);
+            @include vertical-gradient-with-image(url('/media/images/private-icon.png') top right no-repeat, #FFF, #FFFAF2);
 
             h1 {
                 a {

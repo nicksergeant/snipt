@@ -1,8 +1,4 @@
-{% extends "base.html" %}
-
-{% load pagination_tags %}
-
-{% block page-title %}/ public{% if tag %} / {{ tag }}{% endif %} - {{ block.super }}{% endblock %}
+{% extends "snipts/list.html" %}
 
 {% block breadcrumb %}
     <li><a href="/public/">public</a></li>
@@ -13,29 +9,4 @@
 
 {% block tags %}
     {% include "snipts/tags-public.html" %}
-{% endblock %}
-
-{% block content %}
-    <section class="snipts" id="snipts">
-        {% with public='true' %}
-            {% autopaginate snipts 20 %}
-            {% for snipt in snipts %}
-                {% include "snipts/snipt-list.html" %}
-            {% endfor %}
-            {% paginate %}
-        {% endwith %}
-    </section>
-    <script type="text/javascript">
-        var disqus_shortname = 'snipt-net';
-        {% if debug %}
-            var disqus_developer = 1;
-        {% endif %}
-
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
 {% endblock %}
