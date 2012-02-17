@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<article class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.line_count > 8 and not detail %}expandable{% endif %} {% if snipt.user == request.user %}editable{% endif %}">
+<article id="snipt-{{ snipt.pk }}" class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.line_count > 8 and not detail %}expandable{% endif %} {% if snipt.user == request.user %}editable{% endif %}">
     <div class="number">#{{ snipt.id }}</div>
     <div class="group">
         <div class="container">
@@ -33,7 +33,7 @@
                     <a class="embed" href="#">Embed</a>
                 </li>
                 <li>
-                    <a class="copy" href="#"><span class="do">Copy</span><span class="done">Copied!</span></a>
+                    <a class="copy" href="#"><span class="do">Copy</span></a>
                 </li>
             </ul>
             <section class="tags">

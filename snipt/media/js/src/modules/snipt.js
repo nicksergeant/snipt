@@ -82,7 +82,7 @@
             }
         },
         detail: function() {
-            window.location = this.model.get('url');
+            window.location = this.model.get('absolute_url');
         },
         edit: function() {
             if (!$('section.main-edit:visible').length) {
@@ -95,11 +95,13 @@
         },
         embed: function() {
             alert('TODO');
+            return false;
         },
         expand: function() {
             this.$container.toggleClass('expanded', 100);
             this.$tags.toggleClass('expanded');
             this.select();
+            return false;
         },
         next: function() {
             window.site.$copyModals.modal('hide');
@@ -144,7 +146,7 @@
             e.stopPropagation();
         },
         test: function() {
-            this.model.set({'title': 'Changed title!'});
+            console.log(this.model.attributes);
         }
     });
     SniptListView = Backbone.View.extend({
@@ -160,11 +162,31 @@
         },
 
         addExistingSnipt: function() {
-            var $h1 = $('header h1 a', this);
+
+            var $el = $(this);
+            var $h1 = $('header h1 a', $el);
+
             var data = {
+                absolute_url: $h1.attr('href'),
+                code: '',
+                created: '',
+                description: '',
+                embed_url: '',
+                id: parseInt($el.attr('id').replace('snipt-', ''), 0),
+                key: '',
+                lexer: '',
+                line_count: 0,
+                modified: '',
+                pub: false,
+                resource_uri: '',
+                slug: '',
+                stylized: '',
+                tags: [],
+                tags_list: '',
                 title: $h1.text(),
-                url: $h1.attr('href')
+                user: ''
             };
+
             var view = new SniptView({
                 el: this,
                 model: new SniptModel(data)
@@ -200,7 +222,7 @@
                     $selected.trigger('copyRaw');
                 }
             });
-            $document.bind('keydown', 'e', function() {
+            $document.bind('keydown', 'Ctrl+e', function() {
                 if ($selected) {
                     if ($selected.hasClass('editable')) {
                         $selected.trigger('edit');
@@ -240,7 +262,7 @@
                     }
                 }
             });
-            $document.bind('keydown', 'o', function() {
+            $document.bind('keydown', 'e', function() {
                 if ($selected) {
                     if ($selected.hasClass('expandable')) {
                         $selected.trigger('expand');
@@ -258,6 +280,11 @@
             $document.bind('keydown', 'v', function() {
                 if ($selected) {
                     $selected.trigger('embed');
+                }
+            });
+            $document.bind('keydown', 'o', function() {
+                if ($selected) {
+                    $selected.trigger('detail');
                 }
             });
             $document.bind('keydown', 'return', function() {
