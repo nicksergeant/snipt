@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 
 from taggit.managers import TaggableManager
+from taggit.utils import edit_string_for_tags
 
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
@@ -22,7 +23,6 @@ class Snipt(models.Model):
     user     = models.ForeignKey(User, blank=True, null=True)
 
     title       = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
     slug        = models.SlugField(max_length=255, blank=True)
     tags        = TaggableManager()
 
@@ -77,6 +77,10 @@ class Snipt(models.Model):
     @property
     def sorted_tags(self):
         return self.tags.all().order_by('name')
+
+    @property
+    def tags_list(self):
+        return edit_string_for_tags(self.tags.all())
 
     @property
     def lexer_name(self):

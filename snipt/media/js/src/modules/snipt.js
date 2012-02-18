@@ -146,7 +146,7 @@
             e.stopPropagation();
         },
         test: function() {
-            console.log(this.model.attributes);
+            this.render();
         }
     });
     SniptListView = Backbone.View.extend({
@@ -165,26 +165,37 @@
 
             var $el = $(this);
             var $h1 = $('header h1 a', $el);
+            var $pub = $('div.public', $el);
+            var is_public = $pub.text() === 'True' ? true : false;
+            var tag_lis = $('section.tags li', $el);
+            var tags = [];
+
+            for (var i=0; i < tag_lis.length; i++) {
+                var $tag = $('a', tag_lis.eq(i));
+                tags[i] = {
+                    name: $tag.text(),
+                    absolute_url: $tag.attr('href')
+                };
+            }
 
             var data = {
                 absolute_url: $h1.attr('href'),
-                code: '',
-                created: '',
-                description: '',
-                embed_url: '',
+                code: $('div.raw', $el).text(),
+                created: $('li.created', $el).attr('title'),
+                embed_url: $('div.embed-url', $el).text(),
                 id: parseInt($el.attr('id').replace('snipt-', ''), 0),
-                key: '',
-                lexer: '',
-                line_count: 0,
-                modified: '',
-                pub: false,
-                resource_uri: '',
-                slug: '',
-                stylized: '',
-                tags: [],
-                tags_list: '',
+                key: $('div.key', $el).text(),
+                lexer: $('div.lexer', $el).text(),
+                line_count: parseInt($('div.line-count', $el).text(), 0),
+                modified: $('div.modified', $el).text(),
+                pub: is_public,
+                resource_uri: $('div.resource-uri', $el).text(),
+                slug: $('div.slug', $el).text(),
+                stylized: $('div.stylized', $el).text(),
+                tags: tags,
+                tags_list: $('div.tags-list', $el).text(),
                 title: $h1.text(),
-                user: ''
+                user: $('div.user', $el).text()
             };
 
             var view = new SniptView({

@@ -1,7 +1,7 @@
 {% load humanize %}
 
 <article id="snipt-{{ snipt.pk }}" class="snipt {% if not snipt.public %}private-snipt{% endif %} {% if snipt.line_count > 8 and not detail %}expandable{% endif %} {% if snipt.user == request.user %}editable{% endif %}">
-    <div class="number">#{{ snipt.id }}</div>
+    <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container">
             <header>
@@ -55,8 +55,8 @@
     <footer>
         <ul class="attrs">
             <li class="author"><a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a></li>
-            <li class="created">{{ snipt.created|naturalday }}</li>
-            <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.id }}"></a></li>
+            <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturalday }}</li>
+            <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
         </ul>
     </footer>
     <div class="modal hide copy-modal">
@@ -73,7 +73,22 @@
             <h3>Embed snipt <span>&ldquo;{{ snipt.title }}&rdquo;</span></h3>
         </div>
         <div class="modal-body">
-        <textarea><script type="text/javascript">{{ snipt.get_embed_url }}</script></textarea>
+            <textarea><script type="text/javascript">{{ snipt.get_embed_url }}</script></textarea>
         </div>
     </div>
+    <div class="hide embed-url">{{ snipt.get_embed_url }}</div>
+    <div class="hide key">{{ snipt.key }}</div>
+    <div class="hide lexer">{{ snipt.lexer }}</div>
+    <div class="hide line-count">{{ snipt.line_count }}</div>
+    <div class="hide modified">{{ snipt.modified|date:"Y-m-d\TH:i:s" }}</div>
+    <div class="hide public">{{ snipt.public }}</div>
+    {% if snipt.user == request.user %}
+        <div class="hide resource-uri">/api/private/snipt/{{ snipt.pk }}/</div>
+    {% else %}
+        <div class="hide resource-uri">/api/public/snipt/{{ snipt.pk }}/</div>
+    {% endif %}
+    <div class="hide slug">{{ snipt.slug }}</div>
+    <div class="hide stylized">{{ snipt.stylized }}</div>
+    <div class="hide tags-list">{{ snipt.tags_list }}</div>
+    <div class="hide user">{{ snipt.user.username }}</div>
 </article>

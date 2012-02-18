@@ -96,17 +96,12 @@ def snipts():
         key      = row[8]
         slug     = row[9]
 
-        if len(title) > 255:
-            description = title
-            title = 'Unknown (original title was too long)'
-        else:
-            description = ''
+        title = title[:255]
 
         snipt = Snipt(
             id=snipt_id,
             code=code,
             title=title,
-            description=description,
             slug=slug,
             lexer=lexer,
             key=key,
