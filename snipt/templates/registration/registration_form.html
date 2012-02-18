@@ -5,6 +5,7 @@
 {% block body-class %}{{ block.super }} static{% endblock %}
 
 {% block content %}
+    {% comment %}
     <form class="form-horizontal static-box" method="post" action="">
         {% if form.errors %}
             {% if form.non_field_errors %}
@@ -78,4 +79,10 @@
         </fieldset>
         {% csrf_token %}
     </form>
+    {% endcomment %}
+    <div class="static-box">
+        <div class="alert alert-info alert-alone">
+            Registration is disabled for the beta site. Sign up on the regular site, and you'll have an account on the new site once we go live: <a href="http://snipt.net/signup/">http://snipt.net/signup/</a>.
+        </div>
+    </div>
 {% endblock %}
