@@ -888,6 +888,10 @@ section.main {
           section.main aside.main nav.footer ul li.groups {
             background: transparent url("https://snipt.s3.amazonaws.com/images/groups-icon.png") 2px center no-repeat; }
 
+section.main-edit div.inner {
+  float: none;
+  width: 100%; }
+
 article.snipt {
   margin: 30px 0;
   position: relative; }
@@ -1154,10 +1158,10 @@ article.snipt {
     width: 520px; }
 
 article.private-snipt div.container header {
-  background: #fffaf2url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat/2 white;
-  background: white, -webkit-gradient(linear, left top, left bottom, from(#fffaf2), to(url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat));
-  background: white, -moz-linear-gradient(center top, #fffaf2 0%, url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat 100%);
-  background: white, -moz-gradient(center top, #fffaf2 0%, url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat 100%); }
+  background: #7f7f7f url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat;
+  background: url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat, -webkit-gradient(linear, left top, left bottom, from(white), to(#fffaf2));
+  background: url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat, -moz-linear-gradient(center top, white 0%, #fffaf2 100%);
+  background: url("https://snipt.s3.amazonaws.com/images/private-icon.png") top right no-repeat, -moz-gradient(center top, white 0%, #fffaf2 100%); }
   article.private-snipt div.container header h1 a {
     padding-right: 25px; }
 
@@ -1173,6 +1177,7 @@ div.modal .modal-header .close {
   line-height: 20px;
   margin-top: 0; }
 div.modal .modal-header h3 span {
+  display: inline-block;
   max-width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1182,7 +1187,8 @@ div.modal .modal-header h4 {
   margin-top: 1px; }
 
 div#keyboard-shortcuts {
-  max-height: 590px; }
+  max-height: 617px;
+  top: 43%; }
   div#keyboard-shortcuts table {
     margin-bottom: 0; }
 
