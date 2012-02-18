@@ -15,20 +15,7 @@
             this.template     = _.template($('#snipt').html());
             this.editTemplate = _.template($('#edit').html());
 
-            this.$el = $(this.el);
-            this.$aside = $('aside', this.$el);
-            this.$container = $('div.container', this.$el);
-            this.$copyModal = $('div.copy-modal', this.$el);
-            this.$copyModalBody = $('div.modal-body', this.$copyModal);
-            this.$copyModalClose = $('a.close', this.$copyModal);
-            this.$copyModalType = $('h4 span', this.$copyModal);
-            this.$h1 = $('header h1 a', this.$el);
-            this.$raw = $('div.raw', this.$el);
-            this.$tags = $('section.tags ul', this.$aside);
-
-            this.$copyModal.on('hidden', function(e) {
-                $(this).parent().trigger('copyClose');
-            });
+            this.initLocalVars();
         },
         events: {
             'click a.copy':     'copyFromClick',
@@ -45,8 +32,7 @@
             'expand':           'expand',
             'next':             'next',
             'prev':             'prev',
-            'selectSnipt':      'select',
-            'test':             'test'
+            'selectSnipt':      'select'
         },
 
         copy: function() {
@@ -69,6 +55,7 @@
             }
         },
         copyClose: function() {
+            console.log('copyClose called');
             $('textarea', this.$copyModal).remove();
         },
         copyFromClick: function() {
@@ -82,7 +69,7 @@
             }
         },
         detail: function() {
-            window.location = this.model.get('absolute_url');
+            window.location = this.model.get('get_absolute_url');
         },
         edit: function() {
             if (!$('section.main-edit:visible').length) {
@@ -103,6 +90,22 @@
             this.select();
             return false;
         },
+        initLocalVars: function() {
+            this.$el = $(this.el);
+            this.$aside = $('aside', this.$el);
+            this.$container = $('div.container', this.$el);
+            this.$copyModal = $('div.copy-modal', this.$el);
+            this.$copyModalBody = $('div.modal-body', this.$copyModal);
+            this.$copyModalClose = $('a.close', this.$copyModal);
+            this.$copyModalType = $('h4 span', this.$copyModal);
+            this.$h1 = $('header h1 a', this.$el);
+            this.$raw = $('div.raw', this.$el);
+            this.$tags = $('section.tags ul', this.$aside);
+
+            this.$copyModal.on('hidden', function(e) {
+                $(this).parent().trigger('copyClose');
+            });
+        },
         next: function() {
             window.site.$copyModals.modal('hide');
             nextSnipt = this.$el.next('article.snipt');
@@ -121,7 +124,33 @@
             console.log('SniptView.remove() called');
         },
         render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
+
+            this.$el.html(this.template({
+                snipt: this.model.toJSON()
+            }));
+            this.initLocalVars();
+
+            if (this.model.get('pub') === true) {
+                this.$el.removeClass('private-snipt');
+            } else {
+                this.$el.addClass('private-snipt');
+            }
+
+            if (this.model.get('user').username === window.user) {
+                this.$el.addClass('editable');
+            } else {
+                this.$el.removeClass('editable');
+            }
+
+            if (this.model.get('line_count') > 8 && !window.detail) {
+                this.$el.addClass('expandable');
+            } else {
+                this.$el.removeClass('expandable');
+            }
+
+            $('script#disqus').remove();
+            $('body').append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
+
             return this;
         },
         select: function(fromClick) {
@@ -144,9 +173,6 @@
         selectFromClick: function(e) {
             this.select(true);
             e.stopPropagation();
-        },
-        test: function() {
-            this.render();
         }
     });
     SniptListView = Backbone.View.extend({
@@ -164,8 +190,10 @@
         addExistingSnipt: function() {
 
             var $el = $(this);
+            var $created = $('li.created', $el);
             var $h1 = $('header h1 a', $el);
             var $pub = $('div.public', $el);
+            var $user = $('li.author a', $el);
             var is_public = $pub.text() === 'True' ? true : false;
             var tag_lis = $('section.tags li', $el);
             var tags = [];
@@ -179,13 +207,15 @@
             }
 
             var data = {
-                absolute_url: $h1.attr('href'),
                 code: $('div.raw', $el).text(),
-                created: $('li.created', $el).attr('title'),
+                created: $created.attr('title'),
+                created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
-                id: parseInt($el.attr('id').replace('snipt-', ''), 0),
+                get_absolute_url: $h1.attr('href'),
+                pk: parseInt($el.attr('id').replace('snipt-', ''), 0),
                 key: $('div.key', $el).text(),
                 lexer: $('div.lexer', $el).text(),
+                lexer_name: $('div.lexer-name', $el).text(),
                 line_count: parseInt($('div.line-count', $el).text(), 0),
                 modified: $('div.modified', $el).text(),
                 pub: is_public,
@@ -195,7 +225,10 @@
                 tags: tags,
                 tags_list: $('div.tags-list', $el).text(),
                 title: $h1.text(),
-                user: $('div.user', $el).text()
+                user: {
+                    get_absolute_url: $user.attr('href'),
+                    username: $user.text()
+                }
             };
 
             var view = new SniptView({
@@ -208,11 +241,6 @@
             $selected = window.selected;
             $document = $(document);
 
-            $document.bind('keydown', 'Shift+t', function() {
-                if ($selected) {
-                    $selected.trigger('test');
-                }
-            });
             $document.bind('keydown', 'j', function() {
                 if (!$selected) {
                     SniptList.$snipts.eq(0).trigger('selectSnipt');

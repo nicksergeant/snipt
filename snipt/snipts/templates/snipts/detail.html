@@ -3,6 +3,11 @@
 {% block page-title %}/ {{ snipt.title }} / {{ user.username }} - {{ block.super }}{% endblock %}
 {% block body-class %}detail{% endblock %}
 
+{% block js %}
+        {{ block.super }}
+        window.detail = true;
+{% endblock %}
+
 {% block breadcrumb %}
     <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
     <li>/ <a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>

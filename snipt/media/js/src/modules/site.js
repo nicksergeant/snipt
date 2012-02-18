@@ -8,10 +8,6 @@
 
         initialize: function(opts) {
 
-            _.templateSettings = {
-                interpolate : /\{\{(.+?)\}\}/g
-            };
-
             this.$el = $(this.el);
             this.$search_form = $('form.search', this.$el);
             this.$search_query = $('input#search-query', this.$el);
