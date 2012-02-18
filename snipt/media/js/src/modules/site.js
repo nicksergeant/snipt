@@ -61,9 +61,6 @@
             $document.bind('keydown', 'h', function(e) {
                 $el.trigger('showKeyboardShortcuts');
             });
-            $document.bind('keydown', 'Shift+h', function(e) {
-                window.location = '/';
-            });
             $document.bind('keydown', 't', function(e) {
                 window.open('', '_blank');
             });
