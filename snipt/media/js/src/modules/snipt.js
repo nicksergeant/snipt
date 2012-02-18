@@ -55,7 +55,6 @@
             }
         },
         copyClose: function() {
-            console.log('copyClose called');
             $('textarea', this.$copyModal).remove();
         },
         copyFromClick: function() {
@@ -121,7 +120,6 @@
             }
         },
         remove: function() {
-            console.log('SniptView.remove() called');
         },
         render: function() {
 
