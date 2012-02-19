@@ -270,9 +270,13 @@
                 if ($('section#main-edit:visible').length) {
                     $('section#main-edit').hide();
                     $('section#main').show();
-                    $('html, body').animate({
-                        scrollTop: $selected.offset().top - 50
-                    }, 0);
+                    if (SniptList.$snipts.index($selected) === 0) {
+                        window.scrollTo(0, 0);
+                    } else {
+                        $('html, body').animate({
+                            scrollTop: $selected.offset().top - 50
+                        }, 0);
+                    }
                 } else {
                     if ($selected) {
                         $selected.trigger('deselect');

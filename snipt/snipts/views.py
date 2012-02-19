@@ -75,14 +75,17 @@ def detail(request, username, snipt_slug):
 
     if user == request.user:
         tags = tags.filter(snipt__user=user)
+        public = False
     else:
         tags = tags.filter(snipt__user=user, snipt__public=True)
+        public = True
 
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
     tags = tags.order_by('-count', 'name')
 
     return {
+        'public': public,
         'snipt': snipt,
-        'user': user,
         'tags': tags,
+        'user': user,
     }
