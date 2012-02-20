@@ -2,11 +2,14 @@
 
 {% block page-title %}API Contest - {{ block.super }}{% endblock %}
 
-{% block body-class %}{{ block.super }} api static{% endblock %}
+{% block body-class %}{{ block.super }} api static api-contest{% endblock %}
 {% block sub-header %}{% endblock %}
 
 {% block content %}
     <div class="static-box">
+        <a href="http://aneventapart.com" class="aea" title="An Event Apart">
+            <img src="{{ STATIC_URL }}images/an-event-apart.gif" alt="An Event Apart" />
+        </a>
         <h3>Snipt API Contest</h3>
         <p>Build an app that uses the new Snipt API and be entered to win two conference passes to <a href="http://aneventapart.com">An Event Apart</a> of your choosing (worth $1,800+). Public voting determines the winner.
         <h4>Rules</h4>

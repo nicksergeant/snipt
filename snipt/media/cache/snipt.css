@@ -1291,6 +1291,16 @@ body.static div#disqus_thread {
   width: 709px; }
   body.static div#disqus_thread div#dsq-content {
     margin-top: 23px; }
+
+body.api-contest a.aea {
+  border-top: 1px solid #ADA278;
+  float: right;
+  margin: -30px 0 0 20px;
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); }
+  body.api-contest a.aea img {
+    display: block; }
 .autumn { background-color: #FFF; color: #000; }
 .autumn .hll { background-color: #ffffcc }
 .autumn .c { color: #aaaaaa; font-style: italic } /* Comment */
