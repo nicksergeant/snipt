@@ -63,7 +63,7 @@
         <div class="modal-header">
             <a href="#" class="close">×</a>
             <h3>Copy snipt <span>&ldquo;{{ snipt.title }}&rdquo;</span></h3>
-            <h4>(Text is selected. <span></span>+c to copy.)</h4>
+            <h4>(Text is selected. <span class="cmd-ctrl"></span>+c to copy.)</h4>
         </div>
         <div class="modal-body"></div>
     </div>
@@ -71,10 +71,9 @@
         <div class="modal-header">
             <a href="#" class="close">×</a>
             <h3>Embed snipt <span>&ldquo;{{ snipt.title }}&rdquo;</span></h3>
+            <h4>(Text is selected. <span class="cmd-ctrl"></span>+c to copy.)</h4>
         </div>
-        <div class="modal-body">
-            <textarea><script type="text/javascript">{{ snipt.get_embed_url }}</script></textarea>
-        </div>
+        <div class="modal-body"></div>
     </div>
     <div class="hide embed-url">{{ snipt.get_embed_url }}</div>
     <div class="hide key">{{ snipt.key }}</div>

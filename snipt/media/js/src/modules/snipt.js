@@ -20,7 +20,7 @@
         events: {
             'click a.copy':     'copyFromClick',
             'click a.edit':     'edit',
-            'click a.embed':    'embed',
+            'click a.embed':    'embedFromClick',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
             'copyRaw':          'copy',
@@ -29,6 +29,7 @@
             'deselect':         'deselect',
             'edit':             'edit',
             'embed':            'embed',
+            'embedClose':       'embedClose',
             'expand':           'expand',
             'next':             'next',
             'prev':             'prev',
@@ -37,19 +38,9 @@
 
         copy: function() {
             if (!this.$copyModal.is(':visible')) {
-                var cmd;
-                if (navigator.platform == 'MacPPC' ||
-                    navigator.platform == 'MacIntel') {
-                    cmd = 'Cmd';
-                }
-                else {
-                    cmd = 'Ctrl';
-                }
-
                 this.$copyModalBody.append('<textarea class="raw"></textarea>');
-                $textarea = $('textarea.raw', this.$copyModalBody).val(this.$raw.text());
+                $textarea = $('textarea.raw', this.$copyModalBody).val(this.model.get('code'));
 
-                this.$copyModalType.text(cmd);
                 this.$copyModal.modal('show');
                 $textarea.select();
             }
@@ -62,10 +53,8 @@
             return false;
         },
         deselect: function() {
-            if (!this.$copyModal.is(':visible')) {
-                this.$el.removeClass('selected');
-                window.$selected = false;
-            }
+            this.$el.removeClass('selected');
+            window.$selected = false;
         },
         detail: function() {
             window.location = this.model.get('get_absolute_url');
@@ -80,7 +69,19 @@
             return false;
         },
         embed: function() {
-            alert('TODO');
+            if (!this.$embedModal.is(':visible')) {
+                this.$embedModalBody.append('<textarea class="raw"></textarea>');
+                $textarea = $('textarea.raw', this.$embedModalBody).val('<script type="text/javascript">' + this.model.get('embed_url') + '</script>');
+
+                this.$embedModal.modal('show');
+                $textarea.select();
+            }
+        },
+        embedClose: function() {
+            $('textarea', this.$embedModal).remove();
+        },
+        embedFromClick: function() {
+            this.embed();
             return false;
         },
         expand: function() {
@@ -93,30 +94,37 @@
             this.$el = $(this.el);
             this.$aside = $('aside', this.$el);
             this.$container = $('div.container', this.$el);
+
             this.$copyModal = $('div.copy-modal', this.$el);
             this.$copyModalBody = $('div.modal-body', this.$copyModal);
-            this.$copyModalClose = $('a.close', this.$copyModal);
-            this.$copyModalType = $('h4 span', this.$copyModal);
+
+            this.$embedModal = $('div.embed-modal', this.$el);
+            this.$embedModalBody = $('div.modal-body', this.$embedModal);
+
             this.$h1 = $('header h1 a', this.$el);
-            this.$raw = $('div.raw', this.$el);
             this.$tags = $('section.tags ul', this.$aside);
 
             this.$copyModal.on('hidden', function(e) {
                 $(this).parent().trigger('copyClose');
             });
+            this.$embedModal.on('hidden', function(e) {
+                $(this).parent().trigger('embedClose');
+            });
         },
         next: function() {
-            window.site.$copyModals.modal('hide');
-            nextSnipt = this.$el.next('article.snipt');
-            if (nextSnipt.length) {
-                return nextSnipt.trigger('selectSnipt');
+            if (!$('div.modal-body:visible', window.site.$modals).length) {
+                nextSnipt = this.$el.next('article.snipt');
+                if (nextSnipt.length) {
+                    return nextSnipt.trigger('selectSnipt');
+                }
             }
         },
         prev: function() {
-            window.site.$copyModals.modal('hide');
-            prevSnipt = this.$el.prev('article.snipt');
-            if (prevSnipt.length) {
-                return prevSnipt.trigger('selectSnipt');
+            if (!$('div.modal-body:visible', window.site.$modals).length) {
+                prevSnipt = this.$el.prev('article.snipt');
+                if (prevSnipt.length) {
+                    return prevSnipt.trigger('selectSnipt');
+                }
             }
         },
         remove: function() {
@@ -183,6 +191,16 @@
             this.$el = $(this.el);
 
             this.keyboardShortcuts();
+
+            var cmd;
+            if (navigator.platform == 'MacPPC' ||
+                navigator.platform == 'MacIntel') {
+                cmd = 'Cmd';
+            }
+            else {
+                cmd = 'Ctrl';
+            }
+            $('span.cmd-ctrl').text(cmd);
         },
 
         addExistingSnipt: function() {
@@ -318,8 +336,9 @@
                     }
                 }
             });
-            $document.bind('keydown', 'v', function() {
+            $document.bind('keydown', 'v', function(e) {
                 if ($selected) {
+                    e.preventDefault();
                     $selected.trigger('embed');
                 }
             });

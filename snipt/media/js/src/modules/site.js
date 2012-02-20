@@ -12,7 +12,7 @@
             this.$search_form = $('form.search', this.$el);
             this.$search_query = $('input#search-query', this.$el);
             this.$snipts = $('section#snipts article.snipt', this.$el);
-            this.$copyModals = $('div.copy-modal', this.$snipts);
+            this.$modals = $('div.modal', this.$snipts);
 
             this.keyboardShortcuts();
             this.inFieldLabels();
@@ -22,7 +22,7 @@
                 SniptList = new SniptListView({ 'snipts': this.$snipts });
 
                 $('body').click(function() {
-                    if (window.$selected) {
+                    if (window.$selected && !$('div.modal-body:visible', window.site.$modals).length) {
                         window.$selected.trigger('deselect');
                     }
                 });
@@ -43,6 +43,7 @@
                 $(this).parent().parent().modal('hide');
                 return false;
             });
+
         },
         events: {
             'showKeyboardShortcuts': 'showKeyboardShortcuts'

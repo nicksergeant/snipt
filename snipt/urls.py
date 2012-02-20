@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^500/$', direct_to_template, {'template': '500.html'}),
 
     url(r'^api/$', direct_to_template, {'template': 'api.html'}),
+    url(r'^api/contest/$', direct_to_template, {'template': 'api-contest.html'}),
 
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
