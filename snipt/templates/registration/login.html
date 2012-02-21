@@ -7,7 +7,10 @@
 {% block content %}
     <form class="form-horizontal static-box" method="post" action="{% url django.contrib.auth.views.login %}">
         <div class="alert alert-info">
+            {% comment %}
             <strong>Notice:</strong> OpenID is no longer supported. You can <a href="{% url auth_password_reset %}">reset your password here</a>.
+            {% endcomment %}
+            <strong>Notice:</strong> OpenID is no longer supported. You can <a href="#">reset your password here (disabled for beta site)</a>.
         </div>
         {% if request.GET.activationcomplete %}
             <div class="alert alert-success">
@@ -54,7 +57,9 @@
                 </div>
             </div>
             <div class="form-actions group">
+                {% comment %}
                 <a class="btn pull-right" href="{% url auth_password_reset %}">Reset password</a>
+                {% endcomment %}
                 <a class="btn pull-right" href="/signup/">Sign up</a>
                 <button class="btn btn-primary" type="submit">Log in</button>
             </div>

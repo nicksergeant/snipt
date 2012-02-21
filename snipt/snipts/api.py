@@ -60,6 +60,7 @@ class PublicSniptResource(ModelResource):
         allowed_methods = ['get']
         filtering = { 'user': 'exact', }
         ordering = ['created', 'modified',]
+        # TODO max_limit does not work.
         max_limit = 200
         cache = SimpleCache()
 
@@ -140,6 +141,7 @@ class PrivateSniptResource(ModelResource):
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
         ordering = ['created', 'modified',]
+        # TODO max_limit does not work.
         max_limit = 200
         cache = SimpleCache()
 
