@@ -59,6 +59,7 @@ class PublicSniptResource(ModelResource):
         include_absolute_url = True
         allowed_methods = ['get']
         filtering = { 'user': 'exact', }
+        ordering = ['created', 'modified',]
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
@@ -137,6 +138,7 @@ class PrivateSniptResource(ModelResource):
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
+        ordering = ['created', 'modified',]
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
