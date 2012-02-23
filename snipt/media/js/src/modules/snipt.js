@@ -62,9 +62,13 @@
         edit: function() {
             if (!$('section.main-edit:visible').length) {
                 this.select();
-                var editPane = this.editTemplate(this.model.toJSON());
+                var editPane = this.editTemplate({
+                    snipt: this.model.toJSON()
+                });
                 $('section#main').hide();
+                $('body').addClass('detail');
                 $('section#main-edit').html(editPane).show();
+                window.scrollTo(0, 0);
             }
             return false;
         },
@@ -286,6 +290,9 @@
             });
             $document.bind('keydown', 'esc', function() {
                 if ($('section#main-edit:visible').length) {
+                    if (!$('html').hasClass('detail')) {
+                        $('body').removeClass('detail');
+                    }
                     $('section#main-edit').hide();
                     $('section#main').show();
                     if (SniptList.$snipts.index($selected) === 0) {

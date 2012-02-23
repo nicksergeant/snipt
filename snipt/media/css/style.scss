@@ -904,6 +904,11 @@ body.detail {
                         margin-right: 0;
                     }
                 }
+                article.editing {
+                    div.container {
+                        width: 100%;
+                    }
+                }
             }
         }
     }

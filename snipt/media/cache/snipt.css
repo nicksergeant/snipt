@@ -1176,6 +1176,12 @@ div.pagination {
     background: #FFF; }
     div.pagination ul li a {
       color: #3BAAF3; }
+    div.pagination ul li.next a {
+      line-height: 33px;
+      padding-bottom: 1px; }
+    div.pagination ul li.prev a {
+      line-height: 33px;
+      padding-bottom: 1px; }
 
 div.modal .modal-header .close {
   line-height: 20px;
@@ -1233,6 +1239,8 @@ body.detail section.main div.inner {
         height: 23px; }
     body.detail section.main div.inner section.snipts article.snipt aside {
       margin-right: 0; }
+  body.detail section.main div.inner section.snipts article.editing div.container {
+    width: 100%; }
 body.detail div.rochester-made {
   width: 840px; }
 
