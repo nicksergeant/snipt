@@ -795,6 +795,18 @@ div.pagination {
             a {
                 color: #3BAAF3;
             }
+            &.next {
+                a {
+                    line-height: 33px;
+                    padding-bottom: 1px;
+                }
+            }
+            &.prev {
+                a {
+                    line-height: 33px;
+                    padding-bottom: 1px;
+                }
+            }
         }
     }
 }

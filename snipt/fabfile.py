@@ -42,6 +42,7 @@ def deployapp(m):
         pass
     local('hg push')
     local('git push -f heroku')
+    local('heroku restart')
 
 def deploy(m):
     staticfiles()
