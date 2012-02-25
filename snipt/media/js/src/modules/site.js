@@ -15,6 +15,8 @@
             this.$search_query = $('input#search-query', this.$el);
             this.$snipts = $('section#snipts article.snipt', this.$el);
             this.$modals = $('div.modal', this.$snipts);
+            this.$main_edit = $('section#main-edit');
+            this.$main = $('section#main');
 
             this.keyboardShortcuts();
             this.inFieldLabels();
