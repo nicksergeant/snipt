@@ -1007,3 +1007,11 @@ body.api-contest {
         }
     }
 }
+body.editing {
+    header.main, header.sub {
+        display: none;
+    }
+    article.editing {
+        margin-top: 50px;
+    }
+}

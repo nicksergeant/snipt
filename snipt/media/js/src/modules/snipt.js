@@ -66,7 +66,7 @@
                     snipt: this.model.toJSON()
                 });
                 window.site.$main.hide();
-                window.site.$el.addClass('detail');
+                window.site.$el.addClass('detail editing');
                 window.site.$main_edit.html(editPane).show();
                 window.scrollTo(0, 0);
             }
@@ -293,6 +293,7 @@
                         window.site.$el.removeClass('detail');
                     }
                     window.site.$main_edit.hide();
+                    window.site.$el.removeClass('editing');
                     window.site.$main.show();
                     if (window.site.$snipts.index($selected) === 0) {
                         window.scrollTo(0, 0);
