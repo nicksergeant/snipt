@@ -3,12 +3,14 @@
 
     var Snipt = snipt.module('snipt');
 
-    SiteView = Backbone.View.extend({
+    Site.SiteView = Backbone.View.extend({
         el: 'body',
 
         initialize: function(opts) {
 
             this.$el = $(this.el);
+            this.$html = $('html');
+            this.$html_body = this.$el.add(this.$html);
             this.$search_form = $('form.search', this.$el);
             this.$search_query = $('input#search-query', this.$el);
             this.$snipts = $('section#snipts article.snipt', this.$el);
@@ -18,8 +20,8 @@
             this.inFieldLabels();
 
             if (this.$snipts.length) {
-                SniptListView = Snipt.Views.SniptListView;
-                SniptList = new SniptListView({ 'snipts': this.$snipts });
+                var SniptListView = Snipt.SniptListView;
+                this.snipt_list = new SniptListView({ 'snipts': this.$snipts });
 
                 $('body').click(function() {
                     if (window.$selected && !$('div.modal-body:visible', window.site.$modals).length) {
@@ -88,8 +90,5 @@
             });
         }
     });
-    Site.Views = {
-        'SiteView': SiteView
-    };
 
 })(snipt.module('site'));

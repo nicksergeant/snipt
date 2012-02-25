@@ -8,14 +8,14 @@ var snipt = {
                 return modules[name];
             }
 
-            return modules[name] = { Views: {} };
+            return modules[name] = {};
         };
     }()
 };
 
 jQuery(function($) {
 
-    var SiteView = snipt.module('site').Views.SiteView;
+    var SiteView = snipt.module('site').SiteView;
     window.site = new SiteView();
 
 });

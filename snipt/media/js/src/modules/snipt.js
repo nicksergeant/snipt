@@ -1,9 +1,9 @@
 
 (function(Snipt) {
 
-    SniptModel = Backbone.Model.extend({
+    Snipt.SniptModel = Backbone.Model.extend({
     });
-    SniptView = Backbone.View.extend({
+    Snipt.SniptView = Backbone.View.extend({
 
         tagName: 'article',
 
@@ -66,7 +66,7 @@
                     snipt: this.model.toJSON()
                 });
                 $('section#main').hide();
-                $('body').addClass('detail');
+                window.site.$el.addClass('detail');
                 $('section#main-edit').html(editPane).show();
                 window.scrollTo(0, 0);
             }
@@ -159,20 +159,20 @@
             }
 
             $('script#disqus').remove();
-            $('body').append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
+            window.site.$el.append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
 
             return this;
         },
         select: function(fromClick) {
 
-            $('article.selected', SniptList.$el).removeClass('selected');
+            $('article.selected', window.site.snipt_list.$el).removeClass('selected');
             this.$el.addClass('selected');
 
             if (fromClick !== true) {
-                if (SniptList.$snipts.index(this.$el) === 0) {
+                if (window.site.$snipts.index(this.$el) === 0) {
                     window.scrollTo(0, 0);
                 } else {
-                    $('html, body').animate({
+                    window.site.$html_body.animate({
                         scrollTop: this.$el.offset().top - 50
                     }, 0);
                 }
@@ -185,13 +185,12 @@
             e.stopPropagation();
         }
     });
-    SniptListView = Backbone.View.extend({
+    Snipt.SniptListView = Backbone.View.extend({
         el: 'section#snipts',
 
         initialize: function(opts) {
 
-            this.$snipts = opts.snipts;
-            this.$snipts.each(this.addExistingSnipt);
+            opts.snipts.each(this.addExistingSnipt);
             this.$el = $(this.el);
 
             this.keyboardShortcuts();
@@ -251,9 +250,9 @@
                 }
             };
 
-            var view = new SniptView({
+            var view = new Snipt.SniptView({
                 el: this,
-                model: new SniptModel(data)
+                model: new Snipt.SniptModel(data)
             });
         },
         keyboardShortcuts: function() {
@@ -263,14 +262,14 @@
 
             $document.bind('keydown', 'j', function() {
                 if (!$selected) {
-                    SniptList.$snipts.eq(0).trigger('selectSnipt');
+                    window.site.$snipts.eq(0).trigger('selectSnipt');
                 } else {
                     $selected.trigger('next');
                 }
             });
             $document.bind('keydown', 'k', function() {
                 if (!$selected) {
-                    SniptList.$snipts.eq(0).trigger('selectSnipt');
+                    window.site.$snipts.eq(0).trigger('selectSnipt');
                 } else {
                     $selected.trigger('prev');
                 }
@@ -290,15 +289,15 @@
             });
             $document.bind('keydown', 'esc', function() {
                 if ($('section#main-edit:visible').length) {
-                    if (!$('html').hasClass('detail')) {
-                        $('body').removeClass('detail');
+                    if (!window.site.$html.hasClass('detail')) {
+                        window.site.$el.removeClass('detail');
                     }
                     $('section#main-edit').hide();
                     $('section#main').show();
-                    if (SniptList.$snipts.index($selected) === 0) {
+                    if (window.site.$snipts.index($selected) === 0) {
                         window.scrollTo(0, 0);
                     } else {
-                        $('html, body').animate({
+                        window.site.$html_body.animate({
                             scrollTop: $selected.offset().top - 50
                         }, 0);
                     }
@@ -361,8 +360,5 @@
             });
         }
     });
-    Snipt.Views = {
-        'SniptListView': SniptListView
-    };
 
 })(snipt.module('snipt'));
