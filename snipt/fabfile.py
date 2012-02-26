@@ -27,6 +27,8 @@ def staticfiles():
         '%s/media/js/src/modules/*.js' % BASE_PATH,
         '%s/media/js/libs/e_bootstrap.js' % BASE_PATH,
         '%s/media/js/libs/ace/ace.js' % BASE_PATH,
+        '%s/media/js/libs/ace/theme-tomorrow.js' % BASE_PATH,
+        '%s/media/js/libs/ace/mode-javascript.js' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
     local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --ignore ace --noinput' % BASE_PATH)
