@@ -37,7 +37,9 @@
         },
 
         copy: function() {
-            if (!this.$copyModal.is(':visible')) {
+            if (!window.ui_halted) {
+                window.ui_halted = true;
+
                 this.$copyModalBody.append('<textarea class="raw"></textarea>');
                 $textarea = $('textarea.raw', this.$copyModalBody).val(this.model.get('code'));
 
@@ -60,13 +62,13 @@
             window.location = this.model.get('get_absolute_url');
         },
         edit: function() {
-            if (!window.site.$main_edit.is(':visible')) {
+            if (!window.ui_halted) {
                 this.select();
                 var editPane = this.editTemplate({
                     snipt: this.model.toJSON()
                 });
                 window.site.$main.hide();
-                window.site.$el.addClass('detail editing');
+                window.site.$body.addClass('detail editing');
                 window.site.$main_edit.html(editPane).show();
 
                 window.editor = ace.edit('editor');
@@ -76,11 +78,15 @@
                 window.editor.getSession().setMode(new JavaScriptMode());
 
                 window.scrollTo(0, 0);
+
+                window.ui_halted = true;
             }
             return false;
         },
         embed: function() {
-            if (!this.$embedModal.is(':visible')) {
+            if (!window.ui_halted) {
+                window.ui_halted = true;
+
                 this.$embedModalBody.append('<textarea class="raw"></textarea>');
                 $textarea = $('textarea.raw', this.$embedModalBody).val('<script type="text/javascript">' + this.model.get('embed_url') + '</script>');
 
@@ -117,13 +123,17 @@
 
             this.$copyModal.on('hidden', function(e) {
                 $(this).parent().trigger('copyClose');
+                window.ui_halted = false;
+                window.from_modal = true;
             });
             this.$embedModal.on('hidden', function(e) {
                 $(this).parent().trigger('embedClose');
+                window.ui_halted = false;
+                window.from_modal = true;
             });
         },
         next: function() {
-            if (!$('div.modal-body:visible', window.site.$modals).length) {
+            if (!window.ui_halted) {
                 nextSnipt = this.$el.next('article.snipt');
                 if (nextSnipt.length) {
                     return nextSnipt.trigger('selectSnipt');
@@ -131,7 +141,7 @@
             }
         },
         prev: function() {
-            if (!$('div.modal-body:visible', window.site.$modals).length) {
+            if (!window.ui_halted) {
                 prevSnipt = this.$el.prev('article.snipt');
                 if (prevSnipt.length) {
                     return prevSnipt.trigger('selectSnipt');
@@ -166,7 +176,7 @@
             }
 
             $('script#disqus').remove();
-            window.site.$el.append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
+            window.site.$body.append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
 
             return this;
         },
@@ -268,104 +278,130 @@
             $document = $(document);
 
             $document.bind('keydown', 'j', function() {
-                if (!$selected) {
-                    window.site.$snipts.eq(0).trigger('selectSnipt');
-                } else {
-                    $selected.trigger('next');
+                if (!window.ui_halted) {
+                    if (!$selected) {
+                        window.site.$snipts.eq(0).trigger('selectSnipt');
+                    } else {
+                        $selected.trigger('next');
+                    }
                 }
             });
             $document.bind('keydown', 'k', function() {
-                if (!$selected) {
-                    window.site.$snipts.eq(0).trigger('selectSnipt');
-                } else {
-                    $selected.trigger('prev');
+                if (!window.ui_halted) {
+                    if (!$selected) {
+                        window.site.$snipts.eq(0).trigger('selectSnipt');
+                    } else {
+                        $selected.trigger('prev');
+                    }
                 }
             });
             $document.bind('keydown', 'c', function(e) {
-                if ($selected) {
-                    e.preventDefault();
-                    $selected.trigger('copyRaw');
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        e.preventDefault();
+                        $selected.trigger('copyRaw');
+                    }
                 }
             });
             $document.bind('keydown', 'Ctrl+e', function() {
-                if ($selected) {
-                    if ($selected.hasClass('editable')) {
-                        $selected.trigger('edit');
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        if ($selected.hasClass('editable')) {
+                            $selected.trigger('edit');
+                        }
                     }
                 }
             });
             $document.bind('keydown', 'esc', function() {
-                if (window.site.$main_edit.is(':visible')) {
-                    if (!window.site.$html.hasClass('detail')) {
-                        window.site.$el.removeClass('detail');
-                    }
-                    window.site.$main_edit.hide();
-                    window.site.$el.removeClass('editing');
-                    window.site.$main.show();
-                    if (window.$selected) {
-                        if (window.site.$snipts.index($selected) === 0) {
-                            window.scrollTo(0, 0);
-                        } else {
-                            window.site.$html_body.animate({
-                                scrollTop: $selected.offset().top - 50
-                            }, 0);
+                if (!window.ui_halted) {
+                    if (window.site.$main_edit.is(':visible')) {
+                        if (!window.site.$html.hasClass('detail')) {
+                            window.site.$body.removeClass('detail');
                         }
-                    }
-                } else {
-                    if ($selected) {
-                        $selected.trigger('deselect');
+                        window.site.$main_edit.hide();
+                        window.site.$body.removeClass('editing');
+                        window.site.$main.show();
+                        if (window.$selected) {
+                            if (window.site.$snipts.index($selected) === 0) {
+                                window.scrollTo(0, 0);
+                            } else {
+                                window.site.$html_body.animate({
+                                    scrollTop: $selected.offset().top - 50
+                                }, 0);
+                            }
+                        }
+                    } else {
+                        if ($selected) {
+                            $selected.trigger('deselect');
+                        }
                     }
                 }
             });
             $document.bind('keydown', 'g', function() {
-                if (window.$selected) {
-                    window.$selected.trigger('deselect');
+                if (!window.ui_halted) {
+                    if (window.$selected) {
+                        window.$selected.trigger('deselect');
+                    }
+                    window.scrollTo(0, 0);
                 }
-                window.scrollTo(0, 0);
             });
             $document.bind('keydown', 'Shift+g', function() {
-                if (window.$selected) {
-                    window.$selected.trigger('deselect');
+                if (!window.ui_halted) {
+                    if (window.$selected) {
+                        window.$selected.trigger('deselect');
+                    }
+                    window.scrollTo(0, document.body.scrollHeight);
                 }
-                window.scrollTo(0, document.body.scrollHeight);
             });
             $document.bind('keydown', 'n', function() {
-                var $anc = $('li.next a');
-                if ($anc.length) {
-                    if ($anc.attr('href') !== '#') {
-                        window.location = $anc.attr('href');
+                if (!window.ui_halted) {
+                    var $anc = $('li.next a');
+                    if ($anc.length) {
+                        if ($anc.attr('href') !== '#') {
+                            window.location = $anc.attr('href');
+                        }
                     }
                 }
             });
             $document.bind('keydown', 'e', function() {
-                if ($selected) {
-                    if ($selected.hasClass('expandable')) {
-                        $selected.trigger('expand');
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        if ($selected.hasClass('expandable')) {
+                            $selected.trigger('expand');
+                        }
                     }
                 }
             });
             $document.bind('keydown', 'p', function() {
-                var $anc = $('li.prev a');
-                if ($anc.length) {
-                    if ($anc.attr('href') !== '#') {
-                        window.location = $anc.attr('href');
+                if (!window.ui_halted) {
+                    var $anc = $('li.prev a');
+                    if ($anc.length) {
+                        if ($anc.attr('href') !== '#') {
+                            window.location = $anc.attr('href');
+                        }
                     }
                 }
             });
             $document.bind('keydown', 'v', function(e) {
-                if ($selected) {
-                    e.preventDefault();
-                    $selected.trigger('embed');
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        e.preventDefault();
+                        $selected.trigger('embed');
+                    }
                 }
             });
             $document.bind('keydown', 'o', function() {
-                if ($selected) {
-                    $selected.trigger('detail');
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        $selected.trigger('detail');
+                    }
                 }
             });
             $document.bind('keydown', 'return', function() {
-                if ($selected) {
-                    $selected.trigger('detail');
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        $selected.trigger('detail');
+                    }
                 }
             });
         }

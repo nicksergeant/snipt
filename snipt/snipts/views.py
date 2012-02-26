@@ -69,6 +69,8 @@ def list_user(request, username, tag_slug=None):
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):
 
+    # TODO: Handle private snipts!
+
     snipt = get_object_or_404(Snipt, user__username=username, slug=snipt_slug)
     user = snipt.user
     tags = Tag.objects
@@ -89,3 +91,7 @@ def detail(request, username, snipt_slug):
         'tags': tags,
         'user': user,
     }
+
+def embed(request, snipt_key):
+    # TODO
+    return {}
