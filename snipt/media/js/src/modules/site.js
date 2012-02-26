@@ -95,7 +95,7 @@
                     history.go(1);
                 }
             });
-            $('input').bind('keydown', 'esc', function(e) {
+            this.$search_query.bind('keydown', 'esc', function(e) {
                 if (!window.ui_halted) {
                     e.preventDefault();
                     this.blur();

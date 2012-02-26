@@ -76,9 +76,17 @@
                 window.editor.renderer.setShowGutter(false);
                 var JavaScriptMode = require('ace/mode/javascript').Mode;
                 window.editor.getSession().setMode(new JavaScriptMode());
+                
+                window.editor.$textarea = $('textarea', window.editor.container);
+                window.editor.focus();
+                window.editor.$textarea.bind('keydown', 'esc', function(e) {
+                    $(this).blur();
+                    return false;
+                });
 
                 window.scrollTo(0, 0);
 
+                window.editing = true;
                 window.ui_halted = true;
             }
             return false;
@@ -243,7 +251,7 @@
             }
 
             var data = {
-                code: $('div.raw', $el).text(),
+                code: $('div.raw', $el).html(),
                 created: $created.attr('title'),
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
@@ -313,24 +321,26 @@
                 }
             });
             $document.bind('keydown', 'esc', function() {
-                if (!window.ui_halted) {
-                    if (window.site.$main_edit.is(':visible')) {
-                        if (!window.site.$html.hasClass('detail')) {
-                            window.site.$body.removeClass('detail');
-                        }
-                        window.site.$main_edit.hide();
-                        window.site.$body.removeClass('editing');
-                        window.site.$main.show();
-                        if (window.$selected) {
-                            if (window.site.$snipts.index($selected) === 0) {
-                                window.scrollTo(0, 0);
-                            } else {
-                                window.site.$html_body.animate({
-                                    scrollTop: $selected.offset().top - 50
-                                }, 0);
-                            }
-                        }
+                if (window.editing) {
+                    if (!window.site.$html.hasClass('detail')) {
+                        window.site.$body.removeClass('detail');
+                    }
+                    window.site.$main_edit.hide();
+                    window.site.$body.removeClass('editing');
+                    window.site.$main.show();
+
+                    window.editing = true;
+                    window.ui_halted = false;
+
+                    if (window.site.$snipts.index(window.$selected) === 0) {
+                        window.scrollTo(0, 0);
                     } else {
+                        window.site.$html_body.animate({
+                            scrollTop: window.$selected.offset().top - 50
+                        }, 0);
+                    }
+                } else {
+                    if (!window.ui_halted) {
                         if ($selected) {
                             $selected.trigger('deselect');
                         }

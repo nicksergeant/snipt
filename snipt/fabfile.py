@@ -29,7 +29,7 @@ def staticfiles():
         '%s/media/js/libs/ace/ace.js' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
-    local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --noinput' % BASE_PATH)
+    local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --ignore ace --noinput' % BASE_PATH)
 
 def deployapp(m):
     try:

@@ -1309,6 +1309,25 @@ body.api-contest a.aea {
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); }
   body.api-contest a.aea img {
     display: block; }
+
+body.editing header.main, body.editing header.sub {
+  display: none; }
+body.editing article.editing {
+  margin-top: 50px; }
+  body.editing article.editing div.container section.code {
+    padding: 13px 11px; }
+    body.editing article.editing div.container section.code div#editor {
+      border: none;
+      font: normal 12px/16px Consolas, Menlo, "Courier New", monospace;
+      font-weight: normal !important;
+      height: 400px;
+      margin: 0;
+      position: relative;
+      width: 100%; }
+      body.editing article.editing div.container section.code div#editor .ace_print_margin {
+        display: none; }
+  body.editing article.editing div.container:after {
+    display: none; }
 .autumn { background-color: #FFF; color: #000; }
 .autumn .hll { background-color: #ffffcc }
 .autumn .c { color: #aaaaaa; font-style: italic } /* Comment */
