@@ -18,17 +18,23 @@ def staticfiles():
     
     # JS
     js = [
-        '%s/media/js/libs/a_underscore.js' % BASE_PATH,
-        '%s/media/js/libs/b_jquery.js' % BASE_PATH,
-        '%s/media/js/libs/c_json2.js' % BASE_PATH,
-        '%s/media/js/libs/d_backbone.js' % BASE_PATH,
-        '%s/media/js/plugins/*.js' % BASE_PATH,
-        '%s/media/js/src/*.js' % BASE_PATH,
-        '%s/media/js/src/modules/*.js' % BASE_PATH,
-        '%s/media/js/libs/e_bootstrap.js' % BASE_PATH,
+        '%s/media/js/libs/underscore.js' % BASE_PATH,
+        '%s/media/js/libs/jquery.js' % BASE_PATH,
+        '%s/media/js/libs/json2.js' % BASE_PATH,
+        '%s/media/js/libs/backbone.js' % BASE_PATH,
+        '%s/media/js/libs/bootstrap.js' % BASE_PATH,
+
+        '%s/media/js/plugins/jquery.hotkeys.js' % BASE_PATH,
+        '%s/media/js/plugins/jquery.infieldlabel.js' % BASE_PATH,
+        '%s/media/js/plugins/jquery.ui.js' % BASE_PATH,
+
         '%s/media/js/libs/ace/ace.js' % BASE_PATH,
         '%s/media/js/libs/ace/theme-tomorrow.js' % BASE_PATH,
         '%s/media/js/libs/ace/mode-javascript.js' % BASE_PATH,
+
+        '%s/media/js/src/application.js' % BASE_PATH,
+        '%s/media/js/src/modules/site.js' % BASE_PATH,
+        '%s/media/js/src/modules/snipt.js' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
     local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --ignore ace --noinput' % BASE_PATH)
