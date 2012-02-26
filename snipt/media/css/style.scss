@@ -1013,5 +1013,28 @@ body.editing {
     }
     article.editing {
         margin-top: 50px;
+
+        div.container {
+            section.code {
+                padding: 13px 12px;
+
+                div#editor {
+                    border: none;
+                    font: normal 12px/16px $Consolas;
+                    font-weight: normal !important;
+                    height: 400px;
+                    margin: 0;
+                    position: relative;
+                    width: 100%;
+
+                   .ace_print_margin {
+                        display: none;
+                    }
+                }
+            }
+            &:after {
+                display: none;
+            }
+        }
     }
 }

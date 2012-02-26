@@ -68,6 +68,13 @@
                 window.site.$main.hide();
                 window.site.$el.addClass('detail editing');
                 window.site.$main_edit.html(editPane).show();
+
+                window.editor = ace.edit('editor');
+                window.editor.setTheme('ace/theme/tomorrow');
+                window.editor.renderer.setShowGutter(false);
+                var JavaScriptMode = require('ace/mode/javascript').Mode;
+                window.editor.getSession().setMode(new JavaScriptMode());
+
                 window.scrollTo(0, 0);
             }
             return false;
@@ -295,12 +302,14 @@
                     window.site.$main_edit.hide();
                     window.site.$el.removeClass('editing');
                     window.site.$main.show();
-                    if (window.site.$snipts.index($selected) === 0) {
-                        window.scrollTo(0, 0);
-                    } else {
-                        window.site.$html_body.animate({
-                            scrollTop: $selected.offset().top - 50
-                        }, 0);
+                    if (window.$selected) {
+                        if (window.site.$snipts.index($selected) === 0) {
+                            window.scrollTo(0, 0);
+                        } else {
+                            window.site.$html_body.animate({
+                                scrollTop: $selected.offset().top - 50
+                            }, 0);
+                        }
                     }
                 } else {
                     if ($selected) {

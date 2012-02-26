@@ -27,6 +27,7 @@
 
                 $('body').click(function() {
                     if (window.$selected && !$('div.modal-body:visible', window.site.$modals).length) {
+                        // TODO: Need a unified "disable KB shortcuts here"
                         window.$selected.trigger('deselect');
                     }
                 });

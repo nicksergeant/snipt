@@ -26,6 +26,7 @@ def staticfiles():
         '%s/media/js/src/*.js' % BASE_PATH,
         '%s/media/js/src/modules/*.js' % BASE_PATH,
         '%s/media/js/libs/e_bootstrap.js' % BASE_PATH,
+        '%s/media/js/libs/ace/ace.js' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
     local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --noinput' % BASE_PATH)

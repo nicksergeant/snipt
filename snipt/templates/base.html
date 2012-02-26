@@ -24,6 +24,9 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/mode-javascript.js"></script>
     {% else %}
     <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
@@ -319,7 +322,9 @@
                                             <h2><%= snipt.lexer_name %></h2>
                                             <h1><a href="<%= snipt.get_absolute_url %>"><%= snipt.title %></a></h1>
                                         </header>
-                                        <textarea><%= snipt.code %></textarea>
+                                        <section class="code">
+                                            <div id="editor"><%= snipt.code %></div>
+                                        </section>
                                         <div class="ruler top-x"></div>
                                         <div class="ruler bottom-x"></div>
                                     </div>
