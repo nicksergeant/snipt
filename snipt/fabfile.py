@@ -28,10 +28,6 @@ def staticfiles():
         '%s/media/js/plugins/jquery.infieldlabel.js' % BASE_PATH,
         '%s/media/js/plugins/jquery.ui.js' % BASE_PATH,
 
-        '%s/media/js/libs/ace/ace.js' % BASE_PATH,
-        '%s/media/js/libs/ace/theme-tomorrow.js' % BASE_PATH,
-        '%s/media/js/libs/ace/mode-javascript.js' % BASE_PATH,
-
         '%s/media/js/src/application.js' % BASE_PATH,
         '%s/media/js/src/modules/site.js' % BASE_PATH,
         '%s/media/js/src/modules/snipt.js' % BASE_PATH,

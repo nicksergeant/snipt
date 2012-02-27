@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
-    {% if deg %}
+    {% if dbug %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
@@ -33,6 +33,10 @@
     {% else %}
     <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/mode-javascript.js"></script>
+
 {% endif %}<script type="text/javascript">{% block js %}window.user = '{{ request.user.username }}';
         window.pub = {{ public|lower }};{% endblock %}    </script>
 
