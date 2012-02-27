@@ -1326,7 +1326,7 @@ jQuery(function($) {
                 window.site.$body.addClass('detail editing');
                 window.site.$main_edit.html(editPane).show();
 
-                // TODO: Grab height of window and set to #editor first.
+                $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
                 window.editor = ace.edit('editor');
                 window.editor.setTheme('ace/theme/tomorrow');
                 window.editor.renderer.setShowGutter(false);

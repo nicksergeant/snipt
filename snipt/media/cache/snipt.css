@@ -1342,7 +1342,6 @@ body.editing article.editing {
       border: none;
       font: normal 12px/16px Consolas, Menlo, "Courier New", monospace;
       font-weight: normal !important;
-      height: 400px;
       margin: 0;
       position: relative;
       width: 100%; }
