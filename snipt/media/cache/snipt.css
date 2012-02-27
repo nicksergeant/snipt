@@ -859,6 +859,19 @@ section.main {
           text-decoration: none; }
           section.main aside.main section.ad div.meta a:hover {
             text-decoration: underline; }
+      section.main aside.main section.ad.coffee {
+        margin-bottom: 27px; }
+        section.main aside.main section.ad.coffee p {
+          margin: 7px 0 0 0; }
+        section.main aside.main section.ad.coffee > div {
+          height: auto !important;
+          margin-bottom: 0 !important; }
+          section.main aside.main section.ad.coffee > div div:nth-child(1) {
+            margin-bottom: 6px !important; }
+          section.main aside.main section.ad.coffee > div div:nth-child(2) {
+            font: normal 11px/12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+            height: 12px;
+            margin: 0 !important; }
     section.main aside.main section.tags {
       margin: 0 15px 45px 15px; }
       section.main aside.main section.tags h1 {
