@@ -23,23 +23,19 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.hotkeys.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.ui.js"></script>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/mode-javascript.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/worker-javascript.js"></script>
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
+
     {% else %}
     <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/mode-javascript.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/worker-javascript.js"></script>
 
-{% endif %}<script type="text/javascript">{% block js %}window.user = '{{ request.user.username }}';
+{% endif %}<script type="text/javascript" src="/media/js/libs/ace/ace.js"></script>
+    <script type="text/javascript" src="/media/js/libs/ace/theme-tomorrow.js"></script>
+    <script type="text/javascript" src="/media/js/libs/ace/mode-javascript.js"></script>
+
+    <script type="text/javascript">{% block js %}window.user = '{{ request.user.username }}';
         window.pub = {{ public|lower }};{% endblock %}    </script>
 
     <!--[if IE]>
