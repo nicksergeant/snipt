@@ -43,9 +43,9 @@ urlpatterns = patterns('',
         name='registration_register'),
     url(r'', include('registration.backends.default.urls')),
 
-    url(r'^', include('snipts.urls')),
-
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT,
     }),
+
+    url(r'^', include('snipts.urls')),
 )
