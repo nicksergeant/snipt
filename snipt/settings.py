@@ -69,6 +69,7 @@ if DEBUG:
     STATIC_URL = '/media/'
 else:
     STATIC_URL = 'https://snipt.s3.amazonaws.com/'
+HEROKU_STATIC_URL = '/media/'
 
 # S3 Settings
 AWS_ACCESS_KEY_ID = 'AKIAJTFDHBCXHJLXINKQ'

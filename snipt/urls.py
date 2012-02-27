@@ -22,6 +22,11 @@ private_api.register(PrivateTagResource())
 private_api.register(PrivateUserResource())
 
 urlpatterns = patterns('',
+
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.HEROKU_STATIC_URL,
+    }),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 
@@ -42,10 +47,6 @@ urlpatterns = patterns('',
         },
         name='registration_register'),
     url(r'', include('registration.backends.default.urls')),
-
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.MEDIA_ROOT,
-    }),
 
     url(r'^', include('snipts.urls')),
 )
