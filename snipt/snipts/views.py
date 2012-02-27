@@ -1,14 +1,11 @@
 from django.shortcuts import get_object_or_404, render_to_response
-from django.http import Http404, HttpResponseRedirect
-from pygments.formatters import HtmlFormatter
-from pygments.lexers import get_lexer_by_name
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from annoying.decorators import render_to
 from snipts.models import Favorite, Snipt
 from django.db.models import Count
 from django.db.models import Q
-from pygments import highlight
 from taggit.models import Tag
 
 def home(request):
@@ -97,16 +94,14 @@ def detail(request, username, snipt_slug):
     }
 
 def embed(request, snipt_key):
-    try:
-        snipt = Snipt.objects.get(key=snipt_key)
-        snipt.code_stylized = highlight(snipt.code.replace("\\\"","\\\\\""), get_lexer_by_name(snipt.lexer, encoding='UTF-8'), HtmlFormatter(style="native", noclasses=True, prestyles="-moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px; margin: 0; display: block; font: 11px Monaco, monospace !important; padding: 15px; background-color: #1C1C1C; overflow: auto; color: #D0D0D0;"))
-        snipt.code_stylized = snipt.code_stylized.split('\n')
-        snipt.referer = request.META.get('HTTP_REFERER', '')
-        i = 0;
-        for sniptln in snipt.code_stylized:
-            snipt.code_stylized[i] = snipt.code_stylized[i].replace(" font-weight: bold", " font-weight: normal").replace('\'','\\\'').replace('\\n','\\\\n').replace("\\x", "\\\\x").replace('\\&#39;', '\\\\&#39;').replace('\\s', '\\\\s')
-            i = i + 1
-    except Snipt.DoesNotExist:
-        raise Http404
+    snipt = get_object_or_404(Snipt, key=snipt_key)
 
-    return render_to_response('snipts/embed.html', locals(), context_instance=RequestContext(request), mimetype="application/javascript")
+    # TODO: Remove these two lines
+    if not snipt.embedded:
+        snipt.save()
+
+    lines = snipt.embedded.split('\n')
+    return render_to_response('snipts/embed.html',
+                              {'lines': lines, 'snipt': snipt},
+                              context_instance=RequestContext(request),
+                              mimetype='application/javascript')

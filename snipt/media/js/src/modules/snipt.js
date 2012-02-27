@@ -97,7 +97,7 @@
                 window.ui_halted = true;
 
                 this.$embedModalBody.append('<textarea class="raw"></textarea>');
-                $textarea = $('textarea.raw', this.$embedModalBody).val('<script type="text/javascript">' + this.model.get('embed_url') + '</script>');
+                $textarea = $('textarea.raw', this.$embedModalBody).val('<script type="text/javascript" src="' + this.model.get('embed_url') + '"></script>');
 
                 this.$embedModal.modal('show');
                 $textarea.select();

@@ -29,6 +29,7 @@ class Snipt(models.Model):
     lexer      = models.CharField(max_length=50)
     code       = models.TextField()
     stylized   = models.TextField(blank=True, null=True)
+    embedded   = models.TextField(blank=True, null=True)
     line_count = models.IntegerField(blank=True, null=True, default=None)
 
     key      = models.CharField(max_length=100, blank=True, null=True)
@@ -50,6 +51,32 @@ class Snipt(models.Model):
                                   get_lexer_by_name(self.lexer, encoding='UTF-8'),
                                   HtmlFormatter())
         self.line_count = len(self.code.split('\n'))
+
+        embedded = highlight(self.code,
+                             get_lexer_by_name(self.lexer, encoding='UTF-8'),
+                             HtmlFormatter(
+                                 style='native',
+                                 noclasses=True,
+                                 prestyles="""
+                                     background-color: #1C1C1C;
+                                     border-radius: 5px;
+                                     color: #D0D0D0;
+                                     display: block;
+                                     font: 11px Monaco, monospace !important;
+                                     margin: 0;
+                                     overflow: auto;
+                                     padding: 15px;
+                                     -webkit-border-radius: 5px;
+                                     -moz-border-radius: 5px;
+                                     """))
+        embedded = (embedded.replace("\\\"","\\\\\"")
+                            .replace('\'','\\\'')
+                            .replace('\\n','\\\\n')
+                            .replace("\\x", "\\\\x")
+                            .replace('\\&#39;', '\\\\&#39;')
+                            .replace('\\s', '\\\\s')
+                            .replace('background: #202020', ''))
+        self.embedded = embedded
 
         return super(Snipt, self).save(*args, **kwargs)
 
