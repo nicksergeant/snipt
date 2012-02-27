@@ -6,7 +6,7 @@
         <div class="container">
             <header>
                 <h2>{{ snipt.lexer_name }}</h2>
-                <h1><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></h1>
+                <h1><a href="{{ snipt.get_absolute_url }}{% if not snipt.public %}?key={{ snipt.key }}{% endif %}">{{ snipt.title }}</a></h1>
             </header>
             <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
                 {{ snipt.stylized|safe }}
@@ -56,7 +56,7 @@
         <ul class="attrs">
             <li class="author"><a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a></li>
             <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturalday }}</li>
-            <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
+            <li class="comments"><a href="{{ snipt.get_full_absolute_url }}{% if not snipt.public %}?key={{ snipt.key }}{% endif %}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
         </ul>
     </footer>
     <div class="modal hide copy-modal">

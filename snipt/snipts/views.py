@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render_to_response
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from annoying.decorators import render_to
@@ -70,10 +70,17 @@ def list_user(request, username, tag_slug=None):
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):
 
-    # TODO: Handle private snipts!
-
     snipt = get_object_or_404(Snipt, user__username=username, slug=snipt_slug)
     user = snipt.user
+
+    if user != request.user:
+        if not snipt.public:
+            if 'key' not in request.GET:
+                raise Http404
+            else:
+                if request.GET.get('key') != snipt.key:
+                    raise Http404
+
     tags = Tag.objects
 
     if user == request.user:
