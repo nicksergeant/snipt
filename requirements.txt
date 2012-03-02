@@ -13,6 +13,7 @@ django-templatetag-sugar
 gunicorn
 johnny-cache
 lxml
+newrelic
 psycopg2
 Pygments
 python-memcached
