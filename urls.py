@@ -23,10 +23,6 @@ private_api.register(PrivateUserResource())
 
 urlpatterns = patterns('',
 
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.HEROKU_STATIC_URL,
-    }),
-
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 

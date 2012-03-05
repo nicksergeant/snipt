@@ -7,8 +7,8 @@ def staticfiles():
 
     # CSS
     local('sass %s/media/css/style.scss %s/media/css/style.css' % (BASE_PATH, BASE_PATH))
-    local('sed -i -e \'s/\/media\//https:\/\/snipt.s3.amazonaws.com\//g\' %s/media/css/style.css' % BASE_PATH)
-    local('rm %s/media/css/style.css-e' % BASE_PATH)
+    #local('sed -i -e \'s/\/media\//https:\/\/snipt.s3.amazonaws.com\//g\' %s/media/css/style.css' % BASE_PATH)
+    #local('rm %s/media/css/style.css-e' % BASE_PATH)
     css = [
         '%s/media/css/bootstrap.css' % BASE_PATH,
         '%s/media/css/style.css' % BASE_PATH,
@@ -46,8 +46,8 @@ def deployapp(m):
     except:
         pass
     local('hg push')
-    local('git push -f heroku')
-    local('heroku restart')
+    #local('git push -f heroku')
+    #local('heroku restart')
 
 def deploy(m):
     staticfiles()
@@ -55,5 +55,5 @@ def deploy(m):
 
 def deployall(m):
     deploy(m)
-    local('heroku run bin/python snipt/manage.py syncdb')
-    local('heroku run bin/python snipt/manage.py migrate')
+    #local('heroku run bin/python snipt/manage.py syncdb')
+    #local('heroku run bin/python snipt/manage.py migrate')

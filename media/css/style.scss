@@ -55,7 +55,7 @@ $Consolas: Consolas, Menlo, "Courier New", monospace;
 
 // Page
 html, body {
-    background: #F5F2F3 url('/media/images/bg.gif') top left repeat;
+    background: #F5F2F3 url('/static/images/bg.gif') top left repeat;
 }
 body {
     color: #666;
@@ -81,7 +81,7 @@ body {
 
 // Global
 header.main {
-    background: #12343D url('/media/images/header-bg.gif') top left repeat-x;
+    background: #12343D url('/static/images/header-bg.gif') top left repeat-x;
     border-bottom: 1px solid #DDDDDD;
     height: 66px;
     position: relative;
@@ -95,7 +95,7 @@ header.main {
         width: 939px;
 
         div.shadey {
-            background: transparent url('/media/images/header-inner-bg.png') top left no-repeat;
+            background: transparent url('/static/images/header-inner-bg.png') top left no-repeat;
             height: 65px;
             left: -157px;
             position: absolute;
@@ -109,7 +109,7 @@ header.main {
             z-index: 50;
             
             a {
-                background: transparent url('/media/images/logo.png') top left no-repeat;
+                background: transparent url('/static/images/logo.png') top left no-repeat;
                 display: block;
                 float: left;
                 height: 35px;
@@ -142,8 +142,8 @@ header.main {
                     width: auto;
                 }
                 input {
-                    background: #17484F url('/media/images/search-icon.png') top left no-repeat;
-                    background: rgba(43, 82, 93, .5) url('/media/images/search-icon.png') 8px center no-repeat;
+                    background: #17484F url('/static/images/search-icon.png') top left no-repeat;
+                    background: rgba(43, 82, 93, .5) url('/static/images/search-icon.png') 8px center no-repeat;
                     border: 1px solid #3A5E67;
                     color: #FFF;
                     font: normal 12px $Helvetica;
@@ -357,7 +357,7 @@ section.main {
             margin: 0 15px 45px 15px;
 
             h1 {
-                background: transparent url('/media/images/tags-icon.png') 0 0 no-repeat;
+                background: transparent url('/static/images/tags-icon.png') 0 0 no-repeat;
                 color: #3BAAF3;
                 font: bold 12px $Helvetica;
                 padding-bottom: 5px;
@@ -398,7 +398,7 @@ section.main {
                 margin: 0;
 
                 li {
-                    background: transparent url('/media/images/api-icon.png') center left no-repeat;
+                    background: transparent url('/static/images/api-icon.png') center left no-repeat;
                     list-style-type: none;
                     margin: 6px 0 6px 0;
                     padding-left: 22px;
@@ -415,13 +415,13 @@ section.main {
                         }
                     }
                     &.twitter {
-                        background: transparent url('/media/images/twitter-icon.png') 4px center no-repeat;
+                        background: transparent url('/static/images/twitter-icon.png') 4px center no-repeat;
                     }
                     &.pro {
-                        background: transparent url('/media/images/upgrade-icon.png') 2px center no-repeat;
+                        background: transparent url('/static/images/upgrade-icon.png') 2px center no-repeat;
                     }
                     &.groups {
-                        background: transparent url('/media/images/groups-icon.png') 2px center no-repeat;
+                        background: transparent url('/static/images/groups-icon.png') 2px center no-repeat;
                     }
                 }
             }
@@ -529,7 +529,7 @@ article.snipt {
                 }
             }
             a.expand {
-                background: #FFF url('/media/images/expand.png') 15px 18px no-repeat;
+                background: #FFF url('/static/images/expand.png') 15px 18px no-repeat;
                 border-top: 1px solid #F1F1EE;
                 bottom: 0;
                 color: #999999;
@@ -630,7 +630,7 @@ article.snipt {
                 margin: 2px 0;
 
                 a {
-                    background: rgba(128, 128, 128, .15) url('/media/images/edit-icon.png') 14px center no-repeat;
+                    background: rgba(128, 128, 128, .15) url('/static/images/edit-icon.png') 14px center no-repeat;
                     color: #000;
                     display: block;
                     font: bold 12px $Helvetica;
@@ -646,7 +646,7 @@ article.snipt {
                     }
                     &.edit {
                         &:after {
-                            background: #F5F2F3 url('/media/images/bg.gif') top left repeat;
+                            background: #F5F2F3 url('/static/images/bg.gif') top left repeat;
                             content: "";
                             height: 20px;
                             position: absolute;
@@ -658,10 +658,10 @@ article.snipt {
                         }
                     }
                     &.embed {
-                        background-image: url('/media/images/embed-icon.png');
+                        background-image: url('/static/images/embed-icon.png');
                     }
                     &.copy {
-                        background-image: url('/media/images/copy-icon.png');
+                        background-image: url('/static/images/copy-icon.png');
 
                         span.done {
                             display: none;
@@ -674,7 +674,7 @@ article.snipt {
             padding-top: 15px;
 
             h2 {
-                background: transparent url('/media/images/snipt-tags-icon.png') 15px center no-repeat;
+                background: transparent url('/static/images/snipt-tags-icon.png') 15px center no-repeat;
                 color: #999999;
                 font: bold 12px $Helvetica;
                 padding: 7px 0 7px 35px;
@@ -719,7 +719,7 @@ article.snipt {
             margin: 15px 0 0 15px;
 
             li {
-                background: transparent url('/media/images/calendar-icon.png') top left no-repeat;
+                background: transparent url('/static/images/calendar-icon.png') top left no-repeat;
                 color: #999;
                 display: inline;
                 font: normal 12px $Helvetica;
@@ -736,10 +736,10 @@ article.snipt {
                     }
                 }
                 &.author {
-                    background: transparent url('/media/images/author-icon.png') 0 1px no-repeat;
+                    background: transparent url('/static/images/author-icon.png') 0 1px no-repeat;
                 }
                 &.comments {
-                    background: transparent url('/media/images/comments-icon.png') 0 2px no-repeat;
+                    background: transparent url('/static/images/comments-icon.png') 0 2px no-repeat;
                 }
             }
         }
@@ -754,7 +754,7 @@ article.snipt {
                 }
             }
             a.expand {
-                background-image: url('/media/images/collapse.png');
+                background-image: url('/static/images/collapse.png');
                 -webkit-box-shadow: none;
                 -moz-box-shadow: none;
                 box-shadow: none;
@@ -794,7 +794,7 @@ article.snipt {
 article.private-snipt {
     div.container {
         header {
-            @include vertical-gradient-with-image(url('/media/images/private-icon.png') top right no-repeat, #FFF, #FFFAF2);
+            @include vertical-gradient-with-image(url('/static/images/private-icon.png') top right no-repeat, #FFF, #FFFAF2);
 
             h1 {
                 a {

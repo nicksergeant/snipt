@@ -64,7 +64,10 @@ MEDIA_URL = '/media/uploads/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-STATIC_URL = '/static/'
+if DEBUG:
+    STATIC_URL = '/media/'
+else:
+    STATIC_URL = '/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
