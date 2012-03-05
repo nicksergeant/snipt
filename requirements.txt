@@ -2,7 +2,9 @@ BeautifulSoup
 biplist
 Django
 django-annoying
+django-appconf
 django-bcrypt
+django_compressor==dev
 django-grappelli
 django-pagination
 django-taggit
@@ -18,6 +20,7 @@ python-postmark
 pyyaml
 South
 uuid
+versiontools
 Werkzeug
 
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration

@@ -31,7 +31,7 @@ def staticfiles():
         '%s/media/js/src/modules/snipt.js' % BASE_PATH,
     ]
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
-    local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --ignore ace --noinput' % BASE_PATH)
+    local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --noinput' % BASE_PATH)
 
 def deploy(m):
     staticfiles()
@@ -40,7 +40,8 @@ def deploy(m):
         local('hg commit -m \'%s\'' % m)
     except:
         pass
+
     local('hg push')
 
-    #run('hglu')
-    #run('pm collectstatic')
+    run('hg pull -u')
+    run('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')

@@ -84,6 +84,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -136,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
+    'compressor',
     'django_bcrypt',
     'pagination',
     'postmark',
@@ -214,7 +216,13 @@ ABSOLUTE_URL_OVERRIDES = {
     #)
 #}
 
-COMPRESS_CSS = True
+# CSS / JS Compression
+COMPRESS_OUTPUT_DIR = 'cache'
+COMPRESS_JS_FILTERS = []
+if DEBUG:
+    COMPRESS_ROOT = os.path.join(BASE_PATH, 'media')
+else:
+    COMPRESS_ROOT = STATIC_ROOT
 
 # Extensions
 if DEBUG:

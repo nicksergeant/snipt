@@ -1,4 +1,4 @@
-{% load verbatim %}
+{% load compress verbatim %}
 
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}">
@@ -8,11 +8,14 @@
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
-    {% if debug %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes.css" />
 
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+    <link rel="stylesheet" type="text/scss" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+    {% endcompress %}
+
+    {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/json2.js"></script>
@@ -26,14 +29,11 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
+    {% endcompress %}
 
-    {% else %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}cache/snipt.css" />
-    <script type="text/javascript" src="{{ STATIC_URL }}cache/snipt.js"></script>
-
-{% endif %}<script type="text/javascript" src="/static/js/libs/ace/ace.js"></script>
-    <script type="text/javascript" src="/static/js/libs/ace/theme-tomorrow.js"></script>
-    <script type="text/javascript" src="/static/js/libs/ace/mode-javascript.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/mode-javascript.js"></script>
 
     <script type="text/javascript">{% block js %}window.user = '{{ request.user.username }}';
         window.pub = {{ public|lower }};{% endblock %}    </script>
