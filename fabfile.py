@@ -12,7 +12,7 @@ def deploy(m):
     local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
 
     try:
-        local('hg commit -m {}'.format(m))
+        local("hg commit -m '{}'".format(m))
         local('hg push')
     except:
         pass
