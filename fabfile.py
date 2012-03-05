@@ -33,16 +33,14 @@ def staticfiles():
     local('cat %s > %s/media/cache/snipt.js' % (' '.join(js), BASE_PATH))
     local('/Users/Nick/.virtualenvs/snipt/bin/python %s/manage.py collectstatic --ignore grappelli --ignore admin --ignore ace --noinput' % BASE_PATH)
 
-def deployapp(m):
+def deploy(m):
+    staticfiles()
+
     try:
         local('hg commit -m \'%s\'' % m)
     except:
         pass
     local('hg push')
 
-def deploy(m):
-    staticfiles()
-    deployapp(m)
-
-def deployall(m):
-    deploy(m)
+    #run('hglu')
+    #run('pm collectstatic')
