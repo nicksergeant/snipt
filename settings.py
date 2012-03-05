@@ -64,22 +64,12 @@ MEDIA_URL = '/media/uploads/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-if DEBUG:
-    STATIC_URL = '/media/'
-else:
-    STATIC_URL = 'https://snipt.s3.amazonaws.com/'
-HEROKU_STATIC_URL = os.path.join(BASE_PATH, 'media')
-
-# S3 Settings
-AWS_ACCESS_KEY_ID = 'AKIAJTFDHBCXHJLXINKQ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'snipt'
+STATIC_URL = '/static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = 'https://snipt.s3.amazonaws.com/grappelli/'
+ADMIN_MEDIA_PREFIX = '/static/grappelli/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
