@@ -27,6 +27,7 @@ def list_public(request, tag_slug=None):
         snipts = snipts.filter(tags__name__in=[tag_slug])
 
     return {
+        'has_snipts': True,
         'public': True,
         'snipts': snipts,
         'tags': tags,
@@ -60,6 +61,7 @@ def list_user(request, username, tag_slug=None):
         snipts = snipts.filter(tags__name__in=[tag_slug])
 
     return {
+        'has_snipts': True,
         'public': public,
         'snipts': snipts,
         'tags': tags,
@@ -94,6 +96,7 @@ def detail(request, username, snipt_slug):
     tags = tags.order_by('-count', 'name')
 
     return {
+        'has_snipts': True,
         'public': public,
         'snipt': snipt,
         'tags': tags,

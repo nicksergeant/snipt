@@ -139,7 +139,7 @@
         <div class="left-y ruler"></div>
         <div class="right-y ruler"></div>
     </section>
-    {% if snipts or snipt %}
+    {% if has_snipts %}
         <section class="main group hidden" id="main-edit"></section>
     {% endif %}
     <div class="modal hide" id="keyboard-shortcuts">
@@ -232,7 +232,7 @@
             </table>
         </div>
     </div>
-    {% if snipts or snipt %}
+    {% if has_snipts %}
         {% verbatim %}
             <div class="hidden" id="templates">
                 <script id="snipt" type="text/html">
