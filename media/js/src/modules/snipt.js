@@ -37,15 +37,13 @@
         },
 
         copy: function() {
-            if (!window.ui_halted) {
-                window.ui_halted = true;
+            window.ui_halted = true;
 
-                this.$copyModalBody.append('<textarea class="raw"></textarea>');
-                $textarea = $('textarea.raw', this.$copyModalBody).val(this.model.get('code'));
+            this.$copyModalBody.append('<textarea class="raw"></textarea>');
+            $textarea = $('textarea.raw', this.$copyModalBody).val(this.model.get('code'));
 
-                this.$copyModal.modal('show');
-                $textarea.select();
-            }
+            this.$copyModal.modal('show');
+            $textarea.select();
         },
         copyClose: function() {
             $('textarea', this.$copyModal).remove();
@@ -62,46 +60,42 @@
             window.location = this.model.get('get_absolute_url');
         },
         edit: function() {
-            if (!window.ui_halted) {
-                this.select();
-                var editPane = this.editTemplate({
-                    snipt: this.model.toJSON()
-                });
-                window.site.$main.hide();
-                window.site.$body.addClass('detail editing');
-                window.site.$main_edit.html(editPane).show();
+            window.editing = true;
+            window.ui_halted = true;
 
-                $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
-                window.editor = ace.edit('editor');
-                window.editor.setTheme('ace/theme/tomorrow');
-                window.editor.renderer.setShowGutter(false);
-                var JavaScriptMode = require('ace/mode/javascript').Mode;
-                window.editor.getSession().setMode(new JavaScriptMode());
-                
-                window.editor.$textarea = $('textarea', window.editor.container);
-                window.editor.focus();
-                window.editor.$textarea.bind('keydown', 'esc', function(e) {
-                    $(this).blur();
-                    return false;
-                });
+            this.select();
 
-                window.scrollTo(0, 0);
+            var editPane = this.editTemplate({snipt: this.model.toJSON()});
+            var JavaScriptMode = require('ace/mode/javascript').Mode;
 
-                window.editing = true;
-                window.ui_halted = true;
-            }
+            window.site.$main.hide();
+            window.site.$body.addClass('detail editing');
+            window.site.$main_edit.html(editPane).show();
+
+            $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
+            window.editor = ace.edit('editor');
+            window.editor.setTheme('ace/theme/tomorrow');
+            window.editor.renderer.setShowGutter(false);
+            window.editor.getSession().setMode(new JavaScriptMode());
+            window.editor.$textarea = $('textarea', window.editor.container);
+            window.editor.focus();
+            window.editor.$textarea.bind('keydown', 'esc', function(e) {
+                $(this).blur();
+                return false;
+            });
+
+            window.scrollTo(0, 0);
+
             return false;
         },
         embed: function() {
-            if (!window.ui_halted) {
-                window.ui_halted = true;
+            window.ui_halted = true;
 
-                this.$embedModalBody.append('<textarea class="raw"></textarea>');
-                $textarea = $('textarea.raw', this.$embedModalBody).val('<script type="text/javascript" src="' + this.model.get('embed_url') + '"></script>');
+            this.$embedModalBody.append('<textarea class="raw"></textarea>');
+            $textarea = $('textarea.raw', this.$embedModalBody).val('<script type="text/javascript" src="' + this.model.get('embed_url') + '"></script>');
 
-                this.$embedModal.modal('show');
-                $textarea.select();
-            }
+            this.$embedModal.modal('show');
+            $textarea.select();
         },
         embedClose: function() {
             $('textarea', this.$embedModal).remove();
@@ -123,7 +117,6 @@
 
             this.$copyModal = $('div.copy-modal', this.$el);
             this.$copyModalBody = $('div.modal-body', this.$copyModal);
-
             this.$embedModal = $('div.embed-modal', this.$el);
             this.$embedModalBody = $('div.modal-body', this.$embedModal);
 
