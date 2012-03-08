@@ -309,6 +309,13 @@
                     </div>
                 </script>
                 <script id="edit" type="text/html">
+                    <header class="fixed-save">
+                        <div class="inner group">
+                            <button class="delete btn btn-danger">Delete</button>
+                            <button class="save btn btn-success">Save</button>
+                            <button class="cancel btn btn-secondary">Cancel</button>
+                        </div>
+                    </header>
                     <div class="inner">
                         <section class="snipts" id="snipts">
                             <article id="snipt-<%= snipt.pk %>" class="snipt editing">
@@ -325,6 +332,15 @@
                                         <div class="ruler top-x"></div>
                                         <div class="ruler bottom-x"></div>
                                     </div>
+                                    <aside>
+                                        <div class="inner">
+                                            <label>
+                                                Public
+                                                <input type="checkbox" name="" value="" />
+                                            </label>
+                                            <textarea>Tags</textarea>
+                                        </div>
+                                    </aside>
                                 </div>
                             </article>
                         </section>

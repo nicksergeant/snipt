@@ -798,9 +798,6 @@ body.detail section.main div.inner section.snipts article.snipt div.container:af
 body.detail section.main div.inner section.snipts article.snipt aside {
   margin-right: 0;
 }
-body.detail section.main div.inner section.snipts article.editing div.container {
-  width: 100%;
-}
 body.detail div.rochester-made {
   width: 840px;
 }
@@ -894,6 +891,29 @@ body.api-contest a.aea img {
 body.editing header.main, body.editing header.sub {
   display: none;
 }
+body.editing header.fixed-save {
+  background: white url("/static/images/header-fixed-save.gif") top left repeat;
+  border-bottom: 1px solid #DDDDDD;
+  height: 40px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 49;
+}
+body.editing header.fixed-save div.inner {
+  float: none;
+  margin: 0 auto;
+  padding-top: 6px;
+  width: 940px;
+}
+body.editing header.fixed-save div.inner .cancel, body.editing header.fixed-save div.inner .save {
+  float: right;
+  margin-left: 10px;
+}
+body.editing header.fixed-save div.inner .save {
+  margin-right: 99px;
+}
 body.editing article.editing {
   margin-top: 50px;
 }
@@ -906,11 +926,16 @@ body.editing article.editing div.container section.code div#editor {
   font-weight: normal !important;
   margin: 0;
   position: relative;
-  width: 100%;
 }
 body.editing article.editing div.container section.code div#editor .ace_print_margin {
   display: none;
 }
 body.editing article.editing div.container:after {
   display: none;
+}
+body.editing article.editing aside div.inner {
+  padding-left: 10px;
+}
+body.editing article.editing aside div.inner button {
+  width: 89px;
 }
