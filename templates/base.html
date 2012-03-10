@@ -1,4 +1,4 @@
-{% load compress verbatim %}
+{% load compress %}
 
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}">
@@ -233,123 +233,10 @@
         </div>
     </div>
     {% if has_snipts %}
-        {% verbatim %}
-            <div class="hidden" id="templates">
-                <script id="snipt" type="text/html">
-                    <div class="number">#<%= snipt.pk %></div>
-                    <div class="group">
-                        <div class="container">
-                            <header>
-                                <h2><%= snipt.lexer_name %></h2>
-                                <h1><a href="<%= snipt.get_absolute_url %>"><%= snipt.title %></a></h1>
-                            </header>
-                            <section class="code autumn">
-                                <%= snipt.stylized %>
-                                <% if (snipt.line_count > 8 && !window.detail) { %>
-                                    <a href="#" class="expand">
-                                        <span class="expand">Expand</span>
-                                        <span class="collapse">Collapse</span>
-                                        <span class="lines">(<%= snipt.line_count %> lines)</span>
-                                    </a>
-                                <% } %>
-                                <div class="raw"><%= snipt.code %></div>
-                            </section>
-                            <div class="ruler top-x"></div>
-                            <div class="ruler bottom-x"></div>
-                        </div>
-                        <aside>
-                            <ul class="options">
-                                <% if (snipt.user.username === window.user) { %>
-                                    <li>
-                                        <a class="edit" href="#">Edit</a>
-                                    </li>
-                                    <% } %>
-                                <li>
-                                    <a class="embed" href="#">Embed</a>
-                                </li>
-                                <li>
-                                    <a class="copy" href="#"><span class="do">Copy</span></a>
-                                </li>
-                            </ul>
-                            <section class="tags">
-                                <h2><%= snipt.tags.length %> tag<% if ((snipt.tags.length > 1) || (snipt.tags.length === 0)) { print('s'); } %></h2>
-                                <ul>
-                                    <% for (var i=0; i < snipt.tags.length; i++) { %>
-                                        <li <% if (i > 2 && !window.detail) { %>class="hidden"<% } %>>
-                                            <a href="<%= snipt.tags[i].absolute_url %>"><%= snipt.tags[i].name %></a>
-                                        </li>
-                                    <% } %>
-                                </ul>
-                            </section>
-                        </aside>
-                    </div>
-                    <footer>
-                        <ul class="attrs">
-                            <li class="author"><a href="<%= snipt.user.get_absolute_url %>"><%= snipt.user.username %></a></li>
-                            <li class="created" title="<%= snipt.created %>"><%= snipt.created_formatted %></li>
-                            <li class="comments"><a href="<%= snipt.get_absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.pk %>"></a></li>
-                        </ul>
-                    </footer>
-                    <div class="modal hide copy-modal">
-                        <div class="modal-header">
-                            <a href="#" class="close">×</a>
-                            <h3>Copy snipt <span>&ldquo;<%= snipt.title %>&rdquo;</span></h3>
-                            <h4>(Text is selected. <span></span>+c to copy.)</h4>
-                        </div>
-                        <div class="modal-body"></div>
-                    </div>
-                    <div class="modal hide embed-modal">
-                        <div class="modal-header">
-                            <a href="#" class="close">×</a>
-                            <h3>Embed snipt <span>&ldquo;<%= snipt.title %>&rdquo;</span></h3>
-                        </div>
-                        <div class="modal-body">
-                            <textarea><script type="text/javascript"><%= snipt.get_embed_url %></script></textarea>
-                        </div>
-                    </div>
-                </script>
-                <script id="edit" type="text/html">
-                    <header class="fixed-save">
-                        <div class="inner group">
-                            <button class="delete btn btn-secondary">Delete</button>
-                            <button class="save btn btn-success">Save</button>
-                            <button class="cancel btn btn-secondary">Cancel</button>
-                        </div>
-                    </header>
-                    <div class="inner">
-                        <section class="snipts" id="snipts">
-                            <article id="snipt-<%= snipt.pk %>" class="snipt editing">
-                                <div class="number">#<%= snipt.pk %></div>
-                                <div class="group">
-                                    <div class="container">
-                                        <header>
-                                            <h2><%= snipt.lexer_name %></h2>
-                                            <h1><a href="<%= snipt.get_absolute_url %>"><%= snipt.title %></a></h1>
-                                        </header>
-                                        <section class="code">
-                                            <div id="editor"><%= snipt.code %></div>
-                                        </section>
-                                        <div class="ruler top-x"></div>
-                                        <div class="ruler bottom-x"></div>
-                                    </div>
-                                    <aside>
-                                        <div class="inner">
-                                            <label>
-                                                Public
-                                                <input type="checkbox" name="" value="" />
-                                            </label>
-                                            <textarea>Tags</textarea>
-                                        </div>
-                                    </aside>
-                                </div>
-                            </article>
-                        </section>
-                    </div>
-                    <div class="left-y ruler"></div>
-                    <div class="right-y ruler"></div>
-                </script>
-            </div>
-        {% endverbatim %}
+        <div class="hidden" id="templates">
+            {% include 'snipts/snipt-js-template.html' %}
+            {% include 'snipts/snipt-edit-js-template.html' %}
+        </div>
     {% endif %}
     {% if not debug %}
     <script type="text/javascript">
