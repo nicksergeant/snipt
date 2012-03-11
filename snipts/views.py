@@ -26,6 +26,8 @@ def list_public(request, tag_slug=None):
     if tag_slug:
         snipts = snipts.filter(tags__slug__in=[tag_slug])
         tag = get_object_or_404(Tag, slug=tag_slug)
+    else:
+        tag = None
 
     return {
         'has_snipts': True,
@@ -61,6 +63,8 @@ def list_user(request, username, tag_slug=None):
     if tag_slug:
         snipts = snipts.filter(tags__slug__in=[tag_slug])
         tag = get_object_or_404(Tag, slug=tag_slug)
+    else:
+        tag = None
 
     return {
         'has_snipts': True,

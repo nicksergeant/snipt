@@ -1070,6 +1070,23 @@ body.editing {
                     }
                 }
             }
+            header {
+                h1 {
+                    margin-left: 9px;
+                    margin-top: 5px;
+                    margin-bottom: 6px;
+
+                    input {
+                        color: #666;
+                        font: bold 16px/20px $Helvetica;
+                        margin: 0;
+                        width: 811px;
+                    }
+                }
+                h2 {
+                    border: none;
+                }
+            }
             &:after {
                 display: none;
             }

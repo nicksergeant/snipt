@@ -930,6 +930,20 @@ body.editing article.editing div.container section.code div#editor {
 body.editing article.editing div.container section.code div#editor .ace_print_margin {
   display: none;
 }
+body.editing article.editing div.container header h1 {
+  margin-left: 9px;
+  margin-top: 5px;
+  margin-bottom: 6px;
+}
+body.editing article.editing div.container header h1 input {
+  color: #666;
+  font: bold 16px/20px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin: 0;
+  width: 811px;
+}
+body.editing article.editing div.container header h2 {
+  border: none;
+}
 body.editing article.editing div.container:after {
   display: none;
 }

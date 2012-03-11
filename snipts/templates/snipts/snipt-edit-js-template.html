@@ -16,8 +16,10 @@
                     <div class="group">
                         <div class="container">
                             <header>
-                                <h2><%= snipt.lexer_name %></h2>
-                                <h1><input type="text" value="<%= snipt.title %>" /></h1>
+                                <h2>&nbsp;</h2>
+                                <h1>
+                                    <input type="text" value="<%= snipt.title %>" />
+                                </h1>
                             </header>
                             <section class="code">
                                 <div id="editor"><%= snipt.code %></div>
@@ -27,6 +29,10 @@
                         </div>
                         <aside>
                             <div class="inner">
+                                <label for="</label>">Type</label>
+                                <select name="lexer" id="id_lexer">
+                                    <option value="0">test</option>
+                                </select>
                                 <label>
                                     Public
                                     <input type="checkbox" name="" value="" />

@@ -1,4 +1,3 @@
-
 (function(Site) {
 
     var Snipt = snipt.module('snipt');
