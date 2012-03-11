@@ -3,7 +3,7 @@
 {% block breadcrumb %}
     <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
     {% if tag %}
-        <li>/ <a href="/{{ user.username }}/tag/{{ tag }}/">{{ tag }}</a></li>
+        <li>/ <a href="/{{ user.username }}/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
     {% endif %}
 {% endblock %}
 

@@ -24,14 +24,15 @@ def list_public(request, tag_slug=None):
     snipts = Snipt.objects.filter(public=True).order_by('-created')
 
     if tag_slug:
-        snipts = snipts.filter(tags__name__in=[tag_slug])
+        snipts = snipts.filter(tags__slug__in=[tag_slug])
+        tag = get_object_or_404(Tag, slug=tag_slug)
 
     return {
         'has_snipts': True,
         'public': True,
         'snipts': snipts,
         'tags': tags,
-        'tag': tag_slug,
+        'tag': tag,
     }
 
 @render_to('snipts/list-user.html')
@@ -58,14 +59,15 @@ def list_user(request, username, tag_slug=None):
     snipts = snipts.order_by('-created')
 
     if tag_slug:
-        snipts = snipts.filter(tags__name__in=[tag_slug])
+        snipts = snipts.filter(tags__slug__in=[tag_slug])
+        tag = get_object_or_404(Tag, slug=tag_slug)
 
     return {
         'has_snipts': True,
         'public': public,
         'snipts': snipts,
         'tags': tags,
-        'tag': tag_slug,
+        'tag': tag,
         'user': user,
     }
 
