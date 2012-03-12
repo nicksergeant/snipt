@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
+from pygments.lexers import get_all_lexers
 from django.template import RequestContext
 from annoying.decorators import render_to
 from snipts.models import Favorite, Snipt
@@ -31,6 +32,7 @@ def list_public(request, tag_slug=None):
 
     return {
         'has_snipts': True,
+        'lexers': sorted(get_all_lexers()),
         'public': True,
         'snipts': snipts,
         'tags': tags,
@@ -68,6 +70,7 @@ def list_user(request, username, tag_slug=None):
 
     return {
         'has_snipts': True,
+        'lexers': sorted(get_all_lexers()),
         'public': public,
         'snipts': snipts,
         'tags': tags,
@@ -103,6 +106,7 @@ def detail(request, username, snipt_slug):
 
     return {
         'has_snipts': True,
+        'lexers': sorted(get_all_lexers()),
         'public': public,
         'snipt': snipt,
         'tags': tags,

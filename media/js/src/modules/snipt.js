@@ -59,28 +59,49 @@
             window.location = this.model.get('get_absolute_url');
         },
         edit: function() {
+
+            var that = this;
+
             window.editing = true;
             window.ui_halted = true;
 
             this.select();
 
             var editPane = this.editTemplate({snipt: this.model.toJSON()});
-            var JavaScriptMode = require('ace/mode/javascript').Mode;
+            //var JavaScriptMode = require('ace/mode/javascript').Mode;
 
             window.site.$main.hide();
             window.site.$body.addClass('detail editing');
-            window.site.$main_edit.html(editPane).show();
+            window.site.$main_edit.html(editPane);
+
+            $('option[value="' + this.model.get('lexer') + '"]').attr('selected', 'selected');
+
+            window.site.$main_edit.show();
 
             $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
-            window.editor = ace.edit('editor');
-            window.editor.setTheme('ace/theme/tomorrow');
-            window.editor.renderer.setShowGutter(false);
-            window.editor.getSession().setMode(new JavaScriptMode());
-            window.editor.$textarea = $('textarea', window.editor.container);
-            window.editor.focus();
-            window.editor.$textarea.bind('keydown', 'esc', function(e) {
+            var editor = ace.edit('editor');
+            editor.setTheme('ace/theme/tomorrow');
+            editor.renderer.setShowGutter(false);
+            //editor.getSession().setMode(new JavaScriptMode());
+            editor.focus();
+            $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
                 return false;
+            });
+
+            $('button.delete', window.site.$main_edit).on('click', function(e) {
+                if (confirm('Are you sure you want to delete this snipt?')) {
+                    that.model.destroy();
+                }
+                e.preventDefault();
+            });
+            $('button.cancel', window.site.$main_edit).on('click', function(e) {
+                window.site.snipt_list.escapeUI();
+                return false;
+            });
+            $('button.save', window.site.$main_edit).on('click', function(e) {
+                that.model.save();
+                e.preventDefault();
             });
 
             window.scrollTo(0, 0);
@@ -150,8 +171,10 @@
             }
         },
         remove: function() {
+            console.log('remove() on view called');
         },
         render: function() {
+            console.log('render called');
 
             this.$el.html(this.template({
                 snipt: this.model.toJSON()
@@ -273,7 +296,36 @@
                 model: new Snipt.SniptModel(data)
             });
         },
+        escapeUI: function() {
+            if (window.editing) {
+                if (!window.site.$html.hasClass('detail')) {
+                    window.site.$body.removeClass('detail');
+                }
+                window.site.$main_edit.hide();
+                window.site.$body.removeClass('editing');
+                window.site.$main.show();
+
+                window.editing = true;
+                window.ui_halted = false;
+
+                if (window.site.$snipts.index(window.$selected) === 0) {
+                    window.scrollTo(0, 0);
+                } else {
+                    window.site.$html_body.animate({
+                        scrollTop: window.$selected.offset().top - 50
+                    }, 0);
+                }
+            } else {
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        $selected.trigger('deselect');
+                    }
+                }
+            }
+        },
         keyboardShortcuts: function() {
+
+            var that = this;
 
             $selected = window.selected;
             $document = $(document);
@@ -314,31 +366,7 @@
                 }
             });
             $document.bind('keydown', 'esc', function() {
-                if (window.editing) {
-                    if (!window.site.$html.hasClass('detail')) {
-                        window.site.$body.removeClass('detail');
-                    }
-                    window.site.$main_edit.hide();
-                    window.site.$body.removeClass('editing');
-                    window.site.$main.show();
-
-                    window.editing = true;
-                    window.ui_halted = false;
-
-                    if (window.site.$snipts.index(window.$selected) === 0) {
-                        window.scrollTo(0, 0);
-                    } else {
-                        window.site.$html_body.animate({
-                            scrollTop: window.$selected.offset().top - 50
-                        }, 0);
-                    }
-                } else {
-                    if (!window.ui_halted) {
-                        if ($selected) {
-                            $selected.trigger('deselect');
-                        }
-                    }
-                }
+                that.escapeUI();
             });
             $document.bind('keydown', 'g', function() {
                 if (!window.ui_halted) {
