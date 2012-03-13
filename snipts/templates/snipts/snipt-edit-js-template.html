@@ -28,9 +28,9 @@
                             <div class="ruler bottom-x"></div>
                         </div>
                         <aside>
-                            <div class="inner">
+                            <div class="in">
                                 <label class="lexer">
-                                    Type
+                                    <span>Type</span>
                                     <select name="lexer" id="id_lexer">
                                         {% endverbatim %}
                                         {% for lexer in lexers %}
@@ -39,12 +39,12 @@
                                         {% verbatim %}
                                     </select>
                                 </label>
-                                <label class="public">
-                                    Public
+                                <label class="public is-private">
                                     <input type="checkbox" <% if (snipt.pub) { %>checked="checked"<% } %> name="" value="" />
+                                    <span>Public</span>
                                 </label>
-                                <label class="public">
-                                    Tags
+                                <label class="tags">
+                                    <span>Tags</span>
                                     <textarea><%= snipt.tags_list %></textarea>
                                 </label>
                             </div>

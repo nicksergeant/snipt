@@ -1047,7 +1047,7 @@ body.editing {
                 margin-left: 10px;
             }
             .save {
-                margin-right: 99px;
+                margin-right: 242px;
             }
         }
     }
@@ -1101,11 +1101,57 @@ body.editing {
                         margin-top: 0;
                         width: 243px;
 
-                        div.inner {
+                        div.in {
                             padding-left: 10px;
 
                             label {
-                                margin: 10px 0;
+                                margin: 20px 0;
+
+                                & > span {
+                                    color: #32A8F6;
+                                    display: block;
+                                    font: bold 12px $Helvetica;
+                                    margin-bottom: 5px;
+                                    text-transform: uppercase;
+                                }
+                            }
+                            & > label {
+                                margin-top: 6px;
+                            }
+                            textarea {
+                                height: 100px;
+                                padding: 7px 9px;
+                                width: 202px;
+                            }
+                            label.public {
+                                background: #EFEEEF;
+                                border: 1px solid #DDDDDD;
+                                cursor: pointer;
+                                margin-right: 11px;
+                                padding: 3px 5px;
+                                @include border-radius;
+
+                                input {
+                                    display: inline-block;
+                                    margin: 4px 4px 0 4px;
+                                }
+                                span {
+                                    color: #7B7B79;
+                                    display: inline-block;
+                                    text-transform: none;
+                                    vertical-align: -3px;
+                                }
+                                &.is-private {
+                                    background: #EFEEEF url('/static/images/private-icon-edit.png') 199px center no-repeat;
+                                }
+                                &.is-public {
+                                    background: #F2DEDE;
+                                    border: 1px solid #EED3D7;
+
+                                    span {
+                                        color: #B94A48;
+                                    }
+                                }
                             }
                         }
                     }

@@ -80,6 +80,19 @@
             // Init chosen
             $('select#id_lexer', window.site.$main_edit).chosen();
 
+            // Public / private
+            $('label.public input', window.site.$main_edit).on('change', function() {
+                var $checkbox = $(this);
+                var $label = $checkbox.parent();
+
+                if ($checkbox.attr('checked')) {
+                    $label.removeClass('is-private').addClass('is-public');
+                } else {
+                    $label.addClass('is-private').removeClass('is-public');
+                }
+                return false;
+            }).trigger('change');
+
             window.site.$main_edit.show();
 
             // Ace editor

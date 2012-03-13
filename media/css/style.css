@@ -912,7 +912,7 @@ body.editing header.fixed-save div.inner .cancel, body.editing header.fixed-save
   margin-left: 10px;
 }
 body.editing header.fixed-save div.inner .save {
-  margin-right: 99px;
+  margin-right: 242px;
 }
 body.editing section.main div.inner section.snipts article.editing {
   margin-top: 50px;
@@ -955,9 +955,57 @@ body.editing section.main div.inner section.snipts article.editing aside {
   margin-top: 0;
   width: 243px;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.inner {
+body.editing section.main div.inner section.snipts article.editing aside div.in {
   padding-left: 10px;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.inner label {
-  margin: 10px 0;
+body.editing section.main div.inner section.snipts article.editing aside div.in label {
+  margin: 20px 0;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label > span {
+  color: #32A8F6;
+  display: block;
+  font: bold 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in > label {
+  margin-top: 6px;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in textarea {
+  height: 100px;
+  padding: 7px 9px;
+  width: 202px;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public {
+  background: #EFEEEF;
+  border: 1px solid #DDDDDD;
+  cursor: pointer;
+  margin-right: 11px;
+  padding: 3px 5px;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 5px;
+  -moz-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-clip: padding-box;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public input {
+  display: inline-block;
+  margin: 4px 4px 0 4px;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public span {
+  color: #7B7B79;
+  display: inline-block;
+  text-transform: none;
+  vertical-align: -3px;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-private {
+  background: #efeeef url("/static/images/private-icon-edit.png") 199px center no-repeat;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public {
+  background: #F2DEDE;
+  border: 1px solid #EED3D7;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public span {
+  color: #B94A48;
 }
