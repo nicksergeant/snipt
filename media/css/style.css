@@ -914,42 +914,50 @@ body.editing header.fixed-save div.inner .cancel, body.editing header.fixed-save
 body.editing header.fixed-save div.inner .save {
   margin-right: 99px;
 }
-body.editing article.editing {
+body.editing section.main div.inner section.snipts article.editing {
   margin-top: 50px;
 }
-body.editing article.editing div.container section.code {
+body.editing section.main div.inner section.snipts article.editing div.container {
+  width: 696px;
+}
+body.editing section.main div.inner section.snipts article.editing div.container section.code {
   padding: 13px 11px;
 }
-body.editing article.editing div.container section.code div#editor {
+body.editing section.main div.inner section.snipts article.editing div.container section.code div#editor {
   border: none;
   font: normal 12px/16px Consolas, Menlo, "Courier New", monospace;
   font-weight: normal !important;
   margin: 0;
   position: relative;
 }
-body.editing article.editing div.container section.code div#editor .ace_print_margin {
+body.editing section.main div.inner section.snipts article.editing div.container section.code div#editor .ace_print_margin {
   display: none;
 }
-body.editing article.editing div.container header h1 {
+body.editing section.main div.inner section.snipts article.editing div.container header h1 {
   margin-left: 9px;
   margin-top: 5px;
   margin-bottom: 6px;
 }
-body.editing article.editing div.container header h1 input {
+body.editing section.main div.inner section.snipts article.editing div.container header h1 input {
   color: #666;
   font: bold 16px/20px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
   margin: 0;
   width: 811px;
+  width: 668px;
 }
-body.editing article.editing div.container header h2 {
+body.editing section.main div.inner section.snipts article.editing div.container header h2 {
   border: none;
 }
-body.editing article.editing div.container:after {
+body.editing section.main div.inner section.snipts article.editing div.container:after {
   display: none;
 }
-body.editing article.editing aside div.inner {
-  padding-left: 10px;
+body.editing section.main div.inner section.snipts article.editing aside {
+  width: 243px;
 }
-body.editing article.editing aside div.inner button {
-  width: 89px;
+body.editing section.main div.inner section.snipts article.editing aside div.inner {
+  padding-left: 10px;
+  padding-top: 3px;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.inner label.public {
+  margin: 10px 0;
 }

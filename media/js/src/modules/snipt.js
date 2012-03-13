@@ -60,35 +60,40 @@
         },
         edit: function() {
 
-            var that = this;
-
             window.editing = true;
             window.ui_halted = true;
 
             this.select();
 
+            // Local vars
+            var that = this;
             var editPane = this.editTemplate({snipt: this.model.toJSON()});
-            //var JavaScriptMode = require('ace/mode/javascript').Mode;
 
+            // Init main view
             window.site.$main.hide();
             window.site.$body.addClass('detail editing');
             window.site.$main_edit.html(editPane);
 
-            $('option[value="' + this.model.get('lexer') + '"]').attr('selected', 'selected');
+            // Select lexer
+            $('option[value="' + this.model.get('lexer') + '"]', window.site.$main_edit).attr('selected', 'selected');
+
+            // Init chosen
+            $('select#id_lexer', window.site.$main_edit).chosen();
 
             window.site.$main_edit.show();
 
+            // Ace editor
             $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
             var editor = ace.edit('editor');
             editor.setTheme('ace/theme/tomorrow');
             editor.renderer.setShowGutter(false);
-            //editor.getSession().setMode(new JavaScriptMode());
             editor.focus();
             $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
                 return false;
             });
 
+            // Edit buttons
             $('button.delete', window.site.$main_edit).on('click', function(e) {
                 if (confirm('Are you sure you want to delete this snipt?')) {
                     that.model.destroy();

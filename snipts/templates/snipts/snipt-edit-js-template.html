@@ -29,7 +29,6 @@
                         </div>
                         <aside>
                             <div class="inner">
-                                <label for="</label>">Type</label>
                                 <select name="lexer" id="id_lexer">
                                     {% endverbatim %}
                                     {% for lexer in lexers %}
@@ -37,7 +36,7 @@
                                     {% endfor %}
                                     {% verbatim %}
                                 </select>
-                                <label>
+                                <label class="public">
                                     Public
                                     <input type="checkbox" <% if (snipt.pub) { %>checked="checked"<% } %> name="" value="" />
                                 </label>

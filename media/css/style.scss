@@ -1051,52 +1051,64 @@ body.editing {
             }
         }
     }
-    article.editing {
-        margin-top: 50px;
+    section.main {
+        div.inner {
+            section.snipts {
+                article.editing {
+                    margin-top: 50px;
 
-        div.container {
-            section.code {
-                padding: 13px 11px;
+                    div.container {
+                        width: 696px;
 
-                div#editor {
-                    border: none;
-                    font: normal 12px/16px $Consolas;
-                    font-weight: normal !important;
-                    margin: 0;
-                    position: relative;
+                        section.code {
+                            padding: 13px 11px;
 
-                   .ace_print_margin {
-                        display: none;
+                            div#editor {
+                                border: none;
+                                font: normal 12px/16px $Consolas;
+                                font-weight: normal !important;
+                                margin: 0;
+                                position: relative;
+
+                               .ace_print_margin {
+                                    display: none;
+                                }
+                            }
+                        }
+                        header {
+                            h1 {
+                                margin-left: 9px;
+                                margin-top: 5px;
+                                margin-bottom: 6px;
+
+                                input {
+                                    color: #666;
+                                    font: bold 16px/20px $Helvetica;
+                                    margin: 0;
+                                    width: 811px;
+                                    width: 668px;
+                                }
+                            }
+                            h2 {
+                                border: none;
+                            }
+                        }
+                        &:after {
+                            display: none;
+                        }
                     }
-                }
-            }
-            header {
-                h1 {
-                    margin-left: 9px;
-                    margin-top: 5px;
-                    margin-bottom: 6px;
+                    aside {
+                        width: 243px;
 
-                    input {
-                        color: #666;
-                        font: bold 16px/20px $Helvetica;
-                        margin: 0;
-                        width: 811px;
+                        div.inner {
+                            padding-left: 10px;
+                            padding-top: 3px;
+
+                            label.public {
+                                margin: 10px 0;
+                            }
+                        }
                     }
-                }
-                h2 {
-                    border: none;
-                }
-            }
-            &:after {
-                display: none;
-            }
-        }
-        aside {
-            div.inner {
-                padding-left: 10px;
-
-                button {
-                    width: 89px;
                 }
             }
         }
