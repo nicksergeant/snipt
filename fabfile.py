@@ -13,9 +13,9 @@ def deploy(m):
 
     try:
         local("hg commit -m '{}'".format(m))
-        local('hg push')
     except:
         pass
+    local('hg push')
 
     with cd(env.site_path):
         run('hg pull -u')
