@@ -1,4 +1,4 @@
-from fabric.api import cd, local, env, run
+from fabric.api import cd, local, env, run, sudo
 
 
 env.hosts = ['nick@beta.snipt.net:39039']
@@ -21,4 +21,8 @@ def deploy(m):
         run('hg pull -u')
         run(_python('manage.py collectstatic --ignore grappelli --ignore admin --noinput'))
 
-
+def re():
+    sudo('rc.d restart memcached')
+    with cd(env.site_path):
+        run('/var/www/snipt/gk')
+        run('/var/www/snipt/gs')
