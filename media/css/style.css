@@ -952,12 +952,12 @@ body.editing section.main div.inner section.snipts article.editing div.container
   display: none;
 }
 body.editing section.main div.inner section.snipts article.editing aside {
+  margin-top: 0;
   width: 243px;
 }
 body.editing section.main div.inner section.snipts article.editing aside div.inner {
   padding-left: 10px;
-  padding-top: 3px;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.inner label.public {
+body.editing section.main div.inner section.snipts article.editing aside div.inner label {
   margin: 10px 0;
 }

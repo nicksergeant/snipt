@@ -1098,13 +1098,13 @@ body.editing {
                         }
                     }
                     aside {
+                        margin-top: 0;
                         width: 243px;
 
                         div.inner {
                             padding-left: 10px;
-                            padding-top: 3px;
 
-                            label.public {
+                            label {
                                 margin: 10px 0;
                             }
                         }
