@@ -3,7 +3,7 @@
     <ul>
         {% for t in tags %}
             <li>
-                <a {% if tag == t.name %}class="active"{% endif %} href="/{{ user.username }}/tag/{{ t.slug }}/">{{ t.name }} ({{ t.count }})</a>
+                <a {% if tag.name == t.name %}class="active"{% endif %} href="/{{ user.username }}/tag/{{ t.slug }}/">{{ t.name }} ({{ t.count }})</a>
             </li>
         {% endfor %}
     </ul>
