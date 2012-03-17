@@ -16,11 +16,15 @@ MANAGERS = ADMINS
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+if DEBUG:
+    DB_USER = 'Nick'
+else:
+    DB_USER = 'nick'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'snipt',
-        'USER': 'Nick',
+        'USER': DB_USER,
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
@@ -183,7 +187,10 @@ POSTMARK_API_KEY = '608d3101-1706-4a96-819f-f2f36fe00fe0'
 GRAPPELLI_ADMIN_TITLE = '<a href="/">Snipt</a>'
 
 # Virtualenv
-VIRTUALENV_PATH = '/Users/Nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
+if DEBUG:
+    VIRTUALENV_PATH = '/Users/Nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
+else:
+    VIRTUALENV_PATH = '/home/nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
 
 # Account settings
 LOGIN_REDIRECT_URL = '/'
