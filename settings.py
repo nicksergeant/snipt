@@ -143,7 +143,6 @@ INSTALLED_APPS = (
     'postmark',
     'registration',
     'south',
-    'storages',
     'taggit',
     'tastypie',
 
