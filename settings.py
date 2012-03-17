@@ -213,7 +213,6 @@ if not DEBUG:
     MIDDLEWARE_CLASSES += (
         'johnny.middleware.LocalStoreClearMiddleware',
         'johnny.middleware.QueryCacheMiddleware',
-        'django.middleware.cache.CacheMiddleware',
     )
     CACHES = {
         'default': dict(
