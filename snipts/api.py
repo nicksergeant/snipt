@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from tastypie.models import create_api_key
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
-from snipts.forms import SniptForm
 from snipts.models import Snipt
 from taggit.models import Tag
 from django.db import models

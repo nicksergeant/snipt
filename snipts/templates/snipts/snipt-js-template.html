@@ -2,7 +2,7 @@
 
 {% verbatim %}
     <script id="snipt" type="text/html">
-        <div class="number">#<%= snipt.pk %></div>
+        <div class="number">#<%= snipt.id %></div>
         <div class="group">
             <div class="container">
                 <header>
@@ -53,7 +53,7 @@
             <ul class="attrs">
                 <li class="author"><a href="<%= snipt.user.get_absolute_url %>"><%= snipt.user.username %></a></li>
                 <li class="created" title="<%= snipt.created %>"><%= snipt.created_formatted %></li>
-                <li class="comments"><a href="<%= snipt.get_absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.pk %>"></a></li>
+                <li class="comments"><a href="<%= snipt.get_absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
             </ul>
         </footer>
         <div class="modal hide copy-modal">

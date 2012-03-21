@@ -1,6 +1,15 @@
 (function(Snipt) {
 
+    Backbone.oldSync = Backbone.sync;
+    Backbone.sync = function(method, model, options) {
+        options.headers = _.extend({
+            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+        }, options.headers);
+        return Backbone.oldSync(method, model, options);
+    };
+    
     Snipt.SniptModel = Backbone.Model.extend({
+        urlRoot: '/api/private/snipt/'
     });
     Snipt.SniptView = Backbone.View.extend({
 
@@ -290,7 +299,7 @@
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
                 get_absolute_url: $h1.attr('href'),
-                pk: parseInt($el.attr('id').replace('snipt-', ''), 0),
+                id: parseInt($el.attr('id').replace('snipt-', ''), 0),
                 key: $('div.key', $el).text(),
                 lexer: $('div.lexer', $el).text(),
                 lexer_name: $('div.lexer-name', $el).text(),
