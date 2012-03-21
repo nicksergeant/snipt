@@ -8,7 +8,6 @@ django_compressor
 django-grappelli
 django-pagination
 django-taggit
-django-tastypie
 django-templatetag-sugar
 gunicorn
 johnny-cache
@@ -24,3 +23,4 @@ versiontools
 Werkzeug
 
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
+git+https://github.com/toastdriven/django-tastypie.git#egg=django-tastypie
