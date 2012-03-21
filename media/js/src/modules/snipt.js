@@ -1,15 +1,6 @@
 (function(Snipt) {
 
-    Backbone.oldSync = Backbone.sync;
-    Backbone.sync = function(method, model, options) {
-        options.headers = _.extend({
-            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
-        }, options.headers);
-        return Backbone.oldSync(method, model, options);
-    };
-    
     Snipt.SniptModel = Backbone.Model.extend({
-        urlRoot: '/api/private/snipt/'
     });
     Snipt.SniptView = Backbone.View.extend({
 
@@ -127,7 +118,11 @@
                 return false;
             });
             $('button.save', window.site.$main_edit).on('click', function(e) {
+                that.model.set('title', $('input#snipt_title').val());
                 that.model.save();
+
+                window.site.snipt_list.escapeUI();
+
                 e.preventDefault();
             });
 

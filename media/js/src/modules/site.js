@@ -2,6 +2,31 @@
 
     var Snipt = snipt.module('snipt');
 
+    Backbone.oldSync = Backbone.sync;
+    Backbone.Model.prototype.idAttribute = 'resource_uri';
+    var addSlash = function(str) {
+        return str + ((str.length > 0 && str.charAt(str.length - 1) === '/') ? '' : '/');
+    };
+    Backbone.sync = function(method, model, options) {
+        options.headers = _.extend({
+            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+        }, options.headers);
+        return Backbone.oldSync(method, model, options);
+    };
+    Backbone.Model.prototype.url = function() {
+        var url = this.id;
+        if (!url) {
+            url = this.urlRoot;
+            url = url || this.collection && (_.isFunction(this.collection.url) ? this.collection.url() : this.collection.url);
+
+            if (url && this.has('id')) {
+                url = addSlash(url) + this.get('id');
+            }
+        }
+        url = url && addSlash(url);
+        return url || null;
+    };
+
     Site.SiteView = Backbone.View.extend({
         el: 'body',
 
