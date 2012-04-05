@@ -9,7 +9,6 @@
         initialize: function() {
             this.model.view = this;
             this.model.bind('change', this.render, this);
-            this.model.bind('destroy', this.remove, this);
 
             this.template     = _.template($('#snipt').html());
             this.editTemplate = _.template($('#edit').html());
@@ -23,19 +22,20 @@
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
             'copyRaw':          'copy',
-            'copyClose':        'copyClose',
             'detail':           'detail',
             'deselect':         'deselect',
             'edit':             'edit',
             'embed':            'embed',
-            'embedClose':       'embedClose',
             'expand':           'expand',
+            'fadeAndRemove':    'fadeAndRemove',
             'next':             'next',
             'prev':             'prev',
             'selectSnipt':      'select'
         },
 
         copy: function() {
+            $('textarea', this.$copyModal).remove();
+
             window.ui_halted = true;
 
             this.$copyModalBody.append('<textarea class="raw"></textarea>');
@@ -43,9 +43,6 @@
 
             this.$copyModal.modal('show');
             $textarea.select();
-        },
-        copyClose: function() {
-            $('textarea', this.$copyModal).remove();
         },
         copyFromClick: function() {
             this.copy();
@@ -66,7 +63,7 @@
             this.select();
 
             // Local vars
-            var that = this;
+            that = this;
             var editPane = this.editTemplate({snipt: this.model.toJSON()});
 
             // Init main view
@@ -107,23 +104,21 @@
             });
 
             // Edit buttons
-            $('button.delete', window.site.$main_edit).on('click', function(e) {
+            $('button.delete', window.site.$main_edit).on('click', function() {
                 if (confirm('Are you sure you want to delete this snipt?')) {
                     that.model.destroy();
                 }
-                e.preventDefault();
+                window.site.snipt_list.escapeUI(true);
+                return false;
             });
-            $('button.cancel', window.site.$main_edit).on('click', function(e) {
+            $('button.cancel', window.site.$main_edit).on('click', function() {
                 window.site.snipt_list.escapeUI();
                 return false;
             });
-            $('button.save', window.site.$main_edit).on('click', function(e) {
-                that.model.set('title', $('input#snipt_title').val());
-                that.model.save();
-
+            $('button.save', window.site.$main_edit).on('click', function() {
+                that.save();
                 window.site.snipt_list.escapeUI();
-
-                e.preventDefault();
+                return false;
             });
 
             window.scrollTo(0, 0);
@@ -131,6 +126,8 @@
             return false;
         },
         embed: function() {
+            $('textarea', this.$embedModal).remove();
+
             window.ui_halted = true;
 
             this.$embedModalBody.append('<textarea class="raw"></textarea>');
@@ -138,9 +135,6 @@
 
             this.$embedModal.modal('show');
             $textarea.select();
-        },
-        embedClose: function() {
-            $('textarea', this.$embedModal).remove();
         },
         embedFromClick: function() {
             this.embed();
@@ -152,8 +146,14 @@
             this.select();
             return false;
         },
+        fadeAndRemove: function() {
+            window.$selected = false;
+            $(this.el).fadeOut('fast', function() {
+                $(this).remove();
+            });
+            return false;
+        },
         initLocalVars: function() {
-            this.$el = $(this.el);
             this.$aside = $('aside', this.$el);
             this.$container = $('div.container', this.$el);
 
@@ -166,12 +166,10 @@
             this.$tags = $('section.tags ul', this.$aside);
 
             this.$copyModal.on('hidden', function(e) {
-                $(this).parent().trigger('copyClose');
                 window.ui_halted = false;
                 window.from_modal = true;
             });
             this.$embedModal.on('hidden', function(e) {
-                $(this).parent().trigger('embedClose');
                 window.ui_halted = false;
                 window.from_modal = true;
             });
@@ -193,11 +191,9 @@
             }
         },
         remove: function() {
-            console.log('remove() on view called');
+            return false;
         },
         render: function() {
-            console.log('render called');
-
             this.$el.html(this.template({
                 snipt: this.model.toJSON()
             }));
@@ -225,6 +221,13 @@
             window.site.$body.append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
 
             return this;
+        },
+        save: function() {
+            that.model.set('title', $('input#snipt_title').val());
+            that.model.set('tags', $('label.tags textarea').val());
+            that.model.set('tags_list', $('label.tags textarea').val());
+
+            that.model.save();
         },
         select: function(fromClick) {
 
@@ -254,7 +257,6 @@
         initialize: function(opts) {
 
             opts.snipts.each(this.addExistingSnipt);
-            this.$el = $(this.el);
 
             this.keyboardShortcuts();
 
@@ -318,7 +320,7 @@
                 model: new Snipt.SniptModel(data)
             });
         },
-        escapeUI: function() {
+        escapeUI: function(destroyed) {
             if (window.editing) {
                 if (!window.site.$html.hasClass('detail')) {
                     window.site.$body.removeClass('detail');
@@ -336,6 +338,10 @@
                     window.site.$html_body.animate({
                         scrollTop: window.$selected.offset().top - 50
                     }, 0);
+                }
+
+                if (destroyed) {
+                    window.$selected.trigger('fadeAndRemove');
                 }
             } else {
                 if (!window.ui_halted) {

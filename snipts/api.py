@@ -91,6 +91,7 @@ class PrivateUserResource(ModelResource):
         list_allowed_methods = []
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
+        always_return_data = True
         cache = SimpleCache()
 
     def apply_authorization_limits(self, request, object_list):
@@ -104,6 +105,7 @@ class PrivateTagResource(ModelResource):
         allowed_methods = ['get']
         authentication = ApiKeyAuthentication()
         authorization = DjangoAuthorization()
+        always_return_data = True
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
@@ -142,6 +144,7 @@ class PrivateSniptResource(ModelResource):
         ordering = ['created', 'modified',]
         # TODO max_limit does not work.
         max_limit = 200
+        always_return_data = True
         cache = SimpleCache()
 
     def dehydrate(self, bundle):

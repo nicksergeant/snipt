@@ -11,7 +11,7 @@
 
     {% compress css %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
-    <link rel="stylesheet" type="text/scss" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
     {% endcompress %}
@@ -119,9 +119,11 @@
         </div>
         {% block aside %}
             <aside class="main">
-                <section class="ad coffee">
-                    <script type="text/javascript" src="http://adsbycoffee.appspot.com/partner.js?publisher=ag1zfmFkc2J5Y29mZmVlchALEglQdWJsaXNoZXIY-VUM"></script>
-                </section>
+                {% if not debug %}
+                    <section class="ad coffee">
+                        <script type="text/javascript" src="http://adsbycoffee.appspot.com/partner.js?publisher=ag1zfmFkc2J5Y29mZmVlchALEglQdWJsaXNoZXIY-VUM"></script>
+                    </section>
+                {% endif %}
                 {% block tags %}{% endblock %}
                 <nav class="footer">
                     <ul>
