@@ -1010,3 +1010,14 @@ body.editing section.main div.inner section.snipts article.editing aside div.in 
 body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public span {
   color: #B94A48;
 }
+
+body.error section.main div.inner {
+  color: #CCC;
+  font: bold 50px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  padding: 63px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+body.error div.rochester-made {
+  margin-top: 54px;
+}

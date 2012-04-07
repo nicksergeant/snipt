@@ -1161,3 +1161,17 @@ body.editing {
         }
     }
 }
+body.error {
+    section.main {
+        div.inner {
+            color: #CCC;
+            font: bold 50px $Helvetica;
+            padding: 63px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+    div.rochester-made {
+        margin-top: 54px;
+    }
+}
