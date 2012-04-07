@@ -59,15 +59,16 @@
         <div class="modal hide copy-modal">
             <div class="modal-header">
                 <a href="#" class="close">×</a>
-                <h3>Copy snipt <span>&ldquo;<%= snipt.title %>&rdquo;</span></h3>
-                <h4>(Text is selected. <span></span>+c to copy.)</h4>
+                <h3>Copy <span>&ldquo;<%= snipt.title %>&rdquo;</span></h3>
+                <h4>(Text is selected. <span class="cmd-ctrl"></span>+C to copy.)</h4>
             </div>
             <div class="modal-body"></div>
         </div>
         <div class="modal hide embed-modal">
             <div class="modal-header">
                 <a href="#" class="close">×</a>
-                <h3>Embed snipt <span>&ldquo;<%= snipt.title %>&rdquo;</span></h3>
+                <h3>Embed <span>&ldquo;<%= snipt.title %>&rdquo;</span></h3>
+                <h4>(Text is selected. <span class="cmd-ctrl"></span>+C to copy.)</h4>
             </div>
             <div class="modal-body">
                 <textarea><script type="text/javascript"><%= snipt.get_embed_url %></script></textarea>

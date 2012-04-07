@@ -21,11 +21,13 @@
             'click a.embed':    'embedFromClick',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
+            'copyClose':        'copyClose',
             'copyRaw':          'copy',
             'detail':           'detail',
             'deselect':         'deselect',
             'edit':             'edit',
             'embed':            'embed',
+            'embedClose':       'embedClose',
             'expand':           'expand',
             'fadeAndRemove':    'fadeAndRemove',
             'next':             'next',
@@ -43,6 +45,9 @@
 
             this.$copyModal.modal('show');
             $textarea.select();
+        },
+        copyClose: function() {
+            $('textarea', this.$copyModal).remove();
         },
         copyFromClick: function() {
             this.copy();
@@ -94,10 +99,10 @@
 
             // Ace editor
             $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
-            var editor = ace.edit('editor');
-            editor.setTheme('ace/theme/tomorrow');
-            editor.renderer.setShowGutter(false);
-            editor.focus();
+            window.editor = ace.edit('editor');
+            window.editor.setTheme('ace/theme/tomorrow');
+            window.editor.renderer.setShowGutter(false);
+            window.editor.focus();
             $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
                 return false;
@@ -140,6 +145,9 @@
             this.embed();
             return false;
         },
+        embedClose: function() {
+            $('textarea', this.$embedModal).remove();
+        },
         expand: function() {
             this.$container.toggleClass('expanded', 100);
             this.$tags.toggleClass('expanded');
@@ -166,10 +174,12 @@
             this.$tags = $('section.tags ul', this.$aside);
 
             this.$copyModal.on('hidden', function(e) {
+                $(this).parent().trigger('copyClose');
                 window.ui_halted = false;
                 window.from_modal = true;
             });
             this.$embedModal.on('hidden', function(e) {
+                $(this).parent().trigger('embedClose');
                 window.ui_halted = false;
                 window.from_modal = true;
             });
@@ -199,7 +209,7 @@
             }));
             this.initLocalVars();
 
-            if (this.model.get('pub') === true) {
+            if (this.model.get('public') === true) {
                 this.$el.removeClass('private-snipt');
             } else {
                 this.$el.addClass('private-snipt');
@@ -226,6 +236,10 @@
             that.model.set('title', $('input#snipt_title').val());
             that.model.set('tags', $('label.tags textarea').val());
             that.model.set('tags_list', $('label.tags textarea').val());
+            that.model.set('lexer', $('select[name="lexer"]').val());
+            that.model.set('lexer_name', $('select[name="lexer"] option:selected').text());
+            that.model.set('code', window.editor.getSession().getValue());
+            that.model.set('public', $('label.public input').is(':checked'));
 
             that.model.save();
         },
@@ -276,9 +290,9 @@
             var $el = $(this);
             var $created = $('li.created', $el);
             var $h1 = $('header h1 a', $el);
-            var $pub = $('div.public', $el);
+            var $public = $('div.public', $el);
             var $user = $('li.author a', $el);
-            var is_public = $pub.text() === 'True' ? true : false;
+            var is_public = $public.text() === 'True' ? true : false;
             var tag_lis = $('section.tags li', $el);
             var tags = [];
 
@@ -302,7 +316,6 @@
                 lexer_name: $('div.lexer-name', $el).text(),
                 line_count: parseInt($('div.line-count', $el).text(), 0),
                 modified: $('div.modified', $el).text(),
-                pub: is_public,
                 resource_uri: $('div.resource-uri', $el).text(),
                 slug: $('div.slug', $el).text(),
                 stylized: $('div.stylized', $el).text(),
@@ -314,6 +327,7 @@
                     username: $user.text()
                 }
             };
+            data['public'] = is_public;
 
             var view = new Snipt.SniptView({
                 el: this,
