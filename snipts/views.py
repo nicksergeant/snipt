@@ -116,10 +116,6 @@ def detail(request, username, snipt_slug):
 def embed(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
 
-    # TODO: Remove these two lines
-    if not snipt.embedded:
-        snipt.save()
-
     lines = snipt.embedded.split('\n')
     return render_to_response('snipts/embed.html',
                               {'lines': lines, 'snipt': snipt},
