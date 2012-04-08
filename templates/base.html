@@ -92,7 +92,13 @@
                     {% endif %}
                 </ul>
             </nav>
-            <aside class="nav"></aside>
+            {% if request.user.is_authenticated %}
+                <aside class="nav">
+                    <ul>
+                        <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
+                    </ul>
+                </aside>
+            {% endif %}
         </div>
     </header>
     {% block sub-header %}

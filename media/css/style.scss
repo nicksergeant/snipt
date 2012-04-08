@@ -203,6 +203,22 @@ header.main {
             height: 65px;
             margin: 0;
             width: 189px;
+
+            ul {
+                margin: 0;
+
+                li {
+                    list-style-type: none;
+
+                    button#add-snipt {
+                        margin: 14px 0 0 14px;
+
+                        i {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

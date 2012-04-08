@@ -145,6 +145,18 @@ header.main div.inner aside.nav {
   margin: 0;
   width: 189px;
 }
+header.main div.inner aside.nav ul {
+  margin: 0;
+}
+header.main div.inner aside.nav ul li {
+  list-style-type: none;
+}
+header.main div.inner aside.nav ul li button#add-snipt {
+  margin: 14px 0 0 14px;
+}
+header.main div.inner aside.nav ul li button#add-snipt i {
+  margin-left: 5px;
+}
 
 header.sub {
   background: #7f7f7f;
