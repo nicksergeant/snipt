@@ -58,6 +58,8 @@ def users():
             last_login=last_login,
             date_joined=date_joined,
         )
+
+        print 'Saving user ' + user.username
         user.save()
 
     print "Done with users"
@@ -112,6 +114,8 @@ def snipts():
         )
         for t in parse_tag_input(tags):
             snipt.tags.add(t)
+
+        print 'Saving snipt ' + snipt.title
         snipt.save()
 
     print 'Done with snipts'
@@ -141,6 +145,7 @@ def favs():
             created=created,
             modified=created,
         )
+        print 'Saving favorite ' + fav.id
         fav.save()
 
     print 'Done with favorites'
