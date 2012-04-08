@@ -500,7 +500,7 @@ article.snipt div.container section.code a.expand:hover {
 article.snipt div.container section.code a.expand:focus {
   outline: none;
 }
-article.snipt div.container section.code div.raw {
+article.snipt div.container section.code textarea.raw {
   display: none;
 }
 article.snipt div.container section.emacs a.expand, article.snipt div.container section.default a.expand {
