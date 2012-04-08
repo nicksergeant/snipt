@@ -67,9 +67,10 @@
 
             this.select();
 
-            // Local vars
             that = this;
-            var editPane = this.editTemplate({snipt: this.model.toJSON()});
+            var snipt = this.model.toJSON();
+            snipt.code = this.model.escape('code');
+            var editPane = this.editTemplate({snipt: snipt});
 
             // Init main view
             window.site.$main.hide();
@@ -204,9 +205,10 @@
             return false;
         },
         render: function() {
-            this.$el.html(this.template({
-                snipt: this.model.toJSON()
-            }));
+            var snipt = this.model.toJSON();
+            snipt.code = this.model.escape('code');
+
+            this.$el.html(this.template({snipt: snipt}));
             this.initLocalVars();
 
             if (this.model.get('public') === true) {
@@ -305,7 +307,7 @@
             }
 
             var data = {
-                code: $('div.raw', $el).html(),
+                code: $('textarea.raw', $el).text(),
                 created: $created.attr('title'),
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),

@@ -92,7 +92,7 @@
                     {% endif %}
                 </ul>
             </nav>
-            {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated and has_snipts %}
                 <aside class="nav">
                     <ul>
                         <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
