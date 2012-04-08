@@ -1,7 +1,7 @@
 from fabric.api import cd, local, env, run, sudo
 
 
-env.hosts = ['nick@beta.snipt.net:39039']
+env.hosts = ['nick@snipt.net:39039']
 env.site_path = '/var/www/snipt'
 env.venv_path = '/home/nick/.virtualenvs/snipt'
 
