@@ -7,8 +7,7 @@ import MySQLdb
 from django.contrib.auth.models import User
 
 from snipts.models import Favorite, Snipt
-from taggit.models import Tag, TaggedItem
-from taggit.utils import parse_tags
+from taggit.models import Tag
 from tastypie.models import ApiKey 
 
 conn = MySQLdb.connect(host='localhost', user='root', passwd='', db='sniptold')
@@ -145,7 +144,7 @@ def favs():
             created=created,
             modified=created,
         )
-        print 'Saving favorite ' + fav.id
+        print 'Saving favorite ' + str(fav.id)
         fav.save()
 
     print 'Done with favorites'

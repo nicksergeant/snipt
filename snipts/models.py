@@ -35,7 +35,6 @@ class Snipt(models.Model):
     key      = models.CharField(max_length=100, blank=True, null=True)
     public   = models.BooleanField(default=False)
     
-    # TODO: Change back auto
     created  = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
@@ -117,7 +116,6 @@ class Favorite(models.Model):
     snipt = models.ForeignKey(Snipt)
     user  = models.ForeignKey(User)
 
-    # TODO: Change back auto
     created  = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
     
