@@ -225,10 +225,14 @@ if not DEBUG:
 # CSS / JS Compression
 COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_JS_FILTERS = []
+COMPRESS_ENABLED = True
 if DEBUG:
     COMPRESS_ROOT = os.path.join(BASE_PATH, 'media')
 else:
     COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+)
 
 # Extensions
 if DEBUG:
