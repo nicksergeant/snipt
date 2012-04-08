@@ -1,6 +1,20 @@
 (function(Snipt) {
 
     Snipt.SniptModel = Backbone.Model.extend({
+        toSafe: function() {
+            var snipt = this.toJSON();
+            snipt.code = this.escape('code');
+            snipt.title = this.escape('title');
+            snipt.tags_list = this.escape('tags_list');
+
+            if (typeof snipt.tags === 'object') {
+                for (tag in snipt.tags) {
+                    snipt.tags[tag].name = _.escape(snipt.tags[tag].name);
+                }
+            }
+
+            return snipt;
+        }
     });
     Snipt.SniptView = Backbone.View.extend({
 
@@ -68,9 +82,7 @@
             this.select();
 
             that = this;
-            var snipt = this.model.toJSON();
-            snipt.code = this.model.escape('code');
-            var editPane = this.editTemplate({snipt: snipt});
+            var editPane = this.editTemplate({snipt: this.model.toSafe()});
 
             // Init main view
             window.site.$main.hide();
@@ -205,10 +217,8 @@
             return false;
         },
         render: function() {
-            var snipt = this.model.toJSON();
-            snipt.code = this.model.escape('code');
 
-            this.$el.html(this.template({snipt: snipt}));
+            this.$el.html(this.template({snipt: this.model.toSafe()}));
             this.initLocalVars();
 
             if (this.model.get('public') === true) {
