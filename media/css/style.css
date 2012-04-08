@@ -787,6 +787,10 @@ div#disqus_thread #dsq-footer {
   display: none;
 }
 
+div.modal div.modal-body {
+  max-height: 514px;
+}
+
 body.detail div.right-y {
   display: none;
 }

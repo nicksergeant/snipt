@@ -906,6 +906,11 @@ div#disqus_thread {
         display: none;
     }
 }
+div.modal {
+    div.modal-body {
+        max-height: 514px;
+    }
+}
 
 // Pages
 body.detail {
