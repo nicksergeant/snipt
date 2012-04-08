@@ -36,8 +36,8 @@ class Snipt(models.Model):
     public   = models.BooleanField(default=False)
     
     # TODO: Change back auto
-    created  = models.DateTimeField(auto_now_add=False, editable=False)
-    modified = models.DateTimeField(auto_now=False, editable=False)
+    created  = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def save(self, *args, **kwargs):
 
@@ -118,8 +118,8 @@ class Favorite(models.Model):
     user  = models.ForeignKey(User)
 
     # TODO: Change back auto
-    created  = models.DateTimeField(auto_now_add=False, editable=False)
-    modified = models.DateTimeField(auto_now=False, editable=False)
+    created  = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
     
     def __unicode__(self):
         return u'{} favorited by {}'.format(self.snipt.title, self.user.username)

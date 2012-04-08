@@ -24,6 +24,12 @@
             }
         }
         url = url && addSlash(url);
+
+        if (typeof url === 'undefined') {
+            url = '/api/private/snipt/';
+            this.unset('id', {'silent': true});
+            this.unset('user', {'silent': true});
+        }
         return url || null;
     };
 

@@ -242,16 +242,24 @@
             $('script#disqus').remove();
             window.site.$body.append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
 
+            // For new snipts.
+            if (this.$el.attr('id') === 'new-snipt') {
+                this.$el.fadeIn('fast');
+                this.$el.attr('id', 'snipt-' + this.model.get('id'));
+            }
+
             return this;
         },
         save: function() {
-            that.model.set('title', $('input#snipt_title').val());
-            that.model.set('tags', $('label.tags textarea').val());
-            that.model.set('tags_list', $('label.tags textarea').val());
-            that.model.set('lexer', $('select[name="lexer"]').val());
-            that.model.set('lexer_name', $('select[name="lexer"] option:selected').text());
-            that.model.set('code', window.editor.getSession().getValue());
-            that.model.set('public', $('label.public input').is(':checked'));
+            that.model.set({
+                'title': $('input#snipt_title').val(),
+                'tags': $('label.tags textarea').val(),
+                'tags_list': $('label.tags textarea').val(),
+                'lexer': $('select[name="lexer"]').val(),
+                'lexer_name': $('select[name="lexer"] option:selected').text(),
+                'code': window.editor.getSession().getValue(),
+                'public': $('label.public input').is(':checked')
+            }, {'silent': true});
 
             that.model.save();
         },
@@ -354,6 +362,36 @@
             });
         },
         addNewSnipt: function() {
+
+            var $articleNewSnipt = $('article#new-snipt');
+
+            if ($articleNewSnipt.length === 0) {
+                window.site.snipt_list.$el.prepend('<article id="new-snipt" class="hidden snipt"></article>');
+
+                var data = {
+                    id: '',
+                    code: '',
+                    tags: [],
+                    tags_list: '',
+                    title: '',
+                    lexer: 'text',
+                    lexer_name: 'Text only',
+                    user: {
+                        username: ''
+                    }
+                };
+                data['public'] = false;
+
+                var newSniptView = new Snipt.SniptView({
+                    el: $('article#new-snipt'),
+                    model: new Snipt.SniptModel(data)
+                });
+
+                newSniptView.edit();
+            } else {
+                $articleNewSnipt.trigger('edit');
+            }
+
             return false;
         },
         escapeUI: function(destroyed) {

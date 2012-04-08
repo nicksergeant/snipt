@@ -492,6 +492,7 @@ article.snipt {
         }
         header {
             border-bottom: 1px solid #F1F1EE;
+            min-height: 58px;
             @include inset-box-shadow(0, -1px, 0, #FFF);
             @include vertical-gradient(#FFF, #FFFAF2);
 

@@ -133,7 +133,7 @@ class PrivateSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
-        fields = ['title', 'slug', 'lexer', 'code', 'line_count',
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count',
                   'stylized', 'key', 'public', 'created', 'modified',]
         validation = Validation()
         include_absolute_url = True

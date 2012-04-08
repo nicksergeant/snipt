@@ -4,7 +4,9 @@
     <script id="edit" type="text/html">
         <header class="fixed-save">
             <div class="inner group">
-                <button class="delete btn btn-secondary">Delete</button>
+                <% if (snipt.id) { %>
+                    <button class="delete btn btn-secondary">Delete</button>
+                <% } %>
                 <button class="save btn btn-success">Save</button>
                 <button class="cancel btn btn-secondary">Cancel</button>
             </div>
@@ -12,7 +14,9 @@
         <div class="inner">
             <section class="snipts" id="snipts">
                 <article id="snipt-<%= snipt.id %>" class="snipt editing">
-                    <div class="number">#<%= snipt.id %></div>
+                    <% if (snipt.id) { %>
+                        <div class="number">#<%= snipt.id %></div>
+                    <% } %>
                     <div class="group">
                         <div class="container">
                             <header>
