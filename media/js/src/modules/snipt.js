@@ -282,6 +282,8 @@
 
         initialize: function(opts) {
 
+            var that = this;
+
             opts.snipts.each(this.addExistingSnipt);
 
             this.keyboardShortcuts();
@@ -295,6 +297,11 @@
                 cmd = 'Ctrl';
             }
             $('span.cmd-ctrl').text(cmd);
+
+            // This should probably be handled more traditionally.
+            $('button#add-snipt').click(function() {
+                that.addNewSnipt();
+            });
         },
 
         addExistingSnipt: function() {
@@ -345,6 +352,9 @@
                 el: this,
                 model: new Snipt.SniptModel(data)
             });
+        },
+        addNewSnipt: function() {
+            return false;
         },
         escapeUI: function(destroyed) {
             if (window.editing) {
