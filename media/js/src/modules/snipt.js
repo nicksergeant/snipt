@@ -72,7 +72,7 @@
             window.$selected = false;
         },
         detail: function() {
-            window.location = this.model.get('get_absolute_url');
+            window.location = this.model.get('absolute_url');
         },
         edit: function() {
 
@@ -336,7 +336,7 @@
                 created: $created.attr('title'),
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
-                get_absolute_url: $h1.attr('href'),
+                absolute_url: $h1.attr('href'),
                 id: parseInt($el.attr('id').replace('snipt-', ''), 0),
                 key: $('div.key', $el).text(),
                 lexer: $('div.lexer', $el).text(),
@@ -350,7 +350,7 @@
                 tags_list: $('div.tags-list', $el).text(),
                 title: $h1.text(),
                 user: {
-                    get_absolute_url: $user.attr('href'),
+                    absolute_url: $user.attr('href'),
                     username: $user.text()
                 }
             };
@@ -376,6 +376,7 @@
                     title: '',
                     lexer: 'text',
                     lexer_name: 'Text only',
+                    new_from_js: true,
                     user: {
                         username: ''
                     }

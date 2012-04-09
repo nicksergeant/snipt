@@ -7,7 +7,7 @@
             <div class="container">
                 <header>
                     <h2><%= snipt.lexer_name %></h2>
-                    <h1><a href="<%= snipt.get_absolute_url %>"><%= snipt.title %></a></h1>
+                    <h1><a href="<%= snipt.absolute_url %>"><%= snipt.title %></a></h1>
                 </header>
                 <section class="code autumn">
                     <%= snipt.stylized %>
@@ -51,9 +51,11 @@
         </div>
         <footer>
             <ul class="attrs">
-                <li class="author"><a href="<%= snipt.user.get_absolute_url %>"><%= snipt.user.username %></a></li>
-                <li class="created" title="<%= snipt.created %>"><%= snipt.created_formatted %></li>
-                <li class="comments"><a href="<%= snipt.get_absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
+                <li class="author"><a href="<%= snipt.user.absolute_url %>"><%= snipt.user.username %></a></li>
+                <% if (!snipt.new_from_js) { %>
+                    <li class="created" title="<%= snipt.created %>"><%= snipt.created_formatted %></li>
+                <% } %>
+                <li class="comments"><a href="<%= snipt.absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
             </ul>
         </footer>
         <div class="modal hide copy-modal">

@@ -53,7 +53,7 @@ class PublicSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
-        fields = ['title', 'slug', 'lexer', 'code', 'line_count',
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count',
                   'stylized', 'created', 'modified',]
         include_absolute_url = True
         allowed_methods = ['get']
