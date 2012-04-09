@@ -5,7 +5,7 @@ from snipts.models import Favorite, Snipt
 class SniptAdmin(admin.ModelAdmin):
     readonly_fields = ('user',)
     list_display = ('title', 'slug', 'user', 'lexer', 'public', 'created', 'modified',)
-    search_fields = ('title', 'user__username', 'lexer', 'id',)
+    search_fields = ('title', 'user__username', 'lexer', 'id', 'key',)
     ordering = ('-created',)
     prepopulated_fields = {'slug': ('title',)}
 
