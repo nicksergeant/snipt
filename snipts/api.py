@@ -1,6 +1,6 @@
 from taggit.utils import edit_string_for_tags, parse_tags
 from tastypie.authentication import ApiKeyAuthentication
-from tastypie.authorization import DjangoAuthorization
+from tastypie.authorization import Authorization
 from tastypie.validation import Validation
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
@@ -90,7 +90,7 @@ class PrivateUserResource(ModelResource):
         allowed_methods = ['get']
         list_allowed_methods = []
         authentication = ApiKeyAuthentication()
-        authorization = DjangoAuthorization()
+        authorization = Authorization()
         always_return_data = True
         cache = SimpleCache()
 
@@ -104,7 +104,7 @@ class PrivateTagResource(ModelResource):
         fields = ['name',]
         allowed_methods = ['get']
         authentication = ApiKeyAuthentication()
-        authorization = DjangoAuthorization()
+        authorization = Authorization()
         always_return_data = True
         cache = SimpleCache()
 
@@ -140,7 +140,7 @@ class PrivateSniptResource(ModelResource):
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
-        authorization = DjangoAuthorization()
+        authorization = Authorization()
         ordering = ['created', 'modified',]
         # TODO max_limit does not work.
         max_limit = 200
@@ -156,7 +156,7 @@ class PrivateSniptResource(ModelResource):
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
         return super(PrivateSniptResource, self).obj_create(bundle, request,
-                     user=request.user)
+                     user=request.user, **kwargs)
 
     def obj_update(self, bundle, request=None, **kwargs):
         bundle.data['user'] = request.user
@@ -165,7 +165,8 @@ class PrivateSniptResource(ModelResource):
         else:
             bundle.data['tags_list'] = ''
         bundle.data['tags'] = ''
-        return super(PrivateSniptResource, self).obj_update(bundle, request, **kwargs)
+        return super(PrivateSniptResource, self).obj_update(bundle, request,
+                     user=request.user, **kwargs)
 
     def build_filters(self, filters=None):
         if filters is None:
