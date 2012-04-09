@@ -76,7 +76,7 @@
                 return false;
             });
 
-            $('section.main').on('click', 'a.close', function() {
+            this.$body.on('click', 'a.close', function() {
                 $(this).parent().parent().modal('hide');
                 window.ui_halted = false;
                 return false;
