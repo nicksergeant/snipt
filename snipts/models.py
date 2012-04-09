@@ -40,11 +40,11 @@ class Snipt(models.Model):
 
     def save(self, *args, **kwargs):
 
-        if not self.key:
-            self.key = md5.new(self.slug).hexdigest()
-
         if not self.slug:
             self.slug = slugify_uniquely(self.title, Snipt)
+
+        if not self.key:
+            self.key = md5.new(self.slug).hexdigest()
 
         self.stylized = highlight(self.code,
                                   get_lexer_by_name(self.lexer, encoding='UTF-8'),
