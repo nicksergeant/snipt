@@ -353,6 +353,8 @@ section.main {
                 margin-bottom: 27px;
 
                 p {
+                    display: block !important;
+                    height: auto !important;
                     margin: 7px 0 0 0;
                 }
                 & > div {
