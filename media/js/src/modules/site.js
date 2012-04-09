@@ -51,19 +51,17 @@
             this.keyboardShortcuts();
             this.inFieldLabels();
 
-            if (this.$snipts.length) {
-                var SniptListView = Snipt.SniptListView;
-                this.snipt_list = new SniptListView({ 'snipts': this.$snipts });
+            var SniptListView = Snipt.SniptListView;
+            this.snipt_list = new SniptListView({ 'snipts': this.$snipts });
 
-                this.$body.click(function() {
-                    if (!window.ui_halted && !window.from_modal && window.$selected) {
-                        window.$selected.trigger('deselect');
-                    }
-                    if (window.from_modal) {
-                        window.from_modal = false;
-                    }
-                });
-            }
+            this.$body.click(function() {
+                if (!window.ui_halted && !window.from_modal && window.$selected) {
+                    window.$selected.trigger('deselect');
+                }
+                if (window.from_modal) {
+                    window.from_modal = false;
+                }
+            });
 
             $search_query = this.$search_query;
             $search_query.focus(function() {
