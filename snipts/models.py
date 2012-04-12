@@ -83,7 +83,10 @@ class Snipt(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return '/{}/{}/'.format(self.user.username, self.slug)
+        if self.public:
+            return '/{}/{}/'.format(self.user.username, self.slug)
+        else:
+            return '/{}/{}/?key={}'.format(self.user.username, self.slug, self.key)
 
     def get_full_absolute_url(self):
         if settings.DEBUG:
