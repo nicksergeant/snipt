@@ -174,6 +174,14 @@
             });
             return false;
         },
+        favorite: function() {
+
+        },
+        initFavorite: function() {
+            this.$favorite.click(function() {
+                return false;
+            });
+        },
         initLocalVars: function() {
             this.$aside = $('aside', this.$el);
             this.$container = $('div.container', this.$el);
@@ -182,6 +190,7 @@
             this.$copyModalBody = $('div.modal-body', this.$copyModal);
             this.$embedModal = $('div.embed-modal', this.$el);
             this.$embedModalBody = $('div.modal-body', this.$embedModal);
+            this.$favorite = $('a.favorite', this.$el);
 
             this.$h1 = $('header h1 a', this.$el);
             this.$tags = $('section.tags ul', this.$aside);
@@ -196,6 +205,10 @@
                 window.ui_halted = false;
                 window.from_modal = true;
             });
+
+            if (this.$favorite.length) {
+                this.initFavorite();
+            }
         },
         next: function() {
             if (!window.ui_halted) {
@@ -283,6 +296,9 @@
         selectFromClick: function(e) {
             this.select(true);
             e.stopPropagation();
+        },
+        unFavorite: function() {
+
         }
     });
     Snipt.SniptListView = Backbone.View.extend({

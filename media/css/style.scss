@@ -682,10 +682,9 @@ article.snipt {
                     }
                     &.copy {
                         background-image: url('/static/images/copy-icon.png');
-
-                        span.done {
-                            display: none;
-                        }
+                    }
+                    &.favorite {
+                        background-image: url('/static/images/favorite-icon.png');
                     }
                 }
             }
@@ -791,6 +790,14 @@ article.snipt {
             }
         }
     }
+    div.modal {
+        textarea {
+            font: normal 12px/16px $Consolas;
+            height: 200px;
+            margin: 0;
+            width: 520px;
+        }
+    }
     &.selected {
         div.container {
             -webkit-box-shadow: 0 0 20px #85D2DD;
@@ -802,12 +809,17 @@ article.snipt {
             }
         }
     }
-    div.modal {
-        textarea {
-            font: normal 12px/16px $Consolas;
-            height: 200px;
-            margin: 0;
-            width: 520px;
+    &.favorited {
+        div.container {
+            header {
+                @include vertical-gradient-with-image(url('/static/images/favorited-icon.png') top right no-repeat, #FFF, #FFFAF2);
+
+                h1 {
+                    a {
+                        padding-right: 25px;
+                    }
+                }
+            }
         }
     }
 }
