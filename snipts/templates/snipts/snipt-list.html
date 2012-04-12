@@ -1,6 +1,6 @@
 {% load humanize snipt_tags %}
 
-<article id="snipt-{{ snipt.pk }}" class="snipt{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if request.user.is_authenticated %}{% if snipt|is_favorited_by:request.user %} favorited{% endif %}{% endif %}">
+<article id="snipt-{{ snipt.pk }}" class="snipt{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if snipt.user != request.user and request.user.is_authenticated %}{% if snipt|is_favorited_by:request.user %} favorited{% endif %}{% endif %}">
     <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container">
