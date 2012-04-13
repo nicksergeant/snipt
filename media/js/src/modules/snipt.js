@@ -32,6 +32,8 @@
         events: {
             'click a.copy':     'copyFromClick',
             'click a.edit':     'edit',
+            'click a.favorite': 'favoriteToggle',
+            'hover a.favorite': 'favoriteHover',
             'click a.embed':    'embedFromClick',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
@@ -174,13 +176,52 @@
             });
             return false;
         },
-        favorite: function() {
-
+        favoriteHover: function(e) {
+            if (e.type === 'mouseenter') {
+                if (this.$el.hasClass('favorited')) {
+                    this.$favorite.text('Remove?');
+                } else {
+                    this.$favorite.text('Favorite?');
+                }
+            } else {
+                if (this.$el.hasClass('favorited')) {
+                    this.$favorite.text('Favorited');
+                } else {
+                    this.$favorite.text('Favorite');
+                }
+            }
         },
-        initFavorite: function() {
-            this.$favorite.click(function() {
-                return false;
-            });
+        favoriteToggle: function() {
+
+            var that = this;
+
+            if (this.$el.hasClass('favorited')) {
+                $.ajax('/api/private/favorite/' + this.model.get('favorite_id'), {
+                    type: 'delete',
+                    success: function() {
+                        that.$el.removeClass('favorited');
+                        that.$favorite.text('Removed.');
+                    },
+                    headers: {
+                        'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+                    }
+                });
+            } else {
+                $.ajax('/api/private/favorite/', {
+                    data: '{"snipt": ' + this.model.get('id') + '}',
+                    contentType: 'application/json',
+                    type: 'post',
+                    success: function(resp) {
+                        that.$el.addClass('favorited');
+                        that.model.set({'favorite_id': resp['id']}, {'silent': true});
+                        that.$favorite.text('Favorited.');
+                    },
+                    headers: {
+                        'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+                    }
+                });
+            }
+            return false;
         },
         initLocalVars: function() {
             this.$aside = $('aside', this.$el);
@@ -205,10 +246,6 @@
                 window.ui_halted = false;
                 window.from_modal = true;
             });
-
-            if (this.$favorite.length) {
-                this.initFavorite();
-            }
         },
         next: function() {
             if (!window.ui_halted) {
@@ -353,6 +390,7 @@
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
                 absolute_url: $h1.attr('href'),
+                favorite_id: $el.data('favorite-id'),
                 id: parseInt($el.attr('id').replace('snipt-', ''), 0),
                 key: $('div.key', $el).text(),
                 lexer: $('div.lexer', $el).text(),

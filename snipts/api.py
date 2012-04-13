@@ -5,14 +5,25 @@ from tastypie.validation import Validation
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from tastypie.models import create_api_key
+from snipts.models import Favorite, Snipt
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
-from snipts.models import Snipt
 from taggit.models import Tag
 from django.db import models
 from tastypie import fields
 
 models.signals.post_save.connect(create_api_key, sender=User)
+
+
+class FavoriteValidation(Validation):
+    def is_valid(self, bundle, request=None):
+        errors = {}
+        snipt = bundle.data['snipt']
+
+        if Favorite.objects.filter(user=request.user, snipt=snipt).count():
+            errors['duplicate'] = 'User has already favorited this snipt.'
+
+        return errors
 
 
 class PublicUserResource(ModelResource):
@@ -188,3 +199,30 @@ class PrivateSniptResource(ModelResource):
         tags = bundle.data.get('tags_list', [])
         if tags != '':
             bundle.obj.tags.set(*parse_tags(tags))
+class PrivateFavoriteResource(ModelResource):
+    user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
+    snipt = fields.ForeignKey(PrivateSniptResource, 'snipt', full=False)
+
+    class Meta:
+        queryset = Favorite.objects.all().order_by('-created')
+        resource_name = 'favorite'
+        fields = ['id',]
+        validation = FavoriteValidation()
+        detail_allowed_methods = ['get', 'post', 'delete']
+        list_allowed_methods = ['get', 'post',]
+        authentication = ApiKeyAuthentication()
+        authorization = Authorization()
+        ordering = ['created',]
+        # TODO max_limit does not work.
+        max_limit = 200
+        always_return_data = True
+        cache = SimpleCache()
+
+    def obj_create(self, bundle, request=None, **kwargs):
+        bundle.data['user'] = request.user
+        bundle.data['snipt'] = Snipt.objects.get(pk=bundle.data['snipt'])
+        return super(PrivateFavoriteResource, self).obj_create(bundle, request,
+                     user=request.user, **kwargs)
+
+    def apply_authorization_limits(self, request, object_list):
+        return object_list.filter(user=request.user)

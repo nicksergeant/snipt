@@ -47,12 +47,13 @@ def list_user(request, username, tag_slug=None):
     snipts = Snipt.objects
 
     if user == request.user:
-        tags = tags.filter(snipt__user=user)
         public = False
 
         favorites = Favorite.objects.filter(user=user).values('snipt')
         favorites = [f['snipt'] for f in favorites]
         snipts = snipts.filter(Q(user=user) | Q(pk__in=favorites))
+
+        tags = tags.filter(Q(snipt__user=user) | Q(snipt__pk__in=favorites))
     else:
         tags = tags.filter(snipt__user=user, snipt__public=True)
         snipts = snipts.filter(user=user, public=True)

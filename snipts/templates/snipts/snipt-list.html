@@ -1,6 +1,8 @@
 {% load humanize snipt_tags %}
 
-<article id="snipt-{{ snipt.pk }}" class="snipt{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if snipt.user != request.user and request.user.is_authenticated %}{% if snipt|is_favorited_by:request.user %} favorited{% endif %}{% endif %}">
+{% snipt_is_favorited_by_user as 'is_favorited' %}
+
+<article id="snipt-{{ snipt.pk }}" class="snipt{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if is_favorited %} favorited" data-favorite-id="{{ is_favorited }}"{% else %}"{% endif %}>
     <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container">
@@ -37,7 +39,7 @@
                 </li>
                 {% if snipt.user != request.user and request.user.is_authenticated %}
                     <li>
-                        {% if snipt|is_favorited_by:request.user %}
+                        {% if is_favorited %}
                             <a class="favorite favorited" href="#">Favorited</a>
                         {% else %}
                             <a class="favorite unfavorited" href="#">Favorite</a>

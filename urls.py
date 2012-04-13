@@ -3,7 +3,6 @@ from registration.forms import RegistrationFormUniqueEmail
 from django.http import HttpResponseRedirect
 from django.conf.urls.defaults import *
 from django.contrib import admin
-from django.conf import settings
 from tastypie.api import Api
 from snipts.api import *
 
@@ -20,6 +19,7 @@ private_api = Api(api_name='private')
 private_api.register(PrivateSniptResource())
 private_api.register(PrivateTagResource())
 private_api.register(PrivateUserResource())
+private_api.register(PrivateFavoriteResource())
 
 urlpatterns = patterns('',
 
