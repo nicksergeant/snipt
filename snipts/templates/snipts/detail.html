@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block page-title %}/ {{ snipt.title }} / {{ user.username }} - {{ block.super }}{% endblock %}
+{% block page-title %}/ {% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %} / {{ user.username }} - {{ block.super }}{% endblock %}
 {% block html-class %}detail{% endblock %}
 {% block body-class %}detail{% endblock %}
 

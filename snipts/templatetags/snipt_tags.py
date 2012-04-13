@@ -5,6 +5,8 @@ from templatetag_sugar.parser import Variable, Constant
 
 from snipts.models import Favorite
 
+import hashlib
+
 register = template.Library()
 
 
@@ -26,3 +28,7 @@ def snipt_is_favorited_by_user(context, asvar):
     context[asvar] = is_favorited
 
     return ''
+
+@register.filter
+def md5(string):
+    return hashlib.md5(string.lower()).hexdigest()

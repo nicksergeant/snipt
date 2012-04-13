@@ -1,5 +1,7 @@
 {% extends "snipts/list.html" %}
 
+{% load snipt_tags %}
+
 {% block breadcrumb %}
     <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
     {% if tag %}
@@ -8,5 +10,18 @@
 {% endblock %}
 
 {% block tags %}
+    <div class="profile group" title="{{ user.username }}">
+        <span class="avatar" style="background-image: url('http://www.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
+        <div class="meta">
+            <div class="username">
+                {{ user.username }}
+            </div>
+            {% if user.username == 'nick' %}
+                <div class="member-since">Snipt Founder<br />in {{ user.date_joined|date:"Y" }}</div>
+            {% else %}
+                <div class="member-since">Member since<br />{{ user.date_joined|date:"Y" }}</div>
+            {% endif %}
+        </div>
+    </div>
     {% include "snipts/tags-user.html" %}
 {% endblock %}

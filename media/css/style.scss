@@ -373,7 +373,7 @@ section.main {
             }
         }
         section.tags {
-            margin: 0 15px 45px 15px;
+            margin: 0 0 45px 15px;
 
             h1 {
                 background: transparent url('/static/images/tags-icon.png') 0 0 no-repeat;
@@ -752,7 +752,20 @@ article.snipt {
                     }
                 }
                 &.author {
-                    background: transparent url('/static/images/author-icon.png') 0 1px no-repeat;
+                    background-image: none;
+                    padding-left: 0;
+
+                    span {
+                        background-color: transparent;
+                        background-position: top left;
+                        background-repeat: no-repeat;
+                        display: inline-block;
+                        height: 15px;
+                        margin-right: 7px;
+                        vertical-align: -3px;
+                        width: 15px;
+                        @include border-radius(3px);
+                    }
                 }
                 &.comments {
                     background: transparent url('/static/images/comments-icon.png') 0 2px no-repeat;
@@ -920,6 +933,41 @@ div#disqus_thread {
 div.modal {
     div.modal-body {
         max-height: 514px;
+    }
+}
+div.profile {
+    background: rgba(128, 128, 128, .15);
+    margin: 0 0 30px 15px;
+    padding: 10px;
+    @include border-radius(8px);
+
+    span.avatar {
+        background-color: transparent;
+        background-position: top left;
+        background-repeat: no-repeat;
+        display: block;
+        float: left;
+        height: 50px;
+        width: 50px;
+        @include border-radius(5px);
+    }
+    div.meta {
+        display: block;
+        float: left;
+        font: bold 14px $Helvetica;
+        margin: 0 0 0 10px;
+
+        div.username {
+            max-width: 95px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        div.member-since {
+            color: #909090;
+            font: bold 10px $Helvetica;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
     }
 }
 
