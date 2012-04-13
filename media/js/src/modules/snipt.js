@@ -184,6 +184,7 @@
                     type: 'delete',
                     success: function() {
                         that.$el.removeClass('favorited');
+                        that.$favorite.text('Favorite');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -197,6 +198,7 @@
                     success: function(resp) {
                         that.$el.addClass('favorited');
                         that.model.set({'favorite_id': resp['id']}, {'silent': true});
+                        that.$favorite.text('Favorited');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
