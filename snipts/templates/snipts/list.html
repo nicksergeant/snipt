@@ -2,7 +2,7 @@
 
 {% load pagination_tags %}
 
-{% block page-title %}/ {% if public %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - {{ block.super }}{% endblock %}
+{% block page-title %}/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - {{ block.super }}{% endblock %}
 
 {% block js %}
         {{ block.super }}

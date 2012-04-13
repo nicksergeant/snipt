@@ -10,10 +10,10 @@
 {% endblock %}
 
 {% block tags %}
-    <div class="profile group" title="{{ user.username }}">
+    <div class="profile group">
         <span class="avatar" style="background-image: url('http://www.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
         <div class="meta">
-            <div class="username">
+            <div class="username" title="{{ user.username }}">
                 {{ user.username }}
             </div>
             {% if user.username == 'nick' %}

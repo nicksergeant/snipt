@@ -73,6 +73,7 @@ def list_user(request, username, tag_slug=None):
         'has_snipts': True,
         'lexers': sorted(get_all_lexers()),
         'public': public,
+        'public_user': (public and user),
         'snipts': snipts,
         'tags': tags,
         'tag': tag,
