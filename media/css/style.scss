@@ -936,7 +936,7 @@ div.modal {
     }
 }
 div.profile {
-    background: rgba(128, 128, 128, .15);
+    background: rgba(128, 128, 128, .08);
     margin: 0 0 30px 15px;
     padding: 10px;
     @include border-radius(8px);
@@ -971,7 +971,7 @@ div.profile {
     }
 }
 div.empty-snipts {
-    background: rgba(128, 128, 128, .15);
+    background: rgba(128, 128, 128, .08);
     font: bold 18px $Helvetica;
     margin: 30px 15px 0 15px;
     padding: 10px;
