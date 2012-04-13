@@ -623,18 +623,15 @@ article.snipt {
             }
         }
         &:after {
-            bottom: 8px;
+            background: transparent url('/static/images/snipt-drop-shadow.png') top left no-repeat;
+            bottom: -15px;
             content: "";
-            height: 20px;
+            display: block;
+            height: 15px;
             position: absolute;
-            right: 3px;
-            width: 50%;
-            z-index: 48;
-            @include box-shadow(0, 6px, 12px, rgba(184, 184, 184, .6));
-            -webkit-transform: rotate(3deg);
-            -moz-transform: rotate(3deg);
-            -o-transform: rotate(3deg);
-            transform: rotate(3deg);
+            right: 0px;
+            width: 318px;
+            z-index: 51;
         }
     }
     aside {
@@ -666,7 +663,7 @@ article.snipt {
                     }
                     &.edit {
                         &:after {
-                            background: #F5F2F3 url('/static/images/bg.gif') top left repeat;
+                            background: #F5F2F3;
                             content: "";
                             height: 20px;
                             position: absolute;
@@ -952,10 +949,6 @@ body.detail {
                         section.code {
                             height: auto;
                         }
-                        &:after {
-                            bottom: 11px;
-                            height: 23px;
-                        }
                     }
                     aside {
                         margin-right: 0;
@@ -1129,9 +1122,6 @@ body.editing {
                             h2 {
                                 border: none;
                             }
-                        }
-                        &:after {
-                            display: none;
                         }
                     }
                     aside {
