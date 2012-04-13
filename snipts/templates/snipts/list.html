@@ -14,6 +14,10 @@
         {% autopaginate snipts 20 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}
+        {% empty %}
+            <div class="empty-snipts">
+                {{ user.username }} has no public snipts.
+            </div>
         {% endfor %}
         {% paginate %}
     </section>

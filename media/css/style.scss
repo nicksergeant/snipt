@@ -970,6 +970,15 @@ div.profile {
         }
     }
 }
+div.empty-snipts {
+    background: rgba(128, 128, 128, .15);
+    font: bold 18px $Helvetica;
+    margin: 30px 15px 0 15px;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px #FFF;
+    @include border-radius(8px);
+}
 
 // Pages
 body.detail {
