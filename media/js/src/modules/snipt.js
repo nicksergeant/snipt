@@ -33,7 +33,6 @@
             'click a.copy':     'copyFromClick',
             'click a.edit':     'edit',
             'click a.favorite': 'favoriteToggle',
-            'hover a.favorite': 'favoriteHover',
             'click a.embed':    'embedFromClick',
             'click a.expand':   'expand',
             'click .container': 'selectFromClick',
@@ -176,21 +175,6 @@
             });
             return false;
         },
-        favoriteHover: function(e) {
-            if (e.type === 'mouseenter') {
-                if (this.$el.hasClass('favorited')) {
-                    this.$favorite.text('Remove?');
-                } else {
-                    this.$favorite.text('Favorite?');
-                }
-            } else {
-                if (this.$el.hasClass('favorited')) {
-                    this.$favorite.text('Favorited');
-                } else {
-                    this.$favorite.text('Favorite');
-                }
-            }
-        },
         favoriteToggle: function() {
 
             var that = this;
@@ -200,7 +184,6 @@
                     type: 'delete',
                     success: function() {
                         that.$el.removeClass('favorited');
-                        that.$favorite.text('Removed.');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -214,7 +197,6 @@
                     success: function(resp) {
                         that.$el.addClass('favorited');
                         that.model.set({'favorite_id': resp['id']}, {'silent': true});
-                        that.$favorite.text('Favorited.');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -333,9 +315,6 @@
         selectFromClick: function(e) {
             this.select(true);
             e.stopPropagation();
-        },
-        unFavorite: function() {
-
         }
     });
     Snipt.SniptListView = Backbone.View.extend({
