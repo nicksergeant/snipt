@@ -180,7 +180,7 @@ header.main {
                         font: 500 14px $Helvetica;
                         padding: 7px;
                         padding-bottom: 4px;
-                        margin-right: 20px;
+                        margin-right: 16px;
                         text-decoration: none;
                         -webkit-transition: border .08s linear;
                         -moz-transition: border .08s linear;
@@ -192,6 +192,14 @@ header.main {
                         }
                         &.active {
                             border-bottom: 2px solid #85D2DD;
+                        }
+                    }
+                    button#add-snipt {
+                        margin-top: -3px;
+                        padding: 9px 12px;
+
+                        i {
+                            margin-left: 5px;
                         }
                     }
                 }
@@ -210,13 +218,6 @@ header.main {
                 li {
                     list-style-type: none;
 
-                    button#add-snipt {
-                        margin: 14px 0 0 14px;
-
-                        i {
-                            margin-left: 5px;
-                        }
-                    }
                 }
             }
         }
