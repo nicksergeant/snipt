@@ -12,6 +12,8 @@ from taggit.models import Tag
 from django.db import models
 from tastypie import fields
 
+import hashlib
+
 models.signals.post_save.connect(create_api_key, sender=User)
 
 
@@ -107,6 +109,10 @@ class PrivateUserResource(ModelResource):
 
     def apply_authorization_limits(self, request, object_list):
         return object_list.filter(username=request.user.username)
+
+    def dehydrate(self, bundle):
+        bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
+        return bundle
 
 class PrivateTagResource(ModelResource):
     class Meta:
