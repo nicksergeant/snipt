@@ -13,7 +13,7 @@ admin.site.register(Snipt, SniptAdmin)
 
 class FavoriteAdmin(admin.ModelAdmin):
     readonly_fields = ('snipt', 'user',)
-    list_display = ('snipt', 'user',)
+    list_display = ('snipt', 'user', 'created',)
     search_fields = ('snipt', 'user',)
     ordering = ('-created',)
 

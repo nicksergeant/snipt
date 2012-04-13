@@ -7,7 +7,7 @@
             <div class="container">
                 <header>
                     <h2><%= snipt.lexer_name %></h2>
-                    <h1><a href="<%= snipt.absolute_url %>"><%= snipt.title %></a></h1>
+                    <h1><a href="<%= snipt.absolute_url %>"><% if (snipt.title) { %><%= snipt.title %><% } else { %>Untitled <% } %></a></h1>
                 </header>
                 <section class="code autumn">
                     <%= snipt.stylized %>
