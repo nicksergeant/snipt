@@ -30,7 +30,7 @@ def list_public(request, tag_slug=None):
     else:
         tag = None
 
-    return {
+    context = {
         'has_snipts': True,
         'lexers': sorted(get_all_lexers()),
         'public': True,
@@ -39,6 +39,12 @@ def list_public(request, tag_slug=None):
         'tag': tag,
     }
 
+    if 'rss' in request.GET:
+        context['snipts'] = context['snipts'][:20]
+        return rss(request, context)
+
+    return context
+
 @render_to('snipts/list-user.html')
 def list_user(request, username, tag_slug=None):
 
@@ -46,7 +52,7 @@ def list_user(request, username, tag_slug=None):
     tags = Tag.objects
     snipts = Snipt.objects
 
-    if user == request.user:
+    if user == request.user or (request.GET.get('api_key') == user.api_key.key):
         public = False
 
         favorites = Favorite.objects.filter(user=user).values('snipt')
@@ -69,7 +75,7 @@ def list_user(request, username, tag_slug=None):
     else:
         tag = None
 
-    return {
+    context = {
         'has_snipts': True,
         'lexers': sorted(get_all_lexers()),
         'public': public,
@@ -79,6 +85,12 @@ def list_user(request, username, tag_slug=None):
         'tag': tag,
         'user': user,
     }
+
+    if 'rss' in request.GET:
+        context['snipts'] = context['snipts'][:20]
+        return rss(request, context)
+
+    return context
 
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):
@@ -107,6 +119,7 @@ def detail(request, username, snipt_slug):
     tags = tags.order_by('-count', 'name')
 
     return {
+        'detail': True,
         'has_snipts': True,
         'lexers': sorted(get_all_lexers()),
         'public': public,
@@ -123,3 +136,11 @@ def embed(request, snipt_key):
                               {'lines': lines, 'snipt': snipt},
                               context_instance=RequestContext(request),
                               mimetype='application/javascript')
+
+def rss(request, context):
+    return render_to_response(
+            'rss.xml',
+            context,
+            context_instance=RequestContext(request),
+            mimetype="application/rss+xml"
+        )

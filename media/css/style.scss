@@ -242,8 +242,8 @@ header.sub {
 
             li {
                 display: inline-block;
-                max-width: 490px;
                 line-height: normal;
+                max-width: 490px;
                 overflow: hidden;
                 padding: 2px 0 4px 0;
                 text-overflow: ellipsis;
@@ -264,6 +264,16 @@ header.sub {
                     font: bold 12px $Consolas;
                     margin-right: 3px;
                     text-shadow: 0 1px 0 #FFF;
+                }
+                &.rss {
+                    float: right;
+
+                    a {
+                        background: transparent url('/static/images/rss-icon.png') center left no-repeat;
+                        display: inline-block;
+                        margin-right: 15px;
+                        padding-left: 15px;
+                    }
                 }
             }
         }

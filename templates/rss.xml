@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - Snipt</title>
+        <link>http://snipt.net{{ request.path }}</link>{% for snipt in snipts %}
+            <item>
+                <title>{{ snipt.title }}</title>
+                <link>{{ snipt.get_absolute_url }}</link>
+                <description><![CDATA[{{ snipt.code }}]]></description>
+                <pubDate>{{ snipt.created }}</pubDate>
+                <guid>{{ snipt.id }}</guid>
+            </item>{% endfor %}
+    </channel>
+</rss>
