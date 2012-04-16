@@ -3,7 +3,7 @@ from django import template
 from templatetag_sugar.register import tag
 from templatetag_sugar.parser import Variable, Constant
 
-from snipts.models import Favorite
+from snipts.models import Favorite, Snipt
 
 import hashlib
 
@@ -28,6 +28,19 @@ def snipt_is_favorited_by_user(context, asvar):
     context[asvar] = is_favorited
 
     return ''
+
+@tag(register, [])
+def snipts_count_for_user(context):
+
+    user = context['request'].user
+
+    if user.is_authenticated():
+        snipts = Snipt.objects.filter(user=user).values('id').count()
+    else:
+        snipts = 0
+
+    return snipts
+
 
 @register.filter
 def md5(string):

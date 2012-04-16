@@ -1,4 +1,4 @@
-{% load compress %}
+{% load compress snipt_tags %}
 
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}">
@@ -243,19 +243,19 @@
         {% include 'snipts/snipt-edit-js-template.html' %}
     </div>
     {% if not debug %}
-    <script type="text/javascript">
-        var _gauges = _gauges || [];
-        (function() {
-            var t   = document.createElement('script');
-            t.type  = 'text/javascript';
-            t.async = true;
-            t.id    = 'gauges-tracker';
-            t.setAttribute('data-site-id', '4ed65ee7f5a1f530f1000001');
-            t.src = '//secure.gaug.es/track.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(t, s);
-        })();
-    </script>
+        <script type="text/javascript">
+            var _gauges = _gauges || [];
+            (function() {
+                var t   = document.createElement('script');
+                t.type  = 'text/javascript';
+                t.async = true;
+                t.id    = 'gauges-tracker';
+                t.setAttribute('data-site-id', '4ed65ee7f5a1f530f1000001');
+                t.src = '//secure.gaug.es/track.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(t, s);
+            })();
+        </script>
     {% else %}
     <script type="text/javascript">
         document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
@@ -263,33 +263,39 @@
     {% endif %}
 
     {% if request.user.is_authenticated %}
-        <script id="IntercomSettingsScriptTag">
-            var intercomSettings = {
-                app_id: 'sajf131y',
-                email: '{{ request.user.email }}',
-                created_at: {{ request.user.date_joined|date:"U" }},
-                widget: {
-                    activator: '#IntercomDefaultWidget',
-                    label: 'Support'
-                }
-            };
-        </script>
-        <script>
-            (function() {
-                 function async_load() {
-                     var s = document.createElement('script');
-                     s.type = 'text/javascript'; s.async = true;
-                     s.src = 'https://api.intercom.io/api/js/library.js';
-                     var x = document.getElementsByTagName('script')[0];
-                     x.parentNode.insertBefore(s, x);
-                 }
-                 if (window.attachEvent) {
-                     window.attachEvent('onload', async_load);
-                 } else {
-                     window.addEventListener('load', async_load, false);
-                 }
-             })();
-         </script>
+        {% if not debug %}
+            <script id="IntercomSettingsScriptTag">
+                var intercomSettings = {
+                    app_id: 'sajf131y',
+                    email: '{{ request.user.email }}',
+                    created_at: {{ request.user.date_joined|date:"U" }},
+                    widget: {
+                        activator: '#IntercomDefaultWidget',
+                        label: 'Support Chat'
+                    },
+                    custom_data: {
+                        'snipts count': {% snipts_count_for_user %},
+                        'profile link': 'http://snipt.net/{{ request.user.username }}/'
+                    }
+                };
+            </script>
+            <script>
+                (function() {
+                     function async_load() {
+                         var s = document.createElement('script');
+                         s.type = 'text/javascript'; s.async = true;
+                         s.src = 'https://api.intercom.io/api/js/library.js';
+                         var x = document.getElementsByTagName('script')[0];
+                         x.parentNode.insertBefore(s, x);
+                     }
+                     if (window.attachEvent) {
+                         window.attachEvent('onload', async_load);
+                     } else {
+                         window.addEventListener('load', async_load, false);
+                     }
+                 })();
+             </script>
+        {% endif %}
      {% endif %}
 </body>
 </html>
