@@ -1,10 +1,12 @@
-<section class="tags">
-    <h1>{{ user.username }}'s tags</h1>
-    <ul>
-        {% for t in tags %}
-            <li>
-                <a {% if tag.name == t.name %}class="active"{% endif %} href="/{{ user.username }}/tag/{{ t.slug }}/">{{ t.name }} ({{ t.count }})</a>
-            </li>
-        {% endfor %}
-    </ul>
-</section>
+{% if tags %}
+    <section class="tags">
+        <h1>{{ user.username }}'s tags</h1>
+        <ul>
+            {% for t in tags %}
+                <li>
+                    <a {% if tag.name == t.name %}class="active"{% endif %} href="/{{ user.username }}/tag/{{ t.slug }}/">{{ t.name }} ({{ t.count }})</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}
