@@ -143,6 +143,7 @@ INSTALLED_APPS = (
 
     'compressor',
     'django_bcrypt',
+    'haystack',
     'pagination',
     'postmark',
     'registration',
@@ -233,6 +234,14 @@ else:
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'sass --scss {infile} {outfile}'),
 )
+
+# Search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr'
+    },
+}
 
 # Extensions
 if DEBUG:

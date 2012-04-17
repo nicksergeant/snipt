@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.user.username }}
+{{ object.tags_list }}
+{{ object.lexer }}
+{{ object.code }}

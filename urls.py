@@ -8,6 +8,7 @@ from snipts.api import *
 
 import admin as custom_admin
 
+
 admin.autodiscover()
 
 public_api = Api(api_name='public')
@@ -34,6 +35,8 @@ urlpatterns = patterns('',
 
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
+
+    url(r'^search/', include('haystack.urls')),
 
     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
     url(r'^signup/$',

@@ -14,6 +14,7 @@ johnny-cache
 lxml
 psycopg2
 Pygments
+pysolr
 python-memcached
 python-postmark
 pyyaml
@@ -22,5 +23,6 @@ uuid
 versiontools
 Werkzeug
 
+git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
 git+https://github.com/toastdriven/django-tastypie.git#egg=django-tastypie
