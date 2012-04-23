@@ -6,6 +6,7 @@ django-appconf
 django-bcrypt
 django_compressor
 django-grappelli
+django-markdown-deux
 django-pagination
 django-taggit
 django-templatetag-sugar
