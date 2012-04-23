@@ -128,35 +128,27 @@ header.main {
             position: relative;
             z-index: 50;
             
-            div.infield {
-                position: relative;
+            input {
+                background: #17484F url('/static/images/search-icon.png') top left no-repeat;
+                background: rgba(43, 82, 93, .5) url('/static/images/search-icon.png') 8px center no-repeat;
+                border: 1px solid #3A5E67;
+                color: #FFF;
+                font: normal 12px $Helvetica;
+                height: auto;
+                margin: 0;
+                padding: 7px 7px 7px 28px;
+                width: 154px;
+                @include border-radius(3px);
+                @include inset-box-shadow(0, 1px, 0px, #1D4249);
 
-                label {
-                    color: #72979C;
-                    cursor: text;
-                    float: none;
-                    font: normal 12px $Helvetica;
-                    left: 30px;
-                    position: absolute;
-                    top: 8px;
-                    width: auto;
+                &:focus {
+                    border-color: #62D5E1;
                 }
-                input {
-                    background: #17484F url('/static/images/search-icon.png') top left no-repeat;
-                    background: rgba(43, 82, 93, .5) url('/static/images/search-icon.png') 8px center no-repeat;
-                    border: 1px solid #3A5E67;
-                    color: #FFF;
-                    font: normal 12px $Helvetica;
-                    height: auto;
-                    margin: 0;
-                    padding: 7px 7px 7px 28px;
-                    width: 154px;
-                    @include border-radius(3px);
-                    @include inset-box-shadow(0, 1px, 0px, #1D4249);
-
-                    &:focus {
-                        border-color: #62D5E1;
-                    }
+                &::-webkit-input-placeholder {
+                    color: #72979C;
+                }
+                &:-moz-placeholder {
+                    color: #72979C;
                 }
             }
         }
@@ -1276,11 +1268,16 @@ body.search {
         margin-top: 20px;
     }
     div.static-box {
+        border-left: 0;
+        margin-left: 0;
+        margin-right: 30px;
+        @include multi-border-radius(0px, 4px, 4px, 0px);
+
         form {
             margin-bottom: 0;
 
             input.search-query {
-                width: 571px;
+                width: 570px;
             }
         }
     }

@@ -38,7 +38,11 @@
 
     {% block inline-js %}
     <script type="text/javascript">{% block js %}window.user = '{{ request.user.username }}';
-        window.pub = {{ public|lower }};
+        {% if public %}
+            window.pub = {{ public|lower }};
+        {% else %}
+            window.pub = null;
+        {% endif %}
         window.api_key = '{{ request.user.api_key.key }}';{% endblock %}    </script>
     {% endblock %}
 
@@ -67,9 +71,8 @@
             <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">Snipt</a></h1> 
             <form class="search" action="/search/" method="get">
                 <fieldset>
-                    <div class="fields infield">
-                        <label for="search-query">Search public snipts</label>
-                        <input type="text" id="search-query" name="q" value="{{ query }}" />
+                    <div class="fields">
+                        <input type="text" id="search-query" name="q" value="{{ query }}" placeholder="Search snipts" />
                     </div>
                 </fieldset>
             </form>

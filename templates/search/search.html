@@ -1,31 +1,44 @@
 {% extends "base.html" %}
 
-{% block page-title %}/ search {% if query %}/ {{ query }}{% endif %}{% endblock %}
+{% block page-title %}/ search {% if query %}/ &ldquo;{{ query }}&rdquo;{% endif %}{% endblock %}
 {% block html-class %}search{% endblock %}
 {% block body-class %}search static{% endblock %}
+
+{% block js %}
+        {{ block.super }}
+        window.detail = false;
+{% endblock %}
 
 {% block breadcrumb %}
     <li><a href="/search/">search</a></li>
     {% if query %}
-        <li><span class="prompt">/</span> <a href="/search?q={{ query|urlencode }}">{{ query }}</a></li>
+        <li><span class="prompt">/</span> <a href="/search?q={{ query|urlencode }}">&ldquo;{{ query }}&rdquo;</a></li>
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="static-box">
+    <div class="static-box {% if page.object_list|length > 0 %}has-snipts{% endif %}">
         <form method="get" class="form-search" action=".">
-            <input type="text" class="search-query" name="q" value="{{ form.q.data }}" id="id_q">
+            <input type="text" class="search-query" name="q" value="{% if form.q.value %}{{ form.q.value }}{% endif %}" placeholder="Search snipts" id="id_q">
             <button type="submit" class="btn">Search</button>
         </form>
     </div>
     {% if query %}
+        {% if page.object_list|length > 0 %}
+            <section class="snipts" id="snipts">
+        {% endif %}
         {% for result in page.object_list %}
-            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a><br />
+            {% with result.object as snipt %}
+                {% include "snipts/snipt-list.html" %}
+            {% endwith %}
         {% empty %}
             <div class="empty-snipts">
                 No snipts found for &ldquo;{{ query }}&rdquo;.
             </div>
         {% endfor %}
+        {% if page.object_list|length > 0 %}
+            </section>
+        {% endif %}
         {% if page.has_previous or page.has_next %}
             <div class="pagination">
                 <ul>
@@ -50,7 +63,5 @@
                 </ul>
             </div>
         {% endif %}
-    {% else %}
-        {# Show some example queries to run, maybe query syntax, something else? #}
     {% endif %}
 {% endblock %}

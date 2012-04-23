@@ -1,8 +1,12 @@
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
+from haystack.views import SearchView, search_view_factory
 from django.http import HttpResponseRedirect
+from haystack.forms import ModelSearchForm
+from haystack.query import SearchQuerySet
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.db.models import Q
 from tastypie.api import Api
 from snipts.api import *
 
@@ -22,6 +26,8 @@ private_api.register(PrivateTagResource())
 private_api.register(PrivateUserResource())
 private_api.register(PrivateFavoriteResource())
 
+sqs = SearchQuerySet().filter(Q(public=True))
+
 urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
@@ -36,7 +42,11 @@ urlpatterns = patterns('',
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
 
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/$', search_view_factory(
+        view_class=SearchView,
+        searchqueryset=sqs,
+        form_class=ModelSearchForm,
+    ), name='haystack_search'),
 
     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
     url(r'^signup/$',
