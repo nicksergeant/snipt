@@ -149,9 +149,8 @@ header.main {
                     font: normal 12px $Helvetica;
                     height: auto;
                     margin: 0;
-                    padding: 7px;
-                    text-indent: 21px;
-                    width: 175px;
+                    padding: 7px 7px 7px 28px;
+                    width: 154px;
                     @include border-radius(3px);
                     @include inset-box-shadow(0, 1px, 0px, #1D4249);
 
@@ -259,12 +258,6 @@ header.sub {
                         text-decoration: underline;
                     }
                 }
-                &.prompt {
-                    color: #999999;
-                    font: bold 12px $Consolas;
-                    margin-right: 3px;
-                    text-shadow: 0 1px 0 #FFF;
-                }
                 &.rss {
                     float: right;
 
@@ -275,6 +268,15 @@ header.sub {
                         padding-left: 15px;
                     }
                 }
+            }
+            .prompt {
+                color: #999999;
+                font: bold 12px $Consolas;
+                margin-right: 3px;
+                text-shadow: 0 1px 0 #FFF;
+            }
+            span.prompt {
+                margin-left: 3px;
             }
         }
         div.shortcuts {
@@ -1267,5 +1269,19 @@ body.error {
     }
     div.rochester-made {
         margin-top: 54px;
+    }
+}
+body.search {
+    div.empty-snipts {
+        margin-top: 20px;
+    }
+    div.static-box {
+        form {
+            margin-bottom: 0;
+
+            input.search-query {
+                width: 571px;
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
 {% block breadcrumb %}
     <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
     {% if tag %}
-        <li>/ <a href="/{{ user.username }}/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
+        <li><span class="prompt">/</span> <a href="/{{ user.username }}/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
     {% endif %}
     <li class="rss">
         <a href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}">RSS</a>

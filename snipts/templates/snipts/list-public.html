@@ -3,7 +3,7 @@
 {% block breadcrumb %}
     <li><a href="/public/">public</a></li>
     {% if tag %}
-        <li>/ <a href="/public/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
+        <li><span class="prompt">/</span> <a href="/public/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
     {% endif %}
     <li class="rss">
         <a href="{{ request.path }}?rss">RSS</a>

@@ -65,11 +65,11 @@
         <div class="inner">
             <div class="shadey"></div>
             <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">Snipt</a></h1> 
-            <form class="search" action="" method="get">
+            <form class="search" action="/search/" method="get">
                 <fieldset>
                     <div class="fields infield">
                         <label for="search-query">Search public snipts</label>
-                        <input type="text" id="search-query" name="q" value="" />
+                        <input type="text" id="search-query" name="q" value="{{ query }}" />
                     </div>
                 </fieldset>
             </form>

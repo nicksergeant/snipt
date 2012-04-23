@@ -90,9 +90,8 @@ header.main div.inner form.search div.infield input {
   font: normal 12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
   height: auto;
   margin: 0;
-  padding: 7px;
-  text-indent: 21px;
-  width: 175px;
+  padding: 7px 7px 7px 28px;
+  width: 154px;
   -webkit-background-clip: padding-box;
   -webkit-border-radius: 3px;
   -moz-background-clip: padding-box;
@@ -125,7 +124,7 @@ header.main div.inner nav.public ul li a {
   font: 500 14px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
   padding: 7px;
   padding-bottom: 4px;
-  margin-right: 20px;
+  margin-right: 16px;
   text-decoration: none;
   -webkit-transition: border .08s linear;
   -moz-transition: border .08s linear;
@@ -137,6 +136,13 @@ header.main div.inner nav.public ul li a:hover {
 }
 header.main div.inner nav.public ul li a.active {
   border-bottom: 2px solid #85D2DD;
+}
+header.main div.inner nav.public ul li button#add-snipt {
+  margin-top: -3px;
+  padding: 9px 12px;
+}
+header.main div.inner nav.public ul li button#add-snipt i {
+  margin-left: 5px;
 }
 header.main div.inner aside.nav {
   border-left: 1px solid rgba(229, 229, 229, 0.25);
@@ -150,12 +156,6 @@ header.main div.inner aside.nav ul {
 }
 header.main div.inner aside.nav ul li {
   list-style-type: none;
-}
-header.main div.inner aside.nav ul li button#add-snipt {
-  margin: 14px 0 0 14px;
-}
-header.main div.inner aside.nav ul li button#add-snipt i {
-  margin-left: 5px;
 }
 
 header.sub {
@@ -180,8 +180,8 @@ header.sub div.inner ul.bcrumb {
 }
 header.sub div.inner ul.bcrumb li {
   display: inline-block;
-  max-width: 490px;
   line-height: normal;
+  max-width: 490px;
   overflow: hidden;
   padding: 2px 0 4px 0;
   text-overflow: ellipsis;
@@ -196,11 +196,23 @@ header.sub div.inner ul.bcrumb li a {
 header.sub div.inner ul.bcrumb li a:hover {
   text-decoration: underline;
 }
-header.sub div.inner ul.bcrumb li.prompt {
+header.sub div.inner ul.bcrumb li.rss {
+  float: right;
+}
+header.sub div.inner ul.bcrumb li.rss a {
+  background: transparent url("/static/images/rss-icon.png") center left no-repeat;
+  display: inline-block;
+  margin-right: 15px;
+  padding-left: 15px;
+}
+header.sub div.inner ul.bcrumb .prompt {
   color: #999999;
   font: bold 12px Consolas, Menlo, "Courier New", monospace;
   margin-right: 3px;
   text-shadow: 0 1px 0 #FFF;
+}
+header.sub div.inner ul.bcrumb span.prompt {
+  margin-left: 3px;
 }
 header.sub div.inner div.shortcuts {
   color: #999999;
@@ -289,6 +301,8 @@ section.main aside.main section.ad.coffee {
   margin-bottom: 27px;
 }
 section.main aside.main section.ad.coffee p {
+  display: block !important;
+  height: auto !important;
   margin: 7px 0 0 0;
 }
 section.main aside.main section.ad.coffee > div {
@@ -304,7 +318,7 @@ section.main aside.main section.ad.coffee > div div:nth-child(2) {
   margin: 0 !important;
 }
 section.main aside.main section.tags {
-  margin: 0 15px 45px 15px;
+  margin: 0 0 45px 15px;
 }
 section.main aside.main section.tags h1 {
   background: transparent url("/static/images/tags-icon.png") 0 0 no-repeat;
@@ -545,20 +559,15 @@ article.snipt div.container section.tango a.expand {
   box-shadow: 0 -25px 25px #f8f8f8;
 }
 article.snipt div.container:after {
-  bottom: 8px;
+  background: transparent url("/static/images/snipt-drop-shadow.png") top left no-repeat;
+  bottom: -15px;
   content: "";
-  height: 20px;
+  display: block;
+  height: 15px;
   position: absolute;
-  right: 3px;
-  width: 50%;
-  z-index: 48;
-  -webkit-box-shadow: 0 6px 12px rgba(184, 184, 184, 0.6);
-  -moz-box-shadow: 0 6px 12px rgba(184, 184, 184, 0.6);
-  box-shadow: 0 6px 12px rgba(184, 184, 184, 0.6);
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  transform: rotate(3deg);
+  right: 0px;
+  width: 318px;
+  z-index: 51;
 }
 article.snipt aside {
   float: right;
@@ -588,7 +597,7 @@ article.snipt aside ul.options li a:hover, article.snipt aside ul.options li a.h
   text-decoration: none;
 }
 article.snipt aside ul.options li a.edit:after {
-  background: #f5f2f3 url("/static/images/bg.gif") top left repeat;
+  background: #F5F2F3;
   content: "";
   height: 20px;
   position: absolute;
@@ -604,8 +613,8 @@ article.snipt aside ul.options li a.embed {
 article.snipt aside ul.options li a.copy {
   background-image: url("/static/images/copy-icon.png");
 }
-article.snipt aside ul.options li a.copy span.done {
-  display: none;
+article.snipt aside ul.options li a.favorite {
+  background-image: url("/static/images/favorite-icon.png");
 }
 article.snipt aside section.tags {
   padding-top: 15px;
@@ -665,7 +674,24 @@ article.snipt footer ul.attrs li a:hover {
   text-decoration: underline;
 }
 article.snipt footer ul.attrs li.author {
-  background: transparent url("/static/images/author-icon.png") 0 1px no-repeat;
+  background-image: none;
+  padding-left: 0;
+}
+article.snipt footer ul.attrs li.author span {
+  background-color: transparent;
+  background-position: top left;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 15px;
+  margin-right: 7px;
+  vertical-align: -3px;
+  width: 15px;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 3px;
+  -moz-background-clip: padding-box;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-clip: padding-box;
 }
 article.snipt footer ul.attrs li.comments {
   background: transparent url("/static/images/comments-icon.png") 0 2px no-repeat;
@@ -691,6 +717,12 @@ article.snipt div.expanded section.code a.expand span.collapse {
 article.snipt div.expanded section.code a.expand span.lines {
   display: none;
 }
+article.snipt div.modal textarea {
+  font: normal 12px/16px Consolas, Menlo, "Courier New", monospace;
+  height: 200px;
+  margin: 0;
+  width: 520px;
+}
 article.snipt.selected div.container {
   -webkit-box-shadow: 0 0 20px #85D2DD;
   -moz-box-shadow: 0 0 20px #85D2DD;
@@ -699,11 +731,14 @@ article.snipt.selected div.container {
 article.snipt.selected div.container:after {
   display: none;
 }
-article.snipt div.modal textarea {
-  font: normal 12px/16px Consolas, Menlo, "Courier New", monospace;
-  height: 200px;
-  margin: 0;
-  width: 520px;
+article.snipt.favorited div.container header {
+  background: #7f7f7f url("/static/images/favorited-icon.png") top right no-repeat;
+  background: url("/static/images/favorited-icon.png") top right no-repeat, -webkit-gradient(linear, left top, left bottom, from(white), to(#fffaf2));
+  background: url("/static/images/favorited-icon.png") top right no-repeat, -moz-linear-gradient(center top, white 0%, #fffaf2 100%);
+  background: url("/static/images/favorited-icon.png") top right no-repeat, -moz-gradient(center top, white 0%, #fffaf2 100%);
+}
+article.snipt.favorited div.container header h1 a {
+  padding-right: 25px;
 }
 
 article.private-snipt div.container header {
@@ -791,6 +826,65 @@ div.modal div.modal-body {
   max-height: 514px;
 }
 
+div.profile {
+  background: rgba(128, 128, 128, 0.08);
+  margin: 0 0 30px 15px;
+  padding: 10px;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 8px;
+  -moz-background-clip: padding-box;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+div.profile span.avatar {
+  background-color: transparent;
+  background-position: top left;
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  height: 50px;
+  width: 50px;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 5px;
+  -moz-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-clip: padding-box;
+}
+div.profile div.meta {
+  display: block;
+  float: left;
+  font: bold 14px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin: 0 0 0 10px;
+}
+div.profile div.meta div.username {
+  max-width: 95px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+div.profile div.meta div.member-since {
+  color: #909090;
+  font: bold 10px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+div.empty-snipts {
+  background: rgba(128, 128, 128, 0.08);
+  font: bold 18px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin: 30px 15px 0 15px;
+  padding: 10px;
+  text-align: center;
+  text-shadow: 0 1px 1px #FFF;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 8px;
+  -moz-background-clip: padding-box;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+
 body.detail div.right-y {
   display: none;
 }
@@ -808,10 +902,6 @@ body.detail section.main div.inner section.snipts article.snipt div.container he
 }
 body.detail section.main div.inner section.snipts article.snipt div.container section.code {
   height: auto;
-}
-body.detail section.main div.inner section.snipts article.snipt div.container:after {
-  bottom: 11px;
-  height: 23px;
 }
 body.detail section.main div.inner section.snipts article.snipt aside {
   margin-right: 0;
@@ -966,9 +1056,6 @@ body.editing section.main div.inner section.snipts article.editing div.container
 body.editing section.main div.inner section.snipts article.editing div.container header h2 {
   border: none;
 }
-body.editing section.main div.inner section.snipts article.editing div.container:after {
-  display: none;
-}
 body.editing section.main div.inner section.snipts article.editing aside {
   margin-top: 0;
   width: 243px;
@@ -1037,4 +1124,14 @@ body.error section.main div.inner {
 }
 body.error div.rochester-made {
   margin-top: 54px;
+}
+
+body.search div.empty-snipts {
+  margin-top: 20px;
+}
+body.search div.static-box form {
+  margin-bottom: 0;
+}
+body.search div.static-box form input.search-query {
+  width: 571px;
 }

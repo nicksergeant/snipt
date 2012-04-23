@@ -11,7 +11,7 @@
 
 {% block breadcrumb %}
     <li><a href="/{{ user.username }}/">{{ user.username }}</a></li>
-    <li>/ <a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>
+    <li><span class="prompt">/</span> <a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>
 {% endblock %}
 
 {% block aside %}{% endblock %}

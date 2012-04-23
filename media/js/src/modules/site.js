@@ -43,6 +43,8 @@
             this.$html_body = this.$body.add(this.$html);
             this.$search_form = $('form.search', this.$body);
             this.$search_query = $('input#search-query', this.$body);
+            this.$search_page_query = $('input.search-query', this.$body);
+            this.$search_queries = this.$search_query.add(this.$search_page_query);
             this.$snipts = $('section#snipts article.snipt', this.$body);
             this.$modals = $('div.modal', this.$snipts);
             this.$main_edit = $('section#main-edit');
@@ -63,15 +65,11 @@
                 }
             });
 
-            $search_query = this.$search_query;
-            $search_query.focus(function() {
+            $search_queries = this.$search_queries;
+            $search_queries.focus(function() {
                 if (window.$selected) {
                     $selected.trigger('deselect');
                 }
-            });
-            this.$search_form.submit(function() {
-                window.location = 'https://www.google.com/search?q=' + $search_query.val() + ' site:snipt.net%20';
-                return false;
             });
 
             this.$body.on('click', 'a.close', function() {
@@ -89,13 +87,19 @@
         keyboardShortcuts: function() {
             var $body = this.$body;
 
+            $search_queries = this.$search_queries;
+            $search_page_query = this.$search_page_query;
             $search_query = this.$search_query;
             $document = $(document);
 
             $document.bind('keydown', '/', function(e) {
                 if (!window.ui_halted) {
                     e.preventDefault();
-                    $search_query.focus();
+                    if ($body.hasClass('search')) {
+                        $search_page_query.focus();
+                    } else {
+                        $search_query.focus();
+                    }
                 }
             });
             $document.bind('keydown', 'h', function(e) {
@@ -123,7 +127,7 @@
                     history.go(1);
                 }
             });
-            this.$search_query.bind('keydown', 'esc', function(e) {
+            this.$search_queries.bind('keydown', 'esc', function(e) {
                 if (!window.ui_halted) {
                     e.preventDefault();
                     this.blur();
