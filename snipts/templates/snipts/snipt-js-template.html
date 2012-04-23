@@ -10,7 +10,13 @@
                     <h1><a href="<%= snipt.absolute_url %>"><% if (snipt.title) { %><%= snipt.title %><% } else { %>Untitled <% } %></a></h1>
                 </header>
                 <section class="code autumn">
-                    <%= snipt.stylized %>
+                    <% if (snipt.lexer == 'markdown') { %>
+                        <div class="markdown">
+                            <%= snipt.stylized %>
+                        </div>
+                    <% } else { %>
+                        <%= snipt.stylized %>
+                    <% } %>
                     <% if (snipt.line_count > 8 && !window.detail) { %>
                         <a href="#" class="expand">
                             <span class="expand">Expand</span>

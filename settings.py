@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'compressor',
     'django_bcrypt',
     'haystack',
+    'markdown_deux',
     'pagination',
     'postmark',
     'registration',

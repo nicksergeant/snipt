@@ -45,7 +45,11 @@ def snipts_count_for_user(context):
 @tag(register, [Constant('as'), Variable()])
 def get_lexers(context, asvar):
 
-    context[asvar] = sorted(get_all_lexers())
+    lexers = list(get_all_lexers())
+    lexers.append(('Markdown', ('markdown',),))
+    lexers = sorted(lexers)
+
+    context[asvar] = lexers
 
     return ''
 

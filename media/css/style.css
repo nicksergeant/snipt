@@ -511,6 +511,11 @@ article.snipt div.container section.code a.expand:focus {
 article.snipt div.container section.code textarea.raw {
   display: none;
 }
+article.snipt div.container section.code div.markdown {
+  margin: 0 15px;
+  min-height: 173px;
+  padding: 13px 0 4px 0;
+}
 article.snipt div.container section.emacs a.expand, article.snipt div.container section.default a.expand {
   -webkit-box-shadow: 0 -25px 25px #f8f8f8;
   -moz-box-shadow: 0 -25px 25px #f8f8f8;
@@ -561,6 +566,9 @@ article.snipt div.container:after {
   right: 0px;
   width: 318px;
   z-index: 51;
+}
+article.snipt div.container div.markdown h1, article.snipt div.container div.markdown h2, article.snipt div.container div.markdown h3, article.snipt div.container div.markdown h4, article.snipt div.container div.markdown h5, article.snipt div.container div.markdown h6 {
+  margin-bottom: 9px;
 }
 article.snipt aside {
   float: right;
@@ -694,6 +702,9 @@ article.snipt div.expanded section.code {
 }
 article.snipt div.expanded section.code div.highlight pre {
   padding-bottom: 60px;
+}
+article.snipt div.expanded section.code div.markdown {
+  padding-bottom: 52px;
 }
 article.snipt div.expanded section.code a.expand {
   background-image: url("/static/images/collapse.png");

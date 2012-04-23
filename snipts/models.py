@@ -6,6 +6,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from taggit.utils import edit_string_for_tags
 
+from markdown_deux import markdown
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
@@ -46,13 +47,21 @@ class Snipt(models.Model):
         if not self.key:
             self.key = md5.new(self.slug).hexdigest()
 
-        self.stylized = highlight(self.code,
-                                  get_lexer_by_name(self.lexer, encoding='UTF-8'),
-                                  HtmlFormatter())
+        if self.lexer == 'markdown':
+            self.stylized = markdown(self.code, 'default')
+        else:
+            self.stylized = highlight(self.code,
+                                      get_lexer_by_name(self.lexer, encoding='UTF-8'),
+                                      HtmlFormatter())
         self.line_count = len(self.code.split('\n'))
 
+        if self.lexer == 'markdown':
+            lexer_for_embedded = 'text'
+        else:
+            lexer_for_embedded = self.lexer
+
         embedded = highlight(self.code,
-                             get_lexer_by_name(self.lexer, encoding='UTF-8'),
+                             get_lexer_by_name(lexer_for_embedded, encoding='UTF-8'),
                              HtmlFormatter(
                                  style='native',
                                  noclasses=True,
@@ -113,7 +122,10 @@ class Snipt(models.Model):
 
     @property
     def lexer_name(self):
-        return get_lexer_by_name(self.lexer).name
+        if self.lexer == 'markdown':
+            return 'Markdown'
+        else:
+            return get_lexer_by_name(self.lexer).name
 
 class Favorite(models.Model):
     snipt = models.ForeignKey(Snipt)

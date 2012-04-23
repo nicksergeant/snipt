@@ -586,6 +586,11 @@ article.snipt {
             textarea.raw {
                 display: none;
             }
+            div.markdown {
+                margin: 0 15px;
+                min-height: 173px;
+                padding: 13px 0 4px 0;
+            }
         }
         section.emacs, section.default {
             a.expand {
@@ -637,6 +642,11 @@ article.snipt {
             right: 0px;
             width: 318px;
             z-index: 51;
+        }
+        div.markdown {
+            h1, h2, h3, h4, h5, h6 {
+                margin-bottom: 9px;
+            }
         }
     }
     aside {
@@ -786,6 +796,9 @@ article.snipt {
                 pre {
                     padding-bottom: 60px;
                 }
+            }
+            div.markdown {
+                padding-bottom: 52px;
             }
             a.expand {
                 background-image: url('/static/images/collapse.png');

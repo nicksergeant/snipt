@@ -11,7 +11,13 @@
                 <h1><a href="{{ snipt.get_absolute_url }}">{% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %}</a></h1>
             </header>
             <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
-                {{ snipt.stylized|safe }}
+                {% if snipt.lexer == 'markdown' %}
+                    <div class="markdown">
+                        {{ snipt.stylized|safe }}
+                    </div>
+                {% else %}
+                    {{ snipt.stylized|safe }}
+                {% endif %}
                 {% if snipt.line_count > 8 and not detail %}
                     <a href="#" class="expand">
                         <span class="expand">Expand</span>
