@@ -101,16 +101,11 @@ class Snipt(models.Model):
         if settings.DEBUG:
             root = 'http://snipt.localhost'
         else:
-            if settings.USE_HTTPS:
-                root = 'https://snipt.net'
-            else:
-                root = 'http://snipt.net'
+            root = 'https://snipt.net'
         return '{}/{}/{}/'.format(root, self.user.username, self.slug)
 
     def get_embed_url(self):
-        return 'http{}://{}/embed/{}/'.format('s' if settings.USE_HTTPS else '',
-                                              site.domain,
-                                              self.key)
+        return 'https://{}/embed/{}/'.format(site.domain, self.key)
 
     @property
     def sorted_tags(self):
