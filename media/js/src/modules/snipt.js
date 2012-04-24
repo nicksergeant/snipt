@@ -180,7 +180,7 @@
             var that = this;
 
             if (this.$el.hasClass('favorited')) {
-                $.ajax('/api/private/favorite/' + this.model.get('favorite_id'), {
+                $.ajax('/api/private/favorite/' + this.model.get('favorite_id') + '/', {
                     type: 'delete',
                     success: function() {
                         that.$el.removeClass('favorited');
