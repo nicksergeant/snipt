@@ -200,6 +200,12 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 ACCOUNT_ACTIVATION_DAYS = 0
 
+# HTTPS
+if not DEBUG:
+    USE_HTTPS = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
 # User absolute URLs
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: "/%s/" % u.username,
