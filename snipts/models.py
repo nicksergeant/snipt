@@ -13,7 +13,7 @@ from pygments.formatters import HtmlFormatter
 
 from snipts.utils import slugify_uniquely
 
-import md5
+import datetime, md5
 
 
 site = Site.objects.all()[0]
@@ -45,7 +45,7 @@ class Snipt(models.Model):
             self.slug = slugify_uniquely(self.title, Snipt)
 
         if not self.key:
-            self.key = md5.new(self.slug).hexdigest()
+            self.key = md5.new(self.slug + str(datetime.datetime.now())).hexdigest()
 
         if self.lexer == 'markdown':
             self.stylized = markdown(self.code, 'default')
