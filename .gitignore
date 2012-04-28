@@ -1,1 +1,5 @@
+.gunicorn.pid
+.nginx.log
+
 media/cache
+static
