@@ -1,5 +1,6 @@
 .gunicorn.pid
 .nginx.log
+.pyc
 
 media/cache
 static
