@@ -10,13 +10,9 @@ env.venv_path = '/home/nick/.virtualenvs/snipt'
 def _python(cmd):
     return env.venv_path.rstrip('/') + '/bin/python ' + cmd
 
-def deploy(m):
+def deploy():
     local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
 
-    try:
-        local("hg commit -m '{}'".format(m))
-    except:
-        pass
     try:
         local('hg push')
     except:
@@ -27,10 +23,9 @@ def deploy(m):
         run(_python('manage.py collectstatic --ignore grappelli --ignore admin --noinput'))
 
 def re():
-    sudo('rc.d restart memcached')
     with cd(env.site_path):
-        run('/var/www/snipt/gk')
-        run('/var/www/snipt/gs')
+        run('./gk')
+        run('/home/nick/.virtualenvs/snipt/bin/python /home/nick/.virtualenvs/snipt/bin/gunicorn -c gunicorn.conf.py debug_wsgi:application')
 
 def db_backup():
 
