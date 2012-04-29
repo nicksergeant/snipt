@@ -14,12 +14,12 @@ def dep():
     local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
 
     try:
-        local('hg push')
+        local('git pull && ./get-last-commit-url.py')
     except:
         pass
 
     with cd(env.site_path):
-        run('hg pull -u')
+        run('git pull')
         run(_python('manage.py collectstatic --ignore grappelli --ignore admin --noinput'))
 
 def re():
