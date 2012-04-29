@@ -1,6 +1,6 @@
-from fabric.api import cd, local, env, run, sudo
+from fabric.api import cd, local, env, run
 
-import datetime
+import datetime, sys
 
 
 env.hosts = ['nick@snipt.net:39039']
@@ -11,20 +11,50 @@ def _python(cmd):
     return env.venv_path.rstrip('/') + '/bin/python ' + cmd
 
 def dep():
+
+    _display_message('Collect static')
+    ################
+
     local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
 
+    _display_message('Git push')
+    ################
+
     try:
-        local('git push && ./get-last-commit-url.py')
+        local('git push')
+
+        _display_message('Get last commit info')
+        ################
+
+        local('./get-last-commit-url.py')
     except:
         pass
 
+    print('')
+
     with cd(env.site_path):
+
+        _display_message('Git pull')
+        ################
+
         run('git pull')
+
+        _display_message('Collect static', False)
+        ################
+
         run(_python('manage.py collectstatic --ignore grappelli --ignore admin --noinput'))
 
 def re():
     with cd(env.site_path):
+
+        _display_message('Kill gunicorn process')
+        ################
+
         run('./gk')
+
+        _display_message('Restart gunicorn process')
+        ################
+
         run('/home/nick/.virtualenvs/snipt/bin/python /home/nick/.virtualenvs/snipt/bin/gunicorn -c gunicorn.conf.py debug_wsgi:application')
 
 def db_backup():
@@ -40,3 +70,15 @@ def db_backup():
 
     #k = Key(snipt_bucket)
     #k.set_contents_from_filename('snipt.pgdump')
+
+def _display_message(message, extra_line=True):
+    if extra_line:
+        msg = '\n{}\n========================\n\n'.format(message)
+    else:
+        msg = '{}\n========================\n\n'.format(message)
+    try:
+        from fabric.colors import cyan
+        sys.stderr.write(cyan(msg))
+    except ImportError:
+        print(msg)
+
