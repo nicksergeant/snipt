@@ -27,7 +27,8 @@ def list_public(request, tag_slug=None):
 
     tags = Tag.objects.filter(snipt__public=True)
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count', 'name')[:20]
+    tags = tags.order_by('-count')[:20]
+    tags = sorted(tags, key=lambda tag: tag.name)
 
     snipts = Snipt.objects.filter(public=True).order_by('-created')
 
@@ -72,7 +73,7 @@ def list_user(request, username, tag_slug=None):
         public = True
 
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count', 'name')
+    tags = tags.order_by('name')
     snipts = snipts.order_by('-created')
 
     if tag_slug:
