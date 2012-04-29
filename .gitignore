@@ -1,7 +1,8 @@
 .gunicorn.pid
 .nginx.log
-.pyc
 .sass-cache
+
+*.pyc
 
 media/cache
 static
