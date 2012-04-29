@@ -14,7 +14,7 @@ def dep():
     local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
 
     try:
-        local('git pull && ./get-last-commit-url.py')
+        local('git push && ./get-last-commit-url.py')
     except:
         pass
 
