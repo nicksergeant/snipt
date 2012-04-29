@@ -70,9 +70,10 @@ def db_backup():
     snipt_bucket = conn.get_bucket('snipt')
 
     k = Key(snipt_bucket)
+    k.key = filename
     k.set_contents_from_filename(filename)
 
-    local('rm {}'.format(filename))
+    #local('rm {}'.format(filename))
 
 def _display_message(message, extra_line=True):
     if extra_line:

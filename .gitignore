@@ -3,6 +3,7 @@
 .sass-cache
 *.un~
 
+*.pgdump
 *.pyc
 
 media/cache
