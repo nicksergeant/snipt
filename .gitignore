@@ -1,6 +1,7 @@
 .gunicorn.pid
 .nginx.log
 .sass-cache
+*.un~
 
 *.pyc
 
