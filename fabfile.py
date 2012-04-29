@@ -10,7 +10,7 @@ env.venv_path = '/home/nick/.virtualenvs/snipt'
 def _python(cmd):
     return env.venv_path.rstrip('/') + '/bin/python ' + cmd
 
-def deploy():
+def dep():
     local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
 
     try:
