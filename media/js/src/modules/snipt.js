@@ -126,8 +126,8 @@
             $('button.delete', window.site.$main_edit).on('click', function() {
                 if (confirm('Are you sure you want to delete this snipt?')) {
                     that.model.destroy();
+                    window.site.snipt_list.escapeUI(true);
                 }
-                window.site.snipt_list.escapeUI(true);
                 return false;
             });
             $('button.cancel', window.site.$main_edit).on('click', function() {
