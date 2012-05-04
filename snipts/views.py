@@ -4,6 +4,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from annoying.decorators import render_to
+from annoying.functions import get_object_or_None
 from snipts.models import Favorite, Snipt
 from django.db.models import Count
 from django.conf import settings
@@ -53,9 +54,14 @@ def list_public(request, tag_slug=None):
     return context
 
 @render_to('snipts/list-user.html')
-def list_user(request, username, tag_slug=None):
+def list_user(request, username_or_custom_slug, tag_slug=None):
 
-    user = get_object_or_404(User, username=username)
+    user = get_object_or_None(User, username=username_or_custom_slug)
+
+    if user is None:
+        snipt = get_object_or_404(Snipt, custom_slug=username_or_custom_slug)
+        return detail(request, snipt.user, snipt.slug)
+
     tags = Tag.objects
     snipts = Snipt.objects
 
@@ -149,7 +155,6 @@ def rss(request, context):
             context_instance=RequestContext(request),
             mimetype="application/rss+xml"
         )
-
 
 def search(request, template='search/search.html', load_all=True, form_class=ModelSearchForm, searchqueryset=None, context_class=RequestContext, extra_context=None, results_per_page=None):
     query = ''

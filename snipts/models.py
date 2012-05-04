@@ -25,6 +25,7 @@ class Snipt(models.Model):
 
     title       = models.CharField(max_length=255)
     slug        = models.SlugField(max_length=255, blank=True)
+    custom_slug = models.SlugField(max_length=255, blank=True)
     tags        = TaggableManager()
 
     lexer      = models.CharField(max_length=50)
@@ -92,6 +93,10 @@ class Snipt(models.Model):
         return self.title
 
     def get_absolute_url(self):
+
+        if self.custom_slug:
+            return '/{}/'.format(self.custom_slug)
+
         if self.public:
             return '/{}/{}/'.format(self.user.username, self.slug)
         else:
