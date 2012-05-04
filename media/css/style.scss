@@ -1151,11 +1151,11 @@ body.editing {
             padding-top: 6px;
             width: 940px;
 
-            .cancel, .save {
+            .cancel, .save, .save-and-close {
                 float: right;
                 margin-left: 10px;
             }
-            .save {
+            .save-and-close {
                 margin-right: 242px;
             }
         }

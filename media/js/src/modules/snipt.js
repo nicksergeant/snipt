@@ -135,6 +135,11 @@
                 return false;
             });
             $('button.save', window.site.$main_edit).on('click', function() {
+                $('button.cancel').text('Close');
+                that.save();
+                return false;
+            });
+            $('button.save-and-close', window.site.$main_edit).on('click', function() {
                 that.save();
                 window.site.snipt_list.escapeUI();
                 return false;

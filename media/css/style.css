@@ -1022,11 +1022,11 @@ body.editing header.fixed-save div.inner {
   padding-top: 6px;
   width: 940px;
 }
-body.editing header.fixed-save div.inner .cancel, body.editing header.fixed-save div.inner .save {
+body.editing header.fixed-save div.inner .cancel, body.editing header.fixed-save div.inner .save, body.editing header.fixed-save div.inner .save-and-close {
   float: right;
   margin-left: 10px;
 }
-body.editing header.fixed-save div.inner .save {
+body.editing header.fixed-save div.inner .save-and-close {
   margin-right: 242px;
 }
 body.editing section.main div.inner section.snipts article.editing {
