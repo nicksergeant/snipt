@@ -1040,7 +1040,7 @@ body.static {
     .static-box {
         background: rgba(#FFF, .65);
         border: 1px solid #DDDDDD;
-        margin: 20px;
+        margin: 30px;
         padding: 20px;
         @include border-radius(4px);
 
@@ -1087,6 +1087,10 @@ body.static {
     }
     aside.main {
         padding-top: 20px;
+
+        nav.footer {
+            margin-top: 10px;
+        }
     }
     div.alert-alone {
         margin: 0;

@@ -917,7 +917,7 @@ body.detail div.rochester-made {
 body.static .static-box {
   background: rgba(255, 255, 255, 0.65);
   border: 1px solid #DDDDDD;
-  margin: 20px;
+  margin: 30px;
   padding: 20px;
   -webkit-background-clip: padding-box;
   -webkit-border-radius: 4px;
@@ -964,6 +964,9 @@ body.static .static-box p {
 }
 body.static aside.main {
   padding-top: 20px;
+}
+body.static aside.main nav.footer {
+  margin-top: 10px;
 }
 body.static div.alert-alone {
   margin: 0;
