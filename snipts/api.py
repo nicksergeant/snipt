@@ -48,7 +48,7 @@ class PublicTagResource(ModelResource):
         queryset = queryset.annotate(count=models.Count('taggit_taggeditem_items__id'))
         queryset = queryset.order_by('-count', 'name')
         resource_name = 'tag'
-        fields = ['id', 'name',]
+        fields = ['pk', 'name',]
         allowed_methods = ['get']
         cache = SimpleCache()
 
@@ -118,7 +118,7 @@ class PrivateTagResource(ModelResource):
     class Meta:
         queryset = Tag.objects.all()
         resource_name = 'tag'
-        fields = ['id', 'name',]
+        fields = ['pk', 'name',]
         allowed_methods = ['get']
         authentication = ApiKeyAuthentication()
         authorization = Authorization()
