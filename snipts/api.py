@@ -32,7 +32,7 @@ class PublicUserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
-        fields = ['username',]
+        fields = ['id', 'username',]
         include_absolute_url = True
         allowed_methods = ['get']
         list_allowed_methods = []
@@ -98,7 +98,7 @@ class PrivateUserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
-        fields = ['username', 'email',]
+        fields = ['id', 'username', 'email',]
         include_absolute_url = True
         allowed_methods = ['get']
         list_allowed_methods = []
