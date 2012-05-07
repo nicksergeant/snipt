@@ -236,7 +236,7 @@ if DEBUG:
 else:
     COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/x-scss', 'scss {infile} {outfile}'),
 )
 
 # Search
