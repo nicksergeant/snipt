@@ -80,10 +80,7 @@ class Snipt(models.Model):
                                      """))
         embedded = (embedded.replace("\\\"","\\\\\"")
                             .replace('\'','\\\'')
-                            .replace('\\n','\\\\n')
-                            .replace("\\x", "\\\\x")
-                            .replace('\\&#39;', '\\\\&#39;')
-                            .replace('\\s', '\\\\s')
+                            .replace("\\", "\\\\")
                             .replace('background: #202020', ''))
         self.embedded = embedded
 
