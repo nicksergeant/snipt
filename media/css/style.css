@@ -3,6 +3,7 @@ html, body {
 }
 
 body {
+  background: inherit;
   color: #666;
   font: normal 14px/16px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
   text-rendering: optimizeLegibility;
