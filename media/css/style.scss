@@ -1122,18 +1122,6 @@ body.static {
         }
     }
 }
-body.api-contest {
-    a.aea {
-        border-top: 1px solid #ADA278;
-        float: right;
-        margin: -30px 0 0 20px;
-        @include box-shadow(3px, 3px, 10px, rgba(0, 0, 0, .2));
-
-        img {
-            display: block;
-        }
-    }
-}
 body.editing {
     header.main, header.sub {
         display: none;
@@ -1301,6 +1289,66 @@ body.search {
             }
             button {
                 padding: 4px 16px 4px;
+            }
+        }
+    }
+}
+body.api {
+    section.main {
+        div.inner {
+            section.snipts {
+                article.snipt {
+                    div.container {
+                        header {
+                            h1 {
+                                a {
+                                    white-space: normal;
+                                }
+                            }
+                        }
+                        section.code {
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+        aside.api-info {
+            float: right;
+            margin-top: 30px;
+            width: 190px;
+
+            div.api-inner {
+                background: rgba(#99D0DA, .3);
+                font: normal 11px $Helvetica;
+                margin: 0 0 30px 15px;
+                padding: 10px;
+                @include border-radius(8px);
+
+                h5 {
+                    margin-bottom: 5px;
+                }
+                ul {
+                    margin: 0;
+
+                    li {
+                        margin: 2px 0;
+                        list-style-type: none;
+
+                        input {
+                            margin-bottom: 0;
+                            margin-top: 5px;
+                            width: 145px;
+                        }
+                    }
+                }
+            }
+        }
+        aside.main {
+            padding-top: 0;
+
+            nav.footer {
+                margin-top: 0;
             }
         }
     }

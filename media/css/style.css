@@ -994,18 +994,6 @@ body.static div#disqus_thread div#dsq-content {
   margin-top: 23px;
 }
 
-body.api-contest a.aea {
-  border-top: 1px solid #ADA278;
-  float: right;
-  margin: -30px 0 0 20px;
-  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-}
-body.api-contest a.aea img {
-  display: block;
-}
-
 body.editing header.main, body.editing header.sub {
   display: none;
 }
@@ -1164,4 +1152,49 @@ body.search div.static-box form input.search-query {
 }
 body.search div.static-box form button {
   padding: 4px 16px 4px;
+}
+
+body.api section.main div.inner section.snipts article.snipt div.container header h1 a {
+  white-space: normal;
+}
+body.api section.main div.inner section.snipts article.snipt div.container section.code {
+  height: auto;
+}
+body.api section.main aside.api-info {
+  float: right;
+  margin-top: 30px;
+  width: 190px;
+}
+body.api section.main aside.api-info div.api-inner {
+  background: rgba(153, 208, 218, 0.3);
+  font: normal 11px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin: 0 0 30px 15px;
+  padding: 10px;
+  -webkit-background-clip: padding-box;
+  -webkit-border-radius: 8px;
+  -moz-background-clip: padding-box;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+body.api section.main aside.api-info div.api-inner h5 {
+  margin-bottom: 5px;
+}
+body.api section.main aside.api-info div.api-inner ul {
+  margin: 0;
+}
+body.api section.main aside.api-info div.api-inner ul li {
+  margin: 2px 0;
+  list-style-type: none;
+}
+body.api section.main aside.api-info div.api-inner ul li input {
+  margin-bottom: 0;
+  margin-top: 5px;
+  width: 145px;
+}
+body.api section.main aside.main {
+  padding-top: 0;
+}
+body.api section.main aside.main nav.footer {
+  margin-top: 0;
 }

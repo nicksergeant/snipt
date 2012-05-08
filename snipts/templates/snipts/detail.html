@@ -2,7 +2,7 @@
 
 {% block page-title %}/ {% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %} / {{ user.username }} - {{ block.super }}{% endblock %}
 {% block html-class %}detail{% endblock %}
-{% block body-class %}detail{% endblock %}
+{% block body-class %}{% if request.path == '/api/' %}api{% else %}detail{% endif %}{% endblock %}
 
 {% block js %}
         {{ block.super }}
@@ -14,7 +14,21 @@
     <li><span class="prompt">/</span> <a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>
 {% endblock %}
 
-{% block aside %}{% endblock %}
+{% block aside %}
+    {% if request.path == '/api/' %}
+        <aside class="api-info">
+            <div class="api-inner">
+                <h5>Your API credentials:</h5>
+                <ul>
+                    <li>Username: <strong>{{ request.user.username }}</strong></li>
+                    <li>User ID: <strong>{{ request.user.id }}</strong></li>
+                    <li>API Key: <br /><input type="text" value="{{ request.user.api_key.key }}" /></li>
+                </ul>
+            </div>
+        </aside>
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <section class="snipts" id="snipts">
