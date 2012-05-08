@@ -83,7 +83,7 @@
                             <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
                         </li>
                         <li>
-                            <a href="/login/" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
+                            <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
                         </li>
                         <li>
                             <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
@@ -96,7 +96,7 @@
                             <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
                         </li>
                         <li>
-                            <a href="/logout/">Log out</a>
+                            <a href="/logout/?next={{ request.path }}">Log out</a>
                         </li>
                         <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
                     {% endif %}
