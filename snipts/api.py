@@ -6,6 +6,7 @@ from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from tastypie.models import create_api_key
 from snipts.models import Favorite, Snipt
+from haystack.query import SearchQuerySet
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
 from taggit.models import Tag
@@ -90,6 +91,10 @@ class PublicSniptResource(ModelResource):
             tag = Tag.objects.get(pk=filters['tag'])
             tagged_items = tag.taggit_taggeditem_items.all()
             orm_filters['pk__in'] = [i.object_id for i in tagged_items]
+
+        if 'q' in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+            orm_filters['pk__in'] = [i.pk for i in sqs]
 
         return orm_filters
 
@@ -195,6 +200,10 @@ class PrivateSniptResource(ModelResource):
             tag = Tag.objects.get(pk=filters['tag'])
             tagged_items = tag.taggit_taggeditem_items.all()
             orm_filters['pk__in'] = [i.object_id for i in tagged_items]
+
+        if 'q' in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+            orm_filters['pk__in'] = [i.pk for i in sqs]
 
         return orm_filters
 
