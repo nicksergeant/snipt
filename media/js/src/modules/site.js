@@ -49,6 +49,7 @@
             this.$modals = $('div.modal', this.$snipts);
             this.$main_edit = $('section#main-edit');
             this.$main = $('section#main');
+            this.$keyboard_shortcuts = $('#keyboard-shortcuts', this.$body);
 
             this.keyboardShortcuts();
             this.inFieldLabels();
@@ -78,6 +79,10 @@
                 return false;
             });
 
+            this.$keyboard_shortcuts.on('hidden', function() {
+                window.ui_halted = false;
+            });
+
             window.ui_halted = false;
         },
         events: {
@@ -86,6 +91,8 @@
 
         keyboardShortcuts: function() {
             var $body = this.$body;
+
+            var that = this;
 
             $search_queries = this.$search_queries;
             $search_page_query = this.$search_page_query;
@@ -104,7 +111,12 @@
             });
             $document.bind('keydown', 'h', function(e) {
                 if (!window.ui_halted) {
+                    window.ui_halted = true;
                     $body.trigger('showKeyboardShortcuts');
+                } else {
+                    if (that.$keyboard_shortcuts.is(':visible')) {
+                        that.$keyboard_shortcuts.modal('hide');
+                    }
                 }
             });
             $document.bind('keydown', 't', function(e) {
@@ -135,7 +147,7 @@
             });
         },
         showKeyboardShortcuts: function() {
-            $('#keyboard-shortcuts').modal('toggle');
+            this.$keyboard_shortcuts.modal('toggle');
         },
         inFieldLabels: function () {
             $('div.infield label', this.$body).inFieldLabels({
