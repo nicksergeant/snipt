@@ -151,7 +151,7 @@ def embed(request, snipt_key):
 def raw(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
 
-    if snipt.lexer != 'js':
+    if snipt.lexer != 'js' or not snipt.user.is_superuser:
         return HttpResponseBadRequest()
 
     return render_to_response('snipts/raw.html',
