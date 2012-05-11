@@ -1,6 +1,6 @@
+from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, InvalidPage
-from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from annoying.decorators import render_to
@@ -147,6 +147,17 @@ def embed(request, snipt_key):
                               {'lines': lines, 'snipt': snipt},
                               context_instance=RequestContext(request),
                               mimetype='application/javascript')
+
+def raw(request, snipt_key):
+    snipt = get_object_or_404(Snipt, key=snipt_key)
+
+    if snipt.lexer != 'js':
+        return HttpResponseBadRequest()
+
+    return render_to_response('snipts/raw.html',
+                              {'snipt': snipt},
+                              context_instance=RequestContext(request),
+                              mimetype='text/javascript')
 
 def rss(request, context):
     return render_to_response(
