@@ -522,7 +522,7 @@
                     }
                 }
             });
-            $document.bind('keydown', 'Ctrl+d', function() {
+            $document.bind('keydown', 'Ctrl+backspace', function() {
                 if (!window.ui_halted || window.editing) {
                     if ($selected) {
                         if ($selected.hasClass('editable')) {
@@ -530,6 +530,41 @@
                                 $selected.trigger('destroy');
                                 window.site.snipt_list.escapeUI(true);
                             }
+                        }
+                    }
+                }
+            });
+            $document.bind('keydown', 'Ctrl+del', function() {
+                if (!window.ui_halted || window.editing) {
+                    if ($selected) {
+                        if ($selected.hasClass('editable')) {
+                            if (confirm('Are you sure you want to delete this snipt?')) {
+                                $selected.trigger('destroy');
+                                window.site.snipt_list.escapeUI(true);
+                            }
+                        }
+                    }
+                }
+            });
+            $document.bind('keydown', 'Ctrl+n', function() {
+                if (!window.ui_halted) {
+                    that.addNewSnipt();
+                }
+            });
+            $document.bind('keydown', 'Ctrl+s', function() {
+                if (window.editing) {
+                    if ($selected) {
+                        if ($selected.hasClass('editable')) {
+                            $('button.save').click();
+                        }
+                    }
+                }
+            });
+            $document.bind('keydown', 'Ctrl+c', function() {
+                if (window.editing) {
+                    if ($selected) {
+                        if ($selected.hasClass('editable')) {
+                            $('button.save-and-close').click();
                         }
                     }
                 }
