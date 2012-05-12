@@ -179,10 +179,16 @@
             return false;
         },
         fadeAndRemove: function() {
+
+            var $toRemove = $(this.el);
+            var $nextSnipt = $toRemove.next('article.snipt');
+
             window.$selected = false;
-            $(this.el).fadeOut('fast', function() {
+            $toRemove.fadeOut('fast', function() {
                 $(this).remove();
+                $nextSnipt.trigger('selectSnipt');
             });
+
             return false;
         },
         goToAuthor: function() {
@@ -517,7 +523,7 @@
                 }
             });
             $document.bind('keydown', 'Ctrl+d', function() {
-                if (!window.ui_halted) {
+                if (!window.ui_halted || window.editing) {
                     if ($selected) {
                         if ($selected.hasClass('editable')) {
                             if (confirm('Are you sure you want to delete this snipt?')) {
