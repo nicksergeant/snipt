@@ -40,11 +40,13 @@
             'copyRaw':          'copy',
             'detail':           'detail',
             'deselect':         'deselect',
+            'destroy':          'destroy',
             'edit':             'edit',
             'embed':            'embed',
             'embedClose':       'embedClose',
             'expand':           'expand',
             'fadeAndRemove':    'fadeAndRemove',
+            'goToAuthor':       'goToAuthor',
             'next':             'next',
             'prev':             'prev',
             'selectSnipt':      'select'
@@ -74,6 +76,9 @@
         },
         detail: function() {
             window.location = this.model.get('absolute_url');
+        },
+        destroy: function() {
+            this.model.destroy();
         },
         edit: function() {
 
@@ -179,6 +184,9 @@
                 $(this).remove();
             });
             return false;
+        },
+        goToAuthor: function() {
+            window.location = this.model.get('user').absolute_url;
         },
         favoriteToggle: function() {
 
@@ -436,7 +444,7 @@
             return false;
         },
         escapeUI: function(destroyed) {
-            if (window.editing) {
+            if (window.editing || destroyed) {
                 if (!window.site.$html.hasClass('detail')) {
                     window.site.$body.removeClass('detail');
                 }
@@ -508,6 +516,18 @@
                     }
                 }
             });
+            $document.bind('keydown', 'Ctrl+d', function() {
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        if ($selected.hasClass('editable')) {
+                            if (confirm('Are you sure you want to delete this snipt?')) {
+                                $selected.trigger('destroy');
+                                window.site.snipt_list.escapeUI(true);
+                            }
+                        }
+                    }
+                }
+            });
             $document.bind('keydown', 'esc', function() {
                 that.escapeUI();
             });
@@ -543,6 +563,13 @@
                         if ($selected.hasClass('expandable')) {
                             $selected.trigger('expand');
                         }
+                    }
+                }
+            });
+            $document.bind('keydown', 'u', function() {
+                if (!window.ui_halted) {
+                    if ($selected) {
+                        $selected.trigger('goToAuthor');
                     }
                 }
             });

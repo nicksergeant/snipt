@@ -914,14 +914,6 @@ div.modal {
         }
     }
 }
-div#keyboard-shortcuts {
-    max-height: 617px;
-    top: 43%;
-
-    table {
-        margin-bottom: 0;
-    }
-}
 div#disqus_thread {
     margin-bottom: 0;
     margin-left: 15px;
@@ -954,6 +946,18 @@ div#disqus_thread {
 div.modal {
     div.modal-body {
         max-height: 514px;
+    }
+}
+div#keyboard-shortcuts {
+    height: 95%;
+    margin-top: 0;
+    top: 20px;
+
+    table {
+        margin-bottom: 0;
+    }
+    div.modal-body {
+        max-height: inherit;
     }
 }
 div.profile {

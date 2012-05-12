@@ -793,14 +793,6 @@ div.modal .modal-header h4 {
   margin-top: 1px;
 }
 
-div#keyboard-shortcuts {
-  max-height: 617px;
-  top: 43%;
-}
-div#keyboard-shortcuts table {
-  margin-bottom: 0;
-}
-
 div#disqus_thread {
   margin-bottom: 0;
   margin-left: 15px;
@@ -831,6 +823,18 @@ div#disqus_thread #dsq-footer {
 
 div.modal div.modal-body {
   max-height: 514px;
+}
+
+div#keyboard-shortcuts {
+  height: 95%;
+  margin-top: 0;
+  top: 20px;
+}
+div#keyboard-shortcuts table {
+  margin-bottom: 0;
+}
+div#keyboard-shortcuts div.modal-body {
+  max-height: inherit;
 }
 
 div.profile {
