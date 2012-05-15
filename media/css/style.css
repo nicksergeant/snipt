@@ -1211,6 +1211,9 @@ body.api section.main aside.main {
 body.api section.main aside.main nav.footer {
   margin-top: 0;
 }
+body.api div#disqus_thread {
+  width: 719px;
+}
 
 body.blog article.snipt section.code {
   height: auto;
