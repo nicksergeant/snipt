@@ -1,6 +1,10 @@
 {% if tags %}
     <section class="tags">
-        <h1>{{ user.username }}'s tags</h1>
+        {% if user.username == 'blog' %}
+            <h1>Blog posts</h1>
+        {% else %}
+            <h1>{{ user.username }}'s tags</h1>
+        {% endif %}
         <ul>
             {% for t in tags %}
                 <li>
