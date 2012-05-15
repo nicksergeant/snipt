@@ -1347,6 +1347,18 @@ body.api {
                     }
                 }
             }
+            &.api-creds {
+                div.api-inner {
+                    margin-bottom: 0;
+                }
+            }
+            &.immediate-help {
+                margin-top: 20px;
+
+                p {
+                    margin: 0;
+                }
+            }
         }
         aside.main {
             padding-top: 0;

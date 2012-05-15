@@ -1196,9 +1196,22 @@ body.api section.main aside.api-info div.api-inner ul li input {
   margin-top: 5px;
   width: 145px;
 }
+body.api section.main aside.api-info.api-creds div.api-inner {
+  margin-bottom: 0;
+}
+body.api section.main aside.api-info.immediate-help {
+  margin-top: 20px;
+}
+body.api section.main aside.api-info.immediate-help p {
+  margin: 0;
+}
 body.api section.main aside.main {
   padding-top: 0;
 }
 body.api section.main aside.main nav.footer {
   margin-top: 0;
+}
+
+body.blog article.snipt section.code {
+  height: auto;
 }
