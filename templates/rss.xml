@@ -7,7 +7,11 @@
             <item>
                 <title>{{ snipt.title }}</title>
                 <link>{{ snipt.get_full_absolute_url }}</link>
-                <description><![CDATA[{{ snipt.code }}]]></description>
+                {% if snipt.user.username == 'blog' %}
+                    <description>{{ snipt.stylized }}</description>
+                {% else %}
+                    <description><![CDATA[{{ snipt.code }}]]></description>
+                {% endif %}
                 <pubDate>{{ snipt.created|date:"r" }}</pubDate>
                 <guid isPermaLink="false">snipt-net-{{ snipt.id }}</guid>
             </item>{% endfor %}
