@@ -47,7 +47,11 @@
     {% endblock %}
 
     {% if has_snipts and not detail %}
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
+        {% if user.username == 'blog' %}
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="feedburner" />
+        {% else %}
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
+        {% endif %}
     {% endif %}
 
     <!--[if IE]>

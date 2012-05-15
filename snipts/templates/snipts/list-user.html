@@ -8,7 +8,11 @@
         <li><span class="prompt">/</span> <a href="/{{ user.username }}/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
     {% endif %}
     <li class="rss">
-        <a href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}">RSS</a>
+        {% if user.username == 'blog' %}
+            <a href="feedburner">RSS</a>
+        {% else %}
+            <a href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}">RSS</a>
+        {% endif %}
     </li>
 {% endblock %}
 
@@ -17,12 +21,20 @@
         <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
         <div class="meta">
             <div class="username" title="{{ user.username }}">
-                {{ user.username }}
+                {% if user.username == 'blog' %}
+                    Blog
+                {% else %}
+                    {{ user.username }}
+                {% endif %}
             </div>
             {% if user.username == 'nick' %}
                 <div class="member-since">Snipt Founder<br />in {{ user.date_joined|date:"Y" }}</div>
             {% else %}
-                <div class="member-since">Member since<br />{{ user.date_joined|date:"Y" }}</div>
+                {% if user.username == 'blog' %}
+                    <div class="member-since">Official Snipt<br />blog</div>
+                {% else %}
+                    <div class="member-since">Member since<br />{{ user.date_joined|date:"Y" }}</div>
+                {% endif %}
             {% endif %}
         </div>
     </div>
