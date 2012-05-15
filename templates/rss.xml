@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<rss version="2.0">
-    <link href="https://snipt.net{{ request.get_full_path }}" rel="self" />
+<rss xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:link href="https://snipt.net{{ request.get_full_path }}" rel="self" type="application/rss+xml" />
     <channel>
         <description>{% if public and not public_user %}Public snipts{% else %}Snipts by {{ user.username }}{% endif %}{% if tag %} tagged with "{{ tag }}"{% endif %}</description>
         <title>/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - Snipt</title>
