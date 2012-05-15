@@ -1,6 +1,6 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <atom:link href="https://snipt.net{{ request.get_full_path }}" rel="self" type="application/rss+xml" />
     <channel>
+        <atom:link href="https://snipt.net{{ request.get_full_path }}" rel="self" type="application/rss+xml" />
         <description>{% if public and not public_user %}Public snipts{% else %}Snipts by {{ user.username }}{% endif %}{% if tag %} tagged with "{{ tag }}"{% endif %}</description>
         <title>/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - Snipt</title>
         <link>https://snipt.net{{ request.path }}</link>{% for snipt in snipts %}
@@ -9,7 +9,7 @@
                 <link>{{ snipt.get_full_absolute_url }}</link>
                 <description><![CDATA[{{ snipt.code }}]]></description>
                 <pubDate>{{ snipt.created|date:"r" }}</pubDate>
-                <guid isPermaLink="false">{{ snipt.id }}</guid>
+                <guid isPermaLink="false">snipt-net-{{ snipt.id }}</guid>
             </item>{% endfor %}
     </channel>
 </rss>
