@@ -8,7 +8,7 @@
                 <title>{{ snipt.title }}</title>
                 <link>{{ snipt.get_full_absolute_url }}</link>
                 {% if snipt.user.username == 'blog' %}
-                    <description>{{ snipt.stylized }}</description>
+                    <description><![CDATA[{{ snipt.stylized|safe }}]]></description>
                 {% else %}
                     <description><![CDATA[{{ snipt.code }}]]></description>
                 {% endif %}
