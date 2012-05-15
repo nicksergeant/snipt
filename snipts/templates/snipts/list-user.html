@@ -14,7 +14,7 @@
 
 {% block tags %}
     <div class="profile group">
-        <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
+        <span class="avatar" title="Manage your avatar at Gravatar.com" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
         <div class="meta">
             <div class="username" title="{{ user.username }}">
                 {% if user.username == 'blog' %}
