@@ -1326,7 +1326,7 @@ body.api {
         }
         aside.api-info {
             float: right;
-            margin-top: 30px;
+            margin-top: 26px;
             width: 190px;
 
             div.api-inner {
@@ -1368,10 +1368,8 @@ body.api {
             }
         }
         aside.main {
-            padding-top: 0;
-
             nav.footer {
-                margin-top: 0;
+                margin-bottom: 0;
             }
         }
     }

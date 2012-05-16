@@ -16,6 +16,7 @@
 
 {% block aside %}
     {% if request.path == '/api/' and request.user.is_authenticated %}
+        {{ block.super }}
         <aside class="api-info api-creds">
             <div class="api-inner">
                 <h5>Your API credentials:</h5>
@@ -32,7 +33,6 @@
                 <p>Join our lead developer &ldquo;nicksergeant&rdquo; in <strong>#snipt</strong> on irc.freenode.net.</p>
             </div>
         </aside>
-        {{ block.super }}
     {% endif %}
 {% endblock %}
 

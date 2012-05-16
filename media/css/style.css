@@ -1173,7 +1173,7 @@ body.api section.main div.inner section.snipts article.snipt div.container secti
 }
 body.api section.main aside.api-info {
   float: right;
-  margin-top: 30px;
+  margin-top: 26px;
   width: 190px;
 }
 body.api section.main aside.api-info div.api-inner {
@@ -1212,11 +1212,8 @@ body.api section.main aside.api-info.immediate-help {
 body.api section.main aside.api-info.immediate-help p {
   margin: 0;
 }
-body.api section.main aside.main {
-  padding-top: 0;
-}
 body.api section.main aside.main nav.footer {
-  margin-top: 0;
+  margin-bottom: 0;
 }
 body.api div#disqus_thread {
   width: 719px;
