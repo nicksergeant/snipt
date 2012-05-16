@@ -367,6 +367,10 @@ section.main aside.main nav.footer ul li a:hover {
   border-bottom: 1px solid #333;
   color: #333;
 }
+section.main aside.main nav.footer ul li a.active {
+  border-bottom: 1px solid #333;
+  color: #333;
+}
 section.main aside.main nav.footer ul li.twitter {
   background: transparent url("/static/images/twitter-icon.png") 4px center no-repeat;
 }

@@ -437,6 +437,10 @@ section.main {
                             border-bottom: 1px solid #333;
                             color: #333;
                         }
+                        &.active {
+                            border-bottom: 1px solid #333;
+                            color: #333;
+                        }
                     }
                     &.twitter {
                         background: transparent url('/static/images/twitter-icon.png') 4px center no-repeat;

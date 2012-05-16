@@ -138,10 +138,10 @@
                 <nav class="footer">
                     <ul>
                         <li class="api">
-                            <a href="/api/">API</a>
+                            <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}>API</a>
                         </li>
                         <li class="api">
-                            <a href="/blog/">Blog</a>
+                            <a href="/blog/" {% if '/blog/' in request.path %}class="active"{% endif %}>Blog</a>
                         </li>
                         <li class="twitter">
                             <a href="https://twitter.com/#!/snipt">@snipt</a>
