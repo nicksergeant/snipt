@@ -416,7 +416,7 @@ section.main {
             }
         }
         nav.footer {
-            margin: 45px 15px 32px;
+            margin: 0 15px 32px;
 
             ul {
                 margin: 0;
@@ -446,6 +446,9 @@ section.main {
                     }
                     &.groups {
                         background: transparent url('/static/images/groups-icon.png') 2px center no-repeat;
+                    }
+                    &:first-of-type {
+                        margin-top: 0;
                     }
                 }
             }

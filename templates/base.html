@@ -98,7 +98,11 @@
                         <li>
                             <a href="/logout/?next={{ request.path }}">Log out</a>
                         </li>
-                        <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
+                        {% if request.user.username == 'blog' %}
+                            <li><button class="btn btn-info btn-large" id="add-snipt">Add Post <i class="icon-search icon-plus icon-white"></i></button></li>
+                        {% else %}
+                            <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </nav>
@@ -131,7 +135,6 @@
         </div>
         {% block aside %}
             <aside class="main">
-                {% block tags %}{% endblock %}
                 <nav class="footer">
                     <ul>
                         <li class="api">
@@ -148,6 +151,7 @@
                         </li>
                     </ul>
                 </nav>
+                {% block tags %}{% endblock %}
             </aside>
         {% endblock %}
         <div class="left-y ruler"></div>
