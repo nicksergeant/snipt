@@ -203,3 +203,4 @@ def search(request, template='search/search.html', load_all=True, form_class=Mod
         context.update(extra_context)
 
     return render_to_response(template, context, context_instance=context_class(request))
+

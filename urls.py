@@ -1,11 +1,11 @@
+from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
 from django.http import HttpResponseRedirect
-from django.conf.urls.defaults import *
 from django.contrib import admin
 from snipts.views import search
-from django.db.models import Q
 from tastypie.api import Api
+from views import lexers
 from snipts.api import *
 
 import admin as custom_admin
@@ -31,6 +31,8 @@ urlpatterns = patterns('',
 
     url(r'^404/$', direct_to_template, {'template': '404.html'}),
     url(r'^500/$', direct_to_template, {'template': '500.html'}),
+
+    url(r'^api/public/lexers/$', lexers),
 
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),

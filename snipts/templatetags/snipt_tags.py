@@ -2,9 +2,9 @@ from django import template
 
 from templatetag_sugar.register import tag
 from templatetag_sugar.parser import Variable, Constant
-from pygments.lexers import get_all_lexers
 
 from snipts.models import Favorite, Snipt
+from snipts.utils import get_lexers_list
 
 import hashlib
 
@@ -44,13 +44,7 @@ def snipts_count_for_user(context):
 
 @tag(register, [Constant('as'), Variable()])
 def get_lexers(context, asvar):
-
-    lexers = list(get_all_lexers())
-    lexers.append(('Markdown', ('markdown',),))
-    lexers = sorted(lexers)
-
-    context[asvar] = lexers
-
+    context[asvar] = get_lexers_list()
     return ''
 
 

@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.template.defaultfilters import slugify
 from registration.signals import user_registered
+from pygments.lexers import get_all_lexers
 
 
 def slugify_uniquely(value, model, slugfield="slug"):
@@ -22,5 +23,10 @@ def activate_user(user, request, **kwargs):
                         password=request.POST['password1'])
     login(request, user)
 
+def get_lexers_list():
+    lexers = list(get_all_lexers())
+    lexers.append(('Markdown', ('markdown',),))
+    lexers = sorted(lexers)
+    return lexers
 
 user_registered.connect(activate_user)
