@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     url(r'^404/$', direct_to_template, {'template': '404.html'}),
     url(r'^500/$', direct_to_template, {'template': '500.html'}),
 
-    url(r'^api/public/lexers/$', lexers),
+    url(r'^api/public/lexer/$', lexers),
 
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
