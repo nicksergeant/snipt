@@ -454,6 +454,9 @@ section.main {
                     &:first-of-type {
                         margin-top: 0;
                     }
+                    &.blog {
+                        background: transparent url('/static/images/blog-icon.png') 3px center no-repeat;
+                    }
                 }
             }
         }

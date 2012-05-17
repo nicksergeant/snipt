@@ -1,10 +1,10 @@
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, InvalidPage
+from annoying.functions import get_object_or_None
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from annoying.decorators import render_to
-from annoying.functions import get_object_or_None
 from snipts.models import Favorite, Snipt
 from django.db.models import Count
 from django.conf import settings
