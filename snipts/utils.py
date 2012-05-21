@@ -25,8 +25,14 @@ def activate_user(user, request, **kwargs):
 
 def get_lexers_list():
     lexers = list(get_all_lexers())
+
+    for l in lexers:
+        if l[0] == 'ANTLR With Java Target':
+            lexers.remove(l)
+
     lexers.append(('Markdown', ('markdown',),))
     lexers = sorted(lexers)
+
     return lexers
 
 user_registered.connect(activate_user)
