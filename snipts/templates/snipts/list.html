@@ -3,7 +3,7 @@
 {% load pagination_tags %}
 
 {% block meta %}
-    <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex, follow" />
 {% endblock %}
 
 {% block body-class %}{{ block.super }}{% if user.username == 'blog' %} blog{% endif %}{% endblock %}
