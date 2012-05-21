@@ -2,6 +2,10 @@
 
 {% load pagination_tags %}
 
+{% block meta %}
+    <meta name="robots" content="noindex" />
+{% endblock %}
+
 {% block body-class %}{{ block.super }}{% if user.username == 'blog' %} blog{% endif %}{% endblock %}
 
 {% block page-title %}/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - {{ block.super }}{% endblock %}

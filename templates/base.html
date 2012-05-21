@@ -7,6 +7,9 @@
     <title>{% block page-title %}Snipt{% endblock %}</title>
     <meta charset="utf-8" />
     <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
+
+    {% block meta %}{% endblock %}
+
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
 
     {% compress css %}
