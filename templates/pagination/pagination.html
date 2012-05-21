@@ -4,37 +4,37 @@
     <ul>
         {% if page_obj.has_previous %}
             <li class="prev">
-                <a id="prev-page" href="?page={{ page_obj.previous_page_number }}{{ getvars }}">&larr;</a>
+                <a rel="noindex, follow" id="prev-page" href="?page={{ page_obj.previous_page_number }}{{ getvars }}">&larr;</a>
             </li>
         {% else %}
             <li class="disabled prev">
-                <a href="#">&larr;</a>
+                <a rel="noindex, follow" href="#">&larr;</a>
             </li>
         {% endif %}
         {% for page in pages %}
             {% if page %}
                 {% ifequal page page_obj.number %}
                     <li class="active">
-                        <a href="#">{{ page }}</a>
+                        <a rel="noindex, follow" href="#">{{ page }}</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="?page={{ page }}{{ getvars }}">{{ page }}</a>
+                        <a rel="noindex, follow" href="?page={{ page }}{{ getvars }}">{{ page }}</a>
                     </li>
                 {% endifequal %}
             {% else %}
                 <li class="disabled">
-                    <a href="#">&hellip;</a>
+                    <a rel="noindex, follow" href="#">&hellip;</a>
                 </li>
             {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
             <li class="next">
-                <a id="next-page" href="?page={{ page_obj.next_page_number }}{{ getvars }}">&rarr;</a>
+                <a rel="noindex, follow" id="next-page" href="?page={{ page_obj.next_page_number }}{{ getvars }}">&rarr;</a>
             </li>
         {% else %}
             <li class="disabled next">
-                <a href="#">&rarr;</a>
+                <a rel="noindex, follow" href="#">&rarr;</a>
             </li>
         {% endif %}
     </ul>
