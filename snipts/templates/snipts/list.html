@@ -3,7 +3,9 @@
 {% load pagination_tags %}
 
 {% block meta %}
-    <meta name="robots" content="noindex, follow" />
+    {% if 'page' in request.get_full_path %}
+        <meta name="robots" content="noindex, follow" />
+    {% endif %}
 {% endblock %}
 
 {% block body-class %}{{ block.super }}{% if user.username == 'blog' %} blog{% endif %}{% endblock %}
