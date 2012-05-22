@@ -386,6 +386,9 @@ section.main aside.main nav.footer ul li:first-of-type {
 section.main aside.main nav.footer ul li.blog {
   background: transparent url("/static/images/blog-icon.png") 3px center no-repeat;
 }
+section.main aside.main nav.footer ul li.roadmap {
+  background: transparent url("/static/images/roadmap-icon.png") 2px center no-repeat;
+}
 section.main div.rochester-made {
   margin: 50px 0 30px 0;
   text-align: center;

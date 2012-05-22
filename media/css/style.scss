@@ -457,6 +457,9 @@ section.main {
                     &.blog {
                         background: transparent url('/static/images/blog-icon.png') 3px center no-repeat;
                     }
+                    &.roadmap {
+                        background: transparent url('/static/images/roadmap-icon.png') 2px center no-repeat;
+                    }
                 }
             }
         }
