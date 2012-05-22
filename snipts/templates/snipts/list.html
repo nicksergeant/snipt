@@ -19,7 +19,7 @@
 
 {% block content %}
     <section class="snipts" id="snipts">
-        {% autopaginate snipts 20 %}
+        {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}
         {% empty %}
