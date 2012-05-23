@@ -913,8 +913,11 @@ div.modal {
             margin-top: 0;
         }
         h3 {
+            line-height: 0;
+
             span {
                 display: inline-block;
+                line-height: 27px;
                 max-width: 400px;
                 overflow: hidden;
                 text-overflow: ellipsis;

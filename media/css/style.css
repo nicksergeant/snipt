@@ -794,8 +794,12 @@ div.modal .modal-header .close {
   line-height: 20px;
   margin-top: 0;
 }
+div.modal .modal-header h3 {
+  line-height: 0;
+}
 div.modal .modal-header h3 span {
   display: inline-block;
+  line-height: 27px;
   max-width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
