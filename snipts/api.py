@@ -178,9 +178,6 @@ class PrivateSniptResource(ModelResource):
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
 
-        if not request.user.is_staff:
-            bundle.data['blog_post'] = False
-
         return super(PrivateSniptResource, self).obj_create(bundle, request,
                      user=request.user, **kwargs)
 
@@ -191,9 +188,6 @@ class PrivateSniptResource(ModelResource):
         else:
             bundle.data['tags_list'] = ''
         bundle.data['tags'] = ''
-
-        if not request.user.is_staff:
-            bundle.data['blog_post'] = False
 
         return super(PrivateSniptResource, self).obj_update(bundle, request,
                      user=request.user, **kwargs)

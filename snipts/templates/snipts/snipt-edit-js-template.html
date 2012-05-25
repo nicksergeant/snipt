@@ -50,16 +50,10 @@
                                     <input type="checkbox" <% if (snipt.public) { %>checked="checked"<% } %> name="" value="" />
                                     <span>Public</span>
                                 </label>
-                                {% endverbatim %}
-                                {% if request.user.is_staff %}
-                                    {% verbatim %}
-                                    <label class="blog-post is-blog-post">
-                                        <input type="checkbox" <% if (snipt.blog_post) { %>checked="checked"<% } %> name="" value="" />
-                                        <span>Blog post</span>
-                                    </label>
-                                    {% endverbatim %}
-                                {% endif %}
-                                {% verbatim %}
+                                <label class="blog-post is-blog-post">
+                                    <input type="checkbox" <% if (snipt.blog_post) { %>checked="checked"<% } %> name="" value="" />
+                                    <span>Blog post</span>
+                                </label>
                                 <label class="tags">
                                     <span>Tags</span>
                                     <textarea><%= snipt.tags_list %></textarea>
