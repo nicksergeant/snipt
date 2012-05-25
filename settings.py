@@ -117,6 +117,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'blogs.middleware.SubdomainMiddleware',
 )
 
 ROOT_URLCONF = 'snipt.urls'
@@ -151,6 +152,7 @@ INSTALLED_APPS = (
     'taggit',
     'tastypie',
 
+    'blogs',
     'snipts',
     'utils',
 )
@@ -199,14 +201,12 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 ACCOUNT_ACTIVATION_DAYS = 0
 
-# Cookies
-SESSION_COOKIE_DOMAIN = '.snipt.net'
-
 # HTTPS
 if not DEBUG:
     USE_HTTPS = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_DOMAIN = '.snipt.net'
 
 # Messages
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

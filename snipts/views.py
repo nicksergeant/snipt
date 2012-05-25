@@ -18,6 +18,10 @@ from haystack.query import EmptySearchQuerySet, SearchQuerySet
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
 def home(request):
+
+    if request.subdomain:
+        return list_blog(request, request.subdomain)
+
     if request.user.is_authenticated():
         return HttpResponseRedirect('/%s/' % request.user.username)
     else:
@@ -95,6 +99,23 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
         'snipts': snipts,
         'tags': tags,
         'tag': tag,
+        'user': user,
+    }
+
+    if 'rss' in request.GET:
+        context['snipts'] = context['snipts'][:20]
+        return rss(request, context)
+
+    return context
+
+@render_to('blogs/list.html')
+def list_blog(request, subdomain):
+
+    user = get_object_or_404(User, username=subdomain)
+    snipts = Snipt.objects.filter(user=user, blog_post=True, public=True).order_by('-created')
+
+    context = {
+        'snipts': snipts,
         'user': user,
     }
 
