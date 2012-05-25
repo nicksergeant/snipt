@@ -199,6 +199,9 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 ACCOUNT_ACTIVATION_DAYS = 0
 
+# Cookies
+SESSION_COOKIE_DOMAIN = '.snipt.net'
+
 # HTTPS
 if not DEBUG:
     USE_HTTPS = True

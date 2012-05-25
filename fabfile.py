@@ -47,6 +47,15 @@ def dep():
 
         run(_python('manage.py collectstatic --ignore grappelli --ignore admin --noinput'))
 
+def db():
+    with cd(env.site_path):
+
+        _display_message('Sync DB and migrate')
+        ################
+
+        run(_python('manage.py syncdb'))
+        run(_python('manage.py migrate'))
+
 def re():
     with cd(env.site_path):
 
