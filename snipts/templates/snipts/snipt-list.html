@@ -2,7 +2,7 @@
 
 {% snipt_is_favorited_by_user as 'is_favorited' %}
 
-<article id="snipt-{{ snipt.pk }}" class="snipt{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail and user.username != 'blog' %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if is_favorited %} favorited" data-favorite-id="{{ is_favorited }}"{% else %}"{% endif %}>
+<article id="snipt-{{ snipt.pk }}" class="snipt {% if snipt.blog_post %}blog-post {% endif %}{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail and user.username != 'blog' %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if is_favorited %} favorited" data-favorite-id="{{ is_favorited }}"{% else %}"{% endif %}>
     <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container">
@@ -104,6 +104,7 @@
     <div class="hide line-count">{{ snipt.line_count }}</div>
     <div class="hide modified">{{ snipt.modified|date:"Y-m-d\TH:i:s" }}</div>
     <div class="hide public">{{ snipt.public }}</div>
+    <div class="hide blog-post">{{ snipt.blog_post }}</div>
     {% if snipt.user == request.user %}
         <div class="hide resource-uri">/api/private/snipt/{{ snipt.pk }}/</div>
     {% else %}

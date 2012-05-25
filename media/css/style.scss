@@ -866,6 +866,14 @@ article.snipt {
             }
         }
     }
+    &.blog-post {
+        div.container {
+            header {
+                @include vertical-gradient(#FFF, #F0F4FC);
+                @include inset-box-shadow(0, -1px, 0, #E3E9F5);
+            }
+        }
+    }
 }
 article.private-snipt {
     div.container {
@@ -875,6 +883,19 @@ article.private-snipt {
             h1 {
                 a {
                     padding-right: 25px;
+                }
+            }
+        }
+    }
+    &.blog-post {
+        div.container {
+            header {
+                @include vertical-gradient-with-image(url('/static/images/private-icon.png') top right no-repeat, #FFF, #F0F4FC);
+
+                h1 {
+                    a {
+                        padding-right: 25px;
+                    }
                 }
             }
         }
@@ -1240,7 +1261,7 @@ body.editing {
                                 padding: 7px 9px;
                                 width: 202px;
                             }
-                            label.public {
+                            label.public, label.blog-post {
                                 background: #EFEEEF;
                                 border: 1px solid #DDDDDD;
                                 cursor: pointer;
@@ -1251,6 +1272,10 @@ body.editing {
                                 input {
                                     display: inline-block;
                                     margin: 4px 4px 0 4px;
+
+                                    &:focus {
+                                        outline: none;
+                                    }
                                 }
                                 span {
                                     color: #7B7B79;
@@ -1268,6 +1293,10 @@ body.editing {
                                     span {
                                         color: #B94A48;
                                     }
+                                }
+                                &.is-blog-post {
+                                    background: #DAE3EE;
+                                    border: 1px solid #C8D1DE;
                                 }
                             }
                         }

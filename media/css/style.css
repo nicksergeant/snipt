@@ -760,6 +760,15 @@ article.snipt.favorited div.container header {
 article.snipt.favorited div.container header h1 a {
   padding-right: 25px;
 }
+article.snipt.blog-post div.container header {
+  background: #7f7f7f;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f0f4fc));
+  background: -moz-linear-gradient(center top, white 0%, #f0f4fc 100%);
+  background: -moz-gradient(center top, white 0%, #f0f4fc 100%);
+  -webkit-box-shadow: inset 0 -1px 0 #e3e9f5;
+  -moz-box-shadow: inset 0 -1px 0 #e3e9f5;
+  box-shadow: inset 0 -1px 0 #e3e9f5;
+}
 
 article.private-snipt div.container header {
   background: #7f7f7f url("/static/images/private-icon.png") top right no-repeat;
@@ -768,6 +777,15 @@ article.private-snipt div.container header {
   background: url("/static/images/private-icon.png") top right no-repeat, -moz-gradient(center top, white 0%, #fffaf2 100%);
 }
 article.private-snipt div.container header h1 a {
+  padding-right: 25px;
+}
+article.private-snipt.blog-post div.container header {
+  background: #7f7f7f url("/static/images/private-icon.png") top right no-repeat;
+  background: url("/static/images/private-icon.png") top right no-repeat, -webkit-gradient(linear, left top, left bottom, from(white), to(#f0f4fc));
+  background: url("/static/images/private-icon.png") top right no-repeat, -moz-linear-gradient(center top, white 0%, #f0f4fc 100%);
+  background: url("/static/images/private-icon.png") top right no-repeat, -moz-gradient(center top, white 0%, #f0f4fc 100%);
+}
+article.private-snipt.blog-post div.container header h1 a {
   padding-right: 25px;
 }
 
@@ -1100,7 +1118,7 @@ body.editing section.main div.inner section.snipts article.editing aside div.in 
   padding: 7px 9px;
   width: 202px;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.in label.public {
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post {
   background: #EFEEEF;
   border: 1px solid #DDDDDD;
   cursor: pointer;
@@ -1113,25 +1131,32 @@ body.editing section.main div.inner section.snipts article.editing aside div.in 
   border-radius: 5px;
   background-clip: padding-box;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.in label.public input {
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public input, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post input {
   display: inline-block;
   margin: 4px 4px 0 4px;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.in label.public span {
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public input:focus, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post input:focus {
+  outline: none;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public span, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post span {
   color: #7B7B79;
   display: inline-block;
   text-transform: none;
   vertical-align: -3px;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-private {
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-private, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post.is-private {
   background: #efeeef url("/static/images/private-icon-edit.png") 199px center no-repeat;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public {
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post.is-public {
   background: #F2DEDE;
   border: 1px solid #EED3D7;
 }
-body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public span {
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-public span, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post.is-public span {
   color: #B94A48;
+}
+body.editing section.main div.inner section.snipts article.editing aside div.in label.public.is-blog-post, body.editing section.main div.inner section.snipts article.editing aside div.in label.blog-post.is-blog-post {
+  background: #DAE3EE;
+  border: 1px solid #C8D1DE;
 }
 
 body.error section.main div.inner {

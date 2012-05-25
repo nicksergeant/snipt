@@ -101,6 +101,19 @@
             // Init chosen
             $('select#id_lexer', window.site.$main_edit).chosen();
 
+            // Blog post
+            $('label.blog-post input', window.site.$main_edit).on('change', function() {
+                var $checkbox = $(this);
+                var $label = $checkbox.parent();
+
+                if ($checkbox.attr('checked')) {
+                    $label.removeClass('is-not-blog-post').addClass('is-blog-post');
+                } else {
+                    $label.addClass('is-not-blog-post').removeClass('is-blog-post');
+                }
+                return false;
+            }).trigger('change');
+
             // Public / private
             $('label.public input', window.site.$main_edit).on('change', function() {
                 var $checkbox = $(this);
@@ -274,6 +287,12 @@
             this.$el.html(this.template({snipt: this.model.toSafe()}));
             this.initLocalVars();
 
+            if (this.model.get('blog_post') === true) {
+                this.$el.addClass('blog-post');
+            } else {
+                this.$el.removeClass('blog-post');
+            }
+
             if (this.model.get('public') === true) {
                 this.$el.removeClass('private-snipt');
             } else {
@@ -311,6 +330,7 @@
                 'lexer': $('select[name="lexer"]').val(),
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
                 'code': window.editor.getSession().getValue(),
+                'blog_post': $('label.blog-post input').is(':checked'),
                 'public': $('label.public input').is(':checked')
             }, {'silent': true});
 
@@ -371,8 +391,12 @@
             var $created = $('li.created', $el);
             var $h1 = $('header h1 a', $el);
             var $public = $('div.public', $el);
+            var $blog_post = $('div.blog-post', $el);
             var $user = $('li.author a', $el);
+
             var is_public = $public.text() === 'True' ? true : false;
+            var is_blog_post = $blog_post.text() === 'True' ? true : false;
+
             var tag_lis = $('section.tags li', $el);
             var tags = [];
 
@@ -409,6 +433,7 @@
                 }
             };
             data['public'] = is_public;
+            data['blog_post'] = is_blog_post;
 
             var view = new Snipt.SniptView({
                 el: this,
@@ -436,6 +461,7 @@
                     }
                 };
                 data['public'] = false;
+                data['blog_post'] = false;
 
                 var newSniptView = new Snipt.SniptView({
                     el: $('article#new-snipt'),

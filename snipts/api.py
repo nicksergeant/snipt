@@ -155,8 +155,8 @@ class PrivateSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
-        fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count',
-                  'stylized', 'key', 'public', 'created', 'modified',]
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count', 'stylized',
+                  'key', 'public', 'blog_post', 'created', 'modified',]
         validation = Validation()
         include_absolute_url = True
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
@@ -177,6 +177,10 @@ class PrivateSniptResource(ModelResource):
     def obj_create(self, bundle, request=None, **kwargs):
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
+
+        if not request.user.is_staff:
+            bundle.data['blog_post'] = False
+
         return super(PrivateSniptResource, self).obj_create(bundle, request,
                      user=request.user, **kwargs)
 
@@ -187,6 +191,10 @@ class PrivateSniptResource(ModelResource):
         else:
             bundle.data['tags_list'] = ''
         bundle.data['tags'] = ''
+
+        if not request.user.is_staff:
+            bundle.data['blog_post'] = False
+
         return super(PrivateSniptResource, self).obj_update(bundle, request,
                      user=request.user, **kwargs)
 
