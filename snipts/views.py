@@ -111,7 +111,8 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
 @render_to('blogs/list.html')
 def list_blog(request, subdomain):
 
-    user = get_object_or_404(User, username=subdomain)
+    subdomain = subdomain.replace('-', '_')
+    user = get_object_or_404(User, username__iexact=subdomain)
     snipts = Snipt.objects.filter(user=user, blog_post=True, public=True).order_by('-created')
 
     context = {
