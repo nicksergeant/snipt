@@ -105,6 +105,7 @@
     <div class="hide modified">{{ snipt.modified|date:"Y-m-d\TH:i:s" }}</div>
     <div class="hide public">{{ snipt.public }}</div>
     <div class="hide blog-post">{{ snipt.blog_post }}</div>
+    <div class="hide publish-date">{{ snipt.publish_date|date:"M d, Y \a\t h:i A" }}</div>
     {% if snipt.user == request.user %}
         <div class="hide resource-uri">/api/private/snipt/{{ snipt.pk }}/</div>
     {% else %}

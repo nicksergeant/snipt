@@ -1,9 +1,10 @@
 from taggit.utils import edit_string_for_tags, parse_tags
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import Authorization
-from tastypie.validation import Validation
+from django.template.defaultfilters import date
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
+from tastypie.validation import Validation
 from tastypie.models import create_api_key
 from snipts.models import Favorite, Snipt
 from haystack.query import SearchQuerySet
@@ -13,7 +14,10 @@ from taggit.models import Tag
 from django.db import models
 from tastypie import fields
 
-import hashlib
+import datetime, hashlib, time
+
+import parsedatetime.parsedatetime as pdt
+import parsedatetime.parsedatetime_consts as pdc
 
 models.signals.post_save.connect(create_api_key, sender=User)
 
@@ -156,7 +160,7 @@ class PrivateSniptResource(ModelResource):
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
         fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count', 'stylized',
-                  'key', 'public', 'blog_post', 'created', 'modified',]
+                  'key', 'public', 'blog_post', 'created', 'modified', 'publish_date',]
         validation = Validation()
         include_absolute_url = True
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
@@ -172,11 +176,17 @@ class PrivateSniptResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
+
+        if bundle.data['publish_date']:
+            bundle.data['publish_date'] = date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')
+
         return bundle
 
     def obj_create(self, bundle, request=None, **kwargs):
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
+
+        bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self).obj_create(bundle, request,
                      user=request.user, **kwargs)
@@ -189,8 +199,29 @@ class PrivateSniptResource(ModelResource):
             bundle.data['tags_list'] = ''
         bundle.data['tags'] = ''
 
+        bundle = self._clean_publish_date(bundle)
+
         return super(PrivateSniptResource, self).obj_update(bundle, request,
                      user=request.user, **kwargs)
+
+    def _clean_publish_date(self, bundle):
+        if bundle.data['blog_post'] and not bundle.data['publish_date']:
+            bundle.data['publish_date'] = datetime.datetime.now()
+        elif bundle.data['blog_post']:
+            c = pdc.Constants()
+            p = pdt.Calendar(c)
+            publish_date, result = p.parse(bundle.data['publish_date'])
+
+            if result != 0:
+                publish_date = time.strftime("%Y-%m-%d %H:%M:%S", publish_date)
+            else:
+                publish_date = datetime.datetime.now()
+
+            bundle.data['publish_date'] = publish_date
+        elif not bundle.data['blog_post']:
+            bundle.data['publish_date'] = None
+
+        return bundle
 
     def build_filters(self, filters=None):
         if filters is None:

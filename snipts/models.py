@@ -21,25 +21,26 @@ site = Site.objects.all()[0]
 class Snipt(models.Model):
     """An individual Snipt."""
 
-    user        = models.ForeignKey(User, blank=True, null=True)
+    user         = models.ForeignKey(User, blank=True, null=True)
 
-    title       = models.CharField(max_length=255)
-    slug        = models.SlugField(max_length=255, blank=True)
-    custom_slug = models.SlugField(max_length=255, blank=True)
-    tags        = TaggableManager()
+    title        = models.CharField(max_length=255)
+    slug         = models.SlugField(max_length=255, blank=True)
+    custom_slug  = models.SlugField(max_length=255, blank=True)
+    tags         = TaggableManager()
 
-    lexer       = models.CharField(max_length=50)
-    code        = models.TextField()
-    stylized    = models.TextField(blank=True, null=True)
-    embedded    = models.TextField(blank=True, null=True)
-    line_count  = models.IntegerField(blank=True, null=True, default=None)
+    lexer        = models.CharField(max_length=50)
+    code         = models.TextField()
+    stylized     = models.TextField(blank=True, null=True)
+    embedded     = models.TextField(blank=True, null=True)
+    line_count   = models.IntegerField(blank=True, null=True, default=None)
 
-    key         = models.CharField(max_length=100, blank=True, null=True)
-    public      = models.BooleanField(default=False)
-    blog_post   = models.BooleanField(default=False)
+    key          = models.CharField(max_length=100, blank=True, null=True)
+    public       = models.BooleanField(default=False)
+    blog_post    = models.BooleanField(default=False)
     
-    created     = models.DateTimeField(auto_now_add=True, editable=False)
-    modified    = models.DateTimeField(auto_now=True, editable=False)
+    created      = models.DateTimeField(auto_now_add=True, editable=False)
+    modified     = models.DateTimeField(auto_now=True, editable=False)
+    publish_date = models.DateTimeField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
 

@@ -105,11 +105,14 @@
             $('label.blog-post input', window.site.$main_edit).on('change', function() {
                 var $checkbox = $(this);
                 var $label = $checkbox.parent();
+                var $publish_date = $label.siblings('label.publish-date');
 
                 if ($checkbox.attr('checked')) {
                     $label.removeClass('is-not-blog-post').addClass('is-blog-post');
+                    $publish_date.show();
                 } else {
                     $label.addClass('is-not-blog-post').removeClass('is-blog-post');
+                    $publish_date.hide();
                 }
                 return false;
             }).trigger('change');
@@ -331,6 +334,7 @@
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
                 'code': window.editor.getSession().getValue(),
                 'blog_post': $('label.blog-post input').is(':checked'),
+                'publish_date': $('label.publish-date input').val(),
                 'public': $('label.public input').is(':checked')
             }, {'silent': true});
 
@@ -392,6 +396,7 @@
             var $h1 = $('header h1 a', $el);
             var $public = $('div.public', $el);
             var $blog_post = $('div.blog-post', $el);
+            var $publish_date = $('div.publish-date', $el);
             var $user = $('li.author a', $el);
 
             var is_public = $public.text() === 'True' ? true : false;
@@ -425,6 +430,7 @@
                 slug: $('div.slug', $el).text(),
                 stylized: $('div.stylized', $el).text(),
                 tags: tags,
+                publish_date: $publish_date.text(),
                 tags_list: $('div.tags-list', $el).text(),
                 title: $h1.text(),
                 user: {

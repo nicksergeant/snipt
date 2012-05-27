@@ -25,7 +25,7 @@
                             <header>
                                 <h2>&nbsp;</h2>
                                 <h1>
-                                    <input type="text" id="snipt_title" value="<% if (snipt.title != 'Untitled') { %><%= snipt.title %><% } %>" />
+                                    <input type="text" id="snipt_title" placeholder="Title" value="<% if (snipt.title != 'Untitled') { %><%= snipt.title %><% } %>" />
                                 </h1>
                             </header>
                             <section class="code">
@@ -54,9 +54,13 @@
                                     <input type="checkbox" <% if (snipt.blog_post) { %>checked="checked"<% } %> name="" value="" />
                                     <span>Blog post</span>
                                 </label>
+                                <label class="publish-date hidden">
+                                    <span>Publish date</span>
+                                    <input type="text" placeholder="now, 8pm, tomorrow, 12/25/07, etc." value="<%= snipt.publish_date %>" />
+                                </label>
                                 <label class="tags">
                                     <span>Tags</span>
-                                    <textarea><%= snipt.tags_list %></textarea>
+                                    <textarea placeholder='tag-1, "tag 2", tag3, etc.'><%= snipt.tags_list %></textarea>
                                 </label>
                             </div>
                         </aside>
