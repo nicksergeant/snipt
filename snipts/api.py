@@ -186,7 +186,8 @@ class PrivateSniptResource(ModelResource):
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
 
-        bundle = self._clean_publish_date(bundle)
+        if 'blog_post' in bundle.data:
+            bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self).obj_create(bundle, request,
                      user=request.user, **kwargs)
@@ -199,7 +200,8 @@ class PrivateSniptResource(ModelResource):
             bundle.data['tags_list'] = ''
         bundle.data['tags'] = ''
 
-        bundle = self._clean_publish_date(bundle)
+        if 'blog_post' in bundle.data:
+            bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self).obj_update(bundle, request,
                      user=request.user, **kwargs)
