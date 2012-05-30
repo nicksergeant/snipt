@@ -54,7 +54,7 @@ class Snipt(models.Model):
             self.stylized = markdown(self.code, 'default')
             for match in re.findall('\[\[(.*)\]\]', self.stylized):
                 self.stylized = self.stylized.replace('[[' + str(match) + ']]',
-                        '<script type="text/javascript" src="https://snipt.net/embed/{}"></script><div id="snipt-embed-{}"></div>'.format(match, match))
+                        '<script type="text/javascript" src="https://snipt.net/embed/{}/?snipt"></script><div id="snipt-embed-{}"></div>'.format(match, match))
         else:
             self.stylized = highlight(self.code,
                                       get_lexer_by_name(self.lexer, encoding='UTF-8'),
