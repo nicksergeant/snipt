@@ -490,6 +490,10 @@ article.snipt div.container section.code div.highlight pre {
   min-height: 173px;
   padding: 13px 0;
 }
+article.snipt div.container section.code div.markdown pre {
+  min-height: 0;
+  margin: 20px 0 !important;
+}
 article.snipt div.container section.code a.expand {
   background: white url("/static/images/expand.png") 15px 18px no-repeat;
   border-top: 1px solid #F1F1EE;

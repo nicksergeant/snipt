@@ -566,6 +566,12 @@ article.snipt {
                     padding: 13px 0;
                 }
             }
+            div.markdown {
+                pre {
+                    min-height: 0;
+                    margin: 20px 0 !important;
+                }
+            }
             a.expand {
                 background: #FFF url('/static/images/expand.png') 15px 18px no-repeat;
                 border-top: 1px solid #F1F1EE;
