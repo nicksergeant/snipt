@@ -77,7 +77,11 @@
                 <span style="background-image: url('https://secure.gravatar.com/avatar/{{ snipt.user.email|md5 }}?s=15&amp;d=https%3A%2F%2Fsnipt.net%2Fstatic%2Fimages%2Fauthor-icon.png');"></span>
                 <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
             </li>
-            <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturalday }}</li>
+            {% if snipt.blog_post %}
+                <li class="created" title="{{ snipt.publish_date|date:"Y-m-d\TH:i:s" }}">{{ snipt.publish_date|naturalday }}</li>
+            {% else %}
+                <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturalday }}</li>
+            {% endif %}
             <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
         </ul>
     </footer>
