@@ -588,6 +588,7 @@ article.snipt div.container div.markdown h1, article.snipt div.container div.mar
   margin-bottom: 9px;
 }
 article.snipt div.container div.markdown li {
+  font-size: 13px;
   margin: 9px 0;
 }
 article.snipt aside {
