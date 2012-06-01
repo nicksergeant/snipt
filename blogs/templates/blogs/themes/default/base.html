@@ -20,7 +20,13 @@
     {% endcompress %}
 {% endblock %}
 
-{% block page-title %}{{ user.username }}'s blog - Powered by Snipt.net{% endblock %}
+{% block page-title %}
+    {% if blog_user.username == 'nicksergeant' %}
+        Nick Sergeant
+    {% else %}
+        {{ blog_user.username }}'s blog - Powered by Snipt.net
+    {% endif %}
+{% endblock %}
 
 {% block page-description %}{% endblock %}
 {% block sub-header %}{% endblock %}
