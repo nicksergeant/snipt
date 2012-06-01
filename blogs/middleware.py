@@ -31,3 +31,6 @@ class BlogMiddleware:
                 # Get user for that domain
                 pass
             pass
+
+        if host == 'nicksergeant.com':
+            request.blog_user = User.objects.get(id=3)
