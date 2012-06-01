@@ -14,7 +14,7 @@
             {% include "blogs/themes/default/snipt-list.html" %}
         {% empty %}
             <div class="empty-snipts">
-                {{ user.username }} has no public blog posts.
+                {{ blog_user.username }} has no public blog posts.
             </div>
         {% endfor %}
         {% paginate %}
