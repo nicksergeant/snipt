@@ -7,6 +7,7 @@ from django.template import RequestContext
 from annoying.decorators import render_to
 from snipts.models import Favorite, Snipt
 from django.db.models import Count
+from blogs.views import list_blog
 from django.conf import settings
 from django.db.models import Q
 from taggit.models import Tag
@@ -26,6 +27,50 @@ def home(request):
         return HttpResponseRedirect('/%s/' % request.user.username)
     else:
         return list_public(request)
+
+@render_to('snipts/detail.html')
+def detail(request, username, snipt_slug):
+
+    snipt = get_object_or_404(Snipt, user__username=username, slug=snipt_slug)
+    user = snipt.user
+
+    if user != request.user:
+        if not snipt.public:
+            if 'key' not in request.GET:
+                raise Http404
+            else:
+                if request.GET.get('key') != snipt.key:
+                    raise Http404
+
+    tags = Tag.objects
+
+    if user == request.user:
+        tags = tags.filter(snipt__user=user)
+        public = False
+    else:
+        tags = tags.filter(snipt__user=user, snipt__public=True)
+        public = True
+
+    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
+    tags = tags.order_by('-count', 'name')
+
+    return {
+        'detail': True,
+        'has_snipts': True,
+        'public': public,
+        'snipt': snipt,
+        'tags': tags,
+        'user': user,
+    }
+
+def embed(request, snipt_key):
+    snipt = get_object_or_404(Snipt, key=snipt_key)
+
+    lines = snipt.embedded.split('\n')
+    return render_to_response('snipts/embed.html',
+                              {'lines': lines, 'snipt': snipt},
+                              context_instance=RequestContext(request),
+                              mimetype='application/javascript')
 
 @render_to('snipts/list-public.html')
 def list_public(request, tag_slug=None):
@@ -107,68 +152,6 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
         return rss(request, context)
 
     return context
-
-@render_to('blogs/list.html')
-def list_blog(request, subdomain):
-
-    subdomain = subdomain.replace('-', '_')
-    user = get_object_or_404(User, username__iexact=subdomain)
-    snipts = Snipt.objects.filter(user=user, blog_post=True, public=True).order_by('-created')
-
-    context = {
-        'snipts': snipts,
-        'user': user,
-    }
-
-    if 'rss' in request.GET:
-        context['snipts'] = context['snipts'][:20]
-        return rss(request, context)
-
-    return context
-
-@render_to('snipts/detail.html')
-def detail(request, username, snipt_slug):
-
-    snipt = get_object_or_404(Snipt, user__username=username, slug=snipt_slug)
-    user = snipt.user
-
-    if user != request.user:
-        if not snipt.public:
-            if 'key' not in request.GET:
-                raise Http404
-            else:
-                if request.GET.get('key') != snipt.key:
-                    raise Http404
-
-    tags = Tag.objects
-
-    if user == request.user:
-        tags = tags.filter(snipt__user=user)
-        public = False
-    else:
-        tags = tags.filter(snipt__user=user, snipt__public=True)
-        public = True
-
-    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count', 'name')
-
-    return {
-        'detail': True,
-        'has_snipts': True,
-        'public': public,
-        'snipt': snipt,
-        'tags': tags,
-        'user': user,
-    }
-
-def embed(request, snipt_key):
-    snipt = get_object_or_404(Snipt, key=snipt_key)
-
-    lines = snipt.embedded.split('\n')
-    return render_to_response('snipts/embed.html',
-                              {'lines': lines, 'snipt': snipt},
-                              context_instance=RequestContext(request),
-                              mimetype='application/javascript')
 
 def raw(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)

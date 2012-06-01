@@ -12,12 +12,14 @@
 
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
 
-    {% compress css %}
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
-    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/style.scss" />
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
-    {% endcompress %}
+    {% block css %}
+        {% compress css %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+        <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/style.scss" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
+        {% endcompress %}
+    {% endblock %}
 
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore.js"></script>
@@ -68,52 +70,54 @@
 
 </head>
 <body class="{% block body-class %}{% endblock %}">
-    <header class="main">
-        <div class="inner">
-            <div class="shadey"></div>
-            <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">Snipt</a></h1> 
-            <form class="search" action="/search/" method="get">
-                <fieldset>
-                    <div class="fields">
-                        <input type="text" id="search-query" name="q" value="{{ query }}" placeholder="Search snipts" />
-                    </div>
-                </fieldset>
-            </form>
-            <nav class="public">
-                <ul>
-                    {% if not request.user.is_authenticated %}
-                        <li>
-                            <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
-                        </li>
-                        <li>
-                            <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
-                        </li>
-                        <li>
-                            <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
-                        </li>
-                        <li>
-                            <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
-                        </li>
-                        <li>
-                            <a href="/logout/?next={{ request.path }}">Log out</a>
-                        </li>
-                        {% if request.user.username == 'blog' %}
-                            <li><button class="btn btn-info btn-large" id="add-snipt">Add Post <i class="icon-search icon-plus icon-white"></i></button></li>
+    {% block header %}
+        <header class="main">
+            <div class="inner">
+                <div class="shadey"></div>
+                <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">Snipt</a></h1> 
+                <form class="search" action="/search/" method="get">
+                    <fieldset>
+                        <div class="fields">
+                            <input type="text" id="search-query" name="q" value="{{ query }}" placeholder="Search snipts" />
+                        </div>
+                    </fieldset>
+                </form>
+                <nav class="public">
+                    <ul>
+                        {% if not request.user.is_authenticated %}
+                            <li>
+                                <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
+                            </li>
+                            <li>
+                                <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
+                            </li>
+                            <li>
+                                <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
+                            </li>
                         {% else %}
-                            <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
+                            <li>
+                                <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
+                            </li>
+                            <li>
+                                <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
+                            </li>
+                            <li>
+                                <a href="/logout/?next={{ request.path }}">Log out</a>
+                            </li>
+                            {% if request.user.username == 'blog' %}
+                                <li><button class="btn btn-info btn-large" id="add-snipt">Add Post <i class="icon-search icon-plus icon-white"></i></button></li>
+                            {% else %}
+                                <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                </ul>
-            </nav>
-            {% if request.user.is_authenticated and has_snipts %}
-                <aside class="nav"></aside>
-            {% endif %}
-        </div>
-    </header>
+                    </ul>
+                </nav>
+                {% if request.user.is_authenticated and has_snipts %}
+                    <aside class="nav"></aside>
+                {% endif %}
+            </div>
+        </header>
+    {% endblock %}
     {% block sub-header %}
         <header class="sub">
             <div class="inner group">
@@ -130,11 +134,13 @@
     <section class="main group" id="main">
         <div class="inner">
             {% block content %}{% endblock %}
-            <div class="rochester-made">
-                <a href="http://rochestermade.com/" title="Rochester Made">
-                    <img src="{{ STATIC_URL }}images/rochester-made.png" alt="" />
-                </a>
-            </div>
+            {% block rochester-made %}
+                <div class="rochester-made">
+                    <a href="http://rochestermade.com/" title="Rochester Made">
+                        <img src="{{ STATIC_URL }}images/rochester-made.png" alt="" />
+                    </a>
+                </div>
+            {% endblock %}
         </div>
         {% block aside %}
             <aside class="main">

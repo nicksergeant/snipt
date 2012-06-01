@@ -1,4 +1,48 @@
-{% for snipt in snipts %}
-    <strong>{{ snipt.title }}</strong><br />
-    {{ snipt.code }}<br /><br />
-{% endfor %}
+{% extends "blogs/base.html" %}
+
+{% load compress pagination_tags %}
+
+{% block js %}
+        {{ block.super }}
+        window.detail = false;
+{% endblock %}
+
+{% block content %}
+    <section class="snipts" id="snipts">
+        {% autopaginate snipts 10 %}
+        {% for snipt in snipts %}
+            {% include "blogs/snipt-list.html" %}
+        {% empty %}
+            <div class="empty-snipts">
+                {{ user.username }} has no public snipts.
+            </div>
+        {% endfor %}
+        {% paginate %}
+    </section>
+    <script type="text/javascript" id="disqus">
+        var disqus_shortname = 'snipt-net';
+        {% if debug %}
+            var disqus_developer = 1;
+        {% endif %}
+
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <script type="text/html" id="disqus-template">
+        var disqus_shortname = 'snipt-net';
+        {% if debug %}
+            var disqus_developer = 1;
+        {% endif %}
+
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+{% endblock %}

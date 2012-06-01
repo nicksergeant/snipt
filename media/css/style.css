@@ -1262,3 +1262,21 @@ body.api div#disqus_thread {
 body.blog article.snipt section.code {
   height: auto;
 }
+
+body.blog-site header.blog div.inner {
+  border-left: 1px solid rgba(229, 229, 229, 0.25);
+  margin: 30px auto 0 auto;
+  width: 939px;
+}
+body.blog-site header.blog div.inner h1 {
+  color: #0094AF;
+  font: normal 34px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin-left: 15px;
+}
+body.blog-site header.blog div.inner h1 a {
+  color: #0094AF;
+}
+body.blog-site header.blog div.inner h1 a:hover {
+  color: #292929;
+  text-decoration: none;
+}
