@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block meta %}
+    {% if 'page' in request.get_full_path %}
+        <meta name="robots" content="noindex, follow" />
+    {% endif %}
+{% endblock %}
+
+{% block body-class %}blog-site{% endblock %}
+
+{% block page-title %}{{ user.username }}'s blog - Powered by Snipt.net{% endblock %}
+
+{% block header %}
+    <header class="blog">
+        <div class="inner">
+            <h1><a href="/">{{ user.username }}'s blog</a></h1>
+        </div>
+    </header>
+{% endblock %}
+{% block sub-header %}{% endblock %}
+{% block rochester-made %}{% endblock %}
+{% block aside %}{% endblock %}

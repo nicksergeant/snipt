@@ -1,0 +1,24 @@
+html, body {
+  background: #f5f2f3 url("/static/images/bg.gif") top left repeat;
+}
+
+body {
+  color: #666;
+  font: normal 14px/16px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+body li {
+  line-height: normal;
+}
+
+.group:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
