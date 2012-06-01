@@ -1264,8 +1264,6 @@ body.blog article.snipt section.code {
 }
 
 body.blog-site {
-  color: #B3B3B3;
-  font: normal 17px/24px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
   margin: 0;
 }
 body.blog-site section.frame {
@@ -1283,12 +1281,6 @@ body.blog-site h1.blog-title a {
   font-weight: normal;
   text-decoration: none;
 }
-body.blog-site a {
-  color: #898989;
-}
-body.blog-site a:hover {
-  color: #292929;
-}
 body.blog-site header.main {
   background: none;
   border-bottom: 0;
@@ -1301,6 +1293,10 @@ body.blog-site header.main h1 {
   padding: 29px 0 0 15px;
 }
 
+body.blog-homepage {
+  color: #B3B3B3;
+  font: normal 17px/24px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+}
 body.blog-homepage li {
   line-height: 24px;
   margin: 5px 0;
@@ -1312,4 +1308,10 @@ body.blog-homepage p:last-of-type {
 body.blog-homepage img {
   display: block;
   margin: 53px auto 0 auto;
+}
+body.blog-homepage a {
+  color: #898989;
+}
+body.blog-homepage a:hover {
+  color: #292929;
 }

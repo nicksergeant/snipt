@@ -1432,8 +1432,6 @@ body.blog {
 
 // Blogs
 body.blog-site {
-    color: #B3B3B3;
-    font: normal 17px/24px $Helvetica;
     margin: 0;
 
     section.frame {
@@ -1452,13 +1450,6 @@ body.blog-site {
             text-decoration: none;
         }
     } 
-    a {
-        color: #898989;
-
-        &:hover {
-            color: #292929;
-        }
-    }
     header.main {
         background: none;
         border-bottom: 0;
@@ -1473,6 +1464,9 @@ body.blog-site {
     }
 }
 body.blog-homepage {
+    color: #B3B3B3;
+    font: normal 17px/24px $Helvetica;
+
     li {
         line-height: 24px;
         margin: 5px 0;
@@ -1484,5 +1478,12 @@ body.blog-homepage {
     img {
         display: block;
         margin: 53px auto 0 auto;
+    }
+    a {
+        color: #898989;
+
+        &:hover {
+            color: #292929;
+        }
     }
 }
