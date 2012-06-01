@@ -75,6 +75,9 @@ def embed(request, snipt_key):
 @render_to('snipts/list-public.html')
 def list_public(request, tag_slug=None):
 
+    if request.blog_user:
+        return blog_list(request)
+
     tags = Tag.objects.filter(snipt__public=True)
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
     tags = tags.order_by('-count')[:20]
@@ -104,6 +107,9 @@ def list_public(request, tag_slug=None):
 
 @render_to('snipts/list-user.html')
 def list_user(request, username_or_custom_slug, tag_slug=None):
+
+    if request.blog_user:
+        return blog_list(request)
 
     user = get_object_or_None(User, username=username_or_custom_slug)
 
