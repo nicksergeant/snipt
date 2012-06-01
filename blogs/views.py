@@ -19,7 +19,7 @@ def blog_homepage(request, user, homepage):
 @render_to('blogs/list.html')
 def blog_list(request, user):
 
-    snipts = Snipt.objects.filter(user=user, blog_post=True, public=True).order_by('-created')
+    snipts = Snipt.objects.filter(user=user, blog_post=True, public=True).order_by('-created').exclude(title__iexact='Homepage')
 
     context = {
         'snipts': snipts,
