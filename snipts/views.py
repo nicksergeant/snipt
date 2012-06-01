@@ -20,28 +20,13 @@ RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
 def home(request):
 
-    if request.subdomain:
-        subdomain = request.subdomain.replace('-', '_')
-        user = get_object_or_404(User, username__iexact=subdomain)
-
-        try:
-            homepage = Snipt.objects.get(user=user, title__iexact='Homepage', blog_post=True, public=True)
-            return blog_homepage(request, user, homepage)
-        except Snipt.DoesNotExist:
-            return blog_list(request, user)
+    if request.blog_user:
+        return blog_homepage(request)
 
     if request.user.is_authenticated():
         return HttpResponseRedirect('/%s/' % request.user.username)
     else:
         return list_public(request)
-
-def blog(request):
-    if request.subdomain:
-        subdomain = request.subdomain.replace('-', '_')
-        user = get_object_or_404(User, username__iexact=subdomain)
-        return blog_list(request, user)
-    else:
-        return list_user(request, 'blog')
 
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):

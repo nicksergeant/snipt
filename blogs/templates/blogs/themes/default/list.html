@@ -1,4 +1,4 @@
-{% extends "blogs/base.html" %}
+{% extends "blogs/themes/default/base.html" %}
 
 {% load compress pagination_tags %}
 
@@ -7,22 +7,11 @@
         window.detail = false;
 {% endblock %}
 
-{% block header %}
-    <header class="main">
-        <h1 class="blog-title">
-            <a href="/">
-                {% if user.username == 'nick' %}
-                    Nick Sergeant{% else %}
-                    {{ user.username }}{% endif %}'s Blog
-            </a>
-        </h1>
-    </header>
-{% endblock %}
 {% block content %}
     <section class="snipts" id="snipts">
         {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
-            {% include "blogs/snipt-list.html" %}
+            {% include "blogs/themes/default/snipt-list.html" %}
         {% empty %}
             <div class="empty-snipts">
                 {{ user.username }} has no public blog posts.

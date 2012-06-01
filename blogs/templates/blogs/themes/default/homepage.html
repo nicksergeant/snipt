@@ -1,0 +1,20 @@
+{% extends "blogs/themes/default/base.html" %}
+
+{% load compress pagination_tags %}
+
+{% block js %}
+        {{ block.super }}
+        window.detail = false;
+{% endblock %}
+
+{% block body-class %}{{ block.super }} blog-homepage{% endblock %}
+
+{% block content %}
+    {% if homepage.lexer == 'markdown' %}
+        <div class="markdown">
+            {{ homepage.stylized|safe }}
+        </div>
+    {% else %}
+        {{ homepage.stylized|safe }}
+    {% endif %}
+{% endblock %}

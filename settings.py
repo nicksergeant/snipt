@@ -117,7 +117,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'pagination.middleware.PaginationMiddleware',
-    'blogs.middleware.SubdomainMiddleware',
+    'blogs.middleware.BlogMiddleware',
 )
 
 ROOT_URLCONF = 'snipt.urls'
