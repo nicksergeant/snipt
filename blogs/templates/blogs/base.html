@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load compress %}
+
 {% block meta %}
     {% if 'page' in request.get_full_path %}
         <meta name="robots" content="noindex, follow" />
@@ -7,16 +9,21 @@
 {% endblock %}
 
 {% block body-class %}blog-site{% endblock %}
+{% block html-class %}blog-site{% endblock %}
+
+{% block css %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/style.scss" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+    {% endcompress %}
+{% endblock %}
 
 {% block page-title %}{{ user.username }}'s blog - Powered by Snipt.net{% endblock %}
 
-{% block header %}
-    <header class="blog">
-        <div class="inner">
-            <h1><a href="/">{{ user.username }}'s blog</a></h1>
-        </div>
-    </header>
-{% endblock %}
+{% block page-description %}{% endblock %}
 {% block sub-header %}{% endblock %}
 {% block rochester-made %}{% endblock %}
 {% block aside %}{% endblock %}
+{% block header %}{% endblock %}
+{% block keyboard-shortcuts %}{% endblock %}

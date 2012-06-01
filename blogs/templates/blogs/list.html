@@ -7,6 +7,17 @@
         window.detail = false;
 {% endblock %}
 
+{% block header %}
+    <header class="main">
+        <h1 class="blog-title">
+            <a href="/">
+                {% if user.username == 'nick' %}
+                    Nick Sergeant{% else %}
+                    {{ user.username }}{% endif %}'s Blog
+            </a>
+        </h1>
+    </header>
+{% endblock %}
 {% block content %}
     <section class="snipts" id="snipts">
         {% autopaginate snipts 10 %}

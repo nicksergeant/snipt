@@ -6,11 +6,19 @@ from annoying.decorators import render_to
 from snipts.models import Snipt
 
 
-@render_to('blogs/list.html')
-def list_blog(request, subdomain):
+@render_to('blogs/homepage.html')
+def blog_homepage(request, user, homepage):
 
-    subdomain = subdomain.replace('-', '_')
-    user = get_object_or_404(User, username__iexact=subdomain)
+    context = {
+        'homepage': homepage,
+        'user': user,
+    }
+
+    return context
+
+@render_to('blogs/list.html')
+def blog_list(request, user):
+
     snipts = Snipt.objects.filter(user=user, blog_post=True, public=True).order_by('-created')
 
     context = {

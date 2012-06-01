@@ -7,7 +7,7 @@ from django.template import RequestContext
 from annoying.decorators import render_to
 from snipts.models import Favorite, Snipt
 from django.db.models import Count
-from blogs.views import list_blog
+from blogs.views import blog_homepage, blog_list
 from django.conf import settings
 from django.db.models import Q
 from taggit.models import Tag
@@ -21,12 +21,27 @@ RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 def home(request):
 
     if request.subdomain:
-        return list_blog(request, request.subdomain)
+        subdomain = request.subdomain.replace('-', '_')
+        user = get_object_or_404(User, username__iexact=subdomain)
+
+        try:
+            homepage = Snipt.objects.get(user=user, title__iexact='Homepage', blog_post=True, public=True)
+            return blog_homepage(request, user, homepage)
+        except Snipt.DoesNotExist:
+            return blog_list(request, user)
 
     if request.user.is_authenticated():
         return HttpResponseRedirect('/%s/' % request.user.username)
     else:
         return list_public(request)
+
+def blog(request):
+    if request.subdomain:
+        subdomain = request.subdomain.replace('-', '_')
+        user = get_object_or_404(User, username__iexact=subdomain)
+        return blog_list(request, user)
+    else:
+        return list_user(request, 'blog')
 
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):

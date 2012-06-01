@@ -1,0 +1,38 @@
+{% extends "blogs/base.html" %}
+
+{% load compress pagination_tags %}
+
+{% block js %}
+        {{ block.super }}
+        window.detail = false;
+{% endblock %}
+
+{% block body-class %}{{ block.super }} blog-homepage{% endblock %}
+
+{% block css %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/style.scss" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+    {% endcompress %}
+{% endblock %}
+
+{% block main %}
+    <section class="frame">
+        <h1 class="blog-title">
+            <a href="/">
+                {% if user.username == 'nick' %}
+                    Nick Sergeant
+                {% else %}
+                    {{ user.username }}
+                {% endif %}
+            </a>
+        </h1>
+        {% if homepage.lexer == 'markdown' %}
+            <div class="markdown">
+                {{ homepage.stylized|safe }}
+            </div>
+        {% else %}
+            {{ homepage.stylized|safe }}
+        {% endif %}
+    </section>
+{% endblock %}
