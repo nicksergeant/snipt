@@ -16,6 +16,7 @@ def blog_homepage(request):
     context = {
         'blog_user': request.blog_user,
         'homepage': homepage,
+        'public': True,
     }
 
     return context
@@ -31,6 +32,7 @@ def blog_list(request, username_or_custom_slug=None):
     context = {
         'blog_user': request.blog_user,
         'has_snipts': True,
+        'public': True,
         'snipts': snipts,
     }
 
@@ -51,8 +53,9 @@ def blog_post(request, username_or_custom_slug):
 
     context = {
         'blog_user': request.blog_user,
-        'has_snipts': True,
         'detail': True,
+        'has_snipts': True,
+        'public': True,
         'snipts': snipts,
     }
 
