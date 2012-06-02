@@ -80,7 +80,7 @@ body {
 }
 
 body {
-    color: #B3B3B3;
+    color: #0F0F0F;
     font: normal 17px/24px $Helvetica;
     margin: 0;
 
@@ -168,14 +168,6 @@ body.blog-homepage {
     img {
         display: block;
         margin: 53px auto 0 auto;
-    }
-    a {
-        color: #898989;
-
-        &:hover {
-            color: #292929;
-            text-decoration: none;
-        }
     }
 }
 article.snipt {
