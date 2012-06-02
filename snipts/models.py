@@ -99,6 +99,9 @@ class Snipt(models.Model):
         if self.custom_slug:
             return '/{}/'.format(self.custom_slug)
 
+        if self.blog_post:
+            return '/{}/'.format(self.slug)
+
         if self.public:
             return '/{}/{}/'.format(self.user.username, self.slug)
         else:

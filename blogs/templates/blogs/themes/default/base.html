@@ -46,6 +46,11 @@
                 {% endif %}
             </a>
         </h1>
+        {% if has_posts %}
+            <h2 class="blog-title">
+                &raquo; <a href="/blog/">Blog</a>
+            </h2>
+        {% endif %}
         {% block content %}{% endblock %}
     </section>
 {% endblock %}

@@ -1,33 +1,3 @@
-body.blog-site {
-  margin: 0;
-}
-body.blog-site section.frame {
-  margin: 0 auto;
-  padding-top: 50px;
-  width: 500px;
-}
-body.blog-site h1.blog-title {
-  font-size: 34px;
-  margin-bottom: 50px;
-  margin-top: 0;
-}
-body.blog-site h1.blog-title a {
-  color: #0094AF;
-  font-weight: normal;
-  text-decoration: none;
-}
-body.blog-site header.main {
-  background: none;
-  border-bottom: 0;
-  height: auto;
-  margin: 0 auto;
-  width: 940px;
-}
-body.blog-site header.main h1 {
-  margin: 0;
-  padding: 29px 0 0 15px;
-}
-
 html, body {
   background: #f5f2f3 url("/static/images/bg.gif") top left repeat;
 }
@@ -56,13 +26,67 @@ body li {
 body {
   color: #B3B3B3;
   font: normal 17px/24px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  margin: 0;
+}
+body section.frame {
+  margin: 0 auto;
+  padding-top: 50px;
+  width: 610px;
+}
+body a {
+  color: #0094AF;
+}
+body a:hover {
+  color: #006577;
+  text-decoration: none;
 }
 body h1.blog-title {
+  display: inline-block;
+  font-size: 34px;
   line-height: 24px;
+  margin-top: 0;
+}
+body h1.blog-title a {
+  color: #0094AF;
+  font-weight: normal;
+  text-decoration: none;
+  verticsal-align: -1px;
+}
+body h1.blog-title a:hover {
+  color: #006577;
+}
+body h2.blog-title {
+  display: inline-block;
+  font-weight: normal;
+  margin-left: 10px;
+  vertical-align: 1px;
+}
+body h2.blog-title a {
+  color: #0094AF;
+  margin-left: 5px;
+}
+body h2.blog-title a:hover {
+  color: #006577;
+  text-decoration: none;
+}
+body header.main {
+  background: none;
+  border-bottom: 0;
+  height: auto;
+  margin: 0 auto;
+  width: 940px;
+}
+body header.main h1 {
+  margin: 0;
+  padding: 29px 0 0 15px;
 }
 
 body.blog-homepage {
   padding-bottom: 39px;
+}
+body.blog-homepage h1.blog-title {
+  margin-bottom: 24px;
+  margin-top: 4px;
 }
 body.blog-homepage p {
   font: normal 17px/24px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
@@ -82,4 +106,95 @@ body.blog-homepage a {
 body.blog-homepage a:hover {
   color: #292929;
   text-decoration: none;
+}
+
+article.snipt {
+  border-top: 1px solid #C9C6C7;
+  margin: 45px 0;
+  padding-top: 45px;
+}
+article.snipt div.number {
+  display: none;
+}
+article.snipt div.container {
+  width: auto;
+}
+article.snipt div.container header h1 {
+  font-size: 20px;
+  line-height: 26px;
+}
+article.snipt div.container header h1 a {
+  color: #0088CC;
+}
+article.snipt div.container header h1 a:hover {
+  color: #006BA0;
+}
+article.snipt div.container header h2 {
+  display: none;
+}
+article.snipt div.container header h3 {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+article.snipt div.container section.code {
+  background: transparent;
+}
+article.snipt div.container section.code div.markdown p {
+  font: normal 17px/24px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
+  line-height: 24px;
+}
+article.snipt div.container section.code div.markdown li {
+  line-height: 24px;
+  margin: 5px 15px;
+}
+article.snipt div.container section.code div.markdown div.highlight {
+  margin: 20px 0;
+}
+article.snipt div.container section.code div.highlight pre {
+  background: #FFF;
+}
+article.snipt div.container section.code a.expand {
+  display: none;
+}
+article.snipt div.container textarea.raw {
+  display: none;
+}
+article.snipt aside section.tags {
+  display: none;
+}
+article.snipt aside ul.options {
+  display: none;
+}
+article.snipt footer {
+  display: none;
+}
+
+div#disqus_thread {
+  margin-bottom: 0;
+  margin-left: 15px;
+  margin-top: 60px;
+  width: 610px;
+}
+div#disqus_thread #dsq-content {
+  margin-top: -38px;
+}
+div#disqus_thread #dsq-content #dsq-global-toolbar {
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+div#disqus_thread #dsq-content #dsq-sort-by {
+  display: none;
+}
+div#disqus_thread #dsq-content .dsq-comment-text {
+  color: #666;
+}
+div#disqus_thread #dsq-content h3 {
+  display: none;
+}
+div#disqus_thread #dsq-content .dsq-textarea-wrapper {
+  overflow: hidden;
+}
+div#disqus_thread #dsq-footer {
+  display: none;
 }

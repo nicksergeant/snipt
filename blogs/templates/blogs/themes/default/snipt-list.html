@@ -1,3 +1,9 @@
 {% extends "snipts/snipt-list.html" %}
 
+{% load humanize %}
+
 {% block author %}{% endblock %}
+
+{% block extra-snipt-header %}
+    <h3>{{ snipt.publish_date|naturalday }}</h3>
+{% endblock %}

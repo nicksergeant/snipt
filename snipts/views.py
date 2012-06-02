@@ -109,7 +109,7 @@ def list_public(request, tag_slug=None):
 def list_user(request, username_or_custom_slug, tag_slug=None):
 
     if request.blog_user:
-        return blog_list(request)
+        return blog_list(request, username_or_custom_slug)
 
     user = get_object_or_None(User, username=username_or_custom_slug)
 
