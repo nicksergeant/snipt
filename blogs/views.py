@@ -30,7 +30,7 @@ def blog_list(request, username_or_custom_slug=None):
 
     context = {
         'blog_user': request.blog_user,
-        'has_posts': True,
+        'has_snipts': True,
         'snipts': snipts,
     }
 
@@ -51,8 +51,8 @@ def blog_post(request, username_or_custom_slug):
 
     context = {
         'blog_user': request.blog_user,
-        'has_posts': True,
-        'single_blog_post': True,
+        'has_snipts': True,
+        'detail': True,
         'snipts': snipts,
     }
 

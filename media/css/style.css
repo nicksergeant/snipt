@@ -84,6 +84,9 @@ body div.pagination {
   margin-bottom: 60px;
   text-align: center;
 }
+body div.empty-snipts {
+  margin-top: 20px;
+}
 
 body.blog-homepage {
   padding-bottom: 39px;
