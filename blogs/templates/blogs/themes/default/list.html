@@ -28,7 +28,7 @@
                 {% if debug %}
                     var disqus_developer = 1;
                 {% endif %}
-                var disqus_url = '{{ request.META.HTTP_HOST }}{{ request.path }}';
+                var disqus_url = 'http://{{ request.META.HTTP_HOST }}{{ request.path }}';
                 var disqus_title = '{{ snipt.title }}';
                 var disqus_identifier = {{ snipt.id }};
 
