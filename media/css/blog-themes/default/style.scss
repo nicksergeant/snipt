@@ -169,6 +169,13 @@ body.blog-homepage {
         display: block;
         margin: 53px auto 0 auto;
     }
+    a {
+        color: #838383;
+
+        &:hover {
+            color: #565656;
+        }
+    }
 }
 article.snipt {
     border-top: 1px solid #C9C6C7;
