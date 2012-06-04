@@ -158,6 +158,9 @@ article.snipt div.container section.code div.markdown li {
 article.snipt div.container section.code div.markdown div.highlight {
   margin: 20px 0;
 }
+article.snipt div.container section.code div.markdown pre {
+  background: #FFF;
+}
 article.snipt div.container section.code div.highlight pre {
   background: #FFF;
 }
