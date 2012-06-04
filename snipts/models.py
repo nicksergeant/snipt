@@ -52,7 +52,7 @@ class Snipt(models.Model):
 
         if self.lexer == 'markdown':
             self.stylized = markdown(self.code, 'default')
-            for match in re.findall('\[\[(.*)\]\]', self.stylized):
+            for match in re.findall('\[\[(\w{32})\]\]', self.stylized):
                 self.stylized = self.stylized.replace('[[' + str(match) + ']]',
                         '<script type="text/javascript" src="https://snipt.net/embed/{}/?snipt"></script><div id="snipt-embed-{}"></div>'.format(match, match))
         else:
