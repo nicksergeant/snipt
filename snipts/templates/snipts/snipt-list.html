@@ -81,9 +81,9 @@
                 </li>
             {% endblock %}
             {% if snipt.blog_post %}
-                <li class="created" title="{{ snipt.publish_date|date:"Y-m-d\TH:i:s" }}">{{ snipt.publish_date|naturalday }}</li>
+                <li class="created" title="{{ snipt.publish_date|date:"Y-m-d\TH:i:s" }}">{{ snipt.publish_date|naturaltime }}</li>
             {% else %}
-                <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturalday }}</li>
+                <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturaltime }}</li>
             {% endif %}
             <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
         </ul>
