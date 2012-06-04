@@ -110,13 +110,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'blogs.middleware.BlogMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'blogs.middleware.BlogMiddleware',
 )
 
 ROOT_URLCONF = 'snipt.urls'
