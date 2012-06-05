@@ -7,7 +7,9 @@
     <div class="group">
         <div class="container">
             <header>
-                <h2>{{ snipt.lexer_name }}</h2>
+                {% block lexer %}
+                    <h2>{{ snipt.lexer_name }}</h2>
+                {% endblock %}
                 <h1><a href="{{ snipt.get_absolute_url }}">{% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %}</a></h1>
                 {% block extra-snipt-header %}{% endblock %}
             </header>
@@ -31,46 +33,48 @@
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
         </div>
-        <aside>
-            <ul class="options">
-                {% if snipt.user == request.user %}
+        {% block aside %}
+            <aside>
+                <ul class="options">
+                    {% if snipt.user == request.user %}
+                        <li>
+                            <a class="edit" href="#">Edit</a>
+                        </li>
+                    {% endif %}
                     <li>
-                        <a class="edit" href="#">Edit</a>
+                        <a class="embed" href="#">Embed</a>
                     </li>
-                {% endif %}
-                <li>
-                    <a class="embed" href="#">Embed</a>
-                </li>
-                <li>
-                    <a class="copy" href="#">Copy</a>
-                </li>
-                {% if snipt.user != request.user and request.user.is_authenticated %}
                     <li>
-                        {% if is_favorited %}
-                            <a class="favorite favorited" href="#">Favorited</a>
-                        {% else %}
-                            <a class="favorite unfavorited" href="#">Favorite</a>
-                        {% endif %}
+                        <a class="copy" href="#">Copy</a>
                     </li>
+                    {% if snipt.user != request.user and request.user.is_authenticated %}
+                        <li>
+                            {% if is_favorited %}
+                                <a class="favorite favorited" href="#">Favorited</a>
+                            {% else %}
+                                <a class="favorite unfavorited" href="#">Favorite</a>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if snipt.tags.all %}
+                    <section class="tags">
+                        <h2>{{ snipt.tags.all|length }} tag{{ snipt.tags.all|pluralize }}</h2>
+                        <ul>
+                            {% for tag in snipt.sorted_tags %}
+                                <li {% if forloop.counter > 3 and not detail %}class="hidden"{% endif %}>
+                                    {% if public %}
+                                        <a href="/public/tag/{{ tag.slug }}/">{{ tag }}</a>
+                                    {% else %}
+                                        <a href="/{{ snipt.user.username }}/tag/{{ tag.slug }}/">{{ tag }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
                 {% endif %}
-            </ul>
-            {% if snipt.tags.all %}
-                <section class="tags">
-                    <h2>{{ snipt.tags.all|length }} tag{{ snipt.tags.all|pluralize }}</h2>
-                    <ul>
-                        {% for tag in snipt.sorted_tags %}
-                            <li {% if forloop.counter > 3 and not detail %}class="hidden"{% endif %}>
-                                {% if public %}
-                                    <a href="/public/tag/{{ tag.slug }}/">{{ tag }}</a>
-                                {% else %}
-                                    <a href="/{{ snipt.user.username }}/tag/{{ tag.slug }}/">{{ tag }}</a>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            {% endif %}
-        </aside>
+            </aside>
+        {% endblock %}
     </div>
     <footer>
         <ul class="attrs">
@@ -80,11 +84,9 @@
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
                 </li>
             {% endblock %}
-            {% if snipt.blog_post %}
-                <li class="created" title="{{ snipt.publish_date|date:"Y-m-d\TH:i:s" }}">{{ snipt.publish_date|naturaltime }}</li>
-            {% else %}
+            {% block created %}
                 <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturaltime }}</li>
-            {% endif %}
+            {% endblock %}
             <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
         </ul>
     </footer>

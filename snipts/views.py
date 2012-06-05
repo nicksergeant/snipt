@@ -7,7 +7,7 @@ from django.template import RequestContext
 from annoying.decorators import render_to
 from snipts.models import Favorite, Snipt
 from django.db.models import Count
-from blogs.views import blog_homepage, blog_list
+from blogs.views import blog_list
 from django.conf import settings
 from django.db.models import Q
 from taggit.models import Tag
@@ -21,7 +21,7 @@ RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 def home(request):
 
     if request.blog_user:
-        return blog_homepage(request)
+        return blog_list(request)
 
     if request.user.is_authenticated():
         return HttpResponseRedirect('/%s/' % request.user.username)

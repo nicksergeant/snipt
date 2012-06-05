@@ -1,288 +1,31 @@
-// Fonts
-$Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
-$Consolas: Consolas, Menlo, "Courier New", monospace;
-
-// Mixins
-@mixin border-radius($radius: 5px) {
-    -webkit-background-clip: padding-box;
-    -webkit-border-radius: $radius;
-    -moz-background-clip: padding-box;
-    -moz-border-radius: $radius;
-    border-radius: $radius;
-    background-clip: padding-box;
-}
-@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
-  -webkit-box-shadow: $horizontal $vertical $blur $color;
-  -moz-box-shadow: $horizontal $vertical $blur $color;
-  box-shadow: $horizontal $vertical $blur $color;
-}
-@mixin inset-box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
-  -webkit-box-shadow: inset $horizontal $vertical $blur $color;
-  -moz-box-shadow: inset $horizontal $vertical $blur $color;
-  box-shadow: inset $horizontal $vertical $blur $color;
-}
-@mixin multi-color-border($top, $sides, $bottom) {
-    border-top: 1px solid $top;
-    border-left: 1px solid $sides;
-    border-right: 1px solid $sides;
-    border-bottom: 1px solid $bottom;
-}
-@mixin multi-border-radius($topLeft: 5px, $topRight: 5px, $bottomRight: 5px, $bottomLeft: 5px) {
-    -webkit-border-top-left-radius: $topLeft;
-    -webkit-border-top-right-radius: $topRight;
-    -webkit-border-bottom-right-radius: $bottomRight;
-    -webkit-border-bottom-left-radius: $bottomLeft;
-    -moz-border-radius-topleft: $topLeft;
-    -moz-border-radius-topright: $topRight;
-    -moz-border-radius-bottomright: $bottomRight;
-    -moz-border-radius-bottomleft: $bottomLeft;
-    border-top-left-radius: $topLeft;
-    border-top-right-radius: $topRight;
-    border-bottom-right-radius: $bottomRight;
-    border-bottom-left-radius: $bottomLeft;
-}
-@mixin vertical-gradient($start: #000, $stop: #FFF) { background: ($start + $stop) / 2;
-    background: -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
-    background: -moz-linear-gradient(center top, $start 0%, $stop 100%);
-    background: -moz-gradient(center top, $start 0%, $stop 100%);
-}
-@mixin vertical-gradient-with-image($image, $start: #000, $stop: #FFF) {
-    background: ($start + $stop) / 2 $image;
-    background: $image, -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
-    background: $image, -moz-linear-gradient(center top, $start 0%, $stop 100%);
-    background: $image, -moz-gradient(center top, $start 0%, $stop 100%);
-}
-
-// Page
-html, body {
-    background: #F5F2F3 url('/static/images/bg.gif') top left repeat;
-}
-body {
-    color: #666;
-    font: normal 14px/16px $Helvetica;
-    text-rendering: optimizeLegibility;
-
-    li {
-        line-height: normal;
-    }
-}
-
-// Utils
-.group:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-.hidden {
-    display: none;
-}
-
-body {
-    color: #0F0F0F;
-    font: normal 17px/24px $Helvetica;
-    margin: 0;
-
-    section.frame {
-        margin: 0 auto;
-        padding-top: 50px;
-        width: 610px;
-    }
-    a {
-        color: #0094AF;
-
-        &:hover {
-            color: #006577;
-            text-decoration: none;
-        }
-    }
-    h1.blog-title {
-        display: inline-block;
-        font-size: 34px;
-        line-height: 24px;
-        margin-top: 0;
-
-        a {
-            color: #0094AF;
-            font-weight: normal;
-            text-decoration: none;
-            verticsal-align: -1px;
-
-            &:hover {
-                color: #006577;
-            }
-        }
-    }
-    h2.blog-title {
-        display: inline-block;
-        font-weight: normal;
-        margin-left: 10px;
-        
-        a {
-            color: #0094AF;
-            margin-left: 5px;
-
-            &:hover {
-                color: #006577;
-                text-decoration: none;
-            }
-        }
-    }
-    header.main {
-        background: none;
-        border-bottom: 0;
-        height: auto;
-        margin: 0 auto;
-        width: 940px;
-
-        h1 {
-            margin: 0;
-            padding: 29px 0 0 15px;
-        }
-    }
-    div.pagination {
-        margin-bottom: 60px;
-        text-align: center;
-    }
-    div.empty-snipts {
-        margin-top: 20px;
-    }
-}
-body.blog-homepage {
-    color: #B5B5B5;
-    padding-bottom: 39px;
-
-    h1.blog-title {
-        margin-bottom: 24px;
-        margin-top: 4px;
-    }
-    p {
-        font: normal 17px/24px $Helvetica;
-        margin: 17px 0;
-    }
-    li {
-        line-height: 24px;
-        margin: 5px 15px;
-    }
-    img {
-        display: block;
-        margin: 53px auto 0 auto;
-    }
-    a {
-        color: #838383;
-
-        &:hover {
-            color: #565656;
-        }
-    }
-}
 article.snipt {
-    border-top: 1px solid #C9C6C7;
-    margin: 45px 0;
-    padding-top: 45px;
+    div.group {
+        div.container {
+            width: 708px;
 
-    div.number {
-        display: none;
+            header {
+                min-height: 0;
+
+                h1 {
+                    margin: 11px 15px;
+                }
+            }
+        }
     }
-    div.container {
-        width: auto;
-
-        header {
-            h1 {
-                font-size: 20px;
-                line-height: 26px;
-
-                a {
-                    color: #0088CC;
-
-                    &:hover {
-                        color: #006BA0;
+}
+body.detail {
+    section.main {
+        div.inner {
+            section.snipts {
+                article.snipt {
+                    div.container {
+                        width: 940px;
                     }
                 }
             }
-            h2 {
-                display: none;
-            }
-            h3 {
-                color: #B5B5B5;
-                font-size: 16px;
-                font-weight: normal;
-                margin-bottom: 20px;
-            }
-        }
-        section.code {
-            background: transparent;
-
-            div.markdown {
-                p {
-                    font: normal 17px/24px $Helvetica;
-                    line-height: 24px;
-                }
-                li {
-                    line-height: 24px;
-                    margin: 5px 15px;
-                }
-                div.highlight {
-                    margin: 20px 0;
-                }
-                pre {
-                    background: #FFF;
-                    margin: 20px 0;
-                }
-            }
-            div.highlight {
-                pre {
-                    background: #FFF;
-                }
-            }
-            a.expand {
-                display: none;
-            }
-        }
-        textarea.raw {
-            display: none;
         }
     }
-    aside {
-        section.tags {
-            display: none;
-        }
-        ul.options {
-            display: none;
-        }
-    }
-    footer {
-        display: none;
-    }
-}
-div#disqus_thread {
-    margin-bottom: 0;
-    margin-left: 15px;
-    margin-top: 60px;
-    width: 610px;
-
-    #dsq-content {
-        margin-top: -38px;
-
-        #dsq-global-toolbar {
-            margin-bottom: 18px;
-            margin-top: 0;
-        }
-        #dsq-sort-by {
-            display: none;
-        }
-        .dsq-comment-text {
-            color: #666;
-        }
-        h3 {
-            display: none;
-        }
-        .dsq-textarea-wrapper {
-            overflow: hidden;
-        }
-    }
-    #dsq-footer {
-        display: none;
+    div#disqus_thread {
+        width: 925px;
     }
 }

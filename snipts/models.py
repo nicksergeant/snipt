@@ -96,14 +96,14 @@ class Snipt(models.Model):
 
     def get_absolute_url(self):
 
-        if self.custom_slug:
-            return '/{}/'.format(self.custom_slug)
-
         if self.blog_post:
             if self.user.id == 3:
                 return 'http://nicksergeant.com/{}/'.format(self.slug)
             else:
                 return 'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
+
+        if self.custom_slug:
+            return '/{}/'.format(self.custom_slug)
 
         if self.public:
             return '/{}/{}/'.format(self.user.username, self.slug)
@@ -111,10 +111,18 @@ class Snipt(models.Model):
             return '/{}/{}/?key={}'.format(self.user.username, self.slug, self.key)
 
     def get_full_absolute_url(self):
+
+        if self.blog_post:
+            if self.user.id == 3:
+                return 'http://nicksergeant.com/{}/'.format(self.slug)
+            else:
+                return 'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
+
         if settings.DEBUG:
             root = 'http://snipt.localhost'
         else:
             root = 'https://snipt.net'
+
         return '{}/{}/{}/'.format(root, self.user.username, self.slug)
 
     def get_embed_url(self):

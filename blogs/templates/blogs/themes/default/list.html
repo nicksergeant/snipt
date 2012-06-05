@@ -1,6 +1,12 @@
 {% extends "blogs/themes/default/base.html" %}
 
-{% load compress pagination_tags %}
+{% load pagination_tags %}
+
+{% block meta %}
+    {% if 'page' in request.get_full_path %}
+        <meta name="robots" content="noindex, follow" />
+    {% endif %}
+{% endblock %}
 
 {% block body-class %}{{ block.super }} blog-list{% endblock %}
 
@@ -20,26 +26,6 @@
             </div>
         {% endfor %}
         {% paginate %}
-        {% if detail %}
-            {% with snipts.0 as snipt %}
-            <div id="disqus_thread"></div>
-            <script type="text/javascript">
-                var disqus_shortname = 'snipt-net';
-                {% if debug %}
-                    var disqus_developer = 1;
-                {% endif %}
-                var disqus_url = 'http://{{ request.META.HTTP_HOST }}{{ request.path }}';
-                var disqus_title = '{{ snipt.title }}';
-                var disqus_identifier = {{ snipt.id }};
-
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-            </script>
-            {% endwith %}
-        {% endif %}
     </section>
     <script type="text/javascript" id="disqus">
         var disqus_shortname = 'snipt-net';

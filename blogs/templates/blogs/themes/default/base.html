@@ -14,9 +14,10 @@
 {% block css %}
     {% compress css %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
-    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/blog-themes/default/style.scss" />
+    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/style.scss" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
+    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/blog-themes/default/style.scss" />
     {% endcompress %}
 {% endblock %}
 
@@ -31,26 +32,22 @@
 {% block page-description %}{% endblock %}
 {% block sub-header %}{% endblock %}
 {% block rochester-made %}{% endblock %}
-{% block aside %}{% endblock %}
+{% block aside %}
+    {% if not detail %}
+        <aside class="main">
+            <nav class="footer">
+                <ul>
+                    <li class="blog">
+                        {% if blog_user.username == 'nick' %}
+                            <a href="/">Nick Sergeant</a>
+                        {% else %}
+                            <a href="/">{{ blog_user.username }}'s blog</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    {% endif %}
+{% endblock %}
 {% block keyboard-shortcuts %}{% endblock %}
 {% block header %}{% endblock %}
-
-{% block main %}
-    <section class="frame">
-        <h1 class="blog-title">
-            <a href="/">
-                {% if blog_user.username == 'nick' %}
-                    Nick Sergeant
-                {% else %}
-                    {{ blog_user.username }}
-                {% endif %}
-            </a>
-        </h1>
-        {% if has_snipts %}
-            <h2 class="blog-title">
-                &raquo; <a href="/blog/">Blog</a>
-            </h2>
-        {% endif %}
-        {% block content %}{% endblock %}
-    </section>
-{% endblock %}
