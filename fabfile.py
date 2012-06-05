@@ -18,7 +18,7 @@ def dep():
     _display_message('Collect static')
     ################
 
-    local('python manage.py collectstatic --noinput')
+    local('python manage.py collectstatic --ignore cache --noinput')
 
     _display_message('Git push')
     ################
@@ -45,7 +45,7 @@ def dep():
         _display_message('Collect static', False)
         ################
 
-        run(_python('manage.py collectstatic --noinput'))
+        run(_python('manage.py collectstatic --ignore cache --noinput'))
 
 def db():
     with cd(env.site_path):
