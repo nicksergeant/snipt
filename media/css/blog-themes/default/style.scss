@@ -1,19 +1,4 @@
-article.snipt {
-    div.group {
-        div.container {
-            width: 708px;
-
-            header {
-                min-height: 0;
-
-                h1 {
-                    margin: 11px 15px;
-                }
-            }
-        }
-    }
-}
-body.detail {
+body.blog-detail {
     section.main {
         div.inner {
             section.snipts {
@@ -27,5 +12,48 @@ body.detail {
     }
     div#disqus_thread {
         width: 925px;
+    }
+}
+body.blog-site {
+    article.snipt {
+        div.group {
+            div.container {
+                width: 708px;
+
+                header {
+                    min-height: 0;
+
+                    h1 {
+                        margin: 11px 15px;
+                    }
+                }
+            }
+        }
+    }
+    section.main {
+        aside.main {
+            nav.footer {
+                ul.powered {
+                    border-top: 1px solid #C0C0C0;
+                    margin-top: 40px;
+                    padding-top: 40px;
+
+                    li {
+                        background: transparent url('/static/images/favicon.png') center left no-repeat;
+
+                        a {
+                            border: none;
+                            color: #3E6B73;
+                            font-style: italic;
+
+                            &:hover {
+                                border-bottom: 1px solid #333;
+                                color: #333;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

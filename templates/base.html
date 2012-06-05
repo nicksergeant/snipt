@@ -12,14 +12,13 @@
 
     {% block meta %}{% endblock %}
 
-    {% block css %}
-        {% compress css %}
+    {% compress css %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
-        <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/style.scss" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
-        {% endcompress %}
-    {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
+    {% endcompress %}
 
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore.js"></script>
@@ -141,7 +140,7 @@
                                 <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}>API</a>
                             </li>
                             <li class="blog">
-                                <a href="/blog/" {% if '/blog/' in request.path %}class="active"{% endif %}>Blog</a>
+                                <a href="https://blog.snipt.net/">Blog</a>
                             </li>
                             <li class="roadmap">
                                 <a href="/todo/" {% if '/todo/' in request.path %}class="active"{% endif %}>Roadmap</a>
@@ -152,6 +151,7 @@
                         </ul>
                     </nav>
                     {% block tags %}{% endblock %}
+                    {% block aside-inner %}{% endblock %}
                 </aside>
             {% endblock %}
             <div class="inner">

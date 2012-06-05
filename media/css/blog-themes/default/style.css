@@ -1,0 +1,33 @@
+body.blog-detail section.main div.inner section.snipts article.snipt div.container {
+  width: 940px;
+}
+body.blog-detail div#disqus_thread {
+  width: 925px;
+}
+
+body.blog-site article.snipt div.group div.container {
+  width: 708px;
+}
+body.blog-site article.snipt div.group div.container header {
+  min-height: 0;
+}
+body.blog-site article.snipt div.group div.container header h1 {
+  margin: 11px 15px;
+}
+body.blog-site section.main aside.main nav.footer ul.powered {
+  border-top: 1px solid #C0C0C0;
+  margin-top: 40px;
+  padding-top: 40px;
+}
+body.blog-site section.main aside.main nav.footer ul.powered li {
+  background: transparent url("/static/images/favicon.png") center left no-repeat;
+}
+body.blog-site section.main aside.main nav.footer ul.powered li a {
+  border: none;
+  color: #3E6B73;
+  font-style: italic;
+}
+body.blog-site section.main aside.main nav.footer ul.powered li a:hover {
+  border-bottom: 1px solid #333;
+  color: #333;
+}

@@ -68,7 +68,10 @@ MEDIA_URL = '/media/uploads/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-STATIC_URL = '/static/'
+if DEBUG:
+    STATIC_URL = '/media/'
+else:
+    STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -121,6 +124,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'gunicorn',
+    #'grappelli',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -211,14 +215,10 @@ ABSOLUTE_URL_OVERRIDES = {
 # CSS / JS Compression
 COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_JS_FILTERS = []
-COMPRESS_ENABLED = True
 if DEBUG:
     COMPRESS_ROOT = os.path.join(BASE_PATH, 'media')
 else:
     COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'scss {infile} {outfile}'),
-)
 
 # Search
 HAYSTACK_CONNECTIONS = {
