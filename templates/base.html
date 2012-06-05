@@ -133,16 +133,6 @@
     {% endblock %}
     {% block main %}
         <section class="main group" id="main">
-            <div class="inner">
-                {% block content %}{% endblock %}
-                {% block rochester-made %}
-                    <div class="rochester-made">
-                        <a href="http://rochestermade.com/" title="Rochester Made">
-                            <img src="{{ STATIC_URL }}images/rochester-made.png" alt="" />
-                        </a>
-                    </div>
-                {% endblock %}
-            </div>
             {% block aside %}
                 <aside class="main">
                     <nav class="footer">
@@ -164,6 +154,16 @@
                     {% block tags %}{% endblock %}
                 </aside>
             {% endblock %}
+            <div class="inner">
+                {% block content %}{% endblock %}
+                {% block rochester-made %}
+                    <div class="rochester-made">
+                        <a href="http://rochestermade.com/" title="Rochester Made">
+                            <img src="{{ STATIC_URL }}images/rochester-made.png" alt="" />
+                        </a>
+                    </div>
+                {% endblock %}
+            </div>
             <div class="left-y ruler"></div>
             <div class="right-y ruler"></div>
         </section>
