@@ -307,37 +307,39 @@
 
     {% if request.user.is_authenticated %}
         {% if not debug %}
-            <script id="IntercomSettingsScriptTag">
-                var intercomSettings = {
-                    app_id: 'sajf131y',
-                    email: '{{ request.user.email }}',
-                    created_at: {{ request.user.date_joined|date:"U" }},
-                    widget: {
-                        activator: '#IntercomDefaultWidget',
-                        label: 'Support Chat'
-                    },
-                    custom_data: {
-                        'snipts count': {% snipts_count_for_user %},
-                        'profile link': 'https://snipt.net/{{ request.user.username }}/'
-                    }
-                };
-            </script>
-            <script>
-                (function() {
-                     function async_load() {
-                         var s = document.createElement('script');
-                         s.type = 'text/javascript'; s.async = true;
-                         s.src = 'https://api.intercom.io/api/js/library.js';
-                         var x = document.getElementsByTagName('script')[0];
-                         x.parentNode.insertBefore(s, x);
-                     }
-                     if (window.attachEvent) {
-                         window.attachEvent('onload', async_load);
-                     } else {
-                         window.addEventListener('load', async_load, false);
-                     }
-                 })();
-             </script>
+            {% block intercom %}
+                <script id="IntercomSettingsScriptTag">
+                    var intercomSettings = {
+                        app_id: 'sajf131y',
+                        email: '{{ request.user.email }}',
+                        created_at: {{ request.user.date_joined|date:"U" }},
+                        widget: {
+                            activator: '#IntercomDefaultWidget',
+                            label: 'Support Chat'
+                        },
+                        custom_data: {
+                            'snipts count': {% snipts_count_for_user %},
+                            'profile link': 'https://snipt.net/{{ request.user.username }}/'
+                        }
+                    };
+                </script>
+                <script>
+                    (function() {
+                         function async_load() {
+                             var s = document.createElement('script');
+                             s.type = 'text/javascript'; s.async = true;
+                             s.src = 'https://api.intercom.io/api/js/library.js';
+                             var x = document.getElementsByTagName('script')[0];
+                             x.parentNode.insertBefore(s, x);
+                         }
+                         if (window.attachEvent) {
+                             window.attachEvent('onload', async_load);
+                         } else {
+                             window.addEventListener('load', async_load, false);
+                         }
+                     })();
+                 </script>
+            {% endblock %}
         {% endif %}
      {% endif %}
      <div class="hidden">
