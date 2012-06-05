@@ -1,19 +1,5 @@
-body.blog-detail {
-    section.main {
-        div.inner {
-            section.snipts {
-                article.snipt {
-                    div.container {
-                        width: 940px;
-                    }
-                }
-            }
-        }
-    }
-    div#disqus_thread {
-        width: 925px;
-    }
-}
+$Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+
 body.blog-site {
     article.snipt {
         div.group {
@@ -31,12 +17,14 @@ body.blog-site {
         }
     }
     section.main {
+        div.ruler {
+            z-index: 50;
+        }
         aside.main {
             nav.footer {
                 ul.powered {
-                    border-top: 1px solid #C0C0C0;
-                    margin-top: 40px;
-                    padding-top: 40px;
+                    border-top: 1px solid #DDDDDD;
+                    padding-top: 20px;
 
                     li {
                         background: transparent url('/static/images/favicon.png') center left no-repeat;
@@ -53,6 +41,69 @@ body.blog-site {
                         }
                     }
                 }
+            }
+        }
+    }
+    header.main {
+        background: transparent url('/static/images/blog-header-bg.png') top left repeat;
+        height: auto;
+
+        div.inner {
+            height: auto;
+
+            h1 {
+                float: none;
+                position: static;
+
+                a {
+                    background: none;
+                    border-bottom: 2px solid transparent;
+                    color: #2A535C;
+                    font: normal 30px $Helvetica;
+                    height: auto;
+                    letter-spacing: -1px;
+                    line-height: 30px;
+                    margin: 17px 0 17px 16px;
+                    text-decoration: none;
+                    text-indent: 0;
+                    width: auto;
+                    -webkit-transition: border .08s linear;
+                    -moz-transition: border .08s linear;
+                    -o-transition: border .08s linear;
+                    transition: border .08s linear;
+
+                    &:hover {
+                        border-bottom: 2px solid #3A5E67;
+                    }
+                }
+            }
+        }
+    }
+    header.sub {
+        div.inner {
+            z-index: 51;
+        }
+    }
+}
+body.blog-detail {
+    section.main {
+        div.inner {
+            section.snipts {
+                article.snipt {
+                    div.container {
+                        width: 939px;
+                    }
+                }
+            }
+        }
+    }
+    div#disqus_thread {
+        width: 925px;
+    }
+    header.sub {
+        div.inner {
+            ul.bcrumb {
+                width: 923px;
             }
         }
     }

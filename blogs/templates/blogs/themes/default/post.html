@@ -1,11 +1,16 @@
 {% extends "blogs/themes/default/base.html" %}
 
-{% block html-class %}detail blog-site{% endblock %}
-{% block body-class %}detail blog-site{% endblock %}
+{% block html-class %}detail blog-site blog-detail{% endblock %}
+{% block body-class %}detail blog-site blog-detail{% endblock %}
 
 {% block js %}
         {{ block.super }}
         window.detail = true;
+{% endblock %}
+
+{% block page-title %}// {{ snipt.title }} {{ block.super }}{% endblock %}
+{% block breadcrumb %}
+    <li><span class="prompt">//</span> <a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>
 {% endblock %}
 
 {% block content %}
