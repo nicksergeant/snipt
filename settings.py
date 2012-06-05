@@ -68,15 +68,7 @@ MEDIA_URL = '/media/uploads/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-if DEBUG:
-    STATIC_URL = '/media/'
-else:
-    STATIC_URL = '/static/'
-
-# URL prefix for admin static files -- CSS, JavaScript and images.
-# Make sure to use a trailing slash.
-# Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/grappelli/'
+STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -129,7 +121,6 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'gunicorn',
-    'grappelli',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',

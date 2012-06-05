@@ -18,7 +18,7 @@ def dep():
     _display_message('Collect static')
     ################
 
-    local('python manage.py collectstatic --ignore grappelli --ignore admin --noinput')
+    local('python manage.py collectstatic --noinput')
 
     _display_message('Git push')
     ################
@@ -45,7 +45,7 @@ def dep():
         _display_message('Collect static', False)
         ################
 
-        run(_python('manage.py collectstatic --ignore grappelli --ignore admin --noinput'))
+        run(_python('manage.py collectstatic --noinput'))
 
 def db():
     with cd(env.site_path):
