@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from annoying.decorators import render_to
 
@@ -29,11 +29,11 @@ def blog_list(request, username_or_custom_slug=None):
 @render_to('blogs/themes/default/post.html')
 def blog_post(request, username_or_custom_slug):
 
-    snipt = Snipt.objects.get(user=request.blog_user,
-                              blog_post=True,
-                              public=True,
-                              slug=username_or_custom_slug,
-                              )
+    snipt = get_object_or_404(Snipt, user=request.blog_user,
+                                     blog_post=True,
+                                     public=True,
+                                     slug=username_or_custom_slug,
+                                     )
 
     context = {
         'blog_user': request.blog_user,
