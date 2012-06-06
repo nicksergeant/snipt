@@ -311,68 +311,39 @@ section.main {
         width: 190px;
 
         section.ad {
-            height: 209px;
-            margin-bottom: 28px;
+            margin: 0 0 30px 15px;
 
-            div.asset {
-                background: #FFF;
-                border: 1px solid #DDDDDD;
-                margin: 0 15px 6px;
-                padding: 15px 14px;
-                width: 130px;
-                @include border-radius(4px);
+            div.carbonad {
+                border-width: 1px;
+                height: 231px;
+                width: auto;
+                @include border-radius(5px);
 
-                a {
-                    color: #939393;
-                    display: block;
-                    font: normal 11px/12px $Helvetica;
-                    text-decoration: none;
-
-                    img {
-                        display: block;
-                        margin-bottom: 10px;
+                div#azcarbon {
+                    span.carbonad-image {
+                        a {
+                            img {
+                                margin-left: 21px;
+                                margin-top: 21px;
+                            }
+                        }
                     }
-                    &:hover {
-                        color: #666;
-                        text-decoration: none;
+                    span.carbonad-text {
+                        color: #999999;
+                        margin-left: 21px;
+
+                        a {
+                            color: #999999;
+                        }
                     }
-                }
-            }
-            div.meta {
-                color: #939393;
-                font: normal 11px/12px $Helvetica;
-                margin: 0 15px;
-                text-align: center;
-                text-transform: uppercase;
+                    span.carbonad-tag {
+                        margin-left: 0;
+                        text-align: center;
+                        width: 100%;
 
-                a {
-                    color: #CCC;
-                    text-decoration: none;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
-            &.coffee {
-                margin-bottom: 27px;
-
-                p {
-                    display: block !important;
-                    height: auto !important;
-                    margin: 7px 0 0 0;
-                }
-                & > div {
-                    height: auto !important;
-                    margin-bottom: 0 !important;
-
-                    div:nth-child(1) {
-                        margin-bottom: 6px !important;
-                    }
-                    div:nth-child(2) {
-                        font: normal 11px/12px $Helvetica;
-                        height: 12px;
-                        margin: 0 !important;
+                        a {
+                            margin-left: 4px;
+                        }
                     }
                 }
             }

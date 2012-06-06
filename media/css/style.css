@@ -246,69 +246,37 @@ section.main aside.main {
   width: 190px;
 }
 section.main aside.main section.ad {
-  height: 209px;
-  margin-bottom: 28px;
+  margin: 0 0 30px 15px;
 }
-section.main aside.main section.ad div.asset {
-  background: #FFF;
-  border: 1px solid #DDDDDD;
-  margin: 0 15px 6px;
-  padding: 15px 14px;
-  width: 130px;
+section.main aside.main section.ad div.carbonad {
+  border-width: 1px;
+  height: 231px;
+  width: auto;
   -webkit-background-clip: padding-box;
-  -webkit-border-radius: 4px;
+  -webkit-border-radius: 5px;
   -moz-background-clip: padding-box;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
   background-clip: padding-box;
 }
-section.main aside.main section.ad div.asset a {
-  color: #939393;
-  display: block;
-  font: normal 11px/12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
-  text-decoration: none;
+section.main aside.main section.ad div.carbonad div#azcarbon span.carbonad-image a img {
+  margin-left: 21px;
+  margin-top: 21px;
 }
-section.main aside.main section.ad div.asset a img {
-  display: block;
-  margin-bottom: 10px;
+section.main aside.main section.ad div.carbonad div#azcarbon span.carbonad-text {
+  color: #999999;
+  margin-left: 21px;
 }
-section.main aside.main section.ad div.asset a:hover {
-  color: #666;
-  text-decoration: none;
+section.main aside.main section.ad div.carbonad div#azcarbon span.carbonad-text a {
+  color: #999999;
 }
-section.main aside.main section.ad div.meta {
-  color: #939393;
-  font: normal 11px/12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
-  margin: 0 15px;
+section.main aside.main section.ad div.carbonad div#azcarbon span.carbonad-tag {
+  margin-left: 0;
   text-align: center;
-  text-transform: uppercase;
+  width: 100%;
 }
-section.main aside.main section.ad div.meta a {
-  color: #CCC;
-  text-decoration: none;
-}
-section.main aside.main section.ad div.meta a:hover {
-  text-decoration: underline;
-}
-section.main aside.main section.ad.coffee {
-  margin-bottom: 27px;
-}
-section.main aside.main section.ad.coffee p {
-  display: block !important;
-  height: auto !important;
-  margin: 7px 0 0 0;
-}
-section.main aside.main section.ad.coffee > div {
-  height: auto !important;
-  margin-bottom: 0 !important;
-}
-section.main aside.main section.ad.coffee > div div:nth-child(1) {
-  margin-bottom: 6px !important;
-}
-section.main aside.main section.ad.coffee > div div:nth-child(2) {
-  font: normal 11px/12px "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;
-  height: 12px;
-  margin: 0 !important;
+section.main aside.main section.ad div.carbonad div#azcarbon span.carbonad-tag a {
+  margin-left: 4px;
 }
 section.main aside.main section.tags {
   margin: 0 0 45px 15px;

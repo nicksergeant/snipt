@@ -10,9 +10,12 @@ body.blog-site article.snipt div.group div.container header h1 {
 body.blog-site section.main div.ruler {
   z-index: 50;
 }
+body.blog-site section.main aside.main nav.footer {
+  margin-right: 0;
+}
 body.blog-site section.main aside.main nav.footer ul.powered {
   border-top: 1px solid #DDDDDD;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 body.blog-site section.main aside.main nav.footer ul.powered li {
   background: transparent url("/static/images/favicon.png") center left no-repeat;
@@ -27,9 +30,10 @@ body.blog-site section.main aside.main nav.footer ul.powered li a:hover {
   color: #333;
 }
 body.blog-site section.main aside.main nav.footer.with-sidebar {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 body.blog-site section.main aside.main section.sidebar {
+  margin-bottom: 30px;
   margin-left: 15px;
 }
 body.blog-site section.main aside.main section.sidebar p {

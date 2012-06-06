@@ -22,9 +22,11 @@ body.blog-site {
         }
         aside.main {
             nav.footer {
+                margin-right: 0;
+
                 ul.powered {
                     border-top: 1px solid #DDDDDD;
-                    padding-top: 20px;
+                    padding-top: 30px;
 
                     li {
                         background: transparent url('/static/images/favicon.png') center left no-repeat;
@@ -42,10 +44,11 @@ body.blog-site {
                     }
                 }
                 &.with-sidebar {
-                    margin-top: 20px;
+                    margin-top: 30px;
                 }
             }
             section.sidebar {
+                margin-bottom: 30px;
                 margin-left: 15px;
 
                 p {
@@ -98,6 +101,13 @@ body.blog-site {
     header.sub {
         div.inner {
             z-index: 51;
+        }
+    }
+    section.ad {
+        div.carbonad {
+            div#azcarbon {
+                
+            }
         }
     }
 }
