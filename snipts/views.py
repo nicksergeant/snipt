@@ -201,6 +201,7 @@ def search(request, template='search/search.html', load_all=True, form_class=Mod
 
     context = {
         'form': form,
+        'has_snipts': True,
         'page': page,
         'paginator': paginator,
         'query': query,

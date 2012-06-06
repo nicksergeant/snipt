@@ -10,7 +10,9 @@
         <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     {% endblock %}
 
-    {% block meta %}{% endblock %}
+    {% if has_snipts and not detail and not request.blog_user %}
+        <meta name="robots" content="noindex, follow" />
+    {% endif %}
 
     {% compress css %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />

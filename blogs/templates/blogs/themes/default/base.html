@@ -1,11 +1,5 @@
 {% extends "base.html" %}
 
-{% block meta %}
-    {% if 'page' in request.get_full_path %}
-        <meta name="robots" content="noindex, follow" />
-    {% endif %}
-{% endblock %}
-
 {% block body-class %}blog-site{% endblock %}
 {% block html-class %}blog-site{% endblock %}
 
