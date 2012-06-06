@@ -24,6 +24,7 @@ body.blog-site {
             nav.footer {
                 ul.powered {
                     border-top: 1px solid #DDDDDD;
+                    margin-top: 20px;
                     padding-top: 20px;
 
                     li {
@@ -39,6 +40,19 @@ body.blog-site {
                                 color: #333;
                             }
                         }
+                    }
+                }
+            }
+            section.sidebar {
+                margin-left: 15px;
+
+                p {
+                    line-height: 16px;
+                    margin-bottom: 15px;
+                }
+                a {
+                    &:hover {
+                        text-decoration: none;
                     }
                 }
             }

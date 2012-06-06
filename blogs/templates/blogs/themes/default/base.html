@@ -33,6 +33,11 @@
 {% block aside %}
     {% if not detail %}
         <aside class="main">
+            {% if sidebar %}
+                <section class="sidebar">
+                    {{ sidebar.stylized|safe }}
+                </section>
+            {% endif %}
             <nav class="footer">
                 <ul class="powered">
                     <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
