@@ -538,7 +538,7 @@
                 }
             });
             $document.bind('keydown', 'c', function(e) {
-                if (!window.ui_halted) {
+                if (!window.ui_halted && !window.blog_post) {
                     if ($selected) {
                         e.preventDefault();
                         $selected.trigger('copyRaw');
@@ -662,7 +662,7 @@
                 }
             });
             $document.bind('keydown', 'v', function(e) {
-                if (!window.ui_halted) {
+                if (!window.ui_halted && !window.blog_post) {
                     if ($selected) {
                         e.preventDefault();
                         $selected.trigger('embed');

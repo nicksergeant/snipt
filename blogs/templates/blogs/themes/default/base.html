@@ -9,6 +9,10 @@
 {% block rochester-made %}{% endblock %}
 {% block keyboard-shortcuts %}{% endblock %}
 {% block intercom %}{% endblock %}
+{% block js %}
+        {{ block.super }}
+        window.blog_post = true;
+{% endblock %}
 
 {% block sub-header %}
     <header class="sub">
