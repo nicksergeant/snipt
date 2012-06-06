@@ -197,9 +197,9 @@ ACCOUNT_ACTIVATION_DAYS = 0
 
 # HTTPS
 if not DEBUG:
-    USE_HTTPS = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    #USE_HTTPS = True
+    #SESSION_COOKIE_SECURE = True
+    #CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_DOMAIN = '.snipt.net'
 
 # Messages
