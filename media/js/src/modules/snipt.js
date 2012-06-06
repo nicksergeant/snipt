@@ -578,7 +578,7 @@
                     }
                 }
             });
-            $document.bind('keydown', 'n', function() {
+            $document.bind('keydown', 'Alt+n', function() {
                 if (!window.ui_halted) {
                     that.addNewSnipt();
                 }
