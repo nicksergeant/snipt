@@ -123,6 +123,11 @@ body.blog-detail {
                     div.container {
                         width: 100%;
                         
+                        h1 {
+                            a {
+                                white-space: normal;
+                            }
+                        }
                         section.code {
                             height: auto;
                         }

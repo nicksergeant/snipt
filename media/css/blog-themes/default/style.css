@@ -87,6 +87,9 @@ body.blog-detail section.main div.inner section.snipts article.snipt {
 body.blog-detail section.main div.inner section.snipts article.snipt div.container {
   width: 100%;
 }
+body.blog-detail section.main div.inner section.snipts article.snipt div.container h1 a {
+  white-space: normal;
+}
 body.blog-detail section.main div.inner section.snipts article.snipt div.container section.code {
   height: auto;
 }
