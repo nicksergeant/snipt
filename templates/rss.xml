@@ -1,10 +1,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         {% if request.blog_user %}
-            <atom:link href="https://{{ request.blog_user.username }}.snipt.net/?rss" rel="self" type="application/rss+xml" />
-            <description>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</description>
-            <title>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</title>
-            <link>https://{{ request.blog_user.username }}.snipt.net/?rss</link>
+            {% if request.blog_user.username == 'nick' %}
+                <atom:link href="http://nicksergeant.com/?rss" rel="self" type="application/rss+xml" />
+                <description>Nick Sergeant</description>
+                <title>Nick Sergeant</title>
+                <link>http://nicksergeant.com/?rss</link>
+            {% elif request.blog_user.username == 'blog' %}
+                <atom:link href="https://blog.snipt.net/?rss" rel="self" type="application/rss+xml" />
+                <description>Snipt Blog</description>
+                <title>Snipt Blog</title>
+                <link>https://blog.snipt.net/?rss</link>
+            {% else %}
+                <atom:link href="https://{{ request.blog_user.username }}.snipt.net/?rss" rel="self" type="application/rss+xml" />
+                <description>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</description>
+                <title>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</title>
+                <link>https://{{ request.blog_user.username }}.snipt.net/?rss</link>
+            {% endif %}
         {% else %}
             <atom:link href="https://snipt.net{{ request.get_full_path }}" rel="self" type="application/rss+xml" />
             <description>{% if public and not public_user %}Public snipts{% else %}Snipts by {{ user.username }}{% endif %}{% if tag %} tagged with "{{ tag }}"{% endif %}</description>

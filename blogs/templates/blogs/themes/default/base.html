@@ -3,7 +3,7 @@
 {% block body-class %}blog-site{% endblock %}
 {% block html-class %}blog-site{% endblock %}
 
-{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% else %}// {{ blog_user.username }}{% endif %}{% endblock %}
+{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% elif blog_user.username == 'blog' %}Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}
 
 {% block page-description %}{% endblock %}
 {% block rochester-made %}{% endblock %}
