@@ -1,9 +1,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <atom:link href="https://snipt.net{{ request.get_full_path }}" rel="self" type="application/rss+xml" />
-        <description>{% if public and not public_user %}Public snipts{% else %}Snipts by {{ user.username }}{% endif %}{% if tag %} tagged with "{{ tag }}"{% endif %}</description>
-        <title>/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - Snipt</title>
-        <link>https://snipt.net{{ request.path }}</link>{% for snipt in snipts %}
+        {% if request.blog_user %}
+            <atom:link href="https://{{ request.blog_user.username }}.snipt.net/?rss" rel="self" type="application/rss+xml" />
+            <description>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</description>
+            <title>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</title>
+            <link>https://{{ request.blog_user.username }}.snipt.net/?rss</link>
+        {% else %}
+            <atom:link href="https://snipt.net{{ request.get_full_path }}" rel="self" type="application/rss+xml" />
+            <description>{% if public and not public_user %}Public snipts{% else %}Snipts by {{ user.username }}{% endif %}{% if tag %} tagged with "{{ tag }}"{% endif %}</description>
+            <title>/ {% if public and not public_user %}public{% else %}{{ user.username }}{% endif %}{% if tag %} / {{ tag }}{% endif %} - Snipt</title>
+            <link>https://snipt.net{{ request.path }}</link>
+        {% endif %}
+            {% for snipt in snipts %}
             <item>
                 <title>{{ snipt.title }}</title>
                 <link>{{ snipt.get_full_absolute_url }}</link>
