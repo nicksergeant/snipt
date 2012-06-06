@@ -4,7 +4,7 @@ body.blog-site {
     article.snipt {
         div.group {
             div.container {
-                width: 708px;
+                width: 718px;
 
                 header {
                     min-height: 0;
@@ -114,23 +114,28 @@ body.blog-site {
 body.blog-detail {
     section.main {
         div.inner {
+            width: 718px;
+
             section.snipts {
                 article.snipt {
+                    margin-bottom: 0;
+
                     div.container {
-                        width: 939px;
+                        width: 100%;
+                        
+                        section.code {
+                            height: auto;
+                        }
                     }
                 }
             }
         }
     }
     div#disqus_thread {
-        width: 925px;
-    }
-    header.sub {
-        div.inner {
-            ul.bcrumb {
-                width: 923px;
-            }
+        width: 704px;
+
+        #dsq-content {
+            margin-top: -38px;
         }
     }
 }

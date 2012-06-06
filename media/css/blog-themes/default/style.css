@@ -1,5 +1,5 @@
 body.blog-site article.snipt div.group div.container {
-  width: 708px;
+  width: 718px;
 }
 body.blog-site article.snipt div.group div.container header {
   min-height: 0;
@@ -78,12 +78,21 @@ body.blog-site header.sub div.inner {
   z-index: 51;
 }
 
+body.blog-detail section.main div.inner {
+  width: 718px;
+}
+body.blog-detail section.main div.inner section.snipts article.snipt {
+  margin-bottom: 0;
+}
 body.blog-detail section.main div.inner section.snipts article.snipt div.container {
-  width: 939px;
+  width: 100%;
+}
+body.blog-detail section.main div.inner section.snipts article.snipt div.container section.code {
+  height: auto;
 }
 body.blog-detail div#disqus_thread {
-  width: 925px;
+  width: 704px;
 }
-body.blog-detail header.sub div.inner ul.bcrumb {
-  width: 923px;
+body.blog-detail div#disqus_thread #dsq-content {
+  margin-top: -38px;
 }

@@ -14,52 +14,6 @@
         window.blog_post = true;
 {% endblock %}
 
-{% block sub-header %}
-    <header class="sub">
-        <div class="inner group">
-            <ul class="bcrumb">
-                <li class="prompt">//</li>
-                <li><a href="/">blog</a></li>
-                {% block breadcrumb %}{% endblock %}
-                <li class="rss">
-                    <a href="/?rss">RSS</a>
-                </li>
-            </ul>
-        </div>
-    </header>
-{% endblock %}
-{% block aside %}
-    {% if not detail %}
-        <aside class="main">
-            {% if sidebar %}
-                <section class="sidebar">
-                    {{ sidebar.stylized|safe }}
-                </section>
-            {% endif %}
-            <section class="ad">
-                <div id="carbonads-container">
-                    <div class="carbonad">
-                        <div id="azcarbon"></div>
-                        <script type="text/javascript">
-                            var z = document.createElement("script");
-                            z.type = "text/javascript";
-                            z.async = true;
-                            z.src = "http://engine.carbonads.com/z/12124/azcarbon_2_1_0_VERT";
-                            var s = document.getElementsByTagName("script")[0];
-                            s.parentNode.insertBefore(z, s);
-                        </script>
-                    </div>
-                </div>
-            </section>
-            <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
-                <ul class="powered">
-                    <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
-                </ul>
-            </nav>
-        </aside>
-    {% endif %}
-{% endblock %}
-
 {% block header %}
     <header class="main">
         <div class="inner group">
@@ -76,4 +30,47 @@
             </h1> 
         </div>
     </header>
+{% endblock %}
+{% block sub-header %}
+    <header class="sub">
+        <div class="inner group">
+            <ul class="bcrumb">
+                <li class="prompt">//</li>
+                <li><a href="/">blog</a></li>
+                {% block breadcrumb %}{% endblock %}
+                <li class="rss">
+                    <a href="/?rss">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+{% block aside %}
+    <aside class="main">
+        {% if sidebar %}
+            <section class="sidebar">
+                {{ sidebar.stylized|safe }}
+            </section>
+        {% endif %}
+        <section class="ad">
+            <div id="carbonads-container">
+                <div class="carbonad">
+                    <div id="azcarbon"></div>
+                    <script type="text/javascript">
+                        var z = document.createElement("script");
+                        z.type = "text/javascript";
+                        z.async = true;
+                        z.src = "http://engine.carbonads.com/z/12124/azcarbon_2_1_0_VERT";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(z, s);
+                    </script>
+                </div>
+            </div>
+        </section>
+        <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
+            <ul class="powered">
+                <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
+            </ul>
+        </nav>
+    </aside>
 {% endblock %}

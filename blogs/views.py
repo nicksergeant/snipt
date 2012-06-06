@@ -41,11 +41,16 @@ def blog_post(request, username_or_custom_slug):
                                      slug=username_or_custom_slug,
                                      )
 
+    sidebar = get_object_or_None(Snipt,
+                                 user=request.blog_user,
+                                 title='Blog Sidebar')
+
     context = {
         'blog_user': request.blog_user,
         'detail': True,
         'has_snipts': True,
         'public': True,
+        'sidebar': sidebar,
         'snipt': snipt,
     }
 
