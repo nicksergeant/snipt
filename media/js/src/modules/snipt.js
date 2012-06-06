@@ -578,6 +578,11 @@
                     }
                 }
             });
+            $document.bind('keydown', 'n', function() {
+                if (!window.ui_halted) {
+                    that.addNewSnipt();
+                }
+            });
             $document.bind('keydown', 'Ctrl+n', function() {
                 if (!window.ui_halted) {
                     that.addNewSnipt();
