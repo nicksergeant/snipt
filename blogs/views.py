@@ -12,7 +12,7 @@ def blog_list(request, username_or_custom_slug=None):
     if username_or_custom_slug:
         return blog_post(request, username_or_custom_slug)
 
-    snipts = Snipt.objects.filter(user=request.blog_user, blog_post=True, public=True).order_by('-created').exclude(title__iexact='Homepage')
+    snipts = Snipt.objects.filter(user=request.blog_user, blog_post=True, public=True).order_by('-publish_date').exclude(title__iexact='Homepage')
 
     sidebar = get_object_or_None(Snipt,
                                  user=request.blog_user,
