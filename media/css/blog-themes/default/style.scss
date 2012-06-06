@@ -24,7 +24,6 @@ body.blog-site {
             nav.footer {
                 ul.powered {
                     border-top: 1px solid #DDDDDD;
-                    margin-top: 20px;
                     padding-top: 20px;
 
                     li {
@@ -41,6 +40,9 @@ body.blog-site {
                             }
                         }
                     }
+                }
+                &.with-sidebar {
+                    margin-top: 20px;
                 }
             }
             section.sidebar {

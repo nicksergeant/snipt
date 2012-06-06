@@ -38,7 +38,7 @@
                     {{ sidebar.stylized|safe }}
                 </section>
             {% endif %}
-            <nav class="footer">
+            <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
                 <ul class="powered">
                     <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
                 </ul>

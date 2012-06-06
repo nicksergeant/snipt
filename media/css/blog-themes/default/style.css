@@ -12,7 +12,6 @@ body.blog-site section.main div.ruler {
 }
 body.blog-site section.main aside.main nav.footer ul.powered {
   border-top: 1px solid #DDDDDD;
-  margin-top: 20px;
   padding-top: 20px;
 }
 body.blog-site section.main aside.main nav.footer ul.powered li {
@@ -26,6 +25,9 @@ body.blog-site section.main aside.main nav.footer ul.powered li a {
 body.blog-site section.main aside.main nav.footer ul.powered li a:hover {
   border-bottom: 1px solid #333;
   color: #333;
+}
+body.blog-site section.main aside.main nav.footer.with-sidebar {
+  margin-top: 20px;
 }
 body.blog-site section.main aside.main section.sidebar {
   margin-left: 15px;
