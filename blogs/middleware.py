@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 
+from annoying.functions import get_object_or_None
+
 
 class BlogMiddleware:
     def process_request(self, request):
@@ -18,8 +20,15 @@ class BlogMiddleware:
                 if host_s[1] == 'snipt':
                     # nick.snipt.net or nick.snipt.localhost
 
-                    blog_user = ''.join(host_s[:-2]).replace('-', '_')
-                    request.blog_user = get_object_or_404(User, username__iexact=blog_user)
+                    blog_user = ''.join(host_s[:-2])
+
+                    if '-' in blog_user:
+                        request.blog_user = get_object_or_None(User, username__iexact=blog_user)
+
+                        if request.blog_user is None:
+                            request.blog_user = get_object_or_404(User, username__iexact=blog_user.replace('-', '_'))
+                    else:
+                        request.blog_user = get_object_or_404(User, username__iexact=blog_user)
                 else:
                     # blog.nicksergeant.com
 
