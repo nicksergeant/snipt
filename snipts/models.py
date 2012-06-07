@@ -100,7 +100,7 @@ class Snipt(models.Model):
             if self.user.id == 3:
                 return 'http://nicksergeant.com/{}/'.format(self.slug)
             else:
-                return 'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
+                return 'https://{}.snipt.net/{}/'.format(self.user.username.replace('_', '-'), self.slug)
 
         if self.custom_slug:
             return '/{}/'.format(self.custom_slug)
