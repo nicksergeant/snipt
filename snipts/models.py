@@ -52,9 +52,17 @@ class Snipt(models.Model):
 
         if self.lexer == 'markdown':
             self.stylized = markdown(self.code, 'default')
+
+            # Snipt embeds
             for match in re.findall('\[\[(\w{32})\]\]', self.stylized):
                 self.stylized = self.stylized.replace('[[' + str(match) + ']]',
-                        '<script type="text/javascript" src="https://snipt.net/embed/{}/?snipt"></script><div id="snipt-embed-{}"></div>'.format(match, match))
+                    '<script type="text/javascript" src="https://snipt.net/embed/{}/?snipt"></script><div id="snipt-embed-{}"></div>'.format(match, match))
+
+            # YouTube embeds
+            for match in re.findall('\[\[youtube-(\w{11})\-(\d+)x(\d+)\]\]', self.stylized):
+                self.stylized = self.stylized.replace('[[youtube-{}-{}x{}]]'.format(str(match[0]), str(match[1]), str(match[2])),
+                    '<iframe width="{}" height="{}" src="http://www.youtube.com/embed/{}" frameborder="0" allowfullscreen></iframe>'.format(match[1], match[2], match[0]))
+
         else:
             self.stylized = highlight(self.code,
                                       get_lexer_by_name(self.lexer, encoding='UTF-8'),
