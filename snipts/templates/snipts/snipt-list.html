@@ -62,15 +62,13 @@
                         <h2>{{ snipt.tags.all|length }} tag{{ snipt.tags.all|pluralize }}</h2>
                         <ul>
                             {% for tag in snipt.sorted_tags %}
-                                {% if tag.name != 'snipt-expand' %}
-                                    <li {% if forloop.counter > 3 and not detail %}class="hidden"{% endif %}>
-                                        {% if public %}
-                                            <a href="/public/tag/{{ tag.slug }}/">{{ tag }}</a>
-                                        {% else %}
-                                            <a href="/{{ snipt.user.username }}/tag/{{ tag.slug }}/">{{ tag }}</a>
-                                        {% endif %}
-                                    </li>
-                                {% endif %}
+                                <li {% if forloop.counter > 3 and not detail %}class="hidden"{% endif %}>
+                                    {% if public %}
+                                        <a href="/public/tag/{{ tag.slug }}/">{{ tag }}</a>
+                                    {% else %}
+                                        <a href="/{{ snipt.user.username }}/tag/{{ tag.slug }}/">{{ tag }}</a>
+                                    {% endif %}
+                                </li>
                             {% endfor %}
                         </ul>
                     </section>
