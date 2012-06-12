@@ -2,7 +2,7 @@
 
 {% snipt_is_favorited_by_user as 'is_favorited' %}
 
-<article id="snipt-{{ snipt.pk }}" class="snipt {% if snipt.blog_post %}blog-post {% endif %}{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if is_favorited %} favorited" data-favorite-id="{{ is_favorited }}"{% else %}"{% endif %}>
+<article id="snipt-{{ snipt.pk }}" class="snipt {% if 'snipt-expand' in snipt.tags_list and snipt.blog_post %}snipt-expand {% endif %}{% if snipt.blog_post %}blog-post {% endif %}{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if is_favorited %} favorited" data-favorite-id="{{ is_favorited }}"{% else %}"{% endif %}>
     <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container">
@@ -21,7 +21,7 @@
                 {% else %}
                     {{ snipt.stylized|safe }}
                 {% endif %}
-                {% if snipt.line_count > 8 and not detail %}
+                {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
                     <a href="#" class="expand">
                         <span class="expand">Expand</span>
                         <span class="collapse">Collapse</span>

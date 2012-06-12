@@ -852,6 +852,13 @@ article.snipt {
             }
         }
     }
+    &.snipt-expand {
+        div.container {
+            section.code {
+                height: auto;
+            }
+        }
+    }
 }
 article.private-snipt {
     div.container {

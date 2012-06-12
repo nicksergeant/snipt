@@ -742,6 +742,9 @@ article.snipt.blog-post div.container header {
   -moz-box-shadow: inset 0 -1px 0 #e3e9f5;
   box-shadow: inset 0 -1px 0 #e3e9f5;
 }
+article.snipt.snipt-expand div.container section.code {
+  height: auto;
+}
 
 article.private-snipt div.container header {
   background: #7f7f7f url("/static/images/private-icon.png") top right no-repeat;
