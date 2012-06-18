@@ -58,7 +58,7 @@ def blog_post(request, username_or_custom_slug):
 
 def rss(request, context):
     return render_to_response(
-            'rss.xml',
+            'blogs/themes/default/rss.xml',
             context,
             context_instance=RequestContext(request),
             mimetype="application/rss+xml"

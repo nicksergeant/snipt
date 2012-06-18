@@ -1,0 +1,29 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        {% if request.blog_user.username == 'nick' %}
+            <atom:link href="http://nicksergeant.com/?rss" rel="self" type="application/rss+xml" />
+            <description>Nick Sergeant</description>
+            <title>Nick Sergeant</title>
+            <link>http://nicksergeant.com/?rss</link>
+        {% elif request.blog_user.username == 'blog' %}
+            <atom:link href="https://blog.snipt.net/?rss" rel="self" type="application/rss+xml" />
+            <description>Snipt Blog</description>
+            <title>Snipt Blog</title>
+            <link>https://blog.snipt.net/?rss</link>
+        {% else %}
+            <atom:link href="https://{{ request.blog_user.username }}.snipt.net/?rss" rel="self" type="application/rss+xml" />
+            <description>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</description>
+            <title>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</title>
+            <link>https://{{ request.blog_user.username }}.snipt.net/?rss</link>
+        {% endif %}
+        {% for snipt in snipts %}
+            <item>
+                <title>{{ snipt.title }}</title>
+                <link>{{ snipt.get_full_absolute_url }}</link>
+                <description><![CDATA[{{ snipt.stylized|safe }}]]></description>
+                <pubDate>{{ snipt.created|date:"r" }}</pubDate>
+                <guid isPermaLink="false">snipt-net-{{ snipt.id }}</guid>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>
