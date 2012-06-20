@@ -360,6 +360,7 @@
         selectFromClick: function(e) {
             this.select(true);
             e.stopPropagation();
+            window.site.$aside_nav.removeClass('open');
         }
     });
     Snipt.SniptListView = Backbone.View.extend({
