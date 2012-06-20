@@ -41,6 +41,8 @@
             this.$body = $(this.el);
             this.$html = $('html');
             this.$html_body = this.$body.add(this.$html);
+            this.$aside_nav = $('aside.nav', this.$body);
+            this.$aside_nav_ul = $('ul', this.$aside_nav);
             this.$search_form = $('form.search', this.$body);
             this.$search_query = $('input#search-query', this.$body);
             this.$search_page_query = $('input.search-query', this.$body);
@@ -57,6 +59,8 @@
             var SniptListView = Snipt.SniptListView;
             this.snipt_list = new SniptListView({ 'snipts': this.$snipts });
 
+            var that = this;
+
             this.$body.click(function() {
                 if (!window.ui_halted && !window.from_modal && window.$selected) {
                     window.$selected.trigger('deselect');
@@ -64,6 +68,11 @@
                 if (window.from_modal) {
                     window.from_modal = false;
                 }
+                that.$aside_nav.removeClass('open');
+            });
+
+            this.$aside_nav_ul.click(function(e) {
+                e.stopPropagation();
             });
 
             $search_queries = this.$search_queries;
@@ -86,7 +95,8 @@
             window.ui_halted = false;
         },
         events: {
-            'showKeyboardShortcuts': 'showKeyboardShortcuts'
+            'showKeyboardShortcuts': 'showKeyboardShortcuts',
+            'click a.mini-profile':  'toggleMiniProfile'
         },
 
         keyboardShortcuts: function() {
@@ -148,6 +158,10 @@
         },
         showKeyboardShortcuts: function() {
             this.$keyboard_shortcuts.modal('toggle');
+        },
+        toggleMiniProfile: function(e) {
+            this.$aside_nav.toggleClass('open');
+            return false;
         },
         inFieldLabels: function () {
             $('div.infield label', this.$body).inFieldLabels({

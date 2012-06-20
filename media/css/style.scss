@@ -154,6 +154,7 @@ header.main {
         }
         nav.public {
             float: left;
+            width: 435px;
 
             ul {
                 margin: 0;
@@ -193,6 +194,10 @@ header.main {
                             margin-left: 5px;
                         }
                     }
+                    &.add-snipt {
+                        float: right;
+                        margin-right: 13px;
+                    }
                 }
             }
         }
@@ -201,14 +206,91 @@ header.main {
             float: right;
             height: 65px;
             margin: 0;
+            position: relative;
             width: 189px;
 
+            a.mini-profile {
+                display: block;
+                padding: 14px 13px 11px 13px;
+
+                span.avatar {
+                    background-repeat: no-repeat;
+                    border: 1px solid #3A5E67;
+                    display: inline-block;
+                    height: 35px;
+                    width: 35px;
+                    @include border-radius();
+                }
+                span.username {
+                    color: #FFF;
+                    display: inline-block;
+                    font: 500 14px $Helvetica;
+                    margin-left: 8px;
+                    max-width: 88px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    vertical-align: 14px;
+                }
+                i {
+                    display: inline-block;
+                    opacity: .3;
+                    margin-left: 8px;
+                    vertical-align: 12px;
+                }
+                &:hover {
+                    background: rgba(#5C8086, .2);
+                    text-decoration: none;
+
+                    i {
+                        background-position: -313px -119px;
+                    }
+                }
+            }
             ul {
+                background: transparent url('/media/images/aside-nav-open-bottom-bg.gif') top left repeat;
+                display: none;
+                left: 0;
                 margin: 0;
+                padding: 10px 0;
+                position: absolute;
+                top: 65px;
+                width: 189px;
+                @include multi-border-radius(0, 0, 10px, 10px);
 
                 li {
                     list-style-type: none;
 
+                    a {
+                        color: #B0D7DD;
+                        display: block;
+                        font: bold 12px $Helvetica;
+                        padding: 7px 0 7px 37px;
+
+                        &:hover {
+                            background: rgba(#103A42, .5);
+                            text-decoration: none;
+                        }
+                        i {
+                            margin-right: 9px;
+                            opacity: .3;
+                        }
+                    }
+                }
+            }
+            &.open {
+                a.mini-profile {
+                    background: transparent url('/media/images/aside-nav-open-top-bg.gif') top left repeat-x;
+                    opacity: 1;
+
+                    span.avatar {
+                        border-color: #92B6BD;
+                    }
+                    i {
+                        background-position: -288px -120px;
+                    }
+                }
+                ul {
+                    display: block;
                 }
             }
         }

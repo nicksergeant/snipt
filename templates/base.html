@@ -102,19 +102,42 @@
                             <li>
                                 <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
                             </li>
-                            <li>
-                                <a href="/logout/?next={{ request.path }}">Log out</a>
+                            <li class="add-snipt">
+                                <button class="btn btn-info btn-large" id="add-snipt">
+                                    Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
+                                    <i class="icon-search icon-plus icon-white"></i>
+                                </button>
                             </li>
-                            {% if request.user.username == 'blog' %}
-                                <li><button class="btn btn-info btn-large" id="add-snipt">Add Post <i class="icon-search icon-plus icon-white"></i></button></li>
-                            {% else %}
-                                <li><button class="btn btn-info btn-large" id="add-snipt">Add Snipt <i class="icon-search icon-plus icon-white"></i></button></li>
-                            {% endif %}
                         {% endif %}
                     </ul>
                 </nav>
-                {% if request.user.is_authenticated and has_snipts %}
-                    <aside class="nav"></aside>
+                {% if request.user.is_authenticated %}
+                    <aside class="nav">
+                        <a href="#" class="mini-profile">
+                            <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=35');"></span>
+                            <span class="username">{{ request.user.username }}</span>
+                            <i class="icon-cog icon-white"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/{{ request.user.username }}/">
+                                    <i class="icon-user icon-white"></i>
+                                    View profile</a>
+                            </li>
+                            <li>
+                                <a href="/password/change/">
+                                    <i class="icon-wrench icon-white"></i>
+                                    Change password
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout/?next={{ request.path }}">
+                                    <i class="icon-off icon-white"></i>
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
                 {% endif %}
             </div>
         </header>
@@ -301,10 +324,6 @@
                 s.parentNode.insertBefore(t, s);
             })();
         </script>
-    {% else %}
-    <script type="text/javascript">
-        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-    </script>
     {% endif %}
 
     {% if request.user.is_authenticated %}
