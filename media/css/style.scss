@@ -170,8 +170,7 @@ header.main {
                         display: block;
                         float: left;
                         font: 500 14px $Helvetica;
-                        padding: 7px;
-                        padding-bottom: 4px;
+                        padding: 6px 7px 5px 7px;
                         margin-right: 16px;
                         text-decoration: none;
                         -webkit-transition: border .08s linear;
@@ -229,13 +228,13 @@ header.main {
                     max-width: 88px;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    vertical-align: 13px;
+                    vertical-align: 14px;
                 }
                 i {
                     display: inline-block;
                     opacity: .3;
                     margin-left: 8px;
-                    vertical-align: 11px;
+                    vertical-align: 12px;
                 }
                 &:hover {
                     background: rgba(#5C8086, .2);
@@ -722,6 +721,9 @@ article.snipt {
             li {
                 font-size: 13px;
                 margin: 9px 0;
+            }
+            iframe {
+                width: 100%;
             }
         }
     }
