@@ -509,6 +509,7 @@
                     if ($selected) {
                         $selected.trigger('deselect');
                     }
+                    window.site.$aside_nav.removeClass('open');
                 }
             }
         },
