@@ -247,7 +247,7 @@ header.main {
                 }
             }
             ul {
-                background: transparent url('/media/images/aside-nav-open-bottom-bg.gif') top left repeat;
+                background: transparent url('/static/images/aside-nav-open-bottom-bg.gif') top left repeat;
                 display: none;
                 left: 0;
                 margin: 0;
@@ -279,7 +279,7 @@ header.main {
             }
             &.open {
                 a.mini-profile {
-                    background: transparent url('/media/images/aside-nav-open-top-bg.gif') top left repeat-x;
+                    background: transparent url('/static/images/aside-nav-open-top-bg.gif') top left repeat-x;
                     opacity: 1;
 
                     span.avatar {
