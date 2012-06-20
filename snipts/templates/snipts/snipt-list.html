@@ -84,9 +84,11 @@
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
                 </li>
             {% endblock %}
-            {% block created %}
+            {% if snipt.blog_post %}
+                <li class="created" title="{{ snipt.publish_date|date:"Y-m-d\TH:i:s" }}">{{ snipt.publish_date|naturaltime }}</li>
+            {% else %}
                 <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturaltime }}</li>
-            {% endblock %}
+            {% endif %}
             <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
         </ul>
     </footer>
