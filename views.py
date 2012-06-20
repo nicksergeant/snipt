@@ -10,8 +10,7 @@ def sitemap(request):
 
     tags = Tag.objects.filter(snipt__public=True)
     tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count')[:50]
-    tags = sorted(tags, key=lambda tag: tag.name)
+    tags = tags.order_by('-count')[:1000]
 
     return render_to_response('sitemap.xml',
                              {'tags': tags},
