@@ -10,7 +10,7 @@
         <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     {% endblock %}
 
-    {% if has_snipts and not detail and not request.blog_user %}
+    {% if 'page' in request.GET %}
         <meta name="robots" content="noindex, follow" />
     {% endif %}
 
