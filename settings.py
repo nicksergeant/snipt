@@ -215,7 +215,6 @@ ABSOLUTE_URL_OVERRIDES = {
 # CSS / JS Compression
 COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_JS_FILTERS = []
-COMPRESS_CSS_HASHING_METHOD = 'content'
 if DEBUG:
     COMPRESS_ROOT = os.path.join(BASE_PATH, 'media')
 else:
