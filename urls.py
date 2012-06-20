@@ -2,10 +2,10 @@ from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
 from django.http import HttpResponseRedirect
+from views import lexers, sitemap
 from django.contrib import admin
 from snipts.views import search
 from tastypie.api import Api
-from views import lexers
 from snipts.api import *
 
 import admin as custom_admin
@@ -30,6 +30,10 @@ urlpatterns = patterns('',
 
     url(r'^404/$', direct_to_template, {'template': '404.html'}),
     url(r'^500/$', direct_to_template, {'template': '500.html'}),
+
+    url(r'^robots.txt$', direct_to_template, {'template': 'robots.txt'}),
+    url(r'^humans.txt$', direct_to_template, {'template': 'humans.txt'}),
+    url(r'^sitemap.xml$', sitemap),
 
     url(r'^api/public/lexer/$', lexers),
 

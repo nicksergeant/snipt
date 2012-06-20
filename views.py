@@ -1,6 +1,14 @@
+from django.shortcuts import render_to_response
 from annoying.decorators import ajax_request
+from django.template import RequestContext
 from snipts.utils import get_lexers_list
 
+
+def sitemap(request):
+    return render_to_response('sitemap.xml',
+                              {},
+                              context_instance=RequestContext(request),
+                              mimetype='application/xml')
 
 @ajax_request
 def lexers(request):
