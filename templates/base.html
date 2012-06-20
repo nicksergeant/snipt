@@ -1,4 +1,4 @@
-{% load compress snipt_tags %}
+{% load snipt_tags %}
 
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}">
@@ -16,30 +16,9 @@
         <meta name="robots" content="noindex, follow" />
     {% endif %}
 
-    {% compress css %}
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
-    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css" />
 
-    {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/json2.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/backbone.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/bootstrap.js"></script>
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.hotkeys.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.infieldlabel.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.ui.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.chosen.js"></script>
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
-    {% endcompress %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js"></script>
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>

@@ -5,7 +5,6 @@ Django
 django-annoying
 django-appconf
 django-bcrypt
-django_compressor
 django-markdown-deux
 django-pagination
 django-taggit
