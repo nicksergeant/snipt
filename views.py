@@ -2,13 +2,21 @@ from django.shortcuts import render_to_response
 from annoying.decorators import ajax_request
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
+from django.db.models import Count
+from taggit.models import Tag
 
 
 def sitemap(request):
+
+    tags = Tag.objects.filter(snipt__public=True)
+    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
+    tags = tags.order_by('-count')[:20]
+    tags = sorted(tags, key=lambda tag: tag.name)
+
     return render_to_response('sitemap.xml',
-                              {},
-                              context_instance=RequestContext(request),
-                              mimetype='application/xml')
+                             {'tags': tags},
+                             context_instance=RequestContext(request),
+                             mimetype='application/xml')
 
 @ajax_request
 def lexers(request):
