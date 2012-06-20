@@ -114,7 +114,7 @@
                 {% if request.user.is_authenticated %}
                     <aside class="nav">
                         <a href="#" class="mini-profile">
-                            <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=35');"></span>
+                            <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ request.user.email|md5 }}?s=35');"></span>
                             <span class="username">{{ request.user.username }}</span>
                             <i class="icon-cog icon-white"></i>
                         </a>
