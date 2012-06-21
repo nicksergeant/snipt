@@ -352,6 +352,9 @@
             {% endblock %}
         {% endif %}
      {% endif %}
+    {% if has_snipts %}
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    {% endif %}
      <div class="hidden">
          <img src="{{ STATIC_URL }}images/header-fixed-save.gif" alt="" />
          <img src="{{ STATIC_URL }}images/chosen-sprite.png" alt="" />

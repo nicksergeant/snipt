@@ -886,6 +886,16 @@ article.snipt {
                 &.comments {
                     background: transparent url('/static/images/comments-icon.png') 0 2px no-repeat;
                 }
+                &.tweet {
+                    background: none;
+                    float: right;
+                    margin: -1px 130px 0 0;
+                    padding: 0;
+
+                    a {
+                        color: transparent;
+                    }
+                }
             }
         }
     }
@@ -1168,6 +1178,13 @@ body.detail {
             }
         }
     }
+    footer {
+        ul.attrs {
+            li.tweet {
+                margin-right: 217px;
+            }
+        }
+    }
     div.rochester-made {
         width: 840px;
     }
@@ -1426,7 +1443,7 @@ body.search {
             margin-bottom: 0;
 
             input.search-query {
-                width: 569px;
+                width: 589px;
             }
             button {
                 padding: 4px 16px 4px;
