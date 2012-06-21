@@ -18,7 +18,7 @@ body.blog-site {
         footer {
             ul.attrs {
                 li.tweet {
-                    margin-right: 116px;
+                    margin-right: 30px;
                 }
             }
         }
@@ -137,6 +137,13 @@ body.blog-detail {
                         }
                         section.code {
                             height: auto;
+                        }
+                    }
+                    footer {
+                        ul.attrs {
+                            li.tweet {
+                                margin-right: 116px;
+                            }
                         }
                     }
                 }
