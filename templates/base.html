@@ -111,6 +111,14 @@
                                     Change password
                                 </a>
                             </li>
+                            {% if request.user.is_superuser %}
+                                <li>
+                                    <a href="/admin/">
+                                        <i class="icon-wrench icon-white"></i>
+                                        Admin
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li>
                                 <a href="/logout/?next={{ request.path }}">
                                     <i class="icon-off icon-white"></i>
