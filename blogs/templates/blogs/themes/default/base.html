@@ -52,21 +52,21 @@
                 {{ sidebar.stylized|safe }}
             </section>
         {% endif %}
-        <!--<section class="ad">-->
-            <!--<div id="carbonads-container">-->
-                <!--<div class="carbonad">-->
-                    <!--<div id="azcarbon"></div>-->
-                    <!--<script type="text/javascript">-->
-                        <!--var z = document.createElement("script");-->
-                        <!--z.type = "text/javascript";-->
-                        <!--z.async = true;-->
-                        <!--z.src = "https://engine.carbonads.com/z/12124/azcarbon_2_1_0_VERT";-->
-                        <!--var s = document.getElementsByTagName("script")[0];-->
-                        <!--s.parentNode.insertBefore(z, s);-->
-                    <!--</script>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</section>-->
+        <section class="ad">
+            <div id="carbonads-container">
+                <div class="carbonad">
+                    <div id="azcarbon"></div>
+                    <script type="text/javascript">
+                        var z = document.createElement("script");
+                        z.type = "text/javascript";
+                        z.async = true;
+                        z.src = "https://engine.carbonads.com/z/12124/azcarbon_2_1_0_VERT";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(z, s);
+                    </script>
+                </div>
+            </div>
+        </section>
         <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
             <ul class="powered">
                 <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
