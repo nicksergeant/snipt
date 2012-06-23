@@ -256,6 +256,7 @@ header.main {
                 position: absolute;
                 top: 65px;
                 width: 189px;
+                z-index: 51;
                 @include multi-border-radius(0, 0, 10px, 10px);
 
                 li {
