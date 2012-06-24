@@ -83,6 +83,7 @@ class PublicSniptResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
+        bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
         return bundle
 
     def build_filters(self, filters=None):
@@ -176,6 +177,7 @@ class PrivateSniptResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
+        bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
 
         if bundle.data['publish_date']:
             bundle.data['publish_date'] = date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')
