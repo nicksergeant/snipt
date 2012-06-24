@@ -134,7 +134,7 @@ class Snipt(models.Model):
         if self.public:
             return '{}/{}/{}/'.format(root, self.user.username, self.slug)
         else:
-            return '{}/{}/{}/?key='.format(root, self.user.username, self.slug, self.key)
+            return '{}/{}/{}/?key={}'.format(root, self.user.username, self.slug, self.key)
 
     def get_embed_url(self):
         return 'https://{}/embed/{}/'.format(site.domain, self.key)
