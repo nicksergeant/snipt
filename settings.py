@@ -2,7 +2,7 @@
 
 import os, socket
 
-if socket.gethostname() in ['nickmba.local', 'nickimac.local']:
+if socket.gethostname() in ['mba.local', 'mbp.local']:
     DEBUG = True
 else:
     DEBUG = False
@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'taggit',
     'tastypie',
 
+    'accounts',
     'blogs',
     'snipts',
     'utils',
@@ -207,6 +208,9 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: "/%s/" % u.username,
 }
+
+# Accounts
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 # Caching
 
