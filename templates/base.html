@@ -96,15 +96,33 @@
                     <aside class="nav">
                         <a href="#" class="mini-profile">
                             <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ request.user.email|md5 }}?s=35');"></span>
-                            <span class="username">{{ request.user.username }}</span>
-                            <i class="icon-cog icon-white"></i>
+                            <span class="info">
+                                <span class="username">{{ request.user.username }}</span>
+                                <i class="icon-cog icon-white"></i>
+                                <span class="type">
+                                    {% if request.user.profile.is_pro %}
+                                        <span class="is-pro">Pro</span>
+                                    {% else %}
+                                        Basic member
+                                    {% endif %}
+                                </span>
+                            </span>
                         </a>
                         <ul>
                             <li>
                                 <a href="/{{ request.user.username }}/">
                                     <i class="icon-user icon-white"></i>
-                                    View profile</a>
+                                    View profile
+                                </a>
                             </li>
+                            {% if not request.user.profile.is_pro %}
+                                <li>
+                                    <a href="/pro/">
+                                        <i class="icon-star-empty icon-white"></i>
+                                        Upgrade to Pro
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li>
                                 <a href="/password/change/">
                                     <i class="icon-wrench icon-white"></i>

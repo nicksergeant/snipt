@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^robots.txt$', direct_to_template, {'template': 'robots.txt'}),
     url(r'^humans.txt$', direct_to_template, {'template': 'humans.txt'}),
     url(r'^sitemap.xml$', sitemap),
+    url(r'^pro/$', direct_to_template, {'template': 'pro.html'}),
 
     url(r'^api/public/lexer/$', lexers),
 

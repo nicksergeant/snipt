@@ -211,32 +211,49 @@ header.main {
             width: 189px;
 
             a.mini-profile {
+                border-right: 1px solid rgba(#4D6768, .25);
                 display: block;
                 padding: 14px 13px 11px 13px;
 
                 span.avatar {
                     background-repeat: no-repeat;
                     border: 1px solid #3A5E67;
-                    display: inline-block;
+                    display: block;
+                    float: left;
                     height: 35px;
                     width: 35px;
                     @include border-radius();
                 }
-                span.username {
-                    color: #FFF;
-                    display: inline-block;
-                    font: 500 14px $Helvetica;
-                    margin-left: 8px;
-                    max-width: 88px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    vertical-align: 14px;
-                }
-                i {
-                    display: inline-block;
-                    opacity: .3;
-                    margin-left: 8px;
-                    vertical-align: 12px;
+                span.info {
+                    span.username {
+                        color: #FFF;
+                        display: inline-block;
+                        font: 500 14px $Helvetica;
+                        margin: 1px 0 0 8px;
+                        max-width: 88px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    i {
+                        display: block;
+                        float: right;
+                        margin: 1px 0 0 8px;
+                        opacity: .3;
+                    }
+                    span.type {
+                        color: #72979C;
+                        display: inline-block;
+                        font: bold 11px $Helvetica;
+                        margin: 1px 0 0 8px;
+                        min-width: 100px;
+                        padding-bottom: 7px;
+                        text-transform: uppercase;
+
+                        span.is-pro {
+                            color: #3299B7;
+                            font-style: italic;
+                        }
+                    }
                 }
                 &:hover {
                     background: rgba(#5C8086, .2);
@@ -289,6 +306,15 @@ header.main {
                     }
                     i {
                         background-position: -288px -120px;
+                    }
+                    span.info {
+                        span.type {
+                            color: #B0D7DD;
+
+                            span.is-pro {
+                                color: #85D2DD;
+                            }
+                        }
                     }
                 }
                 ul {
@@ -872,7 +898,7 @@ article.snipt {
                     background-image: none;
                     padding-left: 0;
 
-                    span {
+                    span.avatar {
                         background-color: transparent;
                         background-position: top left;
                         background-repeat: no-repeat;
@@ -882,6 +908,18 @@ article.snipt {
                         vertical-align: -3px;
                         width: 15px;
                         @include border-radius(3px);
+                    }
+                    span.pro {
+                        a {
+                            color: #3299B7;
+                            font: italic bold 10px $Helvetica;
+                            margin-left: 5px;
+                            text-transform: uppercase;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
                     }
                 }
                 &.comments {
@@ -1236,6 +1274,7 @@ body.static {
             margin-bottom: 20px;
         }
         p {
+            line-height: 20px;
             margin: 15px 0;
         }
     }
@@ -1529,6 +1568,15 @@ body.blog {
     article.snipt {
         section.code {
             height: auto;
+        }
+    }
+}
+body.pro {
+    h2 {
+        span.pro {
+            color: #3299B7;
+            font-style: italic;
+            font-weight: bold;
         }
     }
 }

@@ -80,8 +80,13 @@
         <ul class="attrs">
             {% block author %}
                 <li class="author">
-                    <span style="background-image: url('https://secure.gravatar.com/avatar/{{ snipt.user.email|md5 }}?s=15&amp;d=https%3A%2F%2Fsnipt.net%2Fstatic%2Fimages%2Fauthor-icon.png');"></span>
-                    <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
+                    <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ snipt.user.email|md5 }}?s=15&amp;d=https%3A%2F%2Fsnipt.net%2Fstatic%2Fimages%2Fauthor-icon.png');"></span>
+                    <a href="{{ snipt.user.get_absolute_url }}">
+                        {{ snipt.user.username }}
+                    </a>
+                    {% if snipt.user.profile.is_pro %}
+                        <span class="pro"><a href="/pro/">Pro</a></span>
+                    {% endif %}
                 </li>
             {% endblock %}
             {% if snipt.blog_post %}
