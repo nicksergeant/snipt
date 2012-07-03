@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load pagination_tags %}
+
+{% block page-title %}All tags{% endblock %}
+
+{% block body-class %}{{ block.super }} static tags{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/tags/">All tags</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-info">We're working on improving this section. Stay tuned!</div>
+    <div class="static-box">
+        <ul>
+            {% autopaginate all_tags 100 %}
+            {% for tag in all_tags %}
+                <li><a href="/public/tag/{{ tag.slug }}/">{{ tag }} ({{ tag.count }})</a></li>
+            {% endfor %}
+        </ul>
+        {% paginate %}
+    </div>
+{% endblock %}
+
+{% block tags %}
+    {% include "snipts/tags-public.html" %}
+{% endblock %}

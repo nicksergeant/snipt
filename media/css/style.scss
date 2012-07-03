@@ -495,6 +495,10 @@ section.main {
                     color: #2B6E9B;
                 }
             }
+            a.all-tags {
+                font-weight: bold;
+                margin-left: 22px;
+            }
         }
         nav.footer {
             margin: 0 15px 32px;
@@ -1513,7 +1517,6 @@ body.api {
         }
         aside.api-info {
             float: right;
-            margin-top: 26px;
             width: 190px;
 
             div.api-inner {
@@ -1556,6 +1559,7 @@ body.api {
         }
         aside.main {
             nav.footer {
+                float: left;
                 margin-bottom: 0;
             }
         }
@@ -1581,5 +1585,24 @@ body.pro {
     }
     h3, h4 {
         text-align: center;
+    }
+}
+body.tags {
+    div.alert {
+        margin: 30px 30px 10px 30px;
+    }
+    div.static-box {
+        margin-top: 10px;
+
+        ul {
+            margin-top: 0;
+        }
+    }
+    div.pagination {
+        margin-bottom: 8px;
+        margin-top: 20px;
+    }
+    aside.main {
+        padding-top: 30px;
     }
 }
