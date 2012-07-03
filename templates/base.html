@@ -115,14 +115,16 @@
                                     View profile
                                 </a>
                             </li>
-                            {% if not request.user.profile.is_pro %}
-                                <li>
-                                    <a href="/pro/">
-                                        <i class="icon-star-empty icon-white"></i>
-                                        Upgrade to Pro
-                                    </a>
-                                </li>
-                            {% endif %}
+                            {% comment %}
+                                {% if not request.user.profile.is_pro %}
+                                    <li>
+                                        <a href="/pro/">
+                                            <i class="icon-star-empty icon-white"></i>
+                                            Upgrade to Pro
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endcomment %}
                             <li>
                                 <a href="/password/change/">
                                     <i class="icon-wrench icon-white"></i>
