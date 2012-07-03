@@ -53,7 +53,7 @@
             {% if debug %}
                 var disqus_developer = 1;
             {% endif %}
-            var disqus_url = '{{ snipt.get_full_absolute_url }}{% if not snipt.public %}?key={{ snipt.key }}{% endif %}';
+            var disqus_url = '{{ snipt.get_full_absolute_url }}';
             var disqus_title = '{{ snipt.title }}';
             var disqus_identifier = {{ snipt.id }};
 
