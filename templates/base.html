@@ -168,6 +168,8 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
+                    {% block tags %}{% endblock %}
+                    {% block aside-inner %}{% endblock %}
                     <nav class="footer">
                         <ul>
                             <li class="api">
@@ -184,8 +186,6 @@
                             </li>
                         </ul>
                     </nav>
-                    {% block tags %}{% endblock %}
-                    {% block aside-inner %}{% endblock %}
                 </aside>
             {% endblock %}
             <div class="inner">
