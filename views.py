@@ -3,23 +3,33 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
 from django.db.models import Count
+from amazon.api import AmazonAPI
 from taggit.models import Tag
+from django.template.defaultfilters import striptags
 
-import bottlenose
 
-
+@ajax_request
 def amazon_search(request):
 
-    result = ''
+    products = []
     if request.GET.get('q'):
+        amazon = AmazonAPI('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
+        products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='Books')
 
-        amazon = bottlenose.Amazon('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
-        result = amazon.ItemSearch(Keywords=request.GET.get('q'), SearchIndex='All')
+    result = []
+    for product in products:
+        result.append({
+            'image':   product.small_image_url,
+            'price':   product.list_price,
+            'review':  striptags(product.editorial_review),
+            'reviews': product.reviews,
+            'title':   product.title,
+            'url':     product.offer_url,
+        })
 
-    return render_to_response('amazon.xml',
-                             {'result': result},
-                             context_instance=RequestContext(request),
-                             mimetype='application/xml')
+    return {
+        'result': result
+    }
 
 @ajax_request
 def lexers(request):
