@@ -5,6 +5,20 @@ from snipts.utils import get_lexers_list
 from django.db.models import Count
 from taggit.models import Tag
 
+import bottlenose
+
+
+def amazon_search(request):
+
+    if request.GET.get('q'):
+
+        amazon = bottlenose.Amazon('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
+        result = amazon.ItemSearch(Keywords=request.GET.get('q'), SearchIndex='All')
+
+    return render_to_response('amazon.xml',
+                             {'result': result},
+                             context_instance=RequestContext(request),
+                             mimetype='application/xml')
 
 @ajax_request
 def lexers(request):

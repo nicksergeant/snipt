@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
+from views import amazon_search, lexers, sitemap, tags
 from django.http import HttpResponseRedirect
-from views import lexers, sitemap, tags
 from django.contrib import admin
 from snipts.views import search
 from tastypie.api import Api
@@ -38,6 +38,7 @@ urlpatterns = patterns('',
     url(r'^tags/$', tags),
 
     url(r'^api/public/lexer/$', lexers),
+    url(r'^api/public/a/$', amazon_search),
 
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
