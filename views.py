@@ -10,6 +10,7 @@ import bottlenose
 
 def amazon_search(request):
 
+    result = ''
     if request.GET.get('q'):
 
         amazon = bottlenose.Amazon('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
