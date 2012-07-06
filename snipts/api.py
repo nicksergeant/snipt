@@ -208,7 +208,9 @@ class PrivateSniptResource(ModelResource):
                      user=request.user, **kwargs)
 
     def _clean_publish_date(self, bundle):
-        if bundle.data['blog_post'] and not bundle.data['publish_date']:
+        if bundle.data['blog_post'] and 'publish_date' not in bundle.data:
+            bundle.data['publish_date'] = datetime.datetime.now()
+        elif bundle.data['publish_date'] == '':
             bundle.data['publish_date'] = datetime.datetime.now()
         elif bundle.data['blog_post']:
             c = pdc.Constants()
