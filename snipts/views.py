@@ -143,6 +143,9 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
     else:
         tag = None
 
+    if tag is None:
+        snipts = snipts.exclude(tags__name__in=['tmp'])
+
     context = {
         'has_snipts': True,
         'public': public,
