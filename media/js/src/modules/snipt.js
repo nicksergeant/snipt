@@ -8,8 +8,8 @@
             snipt.tags_list = this.escape('tags_list');
 
             if (typeof snipt.tags === 'object') {
-                for (tag in snipt.tags) {
-                    snipt.tags[tag].name = _.escape(snipt.tags[tag].name);
+                for (var i; i < snipt.tags.length; i++) {
+                    snipt.tags[i].name = _.escape(snipt.tags[i].name);
                 }
             }
 
@@ -232,7 +232,7 @@
                     type: 'post',
                     success: function(resp) {
                         that.$el.addClass('favorited');
-                        that.model.set({'favorite_id': resp['id']}, {'silent': true});
+                        that.model.set({'favorite_id': resp.id}, {'silent': true});
                         that.$favorite.text('Favorited');
                     },
                     headers: {
@@ -440,7 +440,7 @@
                 }
             };
             data['public'] = is_public;
-            data['blog_post'] = is_blog_post;
+            data.blog_post = is_blog_post;
 
             var view = new Snipt.SniptView({
                 el: this,
@@ -468,7 +468,7 @@
                     }
                 };
                 data['public'] = false;
-                data['blog_post'] = false;
+                data.blog_post = false;
 
                 var newSniptView = new Snipt.SniptView({
                     el: $('article#new-snipt'),
