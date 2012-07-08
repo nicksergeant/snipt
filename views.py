@@ -44,12 +44,10 @@ def amazon_image(request):
 
         try:
             open(img_loc)
-            return HttpResponseRedirect('/static/images/amazon/' + img_filename)
+            return HttpResponseRedirect('https://snipt.net/static/images/amazon/' + img_filename)
         except IOError:
             urllib.urlretrieve(img_src, img_loc)
-            return HttpResponseRedirect('/static/images/amazon/' + img_filename)
-
-        return HttpResponseRedirect('/static/images/amazon/' + img_filename)
+            return HttpResponseRedirect('https://snipt.net/static/images/amazon/' + img_filename)
     else:
         return HttpResponseBadRequest()
     return {}
