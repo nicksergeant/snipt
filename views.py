@@ -55,7 +55,6 @@ def amazon_image(request):
             return HttpResponseRedirect('https://snipt.net/static/images/amazon/' + img_filename)
     else:
         return HttpResponseBadRequest()
-    return {}
 
 @ajax_request
 def lexers(request):
