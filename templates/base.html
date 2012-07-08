@@ -30,7 +30,11 @@
         {% else %}
             window.pub = null;
         {% endif %}
-        window.api_key = '{{ request.user.api_key.key }}';{% endblock %}    </script>
+        window.api_key = '{{ request.user.api_key.key }}';{% endblock %}
+        {% if tag %}
+            window.tag = '{{ tag.name }}';
+        {% endif %}
+    </script>
     {% endblock %}
 
     {% if has_snipts and not detail %}
@@ -168,7 +172,34 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
-                    {% block tags %}{% endblock %}
+                    {% if tag %}
+                        <section class="tag-detail">
+                            <div class="heading">
+                                <h1>{{ tag.name }}</h1>
+                            </div>
+                            <section class="amazon">
+                                <ul></ul>
+                                <div class="more group">
+                                    <span></span>
+                                    <a href="#" class="see-previous">
+                                        <i class="icon-chevron-left"></i>
+                                    </a>
+                                    <a href="#" class="see-next">
+                                        <i class="icon-chevron-right"></i>
+                                    </a>
+                                </div>
+                                <script id="amazon-ad" type="text/html">
+                                    <li>
+                                        <a href="<%=url %>" style="background-image: url('<%=image %>');">
+                                            <span class="title"><%=title %></span>
+                                            <span class="description"><%=review %></span>
+                                        </a>
+                                    </li>
+                                </script>
+                            </section>
+                        </section>
+                    {% endif %}
+                    {% block aside-top %}{% endblock %}
                     {% block aside-inner %}{% endblock %}
                     <nav class="footer">
                         <ul>

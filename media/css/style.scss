@@ -52,6 +52,11 @@ $Consolas: Consolas, Menlo, "Courier New", monospace;
     background: $image, -moz-linear-gradient(center top, $start 0%, $stop 100%);
     background: $image, -moz-gradient(center top, $start 0%, $stop 100%);
 }
+@mixin opacity($op) {
+    -khtml-opacity: $op;
+    -moz-opacity: $op;
+    opacity: $op;
+}
 
 // Page
 html, body {
@@ -544,6 +549,106 @@ section.main {
                     }
                     &.roadmap {
                         background: transparent url('/static/images/roadmap-icon.png') 2px center no-repeat;
+                    }
+                }
+            }
+        }
+        section.tag-detail {
+            margin: -12px 0 30px 15px;
+
+            div.heading {
+                border-bottom: 1px solid #DDDDDD;
+
+                h1 {
+                    background: #F5F3F5;
+                    color: #3BAAF3;
+                    display: inline-block;
+                    font: bold 12px $Helvetica;
+                    text-transform: uppercase;
+                    margin-left: 16px;
+                    padding: 0 6px;
+                    position: relative;
+                    top: 8px;
+                }
+            }
+            section.amazon {
+                height: 122px;
+                margin-top: 22px;
+
+                ul {
+                    height: 85px;
+                    margin: 0;
+
+                    li {
+                        height: 85px;
+                        list-style-type: none;
+
+                        a {
+                            background-repeat: no-repeat;
+                            background-size: 50px;
+                            color: #797B7A;
+                            display: inline-block;
+                            font: bold 11px $Helvetica;
+                            padding: 0 0 0 60px;
+
+                            span.title {
+                                display: inline-block;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                width: 115px;
+                            }
+                            span.description {
+                                color: #999;
+                                display: inline-block;
+                                font: normal 11px $Helvetica;
+                                height: 65px;
+                                line-height: 13px;
+                                margin: 5px 0 0 0;
+                                overflow: hidden;
+                            }
+                            &:hover {
+                                span.title {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+                div.more {
+                    background: #FFF;
+                    margin-top: 10px;
+                    border-top: 1px solid #E5E5E5;
+                    @include multi-border-radius(0, 0, 5px, 5px);
+
+                    span {
+                        color: #ADADAD;
+                        display: inline-block;
+                        font: bold 11px $Helvetica;
+                        margin-top: 6px;
+                        text-align: center;
+                        text-transform: uppercase;
+                        width: 123px;
+                    }
+                    a {
+                        display: block;
+                        padding: 5px;
+
+                        i {
+                            display: inline-block;
+                            @include opacity(.4);
+                        }
+                        &.see-previous {
+                            float: left;
+                        }
+                        &.see-next {
+                            float: right;
+                        }
+                        &:hover {
+                            i {
+                                @include opacity(1);
+                            }
+                        }
                     }
                 }
             }
