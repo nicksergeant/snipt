@@ -222,7 +222,7 @@
                     $ul.hide().html(html);
                     $lis = $('li', $ul);
                     $lis.hide();
-                    $lis.eq(0).show();
+                    $lis.eq(0).fadeIn('fast');
 
                     if ($lis.length === 1) {
                         $('a', $more).fadeOut('fast');
@@ -233,7 +233,7 @@
 
                     $ul.show();
 
-                    $('div.more span', that.$amazon_ads).text('Books');
+                    $('div.more span', that.$amazon_ads).hide().text('Books').fadeIn('fast');
                 }
             });
         }
