@@ -199,12 +199,12 @@
                     }
                     $next.show();
                 }
+                return false;
             });
 
             $.getJSON('/api/public/a/', {'q': window.tag}, function(resp) {
                 if (resp.result.length === 0) {
-                    $('section.amazon').hide();
-                
+                    that.$amazon_ads.slideUp('fast');
                 } else {
                     var html = '';
                     for (var i = 0; i < resp.result.length; i++) {
@@ -223,6 +223,14 @@
                     $lis = $('li', $ul);
                     $lis.hide();
                     $lis.eq(0).show();
+
+                    if ($lis.length === 1) {
+                        $('a', $more).fadeOut('fast');
+                    }
+                    if ($lis.length === 0) {
+                        that.$amazon_ads.slideUp('fast');
+                    }
+
                     $ul.show();
 
                     $('div.more span', that.$amazon_ads).text('Books');

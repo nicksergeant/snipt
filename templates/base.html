@@ -16,9 +16,9 @@
         <meta name="robots" content="noindex, follow" />
     {% endif %}
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?ff34" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?ff35" />
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?ff34"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?ff35"></script>
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
@@ -190,7 +190,7 @@
                                 </div>
                                 <script id="amazon-ad" type="text/html">
                                     <li>
-                                        <a href="<%=url %>" style="background-image: url('/api/public/a/img/?i=<%=image %>');">
+                                        <a rel="nofollow" href="<%=url %>" style="background-image: url('/api/public/a/img/?i=<%=image %>');">
                                             <span class="title"><%=title %></span>
                                             <span class="description"><%=review %></span>
                                         </a>
