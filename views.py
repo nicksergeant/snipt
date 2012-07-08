@@ -18,7 +18,7 @@ def amazon_search(request):
     products = []
     if request.GET.get('q'):
         amazon = AmazonAPI('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
-        products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='Books')
+        products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='All')
 
     result = []
     for product in products:
@@ -47,12 +47,17 @@ def amazon_image(request):
         img_src = 'http://ecx.images-amazon.com/images/I/{}'.format(img_filename)
         img_loc = os.path.join(settings.STATIC_ROOT, 'images', 'amazon', img_filename)
 
+        if settings.DEBUG:
+            root = '/static/images/amazon/'
+        else:
+            root = 'https://snipt.net/static/images/amazon/'
+
         try:
             open(img_loc)
-            return HttpResponseRedirect('https://snipt.net/static/images/amazon/' + img_filename)
+            return HttpResponseRedirect(root + img_filename)
         except IOError:
             urllib.urlretrieve(img_src, img_loc)
-            return HttpResponseRedirect('https://snipt.net/static/images/amazon/' + img_filename)
+            return HttpResponseRedirect(root + img_filename)
     else:
         return HttpResponseBadRequest()
 
