@@ -1,7 +1,7 @@
+from views import amazon_search, amazon_image, lexers, sitemap, tags
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
-from views import amazon_search, lexers, sitemap, tags
 from django.http import HttpResponseRedirect
 from django.contrib import admin
 from snipts.views import search
@@ -39,6 +39,7 @@ urlpatterns = patterns('',
 
     url(r'^api/public/lexer/$', lexers),
     url(r'^api/public/a/$', amazon_search),
+    url(r'^api/public/a/img/$', amazon_image),
 
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),

@@ -1,11 +1,15 @@
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from annoying.decorators import ajax_request, render_to
+from django.template.defaultfilters import striptags
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
 from django.db.models import Count
 from amazon.api import AmazonAPI
+from django.conf import settings
 from taggit.models import Tag
-from django.template.defaultfilters import striptags
+
+import os, urllib
 
 
 @ajax_request
@@ -19,7 +23,7 @@ def amazon_search(request):
     result = []
     for product in products:
         result.append({
-            'image':   product.small_image_url,
+            'image':   product.small_image_url.replace('http://ecx.images-amazon.com/images/I/', ''),
             'price':   product.list_price,
             'review':  striptags(product.editorial_review),
             'reviews': product.reviews,
@@ -30,6 +34,25 @@ def amazon_search(request):
     return {
         'result': result
     }
+
+def amazon_image(request):
+    if 'i' in request.GET:
+
+        img_filename = request.GET.get('i')
+        img_src = 'http://ecx.images-amazon.com/images/I/{}'.format(img_filename)
+        img_loc = os.path.join(settings.STATIC_ROOT, 'images', 'amazon', img_filename)
+
+        try:
+            open(img_loc)
+            return HttpResponseRedirect('/static/images/amazon/' + img_filename)
+        except IOError:
+            urllib.urlretrieve(img_src, img_loc)
+            return HttpResponseRedirect('/static/images/amazon/' + img_filename)
+
+        return HttpResponseRedirect('/static/images/amazon/' + img_filename)
+    else:
+        return HttpResponseBadRequest()
+    return {}
 
 @ajax_request
 def lexers(request):
