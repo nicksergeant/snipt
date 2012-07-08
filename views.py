@@ -18,7 +18,7 @@ def amazon_search(request):
     products = []
     if request.GET.get('q'):
         amazon = AmazonAPI('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
-        products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='All')
+        products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='Books')
 
     result = []
     for product in products:
