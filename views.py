@@ -22,8 +22,13 @@ def amazon_search(request):
 
     result = []
     for product in products:
+        if product.small_image_url:
+            small_image_url = product.small_image_url.replace('http://ecx.images-amazon.com/images/I/', '')
+        else:
+            small_image_url = None
+
         result.append({
-            'image':   product.small_image_url.replace('http://ecx.images-amazon.com/images/I/', ''),
+            'image':   small_image_url,
             'price':   product.list_price,
             'review':  striptags(product.editorial_review),
             'reviews': product.reviews,
