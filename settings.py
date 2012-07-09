@@ -213,6 +213,9 @@ ABSOLUTE_URL_OVERRIDES = {
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 # Caching
+CACHE_BACKEND = 'caching.backends.memcached://localhost:11211'
+CACHE_PREFIX = 'snipt:'
+CACHE_COUNT_TIMEOUT = 60
 
 # Search
 HAYSTACK_CONNECTIONS = {
