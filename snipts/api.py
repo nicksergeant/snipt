@@ -193,8 +193,8 @@ class PrivateSniptResource(ModelResource):
                      user=request.user, **kwargs)
 
     def obj_update(self, bundle, request=None, **kwargs):
-
         bundle.data['user'] = request.user
+
         if type(bundle.data['tags']) in (str, unicode):
             bundle.data['tags_list'] = bundle.data['tags']
         else:
@@ -252,6 +252,8 @@ class PrivateSniptResource(ModelResource):
         tags = bundle.data.get('tags_list', [])
         if tags != '':
             bundle.obj.tags.set(*parse_tags(tags))
+        else:
+            bundle.obj.tags.set()
 
 class PrivateFavoriteResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
