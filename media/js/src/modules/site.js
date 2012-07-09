@@ -189,7 +189,7 @@
                     } else {
                         $prev = $('li', that.$amazon_ads).eq(-1);
                     }
-                    $prev.show();
+                    $prev.fadeIn('fast');
                 } else {
                     var $next = $current.next();
                     if ($next.length) {
@@ -197,7 +197,7 @@
                     } else {
                         $next = $('li', that.$amazon_ads).eq(0);
                     }
-                    $next.show();
+                    $next.fadeIn('fast');
                 }
                 return false;
             });
