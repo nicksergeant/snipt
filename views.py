@@ -86,6 +86,7 @@ def lexers(request):
         })
 
     return {'objects': objects}
+
 def sitemap(request):
 
     tags = Tag.objects.filter(snipt__public=True)

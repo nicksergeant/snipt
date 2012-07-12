@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     url(r'^humans.txt$', direct_to_template, {'template': 'humans.txt'}),
     url(r'^sitemap.xml$', sitemap),
     url(r'^pro/$', direct_to_template, {'template': 'pro.html'}),
+    url(r'^pro/signup/$', direct_to_template, {'template': 'pro-signup.html'}),
     url(r'^tags/$', tags),
 
     url(r'^api/public/lexer/$', lexers),

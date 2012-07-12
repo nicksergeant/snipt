@@ -4,9 +4,13 @@
 
 {% block body-class %}{{ block.super }} static pro{% endblock %}
 
+{% block breadcrumb %}
+    <li><a href="/pro/">Snipt Pro</a></li>
+{% endblock %}
+
 {% block content %}
     <div class="static-box">
-        <h2><span class="pro">Pro</span> members</h2>
+        <h2>Snipt <span class="pro">Pro</span> members</h2>
         <p>We're still building our <span class="pro">Pro</span> platform, but we guarantee that it's going to kick ass. By becoming a Pro now, you'll get access to Pro features the moment they're released.</p>
         <h6>Current Pro features:</h6>
         <ul>
@@ -20,7 +24,7 @@
             <li>Ability to theme your embedded snipts in a specific theme.</li>
             <li>Custom domain and premium (Pro-only) themes for your <a href="https://blog.snipt.net/announcing-the-sniptnet-blogging-platform/">Snipt blog</a>.</li>
         </ul>
-        <h3>Pro accounts will be $19/year.</h3>
-        <h4>Pro accounts are currently invite-only. Follow <a href="http://twitter.com/snipt/">@snipt</a> to be notified when we open registrations.</h4>
+        <h3>Pro accounts are $19/year.</h3>
+        <h4><a href="/pro/signup/" class="btn btn-large btn-success">Sign Up Now</a></h4>
     </div>
 {% endblock %}

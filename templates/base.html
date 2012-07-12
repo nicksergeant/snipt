@@ -109,16 +109,14 @@
                                     Get your API Key
                                 </a>
                             </li>
-                            {% comment %}
-                                {% if not request.user.profile.is_pro %}
-                                    <li>
-                                        <a href="/pro/">
-                                            <i class="icon-star-empty icon-white"></i>
-                                            Upgrade to Pro
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            {% endcomment %}
+                            {% if not request.user.profile.is_pro %}
+                                <li>
+                                    <a href="/pro/">
+                                        <i class="icon-star-empty icon-white"></i>
+                                        Upgrade to Pro
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li>
                                 <a href="/password/change/">
                                     <i class="icon-wrench icon-white"></i>
