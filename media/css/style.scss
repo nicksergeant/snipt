@@ -1750,6 +1750,20 @@ body.pro {
                 }
             }
         }
+        div.stripe {
+            color: #C2C2C2;
+            font: bold 11px/15px $Helvetica;
+            margin: 10px 3px 0 80px;
+            text-align: center;
+
+            a {
+                color: #a2a2a2;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
 body.tags {

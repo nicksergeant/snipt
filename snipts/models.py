@@ -88,7 +88,7 @@ class Snipt(caching.base.CachingMixin, models.Model):
                                      border-radius: 5px;
                                      color: #D0D0D0;
                                      display: block;
-                                     font: 11px Monaco, monospace !important;
+                                     font: 11px Pragmata, Menlo, 'DejaVu LGC Sans Mono', 'DejaVu Sans Mono', Consolas, 'Everson Mono', 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace;
                                      margin: 0;
                                      overflow: auto;
                                      padding: 15px;

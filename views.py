@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from django.template.defaultfilters import striptags
 from django.shortcuts import render_to_response
@@ -86,6 +87,13 @@ def lexers(request):
         })
 
     return {'objects': objects}
+
+@login_required
+@render_to('pro-signup.html')
+def pro_signup(request):
+    if request.user.profile.is_pro:
+        return HttpResponseRedirect('/' + request.user.username + '/')
+    return {}
 
 def sitemap(request):
 
