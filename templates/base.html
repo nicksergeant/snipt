@@ -338,19 +338,23 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?5"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/ace.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/ace/theme-tomorrow.js"></script>
+    {% block extra-scripts %}{% endblock %}
 
     {% block inline-js %}
-    <script type="text/javascript">{% block js %}window.user = '{{ request.user.username }}';
-        {% if public %}
-            window.pub = {{ public|lower }};
-        {% else %}
-            window.pub = null;
-        {% endif %}
-        window.api_key = '{{ request.user.api_key.key }}';{% endblock %}
-        {% if tag %}
-            window.tag = '{{ tag.name }}';
-        {% endif %}
-    </script>
+        <script type="text/javascript">
+            {% block js %}
+                window.user = '{{ request.user.username }}';
+                {% if public %}
+                    window.pub = {{ public|lower }};
+                {% else %}
+                    window.pub = null;
+                {% endif %}
+                window.api_key = '{{ request.user.api_key.key }}';
+            {% endblock %}
+            {% if tag %}
+                window.tag = '{{ tag.name }}';
+            {% endif %}
+        </script>
     {% endblock %}
 
     <div class="hidden" id="templates">

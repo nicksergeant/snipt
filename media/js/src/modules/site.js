@@ -97,6 +97,59 @@
                 window.ui_halted = false;
             });
 
+            if (this.$body.hasClass('pro-signup')) {
+                var $form = $('form#pro-signup');
+                var $submit = $('button[type="submit"]', $form);
+
+                var $name = $('input#name');
+                var $cardNumber = $('input#number');
+                var $expMonth = $('select[name="exp-month"]');
+                var $expYear = $('select[name="exp-year"]');
+                var $cvc = $('input#cvc');
+
+                $form.submit(function() {
+
+                    $submit.attr('disabled', 'disabled');
+
+                    var errors = false;
+
+                    if (!Stripe.validateCardNumber($cardNumber.val())) {
+                        $cardNumber.parents('div.control-group').addClass('error');
+                        errors = true;
+                    } else {
+                        $cardNumber.parents('div.control-group').removeClass('error');
+                    }
+
+                    if (!Stripe.validateExpiry($expMonth.val(), $expYear.val())) {
+                        $expMonth.parents('div.control-group').addClass('error');
+                        errors = true;
+                    } else {
+                        $expMonth.parents('div.control-group').removeClass('error');
+                    }
+
+                    if (!Stripe.validateCVC($cvc.val())) {
+                        $cvc.parents('div.control-group').addClass('error');
+                        errors = true;
+                    } else {
+                        $cvc.parents('div.control-group').removeClass('error');
+                    }
+
+                    if (!errors) {
+                        Stripe.createToken({
+                            name: $name.val(),
+                            number: $cardNumber.val(),
+                            cvc: $cvc.val(),
+                            exp_month: $expMonth.val(),
+                            exp_year: $expYear.val()
+                        }, that.stripeResponseHandler);
+                    } else {
+                        $submit.removeAttr('disabled');
+                    }
+
+                    return false;
+                });
+            }
+
             window.ui_halted = false;
         },
         events: {
@@ -172,6 +225,22 @@
             $('div.infield label', this.$body).inFieldLabels({
                 fadeDuration: 200
             });
+        },
+        stripeResponseHandler: function(status, response) {
+            console.log(status);
+            console.log(response);
+            if (response.error) {
+                // show the errors on the form
+                //$(".payment-errors").text(response.error.message);
+            } else {
+                //var form$ = $("#payment-form");
+                // token contains id, last4, and card type
+                //var token = response['id'];
+                // insert the token into the form so it gets submitted to the server
+                //form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                // and submit
+                //form$.get(0).submit();
+            }
         },
         initAmazonAds: function() {
             var $more = $('div.more', this.$amazon_ads);
