@@ -326,7 +326,11 @@
             return this;
         },
         save: function() {
-            that.model.set({
+
+            $('button.save, button.save-and-close, button.delete, button.cancel',
+                    window.site.$main_edit).attr('disabled', 'disabled');
+
+            that.model.save({
                 'title': $('input#snipt_title').val(),
                 'tags': $('label.tags textarea').val(),
                 'tags_list': $('label.tags textarea').val(),
@@ -336,9 +340,15 @@
                 'blog_post': $('label.blog-post input').is(':checked'),
                 'publish_date': $('label.publish-date input').val(),
                 'public': $('label.public input').is(':checked')
-            }, {'silent': true});
-
-            that.model.save();
+                }, {
+                success: function(model, response) {
+                    $('button.save, button.save-and-close, button.delete, button.cancel',
+                            window.site.$main_edit).removeAttr('disabled');
+                },
+                error: function(model, response) {
+                    alert('There was a problem saving your snipt. We\'ve been notified. Sorry about that!');
+                }
+            });
         },
         select: function(fromClick) {
 
@@ -384,7 +394,8 @@
             }
             $('span.cmd-ctrl').text(cmd);
 
-            // This should probably be handled more traditionally.
+            // This should probably be handled more traditionally
+            // (in a backbone view / events)
             $('button#add-snipt').click(function() {
                 that.addNewSnipt();
             });
