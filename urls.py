@@ -1,4 +1,4 @@
-from views import amazon_search, amazon_image, lexers, pro_signup, sitemap, tags
+from views import amazon_search, amazon_image, lexers, pro_signup, sitemap, tags, pro_signup_complete
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from registration.forms import RegistrationFormUniqueEmail
@@ -34,9 +34,11 @@ urlpatterns = patterns('',
     url(r'^robots.txt$', direct_to_template, {'template': 'robots.txt'}),
     url(r'^humans.txt$', direct_to_template, {'template': 'humans.txt'}),
     url(r'^sitemap.xml$', sitemap),
+    url(r'^tags/$', tags),
+
     url(r'^pro/$', direct_to_template, {'template': 'pro.html'}),
     url(r'^pro/signup/$', pro_signup),
-    url(r'^tags/$', tags),
+    url(r'^pro/signup/complete/$', pro_signup_complete),
 
     url(r'^api/public/lexer/$', lexers),
     url(r'^api/public/a/$', amazon_search),

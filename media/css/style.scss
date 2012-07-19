@@ -1282,6 +1282,26 @@ div.profile {
             text-transform: uppercase;
         }
     }
+    a.pro {
+        background: #DFDFDF;
+        color: #3299B7;
+        clear: left;
+        display: block;
+        float: left;
+        font: bold italic 11px $Helvetica;
+        margin-top: 10px;
+        padding: 5px 0;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: 100%;
+        @include border-radius(3px);
+        @include box-shadow(0, 0, 3px, #FFF);
+
+        &:hover {
+            background: #D8D8D8;
+        }
+    }
 }
 div.empty-snipts {
     background: rgba(128, 128, 128, .08);
@@ -1750,6 +1770,33 @@ body.pro {
                 }
             }
         }
+        fieldset {
+            position: relative;
+        }
+        div.payment-errors {
+            display: none;
+        }
+        div.payment-loading {
+            background: rgba(#F2F2F2, .6);
+            display: none;
+            height: 202px;
+            position: absolute;
+            top: 37px;
+            width: 100%;
+
+            span {
+                background: #FFF;
+                border: 3px solid #3299B7;
+                color: #666;
+                display: block;
+                font-weight: bold;
+                margin: 80px auto 0 auto;
+                padding: 10px;
+                text-align: center;
+                width: 120px;
+                @include border-radius;
+            }
+        }
         div.stripe {
             color: #C2C2C2;
             font: bold 11px/15px $Helvetica;
@@ -1762,6 +1809,14 @@ body.pro {
                 &:hover {
                     text-decoration: underline;
                 }
+            }
+        }
+        &.form-horizontal {
+            fieldset {
+                padding-top: 18px;
+            }
+            div.form-actions {
+                margin-top: 18px;
             }
         }
     }

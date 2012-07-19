@@ -165,7 +165,7 @@
                             <div class="heading">
                                 <h1>{{ tag.name }}</h1>
                             </div>
-                            <section class="amazon">
+                            <section class="amazon {% if request.user.is_authenticated %}{% if request.user.profile.is_pro %}hidden{% endif %}{% endif %}">
                                 <ul></ul>
                                 <div class="more group">
                                     <span></span>

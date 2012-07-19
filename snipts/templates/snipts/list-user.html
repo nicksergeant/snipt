@@ -33,6 +33,9 @@
                 {% endif %}
             {% endif %}
         </div>
+        {% if user.profile.is_pro %}
+            <a class="pro" href="/pro/">Pro</a>
+        {% endif %}
     </div>
     {% include "snipts/tags-user.html" %}
 {% endblock %}

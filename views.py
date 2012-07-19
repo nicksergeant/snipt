@@ -12,6 +12,8 @@ from taggit.models import Tag
 
 import os, urllib
 
+import stripe
+
 
 @ajax_request
 def amazon_search(request):
@@ -94,6 +96,31 @@ def pro_signup(request):
     if request.user.profile.is_pro:
         return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
+
+@login_required
+@render_to('pro-signup-complete.html')
+def pro_signup_complete(request):
+
+    if request.method == 'POST':
+
+        token = request.POST['token']
+        stripe.api_key = '5XchbRsWVbksTRWSX67kOdBnCf01DxSh'
+
+        customer = stripe.Customer.create(
+            card = token,
+            plan = 'snipt-pro',
+            email = request.user.email
+        )
+
+        profile = request.user.profile
+        profile.is_pro = True
+        profile.stripe_id = customer.id
+        profile.save()
+
+        return {}
+
+    else:
+        return HttpResponseBadRequest()
 
 def sitemap(request):
 

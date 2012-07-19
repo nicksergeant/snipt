@@ -15,12 +15,10 @@ from snipts.utils import slugify_uniquely
 
 import datetime, md5, re
 
-import caching.base
-
 
 site = Site.objects.all()[0]
 
-class Snipt(caching.base.CachingMixin, models.Model):
+class Snipt(models.Model):
     """An individual Snipt."""
 
     user         = models.ForeignKey(User, blank=True, null=True)
@@ -43,8 +41,6 @@ class Snipt(caching.base.CachingMixin, models.Model):
     created      = models.DateTimeField(auto_now_add=True, editable=False)
     modified     = models.DateTimeField(auto_now=True, editable=False)
     publish_date = models.DateTimeField(blank=True, null=True)
-
-    objects = caching.base.CachingManager()
 
     def save(self, *args, **kwargs):
 
@@ -158,14 +154,12 @@ class Snipt(caching.base.CachingMixin, models.Model):
         else:
             return get_lexer_by_name(self.lexer).name
 
-class Favorite(caching.base.CachingMixin, models.Model):
+class Favorite(models.Model):
     snipt = models.ForeignKey(Snipt)
     user  = models.ForeignKey(User)
 
     created  = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
-
-    objects = caching.base.CachingManager()
     
     def __unicode__(self):
         return u'{} favorited by {}'.format(self.snipt.title, self.user.username)

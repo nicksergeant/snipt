@@ -103,8 +103,8 @@
 
                 var $name = $('input#name');
                 var $cardNumber = $('input#number');
-                var $expMonth = $('select[name="exp-month"]');
-                var $expYear = $('select[name="exp-year"]');
+                var $expMonth = $('select#exp-month');
+                var $expYear = $('select#exp-year');
                 var $cvc = $('input#cvc');
 
                 $form.submit(function() {
@@ -135,6 +135,10 @@
                     }
 
                     if (!errors) {
+
+                        $('.payment-errors').hide();
+                        $('.payment-loading').show();
+
                         Stripe.createToken({
                             name: $name.val(),
                             number: $cardNumber.val(),
@@ -142,6 +146,7 @@
                             exp_month: $expMonth.val(),
                             exp_year: $expYear.val()
                         }, that.stripeResponseHandler);
+
                     } else {
                         $submit.removeAttr('disabled');
                     }
@@ -227,19 +232,27 @@
             });
         },
         stripeResponseHandler: function(status, response) {
-            console.log(status);
-            console.log(response);
+
+            var $form = $('form#pro-signup');
+
             if (response.error) {
-                // show the errors on the form
-                //$(".payment-errors").text(response.error.message);
+                $('button[type="submit"]', $form).removeAttr('disabled');
+                $('.payment-loading').hide();
+                $('.payment-errors').text(response.error.message).show();
             } else {
-                //var form$ = $("#payment-form");
-                // token contains id, last4, and card type
-                //var token = response['id'];
-                // insert the token into the form so it gets submitted to the server
-                //form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                // and submit
-                //form$.get(0).submit();
+                var token = response.id;
+
+                // Kill all of the form details so none of it touches our server.
+                // Note, this is unnecessary, because the inputs themselves do not
+                // have a name attr, meaning they'll never get sent to begin with.
+                $('input#name').val('');
+                $('input#number').val('');
+                $('select#exp-month').val('');
+                $('select#exp-year').val('');
+                $('input#cvc').val('');
+
+                $form.append("<input type='hidden' name='token' value='" + token + "'/>");
+                $form.get(0).submit();
             }
         },
         initAmazonAds: function() {
