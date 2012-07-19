@@ -1333,6 +1333,13 @@ body.detail {
         margin-right: 100px;
     }
 }
+body.is-pro {
+    article.snipt {
+        &:first-of-type {
+            margin-top: 30px;
+        }
+    }
+}
 
 // Pages
 body.detail {
