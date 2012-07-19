@@ -1312,6 +1312,27 @@ div.empty-snipts {
     text-shadow: 0 1px 1px #FFF;
     @include border-radius(8px);
 }
+div.site-notice {
+    margin: 20px;
+    padding-right: 14px;
+    text-align: center;
+
+    a {
+        color: #3A87AD;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+}
+article.snipt {
+    &:first-of-type {
+        margin-top: 20px;
+    }
+}
+body.detail {
+    div.site-notice {
+        margin-right: 100px;
+    }
+}
 
 // Pages
 body.detail {
