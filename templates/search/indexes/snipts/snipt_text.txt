@@ -1,5 +1,8 @@
 {{ object.title }}
 {{ object.user.username }}
-{{ object.tags_list }}
 {{ object.lexer }}
 {{ object.code }}
+
+{% for tag in object.tags.all %}
+    {{ tag.name }}
+{% endfor %}
