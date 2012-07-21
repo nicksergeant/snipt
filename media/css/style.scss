@@ -1482,7 +1482,7 @@ body.editing {
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 49;
+        z-index: 50;
 
         div.inner {
             float: none;
@@ -1509,11 +1509,14 @@ body.editing {
                         width: 696px;
 
                         section.code {
-                            padding: 8px 10px;
+                            padding: 0;
 
                             .CodeMirror {
                                 color: #333;
                                 font: normal 12px/16px $Consolas;
+                            }
+                            .CodeMirror-gutter {
+                                min-height: 1000px;
                             }
                         }
                         header {

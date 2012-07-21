@@ -99,7 +99,8 @@
             $('option[value="' + this.model.get('lexer') + '"]', window.site.$main_edit).attr('selected', 'selected');
 
             // Init chosen
-            $('select#id_lexer', window.site.$main_edit).chosen();
+            var $selectLexer = $('select#id_lexer', window.site.$main_edit);
+            $selectLexer.chosen();
 
             // Blog post
             $('label.blog-post input', window.site.$main_edit).on('change', function() {
@@ -136,11 +137,22 @@
             var $editor = $('div#editor', window.site.$main_edit);
 
             window.editor = CodeMirror($editor.get(0), {
+                autofocus: true,
+                fixedGutter: true,
+                gutter: true,
+                indentUnit: 4,
+                lineNumbers: true,
+                matchBrackets: true,
+                mode: that.guessCodeMirrorLexer($selectLexer.val()),
+                //theme: 'monokai',
                 value: that.model.get('code')
             });
+            $selectLexer.change(function() {
+                var $selectedLexer = $('option:selected', $selectLexer);
+                window.editor.setOption('mode', that.guessCodeMirrorLexer($selectedLexer.val()));
+            });
 
-            window.editor.setSize('100%', $(window).height() - 177);
-            window.editor.focus();
+            window.editor.setSize('100%', $(window).height() - 147);
 
             $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
@@ -213,6 +225,12 @@
         },
         goToAuthor: function() {
             window.location = this.model.get('user').absolute_url;
+        },
+        guessCodeMirrorLexer: function(val) {
+            if (val === 'html') { return 'htmlmixed'; }
+            if (val === 'js') return 'javascript';
+            if (val === 'rb') return 'ruby';
+            return val;
         },
         favoriteToggle: function() {
 
