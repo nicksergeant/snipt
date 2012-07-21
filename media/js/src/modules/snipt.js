@@ -144,7 +144,6 @@
                 lineNumbers: true,
                 matchBrackets: true,
                 mode: that.guessCodeMirrorLexer($selectLexer.val()),
-                //theme: 'monokai',
                 value: that.model.get('code')
             });
             $selectLexer.change(function() {
