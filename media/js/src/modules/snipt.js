@@ -357,7 +357,7 @@
                 'tags_list': $('label.tags textarea').val(),
                 'lexer': $('select[name="lexer"]').val(),
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
-                'code': window.editor.getSession().getValue(),
+                'code': window.editor.getValue(),
                 'blog_post': $('label.blog-post input').is(':checked'),
                 'publish_date': $('label.publish-date input').val(),
                 'public': $('label.public input').is(':checked')
