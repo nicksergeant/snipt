@@ -1509,18 +1509,11 @@ body.editing {
                         width: 696px;
 
                         section.code {
-                            padding: 13px 11px;
+                            padding: 8px 10px;
 
-                            div#editor {
-                                border: none;
+                            .CodeMirror {
+                                color: #333;
                                 font: normal 12px/16px $Consolas;
-                                font-weight: normal !important;
-                                margin: 0;
-                                position: relative;
-
-                               .ace_print_margin {
-                                    display: none;
-                                }
                             }
                         }
                         header {

@@ -132,12 +132,16 @@
 
             window.site.$main_edit.show();
 
-            // Ace editor
-            $('div#editor', window.site.$main_edit).css('height', ($(window).height() - 187));
-            window.editor = ace.edit('editor');
-            window.editor.setTheme('ace/theme/tomorrow');
-            window.editor.renderer.setShowGutter(false);
+            // CodeMirror editor
+            var $editor = $('div#editor', window.site.$main_edit);
+
+            window.editor = CodeMirror($editor.get(0), {
+                value: that.model.get('code')
+            });
+
+            window.editor.setSize('100%', $(window).height() - 177);
             window.editor.focus();
+
             $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
                 return false;

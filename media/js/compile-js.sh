@@ -8,6 +8,7 @@ cat media/js/libs/underscore.js \
     media/js/libs/json2.js \
     media/js/libs/backbone.js \
     media/js/libs/bootstrap.js \
+    media/js/libs/codemirror.js \
     media/js/plugins/jquery.hotkeys.js \
     media/js/plugins/jquery.infieldlabel.js \
     media/js/plugins/jquery.chosen.js \
