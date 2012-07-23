@@ -1,7 +1,7 @@
 from views import amazon_search, amazon_image, lexers, pro_signup, sitemap, tags, pro_signup_complete
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
-from registration.forms import RegistrationFormUniqueEmail
+from utils.forms import SniptRegistrationForm
 from django.http import HttpResponseRedirect
 from django.contrib import admin
 from snipts.views import search
@@ -53,7 +53,7 @@ urlpatterns = patterns('',
     url(r'^signup/$',
         'registration.views.register', {
             'backend': 'registration.backends.default.DefaultBackend',
-            'form_class': RegistrationFormUniqueEmail,
+            'form_class': SniptRegistrationForm,
         },
         name='registration_register'),
     url(r'', include('registration.backends.default.urls')),
