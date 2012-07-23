@@ -34,6 +34,9 @@ def detail(request, username, snipt_slug):
     snipt = get_object_or_404(Snipt, user__username=username, slug=snipt_slug)
     user = snipt.user
 
+    if 'linenos' not in snipt.stylized:
+        snipt.save()
+
     if user != request.user:
         if not snipt.public:
             if 'key' not in request.GET:
