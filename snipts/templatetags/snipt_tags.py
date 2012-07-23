@@ -47,6 +47,14 @@ def get_lexers(context, asvar):
     context[asvar] = get_lexers_list()
     return ''
 
+@tag(register, [Constant('for'), Variable()])
+def generate_line_numbers(context, line_numbers):
+    html = ''
+
+    for i in range(1, line_numbers + 1):
+        html = html + '<span class="special">{}</span>'.format(i)
+
+    return html
 
 @register.filter
 def md5(string):

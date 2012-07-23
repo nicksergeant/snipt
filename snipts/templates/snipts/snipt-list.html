@@ -19,7 +19,26 @@
                         {{ snipt.stylized|safe }}
                     </div>
                 {% else %}
-                    {{ snipt.stylized|safe }}
+                    {% if 'linenos' not in snipt.stylized %}
+                        <table class="highlighttable fakenos">
+                            <tbody>
+                                <tr>
+                                    <td class="linenos">
+                                        <div class="linenodiv">
+                                            <pre>
+                                                {% generate_line_numbers for snipt.line_count %}
+                                            </pre>
+                                        </div>
+                                    </td>
+                                    <td class="code">
+                                        {{ snipt.stylized|safe }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% else %}
+                        {{ snipt.stylized|safe }}
+                    {% endif %}
                 {% endif %}
                 {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
                     <a href="#" class="expand">
