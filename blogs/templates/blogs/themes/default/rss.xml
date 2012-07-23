@@ -5,6 +5,12 @@
             <description>Nick Sergeant</description>
             <title>Nick Sergeant</title>
             <link>http://nicksergeant.com/?rss</link>
+        {% elif request.blog_user.username == 'joshhudnall' %}
+            <atom:link href="http://snipt.joshhudnall.com/?rss" rel="self" type="application/rss+xml" />
+            <description>Josh Hudnall</description>
+            <title>Josh Hudnall</title>
+            <link>http://snipt.joshhudnall.com/?rss</link>
+        {% else %}
         {% elif request.blog_user.username == 'blog' %}
             <atom:link href="https://blog.snipt.net/?rss" rel="self" type="application/rss+xml" />
             <description>Snipt Blog</description>
