@@ -745,16 +745,55 @@ article.snipt {
             position: relative;
             z-index: 49;
 
-            div.highlight {
-                pre {
-                    background: transparent;
-                    border: none;
-                    font: normal 12px/16px $Consolas;
-                    font-weight: normal !important;
-                    overflow-x: auto;
-                    margin: 0 15px;
-                    min-height: 173px;
-                    padding: 13px 0;
+            table.highlighttable {
+                background: #F7F7F7;
+                height: 100%;
+            }
+            td {
+                padding: 0;
+                vertical-align: top;
+
+                &.linenos {
+                    border-right: 1px solid #EEEEEE;
+                    min-width: 24px;
+
+                    div.linenodiv {
+                        pre {
+                            border: 0;
+                            line-height: 16px;
+                            margin: 0;
+                            padding: 5px 3px 0 7px;
+                            white-space: normal;
+                            @include border-radius(0);
+
+                            span {
+                                color: #AAA;
+                                display: block;
+                                line-height: 16px;
+                                margin: 0;
+                                padding: 0;
+                                text-align: right;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                }
+                &.code {
+                    background: #FFFFFF;
+
+                    div.highlight {
+                        pre {
+                            background: transparent;
+                            border: none;
+                            font: normal 12px/16px $Consolas;
+                            margin: 0;
+                            min-height: 173px;
+                            overflow: auto;
+                            padding: 5px;
+                            white-space: pre;
+                            word-wrap: normal;
+                        }
+                    }
                 }
             }
             div.markdown {
@@ -1054,7 +1093,7 @@ article.snipt {
 
             div.highlight {
                 pre {
-                    padding-bottom: 60px;
+                    padding-bottom: 51px !important;
                 }
             }
             div.markdown {
@@ -1518,19 +1557,23 @@ body.editing {
                             .CodeMirror-gutter {
                                 min-height: 1000px;
                             }
+                            .CodeMirror-gutter-text {
+                                padding: 5px 3px 0 7px;
+                            }
+                            .CodeMirror-matchingbracket {
+                                color: #32A8F6;
+                            }
                         }
                         header {
                             h1 {
-                                margin-left: 9px;
-                                margin-top: 5px;
-                                margin-bottom: 6px;
+                                margin: 5px 0 6px 10px;
 
                                 input {
                                     color: #666;
                                     font: bold 16px/20px $Helvetica;
                                     margin: 0;
                                     width: 811px;
-                                    width: 668px;
+                                    width: 666px;
                                 }
                             }
                             h2 {

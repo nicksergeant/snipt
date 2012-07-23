@@ -66,7 +66,7 @@ class Snipt(models.Model):
         else:
             self.stylized = highlight(self.code,
                                       get_lexer_by_name(self.lexer, encoding='UTF-8'),
-                                      HtmlFormatter())
+                                      HtmlFormatter(linenos='table', linenospecial=1, lineanchors='line'))
         self.line_count = len(self.code.split('\n'))
 
         if self.lexer == 'markdown':
