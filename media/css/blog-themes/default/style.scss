@@ -137,6 +137,14 @@ body.blog-detail {
                         }
                         section.code {
                             height: auto;
+
+                            td.code {
+                                div.highlight {
+                                    pre {
+                                        width: 683px;
+                                    }
+                                }
+                            }
                         }
                     }
                     footer {
@@ -155,6 +163,21 @@ body.blog-detail {
 
         #dsq-content {
             margin-top: -38px;
+        }
+    }
+}
+body.blog-list {
+    article.snipt {
+        div.container {
+            section.code {
+                td.code {
+                    div.highlight {
+                        pre {
+                            width: 683px;
+                        }
+                    }
+                }
+            }
         }
     }
 }
