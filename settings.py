@@ -18,14 +18,17 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 if DEBUG:
     DB_USER = 'Nick'
+    DB_PASSWORD = ''
 else:
-    DB_USER = 'nick'
+    DB_USER = 'snipt'
+    DB_PASSWORD = 'zmDLn0nTi3No8lUiADb4BNFA'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'snipt',
         'USER': DB_USER,
-        'PASSWORD': '',
+        'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
         'PORT': '',
     }
