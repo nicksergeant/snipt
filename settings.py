@@ -20,7 +20,7 @@ if DEBUG:
     DB_USER = 'Nick'
     DB_PASSWORD = ''
 else:
-    DB_USER = 'snipt'
+    DB_USER = 'nick'
     DB_PASSWORD = 'zmDLn0nTi3No8lUiADb4BNFA'
 
 DATABASES = {
