@@ -1,12 +1,10 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
-from annoying.decorators import render_to
 from annoying.functions import get_object_or_None
 
 from snipts.models import Snipt
 
 
-@render_to('blogs/themes/default/list.html')
 def blog_list(request, username_or_custom_slug=None):
 
     if username_or_custom_slug:
@@ -30,9 +28,17 @@ def blog_list(request, username_or_custom_slug=None):
         context['snipts'] = context['snipts'][:20]
         return rss(request, context)
 
-    return context
+    if request.blog_user.profile.is_pro:
+        template = 'blogs/themes/pro-adams/list.html'
+    else:
+        template = 'blogs/themes/default/list.html'
 
-@render_to('blogs/themes/default/post.html')
+    return render_to_response(
+            template,
+            context,
+            context_instance=RequestContext(request)
+        )
+
 def blog_post(request, username_or_custom_slug):
 
     snipt = get_object_or_404(Snipt, user=request.blog_user,
@@ -54,7 +60,16 @@ def blog_post(request, username_or_custom_slug):
         'snipt': snipt,
     }
 
-    return context
+    if request.blog_user.profile.is_pro:
+        template = 'blogs/themes/pro-adams/post.html'
+    else:
+        template = 'blogs/themes/default/post.html'
+
+    return render_to_response(
+            template,
+            context,
+            context_instance=RequestContext(request)
+        )
 
 def rss(request, context):
     return render_to_response(

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body-class %}blog-site{% endblock %}
+{% block html-class %}blog-site{% endblock %}
+
+{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}
+
+{% block page-description %}{% endblock %}
+{% block rochester-made %}{% endblock %}
+{% block keyboard-shortcuts %}{% endblock %}
+{% block intercom %}{% endblock %}
+{% block js %}
+        {{ block.super }}
+        window.blog_post = true;
+{% endblock %}
+
+{% block header %}
+    <header class="main">
+        <div class="inner group">
+            <h1>
+                <a href="/">
+                    {% if blog_user.username == 'nick' %}
+                        Nick Sergeant
+                    {% elif blog_user.username == 'blog' %}
+                        Snipt Blog
+                    {% else %}
+                        {{ blog_user.username }}
+                    {% endif %}
+                </a>
+            </h1> 
+        </div>
+    </header>
+{% endblock %}
+{% block sub-header %}
+    <header class="sub">
+        <div class="inner group">
+            <ul class="bcrumb">
+                <li class="prompt">//</li>
+                <li><a href="/">blog</a></li>
+                {% block breadcrumb %}{% endblock %}
+                <li class="rss">
+                    <a href="/?rss">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+{% endblock %}
+{% block aside %}
+    <aside class="main">
+        {% if sidebar %}
+            <section class="sidebar">
+                {{ sidebar.stylized|safe }}
+            </section>
+        {% endif %}
+        <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
+            <ul class="powered">
+                <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
+            </ul>
+        </nav>
+    </aside>
+{% endblock %}
