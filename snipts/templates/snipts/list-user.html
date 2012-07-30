@@ -13,6 +13,9 @@
 {% endblock %}
 
 {% block aside-top %}
+    {% if not request.user.profile.is_pro %}
+        {% include 'carbon.html' %}
+    {% endif %}
     <div class="profile group">
         <span class="avatar" title="Manage your avatar at Gravatar.com" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
         <div class="meta">

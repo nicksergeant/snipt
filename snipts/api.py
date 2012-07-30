@@ -57,6 +57,17 @@ class PublicTagResource(ModelResource):
         allowed_methods = ['get']
         cache = SimpleCache()
 
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(PublicTagResource, self).build_filters(filters)
+
+        if 'q' in filters:
+            orm_filters['slug'] = filters['q']
+
+        return orm_filters
+
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
         bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
@@ -134,6 +145,16 @@ class PrivateTagResource(ModelResource):
         always_return_data = True
         cache = SimpleCache()
 
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(PublicTagResource, self).build_filters(filters)
+
+        if 'q' in filters:
+            orm_filters['slug'] = filters['q']
+
+        return orm_filters
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/%s/tag/%s/' % (bundle.request.user.username,
                                                        bundle.obj.slug)

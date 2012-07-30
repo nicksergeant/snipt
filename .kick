@@ -4,6 +4,7 @@ process do |files|
         when %r{^(.+).scss$}
             execute "scss -t compressed media/css/style.scss media/css/style.css"
             execute "scss -t compressed media/css/blog-themes/default/style.scss media/css/blog-themes/default/style.css"
+            execute "scss -t compressed media/css/blog-themes/pro-adams/style.scss media/css/blog-themes/pro-adams/style.css"
             execute "media/css/compile-css.sh"
         when %r{^(.+).js$}
             execute "media/js/compile-js.sh"

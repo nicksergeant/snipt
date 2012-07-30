@@ -1,61 +1,87 @@
-{% extends "base.html" %}
+{% load snipt_tags %}
 
-{% block body-class %}blog-site{% endblock %}
-{% block html-class %}blog-site{% endblock %}
+<!DOCTYPE html>
+<html lang="en" class="{% block html-class %}{% endblock %}">
+<head>
 
-{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}
+    <title>{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}</title>
+    <meta charset="utf-8" />
+    {% if 'page' in request.GET %}
+        <meta name="robots" content="noindex, follow" />
+    {% endif %}
 
-{% block page-description %}{% endblock %}
-{% block rochester-made %}{% endblock %}
-{% block keyboard-shortcuts %}{% endblock %}
-{% block intercom %}{% endblock %}
-{% block js %}
-        {{ block.super }}
-        window.blog_post = true;
-{% endblock %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-{% block header %}
-    <header class="main">
-        <div class="inner group">
-            <h1>
-                <a href="/">
-                    {% if blog_user.username == 'nick' %}
-                        Nick Sergeant
-                    {% elif blog_user.username == 'blog' %}
-                        Snipt Blog
-                    {% else %}
-                        {{ blog_user.username }}
-                    {% endif %}
-                </a>
-            </h1> 
-        </div>
-    </header>
-{% endblock %}
-{% block sub-header %}
-    <header class="sub">
-        <div class="inner group">
-            <ul class="bcrumb">
-                <li class="prompt">//</li>
-                <li><a href="/">blog</a></li>
-                {% block breadcrumb %}{% endblock %}
-                <li class="rss">
-                    <a href="/?rss">RSS</a>
-                </li>
-            </ul>
-        </div>
-    </header>
-{% endblock %}
-{% block aside %}
-    <aside class="main">
-        {% if sidebar %}
-            <section class="sidebar">
-                {{ sidebar.stylized|safe }}
-            </section>
-        {% endif %}
-        <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
-            <ul class="powered">
-                <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
-            </ul>
-        </nav>
-    </aside>
-{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/pro-adams/style.css?1" />
+
+    {% if has_snipts and not detail %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
+    {% endif %}
+
+    <!--[if IE]>
+        <style type="text/css">
+            .group {
+                display: block;
+                zoom: 1;
+            }
+        </style>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="{% block body-class %}{% endblock %}">
+
+    <div class="frame">
+
+        {% block header %}
+            <header class="main">
+                <h1>
+                    <a href="/">
+                        {% if blog_user.username == 'nick' %}
+                            Nick Sergeant
+                        {% elif blog_user.username == 'blog' %}
+                            Snipt Blog
+                        {% else %}
+                            {{ blog_user.username }}
+                        {% endif %}
+                    </a>
+                </h1>
+            </header>
+        {% endblock %}
+
+    </div>
+
+    {% if not debug %}
+        <script type="text/javascript">
+            var _gauges = _gauges || [];
+            (function() {
+                var t   = document.createElement('script');
+                t.type  = 'text/javascript';
+                t.async = true;
+                t.id    = 'gauges-tracker';
+                t.setAttribute('data-site-id', '4ed65ee7f5a1f530f1000001');
+                t.src = '//secure.gaug.es/track.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(t, s);
+            })();
+        </script>
+        <script type="text/javascript">
+            window._idl = {};
+            _idl.variant = 'modal';
+            (function() {
+                var idl = document.createElement('script');
+                idl.type = 'text/javascript';
+                idl.async = true;
+                idl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'banner');
+                document.getElementsByTagName('body')[0].appendChild(idl);
+            })();
+        </script>
+    {% endif %}
+
+</body>
+</html>

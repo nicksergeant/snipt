@@ -11,5 +11,8 @@
 {% endblock %}
 
 {% block aside-top %}
+    {% if not request.user.profile.is_pro %}
+        {% include 'carbon.html' %}
+    {% endif %}
     {% include "snipts/tags-public.html" %}
 {% endblock %}
