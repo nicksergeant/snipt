@@ -149,7 +149,7 @@ class PrivateTagResource(ModelResource):
         if filters is None:
             filters = {}
 
-        orm_filters = super(PublicTagResource, self).build_filters(filters)
+        orm_filters = super(PrivateTagResource, self).build_filters(filters)
 
         if 'q' in filters:
             orm_filters['slug'] = filters['q']
