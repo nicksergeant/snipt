@@ -1377,21 +1377,9 @@ div.site-notice {
         text-decoration: underline;
     }
 }
-article.snipt {
-    &:first-of-type {
-        margin-top: 20px;
-    }
-}
 body.detail {
     div.site-notice {
         margin-right: 100px;
-    }
-}
-body.is-pro {
-    article.snipt {
-        &:first-of-type {
-            margin-top: 30px;
-        }
     }
 }
 
