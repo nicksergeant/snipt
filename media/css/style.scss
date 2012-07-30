@@ -426,13 +426,14 @@ section.main {
         width: 190px;
 
         section.ad {
-            margin: 0 0 30px 15px;
+            margin: 0 0 0 15px;
 
             div.carbonad {
                 border-width: 1px;
+                border-bottom: 0;
                 height: 231px;
                 width: auto;
-                @include border-radius(5px);
+                @include multi-border-radius(5px, 5px, 0, 0);
 
                 div#azcarbon {
                     span.carbonad-image {
@@ -462,6 +463,14 @@ section.main {
                     }
                 }
             }
+        }
+        div.go-pro {
+            background: #FBFBFB;
+            border: 1px solid #E8E8E8;
+            margin: 0 0 30px 15px;
+            text-align: center;
+            padding: 18px 0;
+            @include multi-border-radius(0, 0, 5px, 5px);
         }
         section.tags {
             margin: 0 0 30px 15px;
