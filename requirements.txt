@@ -13,7 +13,6 @@ gunicorn
 lxml
 parsedatetime
 psycopg2
-pyelasticsearch
 Pygments
 python-memcached
 python-postmark
