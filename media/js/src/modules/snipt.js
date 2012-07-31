@@ -459,6 +459,8 @@
                 };
             }
 
+            var is_pro = $user.siblings('span.pro').length ? true : false;
+
             var data = {
                 code: $('textarea.raw', $el).text(),
                 created: $created.attr('title'),
@@ -481,9 +483,13 @@
                 title: $h1.text(),
                 user: {
                     absolute_url: $user.attr('href'),
-                    username: $user.text()
+                    username: $user.text(),
+                    profile: {
+                        is_pro: is_pro
+                    }
                 }
             };
+
             data['public'] = is_public;
             data.blog_post = is_blog_post;
 

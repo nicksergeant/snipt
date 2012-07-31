@@ -132,6 +132,9 @@ class PrivateUserResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
+        bundle.data['profile'] = {
+            'is_pro': bundle.obj.profile.is_pro
+        }
         return bundle
 
 class PrivateTagResource(ModelResource):
