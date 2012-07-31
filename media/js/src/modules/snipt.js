@@ -28,6 +28,7 @@
             this.editTemplate = _.template($('#edit').html());
 
             this.initLocalVars();
+            this.initLineNumbers();
         },
         events: {
             'click a.copy':     'copyFromClick',
@@ -263,6 +264,17 @@
             }
             return false;
         },
+        initLineNumbers: function() {
+            var lines = $('span.special', this.$el);
+            var that = this;
+
+            $.each(lines, function() {
+                var l = $(this);
+                var num = l.text().trim();
+                var url = that.model.get('absolute_url');
+                l.replaceWith('<a href="' + url + '#line-' + num + '">' + num + '</a>');
+            });
+        },
         initLocalVars: function() {
             this.$aside = $('aside', this.$el);
             this.$container = $('div.container', this.$el);
@@ -310,6 +322,7 @@
 
             this.$el.html(this.template({snipt: this.model.toSafe()}));
             this.initLocalVars();
+            this.initLineNumbers();
 
             if (this.model.get('blog_post') === true) {
                 this.$el.addClass('blog-post');

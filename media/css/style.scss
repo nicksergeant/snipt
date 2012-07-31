@@ -779,14 +779,20 @@ article.snipt {
                             white-space: normal;
                             @include border-radius(0);
 
-                            span {
+                            a, span {
                                 color: #AAA;
                                 display: block;
                                 line-height: 16px;
                                 margin: 0;
                                 padding: 0;
                                 text-align: right;
+                                text-decoration: none;
                                 white-space: nowrap;
+
+                                &:hover {
+                                    cursor: pointer;
+                                    text-decoration: underline;
+                                }
                             }
                         }
                     }
