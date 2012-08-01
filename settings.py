@@ -177,8 +177,8 @@ LOGGING = {
 }
 
 # Email
-DEFAULT_FROM_EMAIL = 'site@snipt.net'
-SERVER_EMAIL = 'site@snipt.net'
+DEFAULT_FROM_EMAIL = 'support@snipt.net'
+SERVER_EMAIL = 'support@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 POSTMARK_API_KEY = '608d3101-1706-4a96-819f-f2f36fe00fe0'
 
