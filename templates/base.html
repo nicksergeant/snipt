@@ -413,6 +413,10 @@
                         custom_data: {
                             'snipts count': {% snipts_count_for_user %},
                             'profile link': 'https://snipt.net/{{ request.user.username }}/'
+                        },
+                        widget: {
+                            activator: '#IntercomDefaultWidget',
+                            label: 'Support Chat'
                         }
                     };
                 </script>
