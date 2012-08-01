@@ -515,7 +515,10 @@
                     lexer_name: 'Text only',
                     new_from_js: true,
                     user: {
-                        username: ''
+                        username: '',
+                        profile: {
+                            is_pro: window.user_is_pro
+                        }
                     }
                 };
                 data['public'] = false;
