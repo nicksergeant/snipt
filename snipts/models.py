@@ -110,6 +110,8 @@ class Snipt(models.Model):
                     return 'http://nick.snipt.localhost/{}/'.format(self.slug)
                 else:
                     return 'http://nicksergeant.com/{}/'.format(self.slug)
+            elif self.user.id == 2156:
+                return 'http://www.rochacbruno.com.br/{}/'.format(self.slug)
             elif self.user.id == 10325:
                 return 'http://snipt.joshhudnall.com/{}/'.format(self.slug)
             else:

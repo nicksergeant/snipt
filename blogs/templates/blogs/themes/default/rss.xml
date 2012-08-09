@@ -5,6 +5,11 @@
             <description>Nick Sergeant</description>
             <title>Nick Sergeant</title>
             <link>http://nicksergeant.com/?rss</link>
+        {% elif request.blog_user.username == 'rochacbruno' %}
+            <atom:link href="http://www.rochacbruno.com.br/?rss" rel="self" type="application/rss+xml" />
+            <description>Bruno Cezar Rocha</description>
+            <title>Bruno Cezar Rocha</title>
+            <link>http://www.rochacbruno.com.br/?rss</link>
         {% elif request.blog_user.username == 'joshhudnall' %}
             <atom:link href="http://snipt.joshhudnall.com/?rss" rel="self" type="application/rss+xml" />
             <description>Josh Hudnall</description>
