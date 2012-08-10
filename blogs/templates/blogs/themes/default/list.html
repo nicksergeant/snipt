@@ -22,11 +22,14 @@
         {% paginate %}
     </section>
     <script type="text/javascript" id="disqus">
-        var disqus_shortname = 'snipt-net';
+        {% if blog_user.username == 'rochacbruno' %}
+            var disqus_shortname = 'rochacbrunoblog';
+        {% else %}
+            var disqus_shortname = 'snipt-net';
+        {% endif %}
         {% if debug %}
             var disqus_developer = 1;
         {% endif %}
-
         (function () {
             var s = document.createElement('script'); s.async = true;
             s.type = 'text/javascript';
