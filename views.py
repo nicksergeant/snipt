@@ -108,7 +108,7 @@ def pro_signup_complete(request):
 
         customer = stripe.Customer.create(
             card = token,
-            plan = 'snipt-pro',
+            plan = 'snipt-pro-monthly',
             email = request.user.email
         )
 
