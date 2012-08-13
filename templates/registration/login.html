@@ -2,7 +2,7 @@
 
 {% block page-title %}Log in - {{ block.super }}{% endblock %}
 
-{% block body-class %}{{ block.super }} static{% endblock %}
+{% block body-class %}{{ block.super }} static login{% endblock %}
 
 {% block content %}
     <form class="form-horizontal static-box" method="post" action="{% url django.contrib.auth.views.login %}">

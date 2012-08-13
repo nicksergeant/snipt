@@ -155,6 +155,10 @@
                 });
             }
 
+            if (this.$body.hasClass('login')) {
+                $('input#id_username').focus();
+            }
+
             window.ui_halted = false;
         },
         events: {
