@@ -5,13 +5,19 @@ from django.conf import settings
 
 from snipts.models import Snipt
 
+import datetime
+
 
 def blog_list(request, username_or_custom_slug=None):
 
     if username_or_custom_slug:
         return blog_post(request, username_or_custom_slug)
 
-    snipts = Snipt.objects.filter(user=request.blog_user, blog_post=True, public=True).order_by('-publish_date').exclude(title__iexact='Homepage')
+    snipts = Snipt.objects.filter(user=request.blog_user,
+                                  blog_post=True,
+                                  public=True,
+                                  publish_date__lte=datetime.datetime.now()
+                                  ).order_by('-publish_date').exclude(title__iexact='Homepage')
 
     sidebar = get_object_or_None(Snipt,
                                  user=request.blog_user,
@@ -29,10 +35,12 @@ def blog_list(request, username_or_custom_slug=None):
         context['snipts'] = context['snipts'][:20]
         return rss(request, context)
 
-    if request.blog_user.profile.is_pro and settings.DEBUG:
-        template = 'blogs/themes/pro-adams/list.html'
-    else:
-        template = 'blogs/themes/default/list.html'
+    #if request.blog_user.profile.is_pro and settings.DEBUG:
+        #template = 'blogs/themes/pro-adams/list.html'
+    #else:
+        #template = 'blogs/themes/default/list.html'
+
+    template = 'blogs/themes/default/list.html'
 
     return render_to_response(
             template,
@@ -45,6 +53,7 @@ def blog_post(request, username_or_custom_slug):
     snipt = get_object_or_404(Snipt, user=request.blog_user,
                                      blog_post=True,
                                      public=True,
+                                     publish_date__lte=datetime.datetime.now(),
                                      slug=username_or_custom_slug,
                                      )
 
@@ -61,10 +70,12 @@ def blog_post(request, username_or_custom_slug):
         'snipt': snipt,
     }
 
-    if request.blog_user.profile.is_pro and settings.DEBUG:
-        template = 'blogs/themes/pro-adams/post.html'
-    else:
-        template = 'blogs/themes/default/post.html'
+    #if request.blog_user.profile.is_pro and settings.DEBUG:
+        #template = 'blogs/themes/pro-adams/post.html'
+    #else:
+        #template = 'blogs/themes/default/post.html'
+
+    template = 'blogs/themes/default/post.html'
 
     return render_to_response(
             template,
