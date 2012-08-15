@@ -41,7 +41,7 @@ class BlogMiddleware:
                 pass
             pass
 
-        if host == 'www.rochacbruno.com.br' or host == 'rochacbruno.com.br':
+        if host == 'rochacbruno.com.br':
             request.blog_user = User.objects.get(id=2156)
 
         if host == 'snipt.joshhudnall.com':
