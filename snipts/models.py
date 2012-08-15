@@ -66,7 +66,7 @@ class Snipt(models.Model):
             # Vimeo embeds
             for match in re.findall('\[\[vimeo-(\d+)\-(\d+)x(\d+)\]\]', self.stylized):
                 self.stylized = self.stylized.replace('[[vimeo-{}-{}x{}]]'.format(str(match[0]), str(match[1]), str(match[2])),
-                    '<iframe src="http://player.vimeo.com/video/{}" width="{}" height="{}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'.format(match[0], match[1], match[2]))
+                    '<iframe src="https://player.vimeo.com/video/{}" width="{}" height="{}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'.format(match[0], match[1], match[2]))
 
         else:
             self.stylized = highlight(self.code,
