@@ -13,7 +13,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/pro-adams/style.css?1" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?1" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
@@ -37,11 +37,15 @@
 <body class="{% block body-class %}{% endblock %}">
 
     <div class="frame">
-
+        <div class="left-y ruler"></div>
+        <div class="right-y ruler"></div>
         {% block header %}
             <header class="main">
-                <h1>
-                    <a href="/">
+                <a href="/" class="logo">
+                    <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ blog_user.email|md5 }}?s=80');"></span>
+                </a>
+                <div class="bio">
+                    <a class="name" href="/">
                         {% if blog_user.username == 'nick' %}
                             Nick Sergeant
                         {% elif blog_user.username == 'blog' %}
@@ -50,10 +54,13 @@
                             {{ blog_user.username }}
                         {% endif %}
                     </a>
-                </h1>
+                    <p>
+                        I'm a front-end developer in Rochester, NY working full-time on the <a href="http://amara.org/">Amara</a> project for <a href="http://pculture.org/">PCF</a>. I founded <a href="https://snipt.net/">Snipt</a>.
+                    </p>
+                </div>
             </header>
         {% endblock %}
-
+        <!--{% block content %}{% endblock %}-->
     </div>
 
     {% if not debug %}
@@ -68,17 +75,6 @@
                 t.src = '//secure.gaug.es/track.js';
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(t, s);
-            })();
-        </script>
-        <script type="text/javascript">
-            window._idl = {};
-            _idl.variant = 'modal';
-            (function() {
-                var idl = document.createElement('script');
-                idl.type = 'text/javascript';
-                idl.async = true;
-                idl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'banner');
-                document.getElementsByTagName('body')[0].appendChild(idl);
             })();
         </script>
     {% endif %}

@@ -1,7 +1,7 @@
 process do |files|
     files.take_and_map do |file|
         case file
-        when %r{^(.+).scss$}
+        when %r{^(.+).s?css$}
             execute "scss -t compressed media/css/style.scss media/css/style.css"
             execute "scss -t compressed media/css/blog-themes/default/style.scss media/css/blog-themes/default/style.css"
             execute "scss -t compressed media/css/blog-themes/pro-adams/style.scss media/css/blog-themes/pro-adams/style.css"

@@ -60,9 +60,7 @@ $Consolas: Consolas, Menlo, "Courier New", monospace;
 
 // Page
 html, body {
-    background: #F2F2F2;
-    margin: 0;
-    padding: 0;
+    background: #FFF;
 }
 body {
     color: #666;
@@ -83,3 +81,78 @@ body {
 }
 
 // Global
+div.frame {
+    margin: 0 auto;
+    position: relative;
+    width: 980px;
+
+    div.ruler {
+        background: #EAEAEA;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        width: 1px;
+        z-index: 49;
+    }
+    div.left-y {
+        margin-left: 40px;
+    }
+    div.right-y {
+        margin-left: 760px;
+    }
+}
+header.main {
+    padding: 20px 0;
+    position: relative;
+    z-index: 50;
+
+    a.logo {
+        display: inline-block;
+
+        span.avatar {
+            display: inline-block;
+            height: 80px;
+            width: 80px;
+            @include border-radius(80px);
+        }
+    }
+    div.bio {
+        display: inline-block;
+        margin: 9px 0 0 12px;
+        vertical-align: top;
+
+        a.name {
+            color: #666;
+            font: 500 18px $Helvetica;
+            text-decoration: none;
+            -webkit-transition: color .08s linear;
+            -moz-transition: color .08s linear;
+            -o-transition: color .08s linear;
+            transition: color .08s linear;
+
+            &:hover {
+                color: black;
+            }
+        }
+        p {
+            color: #B7B7B7;
+            font: 500 12px $Helvetica;
+            line-height: 18px;
+            margin-top: 1px;
+            max-width: 400px;
+
+            a {
+                color: #B7B7B7;
+                font-weight: bold;
+                -webkit-transition: color .08s linear;
+                -moz-transition: color .08s linear;
+                -o-transition: color .08s linear;
+                transition: color .08s linear;
+
+                &:hover {
+                    color: #666;
+                }
+            }
+        }
+    }
+}

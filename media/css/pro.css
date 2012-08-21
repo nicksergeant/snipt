@@ -1,1 +1,34 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
 html,body{background:#FFF}body{color:#666;font:normal 14px/16px "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;text-rendering:optimizeLegibility}.group:after{content:".";display:block;height:0;clear:both;visibility:hidden}.hidden{display:none}div.frame{margin:0 auto;position:relative;width:980px}div.frame div.ruler{background:#EAEAEA;height:100%;position:fixed;top:0;width:1px;z-index:49}div.frame div.left-y{margin-left:40px}div.frame div.right-y{margin-left:760px}header.main{padding:20px 0;position:relative;z-index:50}header.main a.logo{display:inline-block}header.main a.logo span.avatar{display:inline-block;height:80px;width:80px;-webkit-background-clip:padding-box;-webkit-border-radius:80px;-moz-background-clip:padding-box;-moz-border-radius:80px;border-radius:80px;background-clip:padding-box}header.main div.bio{display:inline-block;margin:9px 0 0 12px;vertical-align:top}header.main div.bio a.name{color:#666;font:500 18px "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;text-decoration:none;-webkit-transition:color .08s linear;-moz-transition:color .08s linear;-o-transition:color .08s linear;transition:color .08s linear}header.main div.bio a.name:hover{color:black}header.main div.bio p{color:#B7B7B7;font:500 12px "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;line-height:18px;margin-top:1px;max-width:400px}header.main div.bio p a{color:#B7B7B7;font-weight:bold;-webkit-transition:color .08s linear;-moz-transition:color .08s linear;-o-transition:color .08s linear;transition:color .08s linear}header.main div.bio p a:hover{color:#666}

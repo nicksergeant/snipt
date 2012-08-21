@@ -1,7 +1,5 @@
-{% extends "snipts/snipt-list.html" %}
+<a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a><br />
 
-{% load humanize %}
-
-{% block aside %}{% endblock %}
-{% block author %}{% endblock %}
-{% block lexer %}{% endblock %}
+{% if detail %}
+    {{ snipt.stylized|safe }}
+{% endif %}
