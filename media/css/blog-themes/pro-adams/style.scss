@@ -185,30 +185,39 @@ section.main {
             margin-bottom: 40px;
 
             h1 {
-                color: #CCC;
+                color: #999;
                 font: bold 12px $Helvetica;
                 margin-bottom: 10px;
             }
             ul {
                 li {
-                    margin: 15px 0;
+                    margin: 0;
 
                     a {
-                        color: #CCC;
+                        color: #999;
+                        display: block;
                         font: normal 12px $Helvetica;
                         line-height: 18px;
+                        max-width: 220px;
+                        overflow: hidden;
                         text-decoration: none;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
 
-                        &:hover {
-                            color: #666;
+                        &:before {
+                            background: #EEE;
+                            content: "";
+                            display: inline-block;
+                            margin-right: 10px;
+                            height: 9px;
+                            width: 9px;
+                            @include border-radius;
                         }
-                    }
-                }
-            }
-            &.projects {
-                ul {
-                    li {
-                        margin: 0;
+                        &:hover {
+                            &:before {
+                                background: #CCC;
+                            }
+                        }
                     }
                 }
             }
