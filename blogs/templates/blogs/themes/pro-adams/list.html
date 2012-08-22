@@ -8,13 +8,9 @@
     {% autopaginate snipts 10 %}
     {% for snipt in snipts %}
         {% include "blogs/themes/pro-adams/snipt-list.html" %}
-    {% empty %}
-        <div class="empty-snipts">
-            {{ blog_user.username }} has no public blog posts.
-        </div>
     {% endfor %}
     {% paginate %}
-    <script type="text/javascript" id="disqus">
+    <script type="text/javascript">
         var disqus_shortname = 'snipt-net';
         {% if debug %}
             var disqus_developer = 1;

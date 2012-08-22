@@ -19,6 +19,11 @@ def blog_list(request, username_or_custom_slug=None):
                                   publish_date__lte=datetime.datetime.now()
                                   ).order_by('-publish_date').exclude(title__iexact='Homepage')
 
+    normal_snipts = Snipt.objects.filter(blog_post=False, user=request.blog_user, public=True).order_by('-created')
+    normal_snipts = normal_snipts.exclude(title__in=[''])
+    normal_snipts = normal_snipts.exclude(tags__name__in=['tmp'])
+    normal_snipts = normal_snipts[:3]
+
     sidebar = get_object_or_None(Snipt,
                                  user=request.blog_user,
                                  title='Blog Sidebar')
@@ -26,6 +31,7 @@ def blog_list(request, username_or_custom_slug=None):
     context = {
         'blog_user': request.blog_user,
         'has_snipts': True,
+        'normal_snipts': normal_snipts,
         'public': True,
         'sidebar': sidebar,
         'snipts': snipts,
