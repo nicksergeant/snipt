@@ -67,6 +67,11 @@ body {
     font: normal 14px/16px $Helvetica;
     text-rendering: optimizeLegibility;
 }
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 // Utils
 .group:after {
@@ -125,10 +130,10 @@ header.main {
             color: #666;
             font: 500 18px $Helvetica;
             text-decoration: none;
-            -webkit-transition: color .08s linear;
-            -moz-transition: color .08s linear;
-            -o-transition: color .08s linear;
-            transition: color .08s linear;
+            -webkit-transition: color .05s linear;
+            -moz-transition: color .05s linear;
+            -o-transition: color .05s linear;
+            transition: color .05s linear;
 
             &:hover {
                 color: black;
@@ -144,13 +149,67 @@ header.main {
             a {
                 color: #B7B7B7;
                 font-weight: bold;
-                -webkit-transition: color .08s linear;
-                -moz-transition: color .08s linear;
-                -o-transition: color .08s linear;
-                transition: color .08s linear;
+                -webkit-transition: color .05s linear;
+                -moz-transition: color .05s linear;
+                -o-transition: color .05s linear;
+                transition: color .05s linear;
 
                 &:hover {
                     color: #666;
+                }
+            }
+        }
+    }
+}
+section.main {
+    section.content {
+        float: left;
+        width: 760px;
+
+        div.gutter {
+            float: left;
+            width: 80px;
+        }
+        div.content-inner {
+            float: right;
+            margin-left: 16px;
+            width: 664px;
+        }
+    }
+    aside.main {
+        float: right;
+        padding-left: 20px;
+        width: 220px;
+
+        section.module {
+            margin-bottom: 40px;
+
+            h1 {
+                color: #CCC;
+                font: bold 12px $Helvetica;
+                margin-bottom: 10px;
+            }
+            ul {
+                li {
+                    margin: 15px 0;
+
+                    a {
+                        color: #CCC;
+                        font: normal 12px $Helvetica;
+                        line-height: 18px;
+                        text-decoration: none;
+
+                        &:hover {
+                            color: #666;
+                        }
+                    }
+                }
+            }
+            &.projects {
+                ul {
+                    li {
+                        margin: 0;
+                    }
                 }
             }
         }
