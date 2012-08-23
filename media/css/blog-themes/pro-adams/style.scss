@@ -119,6 +119,27 @@ header.main {
             height: 80px;
             width: 80px;
             @include border-radius(80px);
+            -webkit-box-shadow: 0 0 0px 1px white, 0 0 10px 0px rgba(0, 0, 0, .6);
+            -moz-box-shadow: 0 0 0px 1px white, 0 0 10px 0px rgba(0, 0, 0, .6);
+            box-shadow: 0 0 0px 1px white, 0 0 10px 0px rgba(0, 0, 0, .6);
+            -webkit-transition: box-shadow .05s linear;
+            -moz-transition: box-shadow .05s linear;
+            -o-transition: box-shadow .05s linear;
+            transition: box-shadow .05s linear;
+        }
+        &:hover {
+            span.avatar {
+                -webkit-box-shadow: 0 0 0px 1px white, 0 0 15px 0px rgba(0, 0, 0, 1);
+                -moz-box-shadow: 0 0 0px 1px white, 0 0 15px 0px rgba(0, 0, 0, 1);
+                box-shadow: 0 0 0px 1px white, 0 0 15px 0px rgba(0, 0, 0, 1);
+            }
+        }
+        &:active {
+            span.avatar {
+                -webkit-box-shadow: 0 0 0px 1px white, 0 0 10px 0px rgba(0, 0, 0, .6);
+                -moz-box-shadow: 0 0 0px 1px white, 0 0 10px 0px rgba(0, 0, 0, .6);
+                box-shadow: 0 0 0px 1px white, 0 0 10px 0px rgba(0, 0, 0, .6);
+            }
         }
     }
     div.bio {
@@ -214,6 +235,8 @@ section.main {
                             @include border-radius;
                         }
                         &:hover {
+                            color: #666;
+
                             &:before {
                                 background: #CCC;
                             }
