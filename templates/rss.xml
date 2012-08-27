@@ -9,6 +9,7 @@
                 <title>{{ snipt.title }}</title>
                 <link>{{ snipt.get_full_absolute_url }}</link>
                 <description><![CDATA[{{ snipt.code }}]]></description>
+                <tags>{% for tag in snipt.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}</tags>
                 <pubDate>{{ snipt.created|date:"r" }}</pubDate>
                 <guid isPermaLink="false">snipt-net-{{ snipt.id }}</guid>
             </item>
