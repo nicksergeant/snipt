@@ -40,7 +40,8 @@ class PublicUserResource(ModelResource):
         fields = ['id', 'username',]
         include_absolute_url = True
         allowed_methods = ['get']
-        list_allowed_methods = []
+        filtering = { 'username': 'exact', }
+        max_limit = 200
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
@@ -55,6 +56,7 @@ class PublicTagResource(ModelResource):
         resource_name = 'tag'
         fields = ['id', 'name',]
         allowed_methods = ['get']
+        max_limit = 200
         cache = SimpleCache()
 
     def build_filters(self, filters=None):
@@ -125,6 +127,7 @@ class PrivateUserResource(ModelResource):
         authentication = ApiKeyAuthentication()
         authorization = Authorization()
         always_return_data = True
+        max_limit = 200
         cache = SimpleCache()
 
     def apply_authorization_limits(self, request, object_list):
@@ -146,6 +149,7 @@ class PrivateTagResource(ModelResource):
         authentication = ApiKeyAuthentication()
         authorization = Authorization()
         always_return_data = True
+        max_limit = 200
         cache = SimpleCache()
 
     def build_filters(self, filters=None):
@@ -192,8 +196,8 @@ class PrivateSniptResource(ModelResource):
         authentication = ApiKeyAuthentication()
         authorization = Authorization()
         ordering = ['created', 'modified',]
-        max_limit = 200
         always_return_data = True
+        max_limit = 200
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
@@ -293,8 +297,8 @@ class PrivateFavoriteResource(ModelResource):
         authentication = ApiKeyAuthentication()
         authorization = Authorization()
         ordering = ['created',]
-        max_limit = 200
         always_return_data = True
+        max_limit = 200
         cache = SimpleCache()
 
     def obj_create(self, bundle, request=None, **kwargs):
