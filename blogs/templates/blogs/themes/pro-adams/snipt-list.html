@@ -1,12 +1,37 @@
+{% load snipt_tags %}
+
 <article class="group {% if detail %}detail{% endif %}">
     <div class="gutter"></div>
     <div class="content-inner">
         <h1><a href="{{ snipt.get_full_absolute_url }}">{% firstof snipt.title 'Untitled' %}</a></h1>
-        <div class="post-content">
-            {% if not detail %}
-                {{ snipt.stylized|safe }}
+        <div class="post-content autumn">
+            {% if snipt.lexer == 'markdown' %}
+                <div class="markdown">
+                    {{ snipt.stylized|safe }}
+                </div>
             {% else %}
-                {{ snipt.stylized|safe }}
+                {% if 'linenos' not in snipt.stylized %}
+                    <table class="highlighttable fakenos">
+                        <tbody>
+                            <tr>
+                                <td class="linenos">
+                                    <div class="linenodiv">
+                                        <pre>
+                                            {% generate_line_numbers for snipt.line_count %}
+                                        </pre>
+                                    </div>
+                                </td>
+                                <td class="code">
+                                    {{ snipt.stylized|safe }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% else %}
+                    {{ snipt.stylized|safe }}
+                {% endif %}
+            {% endif %}
+            {% if detail %}
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     var disqus_shortname = 'snipt-net';
