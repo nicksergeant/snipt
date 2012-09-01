@@ -30,3 +30,4 @@ git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystac
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
 git+https://github.com/toastdriven/django-tastypie.git#egg=django-tastypie
 git+git://github.com/jbalogh/django-cache-machine.git#egg=django-cache-machine
+git+git://github.com/mintchaos/typogrify.git#egg=typogrify

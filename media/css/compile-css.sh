@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cat media/css/reset.css \
+cat media/css/bootstrap.css \
+    media/css/reset.css \
     media/css/blog-themes/pro-adams/style.css \
     media/css/themes.css \
     > media/css/pro.css

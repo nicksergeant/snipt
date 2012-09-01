@@ -41,7 +41,7 @@ $Consolas: Consolas, Menlo, "Courier New", monospace;
     border-bottom-right-radius: $bottomRight;
     border-bottom-left-radius: $bottomLeft;
 }
-@mixin vertical-gradient($start: #000, $stop: #FFF) { background: ($start + $stop) / 2;
+@mixin vertical-gradient($start: #000, $stop: #FFF) { background: ($start);
     background: -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
     background: -moz-linear-gradient(center top, $start 0%, $stop 100%);
     background: -moz-gradient(center top, $start 0%, $stop 100%);
@@ -163,6 +163,7 @@ header.main {
             a {
                 color: #B7B7B7;
                 font-weight: bold;
+                text-decoration: underline;
                 -webkit-transition: color .05s linear;
                 -moz-transition: color .05s linear;
                 -o-transition: color .05s linear;
@@ -200,7 +201,7 @@ section.main {
             margin-bottom: 40px;
 
             h1 {
-                color: #999;
+                color: #666;
                 font: bold 12px $Helvetica;
                 margin-bottom: 10px;
             }
@@ -243,10 +244,12 @@ section.main {
 }
 div.pagination {
     clear: left;
-    margin-left: 96px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    text-align: center;
 }
 article {
-    margin: 50px 0;
+    margin: 40px 0;
 
     h1 {
         margin-bottom: 20px;
@@ -263,17 +266,24 @@ article {
 
             &:hover {
                 color: #000;
+                text-decoration: none;
             }
         }
     }
     div.post-content {
         color: #666;
         font: normal 14px/22px $Helvetica;
+        max-height: 200px;
+        position: relative;
+        overflow: hidden;
 
         p {
             margin: 20px 0;
 
-            &:last-of-type {
+            &:first-child {
+                margin-top: 0;
+            }
+            &:last-child {
                 margin-bottom: 0;
             }
         }
@@ -285,7 +295,6 @@ article {
             }
         }
         table.highlighttable {
-            background: #F7F7F7;
             height: 100%;
         }
         td {
@@ -293,74 +302,69 @@ article {
             vertical-align: top;
 
             &.linenos {
-                border-right: 1px solid #EEEEEE;
-                min-width: 24px;
-
-                div.linenodiv {
-                    pre {
-                        border: 0;
-                        line-height: 16px;
-                        margin: 0;
-                        padding: 5px 3px 0 7px;
-                        white-space: normal;
-                        @include border-radius(0);
-
-                        span {
-                            color: #AAA;
-                            display: block;
-                            font: normal 12px/16px $Consolas;
-                            line-height: 16px;
-                            margin: 0;
-                            padding: 0;
-                            text-align: right;
-                            text-decoration: none;
-                            white-space: nowrap;
-                        }
-                    }
-                }
+                display: none;
             }
-            &.code {
-                background: #FFFFFF;
+        }
+        div.highlight, div.markdown {
+            pre {
+                background: #F7F7F7;
+                border: 1px solid #EAEAEA;
+                font: normal 12px/16px $Consolas;
+                margin: 0;
+                overflow-x: auto;
+                padding: 10px;
+                white-space: pre;
+                word-wrap: normal;
+                width: 609px;
+                @include border-radius(5px);
 
-                div.highlight {
-                    pre {
-                        background: transparent;
-                        border: none;
-                        font: normal 12px/16px $Consolas;
-                        margin: 0;
-                        overflow-x: auto;
-                        padding: 5px;
-                        white-space: pre;
-                        word-wrap: normal;
-                        width: 583px;
-                        @include border-radius(0);
-
-                        &::-webkit-scrollbar {
-                            background: #F7F7F7;
-                            height: 16px;
-                            width: 16px;
-                            -webkit-appearance: none;
-                        }
-                        &::-webkit-scrollbar-thumb {
-                            border: 4px solid #F7F7F7;
-                            border-radius: 16px;
-                            background-color: #C7C7C7;
-                        }
-                    }
+                &::-webkit-scrollbar {
+                    background: #F7F7F7;
+                    height: 16px;
+                    width: 16px;
+                    -webkit-appearance: none;
+                    @include border-radius(5px);
+                }
+                &::-webkit-scrollbar-thumb {
+                    border: 4px solid #F7F7F7;
+                    border-radius: 16px;
+                    background-color: #C7C7C7;
                 }
             }
         }
         div.markdown {
-            pre {
-                min-height: 0;
-                margin: 20px 0 !important;
+            p {
+                strong {
+                    font-weight: bold;
+                }
             }
+            pre {
+                margin: 20px 0;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        &:after {
+            bottom: 0;
+            content: "";
+            height: 60px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            @include vertical-gradient(rgba(255, 255, 255, 0), white);
         }
     }
     &:first-of-type {
         margin-top: 0;
     }
-    &:last-of-type {
-        margin-bottom: 0;
+    &.detail {
+        div.post-content {
+            max-height: none;
+        }
     }
 }
