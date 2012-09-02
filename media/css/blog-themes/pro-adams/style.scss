@@ -294,6 +294,12 @@ article {
                 color: #000;
             }
         }
+        ul {
+            li {
+                line-height: 22px;
+                margin: 10px 0;
+            }
+        }
         table.highlighttable {
             height: 100%;
         }
@@ -365,6 +371,41 @@ article {
     &.detail {
         div.post-content {
             max-height: none;
+
+            &:after {
+                display: none;
+            }
         }
+    }
+}
+div#disqus_thread {
+    margin-top: 20px;
+
+    * {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    #dsq-content {
+        #dsq-sort-by {
+            display: none;
+        }
+        .dsq-comment-text {
+            color: #666;
+        }
+        h3 {
+            display: none;
+        }
+        .dsq-textarea-wrapper {
+            overflow: hidden;
+        }
+    }
+    #dsq-footer {
+        display: none;
+    }
+    button.dsq-button {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
     }
 }
