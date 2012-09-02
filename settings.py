@@ -2,7 +2,7 @@
 
 import os, socket
 
-if socket.gethostname() in ['mba.local', 'mbp.local']:
+if socket.gethostname() in ['air.local', 'pro.local']:
     DEBUG = True
 else:
     DEBUG = False
