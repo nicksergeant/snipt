@@ -57,7 +57,7 @@
                         {% endif %}
                     </a>
                     <p>
-                        I'm a front-end web developer in Rochester, NY working on the <a href="http://amara.org/">Amara</a> project for <a href="http://pculture.org/">PCF</a>. I also built <a href="https://snipt.net/">Snipt</a>.
+                        I'm a front-end web developer in Rochester, NY working on the <a href="http://amara.org/">Amara</a> project for <a href="http://pculture.org/">PCF</a>. I also created <a href="https://snipt.net/">Snipt</a>.
                     </p>
                 </div>
             </header>
@@ -90,7 +90,7 @@
                     <h1>Recent snipts</h1>
                     <ul>
                         {% for snipt in normal_snipts %}
-                            <li><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></li>
+                            <li><a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </section>

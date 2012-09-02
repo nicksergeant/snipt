@@ -1,34 +1,35 @@
 {% load snipt_tags typogrify_tags %}
 
 <article class="group {% if detail %}detail{% endif %}">
-    <div class="gutter"></div>
+    <div class="gutter">
+        <a href="{{ snipt.get_full_absolute_url }}">
+            <time pubdate datetime="{{ snipt.publish_date|date:'c' }}">
+                <span class="id">
+                    #{{ snipt.id }}
+                </span>
+                <span class="mon-day">
+                    {{ snipt.publish_date|date:'M' }} {{ snipt.publish_date|date:'j' }}
+                </span>
+                <span class="year">{{ snipt.publish_date|date:'Y' }}</span>
+            </time>
+        </a>
+    </div>
     <div class="content-inner">
         <h1><a href="{{ snipt.get_full_absolute_url }}">{% firstof snipt.title|typogrify 'Untitled' %}</a></h1>
         <div class="post-content autumn">
             {% if snipt.lexer == 'markdown' %}
                 <div class="markdown">
-                    {{ snipt.stylized|safe }}
+                    {% if detail %}
+                        {{ snipt.stylized|safe }}
+                    {% else %}
+                        {{ snipt.stylized|truncatewords_html:70|safe }}
+                    {% endif %}
                 </div>
             {% else %}
-                {% if 'linenos' not in snipt.stylized %}
-                    <table class="highlighttable fakenos">
-                        <tbody>
-                            <tr>
-                                <td class="linenos">
-                                    <div class="linenodiv">
-                                        <pre>
-                                            {% generate_line_numbers for snipt.line_count %}
-                                        </pre>
-                                    </div>
-                                </td>
-                                <td class="code">
-                                    {{ snipt.stylized|safe }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                {% else %}
+                {% if detail %}
                     {{ snipt.stylized|safe }}
+                {% else %}
+                    {{ snipt.stylized|truncatewords_html:100|safe }}
                 {% endif %}
             {% endif %}
             {% if detail %}
