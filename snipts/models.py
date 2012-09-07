@@ -48,7 +48,7 @@ class Snipt(models.Model):
             self.slug = slugify_uniquely(self.title, Snipt)
 
         if not self.key:
-            self.key = md5.new(self.slug + str(datetime.datetime.now() + random.random())).hexdigest()
+            self.key = md5.new(self.slug + str(datetime.datetime.now()) + str(random.random())).hexdigest()
 
         if self.lexer == 'markdown':
             self.stylized = markdown(self.code, 'default')
