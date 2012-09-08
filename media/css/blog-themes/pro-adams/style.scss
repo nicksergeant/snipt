@@ -260,52 +260,88 @@ article {
 
     div.gutter {
         a {
-            text-decoration: none;
+            display: block;
+            height: 20px;
+            text-align: center;
+            width: 100%;
 
             time {
-                background: #FFF;
+                background: #F9F9F9;
                 border: 1px solid #EAEAEA;
-                display: block;
-                margin-top: -14px;
+                display: inline-block;
+                height: 20px;
+                margin-top: 4px;
                 position: relative;
-                z-index: 51;
-                @include border-radius(3px);
+                width: 20px;
+                z-index: 49;
+                @include border-radius(20px);
 
                 span {
-                    display: block;
-                    text-align: center;
+                    display: none;
+                }
+            }
+            &:hover, &.detail {
+                height: auto;
+                text-decoration: none;
+                width: auto;
 
-                    &.id {
-                        background: #F9F9F9;
-                        border-bottom: 1px solid #EAEAEA;
-                        color: #CCC;
-                        font: normal 11px $Helvetica;
-                        padding: 2px 0;
+                &:before {
+                    display: none;
+                }
+                time {
+                    background: #FFF;
+                    border: 1px solid #EAEAEA;
+                    display: block;
+                    height: auto;
+                    margin-top: -14px;
+                    position: relative;
+                    width: auto;
+                    z-index: 51;
+                    @include border-radius(3px);
+
+                    span {
+                        display: block;
+                        text-align: center;
+
+                        &.id {
+                            background: #F9F9F9;
+                            border-bottom: 1px solid #EAEAEA;
+                            color: #CCC;
+                            font: normal 11px $Helvetica;
+                            padding: 2px 0;
+                        }
+                        &.mon-day {
+                            color: #999;
+                            font: normal 17px $Helvetica;
+                            letter-spacing: -1px;
+                            padding-top: 25px;
+                            text-transform: uppercase;
+                        }
+                        &.year {
+                            color: #999;
+                            font: normal 12px $Helvetica;
+                            letter-spacing: -1px;
+                            padding-bottom: 10px;
+                            text-transform: uppercase;
+                        }
                     }
-                    &.mon-day {
-                        color: #999;
-                        font: normal 17px $Helvetica;
-                        letter-spacing: -1px;
-                        padding-top: 9px;
-                        text-transform: uppercase;
-                    }
-                    &.year {
-                        color: #999;
-                        font: normal 12px $Helvetica;
-                        letter-spacing: -1px;
-                        padding-bottom: 9px;
-                        text-transform: uppercase;
+                    &:after {
+                        background: transparent url('/static/images/date-arrow.gif') top left no-repeat;
+                        content: "";
+                        display: block;
+                        height: 11px;
+                        position: absolute;
+                        right: -6px;
+                        top: 22px;
+                        width: 6px;
                     }
                 }
-                &:after {
-                    background: transparent url('/static/images/date-arrow.gif') top left no-repeat;
-                    content: "";
-                    display: block;
-                    height: 11px;
-                    position: absolute;
-                    right: -6px;
-                    top: 22px;
-                    width: 6px;
+            }
+            &.detail {
+                time {
+                    span.mon-day {
+                        padding-top: 10px;
+                    }
                 }
             }
         }

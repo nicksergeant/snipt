@@ -2,7 +2,7 @@
 
 <article class="group {% if detail %}detail{% endif %}">
     <div class="gutter">
-        <a href="{{ snipt.get_full_absolute_url }}">
+        <a href="{{ snipt.get_full_absolute_url }}" {% if detail %}class="detail"{% endif %}>
             <time pubdate datetime="{{ snipt.publish_date|date:'c' }}">
                 <span class="id">
                     #{{ snipt.id }}
