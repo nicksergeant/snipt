@@ -116,7 +116,14 @@
                                         Upgrade to Pro
                                     </a>
                                 </li>
-                            {% endif %}
+                            {% else %}
+                                <li>
+                                    <a href="mailto:pro@snipt.net">
+                                        <i class="icon-star-empty icon-white"></i>
+                                        Email Pro Support
+                                    </a>
+                                </li>
+                            {% else %}
                             <li>
                                 <a href="/password/change/">
                                     <i class="icon-wrench icon-white"></i>
@@ -197,9 +204,11 @@
                             <li class="blog">
                                 <a href="https://blog.snipt.net/">Blog</a>
                             </li>
-                            <li class="pro">
-                                <a href="/pro/">Go Pro</a>
-                            </li>
+                            {% if not request.user.profile.is_pro %}
+                                <li class="pro">
+                                    <a href="/pro/">Go Pro</a>
+                                </li>
+                            {% endif %}
                             <li class="roadmap">
                                 <a href="/todo/" {% if '/todo/' in request.path %}class="active"{% endif %}>Roadmap</a>
                             </li>
