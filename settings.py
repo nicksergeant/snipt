@@ -228,6 +228,9 @@ else:
         },
     }
 
+# API
+TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
+
 # Extensions
 if DEBUG:
     INSTALLED_APPS += ('django_extensions',)
