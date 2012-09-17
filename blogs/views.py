@@ -70,6 +70,10 @@ def blog_post(request, username_or_custom_slug):
     normal_snipts = normal_snipts.exclude(tags__name__in=['tmp'])
     normal_snipts = normal_snipts[:3]
 
+    if snipt.user != request.user:
+        snipt.views = snipt.views + 1
+        snipt.save()
+
     context = {
         'blog_user': request.blog_user,
         'detail': True,
