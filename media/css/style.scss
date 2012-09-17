@@ -1195,6 +1195,20 @@ article.snipt {
             }
         }
     }
+    &.blog-post.favorited {
+        div.container {
+            header {
+                @include vertical-gradient-with-image(url('/static/images/favorited-icon.png') top right no-repeat, #FFF, #F0F4FC);
+                @include inset-box-shadow(0, -1px, 0, #E3E9F5);
+
+                h1 {
+                    a {
+                        padding-right: 25px;
+                    }
+                }
+            }
+        }
+    }
     &.snipt-expand {
         div.container {
             section.code {
