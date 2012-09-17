@@ -205,6 +205,10 @@ class PrivateSniptResource(ModelResource):
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
 
+        if bundle.data['user'].data['profile']['is_pro']:
+            bundle.data['views'] = bundle.obj.views
+            bundle.data['favs'] = bundle.obj.favs()
+
         if bundle.data['publish_date']:
             bundle.data['publish_date'] = date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')
 

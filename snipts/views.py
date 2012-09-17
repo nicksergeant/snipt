@@ -46,6 +46,9 @@ def detail(request, username, snipt_slug):
                 if request.GET.get('key') != snipt.key:
                     raise Http404
 
+        snipt.views = snipt.views + 1
+        snipt.save()
+
     tags = Tag.objects
 
     if user == request.user:

@@ -109,6 +109,9 @@ class Snipt(models.Model):
     def __unicode__(self):
         return self.title
 
+    def favs(self):
+        return Favorite.objects.filter(snipt=self).count()
+
     def get_absolute_url(self):
 
         if self.blog_post:

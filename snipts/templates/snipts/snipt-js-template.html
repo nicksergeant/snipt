@@ -43,7 +43,7 @@
                         <a class="copy" href="#">Copy</a>
                     </li>
                 </ul>
-                <section class="tags">
+                <section class="meta tags">
                     <h2><%= snipt.tags.length %> tag<% if ((snipt.tags.length > 1) || (snipt.tags.length === 0)) { print('s'); } %></h2>
                     <ul>
                         <% for (var i=0; i < snipt.tags.length; i++) { %>
@@ -53,6 +53,14 @@
                         <% } %>
                     </ul>
                 </section>
+                <% if (snipt.user.profile.is_pro) { %>
+                    <section class="meta stats">
+                        <ul>
+                            <li><%= snipt.views %> views</li>
+                            <li><%= snipt.favs %> favs</li>
+                        </ul>
+                    </section>
+                <% } %>
             </aside>
         </div>
         <footer>

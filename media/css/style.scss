@@ -753,7 +753,7 @@ article.snipt {
             }
         }
         section.code {
-            height: 200px;
+            height: 230px;
             overflow: hidden;
             position: relative;
             z-index: 49;
@@ -806,7 +806,7 @@ article.snipt {
                             border: none;
                             font: normal 12px/16px $Consolas;
                             margin: 0;
-                            min-height: 190px;
+                            min-height: 220px;
                             overflow-x: auto;
                             padding: 5px;
                             white-space: pre;
@@ -1010,8 +1010,8 @@ article.snipt {
                 }
             }
         }
-        section.tags {
-            padding-top: 15px;
+        section.meta {
+            padding-top: 10px;
 
             h2 {
                 background: transparent url('/static/images/snipt-tags-icon.png') 15px center no-repeat;
@@ -1023,6 +1023,8 @@ article.snipt {
                 margin: 0;
 
                 li {
+                    color: #999;
+                    font: normal 12px $Helvetica;
                     list-style-type: none;
                     margin: 5px 10px 5px 35px;
 
