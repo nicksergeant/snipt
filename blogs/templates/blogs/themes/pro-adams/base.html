@@ -4,7 +4,9 @@
 <html lang="en" class="{% block html-class %}{% endblock %}">
 <head>
 
-    <title>{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}</title>
+    <title>
+        {% block page-title %}
+            {% if blog_user.username == 'nick' %}// Nick Sergeant{% elif blog_user.username == 'ashley' %}// Ashley Sergeant{% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}</title>
     <meta charset="utf-8" />
     {% if 'page' in request.GET %}
         <meta name="robots" content="noindex, follow" />
@@ -15,7 +17,7 @@
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/pro.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?6" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?7" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
