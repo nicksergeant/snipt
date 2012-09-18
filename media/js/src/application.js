@@ -17,7 +17,4 @@ jQuery(function($) {
     var SiteView = snipt.module('site').SiteView;
     window.site = new SiteView();
 
-    if (window.detail && !window.blog_post) {
-        window.site.$snipts.eq(0).trigger('selectSnipt');
-    }
 });
