@@ -12,3 +12,5 @@ getting a local copy running.
 3. `pip install -r requirements`
 4. Copy local_settings-template.py to local_settings.py and edit the settings.
 5. Run it!
+
+Any problems / questions / bugs, [create an issue](https://github.com/nicksergeant/snipt/issues). Thanks! :)
