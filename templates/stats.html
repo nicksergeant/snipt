@@ -24,7 +24,7 @@
             <tbody>
                 {% for snipt in snipts %}
                     <tr>
-                        <td><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></td>
+                        <td><a href="{{ snipt.get_absolute_url }}">{% firstof snipt.title 'Untitled' %}</a></td>
                         <td>{{ snipt.views }}</td>
                         <td>{{ snipt.favs }}</td>
                     </tr>
