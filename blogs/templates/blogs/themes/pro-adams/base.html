@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?9" />
 
+    <link rel="shortcut icon" href="/static/images/blog-favicon.ico" >
+
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
     {% endif %}
