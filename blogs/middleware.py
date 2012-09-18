@@ -12,11 +12,7 @@ class BlogMiddleware:
         host_s = host.replace('www.', '').split('.')
 
         if host != 'snipt.net' and host != 'snipt.localhost':
-            # nick.snipt.net or nicksergeant.com or blog.nicksergeant.com
-
             if len(host_s) > 2:
-                # nick.snipt.net or blog.nicksergeant.com
-
                 if host_s[1] == 'snipt':
                     # nick.snipt.net or nick.snipt.localhost
 
@@ -29,18 +25,8 @@ class BlogMiddleware:
                             request.blog_user = get_object_or_404(User, username__iexact=blog_user.replace('-', '_'))
                     else:
                         request.blog_user = get_object_or_404(User, username__iexact=blog_user)
-                else:
-                    # blog.nicksergeant.com
 
-                    # Get user for that domain
-                    pass
-            else:
-                # nicksergeant.com
-
-                # Get user for that domain
-                pass
-            pass
-
+        # TODO: build this into account settings.
         if host == 'rochacbruno.com.br':
             request.blog_user = User.objects.get(id=2156)
 
