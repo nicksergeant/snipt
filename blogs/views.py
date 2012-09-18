@@ -41,7 +41,7 @@ def blog_list(request, username_or_custom_slug=None):
         context['snipts'] = context['snipts'][:20]
         return rss(request, context)
 
-    if request.blog_user.profile.is_pro and request.blog_user.username == 'nick':
+    if request.blog_user.profile.is_pro and request.blog_user.username in ['nick', 'ashley']:
         template = 'blogs/themes/pro-adams/list.html'
     else:
         template = 'blogs/themes/default/list.html'
@@ -84,7 +84,7 @@ def blog_post(request, username_or_custom_slug):
         'snipt': snipt,
     }
 
-    if request.blog_user.profile.is_pro and request.blog_user.username == 'nick':
+    if request.blog_user.profile.is_pro and request.blog_user.username in ['nick', 'ashley']:
         template = 'blogs/themes/pro-adams/post.html'
     else:
         template = 'blogs/themes/default/post.html'

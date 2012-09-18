@@ -35,3 +35,6 @@ class BlogMiddleware:
 
         if host == 'nicksergeant.com':
             request.blog_user = User.objects.get(id=3)
+
+        if host == 'ashleysergeant.com':
+            request.blog_user = User.objects.get(id=18)
