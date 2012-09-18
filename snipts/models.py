@@ -37,6 +37,8 @@ class Snipt(models.Model):
     key          = models.CharField(max_length=100, blank=True, null=True)
     public       = models.BooleanField(default=False)
     blog_post    = models.BooleanField(default=False)
+
+    views        = models.IntegerField(default=0)
     
     created      = models.DateTimeField(auto_now_add=True, editable=False)
     modified     = models.DateTimeField(auto_now=True, editable=False)
@@ -106,6 +108,9 @@ class Snipt(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def favs(self):
+        return Favorite.objects.filter(snipt=self).count()
 
     def get_absolute_url(self):
 

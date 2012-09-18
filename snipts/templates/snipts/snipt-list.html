@@ -77,7 +77,7 @@
                     {% endif %}
                 </ul>
                 {% if snipt.tags.all %}
-                    <section class="tags">
+                    <section class="meta tags">
                         <h2>{{ snipt.tags.all|length }} tag{{ snipt.tags.all|pluralize }}</h2>
                         <ul>
                             {% for tag in snipt.sorted_tags %}
@@ -89,6 +89,16 @@
                                     {% endif %}
                                 </li>
                             {% endfor %}
+                        </ul>
+                    </section>
+                {% endif %}
+                {% if request.user.profile.is_pro and snipt.user == request.user %}
+                    <section class="meta stats">
+                        <ul>
+                            <li>{{ snipt.views|intcomma }} view{{ snipt.views|pluralize }}
+                            {% if not snipt.blog_post %}
+                                <li>{{ snipt.favs|intcomma }} fav{{ snipt.favs|pluralize }}
+                            {% endif %}
                         </ul>
                     </section>
                 {% endif %}
