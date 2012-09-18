@@ -23,7 +23,10 @@ def dep():
     local('scss -t compressed media/css/blog-themes/pro-adams/style.scss media/css/blog-themes/pro-adams/style.css')
     local('media/css/compile-css.sh')
 
-    local('git commit -am "Compiling CSS."')
+    try:
+        local('git commit -am "Compiling CSS."')
+    except:
+        pass
 
     _display_message('Collect static')
     ################
