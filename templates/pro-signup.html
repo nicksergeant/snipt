@@ -20,9 +20,6 @@
 
 {% block content %}
     <div class="static-box">
-        <a href="https://stripe.com" title="Secure payment with Stripe" class="stripe">
-            <img src="/static/images/stripe.png" alt="" />
-        </a>
         <h2>Snipt <span class="pro">Pro</span> signup</h2>
         <form class="form-horizontal" id="pro-signup" method="post" action="/pro/signup/complete/">
             <fieldset>
@@ -89,10 +86,10 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">Sign up</button>
                     <div class="security">
-                        <a href="https://stripe.com/help/security">Secure</a> by default. Every page on Snipt is secured with HTTPS.
+                        <a href="https://stripe.com/help/security">Secure</a> by default. Every Snipt page is secure.
                     </div>
                     <div class="stripe">
-                        Your credit card is stored securely with <a href="https://stripe.com">Stripe</a> and we use <a href="https://stripe.com/docs/stripe.js">Stripe.js</a> for maximum security (<a href="/static/js/src/modules/site.js">view the source</a>).
+                        Your credit card is stored securely with <a href="https://stripe.com">Stripe</a> and we use <a href="https://stripe.com/docs/stripe.js">Stripe.js</a> for maximum security.
                     </div>
                 </div>
             </fieldset>

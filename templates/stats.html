@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load pagination_tags %}
+
+{% block page-title %}Stats {{ block.super }}{% endblock %}
+
+{% block body-class %}{{ block.super }} static stats{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/stats/">Stats</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="static-box">
+        {% autopaginate snipts 100 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Snipt</th>
+                    <th>Views</th>
+                    <th>Favs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for snipt in snipts %}
+                    <tr>
+                        <td><a href="{{ snipt.get_absolute_url }}">{{ snipt.title }}</a></td>
+                        <td>{{ snipt.views }}</td>
+                        <td>{{ snipt.favs }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% paginate %}
+    </div>
+{% endblock %}

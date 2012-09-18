@@ -1,4 +1,5 @@
-from views import amazon_search, amazon_image, lexers, pro_signup, sitemap, tags, pro_signup_complete
+from views import (amazon_search, amazon_image, lexers, pro_signup,
+                   sitemap, tags, pro_signup_complete, stats)
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from utils.forms import SniptRegistrationForm
@@ -39,6 +40,8 @@ urlpatterns = patterns('',
     url(r'^pro/$', direct_to_template, {'template': 'pro.html'}),
     url(r'^pro/signup/$', pro_signup),
     url(r'^pro/signup/complete/$', pro_signup_complete),
+
+    url(r'^stats/$', stats),
 
     url(r'^api/public/lexer/$', lexers),
     url(r'^api/public/a/$', amazon_search),

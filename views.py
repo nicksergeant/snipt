@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from django.template.defaultfilters import striptags
@@ -8,6 +8,7 @@ from snipts.utils import get_lexers_list
 from django.db.models import Count
 from amazon.api import AmazonAPI
 from django.conf import settings
+from snipts.models import Snipt
 from taggit.models import Tag
 
 import os, urllib
@@ -134,6 +135,18 @@ def sitemap(request):
                              {'tags': tags},
                              context_instance=RequestContext(request),
                              mimetype='application/xml')
+
+@render_to('stats.html')
+def stats(request):
+
+    if not request.user.profile.is_pro:
+        raise Http404
+
+    snipts = Snipt.objects.filter(user=request.user).order_by('-views')
+
+    return {
+        'snipts': snipts
+    }
 
 @render_to('tags.html')
 def tags(request):

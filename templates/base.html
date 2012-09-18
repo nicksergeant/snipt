@@ -103,6 +103,14 @@
                                     View profile
                                 </a>
                             </li>
+                            {% if request.user.profile.is_pro %}
+                                <li>
+                                    <a href="/stats/">
+                                        <i class="icon-user icon-white"></i>
+                                        View stats
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li>
                                 <a href="/api/">
                                     <i class="icon-fire icon-white"></i>

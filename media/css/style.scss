@@ -110,6 +110,7 @@ header.main {
         }
         h1 {
             float: left;
+            margin: 0;
             position: relative;
             z-index: 50;
             
@@ -191,6 +192,7 @@ header.main {
                         }
                     }
                     button#add-snipt {
+                        font-size: 15px;
                         font-weight: bold;
                         margin-top: -3px;
                         padding: 7px 12px 9px 12px;
@@ -1254,18 +1256,6 @@ div.pagination {
             a {
                 color: #3BAAF3;
             }
-            &.next {
-                a {
-                    line-height: 33px;
-                    padding-bottom: 1px;
-                }
-            }
-            &.prev {
-                a {
-                    line-height: 33px;
-                    padding-bottom: 1px;
-                }
-            }
         }
     }
 }
@@ -1528,6 +1518,11 @@ body.static {
                 line-height: 18px;
                 margin: 5px 0;
             }
+        }
+        h2 {
+            font-size: 24px;
+            line-height: 36px;
+            margin: 0;
         }
         h3 {
             margin-bottom: 20px;
@@ -1878,15 +1873,14 @@ body.pro {
             font-size: 13px;
         }
         div.security {
-            background: #FCF8E3 url('/static/images/private-icon.png') 5px -12px no-repeat;
+            background: #FCF8E3 url('/static/images/private-icon.png') 7px -15px no-repeat;
             border: 1px solid #FBEED5;
             color: #C09853;
             display: inline-block;
             font-size: 12px;
             margin-left: 10px;
-            margin-top: 1px;
-            padding: 5px 10px 5px 33px;
-            vertical-align: -1px;
+            margin-top: -1px;
+            padding: 6px 10px 6px 33px;
             @include border-radius;
 
             a {
@@ -1929,7 +1923,7 @@ body.pro {
         div.stripe {
             color: #C2C2C2;
             font: bold 11px/15px $Helvetica;
-            margin: 10px 3px 0 80px;
+            margin: 10px 65px 0 92px;
             text-align: center;
 
             a {
@@ -1967,5 +1961,10 @@ body.tags {
     }
     aside.main {
         padding-top: 30px;
+    }
+}
+body.stats {
+    table {
+        margin-bottom: 0;
     }
 }
