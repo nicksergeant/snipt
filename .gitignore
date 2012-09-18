@@ -5,5 +5,7 @@
 *.pgdump
 *.pyc
 
+local_settings.py
 media/cache
 static
+tags

@@ -1,4 +1,4 @@
-# Django settings for sidepros project.
+# Django settings for snipt project.
 
 import os, socket
 
@@ -6,29 +6,23 @@ if socket.gethostname() in ['air.local', 'pro.local']:
     DEBUG = True
 else:
     DEBUG = False
+
 TEMPLATE_DEBUG = DEBUG
 BASE_PATH = os.path.dirname(__file__)
 
 ADMINS = (
-    ('Nick Sergeant', 'nick@snipt.net'),
+    ('Name', 'name@domain.com'),
 )
 MANAGERS = ADMINS
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-if DEBUG:
-    DB_USER = 'Nick'
-    DB_PASSWORD = ''
-else:
-    DB_USER = 'nick'
-    DB_PASSWORD = 'zmDLn0nTi3No8lUiADb4BNFA'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'snipt',
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -89,7 +83,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'afk&6t4l#x+9hhhpl2&3zm&me06fcu&v3*j54kxitbe8kg-19)'
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -180,13 +174,10 @@ LOGGING = {
 DEFAULT_FROM_EMAIL = 'support@snipt.net'
 SERVER_EMAIL = 'support@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
-POSTMARK_API_KEY = '608d3101-1706-4a96-819f-f2f36fe00fe0'
+POSTMARK_API_KEY = ''
 
 # Virtualenv
-if DEBUG:
-    VIRTUALENV_PATH = '/Users/Nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
-else:
-    VIRTUALENV_PATH = '/home/nick/.virtualenvs/snipt/lib/python2.7/site-packages/'
+VIRTUALENV_PATH = ''
 
 # Account settings
 LOGIN_REDIRECT_URL = '/'
@@ -234,3 +225,8 @@ TASTYPIE_CANNED_ERROR = "There was an error with your request. The site develope
 # Extensions
 if DEBUG:
     INSTALLED_APPS += ('django_extensions',)
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

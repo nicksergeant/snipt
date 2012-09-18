@@ -15,13 +15,15 @@ import os, urllib
 
 import stripe
 
+from local_settings import AMAZON_API_KEY, AMAZON_API_SECRET, STRIPE_API_KEY
+
 
 @ajax_request
 def amazon_search(request):
 
     products = []
     if request.GET.get('q'):
-        amazon = AmazonAPI('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a', 'snipt-20')
+        amazon = AmazonAPI(AMAZON_API_KEY, AMAZON_API_SECRET, 'snipt-20')
         products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='Books')
 
     result = []
@@ -105,7 +107,7 @@ def pro_signup_complete(request):
     if request.method == 'POST':
 
         token = request.POST['token']
-        stripe.api_key = '5XchbRsWVbksTRWSX67kOdBnCf01DxSh'
+        stripe.api_key = STRIPE_API_KEY
 
         plan = 'snipt-pro'
 

@@ -5,8 +5,10 @@ from boto.s3.key import Key
 
 import datetime, sys
 
+from local_settings import AMAZON_API_KEY, AMAZON_API_SECRET, ENV_HOST
 
-env.hosts = ['nick@snipt.net:39039']
+
+env.hosts = [ENV_HOST]
 env.site_path = '/var/www/snipt'
 env.venv_path = '/home/nick/.virtualenvs/snipt'
 
@@ -88,7 +90,7 @@ def db_backup():
 
     local('pg_dump snipt > {}'.format(filename))
 
-    conn = S3Connection('AKIAJJRRQPTSPKB7GYOA', 'DIYz2g5vPjcWE4/YI7wEuUVAskwJxs2llFvGyI1a')
+    conn = S3Connection(AMAZON_API_KEY, AMAZON_API_SECRET)
     snipt_bucket = conn.get_bucket('snipt')
 
     k = Key(snipt_bucket)
