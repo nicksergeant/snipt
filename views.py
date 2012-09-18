@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from django.template.defaultfilters import striptags
@@ -136,11 +136,12 @@ def sitemap(request):
                              context_instance=RequestContext(request),
                              mimetype='application/xml')
 
+@login_required
 @render_to('stats.html')
 def stats(request):
 
-    if not request.user.is_authenticated() or not request.user.profile.is_pro:
-        raise Http404
+    if not request.user.profile.is_pro:
+        return HttpResponseRedirect('/pro/')
 
     snipts = Snipt.objects.filter(user=request.user).order_by('-views')
 
