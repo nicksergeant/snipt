@@ -1,4 +1,4 @@
-from fabric.api import cd, local, env, run
+from fabric.api import cd, local, env, run, sudo
 
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
@@ -77,12 +77,12 @@ def re():
         _display_message('Kill gunicorn process')
         ################
 
-        run('./gk')
+        sudo('supervisorctl stop snipt')
 
         _display_message('Restart gunicorn process')
         ################
 
-        run('/home/nick/.virtualenvs/snipt/bin/python /home/nick/.virtualenvs/snipt/bin/gunicorn -c gunicorn.conf.py debug_wsgi:application')
+        sudo('supervisorctl start snipt')
 
 def db_backup():
 
