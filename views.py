@@ -139,7 +139,7 @@ def sitemap(request):
 @render_to('stats.html')
 def stats(request):
 
-    if not request.user.profile.is_pro:
+    if not request.user.is_authenticated() or not request.user.profile.is_pro:
         raise Http404
 
     snipts = Snipt.objects.filter(user=request.user).order_by('-views')
