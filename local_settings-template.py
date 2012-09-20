@@ -29,3 +29,7 @@ AMAZON_API_SECRET = ''
 STRIPE_API_KEY = ''
 
 ENV_HOST = 'user@domain.com:22'
+
+BUGSNAG = {
+    "api_key": "",
+}
