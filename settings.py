@@ -101,7 +101,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'bugsnag.django.middleware.BugsnagMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -109,6 +108,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'blogs.middleware.BlogMiddleware',
+    'bugsnag.django.middleware.BugsnagMiddleware',
 )
 
 ROOT_URLCONF = 'snipt.urls'
@@ -163,11 +163,11 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
+        #'django.request': {
+            #'handlers': ['mail_admins'],
+            #'level': 'ERROR',
+            #'propagate': True,
+        #},
     }
 }
 
