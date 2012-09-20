@@ -1,5 +1,5 @@
 from views import (amazon_search, amazon_image, lexers, pro_signup,
-                   sitemap, tags, pro_signup_complete, stats, test)
+                   sitemap, tags, pro_signup_complete, stats)
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from utils.forms import SniptRegistrationForm
