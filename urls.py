@@ -37,8 +37,6 @@ urlpatterns = patterns('',
     url(r'^sitemap.xml$', sitemap),
     url(r'^tags/$', tags),
 
-    url(r'^test/$', test),
-
     url(r'^pro/$', direct_to_template, {'template': 'pro.html'}),
     url(r'^pro/signup/$', pro_signup),
     url(r'^pro/signup/complete/$', pro_signup_complete),
