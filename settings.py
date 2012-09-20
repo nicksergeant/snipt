@@ -101,6 +101,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'bugsnag.django.middleware.BugsnagMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -221,6 +222,12 @@ else:
 
 # API
 TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
+
+# Bugsnag
+BUGSNAG = {
+    "api_key": "",
+    "project_root": PROJECT_PATH,
+}
 
 # Extensions
 if DEBUG:

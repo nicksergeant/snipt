@@ -166,3 +166,11 @@ def tags(request):
         'all_tags': all_tags,
         'tags': popular_tags
     }
+
+@render_to('tags.html')
+def test(request):
+
+    # Bugsnag test.
+    assert False
+
+    return {}
