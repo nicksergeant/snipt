@@ -108,6 +108,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'blogs.middleware.BlogMiddleware',
+    'bugsnag.django.middleware.BugsnagMiddleware',
 )
 
 ROOT_URLCONF = 'snipt.urls'
@@ -162,11 +163,11 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
+        #'django.request': {
+            #'handlers': ['mail_admins'],
+            #'level': 'ERROR',
+            #'propagate': True,
+        #},
     }
 }
 
@@ -221,6 +222,12 @@ else:
 
 # API
 TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
+
+# Bugsnag
+BUGSNAG = {
+    "api_key": "",
+    "project_root": PROJECT_PATH,
+}
 
 # Extensions
 if DEBUG:

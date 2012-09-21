@@ -1060,7 +1060,7 @@ article.snipt {
         padding-bottom: 20px;
 
         ul.attrs {
-            margin: 15px 0 0 15px;
+            margin: 14px 0 0 15px;
 
             li {
                 background: transparent url('/static/images/calendar-icon.png') top left no-repeat;
@@ -1112,9 +1112,9 @@ article.snipt {
                 }
                 &.tweet {
                     background: none;
-                    float: right;
-                    margin: -1px 130px 0 0;
+                    margin: -1px 0 0 0;
                     padding: 0;
+                    vertical-align: -6px;
 
                     a {
                         color: transparent;
@@ -1289,7 +1289,7 @@ div#disqus_thread {
     width: 825px;
 
     #dsq-content {
-        margin-top: -38px;
+        margin-top: -44px;
 
         #dsq-global-toolbar {
             margin-bottom: 18px;
@@ -1463,13 +1463,6 @@ body.detail {
                         margin-right: 0;
                     }
                 }
-            }
-        }
-    }
-    footer {
-        ul.attrs {
-            li.tweet {
-                margin-right: 258px;
             }
         }
     }
@@ -1778,6 +1771,7 @@ body.api {
 
                 h5 {
                     margin-bottom: 5px;
+                    margin-top: 0;
                 }
                 ul {
                     margin: 0;
