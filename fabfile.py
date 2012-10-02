@@ -44,7 +44,6 @@ def dep():
         _display_message('Get last commit info')
         ################
 
-        local('./get-last-commit-url.py')
     except:
         pass
 
