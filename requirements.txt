@@ -5,6 +5,7 @@ Django
 django-annoying
 django-appconf
 django-bcrypt
+django-extensions
 django-markdown-deux
 django-pagination
 django-taggit
@@ -19,6 +20,7 @@ python-postmark
 pyyaml
 simplejson
 South
+stripe
 uuid
 versiontools
 Werkzeug
