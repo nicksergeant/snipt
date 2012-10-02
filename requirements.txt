@@ -21,7 +21,6 @@ python-postmark
 pyyaml
 simplejson
 South
-stripe
 uuid
 versiontools
 Werkzeug

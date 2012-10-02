@@ -10,6 +10,7 @@ getting a local copy running.
 1. Clone the repo.
 2. Setup a virtualenv.
 3. `pip install -r requirements.txt`
+4. `pip install --index-url https://code.stripe.com --upgrade stripe`
 4. Copy local_settings-template.py to local_settings.py and edit the settings.
 5. Comment out [this line](https://github.com/nicksergeant/snipt/blob/master/snipts/models.py#L19) from `snipts/models.py`
 6. `python manage.py syncdb`
