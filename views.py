@@ -93,6 +93,10 @@ def lexers(request):
 
     return {'objects': objects}
 
+@render_to('jobs.html')
+def jobs(request):
+    return {}
+
 @login_required
 @render_to('pro-signup.html')
 def pro_signup(request):

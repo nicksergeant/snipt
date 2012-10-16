@@ -1964,3 +1964,24 @@ body.stats {
         margin-bottom: 0;
     }
 }
+body.jobs {
+    section.jobs {
+        margin: 30px;
+
+        ul {
+            margin: 0;
+
+            li {
+                list-style-type: none;
+
+                a {
+                    background: #FBFBFB;
+                    border: 1px solid #DDDDDD;
+                    display: block;
+                    padding: 5px 10px;
+                    @include border-radius;
+                }
+            }
+        }
+    }
+}

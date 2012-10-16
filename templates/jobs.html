@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load pagination_tags %}
+
+{% block page-title %}Snipt Jobs{% endblock %}
+
+{% block body-class %}{{ block.super }} static jobs{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/jobs/">Snipt Jobs</a></li>
+{% endblock %}
+
+{% block content %}
+    <section class="jobs">
+        <ul>
+            <li>
+                <a href="#">
+                    Acto A/S is hiring a Visual Designer in Dallas, TX, USA.
+                </a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

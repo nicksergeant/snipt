@@ -1,4 +1,4 @@
-from views import (amazon_search, amazon_image, lexers, pro_signup,
+from views import (amazon_search, amazon_image, jobs, lexers, pro_signup,
                    sitemap, tags, pro_signup_complete, stats)
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
@@ -41,6 +41,7 @@ urlpatterns = patterns('',
     url(r'^pro/signup/$', pro_signup),
     url(r'^pro/signup/complete/$', pro_signup_complete),
 
+    url(r'^jobs/$', jobs),
     url(r'^stats/$', stats),
 
     url(r'^api/public/lexer/$', lexers),
