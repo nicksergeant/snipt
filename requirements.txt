@@ -1,10 +1,12 @@
 BeautifulSoup
 boto
+bugsnag
 biplist
 Django
 django-annoying
 django-appconf
 django-bcrypt
+django-extensions
 django-markdown-deux
 django-pagination
 django-taggit

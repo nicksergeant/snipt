@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?37" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?39" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
@@ -58,6 +58,9 @@
                             <li>
                                 <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
                             </li>
+                            <!--<li>-->
+                                <!--<a href="/jobs/" {% if '/jobs/' in request.path %} class="active"{% endif %}>Jobs</a>-->
+                            <!--</li>-->
                             <li>
                                 <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
                             </li>
@@ -71,6 +74,9 @@
                             <li>
                                 <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
                             </li>
+                            <!--<li>-->
+                                <!--<a href="/jobs/" {% if '/jobs/' in request.path %} class="active"{% endif %}>Jobs</a>-->
+                            <!--</li>-->
                             <li class="add-snipt">
                                 <button class="btn btn-info btn-large" id="add-snipt">
                                     Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
@@ -122,13 +128,6 @@
                                     <a href="/pro/">
                                         <i class="icon-star-empty icon-white"></i>
                                         Upgrade to Pro
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li>
-                                    <a href="mailto:pro@snipt.net">
-                                        <i class="icon-envelope icon-white"></i>
-                                        Email Pro Support
                                     </a>
                                 </li>
                             {% endif %}
@@ -211,6 +210,9 @@
                             </li>
                             <li class="blog">
                                 <a href="https://blog.snipt.net/">Blog</a>
+                            </li>
+                            <li class="jobs roadmap">
+                                <a href="/jobs/">Jobs</a>
                             </li>
                             {% if not request.user.profile.is_pro %}
                                 <li class="pro">
