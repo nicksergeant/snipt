@@ -26,7 +26,6 @@ versiontools
 Werkzeug
 
 git+git://github.com/dlo/bottlenose.git
-git+git://github.com/yoavaviram/python-amazon-simple-product-api.git
 git+git://github.com/toastdriven/pyelasticsearch.git
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration

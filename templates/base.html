@@ -174,31 +174,15 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
-                    {% if tag %}
+                    {% if tag or favorites %}
                         <section class="tag-detail">
                             <div class="heading">
-                                <h1><span>TAG:</span> {{ tag.name }}</h1>
+                                {% if favorites %}
+                                    <h1>Favorited snipts</h1>
+                                {% else %}
+                                    <h1><span>TAG:</span> {{ tag.name }}</h1>
+                                {% endif %}
                             </div>
-                            <section class="amazon {% if request.user.is_authenticated %}{% if request.user.profile.is_pro %}hidden{% endif %}{% endif %}">
-                                <ul></ul>
-                                <div class="more group">
-                                    <span></span>
-                                    <a href="#" class="see-previous">
-                                        <i class="icon-chevron-left"></i>
-                                    </a>
-                                    <a href="#" class="see-next">
-                                        <i class="icon-chevron-right"></i>
-                                    </a>
-                                </div>
-                                <script id="amazon-ad" type="text/html">
-                                    <li>
-                                        <a rel="nofollow" href="<%=url %>" style="background-image: url('/api/public/a/img/?i=<%=image %>');">
-                                            <span class="title"><%=title %></span>
-                                            <span class="description"><%=review %></span>
-                                        </a>
-                                    </li>
-                                </script>
-                            </section>
                         </section>
                     {% endif %}
                     {% block aside-top %}{% endblock %}

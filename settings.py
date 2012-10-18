@@ -109,6 +109,7 @@ MIDDLEWARE_CLASSES = (
     'pagination.middleware.PaginationMiddleware',
     'blogs.middleware.BlogMiddleware',
     'bugsnag.django.middleware.BugsnagMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'snipt.urls'
@@ -131,6 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
+    'debug_toolbar',
     'django_bcrypt',
     'haystack',
     'markdown_deux',

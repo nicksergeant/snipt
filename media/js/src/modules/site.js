@@ -52,14 +52,9 @@
             this.$main_edit = $('section#main-edit');
             this.$main = $('section#main');
             this.$keyboard_shortcuts = $('#keyboard-shortcuts', this.$body);
-            this.$amazon_ads = $('section.amazon', this.$main);
 
             this.keyboardShortcuts();
             this.inFieldLabels();
-
-            if (this.$amazon_ads.length) {
-                this.initAmazonAds();
-            }
 
             var SniptListView = Snipt.SniptListView;
             this.snipt_list = new SniptListView({ 'snipts': this.$snipts });
@@ -258,70 +253,6 @@
                 $form.append("<input type='hidden' name='token' value='" + token + "'/>");
                 $form.get(0).submit();
             }
-        },
-        initAmazonAds: function() {
-            var $more = $('div.more', this.$amazon_ads);
-            var that = this;
-            var adTemplate = $('script#amazon-ad').html();
-
-            $('a', $more).on('click', function() {
-                var $current = $('li:visible', that.$amazon_ads);
-                $('li', that.$amazon_ads).hide();
-
-                if ($(this).hasClass('see-previous')) {
-                    var $prev = $current.prev();
-                    if ($prev.length) {
-                        $prev = $prev;
-                    } else {
-                        $prev = $('li', that.$amazon_ads).eq(-1);
-                    }
-                    $prev.fadeIn('fast');
-                } else {
-                    var $next = $current.next();
-                    if ($next.length) {
-                        $next = $next;
-                    } else {
-                        $next = $('li', that.$amazon_ads).eq(0);
-                    }
-                    $next.fadeIn('fast');
-                }
-                return false;
-            });
-
-            $.getJSON('/api/public/a/', {'q': window.tag}, function(resp) {
-                if (resp.result.length === 0) {
-                    that.$amazon_ads.slideUp('fast');
-                } else {
-                    var html = '';
-                    for (var i = 0; i < resp.result.length; i++) {
-                        if (resp.result[i].image) {
-                            html += _.template(adTemplate, {
-                                url: resp.result[i].url,
-                                title: resp.result[i].title,
-                                review: resp.result[i].review,
-                                image: resp.result[i].image
-                            });
-                        }
-                    }
-                    $ul = $('ul', that.$amazon_ads);
-
-                    $ul.hide().html(html);
-                    $lis = $('li', $ul);
-                    $lis.hide();
-                    $lis.eq(0).fadeIn('fast');
-
-                    if ($lis.length === 1) {
-                        $('a', $more).fadeOut('fast');
-                    }
-                    if ($lis.length === 0) {
-                        that.$amazon_ads.slideUp('fast');
-                    }
-
-                    $ul.show();
-
-                    $('div.more span', that.$amazon_ads).hide().text('Books').fadeIn('fast');
-                }
-            });
         }
     });
 
