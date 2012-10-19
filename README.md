@@ -16,6 +16,7 @@ getting a local copy running.
 7. `python manage.py syncdb`
 8. `python manage.py migrate`
 9. Uncomment the line in `snipt/models.py`
-10. `python manage.py runserver`
+10. Set the `SNIPT_ENV` environment variable to `development`. (`export SNIPT_ENV=development`)
+11. `python manage.py runserver`
 
 Any problems / questions / bugs, [create an issue](https://github.com/nicksergeant/snipt/issues). Thanks! :)
