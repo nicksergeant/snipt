@@ -1,8 +1,10 @@
 import os
+from settings import INSTALLED_APPS
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 BASE_PATH = os.path.dirname(__file__)
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
     ('Name', 'name@domain.com'),
@@ -72,5 +74,4 @@ if not DEBUG:
     }
 
 # Extensions
-if DEBUG:
-    INSTALLED_APPS += ('django_extensions',)
+INSTALLED_APPS += ('django_extensions',)
