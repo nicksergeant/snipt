@@ -2,7 +2,7 @@
 
 import os, socket
 
-if socket.gethostname() in ['air.local', 'pro.local']:
+if (os.environ.get('SNIPT_ENV') == 'development'):
     DEBUG = True
 else:
     DEBUG = False
