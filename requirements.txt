@@ -1,6 +1,5 @@
 BeautifulSoup
 boto
-bugsnag
 biplist
 Django
 django-annoying
