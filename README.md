@@ -3,7 +3,7 @@
 This is the codebase for the website, [Snipt.net](https://snipt.net/).
 
 It's a relatively well-kept Django app, so you shouldn't have too many problems
-getting a local copy running.
+getting a local copy running. If you need help, visit #snipt in irc.freenode.net.
 
 # Running the Django app
 
