@@ -44,7 +44,7 @@
 
 {% block content %}
     <section class="snipts" id="snipts">
-        {% if not request.user.profile.is_pro %}
+        {% if request.user.is_authenticated and not request.user.profile.is_pro %}
             <div class="alert alert-info site-notice"><a href="/pro/">Snipt Pro</a>: Support the development of Snipt and get exclusive features for only $19/year.</div>
         {% endif %}
         {% with 'true' as detail %}

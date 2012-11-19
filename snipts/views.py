@@ -79,16 +79,47 @@ def embed(request, snipt_key):
                               context_instance=RequestContext(request),
                               mimetype='application/javascript')
 
+@render_to('snipts/list-user.html')
+def favorites(request, username):
+
+    if request.user.username != username:
+        raise Http404
+
+    if request.blog_user:
+        raise Http404
+
+    public = False
+
+    favorites = Favorite.objects.filter(user=request.user).values('snipt')
+    favorites = [f['snipt'] for f in favorites]
+    snipts = Snipt.objects.filter(Q(pk__in=favorites))
+
+    tags = Tag.objects.filter(snipt__user=request.user).distinct()
+
+    tags = tags.order_by('name')
+    snipts = snipts.order_by('-created')
+
+    context = {
+        'favorites': favorites,
+        'has_snipts': True,
+        'public': public,
+        'public_user': False,
+        'snipts': snipts,
+        'tags': tags,
+        'user': request.user,
+    }
+
+    if 'rss' in request.GET:
+        context['snipts'] = context['snipts'][:20]
+        return rss(request, context)
+
+    return context
+
 @render_to('snipts/list-public.html')
 def list_public(request, tag_slug=None):
 
     if request.blog_user:
         return blog_list(request)
-
-    tags = Tag.objects.filter(snipt__public=True)
-    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count')[:20]
-    tags = sorted(tags, key=lambda tag: tag.name)
 
     snipts = Snipt.objects.filter(public=True).order_by('-created')
 
@@ -102,7 +133,6 @@ def list_public(request, tag_slug=None):
         'has_snipts': True,
         'public': True,
         'snipts': snipts,
-        'tags': tags,
         'tag': tag,
     }
 
@@ -134,13 +164,13 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
         favorites = [f['snipt'] for f in favorites]
         snipts = snipts.filter(Q(user=user) | Q(pk__in=favorites))
 
-        tags = tags.filter(Q(snipt__user=user) | Q(snipt__pk__in=favorites))
+        tags = tags.filter(snipt__user=user).distinct()
+
     else:
-        tags = tags.filter(snipt__user=user, snipt__public=True)
+        tags = tags.filter(snipt__user=user, snipt__public=True).distinct()
         snipts = snipts.filter(user=user, public=True)
         public = True
 
-    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
     tags = tags.order_by('name')
     snipts = snipts.order_by('-created')
 

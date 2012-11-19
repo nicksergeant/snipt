@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
+    'debug_toolbar',
     'django_bcrypt',
     'haystack',
     'markdown_deux',
@@ -162,11 +163,11 @@ LOGGING = {
         }
     },
     'loggers': {
-        #'django.request': {
-            #'handlers': ['mail_admins'],
-            #'level': 'ERROR',
-            #'propagate': True,
-        #},
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     }
 }
 

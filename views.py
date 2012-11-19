@@ -6,7 +6,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
 from django.db.models import Count
-from amazon.api import AmazonAPI
 from django.conf import settings
 from snipts.models import Snipt
 from taggit.models import Tag
@@ -15,57 +14,8 @@ import os, urllib
 
 import stripe
 
-from local_settings import AMAZON_API_KEY, AMAZON_API_SECRET, STRIPE_API_KEY
+from local_settings import STRIPE_API_KEY
 
-
-@ajax_request
-def amazon_search(request):
-
-    products = []
-    if request.GET.get('q'):
-        amazon = AmazonAPI(AMAZON_API_KEY, AMAZON_API_SECRET, 'snipt-20')
-        products = amazon.search_n(5, Keywords=request.GET.get('q'), SearchIndex='Books')
-
-    result = []
-    for product in products:
-        if product.small_image_url:
-            small_image_url = product.small_image_url.replace('http://ecx.images-amazon.com/images/I/', '')
-        else:
-            small_image_url = None
-
-        result.append({
-            'image':   small_image_url,
-            'price':   product.list_price,
-            'review':  striptags(product.editorial_review),
-            'reviews': product.reviews,
-            'title':   product.title,
-            'url':     product.offer_url,
-        })
-
-    return {
-        'result': result
-    }
-
-def amazon_image(request):
-    if 'i' in request.GET:
-
-        img_filename = request.GET.get('i')
-        img_src = 'http://ecx.images-amazon.com/images/I/{}'.format(img_filename)
-        img_loc = os.path.join(settings.STATIC_ROOT, 'images', 'amazon', img_filename)
-
-        if settings.DEBUG:
-            root = '/static/images/amazon/'
-        else:
-            root = 'https://snipt.net/static/images/amazon/'
-
-        try:
-            open(img_loc)
-            return HttpResponseRedirect(root + img_filename)
-        except IOError:
-            urllib.urlretrieve(img_src, img_loc)
-            return HttpResponseRedirect(root + img_filename)
-    else:
-        return HttpResponseBadRequest()
 
 @ajax_request
 def lexers(request):

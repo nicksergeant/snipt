@@ -7,15 +7,15 @@
     {% if tag %}
         <li><span class="prompt">/</span> <a href="/{{ user.username }}/tag/{{ tag.slug }}/">{{ tag.name }}</a></li>
     {% endif %}
+    {% if favorites %}
+        <li><span class="prompt">/</span> <a href="/{{ user.username }}/favorites/">Favorited snipts</a></li>
+    {% endif %}
     <li class="rss">
         <a href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}">RSS</a>
     </li>
 {% endblock %}
 
 {% block aside-top %}
-    {% if not request.user.profile.is_pro %}
-        {% include 'carbon.html' %}
-    {% endif %}
     <div class="profile group">
         <span class="avatar" title="Manage your avatar at Gravatar.com" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
         <div class="meta">

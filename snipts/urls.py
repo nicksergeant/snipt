@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^raw/(?P<snipt_key>[^/]+)/$',                    views.raw,           name='raw'),
     url(r'^(?P<username_or_custom_slug>[^/]+)/$',          views.list_user,     name='list-user'),
     url(r'^(?P<username_or_custom_slug>[^/]+)/tag/(?P<tag_slug>[^/]+)/$', views.list_user, name='list-user-tag'),
+    url(r'^(?P<username>[^/]+)/favorites/$',               views.favorites,     name='favorites'),
     url(r'^(?P<username>[^/]+)/(?P<snipt_slug>[^/]+)/$',   views.detail,        name='detail'),
 )

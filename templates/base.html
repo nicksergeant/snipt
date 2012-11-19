@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?39" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?40" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
@@ -174,31 +174,15 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
-                    {% if tag %}
+                    {% if tag or favorites %}
                         <section class="tag-detail">
                             <div class="heading">
-                                <h1><span>TAG:</span> {{ tag.name }}</h1>
+                                {% if favorites %}
+                                    <h1>Favorited snipts</h1>
+                                {% else %}
+                                    <h1><span>TAG:</span> {{ tag.name }}</h1>
+                                {% endif %}
                             </div>
-                            <section class="amazon {% if request.user.is_authenticated %}{% if request.user.profile.is_pro %}hidden{% endif %}{% endif %}">
-                                <ul></ul>
-                                <div class="more group">
-                                    <span></span>
-                                    <a href="#" class="see-previous">
-                                        <i class="icon-chevron-left"></i>
-                                    </a>
-                                    <a href="#" class="see-next">
-                                        <i class="icon-chevron-right"></i>
-                                    </a>
-                                </div>
-                                <script id="amazon-ad" type="text/html">
-                                    <li>
-                                        <a rel="nofollow" href="<%=url %>" style="background-image: url('/api/public/a/img/?i=<%=image %>');">
-                                            <span class="title"><%=title %></span>
-                                            <span class="description"><%=review %></span>
-                                        </a>
-                                    </li>
-                                </script>
-                            </section>
                         </section>
                     {% endif %}
                     {% block aside-top %}{% endblock %}
@@ -357,7 +341,7 @@
         </div>
     {% endblock %}
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?30"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?31"></script>
     {% block extra-scripts %}{% endblock %}
 
     {% block inline-js %}

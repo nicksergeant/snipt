@@ -1,11 +1,63 @@
 <section class="tags">
     <h1>Popular public tags</h1>
     <ul>
-        {% for t in tags %}
-            <li>
-                <a {% if tag.name == t.name %}class="active"{% endif %} href="/public/tag/{{ t.slug }}/">{{ t.name }} ({{ t.count }})</a>
-            </li>
-        {% endfor %}
+        <li>
+            <a href="/public/tag/as3/" {% if tag.name == 'as3' %}class="active"{% endif %}>as3</a>
+        </li>
+        <li>
+            <a href="/public/tag/bash/" {% if tag.name == 'bash' %}class="active"{% endif %}>bash</a>
+        </li>
+        <li>
+            <a href="/public/tag/c_2/" {% if tag.name == 'c++' %}class="active"{% endif %}>c++</a>
+        </li>
+        <li>
+            <a href="/public/tag/css/" {% if tag.name == 'css' %}class="active"{% endif %}>css</a>
+        </li>
+        <li>
+            <a href="/public/tag/django/" {% if tag.name == 'django' %}class="active"{% endif %}>django</a>
+        </li>
+        <li>
+            <a href="/public/tag/drupal/" {% if tag.name == 'drupal' %}class="active"{% endif %}>drupal</a>
+        </li>
+        <li>
+            <a href="/public/tag/git/" {% if tag.name == 'git' %}class="active"{% endif %}>git</a>
+        </li>
+        <li>
+            <a href="/public/tag/html/" {% if tag.name == 'html' %}class="active"{% endif %}>html</a>
+        </li>
+        <li>
+            <a href="/public/tag/java/" {% if tag.name == 'java' %}class="active"{% endif %}>java</a>
+        </li>
+        <li>
+            <a href="/public/tag/javascript/" {% if tag.name == 'javascript' %}class="active"{% endif %}>javascript</a>
+        </li>
+        <li>
+            <a href="/public/tag/jquery/" {% if tag.name == 'jquery' %}class="active"{% endif %}>jquery</a>
+        </li>
+        <li>
+            <a href="/public/tag/js/" {% if tag.name == 'js' %}class="active"{% endif %}>js</a>
+        </li>
+        <li>
+            <a href="/public/tag/linux/" {% if tag.name == 'linux' %}class="active"{% endif %}>linux</a>
+        </li>
+        <li>
+            <a href="/public/tag/mysql/" {% if tag.name == 'mysql' %}class="active"{% endif %}>mysql</a>
+        </li>
+        <li>
+            <a href="/public/tag/php/" {% if tag.name == 'php' %}class="active"{% endif %}>php</a>
+        </li>
+        <li>
+            <a href="/public/tag/python/" {% if tag.name == 'python' %}class="active"{% endif %}>python</a>
+        </li>
+        <li>
+            <a href="/public/tag/ruby/" {% if tag.name == 'ruby' %}class="active"{% endif %}>ruby</a>
+        </li>
+        <li>
+            <a href="/public/tag/sql/" {% if tag.name == 'sql' %}class="active"{% endif %}>sql</a>
+        </li>
+        <li>
+            <a href="/public/tag/wordpress/" {% if tag.name == 'wordpress' %}class="active"{% endif %}>wordpress</a>
+        </li>
     </ul>
     <a href="/tags/" class="all-tags">View all tags &raquo;</a>
 </section>
