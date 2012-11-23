@@ -305,6 +305,11 @@ class PrivateFavoriteResource(ModelResource):
         max_limit = 200
         cache = SimpleCache()
 
+    def dehydrate(self, bundle):
+        bundle.data['snipt'] = '/api/public/snipt/{}/'.format(
+                bundle.obj.snipt.pk)
+        return bundle
+
     def obj_create(self, bundle, request=None, **kwargs):
         bundle.data['user'] = request.user
         bundle.data['snipt'] = Snipt.objects.get(pk=bundle.data['snipt'])
