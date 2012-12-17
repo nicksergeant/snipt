@@ -602,6 +602,35 @@ section.main {
         margin: 50px 0 30px 0;
         text-align: center;
     }
+    div.sifter {
+        color: #666666;
+        margin: 0 0 30px 15px;
+        padding: 10px;
+        padding-top: 0;
+        @include border-radius(8px);
+        @include vertical-gradient(#F2F2F2, white);
+
+        h3 {
+            font: bold 12px/16px $Helvetica;
+            margin: 0;
+        }
+        p {
+            font: normal 12px/16px $Helvetica;
+            margin-top: 10px;
+
+            a {
+                font-weight: bold;
+            }
+        }
+        a.sifter-logo {
+            text-align: center;
+
+            img {
+                display: inline-block;
+                margin: 10px 0;
+            }
+        }
+    }
 }
 section.main-edit {
     div.inner {
@@ -1342,18 +1371,6 @@ body.detail {
         margin-right: 100px;
     }
 }
-article.snipt {
-    &:first-of-type {
-        margin-top: 20px;
-    }
-}
-body.is-pro {
-    article.snipt {
-        &:first-of-type {
-            margin-top: 30px;
-        }
-    }
-}
 
 // Pages
 body.detail {
@@ -1457,7 +1474,7 @@ body.static {
         }
     }
     aside.main {
-        padding-top: 20px;
+        padding-top: 30px;
 
         nav.footer {
             margin-top: 10px;

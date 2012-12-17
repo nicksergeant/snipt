@@ -174,6 +174,17 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
+                    {% if not request.user.profile.is_pro %}
+                        <div class="sifter">
+                            <h3>Building things is hard.</h3>
+                            <p>
+                                Issue tracking shouldn't be. <a href="https://sifterapp.com/" title="Sifter: Simple issue tracking for big projects and small teams.">Sifter</a> makes it simple.
+                            </p>
+                            <a class="sifter-logo" href="https://sifterapp.com/" title="Sifter: Simple issue tracking for big projects and small teams.">
+                                <img src="{{ STATIC_URL }}images/sifter-black-white.png" alt="Sifter: Simple issue tracking for big projects and small teams." />
+                            </a>
+                        </div>
+                    {% endif %}
                     {% if tag or favorites %}
                         <section class="tag-detail">
                             <div class="heading">
@@ -194,9 +205,6 @@
                             </li>
                             <li class="blog">
                                 <a href="https://blog.snipt.net/">Blog</a>
-                            </li>
-                            <li class="jobs roadmap">
-                                <a href="/jobs/">Jobs</a>
                             </li>
                             {% if not request.user.profile.is_pro %}
                                 <li class="pro">
