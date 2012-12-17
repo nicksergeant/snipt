@@ -43,6 +43,19 @@
 {% endblock %}
 
 {% block content %}
+    {% if not request.user.profile.is_pro %}
+        <div class="sifter group">
+            <a class="sifter-logo" href="https://sifterapp.com/" title="Sifter: Simple issue tracking for big projects and small teams.">
+                <img src="{{ STATIC_URL }}images/sifter-black-white.png" alt="Sifter: Simple issue tracking for big projects and small teams." />
+            </a>
+            <div class="right">
+                <h3>Building things is hard.</h3>
+                <p>
+                    Issue tracking shouldn't be. <a href="https://sifterapp.com/" title="Sifter: Simple issue tracking for big projects and small teams.">Sifter</a> makes it simple.
+                </p>
+            </div>
+        </div>
+    {% endif %}
     <section class="snipts" id="snipts">
         {% if request.user.is_authenticated and not request.user.profile.is_pro %}
             <div class="alert alert-info site-notice"><a href="/pro/">Snipt Pro</a>: Support the development of Snipt and get exclusive features for only $19/year.</div>

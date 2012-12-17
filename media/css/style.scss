@@ -1384,6 +1384,7 @@ body.detail {
             section.snipts {
                 article.snipt {
                     margin-bottom: 0;
+                    margin-top: 15px;
 
                     div.container {
                         width: 839px;
@@ -1413,9 +1414,48 @@ body.detail {
                 }
             }
         }
+        div.sifter {
+            margin-bottom: 0;
+            margin-top: 10px;
+            margin-right: 100px;
+
+            a.sifter-logo {
+                float: left;
+
+                img {
+                    height: 30px;
+                    margin: 0;
+                    margin-top: 10px;
+                }
+            }
+            div.right {
+                float: left;
+                margin-left: 10px;
+                padding-top: 10px;
+
+                h3 {
+                    margin: 0;
+                }
+                p {
+                    margin: 0;
+                }
+            }
+        }
     }
     div.rochester-made {
         width: 840px;
+    }
+}
+body.is-pro {
+    section.main {
+        div.inner {
+            section.snipts {
+                article.snipt {
+                    margin-bottom: 0;
+                    margin-top: 30px;
+                }
+            }
+        }
     }
 }
 body.static {
