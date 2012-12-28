@@ -31,6 +31,7 @@ class Snipt(models.Model):
     lexer        = models.CharField(max_length=50)
     code         = models.TextField()
     stylized     = models.TextField(blank=True, null=True)
+    stylized_min = models.TextField(blank=True, null=True)
     embedded     = models.TextField(blank=True, null=True)
     line_count   = models.IntegerField(blank=True, null=True, default=None)
 
@@ -111,6 +112,16 @@ class Snipt(models.Model):
 
     def favs(self):
         return Favorite.objects.filter(snipt=self).count()
+
+    def get_stylized_min(self):
+        if self.stylized_min is None:
+            if self.lexer == 'markdown':
+                self.stylized_min = markdown(self.code[:1000], 'default')
+            else:
+                self.stylized_min = highlight(self.code[:1000],
+                                          get_lexer_by_name(self.lexer, encoding='UTF-8'),
+                                          HtmlFormatter(linenos='table', linenospecial=1, lineanchors='line'))
+        return self.stylized_min
 
     def get_absolute_url(self):
 

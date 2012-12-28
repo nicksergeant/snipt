@@ -795,7 +795,7 @@ article.snipt {
                     margin: 20px 0 !important;
                 }
             }
-            a.expand {
+            a.expand, a.view-full {
                 background: #FFF url('/static/images/expand.png') 15px 18px no-repeat;
                 border-top: 1px solid #F1F1EE;
                 bottom: 0;
@@ -824,6 +824,9 @@ article.snipt {
                 &:focus {
                     outline: none;
                 }
+            }
+            a.view-full {
+                background: #FFF url('/static/images/view-full.png') 15px 17px no-repeat;
             }
             textarea.raw {
                 display: none;

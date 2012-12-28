@@ -2,7 +2,27 @@
 
 {% snipt_is_favorited_by_user as 'is_favorited' %}
 
-<article id="snipt-{{ snipt.pk }}" class="snipt {% if 'snipt-expand' in snipt.tags_list and snipt.blog_post %}snipt-expand {% endif %}{% if snipt.blog_post %}blog-post {% endif %}{% if not snipt.public %} private-snipt{% endif %}{% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %} expandable{% endif %}{% if snipt.user == request.user %} editable{% endif %}{% if is_favorited %} favorited" data-favorite-id="{{ is_favorited }}"{% else %}"{% endif %}>
+<article id="snipt-{{ snipt.pk }}" class="snipt 
+    {% if 'snipt-expand' in snipt.tags_list and snipt.blog_post %}
+        snipt-expand
+    {% endif %}
+    {% if snipt.blog_post %}
+        blog-post
+    {% endif %}
+    {% if not snipt.public %}
+        private-snipt
+    {% endif %}
+    {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
+        expandable
+    {% endif %}
+    {% if snipt.user == request.user %}
+        editable
+    {% endif %}
+    {% if is_favorited %}
+        favorited" data-favorite-id="{{ is_favorited }}"
+    {% else %}
+        "
+    {% endif %}>
     <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container">
@@ -16,7 +36,11 @@
             <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
                 {% if snipt.lexer == 'markdown' %}
                     <div class="markdown">
-                        {{ snipt.stylized|safe }}
+                        {% if snipt.line_count > 300 and not detail %}
+                            {{ snipt.get_stylized_min|safe }}
+                        {% else %}
+                            {{ snipt.stylized|safe }}
+                        {% endif %}
                     </div>
                 {% else %}
                     {% if 'linenos' not in snipt.stylized %}
@@ -37,15 +61,30 @@
                             </tbody>
                         </table>
                     {% else %}
-                        {{ snipt.stylized|safe }}
+                        {% if snipt.line_count > 300 and not detail %}
+                            {{ snipt.get_stylized_min|safe }}
+                        {% else %}
+                            {{ snipt.stylized|safe }}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
                 {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
-                    <a href="#" class="expand">
-                        <span class="expand">Expand</span>
-                        <span class="collapse">Collapse</span>
-                        <span class="lines">({{ snipt.line_count }} lines)</span>
-                    </a>
+                    {% if snipt.line_count > 300 %}
+                        <a href="{{ snipt.get_absolute_url }}" class="view-full">
+                            <span class="expand">
+                                View full
+                            </span>
+                            <span class="lines">({{ snipt.line_count }} lines) -- large snipt</span>
+                        </a>
+                    {% else %}
+                        <a href="#" class="expand">
+                            <span class="expand">
+                                Expand
+                            </span>
+                            <span class="collapse">Collapse</span>
+                            <span class="lines">({{ snipt.line_count }} lines)</span>
+                        </a>
+                    {% endif %}
                 {% endif %}
                 <textarea class="raw">{{ snipt.code }}</textarea>
             </section>
