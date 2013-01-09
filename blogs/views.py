@@ -17,7 +17,7 @@ def blog_list(request, username_or_custom_slug=None):
                                   blog_post=True,
                                   public=True,
                                   publish_date__lte=datetime.datetime.now()
-                                  ).order_by('-publish_date').exclude(title__iexact='Homepage')
+                                  ).order_by('-publish_date').exclude(title__iexact='Homepage').exclude(title__iexact='Portfolio')
 
     normal_snipts = Snipt.objects.filter(blog_post=False, user=request.blog_user, public=True).order_by('-created')
     normal_snipts = normal_snipts.exclude(title__in=[''])

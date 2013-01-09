@@ -1,19 +1,21 @@
 {% load snipt_tags typogrify_tags %}
 
 <article class="group {% if detail %}detail{% endif %}">
-    <div class="gutter">
-        <a href="{{ snipt.get_full_absolute_url }}" {% if detail %}class="detail"{% endif %}>
-            <time pubdate datetime="{{ snipt.publish_date|date:'c' }}">
-                <span class="id">
-                    #{{ snipt.id }}
-                </span>
-                <span class="mon-day">
-                    {{ snipt.publish_date|date:'M' }} {{ snipt.publish_date|date:'j' }}
-                </span>
-                <span class="year">{{ snipt.publish_date|date:'Y' }}</span>
-            </time>
-        </a>
-    </div>
+    {% if snipt.title != 'Portfolio' %}
+        <div class="gutter">
+            <a href="{{ snipt.get_full_absolute_url }}" {% if detail %}class="detail"{% endif %}>
+                <time pubdate datetime="{{ snipt.publish_date|date:'c' }}">
+                    <span class="id">
+                        #{{ snipt.id }}
+                    </span>
+                    <span class="mon-day">
+                        {{ snipt.publish_date|date:'M' }} {{ snipt.publish_date|date:'j' }}
+                    </span>
+                    <span class="year">{{ snipt.publish_date|date:'Y' }}</span>
+                </time>
+            </a>
+        </div>
+    {% endif %}
     <div class="content-inner">
         <h1><a href="{{ snipt.get_full_absolute_url }}">{% firstof snipt.title|typogrify 'Untitled' %}</a></h1>
         <div class="post-content autumn">
