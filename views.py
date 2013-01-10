@@ -63,7 +63,7 @@ def pro_signup_complete(request):
         token = request.POST['token']
         stripe.api_key = STRIPE_API_KEY
 
-        plan = 'snipt-pro'
+        plan = 'snipt-pro-monthly'
 
         customer = stripe.Customer.create(
             card = token,
