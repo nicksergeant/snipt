@@ -241,6 +241,17 @@ section.main {
                             }
                         }
                     }
+                    &.more {
+                        a {
+                            font-size: 10px;
+                            margin-left: 19px;
+                            margin-top: 5px;
+
+                            &:before {
+                                display: none;
+                            }
+                        }
+                    }
                 }
             }
             p {
