@@ -1,7 +1,7 @@
 {% load snipt_tags typogrify_tags %}
 
 <article class="group {% if detail %}detail{% endif %}">
-    {% if snipt.title != 'Portfolio' %}
+    {% if snipt.title != 'Work' %}
         <div class="gutter">
             <a href="{{ snipt.get_full_absolute_url }}" {% if detail %}class="detail"{% endif %}>
                 <time pubdate datetime="{{ snipt.publish_date|date:'c' }}">
