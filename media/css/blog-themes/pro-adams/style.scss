@@ -443,6 +443,29 @@ article {
             }
         }
         div.markdown {
+            h4 {
+                border-top: 1px dashed #CCC;
+                padding-top: 20px;
+                position: relative;
+
+                a {
+                    color: #0088CC;
+                    text-decoration: none;
+                }
+                &:before {
+                    background: #0088CC;
+                    border: 4px solid #EAEAEA;
+                    content: "";
+                    display: block;
+                    height: 20px;
+                    left: -70px;
+                    position: absolute;
+                    top: 17px;
+                    width: 20px;
+                    z-index: 51;
+                    @include border-radius(20px);
+                }
+            }
             p {
                 strong {
                     font-weight: bold;
@@ -461,6 +484,9 @@ article {
                     margin-bottom: 0;
                 }
             }
+            ul {
+                margin-bottom: 20px;
+            }
         }
         &:after {
             bottom: 0;
@@ -477,6 +503,7 @@ article {
     }
     &.detail {
         div.post-content {
+            overflow: visible;
             max-height: none;
 
             &:after {
