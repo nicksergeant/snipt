@@ -456,7 +456,8 @@ article {
         div.markdown {
             h4 {
                 border-top: 1px dashed #CCC;
-                padding-top: 20px;
+                margin-bottom: 30px;
+                padding-top: 30px;
                 position: relative;
 
                 a {
@@ -471,7 +472,7 @@ article {
                     height: 20px;
                     left: -70px;
                     position: absolute;
-                    top: 17px;
+                    top: 27px;
                     width: 20px;
                     z-index: 51;
                     @include border-radius(20px);
@@ -497,6 +498,10 @@ article {
             }
             ul {
                 margin-bottom: 20px;
+            }
+            img {
+                border: 1px solid #D7D7D7;
+                @include border-radius(3px);
             }
         }
         &:after {
