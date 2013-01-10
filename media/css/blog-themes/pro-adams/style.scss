@@ -501,7 +501,9 @@ article {
             }
             img {
                 border: 1px solid #D7D7D7;
+                margin-bottom: 10px;
                 @include border-radius(3px);
+                @include box-shadow(0, 1px, 10px, #D7D7D7);
             }
         }
         &:after {
