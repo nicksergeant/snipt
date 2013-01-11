@@ -30,6 +30,9 @@ class BlogMiddleware:
         if host == 'rochacbruno.com.br':
             request.blog_user = User.objects.get(id=2156)
 
+        if host == 'snips.witsoregon.com':
+            request.blog_user = User.objects.get(id=12291)
+
         if host == 'snipt.joshhudnall.com':
             request.blog_user = User.objects.get(id=10325)
 

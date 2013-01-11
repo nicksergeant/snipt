@@ -133,6 +133,8 @@ class Snipt(models.Model):
                     return 'http://nicksergeant.com/{}/'.format(self.slug)
             elif self.user.id == 18:
                 return 'http://ashleysergeant.com/{}/'.format(self.slug)
+            elif self.user.id == 12291:
+                return 'http://snips.witsoregon.com/{}/'.format(self.slug)
             elif self.user.id == 2156:
                 return 'http://rochacbruno.com.br/{}/'.format(self.slug)
             elif self.user.id == 10325:
@@ -158,6 +160,8 @@ class Snipt(models.Model):
                     return 'http://nicksergeant.com/{}/'.format(self.slug)
             elif self.user.id == 18:
                 return 'http://ashleysergeant.com/{}/'.format(self.slug)
+            elif self.user.id == 12291:
+                return 'http://snips.witsoregon.com/{}/'.format(self.slug)
             elif self.user.id == 2156:
                 return 'http://rochacbruno.com.br/{}/'.format(self.slug)
             elif self.user.id == 10325:
