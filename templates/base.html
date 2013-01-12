@@ -106,37 +106,31 @@
                             <li>
                                 <a href="/{{ request.user.username }}/">
                                     <i class="icon-user icon-white"></i>
-                                    View profile
+                                    Profile
                                 </a>
                             </li>
                             {% if request.user.profile.is_pro %}
                                 <li>
-                                    <a href="/stats/">
+                                    <a href="/account/stats/">
                                         <i class="icon-star icon-white"></i>
-                                        View stats
+                                        Stats
                                     </a>
                                 </li>
                             {% endif %}
                             <li>
-                                <a href="/api/">
-                                    <i class="icon-fire icon-white"></i>
-                                    Get your API Key
+                                <a href="/account/">
+                                    <i class="icon-cog icon-white"></i>
+                                    Account
                                 </a>
                             </li>
                             {% if not request.user.profile.is_pro %}
                                 <li>
                                     <a href="/pro/">
                                         <i class="icon-star-empty icon-white"></i>
-                                        Upgrade to Pro
+                                        Go Pro
                                     </a>
                                 </li>
                             {% endif %}
-                            <li>
-                                <a href="/password/change/">
-                                    <i class="icon-wrench icon-white"></i>
-                                    Change password
-                                </a>
-                            </li>
                             {% if request.user.is_superuser %}
                                 <li>
                                     <a href="/admin/">

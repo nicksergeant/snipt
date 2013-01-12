@@ -2,12 +2,13 @@
 
 {% load pagination_tags %}
 
-{% block page-title %}Stats {{ block.super }}{% endblock %}
+{% block page-title %}/ Stats / Account - {{ block.super }}{% endblock %}
 
 {% block body-class %}{{ block.super }} static stats{% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="/stats/">Stats</a></li>
+    <li><a href="/account/">Account</a></li>
+    <span class="prompt">/</span> <li><a href="/account/stats/">Stats</a></li>
 {% endblock %}
 
 {% block content %}

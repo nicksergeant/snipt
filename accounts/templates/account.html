@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page-title %}/ Account - {{ block.super }}{% endblock %}
+
+{% block body-class %}{{ block.super }} static account{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/account/">Account</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="static-box">
+        <h2>Account settings</h2>
+        <ul>
+            <li><a href="/api/">API</a> key: {{ request.user.api_key.key }}</li>
+            <li><a href="/api/">API</a> user ID: {{ request.user.id }}</li>
+            <li><a href="/password/change/">Change password</a></li>
+            {% if request.user.profile.is_pro %}
+                <li>Pro since: </li>
+                <li>GitTip username:</li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

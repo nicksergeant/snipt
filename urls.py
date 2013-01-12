@@ -1,5 +1,4 @@
-from views import (jobs, lexers, pro_signup,
-                   sitemap, tags, pro_signup_complete, stats)
+from views import (lexers, pro_signup, sitemap, tags, pro_signup_complete)
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from utils.forms import SniptRegistrationForm
@@ -41,8 +40,7 @@ urlpatterns = patterns('',
     url(r'^pro/signup/$', pro_signup),
     url(r'^pro/signup/complete/$', pro_signup_complete),
 
-    #url(r'^jobs/$', jobs),
-    url(r'^stats/$', stats),
+    url(r'^account/', include('accounts.urls')),
 
     url(r'^api/public/lexer/$', lexers),
 

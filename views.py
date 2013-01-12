@@ -1,16 +1,12 @@
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
-from django.template.defaultfilters import striptags
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
 from django.db.models import Count
-from django.conf import settings
-from snipts.models import Snipt
 from taggit.models import Tag
 
-import os, urllib
 
 import stripe
 
@@ -42,10 +38,6 @@ def lexers(request):
         })
 
     return {'objects': objects}
-
-@render_to('jobs.html')
-def jobs(request):
-    return {}
 
 @login_required
 @render_to('pro-signup.html')
@@ -91,19 +83,6 @@ def sitemap(request):
                              {'tags': tags},
                              context_instance=RequestContext(request),
                              mimetype='application/xml')
-
-@login_required
-@render_to('stats.html')
-def stats(request):
-
-    if not request.user.profile.is_pro:
-        return HttpResponseRedirect('/pro/')
-
-    snipts = Snipt.objects.filter(user=request.user).order_by('-views')
-
-    return {
-        'snipts': snipts
-    }
 
 @render_to('tags.html')
 def tags(request):
