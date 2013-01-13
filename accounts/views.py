@@ -1,12 +1,28 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from annoying.decorators import render_to
+from accounts.forms import AccountForm
+from django.contrib import messages
 from snipts.models import Snipt
 
 @login_required
 @render_to('account.html')
 def account(request):
-    return {}
+
+    if request.POST:
+        form = AccountForm(request.POST, instance=request.user.profile)
+
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, 25, 'Account settings saved.')
+            return HttpResponseRedirect('/account/')
+
+    else:
+        form = AccountForm()
+
+    return {
+        'form': form
+    }
 
 @login_required
 @render_to('stats.html')

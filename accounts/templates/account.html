@@ -10,15 +10,32 @@
 
 {% block content %}
     <div class="static-box">
-        <h2>Account settings</h2>
+        <h2>Account</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
         <ul>
+            <li>Username: {{ request.user.username }}</li>
             <li><a href="/api/">API</a> key: {{ request.user.api_key.key }}</li>
             <li><a href="/api/">API</a> user ID: {{ request.user.id }}</li>
             <li><a href="/password/change/">Change password</a></li>
-            {% if request.user.profile.is_pro %}
-                <li>Pro since: </li>
-                <li>GitTip username:</li>
-            {% endif %}
         </ul>
+        {% if request.user.profile.is_pro %}
+            <form class="form-horizontal" action="/account/" method="post">
+                <legend>Edit Pro settings</legend>
+                <div class="control-group">
+                    <label class="control-label" for="id_gittip_username">GitTip username:</label>
+                    <div class="controls">
+                        <input type="text" id="id_gittip_username" name="gittip_username" value="{{ request.user.profile.gittip_username }}">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+                {% csrf_token %}
+            </form>
+        {% endif %}
     </div>
 {% endblock %}
