@@ -152,6 +152,9 @@
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
                     {% if snipt.user.profile.is_pro %}
                         <span class="pro"><a href="/pro/">Pro</a></span>
+                        {% if request.user.profile.gittip_username %}
+                            
+                        {% endif %}
                     {% endif %}
                 </li>
             {% endblock %}

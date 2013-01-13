@@ -29,6 +29,7 @@
                     <label class="control-label" for="id_gittip_username">GitTip username:</label>
                     <div class="controls">
                         <input type="text" id="id_gittip_username" name="gittip_username" value="{% firstof request.user.profile.gittip_username '' %}">
+                        <span class="help-block">Your <a href="https://www.gittip.com/">GitTip</a> username, if you have one.</span>
                     </div>
                 </div>
                 <div class="form-actions">
