@@ -28,7 +28,7 @@
                 <div class="control-group">
                     <label class="control-label" for="id_gittip_username">GitTip username:</label>
                     <div class="controls">
-                        <input type="text" id="id_gittip_username" name="gittip_username" value="{{ request.user.profile.gittip_username }}">
+                        <input type="text" id="id_gittip_username" name="gittip_username" value="{% firstof request.user.profile.gittip_username '' %}">
                     </div>
                 </div>
                 <div class="form-actions">
