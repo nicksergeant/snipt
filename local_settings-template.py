@@ -2,8 +2,11 @@ import os
 from settings import INSTALLED_APPS
 
 DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
+
 BASE_PATH = os.path.dirname(__file__)
+
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
@@ -31,8 +34,7 @@ MEDIA_ROOT = os.path.join(BASE_PATH, 'media/uploads')
 
 MEDIA_URL = '/media/uploads/'
 
-if DEBUG:
-    STATIC_URL = '/media/'
+STATIC_URL = '/media/'
 
 SECRET_KEY = ''
 
@@ -41,37 +43,23 @@ SERVER_EMAIL = 'support@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 POSTMARK_API_KEY = ''
 
-# Virtualenv
 VIRTUALENV_PATH = ''
-
-AMAZON_API_KEY = ''
-AMAZON_API_SECRET = ''
 
 STRIPE_API_KEY = ''
 
 ENV_HOST = 'user@domain.com:22'
 
-# Bugsnag
-BUGSNAG = {
-    "api_key": "",
-    "project_root": PROJECT_PATH,
+USE_HTTPS = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_DOMAIN = '.snipt.net'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
 }
 
-# HTTPS
-if not DEBUG:
-    USE_HTTPS = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_DOMAIN = '.snipt.net'
-
-if not DEBUG:
-    HAYSTACK_CONNECTIONS = {
-        'default': {
-            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-            'URL': 'http://127.0.0.1:9200/',
-            'INDEX_NAME': 'haystack',
-        },
-    }
-
-# Extensions
 INSTALLED_APPS += ('django_extensions',)
