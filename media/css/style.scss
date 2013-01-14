@@ -726,23 +726,23 @@ article.snipt {
                 vertical-align: top;
 
                 &.linenos {
-                    border-right: 1px solid #EEEEEE;
-                    min-width: 24px;
+                    border-right: 1px solid #DDDDDD;
+                    min-width: 28px;
 
                     div.linenodiv {
                         pre {
+                            background: #F7F7F7;
                             border: 0;
                             line-height: 16px;
                             margin: 0;
-                            padding: 5px 3px 0 7px;
+                            padding: 4px 3px 0 0;
                             white-space: normal;
                             @include border-radius(0);
 
                             a, span {
-                                color: #AAA;
+                                color: #999;
                                 display: block;
-                                font-size: 12px;
-                                line-height: 16px;
+                                font: normal 12px/16px $Consolas;
                                 margin: 0;
                                 padding: 0;
                                 text-align: right;
@@ -768,7 +768,7 @@ article.snipt {
                             margin: 0;
                             min-height: 220px;
                             overflow-x: auto;
-                            padding: 5px;
+                            padding: 4px 5px 4px 4px;
                             white-space: pre;
                             word-wrap: normal;
                             width: 583px;
@@ -1567,149 +1567,6 @@ body.detail {
         margin-right: 100px;
     }
 }
-body.editing {
-    header.main, header.sub {
-        display: none;
-    }
-    header.fixed-save {
-        background: #FFF url('/static/images/header-fixed-save.gif') top left repeat;
-        border-bottom: 1px solid #DDDDDD;
-        height: 40px;
-        left: 0;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 50;
-
-        div.inner {
-            float: none;
-            margin: 0 auto;
-            padding-top: 6px;
-            width: 940px;
-
-            .cancel, .save, .save-and-close {
-                float: right;
-                margin-left: 10px;
-            }
-            .save-and-close {
-                margin-right: 242px;
-            }
-        }
-    }
-    section.main {
-        div.inner {
-            section.snipts {
-                article.editing {
-                    margin-top: 50px;
-
-                    div.container {
-                        width: 696px;
-
-                        section.code {
-                            padding: 0;
-
-                            .CodeMirror {
-                                color: #333;
-                                font: normal 12px/16px $Consolas;
-                            }
-                            .CodeMirror-gutter {
-                                min-height: 1000px;
-                            }
-                            .CodeMirror-gutter-text {
-                                padding: 5px 3px 0 7px;
-                            }
-                            .CodeMirror-matchingbracket {
-                                color: #32A8F6;
-                            }
-                        }
-                        header {
-                            h1 {
-                                margin: 5px 0 6px 10px;
-
-                                input {
-                                    color: #666;
-                                    font: bold 16px/20px $Helvetica;
-                                    margin: 0;
-                                    width: 811px;
-                                    width: 666px;
-                                }
-                            }
-                            h2 {
-                                border: none;
-                            }
-                        }
-                    }
-                    aside {
-                        margin-top: 0;
-                        width: 243px;
-
-                        div.in {
-                            padding-left: 10px;
-
-                            label {
-                                margin: 20px 0;
-
-                                & > span {
-                                    color: #32A8F6;
-                                    display: block;
-                                    font: bold 12px $Helvetica;
-                                    margin-bottom: 5px;
-                                    text-transform: uppercase;
-                                }
-                            }
-                            & > label {
-                                margin-top: 6px;
-                            }
-                            textarea {
-                                height: 100px;
-                                padding: 7px 9px;
-                                width: 202px;
-                            }
-                            label.public, label.blog-post {
-                                background: #EFEEEF;
-                                border: 1px solid #DDDDDD;
-                                cursor: pointer;
-                                margin-right: 11px;
-                                padding: 3px 5px;
-                                @include border-radius;
-
-                                input {
-                                    display: inline-block;
-                                    margin: 4px 4px 0 4px;
-
-                                    &:focus {
-                                        outline: none;
-                                    }
-                                }
-                                span {
-                                    color: #7B7B79;
-                                    display: inline-block;
-                                    text-transform: none;
-                                    vertical-align: -3px;
-                                }
-                                &.is-private {
-                                    background: #EFEEEF url('/static/images/private-icon-edit.png') 199px center no-repeat;
-                                }
-                                &.is-public {
-                                    background: #F2DEDE;
-                                    border: 1px solid #EED3D7;
-
-                                    span {
-                                        color: #B94A48;
-                                    }
-                                }
-                                &.is-blog-post {
-                                    background: #DAE3EE;
-                                    border: 1px solid #C8D1DE;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 body.error {
     section.main {
         div.inner {
@@ -2053,5 +1910,143 @@ body.tags {
     }
     aside.main {
         padding-top: 30px;
+    }
+}
+body.editing {
+    header.main, header.sub {
+        display: none;
+    }
+    header.fixed-save {
+        background: #FFF url('/static/images/header-fixed-save.gif') top left repeat;
+        border-bottom: 1px solid #DDDDDD;
+        height: 40px;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+
+        div.inner {
+            float: none;
+            margin: 0 auto;
+            padding-top: 6px;
+            width: 940px;
+
+            .cancel, .save, .save-and-close {
+                float: right;
+                margin-left: 10px;
+            }
+            .save-and-close {
+                margin-right: 242px;
+            }
+        }
+    }
+    section.main {
+        div.inner {
+            section.snipts {
+                article.editing {
+                    margin-top: 50px;
+
+                    div.container {
+                        width: 696px;
+
+                        section.code {
+                            padding: 0;
+
+                            .CodeMirror {
+                                color: #333;
+                                cursor: text;
+                                font: normal 12px/16px $Consolas;
+                            }
+                            .CodeMirror-matchingbracket {
+                                color: #32A8F6;
+                            }
+                        }
+                        header {
+                            h1 {
+                                margin: 4px 0 5px 8px;
+
+                                input {
+                                    color: #666;
+                                    font: bold 16px/20px $Helvetica;
+                                    margin: 0;
+                                    width: 811px;
+                                    width: 666px;
+                                }
+                            }
+                            h2 {
+                                border: none;
+                            }
+                        }
+                    }
+                    aside {
+                        margin-top: 0;
+                        width: 243px;
+
+                        div.in {
+                            padding-left: 10px;
+
+                            label {
+                                margin: 20px 0;
+
+                                & > span {
+                                    color: #32A8F6;
+                                    display: block;
+                                    font: bold 12px $Helvetica;
+                                    margin-bottom: 5px;
+                                    text-transform: uppercase;
+                                }
+                            }
+                            & > label {
+                                margin-top: 6px;
+                            }
+                            textarea {
+                                height: 100px;
+                                padding: 7px 9px;
+                                width: 202px;
+                            }
+                            label.public, label.blog-post {
+                                background: #EFEEEF;
+                                border: 1px solid #DDDDDD;
+                                cursor: pointer;
+                                margin-right: 11px;
+                                padding: 3px 5px;
+                                @include border-radius;
+
+                                input {
+                                    display: inline-block;
+                                    margin: 4px 4px 0 4px;
+
+                                    &:focus {
+                                        outline: none;
+                                    }
+                                }
+                                span {
+                                    color: #7B7B79;
+                                    display: inline-block;
+                                    text-transform: none;
+                                    vertical-align: -3px;
+                                }
+                                &.is-private {
+                                    background: #EFEEEF url('/static/images/private-icon-edit.png') 199px center no-repeat;
+                                }
+                                &.is-public {
+                                    background: #F2DEDE;
+                                    border: 1px solid #EED3D7;
+
+                                    span {
+                                        color: #B94A48;
+                                    }
+                                }
+                                &.is-blog-post {
+                                    background: #DAE3EE;
+                                    border: 1px solid #C8D1DE;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

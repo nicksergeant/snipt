@@ -143,6 +143,7 @@
                 gutter: true,
                 indentUnit: 4,
                 lineNumbers: true,
+                javascriptHint: true,
                 matchBrackets: true,
                 mode: that.guessCodeMirrorLexer($selectLexer.val()),
                 value: that.model.get('code')
