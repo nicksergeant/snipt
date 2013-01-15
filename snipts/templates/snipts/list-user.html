@@ -38,6 +38,9 @@
         </div>
         {% if user.profile.is_pro %}
             <a class="pro" href="/pro/">Pro</a>
+            {% if user.profile.gittip_username %}
+                <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
+            {% endif %}
         {% endif %}
     </div>
     {% include "snipts/tags-user.html" %}

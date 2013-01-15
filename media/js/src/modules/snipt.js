@@ -434,9 +434,6 @@
             $('button#add-snipt').click(function() {
                 that.addNewSnipt();
             });
-
-            // Populate all of the GitTip tip boxes.
-            this.getGitTipTips();
         },
 
         addExistingSnipt: function() {
@@ -571,28 +568,6 @@
                     window.site.$aside_nav.removeClass('open');
                 }
             }
-        },
-        getGitTipTips: function() {
-
-            var $gittips = $('span.gittip', this.$el);
-
-            for (var i = 0; i < $gittips.length; i++) {
-
-                var $tip = $gittips.eq(i);
-                var gittipUsername = $tip.data('gittip-username');
-
-                // Ask GitTip how much this logged-in user already tips this person.
-                $.ajax('https://www.gittip.com/' + gittipUsername + '/public.json', {
-                    dataType: 'json',
-                    type: 'get',
-                    success: function(resp) {
-                        if (resp.my_tip !== '0.00') {
-                            $('span', $tip).text(' ' + resp.my_tip);
-                        }
-                    }
-                });
-            }
-
         },
         keyboardShortcuts: function() {
 

@@ -1366,6 +1366,26 @@ div.profile {
             background: #D8D8D8;
         }
     }
+    a.gittip {
+        background: #DFF0D8;
+        clear: left;
+        color: #468847;
+        display: block;
+        float: left;
+        font: bold 11px $Helvetica;
+        margin-top: 10px;
+        padding: 4px 0;
+        text-align: center;
+        text-transform: uppercase;
+        width: 100%;
+        @include border-radius(3px);
+        @include box-shadow(0, 0, 3px, #B4C4A6);
+
+        &:hover {
+            background: #E6F7DF;
+            text-decoration: none;
+        }
+    }
 }
 div.empty-snipts {
     background: rgba(128, 128, 128, .08);
