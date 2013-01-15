@@ -1069,6 +1069,26 @@ article.snipt {
                             }
                         }
                     }
+                    span.gittip {
+                        a {
+                            background: #DFF0D8;
+                            border: 1px solid #CBDDBB;
+                            color: #468847;
+                            font: bold 10px $Helvetica;
+                            margin-left: 5px;
+                            padding: 0 3px;
+                            text-transform: uppercase;
+                            @include border-radius(3px);
+
+                            span {
+                                font-family: $Consolas;
+                            }
+                            &:hover {
+                                background: #E6F7DF;
+                                text-decoration: none;
+                            }
+                        }
+                    }
                 }
                 &.comments {
                     background: transparent url('/static/images/comments-icon.png') 0 2px no-repeat;
