@@ -26,7 +26,7 @@ class BlogMiddleware:
                         request.blog_user = get_object_or_404(User, username__iexact=blog_user)
 
             if request.blog_user is None:
-                pro_users = User.objects.filter(userprofile__is_pro=True, username='nick')
+                pro_users = User.objects.filter(userprofile__is_pro=True)
 
                 for pro_user in pro_users:
                     if host == pro_user.profile.blog_domain:
