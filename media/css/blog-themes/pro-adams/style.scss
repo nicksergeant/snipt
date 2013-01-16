@@ -205,6 +205,10 @@ section.main {
             color: #666;
             font: bold 12px $Helvetica;
             margin-bottom: 10px;
+
+            &:first-of-type {
+                margin-top: 3px;
+            }
         }
         p {
             color: #999;

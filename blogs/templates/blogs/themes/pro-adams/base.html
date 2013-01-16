@@ -32,7 +32,7 @@
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/pro.js?1"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?16" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?17" />
 
     <link rel="shortcut icon" href="/static/images/blog-favicon.ico" >
 
@@ -87,14 +87,16 @@
                 {% if sidebar %}
                     {{ sidebar.stylized|safe }}
                 {% endif %}
-                <section class="module snipts">
-                    <h1>Recent snipts</h1>
-                    <ul>
-                        {% for snipt in normal_snipts %}
-                            <li><a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </section>
+                {% if normal_snipts %}
+                    <section class="module snipts">
+                        <h1>Recent snipts</h1>
+                        <ul>
+                            {% for snipt in normal_snipts %}
+                                <li><a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+                {% endif %}
             </aside>
         </section>
     </div>
