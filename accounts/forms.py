@@ -4,4 +4,4 @@ from accounts.models import UserProfile
 class AccountForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('gittip_username',)
+        exclude = ('user', 'is_pro', 'stripe_id',)

@@ -1,12 +1,15 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from annoying.functions import get_object_or_None
 from django.template import RequestContext
-from django.conf import settings
 
 from snipts.models import Snipt
 
 import datetime
 
+THEME_CHOICES = {
+    'D': 'blogs/themes/default/',
+    'A': 'blogs/themes/pro-adams/',
+}
 
 def blog_list(request, username_or_custom_slug=None):
 
@@ -41,10 +44,12 @@ def blog_list(request, username_or_custom_slug=None):
         context['snipts'] = context['snipts'][:20]
         return rss(request, context)
 
-    if request.blog_user.profile.is_pro and request.blog_user.username in ['nick', 'ashley']:
-        template = 'blogs/themes/pro-adams/list.html'
+    if request.blog_user.profile.is_pro:
+        template = THEME_CHOICES[request.blog_user.profile.blog_theme]
     else:
-        template = 'blogs/themes/default/list.html'
+        template = THEME_CHOICES['D']
+
+    template = '{}/list.html'.format(template)
 
     return render_to_response(
             template,
@@ -84,10 +89,12 @@ def blog_post(request, username_or_custom_slug):
         'snipt': snipt,
     }
 
-    if request.blog_user.profile.is_pro and request.blog_user.username in ['nick', 'ashley']:
-        template = 'blogs/themes/pro-adams/post.html'
+    if request.blog_user.profile.is_pro:
+        template = THEME_CHOICES[request.blog_user.profile.blog_theme]
     else:
-        template = 'blogs/themes/default/post.html'
+        template = THEME_CHOICES['D']
+
+    template = '{}/post.html'.format(template)
 
     return render_to_response(
             template,

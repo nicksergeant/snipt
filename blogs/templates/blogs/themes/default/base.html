@@ -3,7 +3,14 @@
 {% block body-class %}blog-site{% endblock %}
 {% block html-class %}blog-site{% endblock %}
 
-{% block page-title %}{% if blog_user.username == 'nick' %}// Nick Sergeant {% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}
+{% block page-title %}
+    // 
+    {% if blog_user.profile.blog_title %}
+        {{ blog_user.profile.blog_title }}
+    {% else %}
+        {{ blog_user.username }}
+    {% endif %}
+{% endblock %}
 
 {% block page-description %}{% endblock %}
 {% block rochester-made %}{% endblock %}
@@ -19,10 +26,8 @@
         <div class="inner group">
             <h1>
                 <a href="/">
-                    {% if blog_user.username == 'nick' %}
-                        Nick Sergeant
-                    {% elif blog_user.username == 'blog' %}
-                        Snipt Blog
+                    {% if blog_user.profile.blog_title %}
+                        {{ blog_user.profile.blog_title }}
                     {% else %}
                         {{ blog_user.username }}
                     {% endif %}

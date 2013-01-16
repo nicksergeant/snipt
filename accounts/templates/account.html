@@ -28,8 +28,27 @@
                 <div class="control-group">
                     <label class="control-label" for="id_gittip_username">GitTip username:</label>
                     <div class="controls">
-                        <input type="text" id="id_gittip_username" name="gittip_username" value="{% firstof request.user.profile.gittip_username '' %}">
+                        {{ form.gittip_username }}
                         <span class="help-block">Your <a href="https://www.gittip.com/">GitTip</a> username, if you have one.</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_blog_title">Blog title:</label>
+                    <div class="controls">
+                        {{ form.blog_title }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_blog_theme">Blog theme:</label>
+                    <div class="controls">
+                        {{ form.blog_theme }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_blog_domain">Blog domain:</label>
+                    <div class="controls">
+                        {{ form.blog_domain }}
+                        <span class="help-block">Like 'snipt.nicksergeant.com' or 'nicksergeant.com' (without quotes). Set your CNAME / A-record to point to 54.243.204.150</span>
                     </div>
                 </div>
                 <div class="form-actions">

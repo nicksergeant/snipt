@@ -18,7 +18,14 @@ def account(request):
             return HttpResponseRedirect('/account/')
 
     else:
-        form = AccountForm()
+        profile = request.user.profile
+
+        form = AccountForm(initial={
+            'gittip_username': profile.gittip_username,
+            'blog_title': profile.blog_title,
+            'blog_theme': profile.blog_theme,
+            'blog_domain': profile.blog_domain
+        })
 
     return {
         'form': form

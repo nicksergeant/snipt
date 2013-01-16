@@ -6,8 +6,17 @@
 
     <title>
         {% block page-title %}
-            {% if blog_user.username == 'nick' %}// Nick Sergeant{% elif blog_user.username == 'ashley' %}// Ashley Sergeant{% elif blog_user.username == 'blog' %}// Snipt Blog{% else %}// {{ blog_user.username }}{% endif %}{% endblock %}</title>
+            // 
+            {% if blog_user.profile.blog_title %}
+                {{ blog_user.profile.blog_title }}
+            {% else %}
+                {{ blog_user.username }}
+            {% endif %}
+        {% endblock %}
+    </title>
+
     <meta charset="utf-8" />
+
     {% if 'page' in request.GET %}
         <meta name="robots" content="noindex, follow" />
     {% endif %}
@@ -52,12 +61,8 @@
                 </a>
                 <div class="bio">
                     <a class="name" href="/">
-                        {% if blog_user.username == 'nick' %}
-                            Nick Sergeant
-                        {% elif blog_user.username == 'blog' %}
-                            Snipt Blog
-                        {% elif blog_user.username == 'ashley' %}
-                            Ashley Sergeant
+                        {% if blog_user.profile.blog_title %}
+                            {{ blog_user.profile.blog_title }}
                         {% else %}
                             {{ blog_user.username }}
                         {% endif %}
@@ -66,8 +71,7 @@
                         <p>
                             I'm a front-end web developer in Rochester, NY working on the <a href="http://amara.org/">Amara</a> project for <a href="http://pculture.org/">PCF</a>. I also created <a href="https://snipt.net/">Snipt</a>.
                         </p>
-                    {% endif %}
-                    {% if blog_user.username == 'ashley' %}
+                    {% elif blog_user.username == 'ashley' %}
                         <p>Life is like photography, we use<br />the negatives to develop.</p>
                     {% endif %}
                 </div>
@@ -86,9 +90,7 @@
                             projects. View my <a href="/work/">work</a>, then<br />
                             <a href="mailto:nick@nicksergeant.com">email me</a>.
                         </p>
-                        <iframe style="border: 0; margin: 0; padding: 0;"
-        src="https://www.gittip.com/nicksergeant/widget.html"
-        width="48pt" height="22pt"></iframe>
+                        <iframe style="border: 0; margin: 0; padding: 0;" src="https://www.gittip.com/nicksergeant/widget.html" width="48pt" height="22pt"></iframe>
                     </section>
                     <section class="module projects">
                         <h1>Notable projects</h1>
@@ -121,8 +123,7 @@
                             {% endfor %}
                         </ul>
                     </section>
-                {% endif %}
-                {% if blog_user.username == 'ashley' %}
+                {% elif blog_user.username == 'ashley' %}
                     <section class="module places">
                         <h1>Elsewhere</h1>
                         <ul>
@@ -130,6 +131,12 @@
                             <li><a href="https://twitter.com/ashleysergeant">Twitter</a></li>
                         </ul>
                     </section>
+                {% else %}
+                    {% if sidebar %}
+                        <section class="module places">
+                            {{ sidebar.stylized|safe }}
+                        </section>
+                    {% endif %}
                 {% endif %}
             </aside>
         </section>

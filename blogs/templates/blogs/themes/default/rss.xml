@@ -1,39 +1,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        {% if request.blog_user.username == 'nick' %}
-            <atom:link href="http://nicksergeant.com/?rss" rel="self" type="application/rss+xml" />
-            <description>Nick Sergeant</description>
-            <title>Nick Sergeant</title>
-            <link>http://nicksergeant.com/?rss</link>
-        {% elif request.blog_user.username == 'ashley' %}
-            <atom:link href="http://ashleysergeant.com/?rss" rel="self" type="application/rss+xml" />
-            <description>Ashley Sergeant</description>
-            <title>Ashley Sergeant</title>
-            <link>http://ashleysergeant.com/?rss</link>
-        {% elif request.blog_user.username == 'gdemaderios' %}
-            <atom:link href="http://snips.witsoregon.com/?rss" rel="self" type="application/rss+xml" />
-            <description>gdemaderios</description>
-            <title>gdemaderios</title>
-            <link>http://snips.witsoregon.com/?rss</link>
-        {% elif request.blog_user.username == 'rochacbruno' %}
-            <atom:link href="http://rochacbruno.com.br/?rss" rel="self" type="application/rss+xml" />
-            <description>Bruno Cezar Rocha</description>
-            <title>Bruno Cezar Rocha</title>
-            <link>http://rochacbruno.com.br/?rss</link>
-        {% elif request.blog_user.username == 'joshhudnall' %}
-            <atom:link href="http://snipt.joshhudnall.com/?rss" rel="self" type="application/rss+xml" />
-            <description>Josh Hudnall</description>
-            <title>Josh Hudnall</title>
-            <link>http://snipt.joshhudnall.com/?rss</link>
-        {% elif request.blog_user.username == 'blog' %}
-            <atom:link href="https://blog.snipt.net/?rss" rel="self" type="application/rss+xml" />
-            <description>Snipt Blog</description>
-            <title>Snipt Blog</title>
-            <link>https://blog.snipt.net/?rss</link>
+        {% if request.blog_user.profile.is_pro %}
+            <atom:link href="{% if request.blog_user.profile.blog_domain %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}" rel="self" type="application/rss+xml" />
+            <description>{% firstof request.blog_user.profile.blog_title request.blog_user.username %}</description>
+            <title>{% firstof request.blog_user.profile.blog_title request.blog_user.username %}</title>
+            <link>{% if request.blog_user.profile.blog_domain %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}</link>
         {% else %}
             <atom:link href="https://{{ request.blog_user.username }}.snipt.net/?rss" rel="self" type="application/rss+xml" />
-            <description>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</description>
-            <title>{% if request.blog_user.username == 'nick' %}Nick Sergeant{% else %}{{ request.blog_user.username }}{% endif %}</title>
+            <description>{{ request.blog_user.username }}</description>
+            <title>{{ request.blog_user.username }}</title>
             <link>https://{{ request.blog_user.username }}.snipt.net/?rss</link>
         {% endif %}
         {% for snipt in snipts %}

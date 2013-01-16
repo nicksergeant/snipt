@@ -126,19 +126,8 @@ class Snipt(models.Model):
     def get_absolute_url(self):
 
         if self.blog_post:
-            if self.user.id == 3:
-                if settings.DEBUG:
-                    return 'http://nick.snipt.localhost/{}/'.format(self.slug)
-                else:
-                    return 'http://nicksergeant.com/{}/'.format(self.slug)
-            elif self.user.id == 18:
-                return 'http://ashleysergeant.com/{}/'.format(self.slug)
-            elif self.user.id == 12291:
-                return 'http://snips.witsoregon.com/{}/'.format(self.slug)
-            elif self.user.id == 2156:
-                return 'http://rochacbruno.com.br/{}/'.format(self.slug)
-            elif self.user.id == 10325:
-                return 'http://snipt.joshhudnall.com/{}/'.format(self.slug)
+            if self.user.profile.is_pro and self.user.profile.blog_domain is not None:
+                return 'http://{}/{}/'.format(self.user.profile.blog_domain, self.slug)
             else:
                 return 'https://{}.snipt.net/{}/'.format(self.user.username.replace('_', '-'), self.slug)
 
@@ -153,19 +142,8 @@ class Snipt(models.Model):
     def get_full_absolute_url(self):
 
         if self.blog_post:
-            if self.user.id == 3:
-                if settings.DEBUG:
-                    return 'http://nick.snipt.localhost/{}/'.format(self.slug)
-                else:
-                    return 'http://nicksergeant.com/{}/'.format(self.slug)
-            elif self.user.id == 18:
-                return 'http://ashleysergeant.com/{}/'.format(self.slug)
-            elif self.user.id == 12291:
-                return 'http://snips.witsoregon.com/{}/'.format(self.slug)
-            elif self.user.id == 2156:
-                return 'http://rochacbruno.com.br/{}/'.format(self.slug)
-            elif self.user.id == 10325:
-                return 'http://snipt.joshhudnall.com/{}/'.format(self.slug)
+            if self.user.profile.is_pro and self.user.profile.blog_domain is not None:
+                return 'http://{}/{}/'.format(self.user.profile.blog_domain, self.slug)
             else:
                 return 'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
 
