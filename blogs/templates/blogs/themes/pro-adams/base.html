@@ -24,9 +24,15 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/pro.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        {% if blog_user.profile.gittip_username %}
+            window.gittip_username = '{{ blog_user.profile.gittip_username }}';
+        {% endif %}
+    </script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?15" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pro.js?1"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?16" />
 
     <link rel="shortcut icon" href="/static/images/blog-favicon.ico" >
 
@@ -67,12 +73,8 @@
                             {{ blog_user.username }}
                         {% endif %}
                     </a>
-                    {% if blog_user.username == 'nick' %}
-                        <p>
-                            I'm a front-end web developer in Rochester, NY working on the <a href="http://amara.org/">Amara</a> project for <a href="http://pculture.org/">PCF</a>. I also created <a href="https://snipt.net/">Snipt</a>.
-                        </p>
-                    {% elif blog_user.username == 'ashley' %}
-                        <p>Life is like photography, we use<br />the negatives to develop.</p>
+                    {% if header %}
+                        {{ header.stylized|safe }}
                     {% endif %}
                 </div>
             </header>
@@ -82,62 +84,17 @@
                 {% block content %}{% endblock %}
             </section>
             <aside class="main">
-                {% if blog_user.username == 'nick' %}
-                    <section class="module hire">
-                        <h1>Hire me</h1>
-                        <p>
-                            I'm available for select freelance<br />
-                            projects. View my <a href="/work/">work</a>, then<br />
-                            <a href="mailto:nick@nicksergeant.com">email me</a>.
-                        </p>
-                        <iframe style="border: 0; margin: 0; padding: 0;" src="https://www.gittip.com/nicksergeant/widget.html" width="48pt" height="22pt"></iframe>
-                    </section>
-                    <section class="module projects">
-                        <h1>Notable projects</h1>
-                        <ul>
-                            <li><a href="https://snipt.net/">Snipt</a></li>
-                            <li><a href="http://amara.org">Amara</a></li>
-                            <li><a href="http://sidepros.com/">SidePros</a></li>
-                            <li><a href="http://elfpowered.com/">Elf Powered</a></li>
-                            <li><a href="http://afeedapart.com/">A Feed Apart</a></li>
-                            <li><a href="http://rochestermade.com">Rochester Made</a></li>
-                            <li><a href="http://refreshroc.org/">Refresh Rochester</a></li>
-                            <li class="more"><a href="/work/">View more &raquo;</a></li>
-                        </ul>
-                    </section>
-                    <section class="module places">
-                        <h1>Elsewhere</h1>
-                        <ul>
-                            <li><a href="mailto:nick@nicksergeant.com">Email</a></li>
-                            <li><a href="https://twitter.com/nicksergeant">Twitter</a></li>
-                            <li><a href="https://github.com/nicksergeant">GitHub</a></li>
-                            <li><a href="http://www.linkedin.com/in/nicksergeant">LinkedIn</a></li>
-                            <li><a href="/work/">Portfolio</a></li>
-                        </ul>
-                    </section>
-                    <section class="module snipts">
-                        <h1>Recent snipts</h1>
-                        <ul>
-                            {% for snipt in normal_snipts %}
-                                <li><a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </section>
-                {% elif blog_user.username == 'ashley' %}
-                    <section class="module places">
-                        <h1>Elsewhere</h1>
-                        <ul>
-                            <li><a href="mailto:ashley@ashleysergeant.com">Email</a></li>
-                            <li><a href="https://twitter.com/ashleysergeant">Twitter</a></li>
-                        </ul>
-                    </section>
-                {% else %}
-                    {% if sidebar %}
-                        <section class="module places">
-                            {{ sidebar.stylized|safe }}
-                        </section>
-                    {% endif %}
+                {% if sidebar %}
+                    {{ sidebar.stylized|safe }}
                 {% endif %}
+                <section class="module snipts">
+                    <h1>Recent snipts</h1>
+                    <ul>
+                        {% for snipt in normal_snipts %}
+                            <li><a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
             </aside>
         </section>
     </div>

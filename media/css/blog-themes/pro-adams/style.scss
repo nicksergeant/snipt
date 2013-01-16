@@ -158,7 +158,7 @@ header.main {
             color: #B7B7B7;
             font: 500 12px $Helvetica;
             line-height: 18px;
-            margin-top: 1px;
+            margin: 0;
             max-width: 340px;
 
             a {
@@ -173,6 +173,9 @@ header.main {
                 &:hover {
                     color: #666;
                 }
+            }
+            &:first-of-type {
+                margin-top: 1px;
             }
         }
     }
@@ -198,66 +201,65 @@ section.main {
         padding-left: 20px;
         width: 220px;
 
-        section.module {
-            margin-bottom: 40px;
+        h1 {
+            color: #666;
+            font: bold 12px $Helvetica;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #999;
+            font: normal 12px $Helvetica;
+            line-height: 18px;
+            margin-bottom: 20px;
+        }
+        ul {
+            margin-bottom: 20px;
+            margin-left: 0;
 
-            h1 {
-                color: #666;
-                font: bold 12px $Helvetica;
-                margin-bottom: 10px;
-            }
-            ul {
+            li {
+                list-style-type: none;
                 margin: 0;
 
-                li {
-                    list-style-type: none;
-                    margin: 0;
+                a {
+                    color: #999;
+                    display: block;
+                    font: normal 12px $Helvetica;
+                    line-height: 18px;
+                    max-width: 220px;
+                    overflow: hidden;
+                    text-decoration: none;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
 
-                    a {
-                        color: #999;
-                        display: block;
-                        font: normal 12px $Helvetica;
-                        line-height: 18px;
-                        max-width: 220px;
-                        overflow: hidden;
-                        text-decoration: none;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
+                    &:before {
+                        background: #EEE;
+                        content: "";
+                        display: inline-block;
+                        margin-right: 10px;
+                        height: 9px;
+                        width: 9px;
+                        @include border-radius;
+                    }
+                    &:hover {
+                        color: #666;
 
                         &:before {
-                            background: #EEE;
-                            content: "";
-                            display: inline-block;
-                            margin-right: 10px;
-                            height: 9px;
-                            width: 9px;
-                            @include border-radius;
-                        }
-                        &:hover {
-                            color: #666;
-
-                            &:before {
-                                background: #CCC;
-                            }
+                            background: #CCC;
                         }
                     }
                     &.more {
-                        a {
-                            font-size: 10px;
-                            margin-left: 19px;
-                            margin-top: 5px;
+                        font-size: 10px;
+                        margin-left: 19px;
+                        margin-top: 5px;
 
-                            &:before {
-                                display: none;
-                            }
+                        &:after {
+                            content: " »";
+                        }
+                        &:before {
+                            display: none;
                         }
                     }
                 }
-            }
-            p {
-                color: #999;
-                font: normal 12px $Helvetica;
-                line-height: 18px;
             }
         }
     }

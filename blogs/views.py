@@ -27,13 +27,13 @@ def blog_list(request, username_or_custom_slug=None):
     normal_snipts = normal_snipts.exclude(tags__name__in=['tmp'])
     normal_snipts = normal_snipts[:3]
 
-    sidebar = get_object_or_None(Snipt,
-                                 user=request.blog_user,
-                                 title='Blog Sidebar')
+    sidebar = get_object_or_None(Snipt, user=request.blog_user, title='Sidebar', blog_post=True)
+    header = get_object_or_None(Snipt, user=request.blog_user, title='Header', blog_post=True)
 
     context = {
         'blog_user': request.blog_user,
         'has_snipts': True,
+        'header': header,
         'normal_snipts': normal_snipts,
         'public': True,
         'sidebar': sidebar,
@@ -66,9 +66,8 @@ def blog_post(request, username_or_custom_slug):
                                      slug=username_or_custom_slug,
                                      )
 
-    sidebar = get_object_or_None(Snipt,
-                                 user=request.blog_user,
-                                 title='Blog Sidebar')
+    sidebar = get_object_or_None(Snipt, user=request.blog_user, title='Sidebar', blog_post=True)
+    header = get_object_or_None(Snipt, user=request.blog_user, title='Header', blog_post=True)
 
     normal_snipts = Snipt.objects.filter(blog_post=False, user=request.blog_user, public=True).order_by('-created')
     normal_snipts = normal_snipts.exclude(title__in=[''])
@@ -83,6 +82,7 @@ def blog_post(request, username_or_custom_slug):
         'blog_user': request.blog_user,
         'detail': True,
         'has_snipts': True,
+        'header': header,
         'normal_snipts': normal_snipts,
         'public': True,
         'sidebar': sidebar,
