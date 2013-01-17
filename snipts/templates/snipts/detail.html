@@ -2,7 +2,7 @@
 
 {% block page-title %}/ {% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %} / {{ user.username }} - {{ block.super }}{% endblock %}
 {% block html-class %}detail{% endblock %}
-{% block body-class %}{% if request.path == '/api/' %}api{% else %}detail{% endif %}{% endblock %}
+{% block body-class %}{% if request.path == '/api/' or request.path == '/bloggin/' %}snipt-page{% else %}detail{% endif %}{% endblock %}
 
 {% block js %}
         {{ block.super }}

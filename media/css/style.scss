@@ -1428,107 +1428,6 @@ body.account {
         }
     }
 }
-body.api {
-    section.main {
-        div.inner {
-            div.sifter {
-                margin-bottom: 0;
-                margin-top: 10px;
-                margin-right: 100px;
-
-                a.sifter-logo {
-                    float: left;
-
-                    img {
-                        height: 30px;
-                        margin: 0;
-                        margin-top: 10px;
-                    }
-                }
-                div.right {
-                    float: left;
-                    margin-left: 10px;
-                    padding-top: 10px;
-
-                    h3 {
-                        margin: 0;
-                    }
-                    p {
-                        margin: 0;
-                    }
-                }
-            }
-            section.snipts {
-                article.snipt {
-                    div.container {
-                        header {
-                            h1 {
-                                a {
-                                    white-space: normal;
-                                }
-                            }
-                        }
-                        section.code {
-                            height: auto;
-                        }
-                    }
-                }
-            }
-        }
-        aside.api-info {
-            float: right;
-            width: 190px;
-
-            div.api-inner {
-                background: rgba(#99D0DA, .3);
-                font: normal 11px $Helvetica;
-                margin: 0 0 30px 15px;
-                padding: 10px;
-                @include border-radius(8px);
-
-                h5 {
-                    margin-bottom: 5px;
-                    margin-top: 0;
-                }
-                ul {
-                    margin: 0;
-
-                    li {
-                        margin: 2px 0;
-                        list-style-type: none;
-
-                        input {
-                            margin-bottom: 0;
-                            margin-top: 5px;
-                            width: 145px;
-                        }
-                    }
-                }
-            }
-            &.api-creds {
-                div.api-inner {
-                    margin-bottom: 0;
-                }
-            }
-            &.immediate-help {
-                margin-top: 20px;
-
-                p {
-                    margin: 0;
-                }
-            }
-        }
-        aside.main {
-            nav.footer {
-                float: left;
-                margin-bottom: 0;
-            }
-        }
-    }
-    div#disqus_thread {
-        width: 719px;
-    }
-}
 body.blog {
     article.snipt {
         section.code {
@@ -1842,6 +1741,107 @@ body.search {
                 padding: 4px 16px 4px;
             }
         }
+    }
+}
+body.snipt-page {
+    section.main {
+        div.inner {
+            div.sifter {
+                margin-bottom: 0;
+                margin-top: 10px;
+                margin-right: 100px;
+
+                a.sifter-logo {
+                    float: left;
+
+                    img {
+                        height: 30px;
+                        margin: 0;
+                        margin-top: 10px;
+                    }
+                }
+                div.right {
+                    float: left;
+                    margin-left: 10px;
+                    padding-top: 10px;
+
+                    h3 {
+                        margin: 0;
+                    }
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+            section.snipts {
+                article.snipt {
+                    div.container {
+                        header {
+                            h1 {
+                                a {
+                                    white-space: normal;
+                                }
+                            }
+                        }
+                        section.code {
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+        aside.api-info {
+            float: right;
+            width: 190px;
+
+            div.api-inner {
+                background: rgba(#99D0DA, .3);
+                font: normal 11px $Helvetica;
+                margin: 0 0 30px 15px;
+                padding: 10px;
+                @include border-radius(8px);
+
+                h5 {
+                    margin-bottom: 5px;
+                    margin-top: 0;
+                }
+                ul {
+                    margin: 0;
+
+                    li {
+                        margin: 2px 0;
+                        list-style-type: none;
+
+                        input {
+                            margin-bottom: 0;
+                            margin-top: 5px;
+                            width: 145px;
+                        }
+                    }
+                }
+            }
+            &.api-creds {
+                div.api-inner {
+                    margin-bottom: 0;
+                }
+            }
+            &.immediate-help {
+                margin-top: 20px;
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+        aside.main {
+            nav.footer {
+                float: left;
+                margin-bottom: 0;
+            }
+        }
+    }
+    div#disqus_thread {
+        width: 719px;
     }
 }
 body.static {
