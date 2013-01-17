@@ -206,9 +206,9 @@
                                 </li>
                             {% endif %}
                             <li class="blog">
-                                <a href="https://blog.snipt.net/">Blog</a>
+                                <a href="https://blog.snipt.net/">Snipt Blog</a>
                             </li>
-                            <li class="blog">
+                            <li class="blog {% if '/blogging/' in request.path %}active{% endif %}">
                                 <a href="/blogging/">Blogging on Snipt</a>
                             </li>
                             <li class="roadmap">
