@@ -208,8 +208,8 @@
                             <li class="blog">
                                 <a href="https://blog.snipt.net/">Snipt Blog</a>
                             </li>
-                            <li class="blog {% if '/blogging/' in request.path %}active{% endif %}">
-                                <a href="/blogging/">Blogging on Snipt</a>
+                            <li class="blog">
+                                <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}>Blogging on Snipt</a>
                             </li>
                             <li class="roadmap">
                                 <a href="https://github.com/nicksergeant/snipt/">Open source on GitHub</a>
