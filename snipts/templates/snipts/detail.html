@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block aside %}
-    {% if request.path == '/api/' %}
+    {% if request.path == '/api/' or request.path == '/blogging/' %}
         {{ block.super }}
     {% endif %}
 {% endblock %}
