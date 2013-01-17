@@ -126,7 +126,7 @@ class Snipt(models.Model):
     def get_absolute_url(self):
 
         if self.blog_post:
-            if self.user.profile.is_pro and self.user.profile.blog_domain is not None:
+            if self.user.profile.is_pro and self.user.profile.blog_domain is not None and self.user.profile.blog_domain != '':
                 return 'http://{}/{}/'.format(self.user.profile.blog_domain, self.slug)
             else:
                 return 'https://{}.snipt.net/{}/'.format(self.user.username.replace('_', '-'), self.slug)
