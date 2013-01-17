@@ -197,16 +197,19 @@
                             <li class="api">
                                 <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}>API</a>
                             </li>
-                            <li class="blog">
-                                <a href="https://blog.snipt.net/">Blog</a>
+                            <li class="twitter">
+                                <a href="https://twitter.com/#!/snipt">@snipt</a>
                             </li>
                             {% if not request.user.profile.is_pro %}
                                 <li class="pro">
                                     <a href="/pro/">Go Pro</a>
                                 </li>
                             {% endif %}
-                            <li class="twitter">
-                                <a href="https://twitter.com/#!/snipt">@snipt</a>
+                            <li class="blog">
+                                <a href="https://blog.snipt.net/">Blog</a>
+                            </li>
+                            <li class="blog">
+                                <a href="/blogging/">Blogging on Snipt</a>
                             </li>
                             <li class="roadmap">
                                 <a href="https://github.com/nicksergeant/snipt/">Open source on GitHub</a>
