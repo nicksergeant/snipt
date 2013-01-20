@@ -36,6 +36,12 @@
 
     <link rel="shortcut icon" href="/static/images/blog-favicon.ico" >
 
+    {% if custom_css %}
+        <style type="text/css">
+            {{ custom_css.code }}
+        </style>
+    {% endif %}
+
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}" />
     {% endif %}

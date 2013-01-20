@@ -29,9 +29,11 @@ def blog_list(request, username_or_custom_slug=None):
 
     sidebar = get_object_or_None(Snipt, user=request.blog_user, title='Sidebar', blog_post=True)
     header = get_object_or_None(Snipt, user=request.blog_user, title='Header', blog_post=True)
+    custom_css = get_object_or_None(Snipt, user=request.blog_user, title='CSS', lexer='css', blog_post=True)
 
     context = {
         'blog_user': request.blog_user,
+        'custom_css': custom_css,
         'has_snipts': True,
         'header': header,
         'normal_snipts': normal_snipts,
@@ -68,6 +70,7 @@ def blog_post(request, username_or_custom_slug):
 
     sidebar = get_object_or_None(Snipt, user=request.blog_user, title='Sidebar', blog_post=True)
     header = get_object_or_None(Snipt, user=request.blog_user, title='Header', blog_post=True)
+    custom_css = get_object_or_None(Snipt, user=request.blog_user, title='CSS', lexer='css', blog_post=True)
 
     normal_snipts = Snipt.objects.filter(blog_post=False, user=request.blog_user, public=True).order_by('-created')
     normal_snipts = normal_snipts.exclude(title__in=[''])
@@ -80,6 +83,7 @@ def blog_post(request, username_or_custom_slug):
 
     context = {
         'blog_user': request.blog_user,
+        'custom_css': custom_css,
         'detail': True,
         'has_snipts': True,
         'header': header,
