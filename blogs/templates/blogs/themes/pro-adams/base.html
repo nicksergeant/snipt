@@ -24,11 +24,11 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-    <script type="text/javascript" charset="utf-8">
-        {% if blog_user.profile.gittip_username %}
+    {% if blog_user.profile.gittip_username %}
+        <script type="text/javascript" charset="utf-8">
             window.gittip_username = '{{ blog_user.profile.gittip_username }}';
-        {% endif %}
-    </script>
+        </script>
+    {% endif %}
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/pro.js?1"></script>
 

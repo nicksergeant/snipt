@@ -41,6 +41,7 @@
             this.$body = $(this.el);
             this.$html = $('html');
             this.$html_body = this.$body.add(this.$html);
+            this.$aside_main = $('aside.main', this.$body);
             this.$aside_nav = $('aside.nav', this.$body);
             this.$aside_nav_ul = $('ul', this.$aside_nav);
             this.$search_form = $('form.search', this.$body);
@@ -152,6 +153,15 @@
 
             if (this.$body.hasClass('login')) {
                 $('input#id_username').focus();
+            }
+
+            // Populate any GitTip widgets.
+            if (window.gittip_username) {
+                this.$aside_main.html(this.$aside_main.html().replace(
+                   /\[\[.*gittip.*\]\]/,
+                   '<iframe style="border: 0; margin: 0; padding: 0;" src="https://www.gittip.com/' + window.gittip_username + '/widget.html" width="48pt" height="22pt"></iframe>')
+                );
+                $('iframe', this.$aside_main).parent('p').prev('p').css('margin-bottom', '10px');
             }
 
             window.ui_halted = false;
