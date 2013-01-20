@@ -7,6 +7,7 @@ django-markdown-deux
 django-pagination
 django-taggit
 django-templatetag-sugar
+fabric
 gunicorn
 parsedatetime
 psycopg2
