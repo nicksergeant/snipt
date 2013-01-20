@@ -168,6 +168,7 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Account settings
 LOGIN_REDIRECT_URL = '/'

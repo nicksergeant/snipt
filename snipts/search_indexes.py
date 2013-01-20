@@ -3,7 +3,7 @@ from haystack import indexes
 from snipts.models import Snipt
 
 
-class SniptIndex(indexes.RealtimeSignalProcessor, indexes.Indexable):
+class SniptIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     author = indexes.CharField(model_attr='user')
     pub_date = indexes.DateTimeField(model_attr='created')
