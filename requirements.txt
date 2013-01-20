@@ -17,6 +17,8 @@ Pygments
 python-memcached
 python-postmark
 pyyaml
+requests
+simplejson
 South
 Werkzeug
 
