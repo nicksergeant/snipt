@@ -21,6 +21,14 @@
         window.blog_post = true;
 {% endblock %}
 
+{% block css %}
+    {% if blog_user.profile.is_pro and custom_css %}
+        <style type="text/css">
+            {{ custom_css.code }}
+        </style>
+    {% endif %}
+{% endblock %}
+
 {% block header %}
     <header class="main">
         <div class="inner group">
