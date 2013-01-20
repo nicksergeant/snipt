@@ -2,8 +2,9 @@
 
 This is the codebase for the website, [Snipt.net](https://snipt.net/).
 
-It's a relatively well-kept Django app, so you shouldn't have too many problems
-getting a local copy running.
+It's a relatively well-kept Django app, so you shouldn't have too many problems getting a local copy running.
+
+These instructions assume you already have [Git](http://git-scm.com/) and [Mercurial](http://mercurial.selenic.com/) installed via your OS package manager or from source.
 
 If you need help, visit `#snipt` on irc.freenode.net.
 
