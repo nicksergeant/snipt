@@ -1,3 +1,4 @@
+boto
 Django
 django-annoying
 django-bcrypt
