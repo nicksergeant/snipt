@@ -62,4 +62,7 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-INSTALLED_APPS += ('django_extensions',)
+INSTALLED_APPS += (
+    'debug_toolbar',
+    'django_extensions',
+)

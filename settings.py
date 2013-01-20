@@ -89,7 +89,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
-    'debug_toolbar',
     'django_bcrypt',
     'haystack',
     'markdown_deux',

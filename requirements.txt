@@ -1,17 +1,13 @@
-BeautifulSoup
-boto
-biplist
 Django
 django-annoying
-django-appconf
 django-bcrypt
+django-debug-toolbar
 django-extensions
 django-markdown-deux
 django-pagination
 django-taggit
 django-templatetag-sugar
 gunicorn
-lxml
 parsedatetime
 psycopg2
 pyelasticsearch
@@ -19,14 +15,10 @@ Pygments
 python-memcached
 python-postmark
 pyyaml
-simplejson
 South
-uuid
-versiontools
 Werkzeug
 
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
 git+https://github.com/toastdriven/django-tastypie.git#egg=django-tastypie
-git+git://github.com/jbalogh/django-cache-machine.git#egg=django-cache-machine
 git+git://github.com/mintchaos/typogrify.git#egg=typogrify
