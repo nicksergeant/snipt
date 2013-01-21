@@ -10,6 +10,7 @@ django-taggit
 django-templatetag-sugar
 fabric
 gunicorn
+lxml
 parsedatetime
 psycopg2
 pyelasticsearch
