@@ -489,18 +489,24 @@ section.main {
 
                 li {
                     list-style-type: none;
-                    margin: 6px 0 6px 22px;
+                    margin-left: 22px;
                 }
             }
             a {
-                border-bottom: 1px solid #5AB6F4;
                 color: #5AB6F4;
+                display: block;
                 font: normal 12px $Helvetica;
+                padding: 3px 0;
                 text-decoration: none;
 
+                span {
+                    border-bottom: 1px solid #5AB6F4;
+                }
                 &:hover {
-                    border-bottom: 1px solid #2B6E9B;
-                    color: #2B6E9B;
+                    span {
+                        border-bottom: 1px solid #2B6E9B;
+                        color: #2B6E9B;
+                    }
                 }
                 &.view-all {
                     font-weight: bold;
@@ -514,6 +520,10 @@ section.main {
             a.all-tags {
                 font-weight: bold;
                 margin-left: 22px;
+
+                span {
+                    border-bottom: 1px solid #5AB6F4;
+                }
             }
             a.favorited-snipts {
                 display: inline-block;
@@ -535,23 +545,34 @@ section.main {
                 li {
                     background: transparent url('/static/images/api-icon.png') center left no-repeat;
                     list-style-type: none;
-                    margin: 6px 0 6px 0;
+                    margin: 0;
                     padding-left: 22px;
 
                     a {
-                        border-bottom: 1px solid #999;
                         color: #999;
+                        display: block;
                         font: bold 12px $Helvetica;
+                        padding: 3px 0;
                         text-decoration: none;
 
+                        span {
+                            border-bottom: 1px solid #999;
+                        }
                         &:hover {
-                            border-bottom: 1px solid #333;
-                            color: #333;
+                            span {
+                                border-bottom: 1px solid #333;
+                                color: #333;
+                            }
                         }
                         &.active {
-                            border-bottom: 1px solid #333;
-                            color: #333;
+                            span {
+                                border-bottom: 1px solid #333;
+                                color: #333;
+                            }
                         }
+                    }
+                    &.api {
+                        padding-top: 1px;
                     }
                     &.twitter {
                         background: transparent url('/static/images/twitter-icon.png') 4px center no-repeat;
@@ -563,7 +584,9 @@ section.main {
                         background: transparent url('/static/images/groups-icon.png') 2px center no-repeat;
                     }
                     &:first-of-type {
-                        margin-top: 0;
+                        a {
+                            padding-top: 0;
+                        }
                     }
                     &.blog {
                         background: transparent url('/static/images/blog-icon.png') 3px center no-repeat;

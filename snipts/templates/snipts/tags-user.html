@@ -1,12 +1,12 @@
 <section class="tags">
     {% if request.user == user %}
-        <a href="/{{ user }}/favorites/" class="favorited-snipts {% if 'favorites' in request.path %}active{% endif %}">View favorited snipts &raquo;</a>
+        <a href="/{{ user }}/favorites/" class="favorited-snipts {% if 'favorites' in request.path %}active{% endif %}"><span>View favorited snipts &raquo;</span></a>
     {% endif %}
     <h1>{{ user.username }}'s tags</h1>
     <ul>
         {% for t in tags %}
             <li>
-                <a {% if tag.name == t.name %}class="active"{% endif %} href="/{{ user.username }}/tag/{{ t.slug }}/">{{ t.name }}</a>
+                <a {% if tag.name == t.name %}class="active"{% endif %} href="/{{ user.username }}/tag/{{ t.slug }}/"><span>{{ t.name }}</span></a>
             </li>
         {% endfor %}
     </ul>

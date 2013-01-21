@@ -197,27 +197,27 @@
                     <nav class="footer">
                         <ul>
                             <li class="api">
-                                <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}>API</a>
+                                <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}><span>API</span></a>
                             </li>
                             <li class="twitter">
-                                <a href="https://twitter.com/#!/snipt">@snipt</a>
+                                <a href="https://twitter.com/#!/snipt"><span>@snipt</span></a>
                             </li>
                             {% if not request.user.profile.is_pro %}
                                 <li class="pro">
-                                    <a href="/pro/">Go Pro</a>
+                                    <a href="/pro/"><span>Go Pro</span></a>
                                 </li>
                             {% endif %}
                             <li class="blog">
-                                <a href="https://blog.snipt.net/">Snipt Blog</a>
+                                <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
                             </li>
                             <li class="blog">
-                                <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}>Blogging on Snipt</a>
+                                <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging on Snipt</span></a>
                             </li>
                             <li class="roadmap">
-                                <a href="https://github.com/nicksergeant/snipt/">Open source on GitHub</a>
+                                <a href="https://github.com/nicksergeant/snipt/"><span>Open source on GitHub</span></a>
                             </li>
                             <li class="roadmap">
-                                <a href="https://github.com/nicksergeant/snipt/issues?state=open">Bugs & feature requests</a>
+                                <a href="https://github.com/nicksergeant/snipt/issues?state=open"><span>Bugs & feature requests</span></a>
                             </li>
                         </ul>
                     </nav>
