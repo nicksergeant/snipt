@@ -618,20 +618,20 @@ section.main {
         div.linode {
             background: transparent url('/static/images/linode.png') top left no-repeat;
             background-size: 100%;
-            display: none;
             margin-left: 17px;
+            padding-bottom: 20px;
             position: relative;
 
             a {
                 display: block;
-                height: 40px;
+                height: 68px;
                 color: #989898;
 
                 span {
                     font: bold 12px $Helvetica;
-                    left: 37px;
+                    left: 69px;
                     position: absolute;
-                    top: -5px;
+                    top: 0px;
                 }
             }
         }
@@ -1472,20 +1472,19 @@ div.site-notice {
 }
 a.go-pro {
     background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
-    border: 2px solid white;
     border-left: 0;
     border-right: 0;
-    color: #D4D4D4;
+    color: #797979;
     display: block;
     font: bold 12px $Helvetica;
-    margin: 30px 30px 30px 0;
+    margin: 30px 0;
     padding: 8px 14px;
     text-align: center;
     text-decoration: none;
     @include multi-border-radius(0, 4px, 4px, 0);
 
     span.snipt {
-        color: #F9F9F9;
+        color: #797979;
         font: normal 14px $Rockwell;
     }
     span.pro {
@@ -1499,7 +1498,7 @@ a.go-pro {
         color: #666;
     }
     &:hover {
-        color: #FFF;
+        color: black;
 
         span.pro {
             color: #3299B7;
@@ -1702,14 +1701,13 @@ body.jobs {
 body.pro {
     div.pro-hero {
         background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
-        border-bottom: 2px solid white;
-        color: #F9F9F9;
+        border-bottom: 1px solid #DDDDDD;
+        color: #797979;
         font: normal 36px $Rockwell;
         padding: 30px 0;
         position: relative;
         text-align: center;
         z-index: 50;
-        @include box-shadow(0, 2px, 3px, rgba(#DDDDDD, .7));
 
         span {
             color: #3299B7;
