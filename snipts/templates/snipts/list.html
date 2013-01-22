@@ -14,7 +14,7 @@
 {% block content %}
     <section class="snipts" id="snipts">
         {% if request.user.is_authenticated and not request.user.profile.is_pro %}
-            <div class="alert alert-info site-notice"><a href="/pro/">Snipt Pro</a>: Get exclusive features and support the development of Snipt for only $3/month.</div>
+            {% include 'go-pro.html' %}
         {% endif %}
         {% autopaginate snipts 10 %}
         {% for snipt in snipts %}

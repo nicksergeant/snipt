@@ -130,13 +130,17 @@ header.main {
                 float: left;
                 letter-spacing: -1px;
                 margin: 11px 0 0 16px;
+                text-decoration: none;
                 text-shadow: 0 1px 2px black;
 
+                span {
+                    color: #87D2DC;
+                }
                 &:focus {
                     outline: none;
                 }
-                span {
-                    color: #87D2DC;
+                &:hover {
+                    text-shadow: 0 0 100px white;
                 }
             }
         }
@@ -191,10 +195,10 @@ header.main {
                         padding: 6px 7px 5px 7px;
                         margin-right: 16px;
                         text-decoration: none;
-                        -webkit-transition: border .08s linear;
-                        -moz-transition: border .08s linear;
-                        -o-transition: border .08s linear;
-                        transition: border .08s linear;
+                        -webkit-transition: border .03s linear;
+                        -moz-transition: border .03s linear;
+                        -o-transition: border .03s linear;
+                        transition: border .03s linear;
 
                         &:hover {
                             border-bottom: 2px solid #3A5E67;
@@ -748,10 +752,10 @@ article.snipt {
                     text-overflow: ellipsis;
                     text-decoration: none;
                     white-space: nowrap;
-                    -webkit-transition: color .08s linear;
-                    -moz-transition: color .08s linear;
-                    -o-transition: color .08s linear;
-                    transition: color .08s linear;
+                    -webkit-transition: color .03s linear;
+                    -moz-transition: color .03s linear;
+                    -o-transition: color .03s linear;
+                    transition: color .03s linear;
 
                     &:hover {
                         color: #3BAAF3;
@@ -1466,6 +1470,41 @@ div.site-notice {
         text-decoration: underline;
     }
 }
+a.go-pro {
+    background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
+    border: 2px solid white;
+    border-left: 0;
+    color: #D4D4D4;
+    display: block;
+    font: bold 12px $Helvetica;
+    margin: 30px 30px 30px 0;
+    padding: 8px 14px;
+    text-align: center;
+    text-decoration: none;
+    @include multi-border-radius(0, 4px, 4px, 0);
+
+    span.snipt {
+        color: #F9F9F9;
+        font: normal 14px $Rockwell;
+    }
+    span.pro {
+        color: #3299B7;
+        font-family: $Helvetica;
+        font-style: italic;
+        font-weight: bold;
+        margin-right: 4px;
+    }
+    span.emph {
+        color: #666;
+    }
+    &:hover {
+        color: #FFF;
+
+        span.pro {
+            color: #3299B7;
+        }
+    }
+}
 
 // Pages
 body.account {
@@ -1564,7 +1603,7 @@ body.detail {
     div.rochester-made {
         width: 840px;
     }
-    div.site-notice {
+    div.site-notice, a.go-pro {
         margin-right: 100px;
     }
 }
@@ -1660,9 +1699,36 @@ body.jobs {
     }
 }
 body.pro {
+    div.pro-hero {
+        background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
+        border-bottom: 2px solid white;
+        color: #F9F9F9;
+        font: normal 36px $Rockwell;
+        padding: 30px 0;
+        position: relative;
+        text-align: center;
+        z-index: 50;
+        @include box-shadow(0, 2px, 3px, rgba(#DDDDDD, .7));
+
+        span {
+            color: #3299B7;
+        }
+        span.pro {
+            font: bold italic 33px $Helvetica;
+        }
+    }
     div.static-box {
+        border-top: 0;
+        margin-top: 0;
         padding-bottom: 0;
-        padding-top: 10px;
+        padding-top: 20px;
+        position: relative;
+        z-index: 49;
+        @include multi-border-radius(0px, 0px, 4px, 4px);
+
+        p:first-of-type {
+            margin-top: 10px;
+        }
     }
     h2 {
         span.pro {
@@ -1673,6 +1739,18 @@ body.pro {
     }
     h3, h4 {
         text-align: center;
+    }
+    h3 {
+        font-size: 23px;
+
+        span {
+            color: #999999;
+        }
+        span.pro {
+            color: #3299B7;
+            font-style: italic;
+            font-weight: bold;
+        }
     }
     h4 {
         margin-bottom: 35px;
@@ -1776,16 +1854,6 @@ body.pro {
                 margin-top: 18px;
             }
         }
-    }
-    div.pro-hero {
-        border-bottom: 1px solid #17333A;
-        color: #3299B7;
-        font: bold italic 40px $Helvetica;
-        padding: 30px 0;
-        text-align: center;
-        text-shadow: 0 1px 0 black;
-        @include box-shadow(0, 4px, 5px, #DDDDDD);
-        @include vertical-gradient(#12313E, #2F4C55);
     }
 }
 body.search {
@@ -1964,6 +2032,12 @@ body.static {
         p {
             line-height: 20px;
             margin: 15px 0;
+        }
+        span.pro {
+            color: #3299B7;
+            font-family: $Helvetica;
+            font-style: italic;
+            font-weight: bold;
         }
     }
     aside.main {
