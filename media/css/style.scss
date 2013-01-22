@@ -619,9 +619,13 @@ section.main {
         div.linode {
             background: transparent url('/static/images/linode.png') top left no-repeat;
             background-size: 100%;
+            clear: both;
+            float: left;
+            margin-bottom: 30px;
             margin-left: 17px;
             padding-bottom: 20px;
             position: relative;
+            width: 153px;
 
             a {
                 display: block;
@@ -1473,8 +1477,6 @@ div.site-notice {
 }
 a.go-pro {
     background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
-    border-left: 0;
-    border-right: 0;
     color: #797979;
     display: block;
     font: bold 12px $Helvetica;
@@ -1973,7 +1975,6 @@ body.snipt-page {
         aside.main {
             nav.footer {
                 float: left;
-                margin-bottom: 0;
             }
         }
     }
