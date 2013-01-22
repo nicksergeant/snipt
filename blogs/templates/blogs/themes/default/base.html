@@ -68,11 +68,13 @@
                 {{ sidebar.stylized|safe }}
             </section>
         {% endif %}
-        <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
-            <ul class="powered">
-                <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
-            </ul>
-        </nav>
+        {% if not blog_user.profile.is_pro %}
+            <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
+                <ul class="powered">
+                    <li class="snipt"><a href="https://snipt.net/">Blog powered by Snipt</a></li>
+                </ul>
+            </nav>
+        {% endif %}
     </aside>
 {% endblock %}
 {% block analytics %}
