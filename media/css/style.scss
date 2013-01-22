@@ -488,6 +488,7 @@ section.main {
             margin: 0 0 30px 15px;
             text-align: center;
             padding: 18px 0;
+            text-shadow: 0 1px 0 blue;
             @include multi-border-radius(0, 0, 5px, 5px);
         }
         section.tags {
@@ -1481,6 +1482,7 @@ a.go-pro {
     padding: 8px 14px;
     text-align: center;
     text-decoration: none;
+    text-shadow: 0 1px 0 white;
     @include multi-border-radius(0, 4px, 4px, 0);
 
     span.snipt {
@@ -1707,6 +1709,7 @@ body.pro {
         padding: 30px 0;
         position: relative;
         text-align: center;
+        text-shadow: 0 1px 0 white;
         z-index: 50;
 
         span {
