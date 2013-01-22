@@ -13,7 +13,7 @@
 
 {% block content %}
     <section class="snipts" id="snipts">
-        {% if request.user.is_authenticated and not request.user.profile.is_pro %}
+        {% if not request.user.profile.is_pro %}
             {% include 'go-pro.html' %}
         {% endif %}
         {% autopaginate snipts 10 %}
