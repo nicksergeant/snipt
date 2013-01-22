@@ -537,7 +537,7 @@ section.main {
             }
         }
         nav.footer {
-            margin: 0 15px 32px;
+            margin: 0 0 32px 15px;
 
             ul {
                 margin: 0;
@@ -594,6 +594,25 @@ section.main {
                     &.roadmap {
                         background: transparent url('/static/images/roadmap-icon.png') 2px center no-repeat;
                     }
+                }
+            }
+        }
+        div.linode {
+            background: transparent url('/static/images/linode.png') top left no-repeat;
+            background-size: 100%;
+            margin-left: 17px;
+            position: relative;
+
+            a {
+                display: block;
+                height: 40px;
+                color: #989898;
+
+                span {
+                    font: bold 12px $Helvetica;
+                    left: 37px;
+                    position: absolute;
+                    top: -5px;
                 }
             }
         }
