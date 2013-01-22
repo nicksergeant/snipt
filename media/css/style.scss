@@ -513,8 +513,10 @@ section.main {
                     margin: 0 0 0 22px;
                 }
                 &.active {
-                    border-bottom: 1px solid #2B6E9B;
-                    color: #2B6E9B;
+                    span {
+                        border-bottom: 1px solid #2B6E9B;
+                        color: #2B6E9B;
+                    }
                 }
             }
             a.all-tags {
