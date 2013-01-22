@@ -46,7 +46,7 @@
         <header class="main">
             <div class="inner">
                 <div class="shadey"></div>
-                <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">Snipt</a></h1> 
+                <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
                 <form class="search" action="/search/" method="get">
                     <fieldset>
                         <div class="fields">
@@ -404,19 +404,16 @@
                 s.parentNode.insertBefore(t, s);
             })();
         </script>
-        {% comment %}
-            <script type="text/javascript">
-                window._idl = {};
-                _idl.variant = 'modal';
-                (function() {
-                    var idl = document.createElement('script');
-                    idl.type = 'text/javascript';
-                    idl.async = true;
-                    idl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'banner');
-                    document.getElementsByTagName('body')[0].appendChild(idl);
-                })();
-            </script>
-        {% endcomment %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-514462-44']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
     {% endif %}
 
     {% if request.user.is_authenticated %}
@@ -452,16 +449,6 @@
                              window.addEventListener('load', async_load, false);
                          }
                      })();
-                 </script>
-                <script type="text/javascript">
-                    var _gaq = _gaq || [];
-                    _gaq.push(['_setAccount', 'UA-514462-44']);
-                    _gaq.push(['_trackPageview']);
-                    (function() {
-                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                    })();
                 </script>
             {% endblock %}
         {% endif %}

@@ -9,10 +9,14 @@
 {% endblock %}
 
 {% block content %}
+    <div class="pro-hero">
+        <span>Pro</span>
+    </div>
     <div class="static-box">
-        <h2>Snipt <span class="pro">Pro</span> members</h2>
-        <p>We're still building our <span class="pro">Pro</span> platform, but it already kicks ass. By becoming a Pro now, you'll also get access to future Pro features the moment they're released.</p>
-        <h6>Current Pro features:</h6>
+        <h2>Snipt <span class="pro">Pro</span></h2>
+        <p>Go Pro to get a more streamlined Snipt interface, as well as to unlock powerful blogging features (custom domain, premium themes, etc).</p>
+        <p>We're always adding new features for Pro users, so check this list often or follow us on <a href="https://twitter.com/snipt/">Twitter</a>.</p>
+        <h6>Pro features:</h6>
         <ul>
             <li>No ads.</li>
             <li>Statistics for "views" and "favorites" of your snipts.</li>
@@ -25,7 +29,7 @@
         {% if request.user.profile.is_pro %}
             <h3>You're already a Pro. You know that ;)</h3>
         {% else %}
-            <h3>Pro accounts are just $3/month.</h3>
+            <h3>Pro is just $3/month.</h3>
             <h4><a href="/pro/signup/" class="btn btn-large btn-success">Sign Up Now</a></h4>
         {% endif %}
     </div>

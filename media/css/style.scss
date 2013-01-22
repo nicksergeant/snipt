@@ -1,6 +1,15 @@
 // Fonts
 $Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
 $Consolas: Consolas, Menlo, "Courier New", monospace;
+$Rockwell: 'Rockwell', 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+
+@font-face {
+    font-family: 'Rockwell';
+    src: url('/static/fonts/rockwell.eot');
+    src: url('/static/fonts/rockwell.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/rockwell.woff') format('woff'),
+         url('/static/fonts/rockwell.ttf') format('truetype');
+} 
 
 // Mixins
 @mixin border-radius($radius: 5px) {
@@ -115,16 +124,19 @@ header.main {
             z-index: 50;
             
             a {
-                background: transparent url('/static/images/logo.png') top left no-repeat;
+                color: #F9F9F9;
                 display: block;
+                font: normal 36px $Rockwell;
                 float: left;
-                height: 35px;
-                margin: 16px 0 0 16px;
-                text-indent: -1000em;
-                width: 87px;
+                letter-spacing: -1px;
+                margin: 11px 0 0 16px;
+                text-shadow: 0 1px 2px black;
 
                 &:focus {
                     outline: none;
+                }
+                span {
+                    color: #87D2DC;
                 }
             }
         }
@@ -1764,6 +1776,16 @@ body.pro {
                 margin-top: 18px;
             }
         }
+    }
+    div.pro-hero {
+        border-bottom: 1px solid #17333A;
+        color: #3299B7;
+        font: bold italic 40px $Helvetica;
+        padding: 30px 0;
+        text-align: center;
+        text-shadow: 0 1px 0 black;
+        @include box-shadow(0, 4px, 5px, #DDDDDD);
+        @include vertical-gradient(#12313E, #2F4C55);
     }
 }
 body.search {
