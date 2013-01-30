@@ -140,7 +140,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates')
 )
 
-SESSION_COOKIE_AGE = 14515200
+SESSION_COOKIE_AGE = 15801100
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
