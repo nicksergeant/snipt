@@ -10,6 +10,7 @@
         {% include "blogs/themes/pro-adams/snipt-list.html" %}
     {% endfor %}
     {% paginate %}
+    {% comment %}
     <script type="text/javascript">
         var disqus_shortname = 'snipt-net';
         {% if debug %}
@@ -22,4 +23,5 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
     </script>
+    {% endcomment %}
 {% endblock %}

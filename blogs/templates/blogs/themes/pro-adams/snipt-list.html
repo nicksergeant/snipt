@@ -35,6 +35,7 @@
                 {% endif %}
             {% endif %}
             {% if detail %}
+                {% comment %}
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     var disqus_shortname = 'snipt-net';
@@ -50,6 +51,7 @@
                         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                     })();
                 </script>
+                {% endcomment %}
             {% endif %}
         </div>
     </div>
