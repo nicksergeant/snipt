@@ -17,7 +17,7 @@
 
 {% block aside-top %}
     <div class="profile group">
-        <span class="avatar" title="Manage your avatar at Gravatar.com" style="background-image: url('https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=50');"></span>
+        <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=175" alt="{{ user.username }}" title={{ user.username }}" />
         <div class="meta">
             <div class="username" title="{{ user.username }}">
                 {% if user.username == 'blog' %}
@@ -27,12 +27,12 @@
                 {% endif %}
             </div>
             {% if user.username == 'nick' %}
-                <div class="member-since">Snipt Founder<br />in {{ user.date_joined|date:"Y" }}</div>
+                <div class="member-since">Snipt Founder in {{ user.date_joined|date:"Y" }}</div>
             {% else %}
                 {% if user.username == 'blog' %}
-                    <div class="member-since">Official Snipt<br />blog</div>
+                    <div class="member-since">Official Snipt blog</div>
                 {% else %}
-                    <div class="member-since">Member since<br />{{ user.date_joined|date:"Y" }}</div>
+                    <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
                 {% endif %}
             {% endif %}
         </div>

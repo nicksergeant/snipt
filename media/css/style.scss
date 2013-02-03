@@ -1371,24 +1371,14 @@ div#keyboard-shortcuts {
 div.profile {
     background: rgba(128, 128, 128, .08);
     margin: 0 0 30px 15px;
-    padding: 10px;
     @include border-radius(8px);
 
-    span.avatar {
-        background-color: transparent;
-        background-position: top left;
-        background-repeat: no-repeat;
-        display: block;
-        float: left;
-        height: 50px;
-        width: 50px;
-        @include border-radius(5px);
+    img {
+        @include multi-border-radius(8px, 8px, 0, 0);
     }
     div.meta {
-        display: block;
-        float: left;
         font: bold 14px $Helvetica;
-        margin: 0 0 0 10px;
+        padding: 10px;
 
         div.username {
             max-width: 95px;
@@ -1405,16 +1395,13 @@ div.profile {
     a.pro {
         background: #DFDFDF;
         color: #3299B7;
-        clear: left;
         display: block;
-        float: left;
         font: bold italic 11px $Helvetica;
-        margin-top: 10px;
+        margin: 0 10px 10px 10px;
         padding: 5px 0;
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
-        width: 100%;
         @include border-radius(3px);
         @include box-shadow(0, 0, 3px, #FFF);
 
@@ -1427,13 +1414,11 @@ div.profile {
         clear: left;
         color: #468847;
         display: block;
-        float: left;
         font: bold 11px $Helvetica;
-        margin-top: 10px;
+        margin: 0 10px 10px 10px;
         padding: 4px 0;
         text-align: center;
         text-transform: uppercase;
-        width: 100%;
         @include border-radius(3px);
         @include box-shadow(0, 0, 3px, #B4C4A6);
 
