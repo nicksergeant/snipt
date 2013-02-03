@@ -21,13 +21,8 @@
         {% endfor %}
         {% paginate %}
     </section>
-    {% comment %}
     <script type="text/javascript" id="disqus">
-        {% if blog_user.username == 'rochacbruno' %}
-            var disqus_shortname = 'rochacbrunoblog';
-        {% else %}
-            var disqus_shortname = 'snipt-net';
-        {% endif %}
+        var disqus_shortname = '{% firstof blog_user.profile.disqus_shortname "snipt-net" %}';
         {% if debug %}
             var disqus_developer = 1;
         {% endif %}
@@ -51,5 +46,4 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
     </script>
-    {% endcomment %}
 {% endblock %}

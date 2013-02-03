@@ -18,14 +18,9 @@
         {% with 'true' as detail %}
             {% include "blogs/themes/default/snipt-list.html" %}
         {% endwith %}
-        {% comment %}
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-            {% if blog_user.username == 'rochacbruno' %}
-                var disqus_shortname = 'rochacbrunoblog';
-            {% else %}
-                var disqus_shortname = 'snipt-net';
-            {% endif %}
+            var disqus_shortname = '{% firstof blog_user.profile.disqus_shortname "snipt-net" %}';
             {% if debug %}
                 var disqus_developer = 1;
             {% endif %}
@@ -39,7 +34,6 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
-        {% endcomment %}
     </section>
 {% endblock %}
 

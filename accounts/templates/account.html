@@ -26,13 +26,6 @@
             <form class="form-horizontal" action="/account/" method="post">
                 <legend>Edit Pro settings</legend>
                 <div class="control-group">
-                    <label class="control-label" for="id_gittip_username">GitTip username:</label>
-                    <div class="controls">
-                        {{ form.gittip_username }}
-                        <span class="help-block">Your <a href="https://www.gittip.com/">GitTip</a> username, if you have one.</span>
-                    </div>
-                </div>
-                <div class="control-group">
                     <label class="control-label" for="id_blog_title">Blog title:</label>
                     <div class="controls">
                         {{ form.blog_title }}
@@ -49,6 +42,19 @@
                     <div class="controls">
                         {{ form.blog_domain }}
                         <span class="help-block">Like 'snipt.nicksergeant.com' or 'nicksergeant.com' (without quotes). Set your CNAME / A-record to point to 96.126.110.160</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_gittip_username">GitTip username:</label>
+                    <div class="controls">
+                        {{ form.gittip_username }}
+                        <span class="help-block">Your <a href="https://www.gittip.com/">GitTip</a> username, if you have one.</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_disqus_shortname">Disqus shortname:</label>
+                    <div class="controls">
+                        {{ form.disqus_shortname }}
                     </div>
                 </div>
                 <div class="form-actions">

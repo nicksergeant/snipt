@@ -35,10 +35,9 @@
                 {% endif %}
             {% endif %}
             {% if detail %}
-                {% comment %}
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
-                    var disqus_shortname = 'snipt-net';
+                    var disqus_shortname = '{% firstof blog_user.profile.disqus_shortname "snipt-net" %}';
                     {% if debug %}
                         var disqus_developer = 1;
                     {% endif %}
@@ -51,7 +50,6 @@
                         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                     })();
                 </script>
-                {% endcomment %}
             {% endif %}
         </div>
     </div>

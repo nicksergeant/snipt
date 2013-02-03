@@ -21,10 +21,12 @@ def account(request):
         profile = request.user.profile
 
         form = AccountForm(initial={
-            'gittip_username': profile.gittip_username,
             'blog_title': profile.blog_title,
             'blog_theme': profile.blog_theme,
-            'blog_domain': profile.blog_domain
+            'blog_domain': profile.blog_domain,
+
+            'gittip_username': profile.gittip_username,
+            'disqus_shortname': profile.disqus_shortname,
         })
 
     return {
