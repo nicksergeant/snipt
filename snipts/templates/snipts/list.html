@@ -26,7 +26,6 @@
         {% endfor %}
         {% paginate %}
     </section>
-    {% comment %}
     <script type="text/javascript" id="disqus">
         var disqus_shortname = 'snipt-net';
         {% if debug %}
@@ -53,5 +52,4 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
     </script>
-    {% endcomment %}
 {% endblock %}

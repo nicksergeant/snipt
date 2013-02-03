@@ -77,7 +77,9 @@
                 <% if (!snipt.new_from_js) { %>
                     <li class="created" title="<%= snipt.created %>"><%= snipt.created_formatted %></li>
                 <% } %>
-                <li class="comments"><a href="<%= snipt.absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
+                <% if (snipt.public) { %>
+                    <li class="comments"><a href="<%= snipt.absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
+                <% } %>
             </ul>
         </footer>
         <div class="modal hide copy-modal">

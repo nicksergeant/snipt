@@ -163,7 +163,9 @@
             {% else %}
                 <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturaltime }}</li>
             {% endif %}
-            <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
+            {% if snipt.public %}
+                <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
+            {% endif %}
             {% if detail and snipt.public %}
                 <li class="tweet">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none" data-url="{{ snipt.get_full_absolute_url }}" data-text="&ldquo;{{ snipt.title }}&rdquo; on @Snipt">Tweet</a>
