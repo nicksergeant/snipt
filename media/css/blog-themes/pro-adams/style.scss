@@ -303,70 +303,6 @@ article {
                     display: none;
                 }
             }
-            &:hover, &.detail {
-                height: auto;
-                text-decoration: none;
-                width: auto;
-
-                &:before {
-                    display: none;
-                }
-                time {
-                    background: #FFF;
-                    border: 1px solid #EAEAEA;
-                    display: block;
-                    height: auto;
-                    margin-top: -14px;
-                    position: relative;
-                    width: auto;
-                    z-index: 51;
-                    @include border-radius(3px);
-
-                    span {
-                        display: block;
-                        text-align: center;
-
-                        &.id {
-                            background: #F9F9F9;
-                            border-bottom: 1px solid #EAEAEA;
-                            color: #CCC;
-                            font: normal 11px $Helvetica;
-                            padding: 2px 0;
-                        }
-                        &.mon-day {
-                            color: #999;
-                            font: normal 17px $Helvetica;
-                            letter-spacing: -1px;
-                            padding-top: 25px;
-                            text-transform: uppercase;
-                        }
-                        &.year {
-                            color: #999;
-                            font: normal 12px $Helvetica;
-                            letter-spacing: -1px;
-                            padding-bottom: 10px;
-                            text-transform: uppercase;
-                        }
-                    }
-                    &:after {
-                        background: transparent url('/static/images/date-arrow.gif') top left no-repeat;
-                        content: "";
-                        display: block;
-                        height: 11px;
-                        position: absolute;
-                        right: -6px;
-                        top: 22px;
-                        width: 6px;
-                    }
-                }
-            }
-            &.detail {
-                time {
-                    span.mon-day {
-                        padding-top: 10px;
-                    }
-                }
-            }
         }
     }
     h1 {
@@ -532,6 +468,67 @@ article {
 
             &:after {
                 display: none;
+            }
+        }
+    }
+    &:hover, &.detail {
+        div.gutter {
+            a {
+                height: auto;
+                text-decoration: none;
+                width: auto;
+
+                &:before {
+                    display: none;
+                }
+                time {
+                    background: #FFF;
+                    border: 1px solid #EAEAEA;
+                    display: block;
+                    height: auto;
+                    margin-top: -14px;
+                    position: relative;
+                    width: auto;
+                    z-index: 51;
+                    @include border-radius(3px);
+
+                    span {
+                        display: block;
+                        text-align: center;
+
+                        &.id {
+                            background: #F9F9F9;
+                            border-bottom: 1px solid #EAEAEA;
+                            color: #CCC;
+                            font: normal 11px $Helvetica;
+                            padding: 2px 0;
+                        }
+                        &.mon-day {
+                            color: #999;
+                            font: normal 17px $Helvetica;
+                            letter-spacing: -1px;
+                            padding-top: 10px;
+                            text-transform: uppercase;
+                        }
+                        &.year {
+                            color: #999;
+                            font: normal 12px $Helvetica;
+                            letter-spacing: -1px;
+                            padding-bottom: 10px;
+                            text-transform: uppercase;
+                        }
+                    }
+                    &:after {
+                        background: transparent url('/static/images/date-arrow.gif') top left no-repeat;
+                        content: "";
+                        display: block;
+                        height: 11px;
+                        position: absolute;
+                        right: -6px;
+                        top: 22px;
+                        width: 6px;
+                    }
+                }
             }
         }
     }
