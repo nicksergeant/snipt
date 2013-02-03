@@ -36,11 +36,12 @@ body.blog-site {
                     padding-top: 30px;
 
                     li {
-                        background: transparent url('/static/images/favicon.png') center left no-repeat;
+                        background: transparent url('/static/images/favicon.png') top left no-repeat;
 
                         a {
                             border: none;
                             color: #3E6B73;
+                            display: inline-block;
                             font-style: italic;
 
                             &:hover {
