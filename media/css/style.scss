@@ -2125,6 +2125,11 @@ body.editing {
                             .CodeMirror-matchingbracket {
                                 color: #32A8F6;
                             }
+                            textarea.editor {
+                                border: 0;
+                                margin: 0;
+                                width: 684px;
+                            }
                         }
                         header {
                             h1 {
@@ -2147,20 +2152,20 @@ body.editing {
                         margin-top: 0;
                         width: 243px;
 
+                        label {
+                            margin: 20px 0;
+
+                            & > span {
+                                color: #32A8F6;
+                                display: block;
+                                font: bold 12px $Helvetica;
+                                margin-bottom: 5px;
+                                text-transform: uppercase;
+                            }
+                        }
                         div.in {
                             padding-left: 10px;
 
-                            label {
-                                margin: 20px 0;
-
-                                & > span {
-                                    color: #32A8F6;
-                                    display: block;
-                                    font: bold 12px $Helvetica;
-                                    margin-bottom: 5px;
-                                    text-transform: uppercase;
-                                }
-                            }
                             & > label {
                                 margin-top: 6px;
                             }
@@ -2206,6 +2211,13 @@ body.editing {
                                     background: #DAE3EE;
                                     border: 1px solid #C8D1DE;
                                 }
+                            }
+                        }
+                        div.editor-settings {
+                            padding-left: 10px;
+
+                            label {
+                                margin: 0;
                             }
                         }
                     }

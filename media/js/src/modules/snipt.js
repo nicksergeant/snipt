@@ -89,7 +89,9 @@
             this.select();
 
             that = this;
-            var editPane = this.editTemplate({snipt: this.model.toSafe()});
+            var editPane = this.editTemplate({
+                snipt: this.model.toSafe()
+            });
 
             // Init main view
             window.site.$main.hide();
@@ -135,9 +137,12 @@
             window.site.$main_edit.show();
 
             // CodeMirror editor
-            var $editor = $('div#editor', window.site.$main_edit);
+            this.$editorCodeMirror = $('div.editor', window.site.$main_edit);
 
-            window.editor = CodeMirror($editor.get(0), {
+            // Textarea editor
+            this.$editorTextarea = $('textarea.editor', window.site.$main_edit);
+
+            window.editor = CodeMirror(this.$editorCodeMirror.get(0), {
                 autofocus: true,
                 fixedGutter: true,
                 gutter: true,
@@ -153,12 +158,46 @@
                 window.editor.setOption('mode', that.guessCodeMirrorLexer($selectedLexer.val()));
             });
 
-            window.editor.setSize('100%', $(window).height() - 147);
+            // Set the heights.
+            var editorHeight = $(window).height() - 147;
+            window.editor.setSize('100%', editorHeight);
+            this.$editorTextarea.height(editorHeight - 8);
 
             $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
                 return false;
             });
+
+            // Editor settings
+            if (window.user_is_pro) {
+                var $selectEditor = $('select#id_editor', window.site.$main_edit);
+                $selectEditor.chosen();
+
+                $selectEditor.change(function() {
+                    var newEditor = $selectEditor.val();
+
+                    if (newEditor === 'textarea') {
+                        that.$editorCodeMirror.hide();
+                        that.$editorTextarea.show();
+
+                        // TODO: if we introduce other editors, we'll want to make this smarter, obviously.
+                        that.$editorTextarea.val(window.editor.getValue());
+                    }
+                    if (newEditor === 'codemirror') {
+                        that.$editorTextarea.hide();
+                        that.$editorCodeMirror.show();
+
+                        // TODO: Ditto above.
+                        window.editor.setValue(that.$editorTextarea.val());
+                    }
+                });
+
+                if (window.default_editor != 'codemirror') {
+                    $selectEditor.val(window.default_editor);
+                    $selectEditor.trigger('liszt:updated');
+                    $selectEditor.trigger('change');
+                }
+            }
 
             // Edit buttons
             $('button.delete', window.site.$main_edit).on('click', function() {
@@ -365,13 +404,20 @@
             $('button.save, button.save-and-close, button.delete, button.cancel',
                     window.site.$main_edit).attr('disabled', 'disabled');
 
+            var code;
+            if (this.$editorTextarea.is(':visible')) {
+                code = this.$editorTextarea.val();
+            } else {
+                code = window.editor.getValue();
+            }
+
             that.model.save({
                 'title': $('input#snipt_title').val(),
                 'tags': $('label.tags textarea').val(),
                 'tags_list': $('label.tags textarea').val(),
                 'lexer': $('select[name="lexer"]').val(),
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
-                'code': window.editor.getValue(),
+                'code': code,
                 'blog_post': $('label.blog-post input').is(':checked'),
                 'publish_date': $('label.publish-date input').val(),
                 'public': $('label.public input').is(':checked')

@@ -29,7 +29,8 @@
                                 </h1>
                             </header>
                             <section class="code">
-                                <div id="editor"></div>
+                                <div class="editor"></div>
+                                <textarea class="editor hidden"><% snipt.code %></textarea>
                             </section>
                             <div class="ruler top-x"></div>
                             <div class="ruler bottom-x"></div>
@@ -63,6 +64,15 @@
                                     <textarea placeholder='tag-1, "tag 2", tag3, etc.'><%= snipt.tags_list %></textarea>
                                 </label>
                             </div>
+                            <% if (window.user_is_pro) { %>
+                                <div class="editor-settings">
+                                    <label class="lexer"><span>Editor<span></label>
+                                    <select name="editor" id="id_editor">
+                                        <option value="codemirror" selected="selected">CodeMirror</option>
+                                        <option value="textarea">Textarea</option>
+                                    </select>
+                                </div>
+                            <% } %>
                         </aside>
                     </div>
                 </article>
