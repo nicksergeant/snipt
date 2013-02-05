@@ -171,8 +171,9 @@
             // Editor settings
             if (window.user_is_pro) {
                 var $selectEditor = $('select#id_editor', window.site.$main_edit);
-                $selectEditor.chosen();
+                var $selectTheme = $('select#id_theme', window.site.$main_edit);
 
+                $selectEditor.chosen();
                 $selectEditor.change(function() {
                     var newEditor = $selectEditor.val();
 
@@ -192,6 +193,16 @@
                     }
                 });
 
+                $selectTheme.chosen();
+                $selectTheme.change(function() {
+                    window.editor.setOption('theme', $selectTheme.val());
+                });
+
+                if (window.editor_theme != 'default') {
+                    $selectTheme.val(window.editor_theme);
+                    $selectTheme.trigger('liszt:updated');
+                    $selectTheme.trigger('change');
+                }
                 if (window.default_editor != 'codemirror') {
                     $selectEditor.val(window.default_editor);
                     $selectEditor.trigger('liszt:updated');

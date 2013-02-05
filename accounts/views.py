@@ -26,6 +26,7 @@ def account(request):
             'blog_domain': profile.blog_domain,
 
             'default_editor': profile.default_editor,
+            'editor_theme': profile.editor_theme,
 
             'gittip_username': profile.gittip_username,
             'disqus_shortname': profile.disqus_shortname,

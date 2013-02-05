@@ -359,6 +359,7 @@
             {% if request.user.profile.is_pro %}
                 window.user_is_pro = true;
                 window.default_editor = '{{ request.user.profile.get_default_editor_display|lower }}';
+                window.editor_theme = '{{ request.user.profile.editor_theme }}';
             {% else %}
                 window.user_is_pro = false;
             {% endif %}

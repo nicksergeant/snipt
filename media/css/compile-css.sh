@@ -21,6 +21,8 @@ cat media/css/bootstrap.css \
     media/css/codemirror-themes/neat.css \
     media/css/codemirror-themes/night.css \
     media/css/codemirror-themes/rubyblue.css \
+    media/css/codemirror-themes/solarized.css \
+    media/css/codemirror-themes/twilight.css \
     media/css/codemirror-themes/vibrant-ink.css \
     media/css/codemirror-themes/xq-dark.css \
     media/css/blog-themes/default/style.css \

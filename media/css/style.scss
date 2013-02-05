@@ -2118,12 +2118,8 @@ body.editing {
                             padding: 0;
 
                             .CodeMirror {
-                                color: #333;
                                 cursor: text;
                                 font: normal 12px/16px $Consolas;
-                            }
-                            .CodeMirror-matchingbracket {
-                                color: #32A8F6;
                             }
                             textarea.editor {
                                 border: 0;
@@ -2214,9 +2210,26 @@ body.editing {
                             }
                         }
                         div.editor-settings {
-                            padding-left: 10px;
+                            padding: 0 10px;
 
+                            h2 {
+                                border-bottom: 1px solid #DDDDDD;
+                                color: #7D7D7B;
+                                font: bold 12px $Helvetica;
+                                margin-bottom: 20px;
+                                padding-bottom: 5px;
+                                text-transform: uppercase;
+
+                                a {
+                                    float: right;
+                                    font: bold 10px $Helvetica;
+                                    margin-top: 2px;
+                                }
+                            }
                             label {
+                                margin: 20px 0 0 0;
+                            }
+                            label:first-of-type {
                                 margin: 0;
                             }
                         }

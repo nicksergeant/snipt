@@ -13,6 +13,26 @@ class UserProfile(models.Model):
         ('A', 'Pro Adams'),
     )
 
+    EDITOR_THEME_CHOICES = (
+        ('default',         'Default'),
+        ('ambiance',        'Ambiance'),
+        ('blackboard',      'Blackboard'),
+        ('cobalt',          'Cobalt'),
+        ('eclipse',         'Eclipse'),
+        ('elegant',         'Elegant'),
+        ('erlang-dark',     'Erlang Dark'),
+        ('lesser-dark',     'Lesser Dark'),
+        ('monokai',         'Monokai'),
+        ('neat',            'Neat'),
+        ('night',           'Night'),
+        ('rubyblue',        'Ruby Blue'),
+        ('solarized dark',  'Solarized Dark'),
+        ('solarized light', 'Solarized Light'),
+        ('twilight',        'Twilight'),
+        ('vibrant-ink',     'Vibrant Ink'),
+        ('xq-dark',         'XQ Dark'),
+    )
+
     user            = models.ForeignKey(User, unique=True)
     is_pro          = models.BooleanField(default=False)
     stripe_id       = models.CharField(max_length=100, null=True, blank=True)
@@ -21,6 +41,7 @@ class UserProfile(models.Model):
     blog_theme      = models.CharField(max_length=1,   null=False, blank=False, default='D', choices=THEME_CHOICES)
     blog_domain     = models.CharField(max_length=250, null=True, blank=True)
     default_editor  = models.CharField(max_length=250, null=False, blank=False, default='C', choices=EDITOR_CHOICES)
+    editor_theme    = models.CharField(max_length=250, null=False, blank=False, default='default', choices=EDITOR_THEME_CHOICES)
 
     gittip_username  = models.CharField(max_length=250, null=True, blank=True)
     disqus_shortname = models.CharField(max_length=250, null=True, blank=True)
