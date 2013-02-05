@@ -24,5 +24,6 @@ class UserProfile(models.Model):
 
     gittip_username  = models.CharField(max_length=250, null=True, blank=True)
     disqus_shortname = models.CharField(max_length=250, null=True, blank=True)
+    google_analytics_tracking_id = models.CharField(max_length=250, null=True, blank=True)
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

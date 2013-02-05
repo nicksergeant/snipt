@@ -78,10 +78,10 @@
     </aside>
 {% endblock %}
 {% block analytics %}
-    {% if blog_user.username == 'rochacbruno' %}
+    {% if blog_user.profile.google_analytics_tracking_id %}
         <script type="text/javascript">
             var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-33970092-1']);
+            _gaq.push(['_setAccount', '{{ blog_user.profile.google_analytics_tracking_id }}']);
             _gaq.push(['_trackPageview']);
             (function() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

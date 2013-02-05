@@ -29,6 +29,7 @@ def account(request):
 
             'gittip_username': profile.gittip_username,
             'disqus_shortname': profile.disqus_shortname,
+            'google_analytics_tracking_id': profile.google_analytics_tracking_id,
         })
 
     return {
