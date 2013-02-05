@@ -153,10 +153,24 @@
                 mode: that.guessCodeMirrorLexer($selectLexer.val()),
                 value: that.model.get('code')
             });
+
+            // Lexer selector.
             $selectLexer.change(function() {
+
                 var $selectedLexer = $('option:selected', $selectLexer);
+                var lexer = $selectLexer.val();
+
                 window.editor.setOption('mode', that.guessCodeMirrorLexer($selectedLexer.val()));
+
+                // Markdown switch.
+                if (lexer === 'markdown' || lexer === 'text') {
+                    window.editor.setOption('lineWrapping', true);
+                } else {
+                    window.editor.setOption('lineWrapping', false);
+                }
+
             });
+            $selectLexer.trigger('change');
 
             // Set the heights.
             window.editorHeight = $(window).height() - 147;
