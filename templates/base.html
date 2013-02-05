@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?67" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?68" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
@@ -339,7 +339,7 @@
         </div>
     {% endblock %}
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?40"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/snipt.js?41"></script>
     {% block extra-scripts %}{% endblock %}
 
     {% block inline-js %}

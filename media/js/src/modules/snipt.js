@@ -159,9 +159,9 @@
             });
 
             // Set the heights.
-            var editorHeight = $(window).height() - 147;
-            window.editor.setSize('100%', editorHeight);
-            this.$editorTextarea.height(editorHeight - 8);
+            window.editorHeight = $(window).height() - 147;
+            window.editor.setSize('100%', window.editorHeight);
+            this.$editorTextarea.height(window.editorHeight - 8);
 
             $('textarea, input', window.site.$main_edit).bind('keydown', 'esc', function(e) {
                 $(this).blur();
@@ -208,6 +208,10 @@
                     $selectEditor.trigger('liszt:updated');
                     $selectEditor.trigger('change');
                 }
+
+                // Full-screen mode.
+                this.setupCodeMirrorFullScreen();
+
             }
 
             // Edit buttons
@@ -463,6 +467,55 @@
             this.select(true);
             e.stopPropagation();
             window.site.$aside_nav.removeClass('open');
+        },
+        setupCodeMirrorFullScreen: function() {
+            // This is kind of messy (taken from the CodeMirror docs). Clean it up some day.
+
+            function isFullScreen(cm) {
+                return (/\bCodeMirror-fullscreen\b/).test(cm.getWrapperElement().className);
+            }
+            function winHeight() {
+                return window.innerHeight || (document.documentElement || document.body).clientHeight;
+            }
+            function setFullScreen(cm, full) {
+                var wrap = cm.getWrapperElement();
+                if (full) {
+                    wrap.className += ' CodeMirror-fullscreen';
+                    wrap.style.height = winHeight() + 'px';
+                    document.documentElement.style.overflow = 'hidden';
+
+                    // Hax.
+                    $('header.fixed-save').hide();
+                    $('div.container').addClass('full-screened');
+
+                } else {
+                    wrap.className = wrap.className.replace(' CodeMirror-fullscreen', '');
+                    window.editor.setSize('100%', window.editorHeight);
+                    document.documentElement.style.overflow = '';
+
+                    // Hax.
+                    $('header.fixed-save').show();
+                    $('div.container').removeClass('full-screened');
+
+                }
+                cm.refresh();
+            }
+            window.editor.on(window, 'resize', function() {
+                var showing = document.body.getElementsByClassName('CodeMirror-fullscreen')[0];
+                if (!showing) return;
+                showing.CodeMirror.getWrapperElement().style.height = winHeight() + 'px';
+            });
+            window.editor.setOption('extraKeys', {
+                'Cmd-Enter': function(cm) {
+                    setFullScreen(cm, !isFullScreen(cm));
+                },
+                'F11': function(cm) {
+                    setFullScreen(cm, !isFullScreen(cm));
+                },
+                'Esc': function(cm) {
+                    if (isFullScreen(cm)) setFullScreen(cm, false);
+                }
+            });
         }
     });
     Snipt.SniptListView = Backbone.View.extend({
