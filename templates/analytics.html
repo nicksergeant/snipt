@@ -1,0 +1,51 @@
+{% if not debug %}
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-514462-44']);
+        _gaq.push(['_trackPageview']);
+
+        {% if blog_user.profile.google_analytics_tracking_id %}
+            _gaq.push(['b._setAccount', '{{ blog_user.profile.google_analytics_tracking_id }}']);
+            _gaq.push(['b._trackPageview']);
+        {% endif %}
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+    <script type="text/javascript">
+        var _gauges = _gauges || [];
+        (function() {
+            var t   = document.createElement('script');
+            t.type  = 'text/javascript';
+            t.async = true;
+            t.id    = 'gauges-tracker';
+            t.setAttribute('data-site-id', '4ed65ee7f5a1f530f1000001');
+            t.src = '//secure.gaug.es/track.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(t, s);
+        })();
+    </script>
+    {% if blog_user.profile.gauges_site_id %}
+        <script type="text/javascript">
+            var _gauges = _gauges || [];
+            (function() {
+                var t   = document.createElement('script');
+                t.type  = 'text/javascript';
+                t.async = true;
+                t.id    = 'gauges-tracker';
+                t.setAttribute('data-site-id', '{{ blog_user.profile.gauges_site_id }}');
+                t.src = '//secure.gaug.es/track.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(t, s);
+            })();
+        </script>
+    {% endif %}
+
+{% endif %}
