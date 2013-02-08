@@ -63,6 +63,10 @@
                                     <span>Tags</span>
                                     <textarea placeholder='tag-1, "tag 2", tag3, etc.'><%= snipt.tags_list %></textarea>
                                 </label>
+                                <label class="description">
+                                    <span>Description</span>
+                                    <textarea name="description" placeholder='optional'><% if (snipt.description && snipt.description !== 'None') { %><%= snipt.description %><% } %></textarea>
+                                </label>
                             </div>
                             <% if (window.user_is_pro) { %>
                                 <div class="editor-settings">

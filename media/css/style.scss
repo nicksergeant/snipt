@@ -722,6 +722,7 @@ article.snipt {
         border: 1px solid #DDD;
         border-left: 0;
         float: left;
+        overflow: hidden;
         position: relative;
         width: 618px;
 
@@ -894,7 +895,7 @@ article.snipt {
             a.view-full {
                 background: #FFF url('/static/images/view-full.png') 15px 17px no-repeat;
             }
-            textarea.raw {
+            textarea.raw, textarea.description {
                 display: none;
             }
             div.markdown {
@@ -986,6 +987,11 @@ article.snipt {
             }
             iframe {
                 max-width: 100%;
+            }
+        }
+        &.with-description {
+            td.linenos {
+                padding-bottom: 20px;
             }
         }
     }
@@ -1170,6 +1176,22 @@ article.snipt {
                     }
                 }
             }
+        }
+    }
+    section.description {
+        padding: 10px 20px 20px 20px;
+        position: relative;
+        z-index: 50;
+        @include box-shadow(0, -10px, 15px, white);
+
+        h1 {
+            border-bottom: 1px dotted #E9E9E9;
+            color: #797979;
+            font: bold 12px $Helvetica;
+            margin: 0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            text-transform: uppercase;
         }
     }
     div.expanded {
@@ -2181,6 +2203,7 @@ body.editing {
                             }
                             textarea {
                                 height: 100px;
+                                font: normal 12px $Helvetica;
                                 padding: 7px 9px;
                                 width: 202px;
                             }

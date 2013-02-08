@@ -447,6 +447,7 @@
                 'lexer': $('select[name="lexer"]').val(),
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
                 'code': code,
+                'description': $('textarea[name="description"]').val(),
                 'blog_post': $('label.blog-post input').is(':checked'),
                 'publish_date': $('label.publish-date input').val(),
                 'public': $('label.public input').is(':checked')
@@ -588,6 +589,7 @@
 
             var data = {
                 code: $('textarea.raw', $el).text(),
+                description: $('textarea.description', $el).text(),
                 created: $created.attr('title'),
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
@@ -633,6 +635,7 @@
                 var data = {
                     id: '',
                     code: '',
+                    description: '',
                     tags: [],
                     tags_list: '',
                     title: '',

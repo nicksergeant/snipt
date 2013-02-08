@@ -1,7 +1,7 @@
 from taggit.utils import edit_string_for_tags, parse_tags
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import Authorization
-from django.template.defaultfilters import date
+from django.template.defaultfilters import date, urlize, linebreaksbr
 from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from tastypie.validation import Validation
@@ -84,7 +84,7 @@ class PublicSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
-        fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count',
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count',
                   'stylized', 'created', 'modified',]
         include_absolute_url = True
         allowed_methods = ['get']
@@ -96,6 +96,7 @@ class PublicSniptResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
+        bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
         return bundle
 
     def build_filters(self, filters=None):
@@ -187,7 +188,7 @@ class PrivateSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
-        fields = ['id', 'title', 'slug', 'lexer', 'code', 'line_count', 'stylized',
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count', 'stylized',
                   'key', 'public', 'blog_post', 'created', 'modified', 'publish_date',]
         validation = Validation()
         include_absolute_url = True
@@ -204,6 +205,7 @@ class PrivateSniptResource(ModelResource):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
+        bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
 
         if bundle.data['user'].data['profile']['is_pro']:
             bundle.data['views'] = bundle.obj.views

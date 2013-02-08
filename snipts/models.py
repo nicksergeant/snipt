@@ -30,6 +30,7 @@ class Snipt(models.Model):
 
     lexer        = models.CharField(max_length=50)
     code         = models.TextField()
+    description  = models.TextField(blank=True, null=True)
     stylized     = models.TextField(blank=True, null=True)
     stylized_min = models.TextField(blank=True, null=True)
     embedded     = models.TextField(blank=True, null=True)
