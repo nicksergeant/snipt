@@ -4,7 +4,7 @@
     <script id="snipt" type="text/html">
         <div class="number">#<%= snipt.id %></div>
         <div class="group">
-            <div class="container <% if (snipt.description && snipt.description !== 'None') { %>with-description<% } %>">
+            <div class="container <% if (window.detail && snipt.description && snipt.description !== 'None') { %>with-description<% } %>">
                 <header>
                     <h2><%= snipt.lexer_name %></h2>
                     <h1><a href="<%= snipt.absolute_url %>"><% if (snipt.title) { %><%= snipt.title %><% } else { %>Untitled <% } %></a></h1>
@@ -27,7 +27,7 @@
                     <textarea class="raw"><%= snipt.code %></textarea>
                     <textarea class="description"><% if (snipt.description && snipt.description !== 'None') { %><%= snipt.description %><% } %></textarea>
                 </section>
-                <% if (snipt.description && snipt.description !== 'None') { %>
+                <% if (window.detail && snipt.description && snipt.description !== 'None') { %>
                     <section class="description">
                         <h1>Description</h2>
                         <%= snipt.description_rendered %>
