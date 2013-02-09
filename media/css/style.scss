@@ -544,13 +544,16 @@ section.main {
                     border-bottom: 1px solid #5AB6F4;
                 }
             }
-            a.favorited-snipts {
+            a.alt-link {
                 display: inline-block;
                 font-weight: bold;
                 margin: 0 0 10px 22px;
 
                 &.active {
                     color: #2B6E9B;
+                }
+                &.favorites {
+                    margin-bottom: 0;
                 }
             }
         }

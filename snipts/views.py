@@ -80,6 +80,43 @@ def embed(request, snipt_key):
                               mimetype='application/javascript')
 
 @render_to('snipts/list-user.html')
+def blog_posts(request, username):
+
+    if request.blog_user:
+        raise Http404
+
+    if request.user.username == username:
+        public = False
+        public_user = False
+        user = request.user
+        snipts = Snipt.objects.filter(user=request.user, blog_post=True)
+        tags = Tag.objects.filter(snipt__user=request.user).distinct()
+    else:
+        public = True
+        public_user = True
+        user = User.objects.get(username=username)
+        snipts = Snipt.objects.filter(blog_post=True, user=user, public=True)
+        tags = Tag.objects.filter(snipt__user=user, snipt__public=True).distinct()
+
+    tags = tags.order_by('name')
+    snipts = snipts.order_by('-created')
+
+    context = {
+        'has_snipts': True,
+        'public': public,
+        'public_user': public_user,
+        'snipts': snipts,
+        'tags': tags,
+        'user': user,
+    }
+
+    if 'rss' in request.GET:
+        context['snipts'] = context['snipts'][:20]
+        return rss(request, context)
+
+    return context
+
+@render_to('snipts/list-user.html')
 def favorites(request, username):
 
     if request.user.username != username:

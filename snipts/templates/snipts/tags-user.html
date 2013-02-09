@@ -1,7 +1,8 @@
 <section class="tags">
     {% if request.user == user %}
-        <a href="/{{ user }}/favorites/" class="favorited-snipts {% if 'favorites' in request.path %}active{% endif %}"><span>View favorited snipts &raquo;</span></a>
+        <a href="/{{ user }}/favorites/" class="alt-link favorites {% if 'favorites' in request.path %}active{% endif %}"><span>View favorited snipts &raquo;</span></a>
     {% endif %}
+    <a href="/{{ user }}/blog-posts/" class="alt-link {% if 'blog-posts' in request.path %}active{% endif %}"><span>View blog posts &raquo;</span></a>
     {% if tags %}
         <h1>{{ user.username }}'s tags</h1>
         <ul>
