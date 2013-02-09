@@ -162,17 +162,6 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
-                    {% if tag or favorites %}
-                        <section class="tag-detail">
-                            <div class="heading">
-                                {% if favorites %}
-                                    <h1>Favorited snipts</h1>
-                                {% else %}
-                                    <h1><span>TAG:</span> {{ tag.name }}</h1>
-                                {% endif %}
-                            </div>
-                        </section>
-                    {% endif %}
                     {% block aside-top %}{% endblock %}
                     {% block aside-inner %}{% endblock %}
                     <nav class="footer">
