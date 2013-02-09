@@ -32,6 +32,11 @@ def account(request):
             'disqus_shortname': profile.disqus_shortname,
             'google_analytics_tracking_id': profile.google_analytics_tracking_id,
             'gauges_site_id': profile.gauges_site_id,
+
+            'google_ad_client': profile.google_ad_client,
+            'google_ad_slot': profile.google_ad_slot,
+            'google_ad_width': profile.google_ad_width,
+            'google_ad_height': profile.google_ad_height,
         })
 
     return {
