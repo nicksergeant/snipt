@@ -2,8 +2,11 @@
 
 cat media/css/bootstrap.css \
     media/css/blog-themes/pro-adams/style.css \
+    media/css/highlightjs-themes/tomorrow.css \
     media/css/themes.css \
     > media/css/pro.css
+
+scss -t compressed media/css/highlightjs-themes/tomorrow.scss > media/css/highlightjs-themes/tomorrow.css
 
 cat media/css/bootstrap.css \
     media/css/style.css \
@@ -25,5 +28,6 @@ cat media/css/bootstrap.css \
     media/css/codemirror-themes/twilight.css \
     media/css/codemirror-themes/vibrant-ink.css \
     media/css/codemirror-themes/xq-dark.css \
+    media/css/highlightjs-themes/tomorrow.css \
     media/css/blog-themes/default/style.css \
     > media/css/snipt.css

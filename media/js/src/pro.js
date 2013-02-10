@@ -14,4 +14,9 @@ $(function() {
         $('iframe', $aside).parent('p').prev('p').css('margin-bottom', '10px');
     }
 
+    // Highlight any Markdown code.
+    $('div.markdown pre code').each(function(i, e) {
+        hljs.highlightBlock(e);
+    });
+
 });

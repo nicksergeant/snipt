@@ -164,6 +164,11 @@
                 $('iframe', this.$aside_main).parent('p').prev('p').css('margin-bottom', '10px');
             }
 
+            // Highlight any Markdown code.
+            $('div.markdown pre code').each(function(i, e) {
+                hljs.highlightBlock(e);
+            });
+
             window.ui_halted = false;
         },
         events: {

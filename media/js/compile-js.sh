@@ -17,7 +17,9 @@ cat media/js/libs/underscore.js \
     media/js/src/modules/site.min.js \
     media/js/src/modules/snipt.min.js \
     media/js/libs/codemirror.js \
+    media/js/libs/highlight.js \
     > media/js/snipt.js
 
-cat media/js/src/pro.js \
+cat media/js/libs/highlight.js \
+    media/js/src/pro.js \
     > media/js/pro.js
