@@ -39,7 +39,7 @@ class UserProfileValidation(Validation):
 
         for field in bundle.data:
             if not re.match('^[ A-Za-z0-9\._-]*$', bundle.data[field]):
-                errors['invalid'] = 'Only spaces, letters, numbers, underscores, dashes, and periods are valid.'
+                errors[field] = 'Only spaces, letters, numbers, underscores, dashes, and periods are valid.'
 
         return errors
 
