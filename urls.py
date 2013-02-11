@@ -23,6 +23,7 @@ private_api.register(PrivateSniptResource())
 private_api.register(PrivateTagResource())
 private_api.register(PrivateUserResource())
 private_api.register(PrivateFavoriteResource())
+private_api.register(PrivateUserProfileResource())
 
 urlpatterns = patterns('',
 

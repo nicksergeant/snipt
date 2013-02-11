@@ -55,8 +55,10 @@
 
                     var promise = $http({
                         method: 'GET',
-                        url: '/api/account/',
-                        headers: {}
+                        url: '/api/private/profile/' + window.user_profile_id + '/',
+                        headers: {
+                            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+                        }
                     });
 
                     return promise;
@@ -71,7 +73,7 @@
             $scope.route = $route;
 
             AccountStorage.getAccount().then(function(response) {
-                console.log(response);
+                $scope.user = response.data;
             });
         };
 

@@ -8,6 +8,7 @@ from tastypie.validation import Validation
 from tastypie.models import create_api_key
 from snipts.models import Favorite, Snipt
 from haystack.query import SearchQuerySet
+from accounts.models import UserProfile
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
 from taggit.models import Tag
@@ -117,7 +118,32 @@ class PublicSniptResource(ModelResource):
         return orm_filters
 
 
+class PrivateUserProfileResource(ModelResource):
+    class Meta:
+        queryset = UserProfile.objects.all()
+        resource_name = 'profile'
+        excludes = ['is_pro', 'stripe_id']
+        include_absolute_url = False
+        allowed_methods = ['get', 'put']
+        list_allowed_methods = []
+        authentication = ApiKeyAuthentication()
+        authorization = Authorization()
+        always_return_data = True
+        max_limit = 200
+        cache = SimpleCache()
+
+    def apply_authorization_limits(self, request, object_list):
+        return object_list.filter(user=request.user)
+
+    def dehydrate(self, bundle):
+        bundle.data['email'] = bundle.obj.user.email
+        bundle.data['username'] = bundle.obj.user.username
+        bundle.data['api_key'] = bundle.obj.user.api_key.key
+        return bundle
+
 class PrivateUserResource(ModelResource):
+    profile = fields.ForeignKey(PrivateUserProfileResource, 'profile', full=False)
+
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
@@ -136,9 +162,6 @@ class PrivateUserResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
-        bundle.data['profile'] = {
-            'is_pro': bundle.obj.profile.is_pro
-        }
         return bundle
 
 class PrivateTagResource(ModelResource):
