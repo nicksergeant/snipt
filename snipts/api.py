@@ -15,7 +15,7 @@ from taggit.models import Tag
 from django.db import models
 from tastypie import fields
 
-import datetime, hashlib, time
+import datetime, hashlib, time, re
 
 import parsedatetime.parsedatetime as pdt
 import parsedatetime.parsedatetime_consts as pdc
@@ -30,6 +30,16 @@ class FavoriteValidation(Validation):
 
         if Favorite.objects.filter(user=request.user, snipt=snipt).count():
             errors['duplicate'] = 'User has already favorited this snipt.'
+
+        return errors
+
+class UserProfileValidation(Validation):
+    def is_valid(self, bundle, request=None):
+        errors = {}
+
+        for field in bundle.data:
+            if not re.match('^[ A-Za-z0-9\._-]*$', bundle.data[field]):
+                errors['invalid'] = 'Only spaces, letters, numbers, underscores, dashes, and periods are valid.'
 
         return errors
 
@@ -123,6 +133,7 @@ class PrivateUserProfileResource(ModelResource):
         queryset = UserProfile.objects.all()
         resource_name = 'profile'
         excludes = ['is_pro', 'stripe_id']
+        validation = UserProfileValidation()
         include_absolute_url = False
         allowed_methods = ['get', 'put']
         list_allowed_methods = []
@@ -143,12 +154,6 @@ class PrivateUserProfileResource(ModelResource):
         bundle.data['is_pro'] = bundle.obj.user.profile.is_pro
         return bundle
 
-    def obj_update(self, bundle, request=None, **kwargs):
-
-        # TODO: Clean all account fields.
-
-        return super(PrivateUserProfileResource, self).obj_update(bundle, request,
-                     user=request.user, **kwargs)
 class PrivateUserResource(ModelResource):
     profile = fields.ForeignKey(PrivateUserProfileResource, 'profile', full=False)
 
@@ -221,7 +226,6 @@ class PrivateSniptResource(ModelResource):
         resource_name = 'snipt'
         fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count', 'stylized',
                   'key', 'public', 'blog_post', 'created', 'modified', 'publish_date',]
-        validation = Validation()
         include_absolute_url = True
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
