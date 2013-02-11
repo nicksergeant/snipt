@@ -1,0 +1,29 @@
+{% load snipt_tags %}
+
+<div class="profile group">
+    <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=175" alt="{{ user.username }}" title={{ user.username }}" />
+    <div class="meta">
+        <div class="username" title="{{ user.username }}">
+            {% if user.username == 'blog' %}
+                Blog
+            {% else %}
+                {{ user.username }}
+            {% endif %}
+        </div>
+        {% if user.username == 'nick' %}
+            <div class="member-since">Snipt Founder in {{ user.date_joined|date:"Y" }}</div>
+        {% else %}
+            {% if user.username == 'blog' %}
+                <div class="member-since">Official Snipt blog</div>
+            {% else %}
+                <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if user.profile.is_pro %}
+        <a class="pro" href="/pro/">Pro</a>
+        {% if user.profile.gittip_username %}
+            <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
+        {% endif %}
+    {% endif %}
+</div>
