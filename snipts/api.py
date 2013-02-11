@@ -121,7 +121,7 @@ class PrivateUserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
-        fields = ['id', 'username', 'email',]
+        fields = ['id', 'username', 'email']
         include_absolute_url = True
         allowed_methods = ['get']
         list_allowed_methods = []

@@ -8,31 +8,33 @@
     <li><a href="/account/">Account</a></li>
 {% endblock %}
 
+{% block extra-scripts %}
+    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+{% endblock %}
+
 {% block content %}
-    <section class="profile group">
+    <section class="profile group" ng-app="Account" ng-controller="MainController">
         <aside>
             <ul class="nav nav-list">
                 <li class="nav-header">Account</li>
-                <li class="active">
-                    <a href="">Profile</a>
+                <li ng-class="{active: route.current.scope.section == 'Profile'}">
+                    <a href="/account/">Profile</a>
                 </li>
                 <li>
-                    <a href="">Change Password</a>
+                    <a href="/password/change/">Change Password</a>
                 </li>
-                <li>
-                    <a href="">Billing</a>
+                <li ng-class="{active: route.current.scope.section == 'Billing'}">
+                    <a href="/account/billing/">Billing</a>
                 </li>
                 <li class="nav-header">Pro</li>
-                <li>
-                    <a href="">Blog settings</a>
+                <li ng-class="{active: route.current.scope.section == 'Blogging'}">
+                    <a href="/account/blogging/">Blog settings</a>
                 </li>
-                <li>
-                    <a href="">Editor settings</a>
+                <li ng-class="{active: route.current.scope.section == 'Editor'}">
+                    <a href="/account/editor/">Editor settings</a>
                 </li>
             </ul>
         </aside>
-        <section class="content">
-            Content
-        </section>
+        <section class="content" ng-view></section>
     </section>
 {% endblock %}

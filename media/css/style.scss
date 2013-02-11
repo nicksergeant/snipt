@@ -92,6 +92,9 @@ body {
 .hidden {
     display: none;
 }
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
 
 // Global
 header.main {
@@ -1513,10 +1516,30 @@ body.account {
     section.profile {
         aside {
             float: left;
+            padding-top: 30px;
             width: 190px;
+
+            ul {
+                li {
+                    a {
+                        color: #43A8C6;
+                    }
+                    &.active {
+                        a {
+                            background: #43A8C6;
+                            color: white;
+                        }
+                    }
+                }
+            }
         }
         section.content {
-            
+            background: white;
+            border-bottom: 1px solid #DDDDDD;
+            border-left: 4px solid #43A8C6;
+            float: right;
+            min-height: 400px;
+            width: 555px;
         }
     }
 }
