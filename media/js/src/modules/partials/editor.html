@@ -1,0 +1,12 @@
+<div class="control-group {% if form.errors.default_editor %}error{% endif %}">
+    <label class="control-label" for="id_default_editor">Default editor:</label>
+    <div class="controls">
+        {{ form.default_editor }}
+    </div>
+</div>
+<div class="control-group {% if form.errors.editor_theme %}error{% endif %}">
+    <label class="control-label" for="id_editor_theme">Default editor theme:</label>
+    <div class="controls">
+        {{ form.editor_theme }}
+    </div>
+</div>
