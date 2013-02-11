@@ -1516,7 +1516,7 @@ body.account {
     section.profile {
         aside {
             float: left;
-            padding-top: 30px;
+            padding-top: 35px;
             width: 190px;
 
             ul {
@@ -1538,8 +1538,51 @@ body.account {
             border-bottom: 1px solid #DDDDDD;
             border-left: 4px solid #43A8C6;
             float: right;
-            min-height: 400px;
+            min-height: 308px;
+            padding: 30px 0 0 0;
             width: 555px;
+            @include multi-border-radius(0, 0, 0, 10px);
+
+            div.def {
+                border: 1px solid #DDDDDD;
+                margin: 15px;
+                padding: 30px 10px 10px;
+                position: relative;
+                @include border-radius;
+
+                &:before {
+                    background: #F5F5F5;
+                    border: 1px solid #DDDDDD;
+                    color: #43A8C6;
+                    content: attr(data-title);
+                    left: -1px;
+                    font: bold 12px $Helvetica;
+                    padding: 3px 7px;
+                    position: absolute;
+                    top: -1px;
+                    @include multi-border-radius(4px, 0, 4px, 0);
+                }
+            }
+            p.alert {
+                margin: 0 15px;
+            }
+            form {
+                span.help-block {
+                    color: #999;
+                    font: normal 12px $Helvetica;
+                }
+                div.control-group:last-of-type {
+                    margin-bottom: 0;
+
+                    input, select {
+                        margin-bottom: 0;
+                    }
+                    span.help-block {
+                        margin-bottom: 0;
+                        margin-top: 10px;
+                    }
+                }
+            }
         }
     }
 }

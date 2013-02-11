@@ -138,9 +138,17 @@ class PrivateUserProfileResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['email'] = bundle.obj.user.email
         bundle.data['username'] = bundle.obj.user.username
+        bundle.data['user_id'] = bundle.obj.user.id
         bundle.data['api_key'] = bundle.obj.user.api_key.key
+        bundle.data['is_pro'] = bundle.obj.user.profile.is_pro
         return bundle
 
+    def obj_update(self, bundle, request=None, **kwargs):
+
+        # TODO: Clean all account fields.
+
+        return super(PrivateUserProfileResource, self).obj_update(bundle, request,
+                     user=request.user, **kwargs)
 class PrivateUserResource(ModelResource):
     profile = fields.ForeignKey(PrivateUserProfileResource, 'profile', full=False)
 

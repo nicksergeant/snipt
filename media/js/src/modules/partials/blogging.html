@@ -1,73 +1,85 @@
-<div class="control-group {% if form.errors.blog_title %}error{% endif %}">
-    <label class="control-label" for="id_blog_title">Blog title:</label>
-    <div class="controls">
-        {{ form.blog_title }}
+<form action="" method="get" accept-charset="utf-8">
+    <div class="def" data-title="Site settings">
+        <div class="control-group">
+            <label class="control-label" for="id_blog_title">Blog title:</label>
+            <div class="controls">
+                <input id="id_blog_title" type="text" name="blog_title" value="[[ user.blog_title ]]" maxlength="250">
+            </div>
+        </div>
+        <div class="control-group ">
+            <label class="control-label" for="id_blog_theme">Blog theme:</label>
+            <div class="controls">
+                <select name="blog_theme" id="id_blog_theme">
+                    <option value="D" ng-selected="user.blog_theme == 'D'">Default</option>
+                    <option value="A" ng-selected="user.blog_theme == 'A'">Pro Adams</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="id_blog_domain">Blog domain:</label>
+            <div class="controls">
+                <input id="id_blog_domain" type="text" name="blog_domain" maxlength="250" value="[[ user.blog_domain ]]">
+                <span class="help-block">Like 'snipt.nicksergeant.com' or 'nicksergeant.com' (without quotes). Set your CNAME / A-record to point to 96.126.110.160</span>
+            </div>
+        </div>
     </div>
-</div>
-<div class="control-group {% if form.errors.blog_theme %}error{% endif %}">
-    <label class="control-label" for="id_blog_theme">Blog theme:</label>
-    <div class="controls">
-        {{ form.blog_theme }}
+    <div class="def" data-title="Services">
+        <div class="control-group">
+            <label class="control-label" for="id_gittip_username">Gittip username:</label>
+            <div class="controls">
+                <input id="id_gittip_username" type="text" name="gittip_username" value="[[ user.gittip_username ]]" maxlength="250">
+                <span class="help-block">Your <a href="https://www.gittip.com/">Gittip</a> username, if you have one.</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="id_disqus_shortname">Disqus shortname:</label>
+            <div class="controls">
+                <input id="id_disqus_shortname" type="text" name="disqus_shortname" maxlength="250" value="[[ user.disqus_shortname ]]">
+                <span class="help-block">If you have your own <a href="http://disqus.com/">Disqus</a> account that you'd like to use for your blog comments, enter your shortname here.</span>
+            </div>
+        </div>
     </div>
-</div>
-<div class="control-group {% if form.errors.blog_domain %}error{% endif %}">
-    <label class="control-label" for="id_blog_domain">Blog domain:</label>
-    <div class="controls">
-        {{ form.blog_domain }}
-        <span class="help-block">Like 'snipt.nicksergeant.com' or 'nicksergeant.com' (without quotes). Set your CNAME / A-record to point to 96.126.110.160</span>
+    <div class="def" data-title="Analytics">
+        <div class="control-group">
+            <label class="control-label" for="id_google_analytics_tracking_id">Google Analytics tracking ID:</label>
+            <div class="controls">
+                <input id="id_google_analytics_tracking_id" type="text" name="google_analytics_tracking_id" maxlength="250" value="[[ user.google_analytics_tracking_id ]]">
+                <span class="help-block">If you'd like to track visits to your blog site with <a href="http://analytics.google.com">Google Analytics</a>, enter your tracking ID here.</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="id_gauges_site_id">Gauges site ID:</label>
+            <div class="controls">
+                <input id="id_gauges_site_id" type="text" name="gauges_site_id" value="[[ user.gauges_site_id ]]" maxlength="250">
+                <span class="help-block">If you'd like to track visits to your blog site with <a href="http://get.gaug.es/">Gauges</a>, enter your site ID here.</span>
+            </div>
+        </div>
     </div>
-</div>
-<div class="control-group {% if form.errors.gittip_username %}error{% endif %}">
-    <label class="control-label" for="id_gittip_username">Gittip username:</label>
-    <div class="controls">
-        {{ form.gittip_username }}
-        <span class="help-block">Your <a href="https://www.gittip.com/">Gittip</a> username, if you have one.</span>
+    <div class="def" data-title="Google AdSense">
+        <div class="control-group">
+            <label class="control-label" for="id_google_ad_client">Google Ads: "google_ad_client"</label>
+            <div class="controls">
+                <input id="id_google_ad_client" type="text" name="google_ad_client" maxlength="250" value="[[ user.google_ad_client ]]">
+                <span class="help-block">If you'd like to run Google Ads in your blog's sidebar, enter your client ID here, as well as the following three fields.</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="id_google_ad_slot">Google Ads: "google_ad_slot"</label>
+            <div class="controls">
+                <input id="id_google_ad_slot" type="text" name="google_ad_slot" maxlength="250" value="[[ user.google_ad_slot ]]">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="id_google_ad_width">Google Ads: "google_ad_width"</label>
+            <div class="controls">
+                <input id="id_google_ad_width" type="text" name="google_ad_width" maxlength="250" value="[[ user.google_ad_width ]]">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="id_google_ad_height">Google Ads: "google_ad_height"</label>
+            <div class="controls">
+                <input id="id_google_ad_height" type="text" name="google_ad_height" maxlength="250" value="[[ user.google_ad_height ]]">
+            </div>
+        </div>
     </div>
-</div>
-<div class="control-group {% if form.errors.disqus_shortname %}error{% endif %}">
-    <label class="control-label" for="id_disqus_shortname">Disqus shortname:</label>
-    <div class="controls">
-        {{ form.disqus_shortname }}
-        <span class="help-block">If you have your own <a href="http://disqus.com/">Disqus</a> account that you'd like to use for your blog comments, enter your shortname here.</span>
-    </div>
-</div>
-<div class="control-group {% if form.errors.google_analytics_tracking_id %}error{% endif %}">
-    <label class="control-label" for="id_google_analytics_tracking_id">Google Analytics tracking ID:</label>
-    <div class="controls">
-        {{ form.google_analytics_tracking_id }}
-        <span class="help-block">If you'd like to track visits to your blog site with <a href="http://analytics.google.com">Google Analytics</a>, enter your tracking ID here.</span>
-    </div>
-</div>
-<div class="control-group {% if form.errors.gauges_site_id %}error{% endif %}">
-    <label class="control-label" for="id_gauges_site_id">Gauges site ID:</label>
-    <div class="controls">
-        {{ form.gauges_site_id }}
-        <span class="help-block">If you'd like to track visits to your blog site with <a href="http://get.gaug.es/">Gauges</a>, enter your site ID here.</span>
-    </div>
-</div>
-
-<div class="control-group {% if form.errors.google_ad_client %}error{% endif %}">
-    <label class="control-label" for="id_google_ad_client">Google Ads: "google_ad_client"</label>
-    <div class="controls">
-        {{ form.google_ad_client }}
-        <span class="help-block">If you'd like to run Google Ads in your blog's sidebar, enter your client ID here, as well as the following three fields.</span>
-    </div>
-</div>
-<div class="control-group {% if form.errors.google_ad_slot %}error{% endif %}">
-    <label class="control-label" for="id_google_ad_slot">Google Ads: "google_ad_slot"</label>
-    <div class="controls">
-        {{ form.google_ad_slot }}
-    </div>
-</div>
-<div class="control-group {% if form.errors.google_ad_width %}error{% endif %}">
-    <label class="control-label" for="id_google_ad_width">Google Ads: "google_ad_width"</label>
-    <div class="controls">
-        {{ form.google_ad_width }}
-    </div>
-</div>
-<div class="control-group {% if form.errors.google_ad_height %}error{% endif %}">
-    <label class="control-label" for="id_google_ad_height">Google Ads: "google_ad_height"</label>
-    <div class="controls">
-        {{ form.google_ad_height }}
-    </div>
-</div>
+</form>
