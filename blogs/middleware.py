@@ -34,5 +34,5 @@ class BlogMiddleware:
                         if host in pro_user.profile.blog_domain.split(' '):
                             request.blog_user = pro_user
 
-                            if host != pro_user.profile.get_primary_blog_domain:
+                            if host != pro_user.profile.get_primary_blog_domain():
                                 return HttpResponseRedirect(pro_user.profile.get_primary_blog_domain())
