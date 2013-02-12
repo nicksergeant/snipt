@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 
@@ -32,3 +33,6 @@ class BlogMiddleware:
                     if pro_user.profile.blog_domain:
                         if host in pro_user.profile.blog_domain.split(' '):
                             request.blog_user = pro_user
+
+                            if host != pro_user.profile.get_primary_blog_domain:
+                                return HttpResponseRedirect(pro_user.profile.get_primary_blog_domain)

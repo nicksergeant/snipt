@@ -59,4 +59,11 @@ class UserProfile(models.Model):
     google_ad_width  = models.CharField(max_length=250, null=True, blank=True)
     google_ad_height = models.CharField(max_length=250, null=True, blank=True)
 
+    def get_primary_blog_domain(self):
+        if not self.blog_domain:
+            return None
+        else:
+            return self.blog_domain.split(' ')[0]
+
+
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

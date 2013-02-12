@@ -1,10 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         {% if request.blog_user.profile.is_pro %}
-            <atom:link href="{% if request.blog_user.profile.blog_domain and request.blog_user.profile.blog_domain != '' %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}" rel="self" type="application/rss+xml" />
+            <atom:link href="{% if request.blog_user.profile.get_primary_blog_domain and request.blog_user.profile.blog_domain != '' %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}" rel="self" type="application/rss+xml" />
             <description>{% firstof request.blog_user.profile.blog_title request.blog_user.username %}</description>
             <title>{% firstof request.blog_user.profile.blog_title request.blog_user.username %}</title>
-            <link>{% if request.blog_user.profile.blog_domain %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}</link>
+            <link>{% if request.blog_user.profile.get_primary_blog_domain %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}</link>
         {% else %}
             <atom:link href="https://{{ request.blog_user.username }}.snipt.net/?rss" rel="self" type="application/rss+xml" />
             <description>{{ request.blog_user.username }}</description>
