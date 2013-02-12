@@ -1539,12 +1539,12 @@ body.account {
             border-bottom: 1px solid #DDDDDD;
             border-left: 4px solid #DDDDDD;
             float: right;
-            min-height: 308px;
-            padding: 30px 0 0 0;
+            min-height: 272px;
             width: 555px;
             @include multi-border-radius(0, 0, 0, 10px);
 
             div.def {
+                background: #FAFAFA;
                 border: 1px solid #DDDDDD;
                 margin: 15px;
                 padding: 30px 10px 10px;
@@ -1565,7 +1565,8 @@ body.account {
                 }
             }
             p.alert {
-                margin: 0 15px;
+                line-height: 20px;
+                margin: 15px;
             }
             form {
                 span.help-block {
@@ -1582,6 +1583,11 @@ body.account {
                         margin-bottom: 0;
                         margin-top: 10px;
                     }
+                }
+                div.form-actions {
+                    margin-top: 15px;
+                    padding-bottom: 0;
+                    @include vertical-gradient(#F5F5F5, white);
                 }
             }
         }

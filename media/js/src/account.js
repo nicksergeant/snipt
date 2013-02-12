@@ -2,9 +2,9 @@
 
     if (typeof angular !== 'undefined') {
 
-        // Globals.
         var root = this;
         var $ = root.jQuery;
+        var controllers = {};
 
         // App definition.
         var app = angular.module('Account', [], function($routeProvider, $locationProvider) {
@@ -62,29 +62,146 @@
                     });
 
                     return promise;
+                },
+                saveAccount: function(user, fields) {
+
+                    var promise = $http({
+                        method: 'PUT',
+                        url: '/api/private/profile/' + window.user_profile_id + '/',
+                        headers: {
+                            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+                        },
+                        data: function() {
+                            var userData = {};
+
+                            for (var i = 0; i < fields.length; i++) {
+                                userData[fields[i]] = user[fields[i]];
+                            }
+
+                            return userData;
+                        }()
+                    });
+
+                    return promise;
                 }
             };
         });
 
         // Controllers.
-        var controllers = {};
+        controllers.BillingController = function($scope) {
+            $scope.section = 'Billing';
+        };
+        controllers.BloggingController = function($scope) {
+            $scope.fields = [
+                'blog_title',
+                'blog_theme',
+                'blog_domain',
+                'gittip_username',
+                'disqus_shortname',
+                'google_analytics_tracking_id',
+                'gauges_site_id',
+                'google_ad_client',
+                'google_ad_slot',
+                'google_ad_width',
+                'google_ad_height'
+            ];
+            $scope.section = 'Blogging';
 
+            $scope.blogThemeOptions = [
+                { id: 'D', label: 'Default' },
+                { id: 'A', label: 'Pro Adams' }
+            ];
+
+        };
+        controllers.EditorController = function($scope) {
+            $scope.fields = ['default_editor', 'editor_theme'];
+            $scope.section = 'Editor';
+            
+            $scope.editorOptions = [
+                { id: 'C', label: 'CodeMirror' },
+                { id: 'T', label: 'Textarea' }
+            ];
+            $scope.editorThemeOptions = [
+                { id: 'default', label: 'Default' },
+                { id: 'ambiance', label: 'Ambiance' },
+                { id: 'blackboard', label: 'Blackboard' },
+                { id: 'cobalt', label: 'Cobalt' },
+                { id: 'eclipse', label: 'Eclipse' },
+                { id: 'elegant', label: 'Elegant' },
+                { id: 'erlang-dark', label: 'Erlang Dark' },
+                { id: 'lesser-dark', label: 'Lesser Dark' },
+                { id: 'monokai', label: 'Monokai' },
+                { id: 'neat', label: 'Neat' },
+                { id: 'night', label: 'Night' },
+                { id: 'rubyblue', label: 'Ruby Blue' },
+                { id: 'solarized dark', label: 'Solarized Dark' },
+                { id: 'solarized light', label: 'Solarized Light' },
+                { id: 'twilight', label: 'Twilight' },
+                { id: 'vibrant-ink', label: 'Vibrant Ink' },
+                { id: 'xq-dark', label: 'XQ Dark' }
+            ];
+
+        };
         controllers.MainController = function($scope, $route, AccountStorage) {
+            $scope.errors = [];
+            $scope.saveButtonText = 'Save';
             $scope.route = $route;
 
             AccountStorage.getAccount().then(function(response) {
                 $scope.user = response.data;
             });
-        };
 
-        controllers.BillingController = function($scope) {
-            $scope.section = 'Billing';
-        };
-        controllers.BloggingController = function($scope) {
-            $scope.section = 'Blogging';
-        };
-        controllers.EditorController = function($scope) {
-            $scope.section = 'Editor';
+            $scope.saveFields = function(fields) {
+                $scope.saveButtonText = 'Saving…';
+
+                AccountStorage.saveAccount($scope.user, fields).then(function onSuccess(response) {
+
+                    // Save the new user object.
+                    $scope.user = response.data;
+
+                    // Signal that we have a successful response.
+                    $scope.success = true;
+
+                    // Success message.
+                    $scope.message = $scope.route.current.scope.section + ' settings saved.';
+
+                    // Reset the save button text.
+                    $scope.saveButtonText = 'Save';
+
+                    // Clear out any marked errors.
+                    $scope.errors = [];
+
+                    // Remove the success message after a while.
+                    setTimeout(function() {
+                        $scope.success = null;
+                        $scope.message = '';
+
+                        // We have to apply since we're outside of the scope context.
+                        $scope.$apply();
+
+                    }, 3000);
+
+                }, function onError(response) {
+
+                    // Signal that we have an error.
+                    $scope.success = false;
+
+                    // Reset the save button text.
+                    $scope.saveButtonText = 'Save';
+
+                    // If we have a response, then it's probably a validation error.
+                    if (response) {
+
+                        // Set the errors on the scope.
+                        $scope.errors = response.data.profile;
+                        $scope.message = 'Only spaces, letters, numbers, underscores, dashes, periods, forward slashes, and "at sign" are valid.';
+
+                    } else {
+                        $scope.message = 'There was an error saving your settings.';
+                    }
+
+                });
+            };
         };
         controllers.ProfileController = function($scope) {
             $scope.section = 'Profile';

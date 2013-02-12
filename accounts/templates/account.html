@@ -35,6 +35,23 @@
                 </li>
             </ul>
         </aside>
-        <section class="content" ng-view></section>
+        <section class="content" ng-class="{'with-message': message}">
+            <form ng-cloak class="ng-cloak" action="" method="get" accept-charset="utf-8" ng-submit="saveFields(route.current.scope.fields)">
+                <ng-view></ng-view>
+                <p class="alert ng-cloak"
+                    ng-cloak
+                    ng-class="{'alert-success': success, 'alert-error': !success}"
+                    ng-show="message">
+                    [[ message ]]
+                </p>
+                <div class="form-actions" ng-show="route.current.scope.fields">
+                    <button type="submit"
+                        ng-disabled="saveButtonText != 'Save'"
+                        class="btn btn-success">
+                        [[ saveButtonText ]]
+                    </button>
+                </div>
+            </form>
+        </section>
     </section>
 {% endblock %}

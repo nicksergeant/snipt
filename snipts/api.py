@@ -38,8 +38,8 @@ class UserProfileValidation(Validation):
         errors = {}
 
         for field in bundle.data:
-            if not re.match('^[ A-Za-z0-9\._-]*$', bundle.data[field]):
-                errors[field] = 'Only spaces, letters, numbers, underscores, dashes, and periods are valid.'
+            if not re.match('^[ A-Za-z0-9\/\@\._-]*$', bundle.data[field]):
+                errors[field] = 'Only spaces, letters, numbers, underscores, dashes, periods, forward slashes, and "at sign" are valid.'
 
         return errors
 
@@ -141,7 +141,6 @@ class PrivateUserProfileResource(ModelResource):
         authorization = Authorization()
         always_return_data = True
         max_limit = 200
-        cache = SimpleCache()
 
     def apply_authorization_limits(self, request, object_list):
         return object_list.filter(user=request.user)
