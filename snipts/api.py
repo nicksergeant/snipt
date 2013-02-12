@@ -177,6 +177,7 @@ class PrivateUserResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
+        bundle.data['is_pro'] = bundle.obj.profile.is_pro
         return bundle
 
 class PrivateTagResource(ModelResource):
@@ -244,7 +245,7 @@ class PrivateSniptResource(ModelResource):
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
         bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
 
-        if bundle.data['user'].data['profile']['is_pro']:
+        if bundle.data['user'].data['is_pro']:
             bundle.data['views'] = bundle.obj.views
             bundle.data['favs'] = bundle.obj.favs()
 
