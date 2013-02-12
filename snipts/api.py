@@ -37,6 +37,9 @@ class UserProfileValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
+        if not request.user.profile.is_pro:
+            return 'You must be a Pro to change these settings.'
+
         for field in bundle.data:
             if not re.match('^[ A-Za-z0-9\/\@\._-]*$', bundle.data[field]):
                 errors[field] = 'Only spaces, letters, numbers, underscores, dashes, periods, forward slashes, and "at sign" are valid.'

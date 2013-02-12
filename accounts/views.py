@@ -4,6 +4,11 @@ from annoying.decorators import render_to
 from snipts.models import Snipt
 
 @login_required
+@render_to('account.html')
+def account(request):
+    return {}
+
+@login_required
 @render_to('stats.html')
 def stats(request):
 
