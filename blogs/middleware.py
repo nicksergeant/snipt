@@ -29,5 +29,6 @@ class BlogMiddleware:
                 pro_users = User.objects.filter(userprofile__is_pro=True)
 
                 for pro_user in pro_users:
-                    if host in pro_user.profile.blog_domain.split(' '):
-                        request.blog_user = pro_user
+                    if pro_user.profile.blog_domain:
+                        if host in pro_user.profile.blog_domain.split(' '):
+                            request.blog_user = pro_user
