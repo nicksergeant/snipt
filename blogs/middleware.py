@@ -35,4 +35,4 @@ class BlogMiddleware:
                             request.blog_user = pro_user
 
                             if host != pro_user.profile.get_primary_blog_domain:
-                                return HttpResponseRedirect(pro_user.profile.get_primary_blog_domain)
+                                return HttpResponseRedirect(pro_user.profile.get_primary_blog_domain())
