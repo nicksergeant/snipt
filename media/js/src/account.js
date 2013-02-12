@@ -13,19 +13,19 @@
 
             // Routes.
             $routeProvider.when('/account/', {
-                templateUrl: '/media/js/src/modules/partials/profile.html',
+                templateUrl: '/static/js/src/modules/partials/profile.html',
                 controller: controllers.ProfileController
             });
             $routeProvider.when('/account/billing/', {
-                templateUrl: '/media/js/src/modules/partials/billing.html',
+                templateUrl: '/static/js/src/modules/partials/billing.html',
                 controller: controllers.BillingController
             });
             $routeProvider.when('/account/blogging/', {
-                templateUrl: '/media/js/src/modules/partials/blogging.html',
+                templateUrl: '/static/js/src/modules/partials/blogging.html',
                 controller: controllers.BloggingController
             });
             $routeProvider.when('/account/editor/', {
-                templateUrl: '/media/js/src/modules/partials/editor.html',
+                templateUrl: '/static/js/src/modules/partials/editor.html',
                 controller: controllers.EditorController
             });
 
