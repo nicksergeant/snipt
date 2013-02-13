@@ -89,13 +89,13 @@ def blog_posts(request, username):
         public = False
         public_user = False
         user = request.user
-        snipts = Snipt.objects.filter(user=request.user, blog_post=True)
+        snipts = get_object_or_404(Snipt, user=request.user, blog_post=True)
         tags = Tag.objects.filter(snipt__user=request.user).distinct()
     else:
         public = True
         public_user = True
-        user = User.objects.get(username=username)
-        snipts = Snipt.objects.filter(blog_post=True, user=user, public=True)
+        user = get_object_or_404(User, username=username)
+        snipts = get_object_or_404(Snipt, blog_post=True, user=user, public=True)
         tags = Tag.objects.filter(snipt__user=user, snipt__public=True).distinct()
 
     tags = tags.order_by('name')
