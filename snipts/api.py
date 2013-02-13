@@ -178,6 +178,8 @@ class PrivateUserResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
         bundle.data['is_pro'] = bundle.obj.profile.is_pro
+        bundle.data['lexers'] = [snipt['lexer'] for snipt in \
+            Snipt.objects.filter(user=bundle.obj).values('lexer').distinct()]
         return bundle
 
 class PrivateTagResource(ModelResource):
