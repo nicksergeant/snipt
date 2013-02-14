@@ -27,6 +27,8 @@ private_api.register(PrivateUserProfileResource())
 
 urlpatterns = patterns('',
 
+    url(r'^homepage/$', direct_to_template, {'template': 'homepage.html'}),
+
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^404/$', direct_to_template, {'template': '404.html'}),

@@ -5,9 +5,9 @@
 <head>
 
     <title>{% block page-title %}Snipt{% endblock %}</title>
+
     <meta charset="utf-8" />
-    <meta name="google-site-verification" content="BantFMmY6nSP8wFvb_SDKwYZo08HglaCpNMXQqTyOuk" />
-    <link rel="author" href="/humans.txt" />
+
     {% block page-description %}
         <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
     {% endblock %}
@@ -16,12 +16,13 @@
         <meta name="robots" content="noindex, follow" />
     {% endif %}
 
-
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?75" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
     {% endif %}
+
+    <link rel="author" href="/humans.txt" />
 
     {% block css %}{% endblock %}
 
@@ -215,7 +216,9 @@
             <div class="right-y ruler"></div>
         </section>
     {% endblock %}
-    <section class="main group hidden" id="main-edit"></section>
+    {% block main-edit %}
+        <section class="main group hidden" id="main-edit"></section>
+    {% endblock %}
     {% block keyboard-shortcuts %}
         <div class="modal hide" id="keyboard-shortcuts">
             <div class="modal-header">
@@ -372,10 +375,12 @@
     {% if has_snipts and detail %}
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     {% endif %}
-    <div class="hidden" id="templates">
-        {% include 'snipts/snipt-js-template.html' %}
-        {% include 'snipts/snipt-edit-js-template.html' %}
-    </div>
+    {% block snipt-templates %}
+        <div class="hidden" id="templates">
+            {% include 'snipts/snipt-js-template.html' %}
+            {% include 'snipts/snipt-edit-js-template.html' %}
+        </div>
+    {% endblock %}
     {% if request.user.is_authenticated %}
         {% if not debug %}
             {% block intercom %}
@@ -416,12 +421,14 @@
 
     {% include 'analytics.html' %}
 
-    <div class="hidden">
-        <img src="{{ STATIC_URL }}images/header-fixed-save.gif" alt="" />
-        <img src="{{ STATIC_URL }}images/chosen-sprite.png" alt="" />
-        <img src="{{ STATIC_URL }}images/aside-nav-open-bottom-bg.gif" alt="" />
-        <img src="{{ STATIC_URL }}images/aside-nav-open-top-bg.gif" alt="" />
-    </div>
+    {% block preload %}
+        <div class="hidden">
+            <img src="{{ STATIC_URL }}images/header-fixed-save.gif" alt="" />
+            <img src="{{ STATIC_URL }}images/chosen-sprite.png" alt="" />
+            <img src="{{ STATIC_URL }}images/aside-nav-open-bottom-bg.gif" alt="" />
+            <img src="{{ STATIC_URL }}images/aside-nav-open-top-bg.gif" alt="" />
+        </div>
+    {% endblock %}
     
 </body>
 </html>
