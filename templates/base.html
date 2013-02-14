@@ -17,7 +17,7 @@
     {% endif %}
 
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?73" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?74" />
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
@@ -162,6 +162,9 @@
         <section class="main group" id="main">
             {% block aside %}
                 <aside class="main">
+                    <div class="save-nate">
+                        <a href="http://savenatenow.com/">Save Nate</a>
+                    </div>
                     {% block aside-top %}{% endblock %}
                     {% block aside-inner %}{% endblock %}
                     <nav class="footer">
