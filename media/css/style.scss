@@ -1715,9 +1715,6 @@ body.error {
         margin-top: 54px;
     }
 }
-body.homepage {
-
-}
 body.is-pro {
     section.main {
         div.inner {
@@ -2367,6 +2364,57 @@ body.editing {
                             }
                             label:first-of-type {
                                 margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+body.homepage {
+    header.main {
+        background: #415A63 url('../images/homepage-header-bg.jpg') top center no-repeat;
+        height: 450px;
+
+        div.inner {
+            border-left: 0;
+
+            h1 {
+                a {
+                    margin-left: 17px;
+                }
+            }
+            nav {
+                float: right;
+                padding: 16px 0 0 0;
+
+                ul {
+
+                    li {
+                        display: inline-block;
+                        list-style-type: none;
+
+                        a {
+                            color: #90A5AD;
+                            display: inline-block;
+                            font: bold 16px $Helvetica;
+                            padding: 5px 20px 7px 20px;
+
+                            &:hover {
+                                color: white;
+                                text-decoration: none;
+                            }
+                            &.login {
+                                background: #54737E;
+                                border: 2px solid white;
+                                color: white;
+                                margin-left: 20px;
+                                @include border-radius;
+
+                                &:hover {
+                                    background: #39525C;
+                                }
                             }
                         }
                     }
