@@ -169,6 +169,13 @@
                 hljs.highlightBlock(e);
             });
 
+            // Homepage Gravatars.
+            if (this.$body.hasClass('homepage')) {
+                setTimeout(function() {
+                    $('div.faces img').show();
+                }, 700);
+            }
+
             window.ui_halted = false;
         },
         events: {

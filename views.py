@@ -17,7 +17,7 @@ from local_settings import STRIPE_API_KEY
 @render_to('homepage.html')
 def homepage(request):
 
-    random_users = User.objects.all().order_by('?')[:50]
+    random_users = User.objects.all().order_by('?')[:75]
     coders = []
 
     for user in random_users:
