@@ -16,7 +16,32 @@
         <meta name="robots" content="noindex, follow" />
     {% endif %}
 
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?77" />
+    {% if debug %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/ambiance.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/blackboard.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/cobalt.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/eclipse.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/elegant.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/erlang-dark.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/lesser-dark.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/monokai.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/neat.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/night.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/rubyblue.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/solarized.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/twilight.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/vibrant-ink.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/xq-dark.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?77" />
+    {% endif %}
 
     {% if has_snipts and not detail %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />

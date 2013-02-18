@@ -17,20 +17,7 @@ def _python(cmd):
 
 def dep():
 
-    _display_message('Compiling CSS')
-    ################
-
-    local('scss -t compressed media/css/style.scss media/css/style.css')
-    local('scss -t compressed media/css/blog-themes/default/style.scss media/css/blog-themes/default/style.css')
-    local('scss -t compressed media/css/blog-themes/pro-adams/style.scss media/css/blog-themes/pro-adams/style.css')
-    local('media/css/compile-css.sh')
-
-    try:
-        local('git commit -am "Compiling CSS."')
-    except:
-        pass
-
-    _display_message('Collect static')
+    _display_message('Collect static (local)')
     ################
 
     local('python manage.py collectstatic --ignore cache --noinput')
@@ -56,7 +43,7 @@ def dep():
 
         run('git pull')
 
-        _display_message('Collect static', False)
+        _display_message('Collect static (remote)', False)
         ################
 
         run(_python('manage.py collectstatic --ignore cache --noinput'))
