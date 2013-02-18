@@ -37,7 +37,6 @@
         el: 'body',
 
         initialize: function(opts) {
-
             this.$body = $(this.el);
             this.$html = $('html');
             this.$html_body = this.$body.add(this.$html);
@@ -172,7 +171,23 @@
             // Homepage Gravatars.
             if (this.$body.hasClass('homepage')) {
                 setTimeout(function() {
-                    $('div.faces img').show();
+
+                    var $facesInner = $('div.faces div.inner');
+                    var $faces = $('a', $facesInner);
+
+                    for (var i = 0; i < $faces.length; i++) {
+                        var $face = $faces.eq(i);
+                        var imageWidth = $('img', $face).width();
+
+                        if (imageWidth != 50) {
+                            $face.remove();
+                        }
+                    }
+
+                    $facesInner.hide();
+                    $facesInner.css('text-indent', '0');
+                    $facesInner.fadeIn(400);
+
                 }, 700);
             }
 
