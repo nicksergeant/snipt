@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+
 {% block sub-header %}{% endblock %}
 {% block keyboard-shortcuts %}{% endblock %}
 {% block inline-js %}{% endblock %}
@@ -12,27 +14,40 @@
 {% block header %}
     <header class="main">
         <div class="inner">
-            <h1>
-                <a href="/">snip<span>t</span></a>
-            </h1> 
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#">Top Posts</a>
-                    </li>
-                    <li>
-                        <a href="#">Top Snipts</a>
-                    </li>
-                    <li>
-                        <a href="#">Top Members</a>
-                    </li>
-                    <li>
-                        <a class="login" href="#">Log in</a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="group">
+                <h1>
+                    <a href="/">snip<span>t</span></a>
+                </h1> 
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/public/">Public Snipts</a>
+                        </li>
+                        <li>
+                            <a href="/search/">Search</a>
+                        </li>
+                        <li>
+                            <a class="button" href="#">Log in</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sub">
+                <h2>The publishing platform for coders.</h2>
+                <h3>Store, share, blog, learn.</h3>
+            </div>
         </div>
     </header>
+    <section class="coders">
+        <h4>{{ users_count|intcomma }} coders, in 120+ countries, have stored {{ snipts_count|intcomma }} snipts in 145 languages.</h4>
+        <a href="/signup/" class="button">Sign up</a>
+        <div class="faces group">
+            {% for coder in coders %}
+                <a href="/{{ coder.username }}/" title="{{ coder.username }}">
+                    <span style="background-image: url('https://secure.gravatar.com/avatar/{{ coder.email_md5 }}?s=50&d=mm');"></span>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
 {% block main %}
 

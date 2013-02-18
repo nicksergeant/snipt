@@ -1,4 +1,4 @@
-from views import (lexers, pro_signup, sitemap, tags, pro_signup_complete)
+from views import (homepage, lexers, pro_signup, sitemap, tags, pro_signup_complete)
 from django.conf.urls.defaults import include, patterns, url
 from django.views.generic.simple import direct_to_template
 from utils.forms import SniptRegistrationForm
@@ -27,7 +27,7 @@ private_api.register(PrivateUserProfileResource())
 
 urlpatterns = patterns('',
 
-    url(r'^homepage/$', direct_to_template, {'template': 'homepage.html'}),
+    url(r'^homepage/$', homepage),
 
     url(r'^admin/', include(admin.site.urls)),
 

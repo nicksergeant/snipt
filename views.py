@@ -4,14 +4,31 @@ from annoying.decorators import ajax_request, render_to
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
+from django.contrib.auth.models import User
 from django.db.models import Count
+from snipts.models import Snipt
 from taggit.models import Tag
 
-
-import stripe
+import hashlib, stripe
 
 from local_settings import STRIPE_API_KEY
 
+
+@render_to('homepage.html')
+def homepage(request):
+
+    random_users = User.objects.all().order_by('?')[:50]
+    coders = []
+
+    for user in random_users:
+        user.email_md5 = hashlib.md5(user.email.lower()).hexdigest()
+        coders.append(user)
+
+    return {
+        'coders': coders,
+        'snipts_count': Snipt.objects.all().count(),
+        'users_count': User.objects.all().count(),
+    }
 
 @ajax_request
 def lexers(request):
