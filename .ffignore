@@ -1,14 +1,8 @@
 syntax: literal
 /migrations/
 /static/
-/media/
+/media/js/libs/
 
 syntax: re
-.*~$
-.*\.pyc$
-.*\.sw.$
-.*\.orig$
-.*\.db$
-.*\.sqlite3$
-.*libs\.js$
-jquery[-.].*.js$
+/.*\.min\.js$
+/.*\jquery.*\.js$
