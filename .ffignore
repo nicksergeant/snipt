@@ -1,0 +1,14 @@
+syntax: literal
+/migrations/
+/static/
+/media/
+
+syntax: re
+.*~$
+.*\.pyc$
+.*\.sw.$
+.*\.orig$
+.*\.db$
+.*\.sqlite3$
+.*libs\.js$
+jquery[-.].*.js$

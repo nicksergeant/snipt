@@ -20,8 +20,8 @@ cat media/js/libs/underscore.js \
     media/js/src/account.min.js \
     media/js/libs/codemirror.js \
     media/js/libs/highlight.js \
-    > media/js/snipt.js
+    > media/js/snipt-all.min.js
 
 cat media/js/libs/highlight.js \
     media/js/src/pro.js \
-    > media/js/pro.js
+    > media/js/pro-all.min.js
