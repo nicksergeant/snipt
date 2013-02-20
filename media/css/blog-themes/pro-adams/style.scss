@@ -337,13 +337,15 @@ article {
         }
     }
     h1 {
+        font-size: 20px;
+        line-height: normal;
         margin-bottom: 20px;
         margin-top: 0;
+        padding-top: 1px;
 
         a {
             color: #666;
-            display: block;
-            font: 500 20px/26px $Helvetica;
+            font: 500 20px $Helvetica;
             text-decoration: none;
             -webkit-transition: color .05s linear;
             -moz-transition: color .05s linear;
