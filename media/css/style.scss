@@ -106,7 +106,7 @@ body {
 
 // Global
 header.main {
-    background: #12343D url('/static/images/header-bg.gif') top left repeat-x;
+    background: #12343D url('/static/img/header-bg.gif') top left repeat-x;
     border-bottom: 1px solid #DDDDDD;
     height: 66px;
     position: relative;
@@ -120,7 +120,7 @@ header.main {
         width: 939px;
 
         div.shadey {
-            background: transparent url('/static/images/header-inner-bg.png') top left no-repeat;
+            background: transparent url('/static/img/header-inner-bg.png') top left no-repeat;
             height: 65px;
             left: -157px;
             position: absolute;
@@ -162,8 +162,8 @@ header.main {
             z-index: 50;
             
             input {
-                background: #17484F url('/static/images/search-icon.png') top left no-repeat;
-                background: rgba(43, 82, 93, .5) url('/static/images/search-icon.png') 8px center no-repeat;
+                background: #17484F url('/static/img/search-icon.png') top left no-repeat;
+                background: rgba(43, 82, 93, .5) url('/static/img/search-icon.png') 8px center no-repeat;
                 border: 1px solid #3A5E67;
                 color: #FFF;
                 font: normal 12px $Helvetica;
@@ -299,7 +299,7 @@ header.main {
                 }
             }
             ul {
-                background: transparent url('/static/images/aside-nav-open-bottom-bg.gif') top left repeat;
+                background: transparent url('/static/img/aside-nav-open-bottom-bg.gif') top left repeat;
                 display: none;
                 left: 0;
                 margin: 0;
@@ -332,7 +332,7 @@ header.main {
             }
             &.open {
                 a.mini-profile {
-                    background: transparent url('/static/images/aside-nav-open-top-bg.gif') top left repeat-x;
+                    background: transparent url('/static/img/aside-nav-open-top-bg.gif') top left repeat-x;
                     opacity: 1;
 
                     span.avatar {
@@ -398,7 +398,7 @@ header.sub {
                     float: right;
 
                     a {
-                        background: transparent url('/static/images/rss-icon.png') center left no-repeat;
+                        background: transparent url('/static/img/rss-icon.png') center left no-repeat;
                         display: inline-block;
                         margin-right: 15px;
                         padding-left: 15px;
@@ -526,7 +526,7 @@ section.main {
             margin: 0 0 30px 15px;
 
             h1 {
-                background: transparent url('/static/images/tags-icon.png') 0 0 no-repeat;
+                background: transparent url('/static/img/tags-icon.png') 0 0 no-repeat;
                 color: #3BAAF3;
                 font: bold 12px $Helvetica;
                 padding-bottom: 5px;
@@ -595,7 +595,7 @@ section.main {
                 margin: 0;
 
                 li {
-                    background: transparent url('/static/images/api-icon.png') center left no-repeat;
+                    background: transparent url('/static/img/api-icon.png') center left no-repeat;
                     list-style-type: none;
                     margin: 0;
                     padding-left: 22px;
@@ -627,13 +627,13 @@ section.main {
                         padding-top: 1px;
                     }
                     &.twitter {
-                        background: transparent url('/static/images/twitter-icon.png') 4px center no-repeat;
+                        background: transparent url('/static/img/twitter-icon.png') 4px center no-repeat;
                     }
                     &.pro {
-                        background: transparent url('/static/images/upgrade-icon.png') 2px center no-repeat;
+                        background: transparent url('/static/img/upgrade-icon.png') 2px center no-repeat;
                     }
                     &.groups {
-                        background: transparent url('/static/images/groups-icon.png') 2px center no-repeat;
+                        background: transparent url('/static/img/groups-icon.png') 2px center no-repeat;
                     }
                     &:first-of-type {
                         a {
@@ -641,16 +641,16 @@ section.main {
                         }
                     }
                     &.blog {
-                        background: transparent url('/static/images/blog-icon.png') 3px center no-repeat;
+                        background: transparent url('/static/img/blog-icon.png') 3px center no-repeat;
                     }
                     &.roadmap {
-                        background: transparent url('/static/images/roadmap-icon.png') 2px center no-repeat;
+                        background: transparent url('/static/img/roadmap-icon.png') 2px center no-repeat;
                     }
                 }
             }
         }
         div.linode {
-            background: transparent url('/static/images/linode.png') top left no-repeat;
+            background: transparent url('/static/img/linode.png') top left no-repeat;
             background-size: 100%;
             clear: both;
             float: left;
@@ -895,7 +895,7 @@ article.snipt {
                 }
             }
             a.expand, a.view-full {
-                background: #FFF url('/static/images/expand.png') 15px 18px no-repeat;
+                background: #FFF url('/static/img/expand.png') 15px 18px no-repeat;
                 border-top: 1px solid #F1F1EE;
                 bottom: 0;
                 color: #999999;
@@ -925,7 +925,7 @@ article.snipt {
                 }
             }
             a.view-full {
-                background: #FFF url('/static/images/view-full.png') 15px 17px no-repeat;
+                background: #FFF url('/static/img/view-full.png') 15px 17px no-repeat;
             }
             textarea.raw, textarea.description {
                 display: none;
@@ -977,7 +977,7 @@ article.snipt {
             }
         }
         &:after {
-            background: transparent url('/static/images/snipt-drop-shadow.png') top left no-repeat;
+            background: transparent url('/static/img/snipt-drop-shadow.png') top left no-repeat;
             bottom: -15px;
             content: "";
             display: block;
@@ -1040,7 +1040,7 @@ article.snipt {
                 margin: 2px 0;
 
                 a {
-                    background: rgba(128, 128, 128, .15) url('/static/images/edit-icon.png') 14px center no-repeat;
+                    background: rgba(128, 128, 128, .15) url('/static/img/edit-icon.png') 14px center no-repeat;
                     color: #000;
                     display: block;
                     font: bold 12px $Helvetica;
@@ -1068,13 +1068,13 @@ article.snipt {
                         }
                     }
                     &.embed {
-                        background-image: url('/static/images/embed-icon.png');
+                        background-image: url('/static/img/embed-icon.png');
                     }
                     &.copy {
-                        background-image: url('/static/images/copy-icon.png');
+                        background-image: url('/static/img/copy-icon.png');
                     }
                     &.favorite {
-                        background-image: url('/static/images/favorite-icon.png');
+                        background-image: url('/static/img/favorite-icon.png');
                     }
                 }
             }
@@ -1083,7 +1083,7 @@ article.snipt {
             padding-top: 10px;
 
             h2 {
-                background: transparent url('/static/images/snipt-tags-icon.png') 15px center no-repeat;
+                background: transparent url('/static/img/snipt-tags-icon.png') 15px center no-repeat;
                 color: #999999;
                 font: bold 12px $Helvetica;
                 padding: 7px 0 7px 35px;
@@ -1130,7 +1130,7 @@ article.snipt {
             margin: 14px 0 0 15px;
 
             li {
-                background: transparent url('/static/images/calendar-icon.png') top left no-repeat;
+                background: transparent url('/static/img/calendar-icon.png') top left no-repeat;
                 color: #999;
                 display: inline;
                 font: normal 12px $Helvetica;
@@ -1195,7 +1195,7 @@ article.snipt {
                     }
                 }
                 &.comments {
-                    background: transparent url('/static/images/comments-icon.png') 0 2px no-repeat;
+                    background: transparent url('/static/img/comments-icon.png') 0 2px no-repeat;
                 }
                 &.tweet {
                     background: none;
@@ -1243,7 +1243,7 @@ article.snipt {
                 }
             }
             a.expand {
-                background-image: url('/static/images/collapse.png');
+                background-image: url('/static/img/collapse.png');
                 -webkit-box-shadow: none;
                 -moz-box-shadow: none;
                 box-shadow: none;
@@ -1282,7 +1282,7 @@ article.snipt {
     &.favorited {
         div.container {
             header {
-                @include vertical-gradient-with-image(url('/static/images/favorited-icon.png') top right no-repeat, #FFF, #FFFAF2);
+                @include vertical-gradient-with-image(url('/static/img/favorited-icon.png') top right no-repeat, #FFF, #FFFAF2);
 
                 h1 {
                     a {
@@ -1303,7 +1303,7 @@ article.snipt {
     &.blog-post.favorited {
         div.container {
             header {
-                @include vertical-gradient-with-image(url('/static/images/favorited-icon.png') top right no-repeat, #FFF, #F0F4FC);
+                @include vertical-gradient-with-image(url('/static/img/favorited-icon.png') top right no-repeat, #FFF, #F0F4FC);
                 @include inset-box-shadow(0, -1px, 0, #E3E9F5);
 
                 h1 {
@@ -1325,7 +1325,7 @@ article.snipt {
 article.private-snipt {
     div.container {
         header {
-            @include vertical-gradient-with-image(url('/static/images/private-icon.png') top right no-repeat, #FFF, #FFFAF2);
+            @include vertical-gradient-with-image(url('/static/img/private-icon.png') top right no-repeat, #FFF, #FFFAF2);
 
             h1 {
                 a {
@@ -1337,7 +1337,7 @@ article.private-snipt {
     &.blog-post {
         div.container {
             header {
-                @include vertical-gradient-with-image(url('/static/images/private-icon.png') top right no-repeat, #FFF, #F0F4FC);
+                @include vertical-gradient-with-image(url('/static/img/private-icon.png') top right no-repeat, #FFF, #F0F4FC);
 
                 h1 {
                     a {
@@ -1505,7 +1505,7 @@ div.site-notice {
     }
 }
 a.go-pro {
-    background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
+    background: transparent url('/static/img/pro-hero-bg.png') top left repeat;
     color: #797979;
     display: block;
     font: bold 12px $Helvetica;
@@ -1802,7 +1802,7 @@ body.jobs {
 }
 body.pro {
     div.pro-hero {
-        background: transparent url('/static/images/pro-hero-bg.png') top left repeat;
+        background: transparent url('/static/img/pro-hero-bg.png') top left repeat;
         border-bottom: 1px solid #DDDDDD;
         color: #797979;
         font: normal 36px $RockwellBoldItalic;
@@ -1887,7 +1887,7 @@ body.pro {
             font-size: 13px;
         }
         div.security {
-            background: #FCF8E3 url('/static/images/private-icon.png') 7px -15px no-repeat;
+            background: #FCF8E3 url('/static/img/private-icon.png') 7px -15px no-repeat;
             border: 1px solid #FBEED5;
             color: #C09853;
             display: inline-block;
@@ -2204,7 +2204,7 @@ body.editing {
         display: none;
     }
     header.fixed-save {
-        background: #FFF url('/static/images/header-fixed-save.gif') top left repeat;
+        background: #FFF url('/static/img/header-fixed-save.gif') top left repeat;
         border-bottom: 1px solid #DDDDDD;
         height: 40px;
         left: 0;
@@ -2326,7 +2326,7 @@ body.editing {
                                     vertical-align: -3px;
                                 }
                                 &.is-private {
-                                    background: #EFEEEF url('/static/images/private-icon-edit.png') 199px center no-repeat;
+                                    background: #EFEEEF url('/static/img/private-icon-edit.png') 199px center no-repeat;
                                 }
                                 &.is-public {
                                     background: #F2DEDE;
@@ -2397,11 +2397,11 @@ body.homepage {
         }
     }
     header.main {
-        background: #415A63 url('../images/homepage-header-bg.jpg') top center no-repeat;
-        height: 450px;
+        background: #415A63 url('../img/homepage-header-bg.jpg') top center no-repeat;
+        height: 250px;
         @include inset-box-shadow(0, -6px, 17px, #31454D);
 
-        div.inner {
+        div.container {
             border-left: 0;
 
             h1 {
@@ -2410,7 +2410,6 @@ body.homepage {
                 }
             }
             nav {
-                float: right;
                 padding: 16px 0 0 0;
 
                 ul {
@@ -2497,6 +2496,12 @@ body.homepage {
                     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
                 }
             }
+        }
+    }
+    section.features {
+        h1 {
+            color: #3A5159;
+            font: bold 26px $Rockwell;
         }
     }
 }

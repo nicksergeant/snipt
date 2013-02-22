@@ -10,15 +10,16 @@
 {% block main-edit %}{% endblock %}
 {% block body-class %}homepage{% endblock %}
 {% block html-class %}homepage{% endblock %}
+{% block css %}{% endblock %}
 
 {% block header %}
     <header class="main">
-        <div class="inner">
-            <div class="group">
-                <h1>
+        <div class="container">
+            <div class="row">
+                <h1 class="span2">
                     <a href="/">snip<span>t</span></a>
                 </h1> 
-                <nav>
+                <nav class="span10">
                     <ul>
                         <li>
                             <a href="/public/">Public Snipts</a>
@@ -32,12 +33,16 @@
                     </ul>
                 </nav>
             </div>
-            <div class="sub">
-                <h2>The publishing platform for coders.</h2>
-                <h3>Store, share, blog, learn.</h3>
+            <div class="row">
+                <div class="sub span12">
+                    <h2>The publishing platform for coders.</h2>
+                    <h3>Store, share, blog, learn.</h3>
+                </div>
             </div>
         </div>
     </header>
+{% endblock %}
+{% block main %}
     <section class="coders">
         <h4>{{ users_count|intcomma }} coders in over 120 countries have stored {{ snipts_count|intcomma }} snipts, in 145 languages.</h4>
         <a href="/signup/" class="button">Sign up</a>
@@ -45,12 +50,13 @@
             <div class="inner">
                 {% for coder in coders %}
                     <a href="/{{ coder.username }}/" title="{{ coder.username }}">
-                        <img alt="{{ coder.username }}" title="{{ coder.username }}" src="https://secure.gravatar.com/avatar/{{ coder.email_md5 }}?s=50&d=https://snipt.net/static/images/default-gravatar-homepage.gif" />
+                        <img alt="{{ coder.username }}" title="{{ coder.username }}" src="https://secure.gravatar.com/avatar/{{ coder.email_md5 }}?s=50&d=https://snipt.net/static/img/default-gravatar-homepage.gif" />
                     </a>
                 {% endfor %}
             </div>
         </div>
     </section>
-{% endblock %}
-{% block main %}
+    <section class="features">
+        <h1>Built for coders.</h1>
+    </section>
 {% endblock %}

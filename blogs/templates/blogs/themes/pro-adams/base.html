@@ -28,7 +28,8 @@
     {% endif %}
 
     {% if debug %}
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/pro-adams/style.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
@@ -36,7 +37,7 @@
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?23" />
     {% endif %}
 
-    <link rel="shortcut icon" href="/static/images/blog-favicon.ico" >
+    <link rel="shortcut icon" href="/static/img/blog-favicon.ico" >
 
     {% if custom_css %}
         <style type="text/css">

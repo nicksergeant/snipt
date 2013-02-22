@@ -1,12 +1,14 @@
 #!/bin/bash
 
-cat media/css/bootstrap.css \
+cat media/css/bootstrap.min.css \
+    media/css/bootstrap-responsive.min.css \
     media/css/blog-themes/pro-adams/style.css \
     media/css/highlightjs-themes/tomorrow.css \
     media/css/themes.css \
     > media/css/pro.css
 
-cat media/css/bootstrap.css \
+cat media/css/bootstrap.min.css \
+    media/css/bootstrap-responsive.min.css \
     media/css/style.css \
     media/css/themes.css \
     media/css/chosen.css \
@@ -39,7 +41,7 @@ cat media/js/src/pro.js|jsmin > media/js/src/pro.min.js
 cat media/js/libs/underscore.js \
     media/js/libs/json2.js \
     media/js/libs/backbone.js \
-    media/js/libs/bootstrap.js \
+    media/js/libs/bootstrap.min.js \
     media/js/plugins/jquery.hotkeys.js \
     media/js/plugins/jquery.infieldlabel.js \
     media/js/plugins/jquery.chosen.js \

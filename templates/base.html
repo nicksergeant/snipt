@@ -17,7 +17,8 @@
     {% endif %}
 
     {% if debug %}
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
@@ -232,7 +233,7 @@
                 {% block rochester-made %}
                     <div class="rochester-made">
                         <a href="http://rochestermade.com/" title="Proudly made in Rochester, NY, USA">
-                            <img src="{{ STATIC_URL }}images/rochester-made.png" alt="" />
+                            <img src="{{ STATIC_URL }}img/rochester-made.png" alt="" />
                         </a>
                     </div>
                 {% endblock %}
@@ -363,7 +364,7 @@
         <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/underscore.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/json2.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/backbone.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}/js/plugins/jquery.hotkeys.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}/js/plugins/jquery.infieldlabel.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}/js/plugins/jquery.chosen.js"></script>
@@ -463,10 +464,10 @@
 
     {% block preload %}
         <div class="hidden">
-            <img src="{{ STATIC_URL }}images/header-fixed-save.gif" alt="" />
-            <img src="{{ STATIC_URL }}images/chosen-sprite.png" alt="" />
-            <img src="{{ STATIC_URL }}images/aside-nav-open-bottom-bg.gif" alt="" />
-            <img src="{{ STATIC_URL }}images/aside-nav-open-top-bg.gif" alt="" />
+            <img src="{{ STATIC_URL }}img/header-fixed-save.gif" alt="" />
+            <img src="{{ STATIC_URL }}img/chosen-sprite.png" alt="" />
+            <img src="{{ STATIC_URL }}img/aside-nav-open-bottom-bg.gif" alt="" />
+            <img src="{{ STATIC_URL }}img/aside-nav-open-top-bg.gif" alt="" />
         </div>
     {% endblock %}
     
