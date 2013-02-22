@@ -1,14 +1,12 @@
 #!/bin/bash
 
 cat media/css/bootstrap.min.css \
-    media/css/bootstrap-responsive.min.css \
     media/css/blog-themes/pro-adams/style.css \
     media/css/highlightjs-themes/tomorrow.css \
     media/css/themes.css \
     > media/css/pro.css
 
 cat media/css/bootstrap.min.css \
-    media/css/bootstrap-responsive.min.css \
     media/css/style.css \
     media/css/themes.css \
     media/css/chosen.css \
