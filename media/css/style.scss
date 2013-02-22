@@ -128,33 +128,6 @@ header.main {
             width: 432px;
             z-index: 49;
         }
-        h1 {
-            float: left;
-            margin: 0;
-            position: relative;
-            z-index: 50;
-            
-            a {
-                color: #F9F9F9;
-                display: block;
-                font: normal 36px $RockwellBoldItalic;
-                float: left;
-                letter-spacing: -1px;
-                margin: 11px 0 0 16px;
-                text-decoration: none;
-                text-shadow: 0 1px 2px black;
-
-                span {
-                    color: #87D2DC;
-                }
-                &:focus {
-                    outline: none;
-                }
-                &:hover {
-                    text-shadow: 0 0 100px white;
-                }
-            }
-        }
         form.search {
             float: left;
             padding: 17px 0 0 20px;
@@ -355,6 +328,33 @@ header.main {
                     display: block;
                 }
             }
+        }
+    }
+}
+.main-logo {
+    float: left;
+    margin: 0;
+    position: relative;
+    z-index: 50;
+    
+    a {
+        color: #F9F9F9;
+        display: block;
+        font: normal 36px $RockwellBoldItalic;
+        float: left;
+        letter-spacing: -1px;
+        margin: 11px 0 0 16px;
+        text-decoration: none;
+        text-shadow: 0 1px 2px black;
+
+        span {
+            color: #87D2DC;
+        }
+        &:focus {
+            outline: none;
+        }
+        &:hover {
+            text-shadow: 0 0 100px white;
         }
     }
 }
@@ -2398,21 +2398,26 @@ body.homepage {
     }
     header.main {
         background: #415A63 url('../img/homepage-header-bg.jpg') top center no-repeat;
-        height: 250px;
+        height: auto;
         @include inset-box-shadow(0, -6px, 17px, #31454D);
 
         div.container {
             border-left: 0;
 
-            h1 {
+            h1.main-logo {
+                margin-left: 20px;
+
                 a {
-                    margin-left: 17px;
+                    float: none;
+                    margin-left: 0;
                 }
             }
             nav {
                 padding: 16px 0 0 0;
 
                 ul {
+                    margin: 0;
+                    text-align: right;
 
                     li {
                         display: inline-block;
@@ -2437,7 +2442,7 @@ body.homepage {
             }
         }
         div.sub {
-            padding: 50px 0;
+            padding: 58px 0;
             text-align: center;
 
             h2 {
@@ -2469,6 +2474,7 @@ body.homepage {
             border-color: #88D2DC;
             color: #3B525A;
             margin-bottom: 30px;
+            margin-left: 0;
 
             &:hover {
                 background: #e9f7f9;
@@ -2499,9 +2505,66 @@ body.homepage {
         }
     }
     section.features {
-        h1 {
-            color: #3A5159;
-            font: bold 26px $Rockwell;
+        header {
+            border-bottom: 2px solid #EAEAEA;
+            text-align: center;
+
+            h1 {
+                color: #3A5159;
+                font: bold 26px $Rockwell;
+            }
         }
     }
+
+    /* Large desktop */
+    @media (min-width: 1200px) {
+    
+    }
+     
+    /* Portrait tablet to landscape and desktop */
+    @media (min-width: 768px) and (max-width: 979px) {
+    
+    }
+     
+    /* Landscape phone to portrait tablet */
+    @media (max-width: 767px) {
+        padding: 0;
+
+        header.main {
+            div.container {
+                h1.main-logo {
+                    margin-left: 0;
+                    text-align: center;
+                }
+                nav {
+                    clear: both;
+                    padding-top: 45px;
+
+                    ul {
+                        text-align: center;
+
+                        li:first-child {
+                            a {
+                                padding-left: 0;
+                            }
+                        }
+                    }
+                }
+                div.sub {
+                    padding: 58px 20px;
+                }
+            }
+        }
+        section.coders {
+            h4 {
+                padding: 0 20px;
+            }
+        }
+    }
+     
+    /* Landscape phones and down */
+    @media (max-width: 480px) {
+    
+    }
+
 }

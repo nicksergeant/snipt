@@ -74,7 +74,7 @@
         <header class="main">
             <div class="inner">
                 <div class="shadey"></div>
-                <h1><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
+                <h1 class="main-logo"><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
                 <form class="search" action="/search/" method="get">
                     <fieldset>
                         <div class="fields">

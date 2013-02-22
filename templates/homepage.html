@@ -10,16 +10,15 @@
 {% block main-edit %}{% endblock %}
 {% block body-class %}homepage{% endblock %}
 {% block html-class %}homepage{% endblock %}
-{% block css %}{% endblock %}
 
 {% block header %}
     <header class="main">
         <div class="container">
             <div class="row">
-                <h1 class="span2">
+                <h1 class="main-logo span2">
                     <a href="/">snip<span>t</span></a>
                 </h1> 
-                <nav class="span10">
+                <nav class="span6 offset4">
                     <ul>
                         <li>
                             <a href="/public/">Public Snipts</a>
@@ -44,7 +43,13 @@
 {% endblock %}
 {% block main %}
     <section class="coders">
-        <h4>{{ users_count|intcomma }} coders in over 120 countries have stored {{ snipts_count|intcomma }} snipts, in 145 languages.</h4>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h4>{{ users_count|intcomma }} coders in over 120 countries have stored {{ snipts_count|intcomma }} snipts, in 145 languages.</h4>
+                </div>
+            </div>
+        </div>
         <a href="/signup/" class="button">Sign up</a>
         <div class="faces group">
             <div class="inner">
@@ -57,6 +62,12 @@
         </div>
     </section>
     <section class="features">
-        <h1>Built for coders.</h1>
+        <div class="container">
+            <div class="row">
+                <header class="span4 offset4">
+                    <h1>Built For Coders</h1>
+                </header>
+            </div>
+        </div>
     </section>
 {% endblock %}
