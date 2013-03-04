@@ -109,6 +109,16 @@
                         <script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
                     </div>
                 {% endif %}
+                {% if snipts %}
+                    <section class="module snipts">
+                        <h1>Recent blog posts</h1>
+                        <ul>
+                            {% for snipt in snipts|slice:":3" %}
+                                <li><a href="{{ snipt.get_full_absolute_url }}">{{ snipt.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+                {% endif %}
                 {% if normal_snipts %}
                     <section class="module snipts">
                         <h1>Recent snipts</h1>
