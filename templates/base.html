@@ -394,11 +394,6 @@
                 window.api_key = '{{ request.user.api_key.key }}';
 
             {% endblock %}
-            {% if tag %}
-
-                window.tag = '{{ tag.name }}';
-
-            {% endif %}
             {% if request.user.profile.is_pro %}
 
                 window.user_is_pro = true;
