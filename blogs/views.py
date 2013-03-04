@@ -68,6 +68,12 @@ def blog_post(request, username_or_custom_slug):
                                      slug=username_or_custom_slug,
                                      )
 
+    snipts = Snipt.objects.filter(user=request.blog_user,
+                                  blog_post=True,
+                                  public=True,
+                                  publish_date__lte=datetime.datetime.now()
+                                  ).order_by('-publish_date').exclude(title__iexact='Homepage').exclude(title__iexact='Work')
+
     sidebar = get_object_or_None(Snipt, user=request.blog_user, title='Sidebar', blog_post=True)
     header = get_object_or_None(Snipt, user=request.blog_user, title='Header', blog_post=True)
     custom_css = get_object_or_None(Snipt, user=request.blog_user, title='CSS', lexer='css', blog_post=True)
@@ -91,6 +97,7 @@ def blog_post(request, username_or_custom_slug):
         'public': True,
         'sidebar': sidebar,
         'snipt': snipt,
+        'snipts': snipts,
     }
 
     if request.blog_user.profile.is_pro:
