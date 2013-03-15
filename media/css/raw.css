@@ -6,7 +6,7 @@ div.highlight, div.linenodiv {
 }
 div.linenodiv {
     border-right: 1px solid #EEE;
-    margin-right: 5px;
+    margin-right: 2px;
     padding: 0 5px;
 }
 div.highlight > pre, div.linenodiv > pre {
