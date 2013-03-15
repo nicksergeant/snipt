@@ -239,13 +239,15 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
 def raw(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
 
-    if snipt.lexer != 'js' or not snipt.user.is_staff:
-        return HttpResponseBadRequest()
+    if snipt.lexer == 'js':
+        mimetype='text/javascript'
+    else:
+        mimetype='text/plain'
 
     return render_to_response('snipts/raw.html',
                               {'snipt': snipt},
                               context_instance=RequestContext(request),
-                              mimetype='text/javascript')
+                              mimetype=mimetype)
 
 def rss(request, context):
     return render_to_response(
