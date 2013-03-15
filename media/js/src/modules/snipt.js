@@ -593,6 +593,7 @@
                 created: $created.attr('title'),
                 created_formatted: $created.text(),
                 embed_url: $('div.embed-url', $el).text(),
+                raw_url: $('div.raw-url', $el).text(),
                 absolute_url: $h1.attr('href'),
                 favorite_id: $el.data('favorite-id'),
                 id: parseInt($el.attr('id').replace('snipt-', ''), 0),

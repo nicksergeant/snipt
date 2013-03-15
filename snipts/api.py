@@ -110,6 +110,7 @@ class PublicSniptResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
+        bundle.data['raw_url'] = bundle.obj.get_raw_url()
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
         bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
         return bundle
@@ -244,6 +245,7 @@ class PrivateSniptResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
+        bundle.data['raw_url'] = bundle.obj.get_raw_url()
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
         bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))

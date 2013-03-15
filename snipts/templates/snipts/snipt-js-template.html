@@ -87,6 +87,7 @@
                 <% if (snipt.public) { %>
                     <li class="comments"><a href="<%= snipt.absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
                 <% } %>
+                <li class="raw"><a href="<%= snipt.raw_url %>">Raw</a></li>
             </ul>
         </footer>
         <div class="modal hide copy-modal">

@@ -161,6 +161,9 @@ class Snipt(models.Model):
     def get_embed_url(self):
         return 'https://{}/embed/{}/'.format(site.domain, self.key)
 
+    def get_raw_url(self):
+        return 'https://{}/raw/{}/'.format(site.domain, self.key)
+
     @property
     def sorted_tags(self):
         return self.tags.all().order_by('name')

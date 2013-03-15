@@ -173,6 +173,7 @@
             {% if snipt.public %}
                 <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
             {% endif %}
+            <li class="raw"><a href="{{ snipt.get_raw_url }}">Raw</a></li>
             {% if detail and snipt.public %}
                 <li class="tweet">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none" data-url="{{ snipt.get_full_absolute_url }}" data-text="&ldquo;{{ snipt.title }}&rdquo; on @Snipt">Tweet</a>
@@ -197,6 +198,7 @@
         <div class="modal-body"></div>
     </div>
     <div class="hide embed-url">{{ snipt.get_embed_url }}</div>
+    <div class="hide raw-url">{{ snipt.get_raw_url }}</div>
     <div class="hide key">{{ snipt.key }}</div>
     <div class="hide lexer">{{ snipt.lexer }}</div>
     <div class="hide lexer-name">{{ snipt.lexer_name }}</div>
