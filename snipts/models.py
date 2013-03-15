@@ -159,10 +159,22 @@ class Snipt(models.Model):
             return '{}/{}/{}/?key={}'.format(root, self.user.username, self.slug, self.key)
 
     def get_embed_url(self):
+
+        if settings.DEBUG:
+            root = 'http://snipt.localhost'
+        else:
+            root = 'https://snipt.net'
+
         return 'https://{}/embed/{}/'.format(site.domain, self.key)
 
     def get_raw_url(self):
-        return 'https://{}/raw/{}/'.format(site.domain, self.key)
+
+        if settings.DEBUG:
+            root = 'http://snipt.localhost'
+        else:
+            root = 'https://snipt.net'
+
+        return '{}/raw/{}/'.format(root, self.key)
 
     @property
     def sorted_tags(self):
