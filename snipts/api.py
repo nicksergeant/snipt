@@ -18,7 +18,6 @@ from tastypie import fields
 import datetime, hashlib, time, re
 
 import parsedatetime.parsedatetime as pdt
-import parsedatetime.parsedatetime_consts as pdc
 
 models.signals.post_save.connect(create_api_key, sender=User)
 
@@ -290,7 +289,7 @@ class PrivateSniptResource(ModelResource):
         elif bundle.data['publish_date'] == '':
             bundle.data['publish_date'] = datetime.datetime.now()
         elif bundle.data['blog_post']:
-            c = pdc.Constants()
+            c = pdt.Constants()
             p = pdt.Calendar(c)
             publish_date, result = p.parse(bundle.data['publish_date'])
 
