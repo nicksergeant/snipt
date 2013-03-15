@@ -244,6 +244,9 @@ def raw(request, snipt_key):
     else:
         mimetype='text/plain'
 
+    if 'nice' in request.GET:
+        mimetype='text/html'
+
     return render_to_response('snipts/raw.html',
                               {'snipt': snipt},
                               context_instance=RequestContext(request),

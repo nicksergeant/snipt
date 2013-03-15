@@ -1,1 +1,14 @@
-{{ snipt.code|safe }}
+{% if 'nice' not in request.GET %}{{ snipt.code|safe }}{% else %}<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>{{ snipt.title }}</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/raw.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+    </head>
+    <body>
+        <div class="autumn">
+            {{ snipt.stylized|safe }}
+        </div>
+    </body>
+</html>{% endif %}

@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+div.highlight, div.linenodiv {
+    margin-top: -8px;
+}
+div.linenodiv {
+    padding-right: 5px;
+}
+div.highlight > pre, div.linenodiv > pre {
+    margin-bottom: 5px;
+}
