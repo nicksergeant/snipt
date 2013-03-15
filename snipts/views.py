@@ -252,6 +252,10 @@ def raw(request, snipt_key):
                               context_instance=RequestContext(request),
                               mimetype=mimetype)
 
+def redirect(request, snipt_key):
+    snipt = get_object_or_404(Snipt, key=snipt_key)
+    return HttpResponseRedirect(snipt.get_absolute_url())
+
 def rss(request, context):
     return render_to_response(
             'rss.xml',
