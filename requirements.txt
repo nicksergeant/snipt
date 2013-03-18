@@ -1,5 +1,5 @@
 boto
-Django=1.4.5
+Django==1.4.5
 django-annoying
 django-bcrypt
 django-debug-toolbar
