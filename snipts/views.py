@@ -2,6 +2,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, InvalidPage
 from annoying.functions import get_object_or_None
+from pygments.lexers import get_lexer_by_name
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from annoying.decorators import render_to
@@ -236,8 +237,23 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
 
     return context
 
-def raw(request, snipt_key):
+def raw(request, snipt_key, lexer=None):
     snipt = get_object_or_404(Snipt, key=snipt_key)
+
+    if request.user == snipt.user:
+        if lexer:
+            lexer = lexer.strip('/')
+
+            if lexer != snipt.lexer:
+
+                try:
+                    lexer_obj = get_lexer_by_name(lexer)
+                except:
+                    lexer_obj = None
+
+                if lexer_obj:
+                    snipt.lexer = lexer
+                    snipt.save()
 
     if snipt.lexer == 'js':
         mimetype='text/javascript'
@@ -252,7 +268,7 @@ def raw(request, snipt_key):
                               context_instance=RequestContext(request),
                               mimetype=mimetype)
 
-def redirect(request, snipt_key):
+def redirect(request, snipt_key, lexer=None):
     snipt = get_object_or_404(Snipt, key=snipt_key)
     return HttpResponseRedirect(snipt.get_absolute_url())
 
