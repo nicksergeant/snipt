@@ -42,6 +42,7 @@ USE_L10N = True
 # the operating system. On a Windows environment, this must be set to the same
 # as your system time zone
 TIME_ZONE = 'America/New_York'
+USE_TZ = True
 
 # Language code for the Django installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html

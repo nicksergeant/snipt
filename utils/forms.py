@@ -7,7 +7,7 @@ from django import forms
 class SniptRegistrationForm(RegistrationForm):
     """
     Subclass of ``RegistrationForm`` which enforces uniqueness of
-    email addresses.
+    email addresses and further restricts usernames.
     
     """
     def clean_username(self):

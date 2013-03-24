@@ -1,12 +1,12 @@
 boto
-Django==1.4.5
+Django
 django-annoying
 django-bcrypt
 django-debug-toolbar
 django-extensions
 django-markdown-deux
 django-pagination
-django-tastypie==0.9.12
+django-tastypie
 django-taggit
 django-templatetag-sugar
 fabric

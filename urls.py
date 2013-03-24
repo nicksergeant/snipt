@@ -1,7 +1,7 @@
 from views import (homepage, lexers, pro_signup, sitemap, tags, pro_signup_complete)
 from django.conf.urls.defaults import include, patterns, url
-from django.views.generic.simple import direct_to_template
-from utils.forms import SniptRegistrationForm
+from utils.views import SniptRegistrationView
+from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import admin
 from snipts.views import search
@@ -31,15 +31,15 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^404/$', direct_to_template, {'template': '404.html'}),
-    url(r'^500/$', direct_to_template, {'template': '500.html'}),
+    url(r'^404/$', TemplateView.as_view(template_name='404.html')),
+    url(r'^500/$', TemplateView.as_view(template_name='500.html')),
 
-    url(r'^robots.txt$', direct_to_template, {'template': 'robots.txt'}),
-    url(r'^humans.txt$', direct_to_template, {'template': 'humans.txt'}),
+    url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt')),
+    url(r'^humans.txt$', TemplateView.as_view(template_name='humans.txt')),
     url(r'^sitemap.xml$', sitemap),
     url(r'^tags/$', tags),
 
-    url(r'^pro/$', direct_to_template, {'template': 'pro.html'}),
+    url(r'^pro/$', TemplateView.as_view(template_name='pro.html')),
     url(r'^pro/signup/$', pro_signup),
     url(r'^pro/signup/complete/$', pro_signup_complete),
 
@@ -54,10 +54,7 @@ urlpatterns = patterns('',
 
     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
     url(r'^signup/$',
-        'registration.views.register', {
-            'backend': 'registration.backends.default.DefaultBackend',
-            'form_class': SniptRegistrationForm,
-        },
+        SniptRegistrationView.as_view(),
         name='registration_register'),
     url(r'', include('registration.backends.default.urls')),
 
