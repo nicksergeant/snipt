@@ -1,4 +1,3 @@
-from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
@@ -15,8 +14,6 @@ from snipts.utils import slugify_uniquely
 
 import datetime, md5, random, re
 
-
-site = Site.objects.all()[0]
 
 class Snipt(models.Model):
     """An individual Snipt."""
@@ -165,7 +162,7 @@ class Snipt(models.Model):
         else:
             root = 'https://snipt.net'
 
-        return 'https://{}/embed/{}/'.format(site.domain, self.key)
+        return 'https://{}/embed/{}/'.format(root, self.key)
 
     def get_raw_url(self):
 
