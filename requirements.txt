@@ -14,7 +14,7 @@ gunicorn
 lxml
 parsedatetime
 psycopg2
-pyelasticsearch
+pyelasticsearch==0.3
 Pygments
 python-memcached
 python-postmark
@@ -24,6 +24,7 @@ simplejson
 South
 Werkzeug
 
-git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
+
+git+git://github.com/toastdriven/django-haystack.git#egg=django-haystack
 git+git://github.com/mintchaos/typogrify.git#egg=typogrify

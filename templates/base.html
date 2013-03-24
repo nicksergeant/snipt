@@ -382,8 +382,8 @@
             {% block js %}
 
                 window.user = '{{ request.user.username }}';
-                window.user_id = {{ request.user.id }};
-                window.user_profile_id = {{ request.user.profile.id }};
+                window.user_id = {% firstof request.user.id 'null' %};
+                window.user_profile_id = {% firstof request.user.profile.id 'null' %};
 
                 {% if public %}
                     window.pub = {{ public|lower }};

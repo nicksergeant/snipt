@@ -23,20 +23,20 @@ models.signals.post_save.connect(create_api_key, sender=User)
 
 
 class FavoriteValidation(Validation):
-    def is_valid(self, bundle, request=None):
+    def is_valid(self, bundle):
         errors = {}
         snipt = bundle.data['snipt']
 
-        if Favorite.objects.filter(user=request.user, snipt=snipt).count():
+        if Favorite.objects.filter(user=bundle.request.user, snipt=snipt).count():
             errors['duplicate'] = 'User has already favorited this snipt.'
 
         return errors
 
 class UserProfileValidation(Validation):
-    def is_valid(self, bundle, request=None):
+    def is_valid(self, bundle):
         errors = {}
 
-        if not request.user.profile.is_pro:
+        if not bundle.request.user.profile.is_pro:
             return 'You must be a Pro to change these settings.'
 
         for field in bundle.data:
@@ -258,18 +258,18 @@ class PrivateSniptResource(ModelResource):
 
         return bundle
 
-    def obj_create(self, bundle, request=None, **kwargs):
+    def obj_create(self, bundle, **kwargs):
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
 
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
 
-        return super(PrivateSniptResource, self).obj_create(bundle, request,
-                     user=request.user, **kwargs)
+        return super(PrivateSniptResource, self).obj_create(bundle,
+                     user=bundle.request.user, **kwargs)
 
-    def obj_update(self, bundle, request=None, **kwargs):
-        bundle.data['user'] = request.user
+    def obj_update(self, bundle, **kwargs):
+        bundle.data['user'] = bundle.request.user
 
         if type(bundle.data['tags']) in (str, unicode):
             bundle.data['tags_list'] = bundle.data['tags']
@@ -280,8 +280,8 @@ class PrivateSniptResource(ModelResource):
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
 
-        return super(PrivateSniptResource, self).obj_update(bundle, request,
-                     user=request.user, **kwargs)
+        return super(PrivateSniptResource, self).obj_update(bundle,
+                     user=bundle.request.user, **kwargs)
 
     def _clean_publish_date(self, bundle):
         if bundle.data['blog_post'] and 'publish_date' not in bundle.data:
@@ -354,11 +354,11 @@ class PrivateFavoriteResource(ModelResource):
                 bundle.obj.snipt.pk)
         return bundle
 
-    def obj_create(self, bundle, request=None, **kwargs):
-        bundle.data['user'] = request.user
+    def obj_create(self, bundle, **kwargs):
+        bundle.data['user'] = bundle.request.user
         bundle.data['snipt'] = Snipt.objects.get(pk=bundle.data['snipt'])
-        return super(PrivateFavoriteResource, self).obj_create(bundle, request,
-                     user=request.user, **kwargs)
+        return super(PrivateFavoriteResource, self).obj_create(bundle,
+                     user=bundle.request.user, **kwargs)
 
     def apply_authorization_limits(self, request, object_list):
         return object_list.filter(user=request.user)
