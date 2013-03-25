@@ -1,7 +1,6 @@
 boto
 Django
 django-annoying
-django-bcrypt
 django-debug-toolbar
 django-extensions
 django-markdown-deux
