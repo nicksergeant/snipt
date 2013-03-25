@@ -62,13 +62,13 @@ class PrivateSniptAuthorization(Authorization):
         return bundle.obj.user == bundle.request.user
 
     def update_list(self, object_list, bundle):
-        return object_list.filter(user=bundle.request.user)
+        raise Unauthorized()
 
     def update_detail(self, object_list, bundle):
         return bundle.obj.user == bundle.request.user
 
     def delete_list(self, object_list, bundle):
-        return object_list.filter(user=bundle.request.user)
+        raise Unauthorized()
 
     def delete_detail(self, object_list, bundle):
         return bundle.obj.user == bundle.request.user
@@ -340,7 +340,6 @@ class PrivateTagResource(ModelResource):
                                    ).count()
 
         return bundle
-
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
