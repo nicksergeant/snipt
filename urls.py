@@ -1,5 +1,5 @@
 from views import (homepage, lexers, pro_signup, sitemap, tags, pro_signup_complete)
-from django.conf.urls.defaults import include, patterns, url
+from django.conf.urls import include, patterns, url
 from utils.views import SniptRegistrationView
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect

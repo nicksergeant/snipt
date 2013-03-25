@@ -3,6 +3,7 @@ from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import Authorization
 from django.template.defaultfilters import date, urlize, linebreaksbr
 from tastypie.resources import ModelResource
+from tastypie.exceptions import Unauthorized
 from django.contrib.auth.models import User
 from tastypie.validation import Validation
 from tastypie.models import create_api_key
@@ -22,8 +23,137 @@ import parsedatetime.parsedatetime as pdt
 models.signals.post_save.connect(create_api_key, sender=User)
 
 
+class PrivateFavoriteAuthorization(Authorization):
+    def read_list(self, object_list, bundle):
+        return object_list.filter(user=bundle.request.user)
+
+    def read_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def create_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def create_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def update_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+class PrivateSniptAuthorization(Authorization):
+    def read_list(self, object_list, bundle):
+        return object_list.filter(user=bundle.request.user)
+
+    def read_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def create_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def create_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def update_list(self, object_list, bundle):
+        return object_list.filter(user=bundle.request.user)
+
+    def update_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def delete_list(self, object_list, bundle):
+        return object_list.filter(user=bundle.request.user)
+
+    def delete_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+class PrivateTagAuthorization(Authorization):
+    def read_list(self, object_list, bundle):
+        object_list = object_list.filter(snipt__user=bundle.request.user)
+        object_list = object_list.annotate(count=models.Count('taggit_taggeditem_items__id'))
+        object_list = object_list.order_by('-count', 'name')
+        return object_list
+
+    def read_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def create_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def create_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+class PrivateUserProfileAuthorization(Authorization):
+    def read_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def read_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def create_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def create_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_detail(self, object_list, bundle):
+        return bundle.obj.user == bundle.request.user
+
+    def delete_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+class PrivateUserAuthorization(Authorization):
+    def read_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def read_detail(self, object_list, bundle):
+        return bundle.obj == bundle.request.user
+
+    def create_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def create_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def update_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_list(self, object_list, bundle):
+        raise Unauthorized()
+
+    def delete_detail(self, object_list, bundle):
+        raise Unauthorized()
+
+
 class FavoriteValidation(Validation):
-    def is_valid(self, bundle):
+    def is_valid(self, bundle, request=None):
         errors = {}
         snipt = bundle.data['snipt']
 
@@ -33,7 +163,7 @@ class FavoriteValidation(Validation):
         return errors
 
 class UserProfileValidation(Validation):
-    def is_valid(self, bundle):
+    def is_valid(self, bundle, request=None):
         errors = {}
 
         if not bundle.request.user.profile.is_pro:
@@ -142,12 +272,9 @@ class PrivateUserProfileResource(ModelResource):
         allowed_methods = ['get', 'put']
         list_allowed_methods = []
         authentication = ApiKeyAuthentication()
-        authorization = Authorization()
+        authorization = PrivateUserProfileAuthorization()
         always_return_data = True
         max_limit = 200
-
-    def apply_authorization_limits(self, request, object_list):
-        return object_list.filter(user=request.user)
 
     def dehydrate(self, bundle):
         bundle.data['email'] = bundle.obj.user.email
@@ -168,13 +295,10 @@ class PrivateUserResource(ModelResource):
         allowed_methods = ['get']
         list_allowed_methods = []
         authentication = ApiKeyAuthentication()
-        authorization = Authorization()
+        authorization = PrivateUserAuthorization()
         always_return_data = True
         max_limit = 200
         cache = SimpleCache()
-
-    def apply_authorization_limits(self, request, object_list):
-        return object_list.filter(username=request.user.username)
 
     def dehydrate(self, bundle):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
@@ -190,7 +314,7 @@ class PrivateTagResource(ModelResource):
         fields = ['id', 'name',]
         allowed_methods = ['get']
         authentication = ApiKeyAuthentication()
-        authorization = Authorization()
+        authorization = PrivateTagAuthorization()
         always_return_data = True
         max_limit = 200
         cache = SimpleCache()
@@ -205,6 +329,7 @@ class PrivateTagResource(ModelResource):
             orm_filters['slug'] = filters['q']
 
         return orm_filters
+
     def dehydrate(self, bundle):
         bundle.data['absolute_url'] = '/%s/tag/%s/' % (bundle.request.user.username,
                                                        bundle.obj.slug)
@@ -216,11 +341,6 @@ class PrivateTagResource(ModelResource):
 
         return bundle
 
-    def apply_authorization_limits(self, request, object_list):
-        object_list = object_list.filter(snipt__user=request.user)
-        object_list = object_list.annotate(count=models.Count('taggit_taggeditem_items__id'))
-        object_list = object_list.order_by('-count', 'name')
-        return object_list
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
@@ -236,7 +356,7 @@ class PrivateSniptResource(ModelResource):
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
-        authorization = Authorization()
+        authorization = PrivateSniptAuthorization()
         ordering = ['created', 'modified',]
         always_return_data = True
         max_limit = 200
@@ -321,9 +441,6 @@ class PrivateSniptResource(ModelResource):
 
         return orm_filters
 
-    def apply_authorization_limits(self, request, object_list):
-        return object_list.filter(user=request.user)
-
     def save_m2m(self, bundle):
         tags = bundle.data.get('tags_list', [])
         if tags != '':
@@ -343,7 +460,7 @@ class PrivateFavoriteResource(ModelResource):
         detail_allowed_methods = ['get', 'post', 'delete']
         list_allowed_methods = ['get', 'post',]
         authentication = ApiKeyAuthentication()
-        authorization = Authorization()
+        authorization = PrivateFavoriteAuthorization()
         ordering = ['created',]
         always_return_data = True
         max_limit = 200
@@ -359,6 +476,3 @@ class PrivateFavoriteResource(ModelResource):
         bundle.data['snipt'] = Snipt.objects.get(pk=bundle.data['snipt'])
         return super(PrivateFavoriteResource, self).obj_create(bundle,
                      user=bundle.request.user, **kwargs)
-
-    def apply_authorization_limits(self, request, object_list):
-        return object_list.filter(user=request.user)
