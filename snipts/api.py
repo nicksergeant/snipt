@@ -389,6 +389,8 @@ class PrivateSniptResource(ModelResource):
 
     def obj_update(self, bundle, **kwargs):
         bundle.data['user'] = bundle.request.user
+        bundle.data['created'] = None
+        bundle.data['modified'] = None
 
         if type(bundle.data['tags']) in (str, unicode):
             bundle.data['tags_list'] = bundle.data['tags']

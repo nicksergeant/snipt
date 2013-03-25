@@ -14,7 +14,6 @@ lxml
 parsedatetime
 psycopg2
 pyelasticsearch==0.3
-Pygments
 python-memcached
 python-postmark
 pyyaml
@@ -24,6 +23,7 @@ South
 Werkzeug
 
 hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
+hg+https://bitbucket.org/birkenfeld/pygments-main#egg=Pygments
 
 git+git://github.com/toastdriven/django-haystack.git#egg=django-haystack
 git+git://github.com/mintchaos/typogrify.git#egg=typogrify
