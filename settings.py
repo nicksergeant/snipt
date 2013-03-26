@@ -199,6 +199,6 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
 
 try:
-    from local_settings import *
+    from settings_local import *
 except ImportError:
     pass
