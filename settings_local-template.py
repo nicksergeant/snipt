@@ -1,5 +1,5 @@
 import os
-from settings import INSTALLED_APPS
+from settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
 
 DEBUG = True
 
@@ -75,3 +75,7 @@ INSTALLED_APPS += (
 RAVEN_CONFIG = {
     'dsn': '',
 }
+
+MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
+  'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
+)
