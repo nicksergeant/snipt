@@ -1667,7 +1667,7 @@ body.detail {
                             td.code {
                                 div.highlight {
                                     pre {
-                                        width: 804px;
+                                        width: 810px;
                                     }
                                 }
                             }
@@ -1680,6 +1680,13 @@ body.detail {
                     }
                     aside {
                         margin-right: 0;
+                    }
+                    footer {
+                        ul.attrs {
+                            li.raw {
+                                margin-right: 100px;
+                            }
+                        }
                     }
                 }
             }

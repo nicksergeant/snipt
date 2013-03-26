@@ -77,7 +77,7 @@
                     <a href="<%= snipt.user.absolute_url %>">
                         <%= snipt.user.username %>
                     </a>
-                    <% if (snipt.user.profile.is_pro) { %>
+                    <% if (window.user_is_pro) { %>
                         <span class="pro"><a href="/pro/">Pro</a></span>
                     <% } %>
                 </li>
