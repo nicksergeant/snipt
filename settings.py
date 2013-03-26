@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
+    'django_bcrypt',
     'haystack',
     'markdown_deux',
     'pagination',
