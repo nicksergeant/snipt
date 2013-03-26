@@ -5,7 +5,7 @@ from boto.s3.key import Key
 
 import datetime, sys
 
-from local_settings import AMAZON_API_KEY, AMAZON_API_SECRET, ENV_HOST
+from settings_local import AMAZON_API_KEY, AMAZON_API_SECRET, ENV_HOST
 
 
 env.hosts = [ENV_HOST]

@@ -11,7 +11,7 @@ from taggit.models import Tag
 
 import hashlib, stripe
 
-from local_settings import STRIPE_API_KEY
+from settings_local import STRIPE_API_KEY
 
 
 @render_to('homepage.html')
