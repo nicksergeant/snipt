@@ -268,10 +268,6 @@ def raw(request, snipt_key, lexer=None):
                               context_instance=RequestContext(request),
                               mimetype=mimetype)
 
-def redirect(request, snipt_key, lexer=None):
-    snipt = get_object_or_404(Snipt, key=snipt_key)
-    return HttpResponseRedirect(snipt.get_absolute_url())
-
 def rss(request, context):
     return render_to_response(
             'rss.xml',
@@ -317,4 +313,19 @@ def search(request, template='search/search.html', load_all=True, form_class=Mod
         context.update(extra_context)
 
     return render_to_response(template, context, context_instance=context_class(request))
+
+
+def redirect_snipt(request, snipt_key, lexer=None):
+    snipt = get_object_or_404(Snipt, key=snipt_key)
+    return HttpResponseRedirect(snipt.get_absolute_url())
+
+def redirect_public_tag_feed(request, tag_slug):
+    return HttpResponseRedirect('/public/tag/{}/?rss'.format(tag_slug))
+
+def redirect_user_feed(request, username):
+    user = get_object_or_404(User, username=username)
+    return HttpResponseRedirect(user.get_absolute_url() + '?rss')
+
+def redirect_user_tag_feed(request, username, tag_slug):
+    return HttpResponseRedirect('/{}/tag/{}/?rss'.format(username, tag_slug))
 
