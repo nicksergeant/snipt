@@ -48,7 +48,7 @@ VIRTUALENV_PATH = ''
 AMAZON_API_KEY = ''
 AMAZON_API_SECRET = ''
 
-STRIPE_API_KEY = ''
+STRIPE_SECRET_KEY = ''
 
 ENV_HOST = 'user@domain.com:22'
 

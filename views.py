@@ -11,7 +11,7 @@ from taggit.models import Tag
 
 import hashlib, stripe
 
-from settings_local import STRIPE_API_KEY
+from settings_local import STRIPE_SECRET_KEY
 
 
 @render_to('homepage.html')
@@ -70,7 +70,7 @@ def pro_signup_complete(request):
     if request.method == 'POST':
 
         token = request.POST['token']
-        stripe.api_key = STRIPE_API_KEY
+        stripe.api_key = STRIPE_SECRET_KEY
 
         plan = 'snipt-pro-monthly'
 
