@@ -6,7 +6,7 @@ venv
 *.pgdump
 *.pyc
 
-local_settings.py
+settings_local.py
 media/cache
 static
 tags

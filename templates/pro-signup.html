@@ -10,7 +10,11 @@
 
 {% block js %}
     {{ block.super }}
-    Stripe.setPublishableKey('pk_dHS5OwimSS1q73HB1YejiNfw37eI3');
+    {% if debug %}
+        Stripe.setPublishableKey('pk_test_cgknmaWRMQeJt2adEdvH3T9l');
+    {% else %}
+        Stripe.setPublishableKey('pk_live_gUO2nCl7dhx6j0posz6gnbhA');
+    {% endif %}
 {% endblock %}
 
 {% block breadcrumb %}
