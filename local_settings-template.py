@@ -45,6 +45,9 @@ POSTMARK_API_KEY = ''
 
 VIRTUALENV_PATH = ''
 
+AMAZON_API_KEY = ''
+AMAZON_API_SECRET = ''
+
 STRIPE_API_KEY = ''
 
 ENV_HOST = 'user@domain.com:22'
@@ -53,6 +56,7 @@ USE_HTTPS = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = '.snipt.net'
+ALLOWED_HOSTS = ['*']
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -65,6 +69,9 @@ HAYSTACK_CONNECTIONS = {
 INSTALLED_APPS += (
     'debug_toolbar',
     'django_extensions',
+    'raven.contrib.django.raven_compat',
 )
 
-ALLOWED_HOSTS = ['*']
+RAVEN_CONFIG = {
+    'dsn': '',
+}
