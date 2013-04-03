@@ -333,6 +333,24 @@
             }
             return false;
         },
+        initEmbeddedTweets: function() {
+            var $embeddedTweets = $('div.embedded-tweet');
+            if ($embeddedTweets.length) {
+                $.each($embeddedTweets, function() {
+                    var $tweetPlaceholder = $(this);
+                    var tweetID = $tweetPlaceholder.attr('data-tweet-id');
+
+                    $.ajax({
+                        url: 'https://api.twitter.com/1/statuses/oembed.json?id=' + tweetID + '&align=center',
+                        dataType: 'jsonp',
+                        type: 'get', 
+                        success: function(resp) {
+                            $tweetPlaceholder.replaceWith($(resp.html));
+                        }
+                    });
+                });
+            }
+        },
         initLineNumbers: function() {
             var lines = $('span.special', this.$el);
             var that = this;
@@ -390,8 +408,10 @@
         render: function() {
 
             this.$el.html(this.template({snipt: this.model.toSafe()}));
+
             this.initLocalVars();
             this.initLineNumbers();
+            this.initEmbeddedTweets();
 
             if (this.model.get('blog_post') === true) {
                 this.$el.addClass('blog-post');

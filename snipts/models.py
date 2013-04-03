@@ -69,6 +69,10 @@ class Snipt(models.Model):
                 self.stylized = self.stylized.replace('[[vimeo-{}-{}x{}]]'.format(str(match[0]), str(match[1]), str(match[2])),
                     '<iframe src="https://player.vimeo.com/video/{}" width="{}" height="{}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'.format(match[0], match[1], match[2]))
 
+            # Tweet embeds
+            for match in re.findall('\[\[tweet-(\d+)\]\]', self.stylized):
+                self.stylized = self.stylized.replace('[[tweet-{}]]'.format(str(match)), '<div class="embedded-tweet" data-tweet-id="{}"></div>'.format(str(match)))
+
         else:
             self.stylized = highlight(self.code,
                                       get_lexer_by_name(self.lexer, encoding='UTF-8'),

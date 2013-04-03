@@ -191,6 +191,24 @@
                 }, 700);
             }
 
+            // Populate any embedded tweets.
+            var $embeddedTweets = $('div.embedded-tweet');
+            if ($embeddedTweets.length) {
+                $.each($embeddedTweets, function() {
+                    var $tweetPlaceholder = $(this);
+                    var tweetID = $tweetPlaceholder.attr('data-tweet-id');
+
+                    $.ajax({
+                        url: 'https://api.twitter.com/1/statuses/oembed.json?id=' + tweetID + '&align=center',
+                        dataType: 'jsonp',
+                        type: 'get', 
+                        success: function(resp) {
+                            $tweetPlaceholder.replaceWith($(resp.html));
+                        }
+                    });
+                });
+            }
+
             window.ui_halted = false;
         },
         events: {

@@ -898,6 +898,10 @@ article.snipt {
                     min-height: 0;
                     margin: 20px 0 !important;
                 }
+                iframe.twitter-tweet {
+                    margin: 20px 0 !important;
+                    width: 100%;
+                }
             }
             a.expand, a.view-full {
                 background: #FFF url('/static/img/expand.png') 15px 18px no-repeat;
