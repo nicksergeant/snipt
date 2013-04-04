@@ -1,3 +1,5 @@
+from annoying.functions import get_object_or_None
+
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
@@ -72,6 +74,28 @@ class Snipt(models.Model):
             # Tweet embeds
             for match in re.findall('\[\[tweet-(\d+)\]\]', self.stylized):
                 self.stylized = self.stylized.replace('[[tweet-{}]]'.format(str(match)), '<div class="embedded-tweet" data-tweet-id="{}"></div>'.format(str(match)))
+
+            # Parse Snipt usernames
+            for match in re.findall('@(\w+)', self.stylized):
+
+                # Try and get the Snipt user by username.
+                user = get_object_or_None(User, username=match)
+
+                if user:
+
+                    # If the user has a blog domain, use that.
+                    if user.profile.get_primary_blog_domain():
+                        url = 'http://{}'.format(user.profile.get_primary_blog_domain())
+
+                    # Otherwise, if they have blog posts, use their Snipt blog URL.
+                    elif user.profile.get_blog_posts():
+                        url = 'https://{}.snipt.net/'.format(user.username)
+
+                    # Otherwise, use their regular Snipt profile page.
+                    else:
+                        url = 'https://snipt.net/{}/'.format(match)
+
+                    self.stylized = self.stylized.replace('@{}'.format(str(match)), '<a href="{}">@{}</a>'.format(url, match))
 
         else:
             self.stylized = highlight(self.code,

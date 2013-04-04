@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from snipts.models import Snipt
 
 class UserProfile(models.Model):
 
@@ -58,6 +59,9 @@ class UserProfile(models.Model):
     google_ad_slot   = models.CharField(max_length=250, null=True, blank=True)
     google_ad_width  = models.CharField(max_length=250, null=True, blank=True)
     google_ad_height = models.CharField(max_length=250, null=True, blank=True)
+
+    def get_blog_posts(self):
+        return Snipt.objects.filter(user=self.user, blog_post=True, public=True)
 
     def get_primary_blog_domain(self):
         if not self.blog_domain:
