@@ -1,23 +1,27 @@
 {% load snipt_tags %}
 
 <div class="profile group">
-    <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=175" alt="{{ user.username }}" title={{ user.username }}" />
+    <a href="/{{ user.username }}/">
+        <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=175" alt="{{ user.username }}" title="{{ user.username }}" />
+    </a>
     <div class="meta">
         <div class="username" title="{{ user.username }}">
-            {% if user.username == 'blog' %}
-                Blog
-            {% else %}
+            <a href="">
                 {{ user.username }}
-            {% endif %}
+            </a>
         </div>
         {% if user.username == 'nick' %}
             <div class="member-since">Snipt Founder in {{ user.date_joined|date:"Y" }}</div>
         {% else %}
-            {% if user.username == 'blog' %}
-                <div class="member-since">Official Snipt blog</div>
-            {% else %}
-                <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
-            {% endif %}
+            <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
+        {% endif %}
+        {% if user.profile.is_pro and user.profile.get_blog_posts %}
+            <div class="urls">
+                Snipt Blog:
+                <a href="{{ user.profile.get_user_profile_url }}">
+                    {{ user.profile.get_user_profile_url }}
+                </a>
+            </div>
         {% endif %}
     </div>
     {% if user.profile.is_pro %}

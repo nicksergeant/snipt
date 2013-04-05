@@ -82,19 +82,7 @@ class Snipt(models.Model):
                 user = get_object_or_None(User, username=match)
 
                 if user:
-
-                    # If the user has a blog domain, use that.
-                    if user.profile.get_primary_blog_domain():
-                        url = 'http://{}'.format(user.profile.get_primary_blog_domain())
-
-                    # Otherwise, if they have blog posts, use their Snipt blog URL.
-                    elif user.profile.get_blog_posts():
-                        url = 'https://{}.snipt.net/'.format(user.username)
-
-                    # Otherwise, use their regular Snipt profile page.
-                    else:
-                        url = 'https://snipt.net/{}/'.format(match)
-
+                    url = user.profile.get_user_profile_url()
                     self.stylized = self.stylized.replace('@{}'.format(str(match)), '<a href="{}">@{}</a>'.format(url, match))
 
         else:

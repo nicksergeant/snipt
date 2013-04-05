@@ -69,5 +69,21 @@ class UserProfile(models.Model):
         else:
             return self.blog_domain.split(' ')[0]
 
+    def get_user_profile_url(self):
+
+        # If the user has a blog domain, use that.
+        if self.blog_domain:
+            url = 'http://{}'.format(self.get_primary_blog_domain())
+
+        # Otherwise, if they have blog posts, use their Snipt blog URL.
+        elif self.get_blog_posts():
+            url = 'https://{}.snipt.net/'.format(self.user.username)
+
+        # Otherwise, use their regular Snipt profile page.
+        else:
+            url = 'https://snipt.net/{}/'.format(self.user.username)
+
+        return url
+
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

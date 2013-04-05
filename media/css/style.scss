@@ -575,16 +575,15 @@ section.main {
                     border-bottom: 1px solid #5AB6F4;
                 }
             }
+            div.alt-links {
+                margin: 0 0 30px 22px;
+            }
             a.alt-link {
                 display: inline-block;
                 font-weight: bold;
-                margin: 0 0 10px 22px;
 
                 &.active {
                     color: #2B6E9B;
-                }
-                &.favorites {
-                    margin-bottom: 0;
                 }
             }
         }
@@ -1458,6 +1457,18 @@ div.profile {
             font: bold 10px $Helvetica;
             margin-top: 6px;
             text-transform: uppercase;
+        }
+    }
+    div.urls {
+        border-top: 1px solid #D8D8D8;
+        color: #909090;
+        line-height: 15px;
+        font-size: 11px;
+        margin-top: 10px;
+        padding: 9px 0 5px 0;
+
+        a {
+            display: block;
         }
     }
     a.pro {
