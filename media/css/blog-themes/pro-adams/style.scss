@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 // Fonts
 $Helvetica: 'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
 $Consolas: Consolas, Menlo, "Courier New", monospace;
@@ -429,7 +431,7 @@ article {
             }
         }
         div.markdown {
-            h4 {
+            h1, h2, h3, h4, h5, h6 {
                 border-top: 1px dashed #CCC;
                 margin-bottom: 30px;
                 padding-top: 30px;
@@ -452,6 +454,30 @@ article {
                     z-index: 51;
                     @include border-radius(20px);
                 }
+            }
+            h1 {
+                font-size: 20px;
+                padding-top: 28px;
+            }
+            h2 {
+                font-size: 18px;
+                padding-top: 19px;
+            }
+            h3 {
+                font-size: 16px;
+                padding-top: 20px;
+            }
+            h4 {
+                font-size: 14px;
+                padding-top: 31px;
+            }
+            h5 {
+                font-size: 14px;
+                padding-top: 31px;
+            }
+            h6 {
+                font-size: 14px;
+                padding-top: 31px;
             }
             p {
                 strong {
