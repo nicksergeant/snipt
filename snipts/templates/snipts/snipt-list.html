@@ -3,7 +3,7 @@
 {% snipt_is_favorited_by_user as 'is_favorited' %}
 
 <article id="snipt-{{ snipt.pk }}" class="snipt 
-    {% if 'snipt-expand' in snipt.tags_list and snipt.blog_post %}
+    {% if 'snipt-expand' in snipt.tags_list %}
         snipt-expand
     {% endif %}
     {% if snipt.blog_post %}
