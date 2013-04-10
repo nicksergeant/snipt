@@ -183,7 +183,7 @@ class Snipt(models.Model):
         else:
             root = 'https://snipt.net'
 
-        return 'https://{}/embed/{}/'.format(root, self.key)
+        return '{}/embed/{}/'.format(root, self.key)
 
     def get_raw_url(self):
 
