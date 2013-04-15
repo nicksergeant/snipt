@@ -86,5 +86,7 @@ class UserProfile(models.Model):
 
         return url
 
+    def has_public_snipts(self):
+        return True if Snipt.objects.filter(user=self, public=True).count() > 0 else False
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
