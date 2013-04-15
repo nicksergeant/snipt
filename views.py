@@ -18,7 +18,7 @@ from settings_local import STRIPE_SECRET_KEY
 @render_to('homepage.html')
 def homepage(request):
 
-    random_users = UserProfile.objects.filter(has_gravatar=True).order_by('?')[:50]
+    random_users = UserProfile.objects.filter(has_gravatar=True).order_by('?')[:75]
     coders = []
 
     for random_user in random_users:
