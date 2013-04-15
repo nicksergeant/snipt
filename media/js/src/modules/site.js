@@ -168,19 +168,6 @@
                 hljs.highlightBlock(e);
             });
 
-            // Homepage Gravatars.
-            if (this.$body.hasClass('homepage')) {
-                setTimeout(function() {
-
-                    var $facesInner = $('div.faces div.inner');
-
-                    $facesInner.hide();
-                    $facesInner.css('text-indent', '0');
-                    $facesInner.fadeIn(400);
-
-                }, 700);
-            }
-
             // Populate any embedded tweets.
             var $embeddedTweets = $('div.embedded-tweet');
             if ($embeddedTweets.length) {
