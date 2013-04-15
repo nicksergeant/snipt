@@ -76,7 +76,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-SECRET_KEY = ''
+SECRET_KEY = 'changethis'
 
 INSTALLED_APPS = (
     'gunicorn',

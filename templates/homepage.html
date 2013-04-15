@@ -59,7 +59,7 @@
             <div class="inner">
                 {% for coder in coders %}
                     <a href="/{{ coder.username }}/" title="{{ coder.username }}">
-                        <img alt="{{ coder.username }}" title="{{ coder.username }}" src="https://secure.gravatar.com/avatar/{{ coder.email_md5 }}?s=50" />
+                        <img alt="{{ coder.username }}" title="{{ coder.username }}" src="https://secure.gravatar.com/avatar/{{ coder.email_md5 }}?s=50&d=https://snipt.net/static/img/default-gravatar-homepage.gif" />
                     </a>
                 {% endfor %}
             </div>
