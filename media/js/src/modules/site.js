@@ -173,16 +173,6 @@
                 setTimeout(function() {
 
                     var $facesInner = $('div.faces div.inner');
-                    var $faces = $('a', $facesInner);
-
-                    for (var i = 0; i < $faces.length; i++) {
-                        var $face = $faces.eq(i);
-                        var imageWidth = $('img', $face).width();
-
-                        if (imageWidth != 50) {
-                            $face.remove();
-                        }
-                    }
 
                     $facesInner.hide();
                     $facesInner.css('text-indent', '0');
