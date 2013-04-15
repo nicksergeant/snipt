@@ -108,23 +108,16 @@ def gravatars():
 
         print 'Email MD5: {}'.format(email_md5)
 
-        if user.profile.has_gravatar == False:
+        greq = requests.get('https://secure.gravatar.com/avatar/{}?s=50&d=404'.format(email_md5))
 
-            greq = requests.get('http://en.gravatar.com/{}.json'.format(email_md5))
-
-            if greq.json() == 'User not found':
-                has_gravatar = False
-            else:
-                has_gravatar = True
-
+        if greq.status_code == 404:
+            has_gravatar = False
         else:
             has_gravatar = True
-            print 'Already had Gravatar! Not checking again.'
 
-        if has_gravatar and not user.profile.has_gravatar:
-            profile = user.profile
-            profile.has_gravatar = True
-            profile.save()
+        profile = user.profile
+        profile.has_gravatar = has_gravatar
+        profile.save()
 
         try:
             from fabric.colors import green, red
