@@ -18,15 +18,21 @@ from settings_local import STRIPE_SECRET_KEY
 @render_to('homepage.html')
 def homepage(request):
 
-    users_with_gravatars = UserProfile.objects.filter(has_gravatar=True).order_by('?')
-    snipts_with_gravatars_and_public_snipts = Snipt.objects.filter(user__in=users_with_gravatars, public=True)
-    users_with_gravatars_and_public_snipts = User.objects.filter(id__in=snipts_with_gravatars_and_public_snipts.values('user'))[:35]
-
     coders = []
 
-    for user in users_with_gravatars_and_public_snipts:
-        user.email_md5 = hashlib.md5(user.email.lower()).hexdigest()
-        coders.append(user)
+    users_with_gravatars = User.objects.filter(
+        userprofile__in=UserProfile.objects.filter(has_gravatar=True)
+    ).order_by('?')
+
+    for user in users_with_gravatars:
+        public_snipts_count = Snipt.objects.filter(user=user, public=True).values('pk').count()
+
+        if public_snipts_count:
+            user.email_md5 = hashlib.md5(user.email.lower()).hexdigest()
+            coders.append(user)
+
+        if len(coders) == 35:
+            break
 
     return {
         'coders': coders,
