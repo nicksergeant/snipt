@@ -38,6 +38,7 @@ class UserProfile(models.Model):
     user            = models.ForeignKey(User, unique=True)
     is_pro          = models.BooleanField(default=False)
     stripe_id       = models.CharField(max_length=100, null=True, blank=True)
+    has_gravatar    = models.BooleanField(default=False)
 
     # Blog
     blog_title      = models.CharField(max_length=250, null=True, blank=True)

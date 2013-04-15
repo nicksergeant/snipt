@@ -1,3 +1,4 @@
+from accounts.models import UserProfile
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
@@ -17,10 +18,11 @@ from settings_local import STRIPE_SECRET_KEY
 @render_to('homepage.html')
 def homepage(request):
 
-    random_users = User.objects.all().order_by('?')[:100]
+    random_users = UserProfile.objects.filter(has_gravatar=True).order_by('?')[:100]
     coders = []
 
-    for user in random_users:
+    for random_user in random_users:
+        user = random_user.user
         user.email_md5 = hashlib.md5(user.email.lower()).hexdigest()
         coders.append(user)
 
