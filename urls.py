@@ -1,14 +1,20 @@
-from views import (homepage, lexers, pro_signup, sitemap, tags, pro_signup_complete)
+from django.conf import settings
 from django.conf.urls import include, patterns, url
-from utils.views import SniptRegistrationView
+from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import admin
+from snipts.api import (PublicSniptResource, PublicTagResource,
+        PublicUserResource, PrivateSniptResource,
+        PrivateFavoriteResource, PrivateUserProfileResource,
+        PrivateTagResource, PrivateUserResource)
 from snipts.views import search
 from tastypie.api import Api
-from snipts.api import *
+from utils.views import SniptRegistrationView
+from views import (homepage, lexers, pro_signup, sitemap, tags, pro_signup_complete)
 
 import admin as custom_admin
+import os
 
 
 admin.autodiscover()
@@ -60,3 +66,6 @@ urlpatterns = patterns('',
 
     url(r'^', include('snipts.urls')),
 )
+
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static('/media/', document_root=os.path.join(settings.BASE_PATH, 'media'))
