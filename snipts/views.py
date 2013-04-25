@@ -257,12 +257,13 @@ def raw(request, snipt_key, lexer=None):
 
     if snipt.lexer == 'js':
         mimetype='text/javascript'
-    elif snipt.lexer == 'html':
-        mimetype='text/html'
     else:
         mimetype='text/plain'
 
     if 'nice' in request.GET:
+        mimetype='text/html'
+
+    if 'render' in request.GET and snipt.lexer == 'html':
         mimetype='text/html'
 
     return render_to_response('snipts/raw.html',
