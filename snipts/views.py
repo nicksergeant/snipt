@@ -257,6 +257,8 @@ def raw(request, snipt_key, lexer=None):
 
     if snipt.lexer == 'js':
         mimetype='text/javascript'
+    elif snipt.lexer == 'html':
+        mimetype='text/html'
     else:
         mimetype='text/plain'
 
