@@ -1,5 +1,5 @@
 bind = "unix:/tmp/gunicorn.snipt.sock"
-daemon = True                    # Whether work in the background
+daemon = False                   # Whether work in the background
 debug = False                    # Some extra logging
 logfile = ".gunicorn.log"        # Name of the log file
 loglevel = "info"                # The level at which to log
