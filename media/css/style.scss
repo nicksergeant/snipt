@@ -2592,12 +2592,44 @@ body.homepage {
 
     /* Large desktop */
     @media (min-width: 1200px) {
-    
+        section.features {
+            div.feature {
+                div.inner {
+                    margin: 0 auto;
+                    width: 560px;
+                }
+                &.blog {
+                    background: url('../img/homepage-feature-blog.png') 914px top no-repeat;
+                }
+                &.browse {
+                    background: url('../img/homepage-feature-browse.png') 78px top no-repeat;
+                }
+                &.share {
+                    background: url('../img/homepage-feature-share.png') right top no-repeat;
+                }
+                &.store {
+                    background: url('../img/homepage-feature-store.png') left top no-repeat;
+                }
+            }
+        }
     }
      
     /* Portrait tablet to landscape and desktop */
     @media (min-width: 768px) and (max-width: 979px) {
-    
+        section.features {
+            div.feature {
+                background: none !important;
+                height: auto !important;
+
+                div.inner {
+                    margin: 0 auto;
+                    width: 460px;
+                }
+                &:last-of-type {
+                    margin-bottom: 35px;
+                }
+            }
+        }
     }
      
     /* Landscape phone to portrait tablet */
@@ -2632,6 +2664,20 @@ body.homepage {
         section.coders {
             h4 {
                 padding: 0 20px;
+            }
+        }
+        section.features {
+            div.feature {
+                background: none !important;
+                height: auto !important;
+
+                div.inner {
+                    margin: 0 auto;
+                    width: 80%;
+                }
+                &:last-of-type {
+                    margin-bottom: 35px;
+                }
             }
         }
     }
