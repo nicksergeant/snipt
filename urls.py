@@ -11,7 +11,7 @@ from snipts.api import (PublicSniptResource, PublicTagResource,
 from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
-from views import (homepage, lexers, pro_signup, sitemap, tags, pro_signup_complete)
+from views import (homepage, lexers, login_redirect, pro_signup, sitemap, tags, pro_signup_complete)
 
 import admin as custom_admin
 import os
@@ -34,6 +34,7 @@ private_api.register(PrivateUserProfileResource())
 urlpatterns = patterns('',
 
     url(r'^$', homepage),
+    url(r'^login-redirect/$', login_redirect),
 
     url(r'^admin/', include(admin.site.urls)),
 

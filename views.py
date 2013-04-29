@@ -69,6 +69,10 @@ def lexers(request):
 
     return {'objects': objects}
 
+def login_redirect(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/' + request.user.username + '/')
+
 @login_required
 @render_to('pro-signup.html')
 def pro_signup(request):

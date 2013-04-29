@@ -180,7 +180,7 @@ HAYSTACK_CONNECTIONS = {
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Account settings
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login-redirect/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 ACCOUNT_ACTIVATION_DAYS = 0
