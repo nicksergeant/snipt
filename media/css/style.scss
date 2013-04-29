@@ -2412,7 +2412,13 @@ body.editing {
         }
     }
 }
+
+html.homepage {
+    background: white;
+}
 body.homepage {
+    background: white;
+
     a.button {
         background: #54737E;
         border: 2px solid white;
@@ -2544,6 +2550,42 @@ body.homepage {
             h1 {
                 color: #3A5159;
                 font: bold 26px $Rockwell;
+            }
+        }
+        div.row {
+            div.inner {
+                margin: 0 auto;
+                width: 460px;
+            }
+            h2 {
+                color: #3A5159;
+                font: bold 20px $Rockwell;
+                margin-bottom: 5px;
+                margin-top: 35px;
+            }
+            p {
+                color: #656565;
+                font: 500 16px/24px $Helvetica;
+
+                code.good {
+                    color: #468847;
+                }
+            }
+            &.feature {
+                height: 232px;
+                margin: 10px 0;
+            }
+            &.blog {
+                background: url('../img/homepage-feature-blog.png') 720px top no-repeat;
+            }
+            &.browse {
+                background: url('../img/homepage-feature-browse.png') 78px top no-repeat;
+            }
+            &.share {
+                background: url('../img/homepage-feature-share.png') 720px top no-repeat;
+            }
+            &.store {
+                background: url('../img/homepage-feature-store.png') left top no-repeat;
             }
         }
     }

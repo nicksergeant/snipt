@@ -33,7 +33,7 @@ private_api.register(PrivateUserProfileResource())
 
 urlpatterns = patterns('',
 
-    url(r'^homepage/$', homepage),
+    url(r'^$', homepage),
 
     url(r'^admin/', include(admin.site.urls)),
 

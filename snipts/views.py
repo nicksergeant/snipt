@@ -19,16 +19,6 @@ from haystack.query import EmptySearchQuerySet, SearchQuerySet
 
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
-def home(request):
-
-    if request.blog_user:
-        return blog_list(request)
-
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('/%s/' % request.user.username)
-    else:
-        return list_public(request)
-
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):
 

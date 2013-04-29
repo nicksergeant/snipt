@@ -1,4 +1,5 @@
 from accounts.models import UserProfile
+from blogs.views import blog_list
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
@@ -14,9 +15,11 @@ import hashlib, stripe
 
 from settings_local import STRIPE_SECRET_KEY
 
-
 @render_to('homepage.html')
 def homepage(request):
+
+    if request.blog_user:
+        return blog_list(request)
 
     coders = []
 

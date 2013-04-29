@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     url(r'^public/tag/(?P<tag_slug>[^/]+)/feed/$',         views.redirect_public_tag_feed, name='redirect-public-tag-feed'),
     url(r'^(?P<username>[^/]+)/tag/(?P<tag_slug>[^/]+)/feed/$', views.redirect_user_tag_feed, name='redirect-user-tag-feed'),
 
-    url(r'^$',                                             views.home,              name='home'),
     url(r'^public/$',                                      views.list_public,       name='list-public'),
     url(r'^public/tag/(?P<tag_slug>[^/]+)/$',              views.list_public,       name='list-public-tag'),
     url(r'^embed/(?P<snipt_key>[^/]+)/$',                  views.embed,             name='embed'),
