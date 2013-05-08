@@ -24,15 +24,22 @@
                 </h1> 
                 <nav class="span6 offset4">
                     <ul>
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <a href="/{{ request.user.username }}/">My snipts</a>
+                            </li>
+                        {% endif %}
                         <li>
-                            <a href="/public/">Public Snipts</a>
+                            <a href="/public/">Public snipts</a>
                         </li>
                         <li>
                             <a href="/search/">Search</a>
                         </li>
-                        <li>
-                            <a class="button" href="/login/">Log in</a>
-                        </li>
+                        {% if not request.user.is_authenticated %}
+                            <li>
+                                <a class="button" href="/login/">Log in</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
