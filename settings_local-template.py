@@ -79,3 +79,5 @@ RAVEN_CONFIG = {
 MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
   'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
 )
+
+INTERCOM_SECRET_KEY = ''
