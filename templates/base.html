@@ -434,7 +434,7 @@
                     var intercomSettings = {
                         app_id: 'sajf131y',
                         user_id: {{ request.user.id }},
-                        user_hash: '{{ reuqest.user.id|intercom_sha_256 }}',
+                        user_hash: '{{ request.user.id|intercom_sha_256 }}',
                         email: '{{ request.user.email }}',
                         created_at: {{ request.user.date_joined|date:"U" }},
                         custom_data: {
