@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block content %}
+    <section class="snipts" id="snipts"></section>
     <div class="static-box {% if page.object_list|length > 0 %}has-snipts{% endif %}">
         <form method="get" class="form-search" action=".">
             <input type="text" class="search-query" name="q" value="{% if form.q.value %}{{ form.q.value }}{% endif %}" placeholder="Search snipts" id="id_q">
