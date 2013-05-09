@@ -33,8 +33,8 @@ jQuery(function($) {
 
         // Use non-Django-style interpolation.
         app.config(function($interpolateProvider) {
-            $interpolateProvider.startSymbol('[[');
-            $interpolateProvider.endSymbol(']]');
+            $interpolateProvider.startSymbol('((');
+            $interpolateProvider.endSymbol('))');
         });
 
         root.app = app;
