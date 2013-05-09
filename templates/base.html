@@ -79,7 +79,7 @@
                     <fieldset>
                         <div class="fields">
                             <input ng-model="search.query" type="text" class="search-query" name="q"
-                                   ng-init="search.query='{{ query }}'"
+                                   ng-init="search.query='{{ query|escapejs }}'"
                                    placeholder="Search snipts" id="id_q"
                                    value="{{ query }}" />
                         </div>

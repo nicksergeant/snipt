@@ -24,7 +24,7 @@
     <div class="static-box {% if page.object_list|length > 0 %}has-snipts{% endif %}">
         <form method="get" class="form-search" action="." ng-controller="SearchController">
             <input ng-model="search.query" type="text" class="search-query" name="q"
-                   ng-init="search.query='{{ query }}'"
+                   ng-init="search.query='{{ query|escapejs }}'"
                    placeholder="Search snipts" id="id_q"
                    value="{{ query }}" />
             {% if request.user.profile.is_pro %}
