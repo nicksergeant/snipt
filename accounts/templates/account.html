@@ -39,13 +39,13 @@
                     ng-cloak
                     ng-class="{'alert-success': success, 'alert-error': !success}"
                     ng-show="message">
-                    (( message ))
+                    {[{ message }]}
                 </p>
                 <div class="form-actions" ng-show="route.current.scope.fields">
                     <button type="submit"
                         ng-disabled="saveButtonText != 'Save'"
                         class="btn btn-success">
-                        (( saveButtonText ))
+                        {[{ saveButtonText }]}
                     </button>
                 </div>
             </form>
