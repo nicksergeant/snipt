@@ -18,3 +18,27 @@ jQuery(function($) {
     window.site = new SiteView();
 
 });
+
+// Angular app init.
+(function() {
+
+    if (typeof angular !== 'undefined') {
+
+        var root = this;
+
+        // App definition.
+        var app = angular.module('Snipt', [], function($locationProvider) {
+            $locationProvider.html5Mode(true);
+        });
+
+        // Use non-Django-style interpolation.
+        app.config(function($interpolateProvider) {
+            $interpolateProvider.startSymbol('[[');
+            $interpolateProvider.endSymbol(']]');
+        });
+
+        root.app = app;
+
+    }
+
+}).call(this);

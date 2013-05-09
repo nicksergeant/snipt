@@ -1,3 +1,4 @@
+// Angular app init.
 (function() {
 
     if (typeof angular !== 'undefined') {
@@ -5,11 +6,10 @@
         var root = this;
         var $ = root.jQuery;
         var controllers = {};
+        var app = root.app;
 
-        // App definition.
-        var app = angular.module('Account', [], function($routeProvider, $locationProvider) {
-
-            $locationProvider.html5Mode(true);
+        // Configure account routes.
+        app.config(function($routeProvider) {
 
             // Routes.
             $routeProvider.when('/account/', {
@@ -29,23 +29,12 @@
                 controller: controllers.EditorController
             });
 
-            // I have absolutely no idea why I need to do this. Angular shouldn't touch URLs
-            // that don't match above. But for some reason, it does. So if you have a non-routed
-            // URL inside of your controller, your browser won't redirect.
-            //
-            // -10 points, Angular.
             $routeProvider.otherwise({
                 'redirectTo': function(routeParams, locationPath) {
                     window.location = locationPath;
                 }
             });
 
-        });
-
-        // Use non-Django-style interpolation.
-        app.config(function($interpolateProvider) {
-            $interpolateProvider.startSymbol('[[');
-            $interpolateProvider.endSymbol(']]');
         });
 
         // Services.
@@ -142,7 +131,7 @@
             ];
 
         };
-        controllers.MainController = function($scope, $route, AccountStorage) {
+        controllers.AccountController = function($scope, $route, AccountStorage) {
             $scope.errors = [];
             $scope.saveButtonText = 'Save';
             $scope.route = $route;

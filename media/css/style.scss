@@ -2004,7 +2004,14 @@ body.search {
             margin-bottom: 0;
 
             input.search-query {
-                width: 564px;
+                width: 460px;
+            }
+            label.mine-only {
+                margin: -7px 10px 0 10px;
+
+                input {
+                    margin-right: 7px;
+                }
             }
             button {
                 padding: 4px 16px 4px;

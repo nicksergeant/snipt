@@ -8,13 +8,9 @@
     <li><a href="/account/">Account</a></li>
 {% endblock %}
 
-{% block extra-scripts %}
-    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-{% endblock %}
-
 {% block content %}
     <section class="snipts" id="snipts"></section>
-    <section class="profile group" ng-app="Account" ng-controller="MainController">
+    <section class="profile group" ng-controller="AccountController">
         <aside>
             <ul class="nav nav-list ng-cloak" ng-cloak>
                 <li class="nav-header">Account</li>

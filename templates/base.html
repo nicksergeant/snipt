@@ -1,7 +1,7 @@
 {% load snipt_tags intercom %}
 
 <!DOCTYPE html>
-<html lang="en" class="{% block html-class %}{% endblock %}">
+<html lang="en" class="{% block html-class %}{% endblock %}" ng-app="Snipt">
 <head>
 
     <title>{% block page-title %}Snipt{% endblock %}</title>
@@ -64,8 +64,9 @@
         <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
 
 </head>
 <body class="{% block body-class %}{% endblock %} {% if request.user.profile.is_pro %}is-pro{% endif %}">
@@ -74,10 +75,13 @@
             <div class="inner">
                 <div class="shadey"></div>
                 <h1 class="main-logo"><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
-                <form class="search" action="/search/" method="get">
+                <form class="search" action="/search/" method="get" ng-controller="HeaderSearchController">
                     <fieldset>
                         <div class="fields">
-                            <input type="text" id="search-query" name="q" value="{{ query }}" placeholder="Search snipts" />
+                            <input ng-model="search.query" type="text" class="search-query" name="q"
+                                   ng-init="search.query='{{ query }}'"
+                                   placeholder="Search snipts" id="id_q"
+                                   value="{{ query }}" />
                         </div>
                     </fieldset>
                 </form>
@@ -373,12 +377,13 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.hotkeys.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.infieldlabel.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.chosen.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/account.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/codemirror.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/libs/highlight.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/src/account.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/src/search.js"></script>
     {% else %}
         <script type="text/javascript" src="{{ STATIC_URL }}js/snipt-all.min.js?48"></script>
     {% endif %}

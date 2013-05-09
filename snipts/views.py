@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, InvalidPage
 from annoying.functions import get_object_or_None
@@ -263,12 +263,22 @@ def rss(request, context):
             mimetype="application/rss+xml"
         )
 
-def search(request, template='search/search.html', load_all=True, form_class=ModelSearchForm, searchqueryset=None, context_class=RequestContext, extra_context=None, results_per_page=None):
+def search(request, template='search/search.html', load_all=True,
+           form_class=ModelSearchForm, searchqueryset=None,
+           context_class=RequestContext, extra_context=None,
+           results_per_page=None):
+
     query = ''
     results = EmptySearchQuerySet()
 
+    # We have a query.
     if request.GET.get('q'):
-        searchqueryset = SearchQuerySet().filter(Q(public=True) | Q(author=request.user)).order_by('-pub_date')
+
+        if request.user.profile.is_pro and '--mine' in request.GET.get('q'):
+            searchqueryset = SearchQuerySet().filter(author=request.user).order_by('-pub_date')
+        else:
+            searchqueryset = SearchQuerySet().filter(Q(public=True) | Q(author=request.user)).order_by('-pub_date')
+
         form = ModelSearchForm(request.GET, searchqueryset=searchqueryset, load_all=load_all)
 
         if form.is_valid():
