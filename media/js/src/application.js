@@ -22,23 +22,19 @@ jQuery(function($) {
 // Angular app init.
 (function() {
 
-    if (typeof angular !== 'undefined') {
+    var root = this;
 
-        var root = this;
+    // App definition.
+    var app = angular.module('Snipt', [], function($locationProvider) {
+        $locationProvider.html5Mode(true);
+    });
 
-        // App definition.
-        var app = angular.module('Snipt', [], function($locationProvider) {
-            $locationProvider.html5Mode(true);
-        });
+    // Use non-Django-style interpolation.
+    app.config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('((');
+        $interpolateProvider.endSymbol('))');
+    });
 
-        // Use non-Django-style interpolation.
-        app.config(function($interpolateProvider) {
-            $interpolateProvider.startSymbol('((');
-            $interpolateProvider.endSymbol('))');
-        });
-
-        root.app = app;
-
-    }
+    root.app = app;
 
 }).call(this);
