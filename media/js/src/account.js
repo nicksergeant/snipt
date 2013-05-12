@@ -8,7 +8,7 @@
         var controllers = {};
         var app = root.app;
 
-        // Configure account routes.
+        // App definition.
         app.config(function($routeProvider) {
 
             // Routes.
