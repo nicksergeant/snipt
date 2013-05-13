@@ -60,8 +60,7 @@ urlpatterns = patterns('',
     url(r'^search/$', search),
 
     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
-    url(r'^signup/$',
-        SniptRegistrationView.as_view(),
+    url(r'^signup/$', SniptRegistrationView.as_view(),
         name='registration_register'),
     url(r'', include('registration.backends.default.urls')),
 
@@ -69,4 +68,5 @@ urlpatterns = patterns('',
 )
 
 if settings.DEBUG:
-    urlpatterns = urlpatterns + static('/media/', document_root=os.path.join(settings.BASE_PATH, 'media'))
+    urlpatterns = urlpatterns + static('/media/',
+        document_root=os.path.join(settings.BASE_PATH, 'media'))

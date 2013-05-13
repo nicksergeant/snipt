@@ -133,6 +133,10 @@ MIDDLEWARE_CLASSES = (
     'blogs.middleware.BlogMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'utils.backends.EmailOrUsernameModelBackend',
+)
+
 ROOT_URLCONF = 'snipt.urls'
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))

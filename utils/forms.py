@@ -3,7 +3,6 @@ from registration.forms import RegistrationForm
 from django.contrib.auth.models import User
 from django import forms
 
-
 class SniptRegistrationForm(RegistrationForm):
     """
     Subclass of ``RegistrationForm`` which enforces uniqueness of

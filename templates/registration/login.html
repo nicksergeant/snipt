@@ -28,7 +28,7 @@
         <fieldset>
             <legend>Log in</legend>
             <div class="control-group {% if form.username.errors %}error{% endif %}">
-                <label class="control-label" for="id_username">Username</label>
+                <label class="control-label" for="id_username">Username or email:</label>
                 <div class="controls">
                     {{ form.username }}
                     {% if form.errors.username %}
