@@ -72,6 +72,8 @@ def lexers(request):
 def login_redirect(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/' + request.user.username + '/')
+    else:
+        return HttpResponseRedirect('/')
 
 @login_required
 @render_to('pro-signup.html')
