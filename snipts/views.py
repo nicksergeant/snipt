@@ -324,5 +324,4 @@ def redirect_user_feed(request, username):
     return HttpResponseRedirect(user.get_absolute_url() + '?rss')
 
 def redirect_user_tag_feed(request, username, tag_slug):
-    return HttpResponseRedirect('/{}/tag/{}/?rss'.format(username, tag_slug))
-
+    return HttpResponseRedirect(u'/{}/tag/{}/?rss'.format(username, tag_slug))
