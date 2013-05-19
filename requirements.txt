@@ -1,4 +1,5 @@
 boto
+defusedxml
 Django
 django-annoying
 django-bcrypt
