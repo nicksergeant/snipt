@@ -10,6 +10,7 @@ from taggit.utils import edit_string_for_tags
 from markdown_deux import markdown
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
+from pygments.util import ClassNotFound
 from pygments.formatters import HtmlFormatter
 
 from snipts.utils import slugify_uniquely
@@ -175,6 +176,28 @@ class Snipt(models.Model):
             return '{}/{}/{}/'.format(root, self.user.username, self.slug)
         else:
             return '{}/{}/{}/?key={}'.format(root, self.user.username, self.slug, self.key)
+
+    def get_download_url(self):
+
+        try:
+            lexer_obj = get_lexer_by_name(self.lexer)
+        except ClassNotFound:
+            lexer_obj = None
+
+        if lexer_obj and lexer_obj.filenames:
+            filename = lexer_obj.filenames[0].replace('*', self.slug)
+        else:
+            if self.lexer == 'markdown':
+                filename = '{}.md'.format(self.slug)
+            else:
+                filename = '{}.txt'.format(self.slug)
+
+        if settings.DEBUG:
+            root = 'http://snipt.localhost'
+        else:
+            root = 'https://snipt.net'
+
+        return '{}/download/{}/{}'.format(root, self.key, filename)
 
     def get_embed_url(self):
 

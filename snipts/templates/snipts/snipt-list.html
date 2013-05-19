@@ -121,6 +121,11 @@
                             {% endif %}
                         </li>
                     {% endif %}
+                    {% if detail %}
+                        <li>
+                            <a class="download" href="{{ snipt.get_download_url }}">Download</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 {% if snipt.tags.all %}
                     <section class="meta tags">

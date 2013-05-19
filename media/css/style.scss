@@ -1075,11 +1075,14 @@ article.snipt {
                             -moz-transform: rotate(-45deg);
                         }
                     }
-                    &.embed {
-                        background-image: url('../img/embed-icon.png');
-                    }
                     &.copy {
                         background-image: url('../img/copy-icon.png');
+                    }
+                    &.download {
+                        background-image: url('../img/download-icon.png');
+                    }
+                    &.embed {
+                        background-image: url('../img/embed-icon.png');
                     }
                     &.favorite {
                         background-image: url('../img/favorite-icon.png');

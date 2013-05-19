@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, InvalidPage
 from annoying.functions import get_object_or_None
@@ -60,6 +60,10 @@ def detail(request, username, snipt_slug):
         'tags': tags,
         'user': user,
     }
+
+def download(request, snipt_key):
+    snipt = get_object_or_404(Snipt, key=snipt_key)
+    return HttpResponse(snipt.code, content_type='application/x-download')
 
 def embed(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
