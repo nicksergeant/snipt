@@ -147,25 +147,25 @@ class Snipt(models.Model):
 
         if self.blog_post:
             if self.user.profile.is_pro and self.user.profile.blog_domain:
-                return 'http://{}/{}/'.format(self.user.profile.blog_domain.split(' ')[0], self.slug)
+                return u'http://{}/{}/'.format(self.user.profile.blog_domain.split(' ')[0], self.slug)
             else:
-                return 'https://{}.snipt.net/{}/'.format(self.user.username.replace('_', '-'), self.slug)
+                return u'https://{}.snipt.net/{}/'.format(self.user.username.replace('_', '-'), self.slug)
 
         if self.custom_slug:
-            return '/{}/'.format(self.custom_slug)
+            return u'/{}/'.format(self.custom_slug)
 
         if self.public:
-            return '/{}/{}/'.format(self.user.username, self.slug)
+            return u'/{}/{}/'.format(self.user.username, self.slug)
         else:
-            return '/{}/{}/?key={}'.format(self.user.username, self.slug, self.key)
+            return u'/{}/{}/?key={}'.format(self.user.username, self.slug, self.key)
 
     def get_full_absolute_url(self):
 
         if self.blog_post:
             if self.user.profile.is_pro and self.user.profile.blog_domain:
-                return 'http://{}/{}/'.format(self.user.profile.blog_domain.split(' ')[0], self.slug)
+                return u'http://{}/{}/'.format(self.user.profile.blog_domain.split(' ')[0], self.slug)
             else:
-                return 'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
+                return u'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
 
         if settings.DEBUG:
             root = 'http://snipt.localhost'
@@ -173,9 +173,9 @@ class Snipt(models.Model):
             root = 'https://snipt.net'
 
         if self.public:
-            return '{}/{}/{}/'.format(root, self.user.username, self.slug)
+            return u'{}/{}/{}/'.format(root, self.user.username, self.slug)
         else:
-            return '{}/{}/{}/?key={}'.format(root, self.user.username, self.slug, self.key)
+            return u'{}/{}/{}/?key={}'.format(root, self.user.username, self.slug, self.key)
 
     def get_download_url(self):
 
@@ -188,16 +188,16 @@ class Snipt(models.Model):
             filename = lexer_obj.filenames[0].replace('*', self.slug)
         else:
             if self.lexer == 'markdown':
-                filename = '{}.md'.format(self.slug)
+                filename = u'{}.md'.format(self.slug)
             else:
-                filename = '{}.txt'.format(self.slug)
+                filename = u'{}.txt'.format(self.slug)
 
         if settings.DEBUG:
             root = 'http://snipt.localhost'
         else:
             root = 'https://snipt.net'
 
-        return '{}/download/{}/{}'.format(root, self.key, filename)
+        return u'{}/download/{}/{}'.format(root, self.key, filename)
 
     def get_embed_url(self):
 
