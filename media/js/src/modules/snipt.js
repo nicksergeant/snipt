@@ -276,7 +276,7 @@
         expand: function() {
             this.$container.toggleClass('expanded', 100);
             this.$tags.toggleClass('expanded');
-            this.select();
+            this.select(true);
             return false;
         },
         fadeAndRemove: function() {
