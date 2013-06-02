@@ -77,14 +77,14 @@ class Snipt(models.Model):
                 self.stylized = self.stylized.replace('[[tweet-{}]]'.format(str(match)), '<div class="embedded-tweet" data-tweet-id="{}"></div>'.format(str(match)))
 
             # Parse Snipt usernames
-            for match in re.findall('@(\w+)', self.stylized):
+            for match in re.findall('@(\w+) ', self.stylized):
 
                 # Try and get the Snipt user by username.
                 user = get_object_or_None(User, username=match)
 
                 if user:
                     url = user.profile.get_user_profile_url()
-                    self.stylized = self.stylized.replace('@{}'.format(str(match)), '<a href="{}">@{}</a>'.format(url, match))
+                    self.stylized = self.stylized.replace('@{} '.format(str(match)), '<a href="{}">@{}</a> '.format(url, match))
 
         else:
             self.stylized = highlight(self.code,
