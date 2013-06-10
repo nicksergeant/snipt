@@ -190,6 +190,7 @@ class PublicUserResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['snipts'] = '/api/public/snipt/?user=%d' % bundle.obj.id
+        bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
         return bundle
 
 class PublicTagResource(ModelResource):
