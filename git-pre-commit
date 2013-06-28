@@ -31,6 +31,7 @@ cat media/css/bootstrap.min.css \
     > media/css/snipt.css
 
 cat media/js/src/account.js|jsmin > media/js/src/account.min.js
+cat media/js/src/snipts|jsmin > media/js/src/snipts.min.js
 cat media/js/src/search.js|jsmin > media/js/src/search.min.js
 cat media/js/src/application.js|jsmin > media/js/src/application.min.js
 cat media/js/src/modules/site.js|jsmin > media/js/src/modules/site.min.js
