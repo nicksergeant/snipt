@@ -394,6 +394,26 @@ header.sub {
                         text-decoration: underline;
                     }
                 }
+                &.compact {
+                    float: right;
+
+                    a {
+                        background: transparent url('../img/compact-icon.png') left 1px no-repeat;
+                        display: inline-block;
+                        margin-right: 15px;
+                        padding-left: 15px;
+                    }
+                }
+                &.normal {
+                    float: right;
+
+                    a {
+                        background: transparent url('../img/normal-icon.png') left 1px no-repeat;
+                        display: inline-block;
+                        margin-right: 15px;
+                        padding-left: 15px;
+                    }
+                }
                 &.rss {
                     float: right;
 
@@ -1337,6 +1357,50 @@ article.snipt {
             }
         }
     }
+    &.compact {
+        margin: 0;
+
+        div.container {
+            border-bottom: 0;
+            width: 100%;
+
+            div.bottom-x {
+                display: none;
+            }
+            header {
+                border-color: #FFFBF3;
+                min-height: 0;
+            }
+            &:after {
+                display: none;
+                -webkit-box-shadow: 0 0 20px #85D2DD;
+                -moz-box-shadow: 0 0 20px #85D2DD;
+                box-shadow: 0 0 20px #85D2DD;
+
+                &:after {
+                    display: none;
+                }
+            }
+        }
+        &.selected {
+            div.container {
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+
+                &:after {
+                    display: none;
+                }
+            }
+        }
+        &:last-of-type {
+            margin-bottom: 50px;
+
+            div.container {
+                border-bottom: 1px solid #DDDDDD;
+            }
+        }
+    }
 }
 article.private-snipt {
     div.container {
@@ -1765,6 +1829,16 @@ body.is-pro {
                 article.snipt {
                     margin-bottom: 0;
                     margin-top: 30px;
+
+                    &.compact {
+                        margin: 0;
+                    }
+                    &:first-of-type {
+                        margin-top: 30px;
+                    }
+                    &:last-of-type {
+                        margin-bottom: 50px;
+                    }
                 }
             }
         }

@@ -1,4 +1,3 @@
-// Angular app init.
 (function() {
 
     if (typeof angular !== 'undefined') {

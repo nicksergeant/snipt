@@ -22,18 +22,18 @@
         favorited" data-favorite-id="{{ is_favorited }}"
     {% else %}
         "
-    {% endif %}>
+    {% endif %} ng-class="{compact: compactView}">
     <div class="number">#{{ snipt.pk }}</div>
     <div class="group">
         <div class="container {% if snipt.description %}with-description{% endif %}">
             <header>
                 {% block lexer %}
-                    <h2>{{ snipt.lexer_name }}</h2>
+                    <h2 ng-show="!compactView">{{ snipt.lexer_name }}</h2>
                 {% endblock %}
                 <h1><a href="{{ snipt.get_absolute_url }}">{% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %}</a></h1>
                 {% block extra-snipt-header %}{% endblock %}
             </header>
-            <section class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
+            <section ng-show="!compactView" class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
                 {% if snipt.lexer == 'markdown' %}
                     <div class="markdown">
                         {% if snipt.line_count > 300 and not detail %}
@@ -99,7 +99,7 @@
             <div class="ruler bottom-x"></div>
         </div>
         {% block aside %}
-            <aside>
+            <aside ng-show="!compactView">
                 <ul class="options">
                     {% if snipt.user == request.user %}
                         <li>
@@ -156,7 +156,7 @@
             </aside>
         {% endblock %}
     </div>
-    <footer>
+    <footer ng-show="!compactView">
         <ul class="attrs">
             {% block author %}
                 <li class="author">

@@ -9,8 +9,16 @@
         <li><span class="prompt">/</span> <a href="/{{ user.username }}/favorites/">Favorited snipts</a></li>
     {% endif %}
     <li class="rss">
-        <a href="{{ request.path }}?rss{% if not public %}&api_key={{ request.user.api_key.key }}{% endif %}">RSS</a>
+        <a href="{{ request.path }}?rss">RSS</a>
     </li>
+    {% if snipts %}
+        <li class="compact">
+            <a ng-click="compactView=true" href>Compact</a>
+        </li>
+        <li class="normal">
+            <a ng-click="compactView=false" href>Normal</a>
+        </li>
+    {% endif %}
 {% endblock %}
 
 {% block aside-top %}

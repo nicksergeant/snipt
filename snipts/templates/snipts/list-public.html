@@ -8,6 +8,14 @@
     <li class="rss">
         <a href="{{ request.path }}?rss">RSS</a>
     </li>
+    {% if snipts %}
+        <li class="compact">
+            <a ng-click="compactView=true" href>Compact</a>
+        </li>
+        <li class="normal">
+            <a ng-click="compactView=false" href>Normal</a>
+        </li>
+    {% endif %}
 {% endblock %}
 
 {% block aside-top %}
