@@ -16,7 +16,7 @@
         {% if not request.user.profile.is_pro %}
             {% include 'go-pro.html' %}
         {% endif %}
-        {% autopaginate snipts 20 %}
+        {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}
         {% empty %}
