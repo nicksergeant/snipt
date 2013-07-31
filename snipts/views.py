@@ -17,7 +17,7 @@ from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
 
 
-RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
+RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 10)
 
 @render_to('snipts/detail.html')
 def detail(request, username, snipt_slug):
