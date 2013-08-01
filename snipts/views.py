@@ -153,7 +153,7 @@ def list_public(request, tag_slug=None):
     if request.blog_user:
         return blog_list(request)
 
-    snipts = Snipt.objects.filter(public=True).order_by('-created')
+    snipts = Snipt.objects.filter(public=True).order_by('-created')[:100]
 
     if tag_slug:
         snipts = snipts.filter(tags__slug__in=[tag_slug])
