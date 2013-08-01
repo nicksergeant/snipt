@@ -1597,38 +1597,15 @@ div.site-notice {
     }
 }
 a.go-pro {
-    background: transparent url('../img/pro-hero-bg.png') top left repeat;
+    background: transparent url('../img/showroom-ad.jpg') top left no-repeat;
+    border: 1px solid #DDDDDD;
+    border-left: 0;
+    border-right: 0;
     color: #797979;
     display: block;
-    font: bold 12px $Helvetica;
+    height: 75px;
     margin: 30px 0;
-    padding: 8px 14px;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: 0 1px 0 white;
-    @include multi-border-radius(0, 4px, 4px, 0);
-
-    span.snipt {
-        color: #797979;
-        font: normal 14px $RockwellBoldItalic;
-    }
-    span.pro {
-        color: #3299B7;
-        font-family: $Helvetica;
-        font-style: italic;
-        font-weight: bold;
-        margin-right: 4px;
-    }
-    span.emph {
-        color: #666;
-    }
-    &:hover {
-        color: black;
-
-        span.pro {
-            color: #3299B7;
-        }
-    }
+    width: 749px;
 }
 
 // Pages
