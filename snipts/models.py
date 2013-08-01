@@ -23,7 +23,7 @@ class Snipt(models.Model):
 
     user         = models.ForeignKey(User, blank=True, null=True)
 
-    title        = models.CharField(max_length=255)
+    title        = models.CharField(max_length=255, blank=True, null=True, default='Untitled')
     slug         = models.SlugField(max_length=255, blank=True)
     custom_slug  = models.SlugField(max_length=255, blank=True)
     tags         = TaggableManager()
