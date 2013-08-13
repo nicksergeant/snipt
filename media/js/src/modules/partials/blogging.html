@@ -17,8 +17,9 @@
     <div class="control-group" ng-class="{error: errors.blog_domain}">
         <label class="control-label" for="id_blog_domain">Blog domain:</label>
         <div class="controls">
-            <input id="id_blog_domain" type="text" ng-model="user.blog_domain" maxlength="250">
-            <span class="help-block">Like 'snipt.nicksergeant.com' or 'nicksergeant.com' (without quotes). Set your CNAME to `snipt.net` or A-record to `96.126.110.160`. You can use multiple domains here: separate each domain with a space. The first domain will be your primary domain. All other domains will redirect to your primary domain.</span>
+            <input ng-disabled="!user.is_pro" id="id_blog_domain" type="text" ng-model="user.blog_domain" maxlength="250">
+            <span ng-show="user.is_pro" class="help-block">Like 'snipt.nicksergeant.com' or 'nicksergeant.com' (without quotes). Set your CNAME to `snipt.net` or A-record to `96.126.110.160`. You can use multiple domains here: separate each domain with a space. The first domain will be your primary domain. All other domains will redirect to your primary domain.</span>
+            <span ng-show="!user.is_pro" class="help-block"><a href="https://snipt.net/pro/">Go Pro</a> to enable a custom domain for your <a href="https://snipt.net/blogging/">Snipt blog</a>.</span>
         </div>
     </div>
 </div>
