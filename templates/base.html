@@ -137,14 +137,12 @@
                                     Profile
                                 </a>
                             </li>
-                            {% if request.user.profile.is_pro %}
-                                <li>
-                                    <a href="/account/stats/">
-                                        <i class="icon-star icon-white"></i>
-                                        Stats
-                                    </a>
-                                </li>
-                            {% endif %}
+                            <li>
+                                <a href="/account/stats/">
+                                    <i class="icon-star icon-white"></i>
+                                    Stats
+                                </a>
+                            </li>
                             <li>
                                 <a href="/account/">
                                     <i class="icon-cog icon-white"></i>
@@ -408,16 +406,12 @@
 
             {% endblock %}
             {% if request.user.profile.is_pro %}
-
                 window.user_is_pro = true;
-                window.default_editor = '{{ request.user.profile.get_default_editor_display|lower }}';
-                window.editor_theme = '{{ request.user.profile.editor_theme }}';
-
             {% else %}
-
                 window.user_is_pro = false;
-
             {% endif %}
+            window.default_editor = '{{ request.user.profile.get_default_editor_display|lower }}';
+            window.editor_theme = '{{ request.user.profile.editor_theme }}';
         </script>
     {% endblock %}
     {% if has_snipts and detail %}

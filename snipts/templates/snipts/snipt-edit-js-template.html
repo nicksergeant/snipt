@@ -68,37 +68,35 @@
                                     <textarea name="description" placeholder='optional'><% if (snipt.description && snipt.description !== 'None') { %><%= snipt.description %><% } %></textarea>
                                 </label>
                             </div>
-                            <% if (window.user_is_pro) { %>
-                                <div class="editor-settings">
-                                    <h2>Pro settings <a href="/account/" target="blank">change defaults</a></h2>
-                                    <h4>F11 or Cmd+Enter toggles fullscreen mode</h4>
-                                    <label class="lexer"><span>Editor<span></label>
-                                    <select name="editor" id="id_editor">
-                                        <option value="codemirror" selected="selected">CodeMirror</option>
-                                        <option value="textarea">Textarea</option>
-                                    </select>
-                                    <label class="lexer"><span>Theme<span></label>
-                                    <select name="theme" id="id_theme">
-                                        <option value="default">Default</option>
-                                        <option value="ambiance">Ambiance</option>
-                                        <option value="blackboard">Blackboard</option>
-                                        <option value="cobalt">Cobalt</option>
-                                        <option value="eclipse">Eclipse</option>
-                                        <option value="elegant">Elegant</option>
-                                        <option value="erlang-dark">Erlang Dark</option>
-                                        <option value="lesser-dark">Lesser Dark</option>
-                                        <option value="monokai">Monokai</option>
-                                        <option value="neat">Neat</option>
-                                        <option value="night">Night</option>
-                                        <option value="rubyblue">Ruby Blue</option>
-                                        <option value="solarized dark">Solarized Dark</option>
-                                        <option value="solarized light">Solarized Light</option>
-                                        <option value="twilight">Twilight</option>
-                                        <option value="vibrant-ink">Vibrant Ink</option>
-                                        <option value="xq-dark">XQ Dark</option>
-                                    </select>
-                                </div>
-                            <% } %>
+                            <div class="editor-settings">
+                                <h2>Editor settings <a href="/account/" target="blank">change defaults</a></h2>
+                                <h4>F11 or Cmd+Enter toggles fullscreen mode</h4>
+                                <label class="lexer"><span>Editor<span></label>
+                                <select name="editor" id="id_editor">
+                                    <option value="codemirror" selected="selected">CodeMirror</option>
+                                    <option value="textarea">Textarea</option>
+                                </select>
+                                <label class="lexer"><span>Theme<span></label>
+                                <select name="theme" id="id_theme">
+                                    <option value="default">Default</option>
+                                    <option value="ambiance">Ambiance</option>
+                                    <option value="blackboard">Blackboard</option>
+                                    <option value="cobalt">Cobalt</option>
+                                    <option value="eclipse">Eclipse</option>
+                                    <option value="elegant">Elegant</option>
+                                    <option value="erlang-dark">Erlang Dark</option>
+                                    <option value="lesser-dark">Lesser Dark</option>
+                                    <option value="monokai">Monokai</option>
+                                    <option value="neat">Neat</option>
+                                    <option value="night">Night</option>
+                                    <option value="rubyblue">Ruby Blue</option>
+                                    <option value="solarized dark">Solarized Dark</option>
+                                    <option value="solarized light">Solarized Light</option>
+                                    <option value="twilight">Twilight</option>
+                                    <option value="vibrant-ink">Vibrant Ink</option>
+                                    <option value="xq-dark">XQ Dark</option>
+                                </select>
+                            </div>
                         </aside>
                     </div>
                 </article>

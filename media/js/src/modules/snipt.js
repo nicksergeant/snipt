@@ -183,50 +183,47 @@
             });
 
             // Editor settings
-            if (window.user_is_pro) {
-                var $selectEditor = $('select#id_editor', window.site.$main_edit);
-                var $selectTheme = $('select#id_theme', window.site.$main_edit);
+            var $selectEditor = $('select#id_editor', window.site.$main_edit);
+            var $selectTheme = $('select#id_theme', window.site.$main_edit);
 
-                $selectEditor.chosen();
-                $selectEditor.change(function() {
-                    var newEditor = $selectEditor.val();
+            $selectEditor.chosen();
+            $selectEditor.change(function() {
+                var newEditor = $selectEditor.val();
 
-                    if (newEditor === 'textarea') {
-                        that.$editorCodeMirror.hide();
-                        that.$editorTextarea.show();
+                if (newEditor === 'textarea') {
+                    that.$editorCodeMirror.hide();
+                    that.$editorTextarea.show();
 
-                        // TODO: if we introduce other editors, we'll want to make this smarter, obviously.
-                        that.$editorTextarea.val(window.editor.getValue());
-                    }
-                    if (newEditor === 'codemirror') {
-                        that.$editorTextarea.hide();
-                        that.$editorCodeMirror.show();
-
-                        // TODO: Ditto above.
-                        window.editor.setValue(that.$editorTextarea.val());
-                    }
-                });
-
-                $selectTheme.chosen();
-                $selectTheme.change(function() {
-                    window.editor.setOption('theme', $selectTheme.val());
-                });
-
-                if (window.editor_theme != 'default') {
-                    $selectTheme.val(window.editor_theme);
-                    $selectTheme.trigger('liszt:updated');
-                    $selectTheme.trigger('change');
+                    // TODO: if we introduce other editors, we'll want to make this smarter, obviously.
+                    that.$editorTextarea.val(window.editor.getValue());
                 }
-                if (window.default_editor != 'codemirror') {
-                    $selectEditor.val(window.default_editor);
-                    $selectEditor.trigger('liszt:updated');
-                    $selectEditor.trigger('change');
+                if (newEditor === 'codemirror') {
+                    that.$editorTextarea.hide();
+                    that.$editorCodeMirror.show();
+
+                    // TODO: Ditto above.
+                    window.editor.setValue(that.$editorTextarea.val());
                 }
+            });
 
-                // Full-screen mode.
-                this.setupCodeMirrorFullScreen();
+            $selectTheme.chosen();
+            $selectTheme.change(function() {
+                window.editor.setOption('theme', $selectTheme.val());
+            });
 
+            if (window.editor_theme != 'default') {
+                $selectTheme.val(window.editor_theme);
+                $selectTheme.trigger('liszt:updated');
+                $selectTheme.trigger('change');
             }
+            if (window.default_editor != 'codemirror') {
+                $selectEditor.val(window.default_editor);
+                $selectEditor.trigger('liszt:updated');
+                $selectEditor.trigger('change');
+            }
+
+            // Full-screen mode.
+            this.setupCodeMirrorFullScreen();
 
             // Edit buttons
             $('button.delete', window.site.$main_edit).on('click', function() {

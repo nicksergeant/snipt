@@ -166,9 +166,6 @@ class UserProfileValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
-        if not bundle.request.user.profile.is_pro:
-            return 'You must be a Pro to change these settings.'
-
         for field in bundle.data:
             if bundle.data[field]:
                 if not re.match('^[ A-Za-z0-9\/\@\._-]*$', bundle.data[field]):
@@ -368,10 +365,8 @@ class PrivateSniptResource(ModelResource):
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
         bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
-
-        if bundle.data['user'].data['is_pro']:
-            bundle.data['views'] = bundle.obj.views
-            bundle.data['favs'] = bundle.obj.favs()
+        bundle.data['views'] = bundle.obj.views
+        bundle.data['favs'] = bundle.obj.favs()
 
         if bundle.data['publish_date']:
             bundle.data['publish_date'] = date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')

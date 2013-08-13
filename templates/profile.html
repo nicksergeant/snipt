@@ -15,7 +15,7 @@
         {% else %}
             <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
         {% endif %}
-        {% if user.profile.is_pro and user.profile.get_blog_posts %}
+        {% if user.profile.get_blog_posts %}
             <div class="urls">
                 Snipt Blog:
                 <a href="{{ user.profile.get_user_profile_url }}">
@@ -26,8 +26,8 @@
     </div>
     {% if user.profile.is_pro %}
         <a class="pro" href="/pro/">Pro</a>
-        {% if user.profile.gittip_username %}
-            <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
-        {% endif %}
+    {% endif %}
+    {% if user.profile.gittip_username %}
+        <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
     {% endif %}
 </div>

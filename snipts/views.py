@@ -278,7 +278,7 @@ def search(request, template='search/search.html', load_all=True,
     # We have a query.
     if request.GET.get('q'):
 
-        if request.user.is_authenticated() and request.user.profile.is_pro and '--mine' in request.GET.get('q'):
+        if request.user.is_authenticated() and '--mine' in request.GET.get('q'):
             searchqueryset = SearchQuerySet().filter(author=request.user).order_by('-pub_date')
         else:
             searchqueryset = SearchQuerySet().filter(Q(public=True) | Q(author=request.user)).order_by('-pub_date')

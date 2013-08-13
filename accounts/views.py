@@ -12,9 +12,6 @@ def account(request):
 @render_to('stats.html')
 def stats(request):
 
-    if not request.user.profile.is_pro:
-        return HttpResponseRedirect('/pro/')
-
     snipts = Snipt.objects.filter(user=request.user).order_by('-views')
 
     return {

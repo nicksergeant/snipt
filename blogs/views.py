@@ -46,18 +46,14 @@ def blog_list(request, username_or_custom_slug=None):
         context['snipts'] = context['snipts'][:20]
         return rss(request, context)
 
-    if request.blog_user.profile.is_pro:
-        template = THEME_CHOICES[request.blog_user.profile.blog_theme]
-    else:
-        template = THEME_CHOICES['D']
+    template = THEME_CHOICES[request.blog_user.profile.blog_theme]
 
     template = '{}/list.html'.format(template)
 
     return render_to_response(
-            template,
-            context,
-            context_instance=RequestContext(request)
-        )
+        template,
+        context,
+        context_instance=RequestContext(request))
 
 def blog_post(request, username_or_custom_slug):
 
@@ -100,10 +96,7 @@ def blog_post(request, username_or_custom_slug):
         'snipts': snipts,
     }
 
-    if request.blog_user.profile.is_pro:
-        template = THEME_CHOICES[request.blog_user.profile.blog_theme]
-    else:
-        template = THEME_CHOICES['D']
+    template = THEME_CHOICES[request.blog_user.profile.blog_theme]
 
     template = '{}/post.html'.format(template)
 

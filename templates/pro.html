@@ -13,33 +13,14 @@
         snip<span>t</span> <span class="pro">Pro</span>
     </div>
     <div class="static-box">
-        <p>
-            Go Pro to get a more streamlined Snipt interface, as well as unlock powerful blogging features.<br />
-            We're always adding new features for Pro users, so check this list often or follow us on <a href="https://twitter.com/snipt/">Twitter</a>.
-        </p>
-        <h6>Interface features:</h6>
-        <ul>
-            <li>No ads.</li>
-            <li><span class="pro">Pro</span> badge throughout the site.</li>
-            <li>Ability to search through "only my snipts".</li>
-            <li>Statistics for "views" and "favorites" of your snipts.</li>
-            <li>Multiple editors: CodeMirror (rich-code editing) or a plain-old textarea.</li>
-            <li>17 CodeMirror editor themes to choose from.</li>
-            <li>Full-screen editor mode.</li>
-        </ul>
-        <h6>Blogging features:</h6>
+        <h6>Going Pro gets you:</h6>
         <ul>
             <li>Custom domain for your <a href="/blogging/">Snipt blog</a>.</li>
-            <li>Customize CSS in your blog theme.</li>
-            <li>Exclusive Pro-only theme for your blog. <a href="http://nicksergeant.com/">Here's a preview</a> of the first available theme (working on more).</li>
-            <li><a href="https://www.gittip.com/">GitTip</a> integration ("tip" link on every snipt next to your username, and on your profile). <a href="https://snipt.net/nick/">Sample</a>.</li>
-            <li>Use your own <a href="http://disqus.com">Disqus</a> account for comments on your Snipt blog.</li>
-            <li>Use your own <a href="http://analytics.google.com">Google Analytics</a> account for tracking visits to your Snipt blog.</li>
-            <li>Use your own <a href="http://get.gaug.es/">Gauges</a> account for tracking visits to your Snipt blog.</li>
-            <li>Display your own <a href="https://www.google.com/adsense/">Google Ads</a> in the sidebar of your Snipt blog.</li>
+            <li><span class="pro">Pro</span> badge throughout the site.</li>
+            <li>No ads.</li>
         </ul>
         {% if request.user.profile.is_pro %}
-            <h3>You're already a Pro. You know that ;)</h3>
+            <h3>You're already a Pro.</h3>
         {% else %}
             <h3><span><span class="pro">Pro</span> is only</span> $3/month.</h3>
             <h4><a href="/pro/signup/" class="btn btn-large btn-success">Buy Now</a></h4>

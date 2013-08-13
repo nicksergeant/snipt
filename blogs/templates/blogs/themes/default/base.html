@@ -19,13 +19,13 @@
 {% block js %}
         {{ block.super }}
         window.blog_post = true;
-        {% if blog_user.profile.is_pro and blog_user.profile.gittip_username %}
+        {% if blog_user.profile.gittip_username %}
             window.gittip_username = '{{ blog_user.profile.gittip_username }}';
         {% endif %}
 {% endblock %}
 
 {% block css %}
-    {% if blog_user.profile.is_pro and custom_css %}
+    {% if custom_css %}
         <style type="text/css">
             {{ custom_css.code }}
         </style>
@@ -68,7 +68,7 @@
                 {{ sidebar.stylized|safe }}
             </section>
         {% endif %}
-        {% if blog_user.profile.is_pro and blog_user.profile.google_ad_client %}
+        {% if blog_user.profile.google_ad_client %}
             <div class="google-ads">
                 <script type="text/javascript">
                     google_ad_client = '{{ blog_user.profile.google_ad_client }}';

@@ -143,7 +143,7 @@
                         </ul>
                     </section>
                 {% endif %}
-                {% if request.user.profile.is_pro and snipt.user == request.user %}
+                {% if snipt.user == request.user %}
                     <section class="meta stats">
                         <ul>
                             <li>{{ snipt.views|intcomma }} view{{ snipt.views|pluralize }}
@@ -164,9 +164,9 @@
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
                     {% if snipt.user.profile.is_pro %}
                         <span class="pro"><a href="/pro/">Pro</a></span>
-                        {% if snipt.user.profile.gittip_username %}
-                            <span class="gittip"><a href="https://www.gittip.com/{{ snipt.user.profile.gittip_username }}/">Tip</a></span>
-                        {% endif %}
+                    {% endif %}
+                    {% if snipt.user.profile.gittip_username %}
+                        <span class="gittip"><a href="https://www.gittip.com/{{ snipt.user.profile.gittip_username }}/">Tip</a></span>
                     {% endif %}
                 </li>
             {% endblock %}

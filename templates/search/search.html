@@ -27,11 +27,9 @@
                    ng-init="search.query='{{ query|escapejs }}'"
                    placeholder="Search snipts" id="id_q"
                    value="{{ query }}" />
-            {% if request.user.profile.is_pro %}
-                <label class="checkbox inline mine-only" ng-click="toggleMineOnly()">
-                    <input {% if '--mine' in query %}checked="checked"{% endif %} ng-model="search.mineOnly" type="checkbox" id="inlineCheckbox1" value="option1"> Mine only
-                </label>
-            {% endif %}
+            <label class="checkbox inline mine-only" ng-click="toggleMineOnly()">
+                <input {% if '--mine' in query %}checked="checked"{% endif %} ng-model="search.mineOnly" type="checkbox" id="inlineCheckbox1" value="option1"> Mine only
+            </label>
             <button type="submit" class="btn">Search</button>
         </form>
     </div>

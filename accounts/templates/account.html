@@ -20,11 +20,10 @@
                 <li>
                     <a href="/password/change/">Change password</a>
                 </li>
-                <li ng-show="user.is_pro" class="nav-header">Pro</li>
-                <li ng-show="user.is_pro" ng-class="{active: route.current.scope.section == 'Blogging'}">
+                <li ng-class="{active: route.current.scope.section == 'Blogging'}">
                     <a href="/account/blogging/">Blogging</a>
                 </li>
-                <li ng-show="user.is_pro" ng-class="{active: route.current.scope.section == 'Editor'}">
+                <li ng-class="{active: route.current.scope.section == 'Editor'}">
                     <a href="/account/editor/">Editor</a>
                 </li>
                 <li ng-show="user.is_pro" ng-class="{active: route.current.scope.section == 'Billing'}">
