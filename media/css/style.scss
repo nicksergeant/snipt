@@ -220,7 +220,7 @@ header.main {
             a.mini-profile {
                 border-right: 1px solid rgba(#4D6768, .25);
                 display: block;
-                padding: 14px 13px 11px 13px;
+                padding: 14px 13px 8px 13px;
 
                 span.avatar {
                     background-repeat: no-repeat;
@@ -719,35 +719,6 @@ section.main {
     div.rochester-made {
         margin: 50px 0 30px 0;
         text-align: center;
-    }
-    div.sifter {
-        color: #666666;
-        margin: 0 0 30px 15px;
-        padding: 10px;
-        padding-top: 0;
-        @include border-radius(8px);
-        @include vertical-gradient(#F2F2F2, white);
-
-        h3 {
-            font: bold 12px/16px $Helvetica;
-            margin: 0;
-        }
-        p {
-            font: normal 12px/16px $Helvetica;
-            margin-top: 10px;
-
-            a {
-                font-weight: bold;
-            }
-        }
-        a.sifter-logo {
-            text-align: center;
-
-            img {
-                display: inline-block;
-                margin: 10px 0;
-            }
-        }
     }
 }
 section.main-edit {
@@ -1750,39 +1721,23 @@ body.detail {
                 }
             }
         }
-        div.sifter {
-            margin-bottom: 0;
-            margin-top: 10px;
-            margin-right: 100px;
-
-            a.sifter-logo {
-                float: left;
-
-                img {
-                    height: 30px;
-                    margin: 0;
-                    margin-top: 10px;
-                }
-            }
-            div.right {
-                float: left;
-                margin-left: 10px;
-                padding-top: 10px;
-
-                h3 {
-                    margin: 0;
-                }
-                p {
-                    margin: 0;
-                }
-            }
-        }
     }
     div.rochester-made {
         width: 840px;
     }
     div.site-notice, a.go-pro {
         margin-right: 100px;
+    }
+    div.showroom-container {
+        background: transparent url('http://showroom.is/static/img/background.jpg') top left repeat;
+        border: 1px solid #DDDDDD;
+        border-left: 0;
+        margin: 30px 0;
+
+        a.go-pro {
+            border: 0;
+            margin: 0 auto;
+        }
     }
 }
 body.error {
@@ -2076,33 +2031,6 @@ body.search {
 body.snipt-page {
     section.main {
         div.inner {
-            div.sifter {
-                margin-bottom: 0;
-                margin-top: 10px;
-                margin-right: 100px;
-
-                a.sifter-logo {
-                    float: left;
-
-                    img {
-                        height: 30px;
-                        margin: 0;
-                        margin-top: 10px;
-                    }
-                }
-                div.right {
-                    float: left;
-                    margin-left: 10px;
-                    padding-top: 10px;
-
-                    h3 {
-                        margin: 0;
-                    }
-                    p {
-                        margin: 0;
-                    }
-                }
-            }
             section.snipts {
                 article.snipt {
                     div.container {
