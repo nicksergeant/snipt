@@ -1840,6 +1840,20 @@ body.jobs {
             }
         }
     }
+    div.post-job {
+        background: white;
+        border: 1px solid #DDDDDD;
+        margin-bottom: 30px;
+        margin-left: 15px;
+        padding: 15px;
+        @include border-radius;
+
+        p {
+            font-size: 12px;
+            margin-bottom: 0;
+            margin-top: 15px;
+        }
+    }
 }
 body.pro {
     div.pro-hero {
