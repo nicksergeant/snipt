@@ -5,13 +5,15 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import admin
 from snipts.api import (PublicSniptResource, PublicTagResource,
-        PublicUserResource, PrivateSniptResource,
-        PrivateFavoriteResource, PrivateUserProfileResource,
-        PrivateTagResource, PrivateUserResource)
+                        PublicUserResource, PrivateSniptResource,
+                        PrivateFavoriteResource, PrivateUserProfileResource,
+                        PrivateTagResource, PrivateUserResource)
 from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
-from views import (homepage, lexers, login_redirect, pro_signup, sitemap, tags, pro_signup_complete)
+from jobs.views import jobs
+from views import (homepage, lexers, login_redirect, pro_signup, sitemap, tags,
+                   pro_signup_complete)
 
 import admin as custom_admin
 import os
@@ -45,6 +47,7 @@ urlpatterns = patterns('',
     url(r'^humans.txt$', TemplateView.as_view(template_name='humans.txt')),
     url(r'^sitemap.xml$', sitemap),
     url(r'^tags/$', tags),
+    url(r'^jobs/$', jobs),
 
     url(r'^pro/$', TemplateView.as_view(template_name='pro.html')),
     url(r'^pro/signup/$', pro_signup),

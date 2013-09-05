@@ -112,6 +112,9 @@
                                 </button>
                             </li>
                         {% endif %}
+                        <li>
+                            <a href="/jobs/" {% if '/jobs/' in request.path %} class="active"{% endif %}>Jobs</a>
+                        </li>
                     </ul>
                 </nav>
                 {% if request.user.is_authenticated %}

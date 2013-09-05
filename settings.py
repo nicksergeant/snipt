@@ -103,6 +103,7 @@ INSTALLED_APPS = (
 
     'accounts',
     'blogs',
+    'jobs',
     'snipts',
     'utils',
 )

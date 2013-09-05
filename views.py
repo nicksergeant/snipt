@@ -11,9 +11,11 @@ from django.db.models import Count
 from snipts.models import Snipt
 from taggit.models import Tag
 
-import hashlib, stripe
+import hashlib
+import stripe
 
 from settings_local import STRIPE_SECRET_KEY
+
 
 @render_to('homepage.html')
 def homepage(request):
@@ -28,7 +30,8 @@ def homepage(request):
     ).order_by('?')
 
     for user in users_with_gravatars:
-        public_snipts_count = Snipt.objects.filter(user=user, public=True).values('pk').count()
+        public_snipts_count = Snipt.objects.filter(
+            user=user, public=True).values('pk').count()
 
         if public_snipts_count:
             user.email_md5 = hashlib.md5(user.email.lower()).hexdigest()
@@ -42,6 +45,7 @@ def homepage(request):
         'snipts_count': Snipt.objects.all().count(),
         'users_count': User.objects.all().count(),
     }
+
 
 @ajax_request
 def lexers(request):
@@ -69,11 +73,13 @@ def lexers(request):
 
     return {'objects': objects}
 
+
 def login_redirect(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/' + request.user.username + '/')
     else:
         return HttpResponseRedirect('/')
+
 
 @login_required
 @render_to('pro-signup.html')
@@ -81,6 +87,7 @@ def pro_signup(request):
     if request.user.profile.is_pro:
         return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
+
 
 @login_required
 @render_to('pro-signup-complete.html')
@@ -93,11 +100,9 @@ def pro_signup_complete(request):
 
         plan = 'snipt-pro-monthly'
 
-        customer = stripe.Customer.create(
-            card = token,
-            plan = plan,
-            email = request.user.email
-        )
+        customer = stripe.Customer.create(card=token,
+                                          plan=plan,
+                                          email=request.user.email)
 
         profile = request.user.profile
         profile.is_pro = True
@@ -109,6 +114,7 @@ def pro_signup_complete(request):
     else:
         return HttpResponseBadRequest()
 
+
 def sitemap(request):
 
     tags = Tag.objects.filter(snipt__public=True)
@@ -116,9 +122,10 @@ def sitemap(request):
     tags = tags.order_by('-count')[:1000]
 
     return render_to_response('sitemap.xml',
-                             {'tags': tags},
-                             context_instance=RequestContext(request),
-                             mimetype='application/xml')
+                              {'tags': tags},
+                              context_instance=RequestContext(request),
+                              mimetype='application/xml')
+
 
 @render_to('tags.html')
 def tags(request):
@@ -127,7 +134,8 @@ def tags(request):
     all_tags = all_tags.annotate(count=Count('taggit_taggeditem_items__id'))
 
     popular_tags = Tag.objects.filter(snipt__public=True)
-    popular_tags = popular_tags.annotate(count=Count('taggit_taggeditem_items__id'))
+    popular_tags = popular_tags.annotate(
+        count=Count('taggit_taggeditem_items__id'))
     popular_tags = popular_tags.order_by('-count')[:20]
     popular_tags = sorted(popular_tags, key=lambda tag: tag.name)
 
