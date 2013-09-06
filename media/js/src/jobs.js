@@ -12,7 +12,7 @@
     app.filter('startFrom', function() {
       return function(input, start) {
         start = +start;
-        return input.slice(start);
+        return input ? input.slice(start) : input;
       };
     });
 
@@ -26,7 +26,9 @@
       });
 
       $scope.numberOfPages = function() {
-        return Math.ceil($scope.jobs.length / $scope.pageSize);                
+        if ($scope.jobs) {
+          return Math.ceil($scope.jobs.length / $scope.pageSize);                
+        }
       };
       
     };
