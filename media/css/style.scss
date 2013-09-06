@@ -2713,4 +2713,11 @@ body.jobs {
         font-weight: bold;
         text-align: center;
     }
+    div.pagination {
+      button.btn {
+        &:active, &:focus {
+          outline: none !important;
+        }
+      }
+    }
 }
