@@ -33,6 +33,7 @@ cat media/css/bootstrap.min.css \
 cat media/js/src/account.js|jsmin > media/js/src/account.min.js
 cat media/js/src/snipts.js|jsmin > media/js/src/snipts.min.js
 cat media/js/src/search.js|jsmin > media/js/src/search.min.js
+cat media/js/src/jobs.js|jsmin > media/js/src/jobs.min.js
 cat media/js/src/application.js|jsmin > media/js/src/application.min.js
 cat media/js/src/modules/site.js|jsmin > media/js/src/modules/site.min.js
 cat media/js/src/modules/snipt.js|jsmin > media/js/src/modules/snipt.min.js
@@ -51,6 +52,7 @@ cat media/js/libs/underscore.js \
     media/js/src/account.min.js \
     media/js/src/snipts.min.js \
     media/js/src/search.min.js \
+    media/js/src/jobs.min.js \
     media/js/libs/codemirror.js \
     media/js/libs/highlight.js \
     > media/js/snipt-all.min.js
