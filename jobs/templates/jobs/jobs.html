@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load humanize %}
 {% load pagination_tags %}
 
 {% block page-title %}Snipt Jobs{% endblock %}
@@ -15,13 +16,14 @@
         <ul>
             {% for job in jobs %}
                 <li>
-                    <a href="{{ job.url }}" class="group">
+                    <a href="{{ job.url }}?aff=dbe7e" class="group">
                         <span class="left">
                             <span class="job">{{ job.title }}</span>
                             <span class="company">{{ job.company }}</span>
                         </span>
                         <span class="right">
                             <span class="location">{{ job.location }}</span>
+                            <span class="date">{{ job.created|naturalday }}</span>
                         </span>
                     </a>
                 </li>
@@ -36,9 +38,9 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
     <div class="post-job">
-        <strong>Want to post a job?</strong>
+        <a href="http://www.authenticjobs.com/post/?aff=dbe7e" class="btn btn-large btn-success">Post a job</a>
         <p>
-            Job posts are currently <i>invite only</i>. If you'd like to be considered for future posts, please email <a href="mailto:jobs@snipt.net">jobs@snipt.net</a>.
+            We use <a href="http://www.authenticjobs.com?aff=dbe7e">Authentic Jobs</a> for our job board provider. Once you post your ad, it will appear on Snipt within 24 hours.
         </p>
     </div>
 {% endblock %}

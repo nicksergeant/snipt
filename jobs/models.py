@@ -8,9 +8,9 @@ class Job(models.Model):
     company = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     url = models.CharField(max_length=255)
+    data = models.TextField(blank=True, null=True)
 
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    modified = models.DateTimeField(auto_now=True, editable=False)
+    created = models.DateTimeField()
 
     def __unicode__(self):
         return self.title
