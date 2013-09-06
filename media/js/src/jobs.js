@@ -28,6 +28,7 @@
 
       $scope.filterJobs = function() {
         $scope.filteredJobs = filterFilter($scope.jobs, $scope.query);
+        $scope.currentPage = 0;
       };
       $scope.numberOfPages = function() {
         if ($scope.filteredJobs) {

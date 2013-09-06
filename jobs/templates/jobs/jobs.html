@@ -38,6 +38,7 @@
             <ul>
                 <li ng-repeat="job in filteredJobs|startFrom:currentPage * pageSize|limitTo:pageSize">
                     <a href="{[{ job.url }]}?aff=dbe7e" class="group">
+                        <img ng-show="job.company.logo" ng-src="{[{ job.company.logo }]}" />
                         <span class="left">
                             <span class="job">{[{ job.title }]}</span>
                             <span class="company">{[{ job.company.name }]}</span>
