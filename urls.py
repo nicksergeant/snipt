@@ -11,7 +11,7 @@ from snipts.api import (PublicSniptResource, PublicTagResource,
 from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
-from jobs.views import jobs
+from jobs.views import jobs, jobs_json
 from views import (homepage, lexers, login_redirect, pro_signup, sitemap, tags,
                    pro_signup_complete)
 
@@ -48,6 +48,7 @@ urlpatterns = patterns('',
     url(r'^sitemap.xml$', sitemap),
     url(r'^tags/$', tags),
     url(r'^jobs/$', jobs),
+    url(r'^jobs-json/$', jobs_json),
 
     url(r'^pro/$', TemplateView.as_view(template_name='pro.html')),
     url(r'^pro/signup/$', pro_signup),

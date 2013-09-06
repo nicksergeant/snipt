@@ -1776,92 +1776,6 @@ body.is-pro {
         }
     }
 }
-body.jobs {
-    section.jobs {
-        margin: 30px;
-
-        h4 {
-            border-bottom: 1px solid #C0C0C0;
-            color: #999999;
-            font-size: 14px;
-            margin-top: 30px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-        }
-        ul {
-            margin: 0;
-
-            li {
-                list-style-type: none;
-                margin: 10px 0;
-
-                a {
-                    background: #FBFBFB;
-                    border: 1px solid #DDDDDD;
-                    color: #333333;
-                    display: block;
-                    padding: 10px;
-                    @include border-radius;
-                    @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, .3));
-
-                    &:hover {
-                        background: rgba(#FBFBFB, .5);
-                    }
-                    span.left {
-                        float: left;
-
-                        span {
-                            display: block;
-
-                            &.job {
-                                color: #3096B4;
-                                font-size: 16px;
-                                font-weight: bold;
-                                margin-bottom: 4px;
-                            }
-                        }
-                    }
-                    span.right {
-                        float: right;
-
-                        span {
-                            display: block;
-                            text-align: right;
-
-                            &.location {
-                                color: #999999;
-                                font-size: 16px;
-                                font-weight: bold;
-                                margin-bottom: 4px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    div.job-twitter {
-        margin-bottom: 15px;
-        margin-left: 15px;
-    }
-    div.post-job {
-        background: white;
-        border: 1px solid #DDDDDD;
-        margin-bottom: 30px;
-        margin-left: 15px;
-        padding: 15px;
-        @include border-radius;
-
-        p {
-            font-size: 12px;
-            margin-bottom: 0;
-            margin-top: 15px;
-        }
-        a {
-            width: 103px;
-        }
-    }
-}
 body.pro {
     div.pro-hero {
         background: transparent url('../img/pro-hero-bg.png') top left repeat;
@@ -2697,4 +2611,100 @@ body.homepage {
     
     }
 
+}
+body.jobs {
+    section.jobs {
+        margin: 30px;
+
+        h4 {
+            border-bottom: 1px solid #C0C0C0;
+            color: #999999;
+            font-size: 14px;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+        }
+        ul {
+            margin: 0;
+
+            li {
+                list-style-type: none;
+                margin: 10px 0;
+
+                a {
+                    background: #FBFBFB;
+                    border: 1px solid #DDDDDD;
+                    color: #333333;
+                    display: block;
+                    padding: 10px;
+                    @include border-radius;
+                    @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, .3));
+
+                    &:hover {
+                        background: rgba(#FBFBFB, .5);
+                    }
+                    span.left {
+                        float: left;
+
+                        span {
+                            display: block;
+
+                            &.job {
+                                color: #3096B4;
+                                font-size: 16px;
+                                font-weight: bold;
+                                margin-bottom: 4px;
+                            }
+                        }
+                    }
+                    span.right {
+                        float: right;
+
+                        span {
+                            display: block;
+                            text-align: right;
+
+                            &.location {
+                                color: #999999;
+                                font-size: 16px;
+                                font-weight: bold;
+                                margin-bottom: 4px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    div.job-twitter {
+        margin-bottom: 15px;
+        margin-left: 15px;
+        text-align: center;
+    }
+    div.post-job {
+        background: white;
+        border: 1px solid #DDDDDD;
+        margin-bottom: 30px;
+        margin-left: 15px;
+        padding: 15px;
+        @include border-radius;
+
+        p {
+            font-size: 12px;
+            margin-bottom: 0;
+            margin-top: 15px;
+        }
+        a {
+            width: 103px;
+        }
+    }
+    div.static-box {
+        border: 1px solid #DDDDDD;
+        margin-left: 30px;
+        @include border-radius(50px);
+
+        form input.search-query {
+            width: 618px;
+        }
+    }
 }
