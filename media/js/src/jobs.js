@@ -17,19 +17,27 @@
     });
 
     // Controllers.
-    controllers.JobSearchController = function($http, $scope) {
+    controllers.JobSearchController = function($http, $scope, filterFilter) {
       $scope.currentPage = 0;
       $scope.pageSize = 10;
 
       $http.get('/jobs-json/').then(function(response) {
         $scope.jobs = response.data;
+        $scope.filterJobs();
       });
 
+      $scope.filterJobs = function() {
+        $scope.filteredJobs = filterFilter($scope.jobs, $scope.query);
+      };
       $scope.numberOfPages = function() {
-        if ($scope.jobs) {
-          return Math.ceil($scope.jobs.length / $scope.pageSize);                
+        if ($scope.filteredJobs) {
+          return Math.ceil($scope.filteredJobs.length / $scope.pageSize);                
         }
       };
+
+      $scope.$watch('query', function (val) {
+        $scope.filterJobs();
+      });
       
     };
 
