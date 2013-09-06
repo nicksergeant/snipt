@@ -26,7 +26,10 @@
                 <input ng-model="query" type="text" class="search-query" name="q" placeholder="Filter jobs" />
             </form>
         </div>
-        <div class="pagination ng-cloak" ng-cloak ng-show="numberOfPages() > 1">
+        <div class="loading-jobs" ng-show="!jobs">
+            Loading jobs&hellip;
+        </div>
+        <div class="pagination ng-cloak" ng-cloak ng-show="jobs && numberOfPages() > 1">
             <button class="btn prev" style="margin: 0 10px;" href ng-disabled="currentPage == 0" ng-click="currentPage=currentPage - 1">Previous</button>
             <span class="page">{[{ currentPage + 1 }]} / {[{ numberOfPages() }]}</span>
             <button class="btn next" style="margin: 0 10px;" ng-disabled="currentPage >= jobs.length / pageSize - 1" ng-click="currentPage=currentPage + 1">Next</button>
@@ -47,7 +50,7 @@
                 </li>
             </ul>
         </section>
-        <div class="pagination ng-cloak" ng-cloak ng-show="numberOfPages() > 1">
+        <div class="pagination ng-cloak" ng-cloak ng-show="jobs && numberOfPages() > 1">
             <button class="btn prev" style="margin: 0 10px;" href ng-disabled="currentPage == 0" ng-click="currentPage=currentPage - 1">Previous</button>
             <span class="page">{[{ currentPage + 1 }]} / {[{ numberOfPages() }]}</span>
             <button class="btn next" style="margin: 0 10px;" ng-disabled="currentPage >= jobs.length / pageSize - 1" ng-click="currentPage=currentPage + 1">Next</button>
