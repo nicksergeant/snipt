@@ -495,41 +495,21 @@ section.main {
             }
         }
         section.ad {
+            background: white;
+            border: 1px solid #E8E8E8;
+            border-bottom: 0;
+            height: 231px;
             margin: 0 0 0 15px;
+            padding-top: 20px;
+            width: auto;
+            @include multi-border-radius(5px, 5px, 0, 0);
 
-            div.carbonad {
-                border-width: 1px;
-                border-bottom: 0;
-                height: 231px;
-                width: auto;
-                @include multi-border-radius(5px, 5px, 0, 0);
+            a#bsap_aplink {
+                color: #999999;
+                margin-left: 21px;
 
-                div#azcarbon {
-                    span.carbonad-image {
-                        a {
-                            img {
-                                margin-left: 21px;
-                                margin-top: 21px;
-                            }
-                        }
-                    }
-                    span.carbonad-text {
-                        color: #999999;
-                        margin-left: 21px;
-
-                        a {
-                            color: #999999;
-                        }
-                    }
-                    span.carbonad-tag {
-                        margin-left: 0;
-                        text-align: center;
-                        width: 100%;
-
-                        a {
-                            margin-left: 3px;
-                        }
-                    }
+                a {
+                    color: #999999;
                 }
             }
         }
@@ -1442,7 +1422,7 @@ div.modal {
 div#disqus_thread {
     margin-bottom: 0;
     margin-left: 15px;
-    width: 825px;
+    width: 719px;
 
     #dsq-content {
         margin-top: -44px;
@@ -1669,21 +1649,11 @@ body.blog {
     }
 }
 body.detail {
-    div.right-y {
-        display: none;
-    }
     section.main {
         div.inner {
-            width: 100%;
-
             section.snipts {
                 article.snipt {
-                    margin-bottom: 0;
-                    margin-top: 15px;
-
                     div.container {
-                        width: 839px;
-
                         header {
                             h1 {
                                 a {
@@ -1693,14 +1663,6 @@ body.detail {
                         }
                         section.code {
                             height: auto;
-
-                            td.code {
-                                div.highlight {
-                                    pre {
-                                        width: 810px;
-                                    }
-                                }
-                            }
                         }
                         &.full-screened {
                             &:after {
@@ -1708,35 +1670,8 @@ body.detail {
                             }
                         }
                     }
-                    aside {
-                        margin-right: 0;
-                    }
-                    footer {
-                        ul.attrs {
-                            li.raw {
-                                margin-right: 100px;
-                            }
-                        }
-                    }
                 }
             }
-        }
-    }
-    div.rochester-made {
-        width: 840px;
-    }
-    div.site-notice, a.go-pro {
-        margin-right: 100px;
-    }
-    div.showroom-container {
-        background: transparent url('http://showroom.is/static/img/background.jpg') top left repeat;
-        border: 1px solid #DDDDDD;
-        border-left: 0;
-        margin: 30px 0;
-
-        a.go-pro {
-            border: 0;
-            margin: 0 auto;
         }
     }
 }
@@ -2726,3 +2661,12 @@ body.jobs {
       }
     }
 }
+
+body .one .bsa_it_ad { background: transparent; border: none; font-family: inherit; padding: 0 15px 0 10px; margin: 0; text-align: center; }
+body .one .bsa_it_ad:hover img { -moz-box-shadow: 0 0 3px #000; -webkit-box-shadow: 0 0 3px #000; box-shadow: 0 0 3px #000; }
+body .one .bsa_it_ad .bsa_it_i { display: block; padding: 0; float: none; margin: 0 0 5px; }
+body .one .bsa_it_ad .bsa_it_i img { padding: 0; border: none; }
+body .one .bsa_it_ad .bsa_it_t { padding: 6px 0; }
+body .one .bsa_it_ad .bsa_it_d { padding: 0; font-size: 12px; color: #333; }
+body .one .bsa_it_p { display: none; }
+body #bsap_aplink, body #bsap_aplink:hover { display: block; font-size: 10px; margin: 12px 15px 0; text-align: center; }
