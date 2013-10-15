@@ -494,24 +494,47 @@ section.main {
                 }
             }
         }
-        section.ad {
-            background: white;
-            border: 1px solid #E8E8E8;
+        div.carbonad {
+            border-width: 1px;
             border-bottom: 0;
             height: 231px;
-            margin: 0 0 0 15px;
-            padding-top: 20px;
             width: auto;
             @include multi-border-radius(5px, 5px, 0, 0);
 
-            a#bsap_aplink {
-                color: #999999;
-                margin-left: 21px;
-
-                a {
+            div#azcarbon {
+                span.carbonad-image {
+                    a {
+                        img {
+                            margin-left: 21px;
+                            margin-top: 21px;
+                        }
+                    }
+                }
+                span.carbonad-text {
                     color: #999999;
+                    margin-left: 21px;
+
+                    a {
+                        color: #999999;
+                    }
+                }
+                span.carbonad-tag {
+                    margin-left: 0;
+                    text-align: center;
+                    width: 100%;
+
+                    a {
+                        margin-left: 3px;
+                    }
                 }
             }
+        }
+        section.ad {
+            border-bottom: 0;
+            height: 231px;
+            margin: 0 0 0 15px;
+            width: auto;
+            @include multi-border-radius(5px, 5px, 0, 0);
         }
         div.go-pro {
             background: #FBFBFB;
