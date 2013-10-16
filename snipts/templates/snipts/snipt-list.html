@@ -143,16 +143,14 @@
                         </ul>
                     </section>
                 {% endif %}
-                {% if snipt.user == request.user %}
-                    <section class="meta stats">
-                        <ul>
-                            <li>{{ snipt.views|intcomma }} view{{ snipt.views|pluralize }}
-                            {% if not snipt.blog_post %}
-                                <li>{{ snipt.favs|intcomma }} fav{{ snipt.favs|pluralize }}
-                            {% endif %}
-                        </ul>
-                    </section>
-                {% endif %}
+                <section class="meta stats">
+                    <ul>
+                        <li>{{ snipt.views|intcomma }} view{{ snipt.views|pluralize }}
+                        {% if not snipt.blog_post %}
+                            <li>{{ snipt.favs|intcomma }} fav{{ snipt.favs|pluralize }}
+                        {% endif %}
+                    </ul>
+            </section>
             </aside>
         {% endblock %}
     </div>
