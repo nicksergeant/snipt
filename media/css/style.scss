@@ -1406,6 +1406,14 @@ article.private-snipt {
             }
         }
     }
+    &.compact {
+      div.container {
+        header {
+          @include vertical-gradient-with-image(url('../img/private-icon.png') right -7px no-repeat, #FFF, #FFFAF2);
+          background-size: 24px 29px;
+        }
+      }
+    }
 }
 div.pagination {
     margin: 0 15px 35px 15px;
