@@ -1319,12 +1319,18 @@ article.snipt {
                 @include inset-box-shadow(0, -1px, 0, #E3E9F5);
             }
         }
+        &.compact {
+            div.container {
+                header {
+                    @include inset-box-shadow(none);
+                }
+            }
+        }
     }
     &.blog-post.favorited {
         div.container {
             header {
                 @include vertical-gradient-with-image(url('../img/favorited-icon.png') top right no-repeat, #FFF, #F0F4FC);
-                @include inset-box-shadow(0, -1px, 0, #E3E9F5);
 
                 h1 {
                     a {
