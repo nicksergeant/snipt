@@ -1333,6 +1333,14 @@ article.snipt {
                 }
             }
         }
+        &.compact {
+          div.container {
+              header {
+                  @include vertical-gradient-with-image(url('../img/favorited-icon.png') right -12px no-repeat, #FFF, #F0F4FC);
+                  background-size: 25px 37px;
+              }
+          }
+        }
     }
     &.snipt-expand {
         div.container {
