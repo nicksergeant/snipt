@@ -1337,6 +1337,7 @@ article.snipt {
           div.container {
               header {
                   @include vertical-gradient-with-image(url('../img/favorited-icon.png') right -12px no-repeat, #FFF, #F0F4FC);
+                  @include inset-box-shadow(none);
                   background-size: 25px 37px;
               }
           }
