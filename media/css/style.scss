@@ -2116,6 +2116,16 @@ body.tags {
     }
 }
 body.editing {
+    section.main {
+        div.inner {
+            width: 100%;
+        }
+    }
+}
+body.editing {
+    div.right-y {
+        display: none;
+    }
     header.main, header.sub {
         display: none;
     }
@@ -2147,6 +2157,48 @@ body.editing {
     section.main {
         div.inner {
             section.snipts {
+                article.snipt {
+                    margin-bottom: 0;
+                    margin-top: 15px;
+
+                    div.container {
+                        width: 839px;
+
+                        header {
+                            h1 {
+                                a {
+                                    white-space: normal;
+                                }
+                            }
+                        }
+                        section.code {
+                            height: auto;
+
+                            td.code {
+                                div.highlight {
+                                    pre {
+                                        width: 810px;
+                                    }
+                                }
+                            }
+                        }
+                        &.full-screened {
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                    aside {
+                        margin-right: 0;
+                    }
+                    footer {
+                        ul.attrs {
+                            li.raw {
+                                margin-right: 100px;
+                            }
+                        }
+                    }
+                }
                 article.editing {
                     margin-top: 50px;
 
@@ -2293,6 +2345,23 @@ body.editing {
                     }
                 }
             }
+        }
+    }
+    div.rochester-made {
+        width: 840px;
+    }
+    div.site-notice, a.go-pro {
+        margin-right: 100px;
+    }
+    div.showroom-container {
+        background: transparent url('http://showroom.is/static/img/background.jpg') top left repeat;
+        border: 1px solid #DDDDDD;
+        border-left: 0;
+        margin: 30px 0;
+
+        a.go-pro {
+            border: 0;
+            margin: 0 auto;
         }
     }
 }
