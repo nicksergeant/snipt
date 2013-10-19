@@ -11,7 +11,7 @@
 
 {% block content %}
     <section class="snipts" id="snipts">
-        {% autopaginate snipts 10 %}
+        {% autopaginate snipts 20 %}
         {% for snipt in snipts %}
             {% include "blogs/themes/default/snipt-list.html" %}
         {% empty %}

@@ -13,7 +13,7 @@
 
 {% block content %}
     <section class="snipts" id="snipts" ng-controller="SniptListController">
-        {% autopaginate snipts 10 %}
+        {% autopaginate snipts 20 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}
         {% empty %}
