@@ -2205,6 +2205,9 @@ body.editing {
                 article.editing {
                     margin-top: 50px;
 
+                    &:first-of-type {
+                      margin-top: 50px;
+                    }
                     div.container {
                         width: 696px;
 
