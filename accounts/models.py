@@ -4,6 +4,11 @@ from snipts.models import Snipt
 
 class UserProfile(models.Model):
 
+    LIST_VIEW_CHOICES = (
+        ('N', 'Normal'),
+        ('C', 'Compact'),
+    )
+
     EDITOR_CHOICES = (
         ('C', 'CodeMirror'),
         ('T', 'Textarea'),
@@ -39,6 +44,7 @@ class UserProfile(models.Model):
     is_pro          = models.BooleanField(default=False)
     stripe_id       = models.CharField(max_length=100, null=True, blank=True)
     has_gravatar    = models.BooleanField(default=False)
+    list_view       = models.CharField(max_length=1, null=False, blank=False,default='N', choices=LIST_VIEW_CHOICES)
 
     # Blog
     blog_title      = models.CharField(max_length=250, null=True, blank=True)

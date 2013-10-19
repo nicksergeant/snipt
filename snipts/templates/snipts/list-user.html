@@ -13,10 +13,10 @@
     </li>
     {% if snipts %}
         <li class="compact">
-            <a ng-click="compactView=true" href>Compact</a>
+            <a ng-click="$root.account.list_view = 'C'" href>Compact</a>
         </li>
         <li class="normal">
-            <a ng-click="compactView=false" href>Normal</a>
+            <a ng-click="$root.account.list_view = 'N'" href>Normal</a>
         </li>
     {% endif %}
 {% endblock %}
