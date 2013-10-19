@@ -1369,6 +1369,9 @@ article.snipt {
                 }
             }
         }
+        &:first-of-type {
+            margin-top: 30px;
+        }
         &:last-of-type {
             margin-bottom: 50px;
 
