@@ -6,9 +6,6 @@
 
 {% block content %}
     <form class="form-horizontal static-box" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-        <div class="alert alert-info">
-            <strong>Notice:</strong> OpenID is no longer supported. You can <a href="{% url 'auth_password_reset' %}">reset your password here</a>.
-        </div>
         {% if request.GET.activationcomplete %}
             <div class="alert alert-success">
                 Successfully confirmed email! Log in below.
