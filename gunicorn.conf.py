@@ -1,3 +1,12 @@
+import os
+import sys
+
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
+
+import monitor
+import settings
+
+
 bind = "unix:/tmp/gunicorn.snipt.sock"
 daemon = False                   # Whether work in the background
 debug = False                    # Some extra logging
@@ -14,8 +23,6 @@ tmp_upload_dir = None            # Set path used to store temporary uploads
 
 def post_fork(server, worker):
     server.log.info("Worker spawned (pid: %s)" % worker.pid)
-    
-    import settings, monitor
     if settings.DEBUG:
         server.log.info("Starting change monitor.")
         monitor.start(interval=1.0)
