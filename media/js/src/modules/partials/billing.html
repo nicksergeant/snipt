@@ -1,23 +1,31 @@
-<div class="def" data-title="Plan">
-    {[{ user.stripeAccount.name || 'Loading...' }]}
+<div ng-show="!user.is_pro">
+    <p class="alert alert-info">
+        You're not a Pro yet, so we have nothing to show you here.<br />
+        <br /><a href="/pro/">Signup for Pro &raquo;</a>
+    </p>
 </div>
-<div class="def" data-title="Price">
-    <span ng-show="user.stripeAccount">${[{ user.stripeAccount.amount / 100 }]}.00 USD / {[{ user.stripeAccount.interval }]}</span>
-    <span ng-show="!user.stripeAccount">Loading...</span>
+<div ng-show="user.is_pro">
+    <div class="def" data-title="Plan">
+        {[{ user.stripeAccount.name || 'Loading...' }]}
+    </div>
+    <div class="def" data-title="Price">
+        <span ng-show="user.stripeAccount">${[{ user.stripeAccount.amount / 100 }]}.00 USD / {[{ user.stripeAccount.interval }]}</span>
+        <span ng-show="!user.stripeAccount">Loading...</span>
+    </div>
+    <div class="def" data-title="Card">
+        <span ng-show="user.stripeAccount">xxxx-xxxx-xxxx-{[{ user.stripeAccount.last4 || 'Loading...' }]}</span>
+        <span ng-show="!user.stripeAccount">Loading...</span>
+    </div>
+    <div class="def" data-title="Status">
+        {[{ user.stripeAccount.status || 'Loading...' }]}
+    </div>
+    <div class="def" data-title="Pro since">
+        <span ng-show="user.stripeAccount">{[{ user.stripeAccount.created  * 1000 |date:'fullDate' }]}</span>
+        <span ng-show="!user.stripeAccount">Loading...</span>
+    </div>
+    <div class="def" data-title="Next bill date">
+        <span ng-show="user.stripeAccount">{[{ user.stripeAccount.nextBill  * 1000 |date:'fullDate' }]}</span>
+        <span ng-show="!user.stripeAccount">Loading...</span>
+    </div>
+    <p class="alert alert-info">Need to cancel? <a href="mailto:nick@snipt.net">Email Nick</a>.</p>
 </div>
-<div class="def" data-title="Card">
-    <span ng-show="user.stripeAccount">xxxx-xxxx-xxxx-{[{ user.stripeAccount.last4 || 'Loading...' }]}</span>
-    <span ng-show="!user.stripeAccount">Loading...</span>
-</div>
-<div class="def" data-title="Status">
-    {[{ user.stripeAccount.status || 'Loading...' }]}
-</div>
-<div class="def" data-title="Pro since">
-    <span ng-show="user.stripeAccount">{[{ user.stripeAccount.created  * 1000 |date:'fullDate' }]}</span>
-    <span ng-show="!user.stripeAccount">Loading...</span>
-</div>
-<div class="def" data-title="Next bill date">
-    <span ng-show="user.stripeAccount">{[{ user.stripeAccount.nextBill  * 1000 |date:'fullDate' }]}</span>
-    <span ng-show="!user.stripeAccount">Loading...</span>
-</div>
-<p class="alert alert-info">Need to cancel? <a href="mailto:nick@snipt.net">Email Nick</a>.</p>
