@@ -26,7 +26,7 @@
                 <li ng-class="{active: route.current.scope.section == 'Editor'}">
                     <a href="/account/editor/">Editor</a>
                 </li>
-                <li ng-show="user.is_pro" ng-class="{active: route.current.scope.section == 'Billing'}">
+                <li ng-show="user.is_pro && user.stripe_id && user.stripe_id != 'COMP'" ng-class="{active: route.current.scope.section == 'Billing'}">
                     <a href="/account/billing/">Billing</a>
                 </li>
             </ul>

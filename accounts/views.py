@@ -30,6 +30,7 @@ def stripe_account_details(request):
             'interval': customer.subscription.plan.interval,
             'name': customer.subscription.plan.name,
             'status': customer.subscription.status,
+            'nextBill': customer.subscription.current_period_end,
         }
 
 

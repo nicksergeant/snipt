@@ -51,6 +51,15 @@ if (typeof angular !== 'undefined') {
 
         return promise;
       },
+      getStripeAccount: function() {
+
+        var promise = $http({
+          method: 'GET',
+          url: '/account/stripe-account-details/'
+        });
+
+        return promise;
+      },
       saveAccount: function(user, fields) {
 
         var promise = $http({
@@ -137,6 +146,12 @@ if (typeof angular !== 'undefined') {
 
     AccountStorage.getAccount().then(function(response) {
       $scope.user = response.data;
+
+      if ($scope.user.is_pro && $scope.user.stripe_id && $scope.user.stripe_id !== 'COMP') {
+        AccountStorage.getStripeAccount().then(function(response) {
+          $scope.user.stripeAccount = response.data;
+        });
+      }
     });
 
     $scope.saveFields = function(fields) {
