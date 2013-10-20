@@ -43,35 +43,35 @@ if (typeof angular !== 'undefined') {
 
         var promise = $http({
           method: 'GET',
-            url: '/api/private/profile/' + window.user_profile_id + '/',
-            headers: {
-              'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
-            }
+          url: '/api/private/profile/' + window.user_profile_id + '/',
+          headers: {
+            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+          }
         });
 
         return promise;
       },
-    saveAccount: function(user, fields) {
+      saveAccount: function(user, fields) {
 
-      var promise = $http({
-        method: 'PUT',
-      url: '/api/private/profile/' + window.user_profile_id + '/',
-      headers: {
-        'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
-      },
-      data: function() {
-        var userData = {};
+        var promise = $http({
+          method: 'PUT',
+          url: '/api/private/profile/' + window.user_profile_id + '/',
+          headers: {
+            'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
+          },
+          data: function() {
+            var userData = {};
 
-        for (var i = 0; i < fields.length; i++) {
-          userData[fields[i]] = user[fields[i]];
-        }
+            for (var i = 0; i < fields.length; i++) {
+              userData[fields[i]] = user[fields[i]];
+            }
 
-        return userData;
-      }()
-      });
+            return userData;
+          }()
+        });
 
-      return promise;
-    }
+        return promise;
+      }
     };
   });
 
@@ -92,12 +92,12 @@ if (typeof angular !== 'undefined') {
       'google_ad_slot',
       'google_ad_width',
       'google_ad_height'
-        ];
+    ];
     $scope.section = 'Blogging';
 
     $scope.blogThemeOptions = [
-    { id: 'D', label: 'Default' },
-    { id: 'A', label: 'Pro Adams' }
+      { id: 'D', label: 'Default' },
+      { id: 'A', label: 'Pro Adams' }
     ];
 
   };
@@ -106,27 +106,27 @@ if (typeof angular !== 'undefined') {
     $scope.section = 'Editor';
 
     $scope.editorOptions = [
-    { id: 'C', label: 'CodeMirror' },
-    { id: 'T', label: 'Textarea' }
+      { id: 'C', label: 'CodeMirror' },
+      { id: 'T', label: 'Textarea' }
     ];
     $scope.editorThemeOptions = [
-    { id: 'default', label: 'Default' },
-    { id: 'ambiance', label: 'Ambiance' },
-    { id: 'blackboard', label: 'Blackboard' },
-    { id: 'cobalt', label: 'Cobalt' },
-    { id: 'eclipse', label: 'Eclipse' },
-    { id: 'elegant', label: 'Elegant' },
-    { id: 'erlang-dark', label: 'Erlang Dark' },
-    { id: 'lesser-dark', label: 'Lesser Dark' },
-    { id: 'monokai', label: 'Monokai' },
-    { id: 'neat', label: 'Neat' },
-    { id: 'night', label: 'Night' },
-    { id: 'rubyblue', label: 'Ruby Blue' },
-    { id: 'solarized dark', label: 'Solarized Dark' },
-    { id: 'solarized light', label: 'Solarized Light' },
-    { id: 'twilight', label: 'Twilight' },
-    { id: 'vibrant-ink', label: 'Vibrant Ink' },
-    { id: 'xq-dark', label: 'XQ Dark' }
+      { id: 'default', label: 'Default' },
+      { id: 'ambiance', label: 'Ambiance' },
+      { id: 'blackboard', label: 'Blackboard' },
+      { id: 'cobalt', label: 'Cobalt' },
+      { id: 'eclipse', label: 'Eclipse' },
+      { id: 'elegant', label: 'Elegant' },
+      { id: 'erlang-dark', label: 'Erlang Dark' },
+      { id: 'lesser-dark', label: 'Lesser Dark' },
+      { id: 'monokai', label: 'Monokai' },
+      { id: 'neat', label: 'Neat' },
+      { id: 'night', label: 'Night' },
+      { id: 'rubyblue', label: 'Ruby Blue' },
+      { id: 'solarized dark', label: 'Solarized Dark' },
+      { id: 'solarized light', label: 'Solarized Light' },
+      { id: 'twilight', label: 'Twilight' },
+      { id: 'vibrant-ink', label: 'Vibrant Ink' },
+      { id: 'xq-dark', label: 'XQ Dark' }
     ];
 
   };
