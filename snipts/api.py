@@ -264,7 +264,7 @@ class PrivateUserProfileResource(ModelResource):
     class Meta:
         queryset = UserProfile.objects.all()
         resource_name = 'profile'
-        excludes = ['is_pro', 'stripe_id']
+        excludes = ['is_pro']
         validation = UserProfileValidation()
         include_absolute_url = False
         allowed_methods = ['get', 'put']
