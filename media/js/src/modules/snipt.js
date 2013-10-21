@@ -86,7 +86,7 @@
         },
         edit: function(adding) {
 
-            if (!adding) {
+            if (adding !== true) {
               window.mixpanel.track('Editing snipt');
             }
 
