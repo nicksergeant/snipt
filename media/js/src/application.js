@@ -64,5 +64,6 @@ jQuery(function($) {
 
     root.mixpanel.track_links('#hate-ads', '"Hate ads" link clicked');
     root.mixpanel.track_links('#post-job', '"Post a job" link clicked');
+    root.mixpanel.track_links('a.download', 'Downloading snipt');
 
 }).call(this);

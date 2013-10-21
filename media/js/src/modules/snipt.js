@@ -318,6 +318,7 @@
                     success: function() {
                         that.$el.removeClass('favorited');
                         that.$favorite.text('Favorite');
+                        window.mixpanel.track('Unfavorited snipt');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -332,6 +333,7 @@
                         that.$el.addClass('favorited');
                         that.model.set({'favorite_id': resp.id}, {'silent': true});
                         that.$favorite.text('Favorited');
+                        window.mixpanel.track('Favorited snipt');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
