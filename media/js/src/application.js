@@ -43,6 +43,7 @@ jQuery(function($) {
       root.mixpanel.identify(root.user_id);
       root.mixpanel.alias(root.user);
       root.mixpanel.people.set({
+        $name: root.user,
         $username: root.user,
         $email: root.user_email,
         $ip: root.user_ip
