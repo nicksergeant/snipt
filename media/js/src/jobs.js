@@ -17,13 +17,16 @@
     });
 
     // Controllers.
-    controllers.JobSearchController = function($http, $scope, filterFilter) {
+    controllers.JobSearchController = function($http, $scope, filterFilter, $timeout) {
       $scope.currentPage = 0;
       $scope.pageSize = 10;
 
       $http.get('/jobs-json/').then(function(response) {
         $scope.jobs = response.data;
         $scope.filterJobs();
+        $timeout(function() {
+          window.mixpanel.track_links('.job-link', 'Job link clicked');
+        });
       });
 
       $scope.filterJobs = function() {

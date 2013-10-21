@@ -54,6 +54,9 @@
         },
 
         copy: function() {
+
+            window.mixpanel.track('Copying snipt');
+
             $('textarea', this.$copyModal).remove();
 
             window.ui_halted = true;
@@ -82,6 +85,8 @@
             this.model.destroy();
         },
         edit: function() {
+
+            window.mixpanel.track('Editing snipt');
 
             window.editing = true;
             window.ui_halted = true;
@@ -253,6 +258,9 @@
             return false;
         },
         embed: function() {
+
+            window.mixpanel.track('Embedding snipt');
+
             $('textarea', this.$embedModal).remove();
 
             window.ui_halted = true;
@@ -644,6 +652,8 @@
             });
         },
         addNewSnipt: function() {
+
+            window.mixpanel.track('Adding snipt');
 
             var $articleNewSnipt = $('article#new-snipt');
 

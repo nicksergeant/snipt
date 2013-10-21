@@ -37,7 +37,7 @@
         <section class="jobs">
             <ul>
                 <li ng-repeat="job in filteredJobs|startFrom:currentPage * pageSize|limitTo:pageSize">
-                    <a href="{[{ job.url }]}?aff=dbe7e" class="group">
+                    <a href="{[{ job.url }]}?aff=dbe7e" class="group job-link">
                         <img ng-show="job.company.logo" ng-src="{[{ job.company.logo }]}" />
                         <span class="left">
                             <span class="job">{[{ job.title }]}</span>
@@ -59,15 +59,12 @@
     </div>
 {% endblock %}
 
+{% block ad %}{% endblock %}
 {% block aside-top %}
-    <div class="job-twitter">
-        <a href="https://twitter.com/sniptjobs" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @sniptjobs</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    </div>
     <div class="post-job">
-        <a href="http://www.authenticjobs.com/post/?aff=dbe7e" class="btn btn-large btn-success">Post a job</a>
+        <a id="post-job" href="http://www.authenticjobs.com/post/?aff=dbe7e" class="btn btn-large btn-success">Post a job</a>
         <p>
-            We use <a href="http://www.authenticjobs.com?aff=dbe7e">Authentic Jobs</a> for our job board provider. Once you post your ad, it will appear on Snipt within 30 minutes.
+            We use <a class="job-link" href="http://www.authenticjobs.com?aff=dbe7e">Authentic Jobs</a> for our job board provider. Once you post your ad, it will appear on Snipt within 30 minutes.
         </p>
     </div>
 {% endblock %}

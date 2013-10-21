@@ -1,3 +1,5 @@
+'use strict';
+
 var snipt = {
     module: function() {
         var modules = {};
@@ -36,5 +38,31 @@ jQuery(function($) {
     });
 
     root.app = app;
+
+    if (root.user_id) {
+      root.mixpanel.identify(root.user_id);
+      root.mixpanel.alias(root.user);
+      root.mixpanel.people.set({
+        $username: root.user,
+        $email: root.user_email,
+        $ip: root.user_ip
+      });
+    }
+
+    if (root.location.pathname === '/account/stats/') {
+      root.mixpanel.track('Viewing stats page');
+    }
+    if (root.location.pathname === '/pro/') {
+      root.mixpanel.track('Viewing Pro page');
+    }
+    if (root.location.pathname === '/pro/signup/') {
+      root.mixpanel.track('Viewing Pro signup page');
+    }
+    if (root.location.pathname === '/jobs/') {
+      root.mixpanel.track('Viewing jobs page');
+    }
+
+    root.mixpanel.track_links('#hate-ads', '"Hate ads" link clicked');
+    root.mixpanel.track_links('#post-job', '"Post a job" link clicked');
 
 }).call(this);
