@@ -84,9 +84,11 @@
         destroy: function() {
             this.model.destroy();
         },
-        edit: function() {
+        edit: function(adding) {
 
-            window.mixpanel.track('Editing snipt');
+            if (!adding) {
+              window.mixpanel.track('Editing snipt');
+            }
 
             window.editing = true;
             window.ui_halted = true;
@@ -685,7 +687,7 @@
                     model: new Snipt.SniptModel(data)
                 });
 
-                newSniptView.edit();
+                newSniptView.edit(true);
             } else {
                 $articleNewSnipt.trigger('edit');
             }
