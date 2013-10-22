@@ -146,9 +146,7 @@
                 <section class="meta stats">
                     <ul>
                         <li>{{ snipt.views|intcomma }} view{{ snipt.views|pluralize }}</li>
-                        {% if not snipt.blog_post %}
-                            <li>{{ snipt.favs|intcomma }} fav{{ snipt.favs|pluralize }}</li>
-                        {% endif %}
+                        <li>{{ snipt.favs|intcomma }} fav{{ snipt.favs|pluralize }}</li>
                     </ul>
             </section>
             </aside>
