@@ -22,16 +22,23 @@ def stripe_account_details(request):
     else:
         stripe.api_key = STRIPE_SECRET_KEY
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
-        return {
+
+        data = {
             'last4': customer.active_card.last4,
             'created': customer.created,
             'email': customer.email,
-            'amount': customer.subscription.plan.amount,
-            'interval': customer.subscription.plan.interval,
-            'name': customer.subscription.plan.name,
-            'status': customer.subscription.status,
-            'nextBill': customer.subscription.current_period_end,
         }
+
+        if customer.subscription:
+            data['amount'] = customer.subscription.plan.amount
+            data['interval'] = customer.subscription.plan.interval
+            data['name'] = customer.subscription.plan.name
+            data['status'] = customer.subscription.status
+            data['nextBill'] = customer.subscription.current_period_end
+        else:
+            data['status'] = 'inactive'
+
+        return data
 
 
 @login_required
