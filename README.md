@@ -18,5 +18,6 @@ If you need help, visit `#snipt` on irc.freenode.net.
 6. `python manage.py syncdb`
 7. `python manage.py migrate`
 8. `python manage.py runserver`
+9. If you created a superuser in the syncdb step, you need to also run `python manage.py backfill_api_keys` to generate an API key for that user.
 
 Any problems / questions / bugs, [create an issue](https://github.com/nicksergeant/snipt/issues). Thanks! :)
