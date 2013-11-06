@@ -17,6 +17,7 @@ parsedatetime
 psycopg2
 pyelasticsearch==0.3
 python-memcached
+python-mimeparse
 python-postmark
 pyyaml
 raven
