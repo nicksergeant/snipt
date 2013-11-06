@@ -4,10 +4,10 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import admin
-from snipts.api import (PublicSniptResource, PublicTagResource,
+from snipts.api import (PublicSniptResource,
                         PublicUserResource, PrivateSniptResource,
                         PrivateFavoriteResource, PrivateUserProfileResource,
-                        PrivateTagResource, PrivateUserResource)
+                        PrivateUserResource)
 from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
@@ -23,12 +23,12 @@ admin.autodiscover()
 
 public_api = Api(api_name='public')
 public_api.register(PublicSniptResource())
-public_api.register(PublicTagResource())
+# public_api.register(PublicTagResource())
 public_api.register(PublicUserResource())
 
 private_api = Api(api_name='private')
 private_api.register(PrivateSniptResource())
-private_api.register(PrivateTagResource())
+# private_api.register(PrivateTagResource())
 private_api.register(PrivateUserResource())
 private_api.register(PrivateFavoriteResource())
 private_api.register(PrivateUserProfileResource())

@@ -190,38 +190,38 @@ class PublicUserResource(ModelResource):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
         return bundle
 
-class PublicTagResource(ModelResource):
-    class Meta:
-        queryset = Tag.objects.filter(snipt__public=True)
-        queryset = queryset.annotate(count=models.Count('taggit_taggeditem_items__id'))
-        queryset = queryset.order_by('-count', 'name')
-        resource_name = 'tag'
-        fields = ['id', 'name',]
-        allowed_methods = ['get']
-        max_limit = 200
-        cache = SimpleCache()
+# class PublicTagResource(ModelResource):
+#     class Meta:
+#         queryset = Tag.objects.filter(snipt__public=True)
+#         queryset = queryset.annotate(count=models.Count('taggit_taggeditem_items__id'))
+#         queryset = queryset.order_by('-count', 'name')
+#         resource_name = 'tag'
+#         fields = ['id', 'name',]
+#         allowed_methods = ['get']
+#         max_limit = 200
+#         cache = SimpleCache()
 
-    def build_filters(self, filters=None):
-        if filters is None:
-            filters = {}
+#     def build_filters(self, filters=None):
+#         if filters is None:
+#             filters = {}
 
-        orm_filters = super(PublicTagResource, self).build_filters(filters)
+#         orm_filters = super(PublicTagResource, self).build_filters(filters)
 
-        if 'q' in filters:
-            orm_filters['slug'] = filters['q']
+#         if 'q' in filters:
+#             orm_filters['slug'] = filters['q']
 
-        return orm_filters
+#         return orm_filters
 
-    def dehydrate(self, bundle):
-        bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
-        bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
-        bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
-                               snipt__public=True).count()
-        return bundle
+#     def dehydrate(self, bundle):
+#         bundle.data['absolute_url'] = '/public/tag/%s/' % bundle.obj.slug
+#         bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
+#         bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
+#                                snipt__public=True).count()
+#         return bundle
 
 class PublicSniptResource(ModelResource):
     user = fields.ForeignKey(PublicUserResource, 'user', full=True)
-    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag', full=True)
+    # tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag', full=True)
 
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
@@ -305,43 +305,43 @@ class PrivateUserResource(ModelResource):
             Snipt.objects.filter(user=bundle.obj).values('lexer').distinct()]
         return bundle
 
-class PrivateTagResource(ModelResource):
-    class Meta:
-        queryset = Tag.objects.all()
-        resource_name = 'tag'
-        fields = ['id', 'name',]
-        allowed_methods = ['get']
-        authentication = ApiKeyAuthentication()
-        authorization = PrivateTagAuthorization()
-        always_return_data = True
-        max_limit = 200
-        cache = SimpleCache()
+# class PrivateTagResource(ModelResource):
+#     class Meta:
+#         queryset = Tag.objects.all()
+#         resource_name = 'tag'
+#         fields = ['id', 'name',]
+#         allowed_methods = ['get']
+#         authentication = ApiKeyAuthentication()
+#         authorization = PrivateTagAuthorization()
+#         always_return_data = True
+#         max_limit = 200
+#         cache = SimpleCache()
 
-    def build_filters(self, filters=None):
-        if filters is None:
-            filters = {}
+#     def build_filters(self, filters=None):
+#         if filters is None:
+#             filters = {}
 
-        orm_filters = super(PrivateTagResource, self).build_filters(filters)
+#         orm_filters = super(PrivateTagResource, self).build_filters(filters)
 
-        if 'q' in filters:
-            orm_filters['slug'] = filters['q']
+#         if 'q' in filters:
+#             orm_filters['slug'] = filters['q']
 
-        return orm_filters
+#         return orm_filters
 
-    def dehydrate(self, bundle):
-        bundle.data['absolute_url'] = '/%s/tag/%s/' % (bundle.request.user.username,
-                                                       bundle.obj.slug)
-        bundle.data['snipts'] = '/api/private/snipt/?tag=%d' % bundle.obj.id
+#     def dehydrate(self, bundle):
+#         bundle.data['absolute_url'] = '/%s/tag/%s/' % (bundle.request.user.username,
+#                                                        bundle.obj.slug)
+#         bundle.data['snipts'] = '/api/private/snipt/?tag=%d' % bundle.obj.id
 
-        bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
-                                       snipt__user=bundle.request.user
-                                   ).count()
+#         bundle.data['count'] = bundle.obj.taggit_taggeditem_items.filter(
+#                                        snipt__user=bundle.request.user
+#                                    ).count()
 
-        return bundle
+#         return bundle
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
-    tags = fields.ToManyField(PrivateTagResource, 'tags', related_name='tag', full=True)
+    # tags = fields.ToManyField(PrivateTagResource, 'tags', related_name='tag', full=True)
     tags_list = ListField()
 
     class Meta:
