@@ -5,7 +5,7 @@
 {% block body-class %}list{% endblock %}
 
 {% block content %}
-    {% autopaginate snipts 20 %}
+    {% autopaginate snipts 10 %}
     {% for snipt in snipts %}
         {% include "blogs/themes/pro-adams/snipt-list.html" %}
     {% endfor %}

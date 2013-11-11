@@ -16,7 +16,7 @@
         {% if request.user.profile.list_view == 'C' %}
             ng-cloak ng-show="$root.account.id"
         {% endif %}>
-        {% autopaginate snipts 20 %}
+        {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}
         {% empty %}
