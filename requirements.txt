@@ -26,7 +26,7 @@ simplejson
 South
 Werkzeug
 
-hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
+hg+https://bitbucket.org/kubaz93/django-registration@django1.6#egg=django-registration
 hg+https://bitbucket.org/birkenfeld/pygments-main#egg=Pygments
 
 git+git://github.com/toastdriven/django-haystack.git#egg=django-haystack
