@@ -218,7 +218,7 @@
                 <aside class="main">
                     {% block ad %}
                         {% if not request.user.profile.is_pro %}
-                            {% include 'ad.html' %}
+                            {% include 'ad-sidebar.html' %}
                         {% endif %}
                     {% endblock %}
                     {% block aside-top %}{% endblock %}

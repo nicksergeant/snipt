@@ -17,17 +17,7 @@
             ng-cloak ng-show="$root.account.id"
         {% endif %}>
         {% if not request.user.profile.is_pro %}
-          <div class="google-ads" style="margin-top: 30px;">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- New Snipt Leaderboard -->
-            <ins class="adsbygoogle"
-              style="display:inline-block;width:728px;height:90px"
-              data-ad-client="ca-pub-6776929316186576"
-              data-ad-slot="5792558066"></ins>
-            <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
+            {% include 'ad-leaderboard.html' %}
         {% endif %}
         {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
