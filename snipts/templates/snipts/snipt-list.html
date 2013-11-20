@@ -36,11 +36,7 @@
             <section ng-show="!account || account.list_view == 'N'" class="code {% if request.GET.style %}{{ request.GET.style }}{% else %}autumn{% endif %}">
                 {% if snipt.lexer == 'markdown' %}
                     <div class="markdown">
-                        {% if snipt.line_count > 300 and not detail %}
-                            {{ snipt.get_stylized_min|safe }}
-                        {% else %}
-                            {{ snipt.stylized|safe }}
-                        {% endif %}
+                        {{ snipt.stylized|safe }}
                     </div>
                 {% else %}
                     {% if 'linenos' not in snipt.stylized %}
@@ -61,11 +57,7 @@
                             </tbody>
                         </table>
                     {% else %}
-                        {% if snipt.line_count > 300 and not detail %}
-                            {{ snipt.get_stylized_min|safe }}
-                        {% else %}
-                            {{ snipt.stylized|safe }}
-                        {% endif %}
+                        {{ snipt.stylized|safe }}
                     {% endif %}
                 {% endif %}
                 {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
