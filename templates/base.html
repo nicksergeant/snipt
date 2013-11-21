@@ -466,6 +466,9 @@
                             'profile link': 'https://snipt.net/{{ request.user.username }}/',
                             'is pro': window.user_is_pro,
                             'blog domain': '{{ request.user.profile.blog_domain }}'
+                        },
+                        widget: {
+                            activator: '#IntercomDefaultWidget'
                         }
                     };
                 </script>
