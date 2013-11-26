@@ -240,6 +240,9 @@
                                 <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
                             </li>
                             <li class="blog">
+                                <a href="/apps/" {% if '/apps/' in request.path %}class="active"{% endif %}><span>Snipt Apps</span></a>
+                            </li>
+                            <li class="blog">
                                 <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging on Snipt</span></a>
                             </li>
                             <li class="roadmap">
