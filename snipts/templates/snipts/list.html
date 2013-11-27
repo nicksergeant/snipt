@@ -28,6 +28,19 @@
             </div>
         {% endfor %}
         {% paginate %}
+        {% if not request.user.profile.is_pro %}
+          <div class="google-ads" style="margin-top: 30px;">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- New Snipt Leaderboard Bottom -->
+            <ins class="adsbygoogle"
+              style="display:inline-block;width:728px;height:90px"
+              data-ad-client="ca-pub-6776929316186576"
+              data-ad-slot="5960460864"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+        {% endif %}
     </section>
     <script type="text/javascript" id="disqus">
         var disqus_shortname = 'snipt-net';
