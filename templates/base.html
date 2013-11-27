@@ -223,6 +223,18 @@
                     {% endblock %}
                     {% block aside-top %}{% endblock %}
                     {% block aside-inner %}{% endblock %}
+                    {% if not request.user.profile.is_pro %}
+                      <section class="ad wide-sky">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                          style="display:inline-block;width:160px;height:600px"
+                          data-ad-client="ca-pub-6776929316186576"
+                          data-ad-slot="4793282062"></ins>
+                        <script>
+                          (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                      </section>
+                    {% endif %}
                     <nav class="footer">
                         <ul>
                             <li class="api">

@@ -537,6 +537,14 @@ section.main {
             margin: 0 0 0 15px;
             width: auto;
             @include multi-border-radius(5px, 5px, 0, 0);
+            
+            &.wide-sky {
+              border-bottom: 1px solid #E8E8E8;
+              height: auto;
+              margin-bottom: 30px;
+              padding: 4px 0 4px 7px;
+              @include border-radius(5px);
+            }
         }
         div.go-pro {
             background: #FBFBFB;
