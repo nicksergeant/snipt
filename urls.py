@@ -13,7 +13,7 @@ from tastypie.api import Api
 from utils.views import SniptRegistrationView
 from jobs.views import jobs, jobs_json
 from views import (homepage, lexers, login_redirect, pro_signup, sitemap, tags,
-                   pro_signup_complete)
+                   pro_signup_complete, user_api_key)
 
 import admin as custom_admin
 import os
@@ -58,6 +58,7 @@ urlpatterns = patterns('',
 
     url(r'^api/public/lexer/$', lexers),
 
+    url(r'^api/private/key/$', user_api_key),
     url(r'^api/', include(public_api.urls)),
     url(r'^api/', include(private_api.urls)),
 

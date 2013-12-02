@@ -1,4 +1,5 @@
 from accounts.models import UserProfile
+from annoying.decorators import ajax_request
 from blogs.views import blog_list
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
@@ -16,6 +17,15 @@ import stripe
 
 from settings_local import STRIPE_SECRET_KEY
 
+@ajax_request
+def user_api_key(request):
+
+  if not request.user.is_authenticated():
+    return HttpResponseBadRequest()
+
+  return {
+      'api_key': request.user.api_key.key
+  }
 
 @render_to('homepage.html')
 def homepage(request):
