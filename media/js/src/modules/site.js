@@ -213,7 +213,7 @@
                     }
                 }
             });
-            $document.bind('keydown', 'h', function(e) {
+            $document.bind('keydown', 'Ctrl+h', function(e) {
                 if (!window.ui_halted) {
                     window.ui_halted = true;
                     $body.trigger('showKeyboardShortcuts');
@@ -221,26 +221,6 @@
                     if (that.$keyboard_shortcuts.is(':visible')) {
                         that.$keyboard_shortcuts.modal('hide');
                     }
-                }
-            });
-            $document.bind('keydown', 't', function(e) {
-                if (!window.ui_halted) {
-                    window.open('', '_blank');
-                }
-            });
-            $document.bind('keydown', 'r', function(e) {
-                if (!window.ui_halted) {
-                    location.reload(true);
-                }
-            });
-            $document.bind('keydown', 'Ctrl+h', function(e) {
-                if (!window.ui_halted) {
-                    history.go(-1);
-                }
-            });
-            $document.bind('keydown', 'Ctrl+l', function(e) {
-                if (!window.ui_halted) {
-                    history.go(1);
                 }
             });
             this.$search_queries.bind('keydown', 'esc', function(e) {
