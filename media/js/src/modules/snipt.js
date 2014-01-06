@@ -306,6 +306,10 @@
             if (val === 'html') { return 'htmlmixed'; }
             if (val === 'js') return 'javascript';
             if (val === 'rb') return 'ruby';
+            if (val === 'java') return 'clike';
+            if (val === 'c') return 'clike';
+            if (val === 'cpp') return 'clike';
+            if (val === 'csharp') return 'clike';
             return val;
         },
         favoriteToggle: function() {
