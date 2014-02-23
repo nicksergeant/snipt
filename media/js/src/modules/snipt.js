@@ -555,7 +555,9 @@
             });
             window.editor.setOption('extraKeys', {
                 'Cmd-Enter': function(cm) {
-                    setFullScreen(cm, !isFullScreen(cm));
+                    that.save();
+                    window.site.snipt_list.escapeUI();
+                    return false;
                 },
                 'F11': function(cm) {
                     setFullScreen(cm, !isFullScreen(cm));
