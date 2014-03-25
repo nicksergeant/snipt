@@ -1,27 +1,13 @@
 <div class="exclusive-ad">
-  <h3>Communicate personally with every single customer.</h3>
-  <p>
-    Try <a href="https://www.intercom.io/" title="Intercom">Intercom</a>.
-  </p>
-  <a class="logo" href="https://www.intercom.io/" title="Sifter: Simple issue tracking for big projects and small teams.">
-    <img src="{{ STATIC_URL }}img/intercom.png" alt="Sifter: Simple issue tracking for big projects and small teams." />
-  </a>
-</div>
-<section class="ad">
-    <div id="carbonads-container">
-        <div class="carbonad">
-            <div id="azcarbon"></div>
-            <script type="text/javascript">
-                var z = document.createElement("script");
-                z.type = "text/javascript";
-                z.async = true;
-                z.src = "https://engine.carbonads.com/z/52572/azcarbon_2_1_0_VERT";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(z, s);
-            </script>
-        </div>
+  <div ng-cloak>
+    <div ng-repeat="ad in ads" ng-show="randomAd == ad">
+      <h3>{[{ ad.title }]}</h3>
+      <p>
+        <a href="{[{ ad.url }]}" title="{[{ ad.company }]}">{[{ ad.company }]} &raquo;</a>
+      </p>
+      <a class="logo" href="{[{ ad.url }]}" title="{[{ ad.title }]}">
+        <img ng-src="{[{ ad.image }]}" alt="{[{ ad.title }]}" />
+      </a>
     </div>
-</section>
-<div class="go-pro">
-    <a href="/pro/" id="hate-ads" class="btn btn-success">Hate ads? Go Pro &raquo;</a>
+  </div>
 </div>
