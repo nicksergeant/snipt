@@ -47,8 +47,6 @@ urlpatterns = patterns('',
     url(r'^humans.txt$', TemplateView.as_view(template_name='humans.txt')),
     url(r'^sitemap.xml$', sitemap),
     url(r'^tags/$', tags),
-    url(r'^jobs/$', jobs),
-    url(r'^jobs-json/$', jobs_json),
 
     url(r'^pro/$', TemplateView.as_view(template_name='pro.html')),
     url(r'^pro/signup/$', pro_signup),

@@ -4,492 +4,480 @@
 <html lang="en" class="{% block html-class %}{% endblock %}" ng-app="Snipt">
 <head>
 
-    <title>{% block page-title %}Snipt{% endblock %}</title>
+  <title>{% block page-title %}Snipt{% endblock %}</title>
 
-    <meta charset="utf-8" />
-    <meta name="google-site-verification" content="BantFMmY6nSP8wFvb_SDKwYZo08HglaCpNMXQqTyOuk" />
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="BantFMmY6nSP8wFvb_SDKwYZo08HglaCpNMXQqTyOuk" />
 
-    {% block page-description %}
-        <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
-    {% endblock %}
+  {% block page-description %}
+    <meta name="description" content="Long-term memory for coders. Share and store code snippets." />
+  {% endblock %}
 
-    {% if 'page' in request.GET %}
-        <meta name="robots" content="noindex, follow" />
-    {% endif %}
+  {% if 'page' in request.GET %}
+    <meta name="robots" content="noindex, follow" />
+  {% endif %}
 
-    {% if debug %}
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/ambiance.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/blackboard.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/cobalt.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/eclipse.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/elegant.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/erlang-dark.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/lesser-dark.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/monokai.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/neat.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/night.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/rubyblue.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/solarized.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/twilight.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/vibrant-ink.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/xq-dark.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
-    {% else %}
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?107" />
-    {% endif %}
+  {% if debug %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/ambiance.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/blackboard.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/cobalt.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/eclipse.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/elegant.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/erlang-dark.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/lesser-dark.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/monokai.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/neat.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/night.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/rubyblue.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/solarized.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/twilight.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/vibrant-ink.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/codemirror-themes/xq-dark.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
+  {% else %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?107" />
+  {% endif %}
 
-    {% if has_snipts and not detail %}
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
-    {% endif %}
+  {% if has_snipts and not detail %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
+  {% endif %}
 
-    <link rel="author" href="/humans.txt" />
+  <link rel="author" href="/humans.txt" />
 
-    {% block css %}{% endblock %}
+  {% block css %}{% endblock %}
 
-    <!--[if IE]>
-        <style type="text/css">
-            .group {
-                display: block;
-                zoom: 1;
-            }
-        </style>
-    <![endif]-->
+  <!--[if IE]>
+  <style type="text/css">
+    .group {
+      display: block;
+      zoom: 1;
+    }
+  </style>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-        <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 
-    <!-- start Mixpanel -->
-    <script type="text/javascript">
-        (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
-        typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
-        b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
-        mixpanel.init("f755aa7068c055698c49ff0307370fa6");
-    </script>
-    <!-- end Mixpanel -->
+  <!-- start Mixpanel -->
+  <script type="text/javascript">
+    (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+      typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+      b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+    mixpanel.init("f755aa7068c055698c49ff0307370fa6");
+  </script>
+  <!-- end Mixpanel -->
 </head>
 <body class="{% block body-class %}{% endblock %} {% if request.user.profile.is_pro %}is-pro{% endif %}" ng-controller="AppController">
-    {% block header %}
-        <header class="main">
-            <div class="inner">
-                <div class="shadey"></div>
-                <h1 class="main-logo"><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
-                <form class="search" action="/search/" method="get" ng-controller="HeaderSearchController">
-                    <fieldset>
-                        <div class="fields">
-                            <input ng-model="search.query" type="text" class="search-query" name="q"
-                                   ng-init="search.query='{{ query|escapejs }}'"
-                                   placeholder="Search snipts" id="id_q"
-                                   value="{{ query }}" />
-                        </div>
-                    </fieldset>
-                </form>
-                <nav class="public">
-                    <ul>
-                        {% if not request.user.is_authenticated %}
-                            <li>
-                                <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
-                            </li>
-                            <li>
-                                <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
-                            </li>
-                            <li>
-                                <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
-                            </li>
-                        {% else %}
-                            <li>
-                                <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
-                            </li>
-                            <li>
-                                <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
-                            </li>
-                            <li class="add-snipt">
-                                <button class="btn btn-info btn-large" id="add-snipt">
-                                    Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
-                                    <i class="icon-search icon-plus icon-white"></i>
-                                </button>
-                            </li>
-                        {% endif %}
-                        <li>
-                            <a href="/jobs/" {% if '/jobs/' in request.path %} class="active"{% endif %}>Jobs</a>
-                        </li>
-                    </ul>
-                </nav>
-                {% if request.user.is_authenticated %}
-                    <aside class="nav">
-                        <a href="#" class="mini-profile">
-                            <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ request.user.email|md5 }}?s=35');"></span>
-                            <span class="info">
-                                <span class="username">{{ request.user.username }}</span>
-                                <i class="icon-cog icon-white"></i>
-                                <span class="type">
-                                    {% if request.user.profile.is_pro %}
-                                        <span class="is-pro">Pro</span>
-                                    {% else %}
-                                        Basic member
-                                    {% endif %}
-                                </span>
-                            </span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="/{{ request.user.username }}/">
-                                    <i class="icon-user icon-white"></i>
-                                    Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/account/stats/">
-                                    <i class="icon-star icon-white"></i>
-                                    Stats
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/account/">
-                                    <i class="icon-cog icon-white"></i>
-                                    Account
-                                </a>
-                            </li>
-                            {% if not request.user.profile.is_pro %}
-                                <li>
-                                    <a href="/pro/">
-                                        <i class="icon-star-empty icon-white"></i>
-                                        Go Pro
-                                    </a>
-                                </li>
-                            {% endif %}
-                            {% if request.user.is_superuser %}
-                                <li>
-                                    <a href="/admin/">
-                                        <i class="icon-cog icon-white"></i>
-                                        Admin
-                                    </a>
-                                </li>
-                            {% endif %}
-                            <li>
-                                <a href="/logout/?next={{ request.path }}">
-                                    <i class="icon-off icon-white"></i>
-                                    Log out
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                {% endif %}
-            </div>
-        </header>
-    {% endblock %}
-    {% block sub-header %}
-        <header class="sub">
-            <div class="inner group">
-                <ul class="bcrumb">
-                    <li class="prompt">/</li>
-                    {% block breadcrumb %}{% endblock %}
-                </ul>
-                <div class="shortcuts">
-                    Ctrl+h for KB shortcuts
-                </div>
-            </div>
-        </header>
-    {% endblock %}
-    {% block main %}
-        <section class="main group" id="main">
-            {% block aside %}
-                <aside class="main">
-                    {% block ad %}
-                        {% if not request.user.profile.is_pro %}
-                            {% include 'ad-sidebar.html' %}
-                        {% endif %}
-                    {% endblock %}
-                    {% block aside-top %}{% endblock %}
-                    {% block aside-inner %}{% endblock %}
-                    <nav class="footer">
-                        <ul>
-                            <li class="api">
-                                <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}><span>API</span></a>
-                            </li>
-                            <li class="twitter">
-                                <a href="https://twitter.com/#!/snipt"><span>@snipt</span></a>
-                            </li>
-                            {% if not request.user.profile.is_pro %}
-                                <li class="pro">
-                                    <a href="/pro/"><span>Go Pro</span></a>
-                                </li>
-                            {% endif %}
-                            <li class="blog">
-                                <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
-                            </li>
-                            <li class="blog">
-                                <a href="/apps/" {% if '/apps/' in request.path %}class="active"{% endif %}><span>Snipt Apps</span></a>
-                            </li>
-                            <li class="blog">
-                                <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging on Snipt</span></a>
-                            </li>
-                            <li class="roadmap">
-                                <a href="https://github.com/nicksergeant/snipt/"><span>Open source on GitHub</span></a>
-                            </li>
-                            <li class="roadmap">
-                                <a href="https://github.com/nicksergeant/snipt/issues?state=open"><span>Bugs & feature requests</span></a>
-                            </li>
-                            <li class="roadmap">
-                                <a href="http://getsentry.com/"><span>Shipped with confidence</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="linode">
-                        <a href="http://www.linode.com/" title="Linode - Xen VPS Hosting. Deploy and Manage Linux Virtual Servers in the Linode Cloud." target="blank">
-                            <span>Proudly hosted on</span>
-                        </a>
-                    </div>
-                </aside>
-            {% endblock %}
-            <div class="inner">
-                {% block content %}{% endblock %}
-                {% block rochester-made %}
-                    <div class="rochester-made">
-                        <a href="http://rochestermade.com/" title="Proudly made in Rochester, NY, USA">
-                            <img src="{{ STATIC_URL }}img/rochester-made.png" alt="" />
-                        </a>
-                    </div>
-                {% endblock %}
-            </div>
-            <div class="left-y ruler"></div>
-            <div class="right-y ruler"></div>
-        </section>
-    {% endblock %}
-    {% block main-edit %}
-        <section class="main group hidden" id="main-edit"></section>
-    {% endblock %}
-    {% block keyboard-shortcuts %}
-        <div class="modal hide" id="keyboard-shortcuts">
-            <div class="modal-header">
-                <a href="#" class="close">×</a>
-                <h3><span>Keyboard shortcuts</span></h3>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Function</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&lt;ctrl-h&gt;</td>
-                            <td>Show / hide keyboard shortcuts</td>
-                        </tr>
-                        <tr>
-                            <td>/</td>
-                            <td>Focus search field</td>
-                        </tr>
-                        <tr>
-                            <td>esc</td>
-                            <td>Unfocus search field / deselect snipt</td>
-                        </tr>
-                        <tr>
-                            <td>j</td>
-                            <td>Next snipt</td>
-                        </tr>
-                        <tr>
-                            <td>k</td>
-                            <td>Previous snipt</td>
-                        </tr>
-                        <tr>
-                            <td>o / return</td>
-                            <td>Go to snipt</td>
-                        </tr>
-                        <tr>
-                            <td>u</td>
-                            <td>Go to snipt's author</td>
-                        </tr>
-                        <tr>
-                            <td>e</td>
-                            <td>Expand / collapse snipt</td>
-                        </tr>
-                        <tr>
-                            <td>v</td>
-                            <td>Embed snipt</td>
-                        </tr>
-                        <tr>
-                            <td>c</td>
-                            <td>Copy snipt</td>
-                        </tr>
-                        <tr>
-                            <td>&lt;ctrl-e&gt;</td>
-                            <td>Edit snipt</td>
-                        </tr>
-                        <tr>
-                            <td>&lt;ctrl-delete&gt; or &lt;ctrl-backspace&gt;</td>
-                            <td>Delete snipt</td>
-                        </tr>
-                        <tr>
-                            <td>&lt;ctrl-n&gt; or &lt;alt+n&gt;</td>
-                            <td>Add new snipt</td>
-                        </tr>
-                        <tr>
-                            <td>&lt;ctrl-s&gt;</td>
-                            <td>Save snipt</td>
-                        </tr>
-                        <tr>
-                            <td>&lt;ctrl-c&gt;</td>
-                            <td>Save snipt and close</td>
-                        </tr>
-                        <tr>
-                            <td>n</td>
-                            <td>Next page</td>
-                        </tr>
-                        <tr>
-                            <td>p</td>
-                            <td>Previous page</td>
-                        </tr>
-                        <tr>
-                            <td>g</td>
-                            <td>Scroll to top of page</td>
-                        </tr>
-                        <tr>
-                            <td>G</td>
-                            <td>Scroll to bottom of page</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    {% endblock %}
 
-    {% block extra-scripts %}{% endblock %}
-
-    {% block inline-js %}
-        <script type="text/javascript">
-            {% block js %}
-
-                window.user = '{{ request.user.username }}';
-                window.user_id = {% firstof request.user.id 'null' %};
-                window.user_ip = '{{ request.META.REMOTE_ADDR }}';
-                window.user_profile_id = {% firstof request.user.profile.id 'null' %};
-                window.user_email = '{{ request.user.email }}';
-
-                {% if public %}
-                    window.pub = {{ public|lower }};
+{% block header %}
+  <header class="main">
+    <div class="inner">
+      <div class="shadey"></div>
+      <h1 class="main-logo"><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
+      <form class="search" action="/search/" method="get" ng-controller="HeaderSearchController">
+        <fieldset>
+          <div class="fields">
+            <input ng-model="search.query" type="text" class="search-query" name="q"
+            ng-init="search.query='{{ query|escapejs }}'"
+            placeholder="Search snipts" id="id_q"
+            value="{{ query }}" />
+          </div>
+        </fieldset>
+      </form>
+      <nav class="public">
+        <ul>
+          {% if not request.user.is_authenticated %}
+            <li>
+              <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
+            </li>
+            <li>
+              <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
+            </li>
+            <li>
+              <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
+            </li>
+            <li>
+              <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
+            </li>
+            <li class="add-snipt">
+              <button class="btn btn-info btn-large" id="add-snipt">
+                Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
+                <i class="icon-search icon-plus icon-white"></i>
+              </button>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% if request.user.is_authenticated %}
+        <aside class="nav">
+          <a href="#" class="mini-profile">
+            <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ request.user.email|md5 }}?s=35');"></span>
+            <span class="info">
+              <span class="username">{{ request.user.username }}</span>
+              <i class="icon-cog icon-white"></i>
+              <span class="type">
+                {% if request.user.profile.is_pro %}
+                  <span class="is-pro">Pro</span>
                 {% else %}
-                    window.pub = null;
+                  Basic member
                 {% endif %}
-
-                window.api_key = '{{ request.user.api_key.key }}';
-
-            {% endblock %}
-            {% if request.user.profile.is_pro %}
-                window.user_is_pro = true;
-            {% else %}
-                window.user_is_pro = false;
+              </span>
+            </span>
+          </a>
+          <ul>
+            <li>
+              <a href="/{{ request.user.username }}/">
+                <i class="icon-user icon-white"></i>
+                Profile
+              </a>
+            </li>
+            <li>
+              <a href="/account/stats/">
+                <i class="icon-star icon-white"></i>
+                Stats
+              </a>
+            </li>
+            <li>
+              <a href="/account/">
+                <i class="icon-cog icon-white"></i>
+                Account
+              </a>
+            </li>
+            {% if not request.user.profile.is_pro %}
+              <li>
+                <a href="/pro/">
+                  <i class="icon-star-empty icon-white"></i>
+                  Go Pro
+                </a>
+              </li>
             {% endif %}
-            window.default_editor = '{{ request.user.profile.get_default_editor_display|lower }}';
-            window.editor_theme = '{{ request.user.profile.editor_theme }}';
-        </script>
+            {% if request.user.is_superuser %}
+              <li>
+                <a href="/admin/">
+                  <i class="icon-cog icon-white"></i>
+                  Admin
+                </a>
+              </li>
+            {% endif %}
+            <li>
+              <a href="/logout/?next={{ request.path }}">
+                <i class="icon-off icon-white"></i>
+                Log out
+              </a>
+            </li>
+          </ul>
+        </aside>
+      {% endif %}
+    </div>
+  </header>
+{% endblock %}
+{% block sub-header %}
+  <header class="sub">
+    <div class="inner group">
+      <ul class="bcrumb">
+        <li class="prompt">/</li>
+        {% block breadcrumb %}{% endblock %}
+      </ul>
+      <div class="shortcuts">
+        Ctrl+h for KB shortcuts
+      </div>
+    </div>
+  </header>
+{% endblock %}
+{% block main %}
+  <section class="main group" id="main">
+    {% if not request.user.profile.is_pro %}
+      <a href="https://blog.snipt.net/moving-away-from-free-accounts-and-planning-for-the-future/" class="site-notice alert alert-info">
+        <strong>Notice:</strong> Snipt is moving away from free accounts on <strong>May 1st, 2014</strong>. <span>Read more about the transition here</span>.
+      </a>
+    {% endif %}
+    {% block aside %}
+      <aside class="main">
+        {% block ad %}
+          {% if not request.user.profile.is_pro %}
+            {% include 'ad-sidebar.html' %}
+          {% endif %}
+        {% endblock %}
+        {% block aside-top %}{% endblock %}
+        {% block aside-inner %}{% endblock %}
+        <nav class="footer">
+          <ul>
+            <li class="api">
+              <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}><span>API</span></a>
+            </li>
+            <li class="twitter">
+              <a href="https://twitter.com/#!/snipt"><span>@snipt</span></a>
+            </li>
+            {% if not request.user.profile.is_pro %}
+              <li class="pro">
+                <a href="/pro/"><span>Go Pro</span></a>
+              </li>
+            {% endif %}
+            <li class="blog">
+              <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
+            </li>
+            <li class="blog">
+              <a href="/apps/" {% if '/apps/' in request.path %}class="active"{% endif %}><span>Snipt Apps</span></a>
+            </li>
+            <li class="blog">
+              <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging on Snipt</span></a>
+            </li>
+            <li class="roadmap">
+              <a href="https://github.com/nicksergeant/snipt/"><span>Open source on GitHub</span></a>
+            </li>
+            <li class="roadmap">
+              <a href="https://github.com/nicksergeant/snipt/issues?state=open"><span>Bugs & feature requests</span></a>
+            </li>
+            <li class="roadmap">
+              <a href="http://getsentry.com/"><span>Shipped with confidence</span></a>
+            </li>
+          </ul>
+        </nav>
+        <div class="linode">
+          <a href="http://www.linode.com/" title="Linode - Xen VPS Hosting. Deploy and Manage Linux Virtual Servers in the Linode Cloud." target="blank">
+            <span>Proudly hosted on</span>
+          </a>
+        </div>
+      </aside>
     {% endblock %}
+    <div class="inner">
+      {% block content %}{% endblock %}
+      {% block rochester-made %}
+        <div class="rochester-made">
+          <a href="http://rochestermade.com/" title="Proudly made in Rochester, NY, USA">
+            <img src="{{ STATIC_URL }}img/rochester-made.png" alt="" />
+          </a>
+        </div>
+      {% endblock %}
+    </div>
+    <div class="left-y ruler"></div>
+    <div class="right-y ruler"></div>
+  </section>
+{% endblock %}
+{% block main-edit %}
+  <section class="main group hidden" id="main-edit"></section>
+{% endblock %}
+{% block keyboard-shortcuts %}
+  <div class="modal hide" id="keyboard-shortcuts">
+    <div class="modal-header">
+      <a href="#" class="close">×</a>
+      <h3><span>Keyboard shortcuts</span></h3>
+    </div>
+    <div class="modal-body">
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&lt;ctrl-h&gt;</td>
+            <td>Show / hide keyboard shortcuts</td>
+          </tr>
+          <tr>
+            <td>/</td>
+            <td>Focus search field</td>
+          </tr>
+          <tr>
+            <td>esc</td>
+            <td>Unfocus search field / deselect snipt</td>
+          </tr>
+          <tr>
+            <td>j</td>
+            <td>Next snipt</td>
+          </tr>
+          <tr>
+            <td>k</td>
+            <td>Previous snipt</td>
+          </tr>
+          <tr>
+            <td>o / return</td>
+            <td>Go to snipt</td>
+          </tr>
+          <tr>
+            <td>u</td>
+            <td>Go to snipt's author</td>
+          </tr>
+          <tr>
+            <td>e</td>
+            <td>Expand / collapse snipt</td>
+          </tr>
+          <tr>
+            <td>v</td>
+            <td>Embed snipt</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>Copy snipt</td>
+          </tr>
+          <tr>
+            <td>&lt;ctrl-e&gt;</td>
+            <td>Edit snipt</td>
+          </tr>
+          <tr>
+            <td>&lt;ctrl-delete&gt; or &lt;ctrl-backspace&gt;</td>
+            <td>Delete snipt</td>
+          </tr>
+          <tr>
+            <td>&lt;ctrl-n&gt; or &lt;alt+n&gt;</td>
+            <td>Add new snipt</td>
+          </tr>
+          <tr>
+            <td>&lt;ctrl-s&gt;</td>
+            <td>Save snipt</td>
+          </tr>
+          <tr>
+            <td>&lt;ctrl-c&gt;</td>
+            <td>Save snipt and close</td>
+          </tr>
+          <tr>
+            <td>n</td>
+            <td>Next page</td>
+          </tr>
+          <tr>
+            <td>p</td>
+            <td>Previous page</td>
+          </tr>
+          <tr>
+            <td>g</td>
+            <td>Scroll to top of page</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>Scroll to bottom of page</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
 
-    {% if debug %}
-        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/json2.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/backbone.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.hotkeys.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.infieldlabel.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.chosen.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/codemirror.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/libs/highlight.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/account.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/snipts.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/search.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/src/jobs.js"></script>
+{% block extra-scripts %}{% endblock %}
+
+{% block inline-js %}
+  <script type="text/javascript">
+    {% block js %}
+      window.user = '{{ request.user.username }}';
+      window.user_id = {% firstof request.user.id 'null' %};
+      window.user_ip = '{{ request.META.REMOTE_ADDR }}';
+      window.user_profile_id = {% firstof request.user.profile.id 'null' %};
+      window.user_email = '{{ request.user.email }}';
+
+      {% if public %}
+        window.pub = {{ public|lower }};
+      {% else %}
+        window.pub = null;
+      {% endif %}
+
+      window.api_key = '{{ request.user.api_key.key }}';
+    {% endblock %}
+    {% if request.user.profile.is_pro %}
+      window.user_is_pro = true;
     {% else %}
-        <script type="text/javascript" src="{{ STATIC_URL }}js/snipt-all.min.js?67"></script>
+      window.user_is_pro = false;
     {% endif %}
+    window.default_editor = '{{ request.user.profile.get_default_editor_display|lower }}';
+    window.editor_theme = '{{ request.user.profile.editor_theme }}';
+  </script>
+{% endblock %}
 
-    {% if has_snipts and detail %}
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    {% endif %}
-    {% block snipt-templates %}
-        <div class="hidden" id="templates">
-            {% include 'snipts/snipt-js-template.html' %}
-            {% include 'snipts/snipt-edit-js-template.html' %}
-        </div>
-    {% endblock %}
-    {% if request.user.is_authenticated %}
-        {% if not debug %}
-            {% block intercom %}
-                <script id="IntercomSettingsScriptTag">
-                    var intercomSettings = {
-                        app_id: 'sajf131y',
-                        user_id: {{ request.user.id }},
-                        user_hash: '{{ request.user.id|intercom_sha_256 }}',
-                        email: '{{ request.user.email }}',
-                        created_at: {{ request.user.date_joined|date:"U" }},
-                        custom_data: {
-                            'snipts count': {% snipts_count_for_user %},
-                            'profile link': 'https://snipt.net/{{ request.user.username }}/',
-                            'is pro': window.user_is_pro,
-                            'blog domain': '{{ request.user.profile.blog_domain }}'
-                        },
-                        widget: {
-                            activator: '#IntercomDefaultWidget'
-                        }
-                    };
-                </script>
-                <script>
-                    (function() {
-                         function async_load() {
-                             var s = document.createElement('script');
-                             s.type = 'text/javascript'; s.async = true;
-                             s.src = 'https://static.intercomcdn.com/intercom.v1.js';
-                             var x = document.getElementsByTagName('script')[0];
-                             x.parentNode.insertBefore(s, x);
-                         }
-                         if (window.attachEvent) {
-                             window.attachEvent('onload', async_load);
-                         } else {
-                             window.addEventListener('load', async_load, false);
-                         }
-                     })();
-                </script>
-            {% endblock %}
-        {% endif %}
-    {% endif %}
+{% if debug %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/libs/underscore.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/libs/json2.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/libs/backbone.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.hotkeys.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.infieldlabel.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.chosen.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/libs/codemirror.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/libs/highlight.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/src/application.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/site.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/src/account.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/src/snipts.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/src/search.js"></script>
+{% else %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/snipt-all.min.js?67"></script>
+{% endif %}
 
-    {% include 'analytics.html' %}
-
-    {% block preload %}
-        <div class="hidden">
-            <img src="{{ STATIC_URL }}img/header-fixed-save.gif" alt="" />
-            <img src="{{ STATIC_URL }}img/chosen-sprite.png" alt="" />
-            <img src="{{ STATIC_URL }}img/aside-nav-open-bottom-bg.gif" alt="" />
-            <img src="{{ STATIC_URL }}img/aside-nav-open-top-bg.gif" alt="" />
-        </div>
-    {% endblock %}
-
-    <!--[if !(lte IE 8)]><!-->
-    <script type="text/javascript"> 
-      // @license magnet:?xt=urn:btih:0b31508aeb0634b347b8270c7bee4d411b5d4109&dn=agpl-3.0.txt GPL-v3-or-Later
-      (function(){
-        var e = document.createElement('script'); e.type='text/javascript'; e.async = true;
-        e.src = document.location.protocol + '//d1agz031tafz8n.cloudfront.net/thedaywefightback.js/widget.min.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s);
-      })();
-      // @license-end
+{% if has_snipts and detail %}
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{% endif %}
+{% block snipt-templates %}
+  <div class="hidden" id="templates">
+    {% include 'snipts/snipt-js-template.html' %}
+    {% include 'snipts/snipt-edit-js-template.html' %}
+  </div>
+{% endblock %}
+{% if request.user.is_authenticated %}
+  {% if not debug %}
+    {% block intercom %}
+    <script id="IntercomSettingsScriptTag">
+      var intercomSettings = {
+        app_id: 'sajf131y',
+        user_id: {{ request.user.id }},
+        user_hash: '{{ request.user.id|intercom_sha_256 }}',
+        email: '{{ request.user.email }}',
+        created_at: {{ request.user.date_joined|date:"U" }},
+        custom_data: {
+          'snipts count': {% snipts_count_for_user %},
+          'profile link': 'https://snipt.net/{{ request.user.username }}/',
+          'is pro': window.user_is_pro,
+          'blog domain': '{{ request.user.profile.blog_domain }}'
+        },
+        widget: {
+          activator: '#IntercomDefaultWidget'
+        }
+      };
     </script>
-    <!--<![endif]-->
-    
+    <script>
+      (function() {
+        function async_load() {
+          var s = document.createElement('script');
+          s.type = 'text/javascript'; s.async = true;
+          s.src = 'https://static.intercomcdn.com/intercom.v1.js';
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+        if (window.attachEvent) {
+          window.attachEvent('onload', async_load);
+        } else {
+          window.addEventListener('load', async_load, false);
+        }
+      })();
+    </script>
+    {% endblock %}
+  {% endif %}
+{% endif %}
+
+{% include 'analytics.html' %}
+
+{% block preload %}
+  <div class="hidden">
+    <img src="{{ STATIC_URL }}img/header-fixed-save.gif" alt="" />
+    <img src="{{ STATIC_URL }}img/chosen-sprite.png" alt="" />
+    <img src="{{ STATIC_URL }}img/aside-nav-open-bottom-bg.gif" alt="" />
+    <img src="{{ STATIC_URL }}img/aside-nav-open-top-bg.gif" alt="" />
+  </div>
+{% endblock %}
+
 </body>
 </html>
