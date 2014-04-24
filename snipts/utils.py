@@ -7,7 +7,7 @@ import uuid
 
 
 def slugify_uniquely(value, model, slugfield="slug"):
-    suffix = 0
+    suffix = str(uuid.uuid4()).split('-')[0]
     potential = base = slugify(value)[:255]
 
     while True:
