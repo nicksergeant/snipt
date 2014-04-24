@@ -3,6 +3,8 @@ from django.template.defaultfilters import slugify
 from registration.signals import user_registered
 from pygments.lexers import get_all_lexers
 
+import uuid
+
 
 def slugify_uniquely(value, model, slugfield="slug"):
     suffix = 0
@@ -13,7 +15,7 @@ def slugify_uniquely(value, model, slugfield="slug"):
             potential = "-".join([base, str(suffix)])
         if not model.objects.filter(**{slugfield: potential}).count():
             return potential
-        suffix += 1
+        suffix = str(uuid.uuid4()).split('-')[0]
 
 def activate_user(user, request, **kwargs):
     user.is_active = True

@@ -70,6 +70,6 @@ urlpatterns = patterns('',
     url(r'^', include('snipts.urls')),
 )
 
-if settings.DEBUG:
-    urlpatterns = urlpatterns + static('/media/',
-        document_root=os.path.join(settings.BASE_PATH, 'media'))
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/Nick/Code/snipt/static'}),
+)
