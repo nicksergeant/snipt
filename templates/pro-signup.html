@@ -26,6 +26,11 @@
     <div class="pro-hero">
         snip<span>t</span> <span class="pro">Pro</span>
     </div>
+    {% if request.GET.declined %}
+      <div class="alert alert-error" style="margin: 30px;">
+        <strong>Your card was declined.</strong> You have not been charged. Please try again.
+      </div>
+    {% endif %}
     <div class="static-box">
         <form class="form-horizontal" id="pro-signup" method="post" action="/pro/signup/complete/">
             <fieldset>

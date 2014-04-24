@@ -56,7 +56,6 @@ def homepage(request):
         'users_count': User.objects.all().count(),
     }
 
-
 @ajax_request
 def lexers(request):
     lexers = get_lexers_list()
@@ -83,13 +82,11 @@ def lexers(request):
 
     return {'objects': objects}
 
-
 def login_redirect(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/' + request.user.username + '/')
     else:
         return HttpResponseRedirect('/')
-
 
 @login_required
 @render_to('pro-signup.html')
@@ -97,7 +94,6 @@ def pro_signup(request):
     if request.user.profile.is_pro:
         return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
-
 
 @login_required
 @render_to('pro-signup-complete.html')
@@ -110,9 +106,12 @@ def pro_signup_complete(request):
 
         plan = 'snipt-pro-monthly'
 
-        customer = stripe.Customer.create(card=token,
-                                          plan=plan,
-                                          email=request.user.email)
+        try:
+            customer = stripe.Customer.create(card=token,
+                                              plan=plan,
+                                              email=request.user.email)
+        except stripe.CardError:
+            return HttpResponseRedirect('/pro/signup/?declined=true')
 
         profile = request.user.profile
         profile.is_pro = True
@@ -124,7 +123,6 @@ def pro_signup_complete(request):
     else:
         return HttpResponseBadRequest()
 
-
 def sitemap(request):
 
     tags = Tag.objects.filter(snipt__public=True)
@@ -135,7 +133,6 @@ def sitemap(request):
                               {'tags': tags},
                               context_instance=RequestContext(request),
                               mimetype='application/xml')
-
 
 @render_to('tags.html')
 def tags(request):
