@@ -37,16 +37,18 @@
                         </div>
                         <aside>
                             <div class="in">
-                                <label class="lexer">
-                                    <span>Type</span>
-                                    <select name="lexer" id="id_lexer">
-                                        {% endverbatim %}
-                                        {% for lexer in lexers %}
-                                            <option value="{{ lexer.1.0 }}">{{ lexer.0 }}</option>
-                                        {% endfor %}
-                                        {% verbatim %}
-                                    </select>
-                                </label>
+                                <div class="type-lexer">
+                                  <label class="lexer type-lexer">
+                                      <span>Type</span>
+                                      <select name="lexer" id="id_lexer">
+                                          {% endverbatim %}
+                                          {% for lexer in lexers %}
+                                              <option value="{{ lexer.1.0 }}">{{ lexer.0 }}</option>
+                                          {% endfor %}
+                                          {% verbatim %}
+                                      </select>
+                                  </label>
+                                </div>
                                 <label class="public is-private">
                                     <input type="checkbox" <% if (snipt.public) { %>checked="checked"<% } %> name="" value="" />
                                     <span>Public</span>

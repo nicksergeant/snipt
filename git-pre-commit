@@ -39,7 +39,11 @@ cat media/js/src/modules/site.js|jsmin > media/js/src/modules/site.min.js
 cat media/js/src/modules/snipt.js|jsmin > media/js/src/modules/snipt.min.js
 cat media/js/src/pro.js|jsmin > media/js/src/pro.min.js
 
-cat media/js/libs/underscore.js \
+cat media/js/libs/jquery.min.js \
+    media/js/libs/jquery-ui.min.js \
+    media/js/libs/angular.min.js \
+    media/js/libs/angular-route.min.js \
+    media/js/libs/underscore.js \
     media/js/libs/json2.js \
     media/js/libs/backbone.js \
     media/js/libs/bootstrap.min.js \

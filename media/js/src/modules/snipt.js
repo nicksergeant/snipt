@@ -55,8 +55,6 @@
 
         copy: function() {
 
-            window.mixpanel.track('Copying snipt');
-
             $('textarea', this.$copyModal).remove();
 
             window.ui_halted = true;
@@ -85,10 +83,6 @@
             this.model.destroy();
         },
         edit: function(adding) {
-
-            if (adding !== true) {
-              window.mixpanel.track('Editing snipt');
-            }
 
             window.editing = true;
             window.ui_halted = true;
@@ -261,8 +255,6 @@
         },
         embed: function() {
 
-            window.mixpanel.track('Embedding snipt');
-
             $('textarea', this.$embedModal).remove();
 
             window.ui_halted = true;
@@ -322,7 +314,6 @@
                     success: function() {
                         that.$el.removeClass('favorited');
                         that.$favorite.text('Favorite');
-                        window.mixpanel.track('Unfavorited snipt');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -337,7 +328,6 @@
                         that.$el.addClass('favorited');
                         that.model.set({'favorite_id': resp.id}, {'silent': true});
                         that.$favorite.text('Favorited');
-                        window.mixpanel.track('Favorited snipt');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -663,8 +653,6 @@
         },
         addNewSnipt: function() {
 
-            window.mixpanel.track('Adding snipt');
-
             var $articleNewSnipt = $('article#new-snipt');
 
             if ($articleNewSnipt.length === 0) {
@@ -672,6 +660,7 @@
 
                 var data = {
                     id: '',
+                    blog_post: false,
                     code: '',
                     description: '',
                     tags: [],
@@ -680,6 +669,7 @@
                     lexer: 'text',
                     lexer_name: 'Text only',
                     new_from_js: true,
+                    public: false,
                     user: {
                         username: '',
                         profile: {
@@ -687,8 +677,6 @@
                         }
                     }
                 };
-                data['public'] = false;
-                data.blog_post = false;
 
                 var newSniptView = new Snipt.SniptView({
                     el: $('article#new-snipt'),

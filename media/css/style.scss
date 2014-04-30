@@ -379,6 +379,7 @@ header.sub {
 
       li {
         display: inline-block;
+        float: left;
         line-height: normal;
         max-width: 490px;
         overflow: hidden;
@@ -431,9 +432,11 @@ header.sub {
         color: #999999;
         font: bold 12px $Consolas;
         margin-right: 3px;
+        margin-top: 2px;
         text-shadow: 0 1px 0 #FFF;
       }
       span.prompt {
+        float: left;
         margin-left: 3px;
       }
     }
@@ -2316,6 +2319,12 @@ body.editing {
             margin-top: 0;
             width: 243px;
 
+            div.type-lexer {
+              padding-right: 10px;
+            }
+            div.chosen-container {
+              width: 100% !important;
+            }
             label {
               margin: 20px 0;
 
