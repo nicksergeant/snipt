@@ -2064,6 +2064,41 @@ body.snipt-page {
     width: 719px;
   }
 }
+body.signup {
+  form.form-horizontal {
+    padding: 0;
+    padding-bottom: 20px;
+
+    fieldset {
+      padding-top: 0 !important;
+    }
+  }
+  div.info {
+    background: #415A63 url('../img/homepage-header-bg.jpg') top center no-repeat;
+    color: white;
+    font: bold 24px $Helvetica;
+    margin-bottom: 30px;
+    padding: 60px 0;
+    text-align: center;
+    @include multi-border-radius(5px, 5px, 0, 0);
+
+    span {
+      color: #28C548;
+    }
+    p.sub {
+      color: #F2F2F2;
+      font: normal 18px/24px $Helvetica;
+      margin-top: 40px;
+      padding: 0 60px;
+      text-shadow: 0 1px 0 #153A42;
+
+      a {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+}
 body.static {
   .static-box {
     background: rgba(#FFF, .65);

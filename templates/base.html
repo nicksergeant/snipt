@@ -189,11 +189,6 @@
 {% endblock %}
 {% block main %}
   <section class="main group" id="main">
-    {% if not request.user.profile.is_pro %}
-      <a href="https://blog.snipt.net/moving-away-from-free-accounts-and-planning-for-the-future/" class="site-notice alert alert-info">
-        <strong>Notice:</strong> Snipt is moving away from free accounts on <strong>May 1st, 2014</strong>. <span>Read more about the transition here</span>.
-      </a>
-    {% endif %}
     {% block aside %}
       <aside class="main">
         {% block ad %}
