@@ -255,6 +255,9 @@
 {% block main-edit %}
   <section class="main group hidden" id="main-edit"></section>
 {% endblock %}
+<div class="get-support">
+  <a class="btn btn-info" href="/pro/">Get support &raquo;</a>
+</div>
 {% block keyboard-shortcuts %}
   <div class="modal hide" id="keyboard-shortcuts">
     <div class="modal-header">
@@ -414,43 +417,43 @@
     {% include 'snipts/snipt-edit-js-template.html' %}
   </div>
 {% endblock %}
-{% if request.user.is_authenticated %}
+{% if request.user.is_authenticated and request.user.is_pro %}
   {% if not debug %}
     {% block intercom %}
-    <script id="IntercomSettingsScriptTag">
-      var intercomSettings = {
-        app_id: 'sajf131y',
-        user_id: {{ request.user.id }},
-        user_hash: '{{ request.user.id|intercom_sha_256 }}',
-        email: '{{ request.user.email }}',
-        created_at: {{ request.user.date_joined|date:"U" }},
-        custom_data: {
-          'snipts count': {% snipts_count_for_user %},
-          'profile link': 'https://snipt.net/{{ request.user.username }}/',
-          'is pro': window.user_is_pro,
-          'blog domain': '{{ request.user.profile.blog_domain }}'
-        },
-        widget: {
-          activator: '#IntercomDefaultWidget'
-        }
-      };
-    </script>
-    <script>
-      (function() {
-        function async_load() {
-          var s = document.createElement('script');
-          s.type = 'text/javascript'; s.async = true;
-          s.src = 'https://static.intercomcdn.com/intercom.v1.js';
-          var x = document.getElementsByTagName('script')[0];
-          x.parentNode.insertBefore(s, x);
-        }
-        if (window.attachEvent) {
-          window.attachEvent('onload', async_load);
-        } else {
-          window.addEventListener('load', async_load, false);
-        }
-      })();
-    </script>
+      <script id="IntercomSettingsScriptTag">
+        var intercomSettings = {
+          app_id: 'sajf131y',
+          user_id: {{ request.user.id }},
+          user_hash: '{{ request.user.id|intercom_sha_256 }}',
+          email: '{{ request.user.email }}',
+          created_at: {{ request.user.date_joined|date:"U" }},
+          custom_data: {
+            'snipts count': {% snipts_count_for_user %},
+            'profile link': 'https://snipt.net/{{ request.user.username }}/',
+            'is pro': window.user_is_pro,
+            'blog domain': '{{ request.user.profile.blog_domain }}'
+          },
+          widget: {
+            activator: '#IntercomDefaultWidget'
+          }
+        };
+      </script>
+      <script>
+        (function() {
+          function async_load() {
+            var s = document.createElement('script');
+            s.type = 'text/javascript'; s.async = true;
+            s.src = 'https://static.intercomcdn.com/intercom.v1.js';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+          }
+          if (window.attachEvent) {
+            window.attachEvent('onload', async_load);
+          } else {
+            window.addEventListener('load', async_load, false);
+          }
+        })();
+      </script>
     {% endblock %}
   {% endif %}
 {% endif %}

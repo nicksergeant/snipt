@@ -2,28 +2,24 @@
 
 {% block page-title %}Snipt Pro{% endblock %}
 
-{% block body-class %}{{ block.super }} static pro{% endblock %}
+{% block body-class %}{{ block.super }} static pro signup{% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="/pro/">Snipt Pro</a></li>
+  <li><a href="/pro/">Snipt Pro</a></li>
 {% endblock %}
 
 {% block content %}
-    <div class="pro-hero">
-        snip<span>t</span> <span class="pro">Pro</span>
-    </div>
-    <div class="static-box">
-        <h6>Going Pro gets you:</h6>
-        <ul>
-            <li>Custom domain for your <a href="/blogging/">Snipt blog</a>.</li>
-            <li><span class="pro">Pro</span> badge throughout the site.</li>
-            <li>No ads.</li>
-        </ul>
-        {% if request.user.profile.is_pro %}
-            <h3>You're already a Pro.</h3>
-        {% else %}
-            <h3><span><span class="pro">Pro</span> is only</span> $5/month.</h3>
-            <h4><a href="/pro/signup/" class="btn btn-large btn-success">Buy Now</a></h4>
-        {% endif %}
-    </div>
+  <div class="info">
+    Subscribe for only <span>$5/month</span>.
+    <p class="sub">
+      We believe the best way to build a superior product is to charge for it.
+      As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
+      instant chat support, and more.
+    </p>
+    {% if request.user.profile.is_pro %}
+      <h3>You're already a Pro.</h3>
+    {% else %}
+      <h4><a href="/pro/signup/" class="btn btn-large btn-success">Subscribe</a></h4>
+    {% endif %}
+  </div>
 {% endblock %}

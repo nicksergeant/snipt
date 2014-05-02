@@ -1651,6 +1651,11 @@ a.go-pro {
   margin: 30px 0;
   width: 749px;
 }
+div.get-support {
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+}
 
 // Pages
 body.account {
@@ -1802,6 +1807,9 @@ body.is-pro {
         }
       }
     }
+  }
+  div.get-support {
+    display: none;
   }
 }
 body.pro {
@@ -2085,6 +2093,10 @@ body.signup {
     span {
       color: #28C548;
     }
+    h4 {
+      margin-bottom: 0;
+      margin-top: 40px;
+    }
     p.sub {
       color: #F2F2F2;
       font: normal 18px/24px $Helvetica;
@@ -2096,6 +2108,15 @@ body.signup {
         color: white;
         text-decoration: underline;
       }
+    }
+  }
+}
+body.signup.pro {
+  div.info {
+    @include border-radius(0);
+
+    p.sub {
+      padding: 0 80px;
     }
   }
 }

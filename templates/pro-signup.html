@@ -5,105 +5,105 @@
 {% block body-class %}{{ block.super }} static pro pro-signup{% endblock %}
 
 {% block extra-scripts %}
-    <script type="text/javascript" src="https://js.stripe.com/v1/"></script> 
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script> 
 {% endblock %}
 
 {% block js %}
-    {{ block.super }}
-    {% if debug %}
-        Stripe.setPublishableKey('pk_test_cgknmaWRMQeJt2adEdvH3T9l');
-    {% else %}
-        Stripe.setPublishableKey('pk_live_gUO2nCl7dhx6j0posz6gnbhA');
-    {% endif %}
+  {{ block.super }}
+  {% if debug %}
+    Stripe.setPublishableKey('pk_test_cgknmaWRMQeJt2adEdvH3T9l');
+  {% else %}
+    Stripe.setPublishableKey('pk_live_gUO2nCl7dhx6j0posz6gnbhA');
+  {% endif %}
 {% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="/pro/">Snipt Pro</a></li>
-    <li><span class="prompt">/</span> <a href="/pro/signup/">Sign up</a></li>
+  <li><a href="/pro/">Snipt Pro</a></li>
+  <li><span class="prompt">/</span> <a href="/pro/signup/">Sign up</a></li>
 {% endblock %}
 
 {% block content %}
-    <div class="pro-hero">
-        snip<span>t</span> <span class="pro">Pro</span>
-    </div>
-    {% if request.GET.declined %}
-      <div class="alert alert-error" style="margin: 30px;">
-        <strong>Your card was declined.</strong> You have not been charged. Please try again.
-      </div>
-    {% endif %}
-    <div class="static-box">
-        <form class="form-horizontal" id="pro-signup" method="post" action="/pro/signup/complete/">
-            <fieldset>
-                <div class="payment-loading"><span>Please wait&hellip;</span></div>
-                <legend>$5 USD will be charged to your card monthly. Also, you rock. Tell yourself that every month, too.</legend>
-                <div class="payment-errors alert alert-error"></div>
-                <div class="control-group">
-                    <label class="control-label" for="name">Name on card:</label>
-                    <div class="controls">
-                        <input type="text" class="input-xlarge" id="name" />
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="number">Card number:</label>
-                    <div class="controls cards">
-                        <input type="text" class="input-xlarge" id="number" />
-                        <img src="/static/img/card-visa.png" alt="Visa" />
-                        <img src="/static/img/card-mastercard.png" alt="MasterCard" />
-                        <img src="/static/img/card-discover.png" alt="Discover" />
-                        <img src="/static/img/card-american-express.png" alt="American Express" />
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="exp-month">Expiration date:</label>
-                    <div class="controls">
-                        <select id="exp-month" class="span2 exp-month">
-                            <option value="">----</option>
-                            <option value="01">01 - January</option>
-                            <option value="02">02 - February</option>
-                            <option value="03">03 - March</option>
-                            <option value="04">04 - April</option>
-                            <option value="05">05 - May</option>
-                            <option value="06">06 - June</option>
-                            <option value="07">07 - July</option>
-                            <option value="08">08 - August</option>
-                            <option value="09">09 - September</option>
-                            <option value="10">10 - October</option>
-                            <option value="11">11 - November</option>
-                            <option value="12">12 - December</option>
-                        </select>
-                        <select id="exp-year" class="span1">
-                            <option value="">----</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="cvc">Security code (CVC):</label>
-                    <div class="controls">
-                        <input type="text" class="input-min span1" id="cvc">
-                    </div>
-                </div>
-                <div class="form-actions">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Sign up</button>
-                    <div class="security">
-                        <a href="https://stripe.com/help/security">Secure</a> by default. Every Snipt page is secure.
-                    </div>
-                    <div class="stripe">
-                        Your credit card is stored securely with <a href="https://stripe.com">Stripe</a> and we use <a href="https://stripe.com/docs/stripe.js">Stripe.js</a> for maximum security.
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+  <div class="pro-hero">
+    snip<span>t</span> <span class="pro">Pro</span>
+  </div>
+{% if request.GET.declined %}
+  <div class="alert alert-error" style="margin: 30px;">
+    <strong>Your card was declined.</strong> You have not been charged. Please try again.
+  </div>
+{% endif %}
+  <div class="static-box">
+    <form class="form-horizontal" id="pro-signup" method="post" action="/pro/signup/complete/">
+      <fieldset>
+        <div class="payment-loading"><span>Please wait&hellip;</span></div>
+        <legend>$5 USD will be charged to your card monthly. Also, you rock. Tell yourself that every month, too.</legend>
+        <div class="payment-errors alert alert-error"></div>
+        <div class="control-group">
+          <label class="control-label" for="name">Name on card:</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="name" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="number">Card number:</label>
+          <div class="controls cards">
+            <input type="text" class="input-xlarge" id="number" />
+            <img src="/static/img/card-visa.png" alt="Visa" />
+            <img src="/static/img/card-mastercard.png" alt="MasterCard" />
+            <img src="/static/img/card-discover.png" alt="Discover" />
+            <img src="/static/img/card-american-express.png" alt="American Express" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="exp-month">Expiration date:</label>
+          <div class="controls">
+            <select id="exp-month" class="span2 exp-month">
+              <option value="">----</option>
+              <option value="01">01 - January</option>
+              <option value="02">02 - February</option>
+              <option value="03">03 - March</option>
+              <option value="04">04 - April</option>
+              <option value="05">05 - May</option>
+              <option value="06">06 - June</option>
+              <option value="07">07 - July</option>
+              <option value="08">08 - August</option>
+              <option value="09">09 - September</option>
+              <option value="10">10 - October</option>
+              <option value="11">11 - November</option>
+              <option value="12">12 - December</option>
+            </select>
+            <select id="exp-year" class="span1">
+              <option value="">----</option>
+              <option value="2012">2012</option>
+              <option value="2013">2013</option>
+              <option value="2014">2014</option>
+              <option value="2015">2015</option>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="cvc">Security code (CVC):</label>
+          <div class="controls">
+            <input type="text" class="input-min span1" id="cvc">
+          </div>
+        </div>
+        <div class="form-actions">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Sign up</button>
+          <div class="security">
+            <a href="https://stripe.com/help/security">Secure</a> by default. Every Snipt page is secure.
+          </div>
+          <div class="stripe">
+            Your credit card is stored securely with <a href="https://stripe.com">Stripe</a> and we use <a href="https://stripe.com/docs/stripe.js">Stripe.js</a> for maximum security.
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 {% endblock %}
