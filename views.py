@@ -89,15 +89,15 @@ def login_redirect(request):
         return HttpResponseRedirect('/')
 
 @login_required
-@render_to('pro-signup.html')
-def pro_signup(request):
+@render_to('pro.html')
+def pro(request):
     if request.user.profile.is_pro:
         return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
 
 @login_required
-@render_to('pro-signup-complete.html')
-def pro_signup_complete(request):
+@render_to('pro-complete.html')
+def pro_complete(request):
 
     if request.method == 'POST':
 
@@ -111,7 +111,7 @@ def pro_signup_complete(request):
                                               plan=plan,
                                               email=request.user.email)
         except stripe.CardError:
-            return HttpResponseRedirect('/pro/signup/?declined=true')
+            return HttpResponseRedirect('/pro/?declined=true')
 
         profile = request.user.profile
         profile.is_pro = True

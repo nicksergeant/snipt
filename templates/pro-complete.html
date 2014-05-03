@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block page-title %}Sign up for Snipt Pro{% endblock %}
+
+{% block body-class %}{{ block.super }} static pro signup pro-signup pro-signup-complete{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/pro/">Snipt Pro</a></li>
+    <li><span class="prompt">/</span> <a href="#">Complete</a></li>
+{% endblock %}
+
+{% block content %}
+  <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/">
+    <fieldset>
+      <div class="info">
+        You rock.
+        <p class="sub">
+          You're now a Snipt Pro.<br /><br />
+          You should <a target="blank" href="http://twitter.com/intent/tweet?text=I'm now a @Snipt Pro. Are you? https://snipt.net/pro/">tell the world</a>.
+          If you ever need anything at all, <a href="mailto:nick@snipt.net">email Nick directly</a>, or use the support link in the bottom right.
+        </p>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

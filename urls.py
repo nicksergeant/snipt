@@ -12,8 +12,8 @@ from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
 from jobs.views import jobs, jobs_json
-from views import (homepage, lexers, login_redirect, pro_signup, sitemap, tags,
-                   pro_signup_complete, user_api_key)
+from views import (homepage, lexers, login_redirect, pro, sitemap, tags,
+                   pro_complete, user_api_key)
 
 import admin as custom_admin
 import os
@@ -48,9 +48,8 @@ urlpatterns = patterns('',
     url(r'^sitemap.xml$', sitemap),
     url(r'^tags/$', tags),
 
-    url(r'^pro/$', TemplateView.as_view(template_name='pro.html')),
-    url(r'^pro/signup/$', pro_signup),
-    url(r'^pro/signup/complete/$', pro_signup_complete),
+    url(r'^pro/$', pro),
+    url(r'^pro/complete/$', pro_complete),
 
     url(r'^account/', include('accounts.urls')),
 
