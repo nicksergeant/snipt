@@ -5,84 +5,88 @@
 {% block body-class %}{{ block.super }} static signup{% endblock %}
 
 {% block content %}
-  <form class="form-horizontal static-box" method="post" action=".">
-    {% if form.errors %}
-      {% if form.non_field_errors %}
-        <div class="alert alert-error">
-          {{ form.non_field_errors }}
-        </div>
-      {% else %}
-        <div class="alert alert-error">
-          Please fix the errors below.
-        </div>
+  {% if request.user.is_authenticated %}
+    <script type="text/javascript">document.location.href = '/';</script>
+  {% else %}
+    <form class="form-horizontal static-box" method="post" action=".">
+      {% if form.errors %}
+        {% if form.non_field_errors %}
+          <div class="alert alert-error">
+            {{ form.non_field_errors }}
+          </div>
+        {% else %}
+          <div class="alert alert-error">
+            Please fix the errors below.
+          </div>
+        {% endif %}
       {% endif %}
-    {% endif %}
-    <fieldset>
-      <div class="info">
-        Free for 7 days, then just <span>$5/month</span> or <span>$49/year</span>.
-        <p class="sub">
-          We believe the best way to build a superior product is to charge for it.
-          As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
-          instant chat support, and more.
-        </p>
-      </div>
-      <div class="control-group {% if form.errors.username %}error{% endif %}">
-        <label class="control-label" for="id_username">Username</label>
-        <div class="controls">
-          {{ form.username }}
-          {% if form.errors.username %}
-            <span class="help-inline">
-              {% for error in form.errors.username  %}
-                {{ error }}
-              {% endfor %}
-            </span>
-          {% endif %}
+      <fieldset>
+        <div class="info">
+          Free for 7 days, then just <span>$5/month</span> or <span>$49/year</span>.
+          <p class="sub">
+            We believe the best way to build a superior product is to charge for it.
+            As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
+            custom-domain <a href="/blogging/">blogging</a>, instant chat support, and more.
+          </p>
         </div>
-      </div>
-      <div class="control-group {% if form.errors.email %}error{% endif %}">
-        <label class="control-label" for="id_email">Email address</label>
-        <div class="controls">
-          {{ form.email }}
-          {% if form.errors.email %}
-            <span class="help-inline">
-              {% for error in form.errors.email  %}
-                {{ error }}
-              {% endfor %}
-            </span>
-          {% endif %}
+        <div class="control-group {% if form.errors.username %}error{% endif %}">
+          <label class="control-label" for="id_username">Username</label>
+          <div class="controls">
+            {{ form.username }}
+            {% if form.errors.username %}
+              <span class="help-inline">
+                {% for error in form.errors.username  %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
         </div>
-      </div>
-      <div class="control-group {% if form.errors.password1 %}error{% endif %}">
-        <label class="control-label"l for="id_password1">Password</label>
-        <div class="controls">
-          {{ form.password1 }}
-          {% if form.errors.password1 %}
-            <span class="help-inline">
-              {% for error in form.errors.password1  %}
-                {{ error }}
-              {% endfor %}
-            </span>
-          {% endif %}
+        <div class="control-group {% if form.errors.email %}error{% endif %}">
+          <label class="control-label" for="id_email">Email address</label>
+          <div class="controls">
+            {{ form.email }}
+            {% if form.errors.email %}
+              <span class="help-inline">
+                {% for error in form.errors.email  %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
         </div>
-      </div>
-      <div class="control-group {% if form.errors.password2 %}error{% endif %}">
-        <label class="control-label" for="id_password2">Confirm password</label>
-        <div class="controls">
-          {{ form.password2 }}
-          {% if form.errors.password2 %}
-            <span class="help-inline">
-              {% for error in form.errors.password2  %}
-                {{ error }}
-              {% endfor %}
-            </span>
-          {% endif %}
+        <div class="control-group {% if form.errors.password1 %}error{% endif %}">
+          <label class="control-label"l for="id_password1">Password</label>
+          <div class="controls">
+            {{ form.password1 }}
+            {% if form.errors.password1 %}
+              <span class="help-inline">
+                {% for error in form.errors.password1  %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
         </div>
-      </div>
-      <div class="form-actions group">
-        <a class="btn pull-right" href="/login/">Log in</a>
-        <button class="btn btn-primary" type="submit">Sign up</button>
-      </div>
-    </fieldset>
-    {% csrf_token %}
-  </form>
+        <div class="control-group {% if form.errors.password2 %}error{% endif %}">
+          <label class="control-label" for="id_password2">Confirm password</label>
+          <div class="controls">
+            {{ form.password2 }}
+            {% if form.errors.password2 %}
+              <span class="help-inline">
+                {% for error in form.errors.password2  %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-actions group">
+          <a class="btn pull-right" href="/login/">Log in</a>
+          <button class="btn btn-primary" type="submit">Sign up</button>
+        </div>
+      </fieldset>
+      {% csrf_token %}
+    </form>
+  {% endif %}
 {% endblock %}

@@ -104,7 +104,10 @@ def pro_complete(request):
         token = request.POST['token']
         stripe.api_key = STRIPE_SECRET_KEY
 
-        plan = 'snipt-monthly'
+        if request.POST['plan'] == 'monthly':
+            plan = 'snipt-monthly'
+        elif request.POST['plan'] == 'yearly':
+            plan = 'snipt-yearly'
 
         try:
             customer = stripe.Customer.create(card=token,

@@ -2,7 +2,7 @@
 
 {% block page-title %}Sign up for Snipt Pro{% endblock %}
 
-{% block body-class %}{{ block.super }} static signup pro{% endblock %}
+{% block body-class %}{{ block.super }} static signup pro pro-signup{% endblock %}
 
 {% block extra-scripts %}
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script> 
@@ -39,11 +39,20 @@
         <p class="sub">
           We believe the best way to build a superior product is to charge for it.
           As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
-          instant chat support, and more.
+          custom-domain <a href="/blogging/">blogging</a>, instant chat support, and more.
         </p>
       </div>
       <div class="payment-loading"><span>Please wait&hellip;</span></div>
       <div class="payment-errors alert alert-error"></div>
+      <div class="control-group">
+        <label class="control-label" for="name">Payment plan:</label>
+        <div class="controls">
+          <select name="plan" type="text" class="input-medium" id="plan">
+            <option value="monthly">$5/month</option>
+            <option value="yearly">$49/year</option>
+          </select>
+        </div>
+      </div>
       <div class="control-group">
         <label class="control-label" for="name">Name on card:</label>
         <div class="controls">
@@ -78,10 +87,8 @@
             <option value="11">11 - November</option>
             <option value="12">12 - December</option>
           </select>
-          <select id="exp-year" class="span1">
+          <select id="exp-year" class="span2">
             <option value="">----</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
             <option value="2014">2014</option>
             <option value="2015">2015</option>
             <option value="2016">2016</option>
@@ -91,6 +98,8 @@
             <option value="2020">2020</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
+            <option value="2022">2023</option>
+            <option value="2022">2024</option>
           </select>
         </div>
       </div>
