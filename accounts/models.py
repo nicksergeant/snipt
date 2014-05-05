@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from datetime import date
+from datetime import datetime
 from django.db import models
 from snipts.models import Snipt
 
@@ -94,5 +96,9 @@ class UserProfile(models.Model):
 
     def has_public_snipts(self):
         return True if Snipt.objects.filter(user=self, public=True).count() > 0 else False
+
+    def get_account_age(self):
+        delta = datetime.now().replace(tzinfo=None) - self.user.date_joined.replace(tzinfo=None)
+        return delta.days
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

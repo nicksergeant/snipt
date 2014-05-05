@@ -579,10 +579,12 @@
             }
             $('span.cmd-ctrl').text(cmd);
 
-            // This should probably be handled more traditionally
-            // (in a backbone view / events)
             $('button#add-snipt').click(function() {
-                that.addNewSnipt();
+                if (window.user_account_age > 7 && !window.user_is_pro) {
+                  window.location = '/pro/?expired=true';
+                } else {
+                  that.addNewSnipt();
+                }
             });
         },
 

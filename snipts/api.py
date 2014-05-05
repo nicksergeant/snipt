@@ -12,6 +12,7 @@ from haystack.query import SearchQuerySet
 from accounts.models import UserProfile
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
+from django.http import HttpResponse
 from taggit.models import Tag
 from django.db import models
 from tastypie import fields
@@ -159,6 +160,17 @@ class FavoriteValidation(Validation):
 
         if Favorite.objects.filter(user=bundle.request.user, snipt=snipt).count():
             errors['duplicate'] = 'User has already favorited this snipt.'
+
+        return errors
+
+class SniptValidation(Validation):
+    def is_valid(self, bundle, request=None):
+        errors = {}
+
+        if 'pk' not in bundle.data and \
+            request.user.profile.get_account_age() > 7 and \
+            request.user.profile.is_pro == False:
+            errors['expired'] = "Your trial has expired. You'll need to subscribe in order to create new snipts. Read more at https://blog.snipt.net/moving-away-from-free-accounts-and-planning-for-the-future/."
 
         return errors
 
@@ -354,6 +366,7 @@ class PrivateSniptResource(ModelResource):
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
         authorization = PrivateSniptAuthorization()
+        validation = SniptValidation()
         ordering = ['created', 'modified',]
         always_return_data = True
         max_limit = 200

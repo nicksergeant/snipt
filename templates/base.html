@@ -102,12 +102,7 @@
             <li>
               <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
             </li>
-            <li class="add-snipt">
-              <button class="btn btn-info btn-large" id="add-snipt">
-                Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
-                <i class="icon-search icon-plus icon-white"></i>
-              </button>
-            </li>
+            {% block add-snipt %}{% endblock %}
           {% endif %}
         </ul>
       </nav>
@@ -255,9 +250,11 @@
 {% block main-edit %}
   <section class="main group hidden" id="main-edit"></section>
 {% endblock %}
+{% if request.user.is_authenticated and request.user.profile.get_account_age > 7 %}
 <div class="get-support">
   <a class="btn btn-info" href="/pro/">Get support &raquo;</a>
 </div>
+{% endif %}
 {% block keyboard-shortcuts %}
   <div class="modal hide" id="keyboard-shortcuts">
     <div class="modal-header">
@@ -365,6 +362,7 @@
       window.user_ip = '{{ request.META.REMOTE_ADDR }}';
       window.user_profile_id = {% firstof request.user.profile.id 'null' %};
       window.user_email = '{{ request.user.email }}';
+      window.user_account_age = {% firstof request.user.profile.get_account_age 'null' %};
 
       {% if public %}
         window.pub = {{ public|lower }};
@@ -417,7 +415,7 @@
     {% include 'snipts/snipt-edit-js-template.html' %}
   </div>
 {% endblock %}
-{% if request.user.is_authenticated and request.user.is_pro %}
+{% if request.user.is_authenticated and request.user.is_pro or request.user.profile.get_account_age <= 7 %}
   {% if not debug %}
     {% block intercom %}
       <script id="IntercomSettingsScriptTag">
