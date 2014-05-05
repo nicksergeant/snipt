@@ -415,7 +415,7 @@
     {% include 'snipts/snipt-edit-js-template.html' %}
   </div>
 {% endblock %}
-{% if request.user.is_authenticated and request.user.is_pro or request.user.profile.get_account_age <= 7 %}
+{% if request.user.profile.get_account_age <= 7 or request.user.profile.is_pro %}
   {% if not debug %}
     {% block intercom %}
       <script id="IntercomSettingsScriptTag">
