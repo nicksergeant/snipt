@@ -44,7 +44,6 @@ cat media/js/libs/jquery.min.js \
     media/js/libs/angular.min.js \
     media/js/libs/angular-route.min.js \
     media/js/libs/underscore.js \
-    media/js/libs/mathjax.min.js \
     media/js/libs/json2.js \
     media/js/libs/backbone.js \
     media/js/libs/bootstrap.min.js \

@@ -918,16 +918,6 @@ article.snipt {
           }
         }
       }
-      div.markdown {
-        pre {
-          min-height: 0;
-          margin: 20px 0 !important;
-        }
-        iframe.twitter-tweet {
-          margin: 20px 0 !important;
-          width: 100%;
-        }
-      }
       a.expand, a.view-full {
         background: #FFF url('../img/expand.png') 15px 18px no-repeat;
         border-top: 1px solid #F1F1EE;
@@ -968,6 +958,21 @@ article.snipt {
         margin: 0 15px;
         min-height: 173px;
         padding: 13px 0 4px 0;
+
+        pre {
+          min-height: 0;
+          margin: 20px 0 !important;
+        }
+        iframe.twitter-tweet {
+          margin: 20px 0 !important;
+          width: 100%;
+        }
+        div.MathJax_Display {
+          display: inline-block;
+          margin: 0;
+          text-align: left !important;
+          width: auto;
+        }
       }
     }
     section.emacs, section.default {
