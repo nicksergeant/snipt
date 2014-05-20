@@ -48,6 +48,8 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
   {% endif %}
 
+  <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
   <link rel="author" href="/humans.txt" />
 
   {% block css %}{% endblock %}
@@ -404,7 +406,7 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/src/snipts.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/src/search.js"></script>
 {% else %}
-  <script type="text/javascript" src="{{ STATIC_URL }}js/snipt-all.min.js?72"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/snipt-all.min.js?71"></script>
 {% endif %}
 
 {% if has_snipts and detail %}
