@@ -104,19 +104,32 @@ def pro_complete(request):
         token = request.POST['token']
         stripe.api_key = STRIPE_SECRET_KEY
 
-        plan = 'snipt-monthly'
+        # One-time plan.
+        if request.POST['plan'] == 'onetime':
+            customer = stripe.Customer.create(email=request.user.email,
+                                              card=token)
+            try:
+                stripe.Charge.create(amount=14900,
+                                     currency='usd',
+                                     customer=customer.id,
+                                     description='Snipt.net')
+            except stripe.CardError:
+                return HttpResponseRedirect('/pro/?declined=true')
 
-        if request.POST['plan'] == 'monthly':
-            plan = 'snipt-monthly'
-        elif request.POST['plan'] == 'yearly':
-            plan = 'snipt-yearly'
+        # Recurring plans.
+        else:
 
-        try:
-            customer = stripe.Customer.create(card=token,
-                                              plan=plan,
-                                              email=request.user.email)
-        except stripe.CardError:
-            return HttpResponseRedirect('/pro/?declined=true')
+            if request.POST['plan'] == 'monthly':
+                plan = 'snipt-monthly'
+            elif request.POST['plan'] == 'yearly':
+                plan = 'snipt-yearly'
+
+            try:
+                customer = stripe.Customer.create(card=token,
+                                                  plan=plan,
+                                                  email=request.user.email)
+            except stripe.CardError:
+                return HttpResponseRedirect('/pro/?declined=true')
 
         profile = request.user.profile
         profile.is_pro = True

@@ -5,27 +5,30 @@
     </p>
 </div>
 <div ng-show="user.is_pro">
-    <div class="def" data-title="Plan">
+    <div class="def" data-title="Plan" ng-show="user.stripeAccount.status != 'inactive'">
         {[{ user.stripeAccount.name || 'Loading...' }]}
     </div>
-    <div class="def" data-title="Price">
+    <div class="def" data-title="Plan" ng-show="user.stripeAccount.status == 'inactive'">
+        One-time payment
+    </div>
+    <div class="def" data-title="Price" ng-show="user.stripeAccount.status != 'inactive'">
         <span ng-show="user.stripeAccount">${[{ user.stripeAccount.amount / 100 }]}.00 USD / {[{ user.stripeAccount.interval }]}</span>
         <span ng-show="!user.stripeAccount">Loading...</span>
     </div>
-    <div class="def" data-title="Card">
+    <div class="def" data-title="Card" ng-show="user.stripeAccount.status != 'inactive'">
         <span ng-show="user.stripeAccount">xxxx-xxxx-xxxx-{[{ user.stripeAccount.last4 || 'Loading...' }]}</span>
         <span ng-show="!user.stripeAccount">Loading...</span>
     </div>
-    <div class="def" data-title="Status">
+    <div class="def" data-title="Status" ng-show="user.stripeAccount.status != 'inactive'">
         {[{ user.stripeAccount.status || 'Loading...' }]}
     </div>
     <div class="def" data-title="Pro since">
         <span ng-show="user.stripeAccount">{[{ user.stripeAccount.created  * 1000 |date:'fullDate' }]}</span>
         <span ng-show="!user.stripeAccount">Loading...</span>
     </div>
-    <div class="def" data-title="Next bill date">
+    <div class="def" data-title="Next bill date" ng-show="user.stripeAccount.status != 'inactive'">
         <span ng-show="user.stripeAccount">{[{ user.stripeAccount.nextBill  * 1000 |date:'fullDate' }]}</span>
         <span ng-show="!user.stripeAccount">Loading...</span>
     </div>
-    <p class="alert alert-info">Need to cancel? <a href="mailto:nick@snipt.net">Email Nick</a>.</p>
+    <p class="alert alert-info" ng-show="user.stripeAccount.status != 'inactive'">Need to cancel? <a href="mailto:nick@snipt.net">Email Nick</a>.</p>
 </div>
