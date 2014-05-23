@@ -15,6 +15,24 @@ def account(request):
 
 @login_required
 @ajax_request
+def cancel_subscription(request):
+
+    if request.user.profile.stripe_id is None:
+        return {}
+    else:
+        stripe.api_key = STRIPE_SECRET_KEY
+        customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
+        customer.delete()
+
+        profile = request.user.profile
+        profile.is_pro = False
+        profile.stripe_id = None
+        profile.save()
+
+        return { 'deleted': True }
+
+@login_required
+@ajax_request
 def stripe_account_details(request):
 
     if request.user.profile.stripe_id is None:
