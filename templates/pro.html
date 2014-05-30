@@ -33,7 +33,7 @@
       <strong>Your card was declined.</strong> You have not been charged. Please try again.
     </div>
   {% endif %}
-  <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/">
+  <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/{% if 'plan' in request.GET %}?plan={{ request.GET.plan }}{% endif %}">
     <fieldset>
       <div class="info">
         Subscribe for just <span>$5/mo</span>, <span>$49/yr</span>, or <span>$149 once</span>.
@@ -49,8 +49,8 @@
         <label class="control-label" for="name">Payment plan:</label>
         <div class="controls">
           <select name="plan" type="text" class="input-medium" id="plan">
-            <option value="monthly">$5/month</option>
-            <option value="yearly">$49/year</option>
+            <option value="snipt-monthly">$5/month</option>
+            <option value="snipt-yearly">$49/year</option>
             <option value="onetime">$149 once</option>
           </select>
         </div>

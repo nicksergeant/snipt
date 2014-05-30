@@ -119,10 +119,10 @@ def pro_complete(request):
         # Recurring plans.
         else:
 
-            if request.POST['plan'] == 'monthly':
-                plan = 'snipt-monthly'
-            elif request.POST['plan'] == 'yearly':
-                plan = 'snipt-yearly'
+            if 'plan' in request.GET:
+                plan = request.GET['plan']
+            else:
+                plan = request.POST['plan']
 
             try:
                 customer = stripe.Customer.create(card=token,
