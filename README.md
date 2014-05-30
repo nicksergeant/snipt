@@ -14,7 +14,7 @@ If you need help, visit `#snipt` on irc.freenode.net.
 2. Setup a virtualenv.
 3. `pip install -r requirements.txt`
 4. `pip install --index-url https://code.stripe.com --upgrade stripe`
-5. Copy settings_local-template.py to settings_local.py and edit the settings.
+5. Copy settings_local-template.py to settings_local.py and edit the settings. Be sure to change the [`SESSION_COOKIE_DOMAIN`](https://github.com/nicksergeant/snipt/blob/master/settings_local-template.py#L58), or authentication won't work.
 6. `python manage.py syncdb`
 7. `python manage.py migrate`
 8. `python manage.py runserver`
