@@ -104,32 +104,15 @@ def pro_complete(request):
         token = request.POST['token']
         stripe.api_key = STRIPE_SECRET_KEY
 
-        # One-time plan.
-        if request.POST['plan'] == 'onetime':
-            customer = stripe.Customer.create(email=request.user.email,
-                                              card=token)
-            try:
-                stripe.Charge.create(amount=14900,
-                                     currency='usd',
-                                     customer=customer.id,
-                                     description='Snipt.net')
-            except stripe.CardError:
-                return HttpResponseRedirect('/pro/?declined=true')
-
-        # Recurring plans.
-        else:
-
-            if 'plan' in request.GET:
-                plan = request.GET['plan']
-            else:
-                plan = request.POST['plan']
-
-            try:
-                customer = stripe.Customer.create(card=token,
-                                                  plan=plan,
-                                                  email=request.user.email)
-            except stripe.CardError:
-                return HttpResponseRedirect('/pro/?declined=true')
+        customer = stripe.Customer.create(email=request.user.email,
+                                          card=token)
+        try:
+            stripe.Charge.create(amount=2900,
+                                 currency='usd',
+                                 customer=customer.id,
+                                 description='Snipt.net')
+        except stripe.CardError:
+            return HttpResponseRedirect('/pro/?declined=true')
 
         profile = request.user.profile
         profile.is_pro = True

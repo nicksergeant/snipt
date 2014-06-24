@@ -142,7 +142,7 @@ class SniptValidation(Validation):
         if 'pk' not in bundle.data and \
             request.user.profile.get_account_age() > 7 and \
             request.user.profile.is_pro == False:
-            errors['expired'] = "Your trial has expired. You'll need to subscribe in order to create new snipts. Read more at https://blog.snipt.net/moving-away-from-free-accounts-and-planning-for-the-future/."
+            errors['expired'] = "Your trial has expired. You'll need to go Pro (https://snipt.net/pro/) in order to create new snipts."
 
         return errors
 

@@ -25,7 +25,7 @@
   {% if request.GET.expired %}
     <div class="alert alert-error" style="margin: 30px; padding-right: 14px;">
       <a style="color: #B94A48; text-decoration: underline;" class="pull-right" href="https://blog.snipt.net/moving-away-from-free-accounts-and-planning-for-the-future/">Read more &raquo;</a>
-      <strong>Your trial has expired.</strong> You'll need to subscribe in order to create new snipts.
+      <strong>Your trial has expired.</strong> You'll need to go Pro in order to create new snipts.
     </div>
   {% endif %}
   {% if request.GET.declined %}
@@ -36,25 +36,14 @@
   <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/{% if 'plan' in request.GET %}?plan={{ request.GET.plan }}{% endif %}">
     <fieldset>
       <div class="info">
-        Subscribe for just <span>$5/mo</span>, <span>$49/yr</span>, or <span>$149 once</span>.
+        Go <span class="pro">Pro</span> for just <span>$29</span> (one-time fee).
         <p class="sub">
-          We believe the best way to build a superior product is to charge for it.
           As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
           custom-domain <a href="/blogging/">blogging</a>, instant chat support, and more.
         </p>
       </div>
       <div class="payment-loading"><span>Please wait&hellip;</span></div>
       <div class="payment-errors alert alert-error"></div>
-      <div class="control-group">
-        <label class="control-label" for="name">Payment plan:</label>
-        <div class="controls">
-          <select name="plan" type="text" class="input-medium" id="plan">
-            <option value="snipt-monthly">$5/month</option>
-            <option value="snipt-yearly">$49/year</option>
-            <option value="onetime">$149 once</option>
-          </select>
-        </div>
-      </div>
       <div class="control-group">
         <label class="control-label" for="name">Name on card:</label>
         <div class="controls">
@@ -113,7 +102,7 @@
       </div>
       <div class="form-actions">
         {% csrf_token %}
-        <button type="submit" class="btn btn-success">Subscribe</button>
+        <button type="submit" class="btn btn-success">Pay Now</button>
         <div class="security">
           <a href="https://stripe.com/help/security">Secure</a> by default. Every Snipt page is secure.
         </div>
