@@ -12,6 +12,7 @@ from django.db.models import Count
 from snipts.models import Snipt
 from taggit.models import Tag
 
+import datetime
 import hashlib
 import stripe
 
@@ -116,6 +117,7 @@ def pro_complete(request):
 
         profile = request.user.profile
         profile.is_pro = True
+        profile.pro_date = datetime.datetime.now()
         profile.stripe_id = customer.id
         profile.save()
 

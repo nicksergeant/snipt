@@ -427,6 +427,7 @@
           user_hash: '{{ request.user.id|intercom_sha_256 }}',
           email: '{{ request.user.email }}',
           created_at: {{ request.user.date_joined|date:"U" }},
+          pro_date: {% firstof request.user.profile.pro_date|date:"U" 'null' %},
           custom_data: {
             'snipts count': {% snipts_count_for_user %},
             'profile link': 'https://snipt.net/{{ request.user.username }}/',

@@ -44,6 +44,7 @@ class UserProfile(models.Model):
     # User
     user            = models.ForeignKey(User, unique=True)
     is_pro          = models.BooleanField(default=False)
+    pro_date        = models.DateTimeField(blank=True, null=True)
     stripe_id       = models.CharField(max_length=100, null=True, blank=True)
     has_gravatar    = models.BooleanField(default=False)
     list_view       = models.CharField(max_length=1, null=False, blank=False,default='N', choices=LIST_VIEW_CHOICES)
