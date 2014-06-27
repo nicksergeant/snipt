@@ -19,7 +19,7 @@ from tastypie import fields
 
 import datetime, hashlib, time, re
 
-import parsedatetime.parsedatetime as pdt
+import parsedatetime as pdt
 
 models.signals.post_save.connect(create_api_key, sender=User)
 
