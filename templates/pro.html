@@ -24,7 +24,6 @@
 {% block content %}
   {% if request.GET.expired %}
     <div class="alert alert-error" style="margin: 30px; padding-right: 14px;">
-      <a style="color: #B94A48; text-decoration: underline;" class="pull-right" href="https://blog.snipt.net/moving-away-from-free-accounts-and-planning-for-the-future/">Read more &raquo;</a>
       <strong>Your trial has expired.</strong> You'll need to go Pro in order to create new snipts.
     </div>
   {% endif %}
@@ -40,6 +39,9 @@
         <p class="sub">
           As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
           custom-domain <a href="/blogging/">blogging</a>, instant chat support, and more.
+        </p>
+        <p class="sub" style="font-size: .6em; margin-top: 15px;">
+          Group discounts available. Email <a href="mailto:support@snipt.net">support@snipt.net</a> for details.
         </p>
       </div>
       <div class="payment-loading"><span>Please wait&hellip;</span></div>
