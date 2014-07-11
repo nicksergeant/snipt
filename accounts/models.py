@@ -51,7 +51,7 @@ class UserProfile(models.Model):
 
     # Blog
     blog_title      = models.CharField(max_length=250, null=True, blank=True)
-    blog_theme      = models.CharField(max_length=1,   null=False, blank=False, default='D', choices=THEME_CHOICES)
+    blog_theme      = models.CharField(max_length=1,   null=False, blank=False, default='A', choices=THEME_CHOICES)
     blog_domain     = models.CharField(max_length=250, null=True, blank=True)
 
     # Editor
