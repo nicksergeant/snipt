@@ -439,6 +439,22 @@
     /* custom configuration goes here (www.olark.com/documentation) */
     olark.identify('9104-133-10-2665');/*]]>*/</script><noscript><a href="https://www.olark.com/site/9104-133-10-2665/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
     <!-- end olark code -->
+
+    {% if request.user.is_authenticated %}
+      <script type="text/javascript">
+        olark('api.visitor.updateEmailAddress', { emailAddress: '{{ request.user.email }}' });
+        olark('api.visitor.updateFullName', { fullName: '{{ request.user.username }}' });
+        olark('api.visitor.updateCustomFields', {
+          userId: {{ request.user.id }},
+          createdAt: '{{ request.user.date_joined }}',
+          sniptsCount: {% snipts_count_for_user %},
+          isPro: window.user_is_pro,
+          blogDomain: '{{ request.user.profile.blog_domain }}',
+          proDate: '{% firstof request.user.profile.pro_date|date:"U" 'null' %}'
+        });
+      </script>
+    {% endif %}
+
   {% endblock %}
 {% endif %}
 
