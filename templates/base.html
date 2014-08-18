@@ -1,4 +1,4 @@
-{% load snipt_tags %}
+{% load snipt_tags intercom %}
 
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}" ng-app="Snipt">
@@ -417,7 +417,7 @@
     {% include 'snipts/snipt-edit-js-template.html' %}
   </div>
 {% endblock %}
-{% if request.user.is_authenticated and not debug%}
+{% if request.user.is_authenticated and not debug %}
   <script id="IntercomSettingsScriptTag">
     var intercomSettings = {
       app_id: 'sajf131y',
