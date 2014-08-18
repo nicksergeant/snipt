@@ -16,6 +16,11 @@
         {% if request.user.profile.list_view == 'C' %}
             ng-cloak ng-show="$root.account.id"
         {% endif %}>
+        {% if not request.user.is_authenticated %}
+            {% include 'ad-leaderboard.html' %}
+        {% elif not request.user.profile.is_pro %}
+            {% include 'ad-leaderboard-pro.html' %}
+        {% endif %}
         {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
             {% include "snipts/snipt-list.html" %}

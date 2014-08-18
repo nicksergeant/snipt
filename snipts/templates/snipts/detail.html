@@ -48,6 +48,11 @@
 
 {% block content %}
     <section class="snipts" id="snipts">
+        {% if not request.user.is_authenticated %}
+            {% include 'ad-leaderboard.html' %}
+        {% elif not request.user.profile.is_pro %}
+            {% include 'ad-leaderboard-pro.html' %}
+        {% endif %}
         {% with 'true' as detail %}
             {% include "snipts/snipt-list.html" %}
         {% endwith %}
