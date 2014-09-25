@@ -1,0 +1,32 @@
+postgres:
+    image: postgres:9.1
+    expose:
+        - "5432"
+
+elasticsearch:
+    image: arcus/elasticsearch
+    expose:
+        - "9200"
+        - "9300"
+app:
+    build: .
+    links:
+        - postgres:db
+        - elasticsearch:es
+    ports:
+        - "8000:80"
+    expose:
+        - "8000"
+    environment:
+        - DB_NAME=postgres
+        - DB_USER=postgres
+
+proxy:
+    image: nginx
+    ports:
+        - "80"
+    volumes:
+        - .docker/nginx.conf:/etc/nginx.conf
+        - static:/app/snipt/static
+    net: "container:snipt_app_1"
+

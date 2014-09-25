@@ -1,4 +1,4 @@
-bind = "unix:/tmp/gunicorn.snipt.sock"
+bind = "0.0.0.0:8000"
 daemon = False                   # Whether work in the background
 debug = False                    # Some extra logging
 logfile = ".gunicorn.log"        # Name of the log file

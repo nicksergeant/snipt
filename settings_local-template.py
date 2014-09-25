@@ -2,6 +2,8 @@ import os
 from settings import INSTALLED_APPS, MIDDLEWARE_CLASSES
 
 DEBUG = True
+if os.environ.get('DEBUG', '').lower() == 'false':
+    DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -18,13 +20,14 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'snipt',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.environ.get('DB_NAME', 'snipt'),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASS', ''),
+        'HOST': os.environ.get('DB_PORT_5432_TCP_ADDR', 'localhost'),
+        'PORT': os.environ.get('DB_PORT_5432_TCP_PORT', ''),
     }
 }
+
 
 TIME_ZONE = 'America/New_York'
 
@@ -34,7 +37,7 @@ MEDIA_ROOT = os.path.join(BASE_PATH, 'media/uploads')
 
 MEDIA_URL = '/media/uploads/'
 
-STATIC_URL = '/media/'
+STATIC_URL = '/static/'
 
 SECRET_KEY = ''
 
@@ -58,10 +61,13 @@ CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = '.snipt.net'
 ALLOWED_HOSTS = ['*']
 
+ES_HOST = os.environ.get('ES_PORT_9200_TCP_ADDR', '127.0.0.1')
+ES_PORT = os.environ.get('ES_PORT_9200_TCP_PORT', '9200')
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',
+        'URL': 'http://{}:{}/'.format(ES_HOST, ES_PORT),
         'INDEX_NAME': 'haystack',
     },
 }
