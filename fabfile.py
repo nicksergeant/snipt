@@ -12,7 +12,7 @@ from settings_local import AMAZON_API_KEY, AMAZON_API_SECRET, ENV_HOST
 
 
 env.hosts = [ENV_HOST]
-env.site_path = '/var/www/snipt'
+env.site_path = '/home/nick/snipt'
 
 
 def dep():
@@ -30,13 +30,14 @@ def dep():
 
 def db_backup():
     filename = datetime.datetime.now().strftime('%h-%d-%y__%I-%M-%S_%p.pgdump')
-    local('pg_dump snipt > {}'.format(filename))
+    path = '/home/nick/snipt/{}'.format(filename)
+    local('.docker/control.sh backupdb > {}'.format(path))
     conn = S3Connection(AMAZON_API_KEY, AMAZON_API_SECRET)
     snipt_bucket = conn.get_bucket('snipt')
     k = Key(snipt_bucket)
     k.key = filename
     k.set_contents_from_filename(filename)
-    local('rm {}'.format(filename))
+    local('rm {}'.format(path))
 
 def db():
     with cd(env.site_path):
