@@ -24,6 +24,7 @@ psycopg2==2.5.1
 py-bcrypt==0.4
 pycrypto==2.6.1
 pyelasticsearch==0.3
+elasticsearch==1.2.0
 python-dateutil==2.2
 python-memcached==1.53
 python-mimeparse==0.1.4
