@@ -18,7 +18,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'snipt'),
         'USER': os.environ.get('DB_USER', ''),
         'PASSWORD': os.environ.get('DB_PASS', ''),
-        'HOST': os.environ.get('DB_PORT_5432_TCP_ADDR', 'localhost'),
+        'HOST': os.environ.get('DB_PORT_5432_TCP_ADDR', '127.0.0.1'),
         'PORT': os.environ.get('DB_PORT_5432_TCP_PORT', ''),
     }
 }
