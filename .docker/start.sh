@@ -34,7 +34,7 @@ for CMP in $COMPONENTS; do
         # collect static
         docker run -it --rm -v $(pwd)/static:/app/snipt/static --net container:snipt-net snipt/snipt python manage.py collectstatic --noinput
         # run app
-        docker run -it --name snipt-app -d -e DB_USER=postgres -e DB_NAME=snipt -e DEBUG=false --net container:snipt-net snipt/snipt > /dev/null
+        docker run -it --name snipt-app -d -e DB_USER=postgres -e DB_NAME=snipt -e DEBUG=false -v /etc/settings_local.py:/app/snipt/settings_local.py --net container:snipt-net snipt/snipt > /dev/null
         sleep 1
     fi
 
