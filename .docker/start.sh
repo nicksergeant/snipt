@@ -6,7 +6,7 @@ if [ -z "$COMPONENTS" ]; then
 fi
 
 for CMP in $COMPONENTS; do
-    if [ "$CMP" = "all" ]; then
+    if [ "$CMP" = "net" -o "$CMP" = "all" ]; then
         # start net container
         docker run -it -p 80:80 -p 443:443 --name snipt-net -d debian:jessie bash > /dev/null
         sleep 1
