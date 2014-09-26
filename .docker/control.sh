@@ -34,7 +34,7 @@ if [ "$ACTION" = "deploy" ]; then
     docker kill snipt-app
     docker rm snipt-app
     echo "deploying new container"
-    docker run -it --name snipt-app -d -e DB_USER=postgres -e DB_NAME=postgres -e DEBUG=false -v /etc/settings_local.py:/app/snipt/settings_local.py --net container:snipt-net snipt/snipt
+    docker run -it --name snipt-app -d -e DB_PORT_5432_TCP_ADDR=127.0.0.1 -e DB_PORT_5432_TCP_PORT=5432 -e DB_USER=postgres -e DB_NAME=postgres -e DEBUG=false -v /etc/settings_local.py:/app/snipt/settings_local.py --net container:snipt-net snipt/snipt
     sleep 5
     docker restart snipt-proxy
     echo "done"
