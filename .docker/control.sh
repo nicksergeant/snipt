@@ -21,6 +21,7 @@ if [ "$ACTION" = "deploy" ]; then
     docker rm snipt-app
     echo "deploying new container"
     docker run -it --name snipt-app -d -e DB_USER=postgres -e DB_NAME=postgres -e DEBUG=false --net container:snipt-net snipt/snipt
+    docker restart snipt-proxy
     echo "done"
 fi
 
