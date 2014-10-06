@@ -40,7 +40,7 @@ for CMP in $COMPONENTS; do
 
     if [ "$CMP" = "proxy" -o "$CMP" = "all" ]; then
         echo "starting proxy"
-        docker run -d --name snipt-proxy -it -v /var/log/snipt:/logs -v $(pwd)/.docker/nginx.conf:/etc/nginx/nginx.conf -v $(pwd)/static:/app/snipt/static -v /etc/certs:/etc/certs --net container:snipt-net nginx nginx -g 'daemon off;' -c /etc/nginx/nginx.conf > /dev/null
+        docker run -d --name snipt-proxy -it -v /var/log/snipt:/logs -v $(pwd)/.docker/nginx.conf:/etc/nginx/nginx.conf -v $(pwd)/static:/app/snipt/static -v /etc/certs:/etc/certs --net container:snipt-net snipt/proxy nginx -g 'daemon off;' -c /etc/nginx/nginx.conf > /dev/null
     fi
 
 done
