@@ -7,6 +7,7 @@ if 'DATABASE_URL' in os.environ:
     HAYSTACK_CONNECTIONS = {
         'default': {
             'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'INDEX_NAME': 'snipt',
             'URL': os.environ.get('BONSAI_URL', ''),
         },
     }
@@ -35,7 +36,7 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_PATH = os.path.dirname(__file__)
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = os.environ.get('USE_SSL', False)
 DEBUG = os.environ.get('DEBUG', False)
 DEFAULT_FROM_EMAIL = 'nick@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
@@ -59,7 +60,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SEND_BROKEN_LINK_EMAILS = False
 SERVER_EMAIL = 'nick@snipt.net'
 SESSION_COOKIE_AGE = 15801100
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = os.environ.get('USE_SSL', False)
 SITE_ID = 1
 STATICFILES_DIRS = (os.path.join(BASE_PATH, 'media'),)
 STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder','django.contrib.staticfiles.finders.AppDirectoriesFinder',)
@@ -69,7 +70,7 @@ TASTYPIE_CANNED_ERROR = "There was an error with your request. The site develope
 TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'))
 TEMPLATE_DEBUG = DEBUG
 TIME_ZONE = 'America/New_York'
-USE_HTTPS = False
+USE_HTTPS = os.environ.get('USE_SSL', False)
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

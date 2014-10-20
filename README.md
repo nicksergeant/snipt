@@ -17,15 +17,18 @@ This is the codebase for the website, [Snipt.net](https://snipt.net/).
 
 1. Clone the repo.
 2. `heroku create`
-3. `heroku config:add DEBUG=True`
-3. `heroku config:add INTERCOM_SECRET_KEY=`
-3. `heroku config:add POSTMARK_API_KEY=`
-3. `heroku config:add RAVEN_CONFIG_DSN=`
-3. `heroku config:add SECRET_KEY=`
-3. `heroku config:add STRIPE_SECRET_KEY=`
-4. `git push heroku`
-5. `heroku run pip install --index-url https://code.stripe.com --upgrade stripe`
-6. `heroku run python manage.py syncdb`
-7. `heroku run python manage.py migrate`
+3. `heroku addons:add heroku-postgresql:standard-0`
+4. `heroku addons:add bonsai`
+5. `heroku config:add DEBUG=False`
+6. `heroku config:add INTERCOM_SECRET_KEY=`
+7. `heroku config:add POSTMARK_API_KEY=`
+8. `heroku config:add RAVEN_CONFIG_DSN=`
+9. `heroku config:add SECRET_KEY=`
+10. `heroku config:add STRIPE_SECRET_KEY=`
+11. `heroku config:add USE_SSL=False`
+12. `git push heroku`
+13. `heroku run pip install --index-url https://code.stripe.com --upgrade stripe`
+14. `heroku run python manage.py syncdb`
+15. `heroku run python manage.py migrate`
 
 Any problems / questions / bugs, [create an issue](https://github.com/nicksergeant/snipt/issues). Thanks! :)
