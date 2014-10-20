@@ -7,7 +7,7 @@ if 'DATABASE_URL' in os.environ:
     HAYSTACK_CONNECTIONS = {
         'default': {
             'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-            'INDEX_NAME': 'snipt',
+            'INDEX_NAME': os.environ.get('BONSAI_INDEX', ''),
             'URL': os.environ.get('BONSAI_URL', ''),
         },
     }
