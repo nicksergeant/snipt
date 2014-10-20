@@ -1,14 +1,26 @@
 import dj_database_url, os
 
+from urlparse import urlparse
+
+
 if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.config()
-    }
+
+    DATABASES = { 'default': dj_database_url.config() }
+
+    es = urlparse(os.environ.get('SEARCHBOX_URL') or 'http://127.0.0.1:9200/')
+    port = es.port or 80
+
     HAYSTACK_CONNECTIONS = {
         'default': {
-            'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': es.scheme + '://' + es.hostname + ':' + str(port),
+            'INDEX_NAME': 'snipts',
         },
     }
+
+    if es.username:
+        HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
+
 else:
     DATABASES = {
         'default': {
