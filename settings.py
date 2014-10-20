@@ -36,6 +36,7 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_PATH = os.path.dirname(__file__)
+CSRF_COOKIE_DOMAIN = 'snipt-net.herokuapp.com'
 CSRF_COOKIE_SECURE = os.environ.get('USE_SSL', False)
 DEBUG = os.environ.get('DEBUG', False)
 DEFAULT_FROM_EMAIL = 'nick@snipt.net'
