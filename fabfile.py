@@ -29,15 +29,12 @@ def dep():
         run('/home/nick/snipt/.docker/control.sh deploy')
 
 def db_backup():
-    filename = datetime.datetime.now().strftime('%h-%d-%y__%I-%M-%S_%p.pgdump')
-    path = '/tmp/{}'.format(filename)
-    local('/home/nick/snipt/.docker/control.sh backupdb > {}'.format(path))
     conn = S3Connection(AMAZON_API_KEY, AMAZON_API_SECRET)
     snipt_bucket = conn.get_bucket('snipt')
     k = Key(snipt_bucket)
     k.key = filename
-    k.set_contents_from_filename(path)
-    local('rm {}'.format(path))
+    k.set_contents_from_filename('/tmp/snipt.pgdump')
+    local('rm {}'.format('/tmp/snipt.pgdump'))
 
 def db():
     with cd(env.site_path):
