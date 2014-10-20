@@ -4,6 +4,12 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.config()
     }
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': os.environ.get('BONSAI_URL', ''),
+        },
+    }
 else:
     DATABASES = {
         'default': {
@@ -14,6 +20,11 @@ else:
             'HOST': 'localhost',
             'PORT': ''
         }
+    }
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+        },
     }
 
 ABSOLUTE_URL_OVERRIDES = { 'auth.user': lambda u: "/%s/" % u.username, }
@@ -28,7 +39,6 @@ CSRF_COOKIE_SECURE = False
 DEBUG = os.environ.get('DEBUG', False)
 DEFAULT_FROM_EMAIL = 'nick@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
-HAYSTACK_CONNECTIONS = { 'default': { 'ENGINE': 'haystack.backends.simple_backend.SimpleEngine', }, }
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 INTERCOM_SECRET_KEY = os.environ.get('INTERCOM_SECRET_KEY', '')
 INTERNAL_IPS = ('127.0.0.1',)
