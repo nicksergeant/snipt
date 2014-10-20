@@ -30,7 +30,7 @@ def dep():
 
 def db_backup():
     filename = datetime.datetime.now().strftime('%h-%d-%y__%I-%M-%S_%p.pgdump')
-    path = '/home/nick/snipt/{}'.format(filename)
+    path = '/tmp/{}'.format(filename)
     local('/home/nick/snipt/.docker/control.sh backupdb > {}'.format(path))
     conn = S3Connection(AMAZON_API_KEY, AMAZON_API_SECRET)
     snipt_bucket = conn.get_bucket('snipt')
