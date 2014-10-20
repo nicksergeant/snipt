@@ -46,6 +46,7 @@ RAVEN_CONFIG = { 'dsn': os.environ.get('RAVEN_CONFIG_DSN', '') }
 ROOT_URLCONF = 'urls'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SEND_BROKEN_LINK_EMAILS = False
 SERVER_EMAIL = 'nick@snipt.net'
 SESSION_COOKIE_AGE = 15801100
 SESSION_COOKIE_SECURE = False
