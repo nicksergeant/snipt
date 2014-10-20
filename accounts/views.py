@@ -4,8 +4,6 @@ from snipts.models import Snipt
 
 import stripe
 
-from settings_local import STRIPE_SECRET_KEY
-
 
 @login_required
 @render_to('account.html')

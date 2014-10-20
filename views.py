@@ -16,8 +16,6 @@ import datetime
 import hashlib
 import stripe
 
-from settings_local import STRIPE_SECRET_KEY
-
 @ajax_request
 def user_api_key(request):
 

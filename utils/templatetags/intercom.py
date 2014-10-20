@@ -1,5 +1,4 @@
 from django import template
-from settings_local import INTERCOM_SECRET_KEY
 
 import hmac, hashlib
 
