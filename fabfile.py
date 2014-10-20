@@ -36,7 +36,7 @@ def db_backup():
     snipt_bucket = conn.get_bucket('snipt')
     k = Key(snipt_bucket)
     k.key = filename
-    k.set_contents_from_filename(filename)
+    k.set_contents_from_filename(path)
     local('rm {}'.format(path))
 
 def db():
