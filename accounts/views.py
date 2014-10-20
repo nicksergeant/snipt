@@ -18,7 +18,7 @@ def cancel_subscription(request):
     if request.user.profile.stripe_id is None:
         return {}
     else:
-        stripe.api_key = os.environ['STRIPE_SECRET_KEY']
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
         customer.delete()
 
@@ -36,7 +36,7 @@ def stripe_account_details(request):
     if request.user.profile.stripe_id is None:
         return {}
     else:
-        stripe.api_key = os.environ['STRIPE_SECRET_KEY']
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
 
         data = {

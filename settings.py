@@ -1,5 +1,21 @@
 import dj_database_url, os
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'snipt',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': ''
+        }
+    }
+
 ABSOLUTE_URL_OVERRIDES = { 'auth.user': lambda u: "/%s/" % u.username, }
 ACCOUNT_ACTIVATION_DAYS = 0
 ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
@@ -9,13 +25,12 @@ AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_PATH = os.path.dirname(__file__)
 CSRF_COOKIE_SECURE = False
-DATABASES = { 'default': dj_database_url.config() }
-DEBUG = os.environ['DEBUG']
+DEBUG = os.environ.get('DEBUG', False)
 DEFAULT_FROM_EMAIL = 'nick@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 HAYSTACK_CONNECTIONS = { 'default': { 'ENGINE': 'haystack.backends.simple_backend.SimpleEngine', }, }
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-INTERCOM_SECRET_KEY = os.environ['INTERCOM_SECRET_KEY']
+INTERCOM_SECRET_KEY = os.environ.get('INTERCOM_SECRET_KEY', '')
 INTERNAL_IPS = ('127.0.0.1',)
 LANGUAGE_CODE = 'en-us'
 LOGIN_REDIRECT_URL = '/login-redirect/'
@@ -25,11 +40,11 @@ MANAGERS = ADMINS
 MEDIA_ROOT = os.path.join(BASE_PATH, 'media/uploads')
 MEDIA_URL = '/media/uploads/'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
-POSTMARK_API_KEY = os.environ['POSTMARK_API_KEY']
+POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-RAVEN_CONFIG = { 'dsn': os.environ['RAVEN_CONFIG_DSN'] }
+RAVEN_CONFIG = { 'dsn': os.environ.get('RAVEN_CONFIG_DSN', '') }
 ROOT_URLCONF = 'urls'
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SERVER_EMAIL = 'nick@snipt.net'
 SESSION_COOKIE_AGE = 15801100
