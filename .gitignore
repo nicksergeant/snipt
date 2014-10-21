@@ -8,7 +8,6 @@ venv
 
 settings_local.py
 media/cache
-static
 tags
 
 media/css/pro.css
