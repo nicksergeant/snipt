@@ -1,4 +1,5 @@
 (function(Snipt) {
+  alert('hi');
 
     Snipt.SniptModel = Backbone.Model.extend({
         toSafe: function() {
