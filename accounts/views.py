@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from snipts.models import Snipt
 
-import stripe
+import os, stripe
 
 
 @login_required

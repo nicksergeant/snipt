@@ -14,6 +14,7 @@ from taggit.models import Tag
 
 import datetime
 import hashlib
+import os
 import stripe
 
 @ajax_request
