@@ -41,91 +41,91 @@ jQuery(function($) {
     $scope.ads = [
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },
       {
         url: 'http://showroom.is/?from=snipt',
-        image: '/static/img/logo-showroom.png',
+        image: 'https://snipt.s3.amazonaws.com/img/logo-showroom.png',
         company: 'Showroom.is',
         title: 'New-car research for the modern web.'
       },

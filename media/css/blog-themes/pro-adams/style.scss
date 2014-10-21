@@ -323,7 +323,7 @@ article {
                     }
                 }
                 &:after {
-                    background: transparent url('/static/img/date-arrow.gif') top left no-repeat;
+                    background: transparent url('https://snipt.s3.amazonaws.com/img/date-arrow.gif') top left no-repeat;
                     content: "";
                     display: block;
                     height: 11px;

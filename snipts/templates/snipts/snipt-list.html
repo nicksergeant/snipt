@@ -148,7 +148,7 @@
         <ul class="attrs">
             {% block author %}
                 <li class="author">
-                    <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ snipt.user.email|md5 }}?s=15&amp;d=https://snipt.net/static/img/author-icon.png');"></span>
+                    <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ snipt.user.email|md5 }}?s=15&amp;d=https://snipt.s3.amazonaws.com/img/author-icon.png');"></span>
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
                     {% if snipt.user.profile.is_pro %}
                         <span class="pro"><a href="/pro/">Pro</a></span>

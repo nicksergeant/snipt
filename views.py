@@ -14,9 +14,8 @@ from taggit.models import Tag
 
 import datetime
 import hashlib
+import os
 import stripe
-
-from settings_local import STRIPE_SECRET_KEY
 
 @ajax_request
 def user_api_key(request):
@@ -103,7 +102,7 @@ def pro_complete(request):
     if request.method == 'POST':
 
         token = request.POST['token']
-        stripe.api_key = STRIPE_SECRET_KEY
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
 
         customer = stripe.Customer.create(email=request.user.email,
                                           card=token)
