@@ -68,7 +68,7 @@ urlpatterns = patterns('',
     url(r'^', include('snipts.urls')),
 )
 
-if settings.DEBUG:
+if 'USE_SSL' not in os.environ:
     urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(__file__), 'media')}),
     )
