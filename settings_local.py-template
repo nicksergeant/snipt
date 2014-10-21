@@ -5,3 +5,4 @@ DEBUG=True
 S3_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATIC_URL = '/static/'
+SSLIFY_DISABLE = True

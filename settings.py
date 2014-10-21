@@ -78,7 +78,7 @@ STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder','dj
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 STATIC_URL = 'https://snipt.s3.amazonaws.com/'
 TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
-TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'))
+TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)
 TEMPLATE_DEBUG = DEBUG
 TIME_ZONE = 'America/New_York'
 USE_HTTPS = True if 'USE_SSL' in os.environ else False
@@ -126,6 +126,7 @@ LOGGING = {
     'loggers': {}
 }
 MIDDLEWARE_CLASSES = (
+    'sslify.middleware.SSLifyMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
