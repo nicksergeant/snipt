@@ -88,7 +88,6 @@ USE_TZ = True
 if 'USE_SSL' in os.environ:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
-    STATIC_URL = '/static/'
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'media'),
     )
