@@ -1,6 +1,6 @@
 argparse==1.2.1
 biplist==0.6
-boto==2.16.0
+boto==2.33.0
 defusedxml==0.4.1
 Django==1.6
 django-annoying==0.7.7
@@ -9,6 +9,7 @@ django-debug-toolbar==0.11.0
 django-extensions==1.2.5
 django-markdown-deux==1.0.4
 django-pagination==1.0.7
+django-storages==1.1.8
 django-taggit==0.10
 django-tastypie==0.10.0
 django-templatetag-sugar==0.1
