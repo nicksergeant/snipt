@@ -12,19 +12,19 @@ if (typeof angular !== 'undefined') {
 
     // Routes.
     $routeProvider.when('/account/', {
-      templateUrl: 'https://snipt.s3.amazonaws.com/static/js/src/modules/partials/profile.html',
+      templateUrl: 'https://snipt.s3.amazonaws.com/js/src/modules/partials/profile.html',
       controller: controllers.ProfileController
     });
     $routeProvider.when('/account/billing/', {
-      templateUrl: 'https://snipt.s3.amazonaws.com/static/js/src/modules/partials/billing.html',
+      templateUrl: 'https://snipt.s3.amazonaws.com/js/src/modules/partials/billing.html',
       controller: controllers.BillingController
     });
     $routeProvider.when('/account/blogging/', {
-      templateUrl: 'https://snipt.s3.amazonaws.com/static/js/src/modules/partials/blogging.html',
+      templateUrl: 'https://snipt.s3.amazonaws.com/js/src/modules/partials/blogging.html',
       controller: controllers.BloggingController
     });
     $routeProvider.when('/account/editor/', {
-      templateUrl: 'https://snipt.s3.amazonaws.com/static/js/src/modules/partials/editor.html',
+      templateUrl: 'https://snipt.s3.amazonaws.com/js/src/modules/partials/editor.html',
       controller: controllers.EditorController
     });
 

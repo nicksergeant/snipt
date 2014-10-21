@@ -65,7 +65,7 @@ deploy:
 			media/js/src/pro.js \
 			> media/js/pro-all.min.js
 
-	@/Users/Nick/.virtualenvs/snipt/bin/python manage.py collectstatic --noinput
+	/Users/Nick/.virtualenvs/snipt/bin/python manage.py collectstatic --noinput
 
 	@git push heroku heroku:master
 

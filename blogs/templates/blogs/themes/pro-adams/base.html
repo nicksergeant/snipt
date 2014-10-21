@@ -27,15 +27,15 @@
     {% endif %}
 
     {% if debug %}
-        <link rel="stylesheet" type="text/css" href="https://snipt.s3.amazonaws.com/static/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://snipt.s3.amazonaws.com/static/css/blog-themes/pro-adams/style.css" />
-        <link rel="stylesheet" type="text/css" href="https://snipt.s3.amazonaws.com/static/css/highlightjs-themes/tomorrow.css" />
-        <link rel="stylesheet" type="text/css" href="https://snipt.s3.amazonaws.com/static/css/themes.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/pro-adams/style.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/themes.css" />
     {% else %}
-        <link rel="stylesheet" type="text/css" href="https://snipt.s3.amazonaws.com/static/css/pro.css?26" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pro.css?26" />
     {% endif %}
 
-    <link rel="shortcut icon" href="https://snipt.s3.amazonaws.com/static/img/blog-favicon.ico" >
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/blog-favicon.ico" >
 
     {% if custom_css %}
         <style type="text/css">
@@ -132,7 +132,7 @@
         </section>
     </div>
 
-    <script type="text/javascript" src="https://snipt.s3.amazonaws.com/static/js/pro-all.min.js?2"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pro-all.min.js?2"></script>
 
     {% include 'analytics.html' %}
 
