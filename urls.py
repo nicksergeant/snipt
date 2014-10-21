@@ -69,5 +69,5 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('',
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/Nick/Code/snipt/media'}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(__file__), 'media')}),
 )
