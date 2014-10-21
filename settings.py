@@ -90,7 +90,7 @@ if 'USE_SSL' in os.environ:
     STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
     STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
+        os.path.join(BASE_DIR, 'media'),
     )
 
 INSTALLED_APPS = (
