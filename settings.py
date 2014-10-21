@@ -73,10 +73,6 @@ SERVER_EMAIL = 'support@snipt.net'
 SESSION_COOKIE_AGE = 15801100
 SESSION_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 SITE_ID = 1
-STATICFILES_DIRS = (os.path.join(BASE_PATH, 'media'),)
-STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder','django.contrib.staticfiles.finders.AppDirectoriesFinder',)
-STATIC_ROOT = os.path.join(BASE_PATH, 'static')
-STATIC_URL = 'https://snipt.s3.amazonaws.com/'
 TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
 TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)
 TEMPLATE_DEBUG = DEBUG
@@ -85,6 +81,18 @@ USE_HTTPS = True if 'USE_SSL' in os.environ else False
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+if DEBUG:
+    STATICFILES_DIRS = (os.path.join(BASE_PATH, 'media'),)
+    STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder','django.contrib.staticfiles.finders.AppDirectoriesFinder',)
+    STATIC_ROOT = os.path.join(BASE_PATH, 'static')
+    STATIC_URL = '/static/'
+else:
+    STATIC_URL = 'https://snipt.s3.amazonaws.com/'
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
 INSTALLED_APPS = (
     'gunicorn',
