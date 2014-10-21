@@ -7,7 +7,6 @@ This is the codebase for the website, [Snipt.net](https://snipt.net/).
 1. Clone the repo.
 2. Setup a virtualenv.
 3. `pip install -r requirements.txt`
-4. `pip install --index-url https://code.stripe.com --upgrade stripe`
 5. `python manage.py syncdb`
 6. `python manage.py migrate`
 7. `python manage.py runserver`
@@ -30,8 +29,7 @@ This is the codebase for the website, [Snipt.net](https://snipt.net/).
 13. `heroku config:add STRIPE_SECRET_KEY=`
 14. `heroku config:add USE_SSL=False`
 15. `git push heroku`
-16. `heroku run pip install --index-url https://code.stripe.com --upgrade stripe`
-17. `heroku run python manage.py syncdb`
-18. `heroku run python manage.py migrate`
+16. `heroku run python manage.py syncdb`
+17. `heroku run python manage.py migrate`
 
 Any problems / questions / bugs, [create an issue](https://github.com/nicksergeant/snipt/issues). Thanks! :)
