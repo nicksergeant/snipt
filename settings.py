@@ -85,13 +85,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-if 'USE_SSL' in os.environ:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'media'),
-    )
-
 INSTALLED_APPS = (
     'gunicorn',
     'raven.contrib.django.raven_compat',
