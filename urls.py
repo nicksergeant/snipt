@@ -67,3 +67,7 @@ urlpatterns = patterns('',
 
     url(r'^', include('snipts.urls')),
 )
+
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/Nick/Code/snipt/media'}),
+)
