@@ -29,7 +29,7 @@
   {% endif %}
   {% if request.GET.declined %}
     <div class="alert alert-error" style="margin: 30px;">
-      <strong>Your card was declined.</strong> You have not been charged. Please try again.
+      <strong>{{ request.GET.declined }}</strong> You have not been charged. Please try again.
     </div>
   {% endif %}
   <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/{% if 'plan' in request.GET %}?plan={{ request.GET.plan }}{% endif %}">

@@ -2,6 +2,7 @@ from accounts.models import UserProfile
 from annoying.decorators import ajax_request
 from blogs.views import blog_list
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from django.shortcuts import render_to_response
@@ -102,17 +103,18 @@ def pro_complete(request):
     if request.method == 'POST':
 
         token = request.POST['token']
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
 
-        customer = stripe.Customer.create(email=request.user.email,
-                                          card=token)
         try:
+            customer = stripe.Customer.create(email=request.user.email,
+                                              card=token)
             stripe.Charge.create(amount=2900,
                                  currency='usd',
                                  customer=customer.id,
                                  description='Snipt.net')
-        except stripe.CardError:
-            return HttpResponseRedirect('/pro/?declined=true')
+        except stripe.CardError, e:
+            error_message = e.json_body['error']['message']
+            return HttpResponseRedirect('/pro/?declined=%s' % error_message or 'Your card was declined.')
 
         profile = request.user.profile
         profile.is_pro = True
