@@ -66,6 +66,8 @@ urlpatterns = patterns('',
     url(r'', include('registration.backends.default.urls')),
 
     url(r'^', include('snipts.urls')),
+
+    url(r'^(?P<path>favicon\.ico)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(__file__), 'static/img')}),
 )
 
 urlpatterns += patterns('',
