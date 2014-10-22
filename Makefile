@@ -1,5 +1,5 @@
 deploy:
-	@git push heroku heroku:master
+	@git push heroku
 
 deploy-with-assets:
 	@cat media/css/bootstrap.min.css \
