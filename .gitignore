@@ -1,5 +1,6 @@
 venv
 .gunicorn.pid
+.vagrant
 *.log
 .sass-cache
 *.un~

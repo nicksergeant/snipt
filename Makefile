@@ -65,4 +65,31 @@ deploy-with-assets:
 	/Users/Nick/.virtualenvs/snipt/bin/python manage.py collectstatic --noinput
 	@git push heroku
 
-.PHONY: deploy, deploy-with-assets
+salt-vagrant:
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo rm -rf /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mkdir /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/salt /srv/salt'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/pillar /srv/pillar'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo salt-call --local state.highstate'
+
+vagrant:
+	@vagrant up --provider=vmware_fusion
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get update'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get install -y software-properties-common python-software-properties'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo add-apt-repository -y ppa:saltstack/salt'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get update'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get install -y salt-minion'
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo rm -rf /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mkdir /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/salt /srv/salt'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/pillar /srv/pillar'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo salt-call --local state.highstate'
+
+.PHONY: deploy, \
+				deploy-with-assets, \
+				salt-vagrant, \
+				vagrant
