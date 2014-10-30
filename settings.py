@@ -21,23 +21,6 @@ if 'DATABASE_URL' in os.environ:
     if es.username:
         HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
 
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'snipt',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': ''
-        }
-    }
-    HAYSTACK_CONNECTIONS = {
-        'default': {
-            'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
-        },
-    }
-
 ABSOLUTE_URL_OVERRIDES = { 'auth.user': lambda u: "/%s/" % u.username, }
 ACCOUNT_ACTIVATION_DAYS = 0
 ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)

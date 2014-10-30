@@ -4,13 +4,14 @@ This is the codebase for the website, [Snipt.net](https://snipt.net/).
 
 # Running the Django app
 
+Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://www.virtualbox.org/) or
+[VMWare Fusion](http://www.vmware.com/products/fusion).
+
 1. Clone the repo.
-2. Setup a virtualenv.
-3. `pip install -r requirements.txt`
-5. `python manage.py syncdb`
-6. `python manage.py migrate`
-7. `python manage.py runserver`
-8. If you created a superuser in the syncdb step, you need to also run `python manage.py backfill_api_keys` to generate an API key for that user.
+2. `cp settings_local.py-template settings_local.py`
+3. Edit local settings (choose a database password - you'll be prompted for it).
+4. `make vagrant`
+5. Visit [http://local.snipt.net:8080/](http://local.snipt.net:8080/).
 
 # Deploying to Heroku
 

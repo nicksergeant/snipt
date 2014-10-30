@@ -1,7 +1,4 @@
-deploy:
-	@git push heroku
-
-deploy-with-assets:
+assets:
 	@cat media/css/bootstrap.min.css \
 			media/css/blog-themes/pro-adams/style.css \
 			media/css/highlightjs-themes/tomorrow.css \
@@ -63,6 +60,19 @@ deploy-with-assets:
 			media/js/src/pro.js \
 			> media/js/pro-all.min.js
 	/Users/Nick/.virtualenvs/snipt/bin/python manage.py collectstatic --noinput
+
+db:
+	@echo Creating database user snipt:
+	@sudo -H -u postgres bash -c 'createuser snipt -P'
+	@sudo -H -u postgres bash -c 'createdb snipt -O snipt'
+
+deploy:
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; git pull;'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; make assets;'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py migrate'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo supervisorctl restart snipt'
+
+deploy-heroku:
 	@git push heroku
 
 salt-vagrant:
@@ -88,8 +98,14 @@ vagrant:
 	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/salt /srv/salt'
 	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/pillar /srv/pillar'
 	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo salt-call --local state.highstate'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; make db'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py syncdb'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py migrate'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py backfill_api_keys'
 
-.PHONY: deploy, \
-				deploy-with-assets, \
+.PHONY: assets, \
+				db, \
+				deploy, \
+				deploy-heroku, \
 				salt-vagrant, \
 				vagrant
