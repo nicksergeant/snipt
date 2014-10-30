@@ -168,7 +168,7 @@ class Snipt(models.Model):
                 return u'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
@@ -193,7 +193,7 @@ class Snipt(models.Model):
                 filename = u'{}.txt'.format(self.slug)
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
@@ -202,7 +202,7 @@ class Snipt(models.Model):
     def get_embed_url(self):
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
@@ -211,7 +211,7 @@ class Snipt(models.Model):
     def get_raw_url(self):
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
