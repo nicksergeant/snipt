@@ -107,7 +107,7 @@ vagrant:
 	@$(ssh-vagrant) 'sudo mv ~/salt /srv/salt'
 	@$(ssh-vagrant) 'sudo mv ~/pillar /srv/pillar'
 	@$(ssh-vagrant) 'sudo salt-call --local state.highstate'
-	@$(ssh-vagrant) 'cd /var/www/snipt; make db;'
+	@vagrant ssh -c 'cd /var/www/snipt; make db;'
 	@vagrant ssh -c '$(pm) syncdb;'
 	@$(ssh-vagrant) '$(pm) migrate;'
 	@$(ssh-vagrant) '$(pm) backfill_api_keys'
