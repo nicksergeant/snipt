@@ -41,6 +41,9 @@ end
 function logs
     sudo supervisorctl tail -f snipt stdout
 end
+function pm 
+    python manage.py $argv
+end
 function run
     sudo supervisorctl restart snipt
     sudo supervisorctl tail -f snipt stdout

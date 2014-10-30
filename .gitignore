@@ -23,3 +23,9 @@ media/js/src/modules/snipt.min.js
 media/js/src/pro.min.js
 media/js/snipt-all.min.js
 media/js/pro-all.min.js
+
+static/admin
+static/css
+static/fonts
+static/img
+static/js
