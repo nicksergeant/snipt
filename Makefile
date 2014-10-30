@@ -75,6 +75,19 @@ deploy:
 deploy-heroku:
 	@git push heroku
 
+server-settings:
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r settings_local_server.py vagrant@localhost:settings_local.py
+
+salt-server:
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r settings_local_server.py vagrant@localhost:settings_local.py
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo rm -rf /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mkdir /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/salt /srv/salt'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/pillar /srv/pillar'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo salt-call --local state.highstate'
+
 salt-vagrant:
 	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
 	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
@@ -83,6 +96,25 @@ salt-vagrant:
 	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/salt /srv/salt'
 	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/pillar /srv/pillar'
 	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo salt-call --local state.highstate'
+
+server:
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get update'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get install -y software-properties-common python-software-properties'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo add-apt-repository -y ppa:saltstack/salt'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get update'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo apt-get install -y salt-minion'
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo rm -rf /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mkdir /srv'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/salt /srv/salt'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo mv ~/pillar /srv/pillar'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'sudo salt-call --local state.highstate'
+	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r settings_local_server.py vagrant@localhost:/var/www/snipt/settings_local.py
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; make db'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py syncdb'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py migrate'
+	@ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key 'cd /var/www/snipt; /var/www/.virtualenvs/snipt/bin/python manage.py backfill_api_keys'
 
 vagrant:
 	@vagrant up --provider=vmware_fusion
@@ -107,5 +139,8 @@ vagrant:
 				db, \
 				deploy, \
 				deploy-heroku, \
+				salt-server, \
 				salt-vagrant, \
+				server-settings, \
+				server, \
 				vagrant

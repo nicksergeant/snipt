@@ -13,6 +13,13 @@ Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://ww
 4. `make vagrant`
 5. Visit [http://local.snipt.net:8080/](http://local.snipt.net:8080/).
 
+# Deploying to a VM
+1. Clone the repo.
+2. `cp settings_local.py-template settings_local_server.py`
+3. Edit local server settings (choose a database password - you'll be prompted for it).
+4. Manually change the VM IP address in the Makefile.
+5. `make server`
+
 # Deploying to Heroku
 
 1. Clone the repo.

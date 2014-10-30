@@ -1,16 +1,17 @@
-venv
 .gunicorn.pid
-.vagrant
-*.log
 .sass-cache
+.vagrant
+.venv
+
+*.log
 *.un~
 *.pgdump
 *.pyc
 
 settings_local.py
-media/cache
-tags
+settings_local_server.py
 
+media/cache
 media/css/pro.css
 media/css/snipt.css
 media/js/src/account.min.js
@@ -23,9 +24,9 @@ media/js/src/modules/snipt.min.js
 media/js/src/pro.min.js
 media/js/snipt-all.min.js
 media/js/pro-all.min.js
-
 static/admin
 static/css
 static/fonts
 static/img
 static/js
+tags
