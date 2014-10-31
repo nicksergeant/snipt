@@ -1,8 +1,28 @@
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = ''
-DEBUG=True
-S3_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+CSRF_COOKIE_SECURE = False
+DEBUG = True
+INTERCOM_SECRET_KEY = ''
+POSTMARK_API_KEY = ''
+RAVEN_CONFIG = { 'dsn': '' }
+SECRET_KEY = 'changeme'
+SESSION_COOKIE_SECURE = False
 SSLIFY_DISABLE = True
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATIC_URL = '/static/'
+STRIPE_SECRET_KEY = ''
+USE_HTTPS = False
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'snipt',
+        'USER': 'snipt',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': ''
+    }
+}
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}

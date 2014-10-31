@@ -15,7 +15,7 @@ from pygments.formatters import HtmlFormatter
 
 from snipts.utils import slugify_uniquely
 
-import datetime, md5, random, re
+import datetime, hashlib, random, re
 
 
 class Snipt(models.Model):
@@ -52,7 +52,7 @@ class Snipt(models.Model):
             self.slug = slugify_uniquely(self.title, Snipt)
 
         if not self.key:
-            self.key = md5.new(self.slug + str(datetime.datetime.now()) + str(random.random())).hexdigest()
+            self.key = hashlib.md5(self.slug + str(datetime.datetime.now()) + str(random.random())).hexdigest()
 
         if self.lexer == 'markdown':
             self.stylized = markdown(self.code, 'default')
@@ -168,7 +168,7 @@ class Snipt(models.Model):
                 return u'https://{}.snipt.net/{}/'.format(self.user.username, self.slug)
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
@@ -193,7 +193,7 @@ class Snipt(models.Model):
                 filename = u'{}.txt'.format(self.slug)
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
@@ -202,7 +202,7 @@ class Snipt(models.Model):
     def get_embed_url(self):
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 
@@ -211,7 +211,7 @@ class Snipt(models.Model):
     def get_raw_url(self):
 
         if settings.DEBUG:
-            root = 'http://snipt.localhost'
+            root = 'http://local.snipt.net'
         else:
             root = 'https://snipt.net'
 

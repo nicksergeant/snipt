@@ -44,7 +44,7 @@ stripe==1.7.10
 Werkzeug==0.9.4
 wsgiref==0.1.2
 
-hg+https://bitbucket.org/kubaz93/django-registration@django1.6#egg=django-registration
+hg+https://bitbucket.org/kubazarz/django-registration@django1.6#egg=django-registration
 hg+https://bitbucket.org/birkenfeld/pygments-main#egg=Pygments
 
 git+git://github.com/toastdriven/django-haystack.git#egg=django-haystack

@@ -103,7 +103,7 @@ def pro_complete(request):
     if request.method == 'POST':
 
         token = request.POST['token']
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
 
         try:
             customer = stripe.Customer.create(email=request.user.email,

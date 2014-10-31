@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from snipts.models import Snipt
@@ -18,7 +19,7 @@ def cancel_subscription(request):
     if request.user.profile.stripe_id is None:
         return {}
     else:
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
         customer.delete()
 
@@ -36,7 +37,7 @@ def stripe_account_details(request):
     if request.user.profile.stripe_id is None:
         return {}
     else:
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
 
         data = {
