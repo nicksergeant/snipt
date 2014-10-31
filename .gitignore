@@ -19,10 +19,8 @@ media/js/src/snipts.min.js
 media/js/src/search.min.js
 media/js/src/jobs.min.js
 media/js/src/application.min.js
-media/js/src/modules/site.min.js
 media/js/src/modules/snipt.min.js
 media/js/src/pro.min.js
-media/js/snipt-all.min.js
 media/js/pro-all.min.js
 static/admin
 static/css
