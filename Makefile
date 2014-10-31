@@ -64,7 +64,6 @@ assets:
 	@cat media/js/libs/highlight.js \
 		media/js/src/pro.js \
 		> media/js/pro-all.min.js
-	/Users/Nick/.virtualenvs/snipt/bin/python manage.py collectstatic --noinput
 
 db:
 	@echo Creating database user snipt:
@@ -74,6 +73,7 @@ db:
 deploy:
 	@$(ssh-server-deploy) 'cd /var/www/snipt; git pull;'
 	@$(ssh-server-deploy) 'cd /var/www/snipt; make assets;'
+	@$(ssh-server-deploy) '$(pm) collectstatic'
 	@$(ssh-server-deploy) '$(pm) migrate'
 	@$(ssh-server-deploy) 'sudo supervisorctl restart snipt'
 
