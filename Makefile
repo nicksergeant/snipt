@@ -32,14 +32,14 @@ assets:
 		media/css/highlightjs-themes/tomorrow.css \
 		media/css/blog-themes/default/style.css \
 		> media/css/snipt.css
-	@cat media/js/src/account.js|jsmin > media/js/src/account.min.js
-	@cat media/js/src/snipts.js|jsmin > media/js/src/snipts.min.js
-	@cat media/js/src/search.js|jsmin > media/js/src/search.min.js
-	@cat media/js/src/jobs.js|jsmin > media/js/src/jobs.min.js
-	@cat media/js/src/application.js|jsmin > media/js/src/application.min.js
-	@cat media/js/src/modules/site.js|jsmin > media/js/src/modules/site.min.js
-	@cat media/js/src/modules/snipt.js|jsmin > media/js/src/modules/snipt.min.js
-	@cat media/js/src/pro.js|jsmin > media/js/src/pro.min.js
+	@cat media/js/src/account.js > media/js/src/account.min.js
+	@cat media/js/src/snipts.js > media/js/src/snipts.min.js
+	@cat media/js/src/search.js > media/js/src/search.min.js
+	@cat media/js/src/jobs.js > media/js/src/jobs.min.js
+	@cat media/js/src/application.js > media/js/src/application.min.js
+	@cat media/js/src/modules/site.js > media/js/src/modules/site.min.js
+	@cat media/js/src/modules/snipt.js > media/js/src/modules/snipt.min.js
+	@cat media/js/src/pro.js > media/js/src/pro.min.js
 	@cat media/js/libs/jquery.min.js \
 		media/js/libs/jquery-ui.min.js \
 		media/js/libs/angular.min.js \
