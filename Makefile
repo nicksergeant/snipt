@@ -80,6 +80,10 @@ deploy:
 deploy-heroku:
 	@git push heroku
 
+run:
+	@vagrant up
+	@vagrant ssh -c 'sudo supervisorctl restart snipt && sudo supervisorctl tail -f snipt stderr'
+
 salt-server:
 	@scp -q -P 55555 settings_local_server.py deploy@69.164.221.98:/var/www/snipt/settings_local.py
 	@scp -q -P 55555 -r ./salt/ deploy@69.164.221.98:salt
