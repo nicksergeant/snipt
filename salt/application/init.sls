@@ -21,17 +21,6 @@ virtualenvwrapper:
     - require:
       - group: deploy
 
-/var/www/.virtualenvs/snipt:
-  file.directory:
-    - user: {{ pillar.deploy_user }}
-    - group: deploy
-    - mode: 775
-    - require:
-      - group: deploy
-  virtualenv.managed:
-    - system_site_packages: False
-    - requirements: /var/www/snipt/requirements.txt
-
 {% if pillar.env_name != 'vagrant' %}
 
 /var/www/snipt:
@@ -48,6 +37,17 @@ virtualenvwrapper:
     - user: deploy
 
 {% endif %}
+
+/var/www/.virtualenvs/snipt:
+  file.directory:
+    - user: {{ pillar.deploy_user }}
+    - group: deploy
+    - mode: 775
+    - require:
+      - group: deploy
+  virtualenv.managed:
+    - system_site_packages: False
+    - requirements: /var/www/snipt/requirements.txt
 
 /home/{{ pillar.deploy_user }}/tmp:
   file.absent

@@ -20,6 +20,16 @@ nginx:
     - require:
       - pkg: nginx
 
+{% if pillar.env_name != 'vagrant' %}
+
+/etc/certs:
+  file.directory:
+    - mode: 644
+    - require:
+      - pkg: nginx
+
+{% endif %}
+
 /etc/nginx/nginx.conf:
   file.managed:
     - source: salt://nginx/nginx.conf

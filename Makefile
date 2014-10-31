@@ -1,6 +1,6 @@
 pm = /var/www/.virtualenvs/snipt/bin/python /var/www/snipt/manage.py
-ssh-server-deploy = ssh deploy@snipt.net
-ssh-server-root = ssh root@snipt.net
+ssh-server-deploy = ssh deploy@69.164.221.98 -p 55555
+ssh-server-root = ssh root@69.164.221.98
 ssh-vagrant = ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key
 
 assets:
@@ -72,16 +72,22 @@ db:
 	@sudo -u postgres bash -c 'createdb snipt -O snipt'
 
 deploy:
-	@$(ssh-server) 'cd /var/www/snipt; git pull;'
-	@$(ssh-server) 'cd /var/www/snipt; make assets;'
-	@$(ssh-server) '$(pm) migrate'
-	@$(ssh-server) 'sudo supervisorctl restart snipt'
+	@$(ssh-server-deploy) 'cd /var/www/snipt; git pull;'
+	@$(ssh-server-deploy) 'cd /var/www/snipt; make assets;'
+	@$(ssh-server-deploy) '$(pm) migrate'
+	@$(ssh-server-deploy) 'sudo supervisorctl restart snipt'
 
 deploy-heroku:
 	@git push heroku
 
-server-settings:
-	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r settings_local_server.py vagrant@localhost:settings_local.py
+salt-server:
+	@scp -q -P 55555 -r ./salt/ deploy@69.164.221.98:salt
+	@scp -q -P 55555 -r ./pillar/ deploy@69.164.221.98:pillar
+	@$(ssh-server-deploy) 'sudo rm -rf /srv'
+	@$(ssh-server-deploy) 'sudo mkdir /srv'
+	@$(ssh-server-deploy) 'sudo mv ~/salt /srv/salt'
+	@$(ssh-server-deploy) 'sudo mv ~/pillar /srv/pillar'
+	@$(ssh-server-deploy) 'sudo salt-call --local state.highstate'
 
 salt-vagrant:
 	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
@@ -91,6 +97,27 @@ salt-vagrant:
 	@$(ssh-vagrant) 'sudo mv ~/salt /srv/salt'
 	@$(ssh-vagrant) 'sudo mv ~/pillar /srv/pillar'
 	@$(ssh-vagrant) 'sudo salt-call --local state.highstate'
+
+server:
+	@$(ssh-server-root) 'sudo apt-get update'
+	@$(ssh-server-root) 'sudo apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade'
+	@$(ssh-server-root) 'sudo apt-get install -y software-properties-common python-software-properties'
+	@$(ssh-server-root) 'sudo add-apt-repository -y ppa:saltstack/salt'
+	@$(ssh-server-root) 'sudo apt-get update'
+	@$(ssh-server-root) 'sudo apt-get install -y salt-minion'
+	@scp -q -r ./salt/ root@69.164.221.98:salt
+	@scp -q -r ./pillar/ root@69.164.221.98:pillar
+	@$(ssh-server-root) 'sudo rm -rf /srv'
+	@$(ssh-server-root) 'sudo mkdir /srv'
+	@$(ssh-server-root) 'sudo mv ~/salt /srv/salt'
+	@$(ssh-server-root) 'sudo mv ~/pillar /srv/pillar'
+	@$(ssh-server-root) 'sudo salt-call --local state.highstate'
+	@scp -q -P 55555 settings_local_server.py deploy@69.164.221.98:/var/www/snipt/settings_local.py
+	@$(ssh-server-deploy) 'cd /var/www/snipt; make db;'
+	@$(ssh-server-deploy) '$(pm) syncdb;'
+	@$(ssh-server-deploy) '$(pm) migrate;'
+	@$(ssh-server-deploy) '$(pm) backfill_api_keys'
+	@$(ssh-server-deploy) '$(pm) rebuild_index --noinput'
 
 vagrant:
 	@vagrant up --provider=vmware_fusion
