@@ -22,3 +22,4 @@ system:
       - mercurial
       - python-dev
       - tree
+      - openjdk-7-jdk

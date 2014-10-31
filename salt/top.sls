@@ -5,6 +5,7 @@ base:
     - ssh
     - users
     - fish
+    - elasticsearch
     - postgresql
     - nginx
     - supervisor

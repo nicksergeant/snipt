@@ -111,6 +111,7 @@ vagrant:
 	@vagrant ssh -c '$(pm) syncdb;'
 	@$(ssh-vagrant) '$(pm) migrate;'
 	@$(ssh-vagrant) '$(pm) backfill_api_keys'
+	@$(ssh-vagrant) '$(pm) rebuild_index --noinput'
 
 .PHONY: assets, \
 	db, \
