@@ -68,7 +68,7 @@ snipt-site:
     - group: deploy
     - mode: 755
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras
       - group: deploy
 
 enable-snipt-site:
@@ -77,8 +77,8 @@ enable-snipt-site:
     - target: /etc/nginx/sites-available/snipt
     - force: false
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras
   cmd.run:
     - name: service nginx restart
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras

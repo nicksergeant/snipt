@@ -2,7 +2,7 @@
 
 This is the codebase for the website, [Snipt.net](https://snipt.net/).
 
-# Running the Django app
+# Running the Django app locally with Vagrant
 
 Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://www.virtualbox.org/) or
 [VMWare Fusion](http://www.vmware.com/products/fusion).
@@ -14,11 +14,14 @@ Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://ww
 5. Visit [http://local.snipt.net:8080/](http://local.snipt.net:8080/).
 
 # Deploying to a VM
+
 1. Clone the repo.
 2. `cp settings_local.py-template settings_local_server.py`
 3. Edit local server settings (choose a database password - you'll be prompted for it).
 4. Manually change the VM IP address in the Makefile.
 5. `make server`
+6. SSH into the server, `sudo su - deploy`, `ssh-keygen`, and add the public key to your repo as a deploy key.
+7. `make server-init`
 
 # Deploying to Heroku
 

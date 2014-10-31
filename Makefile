@@ -81,6 +81,7 @@ deploy-heroku:
 	@git push heroku
 
 salt-server:
+	@scp -q -P 55555 settings_local_server.py deploy@69.164.221.98:/var/www/snipt/settings_local.py
 	@scp -q -P 55555 -r ./salt/ deploy@69.164.221.98:salt
 	@scp -q -P 55555 -r ./pillar/ deploy@69.164.221.98:pillar
 	@$(ssh-server-deploy) 'sudo rm -rf /srv'
@@ -112,12 +113,13 @@ server:
 	@$(ssh-server-root) 'sudo mv ~/salt /srv/salt'
 	@$(ssh-server-root) 'sudo mv ~/pillar /srv/pillar'
 	@$(ssh-server-root) 'sudo salt-call --local state.highstate'
-	@scp -q -P 55555 settings_local_server.py deploy@69.164.221.98:/var/www/snipt/settings_local.py
+
+server-init:
 	@$(ssh-server-deploy) 'cd /var/www/snipt; make db;'
-	@$(ssh-server-deploy) '$(pm) syncdb;'
+	@$(ssh-server-deploy) '$(pm) syncdb --noinput;'
 	@$(ssh-server-deploy) '$(pm) migrate;'
-	@$(ssh-server-deploy) '$(pm) backfill_api_keys'
-	@$(ssh-server-deploy) '$(pm) rebuild_index --noinput'
+	@$(ssh-server-deploy) '$(pm) backfill_api_keys;'
+	@$(ssh-server-deploy) '$(pm) rebuild_index --noinput;'
 
 vagrant:
 	@vagrant up --provider=vmware_fusion
@@ -137,8 +139,8 @@ vagrant:
 	@vagrant ssh -c 'cd /var/www/snipt; make db;'
 	@vagrant ssh -c '$(pm) syncdb;'
 	@$(ssh-vagrant) '$(pm) migrate;'
-	@$(ssh-vagrant) '$(pm) backfill_api_keys'
-	@$(ssh-vagrant) '$(pm) rebuild_index --noinput'
+	@$(ssh-vagrant) '$(pm) backfill_api_keys;'
+	@$(ssh-vagrant) '$(pm) rebuild_index --noinput;'
 
 .PHONY: assets, \
 	db, \
@@ -148,6 +150,6 @@ vagrant:
 	provision-vagrant, \
 	salt-server, \
 	salt-vagrant, \
-	server-settings, \
+	server-init, \
 	server, \
 	vagrant
