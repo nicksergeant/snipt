@@ -20,8 +20,6 @@ Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://ww
 3. Edit local server settings (choose a database password - you'll be prompted for it).
 4. Manually change the VM IP address in the Makefile.
 5. `make server`
-6. SSH into the server, `sudo su - deploy`, `ssh-keygen`, and add the public key to your repo as a deploy key.
-7. `make server-init`
 
 # Deploying to Heroku
 

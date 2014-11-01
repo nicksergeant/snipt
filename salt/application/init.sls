@@ -32,7 +32,7 @@ virtualenvwrapper:
       - group: deploy
 
   git.latest:
-    - name: git@github.com:nicksergeant/snipt.git
+    - name: https://github.com/nicksergeant/snipt.git
     - target: /var/www/snipt
     - user: deploy
 
