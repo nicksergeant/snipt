@@ -117,6 +117,7 @@ server:
 	@$(ssh-server-root) 'sudo mv ~/salt /srv/salt'
 	@$(ssh-server-root) 'sudo mv ~/pillar /srv/pillar'
 	@$(ssh-server-root) 'sudo salt-call --local state.highstate'
+	@scp -q -P 55555 settings_local_server.py root@96.126.110.160:/var/www/snipt/settings_local.py
 	@$(ssh-server-deploy) 'cd /var/www/snipt; make db;'
 	@$(ssh-server-deploy) '$(pm) syncdb --noinput;'
 	@$(ssh-server-deploy) '$(pm) migrate;'
