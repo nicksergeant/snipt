@@ -1,5 +1,5 @@
 base:
-  'local.snipt.net':
-    - vagrant
   '*':
     - production
+  'local.snipt.net':
+    - vagrant

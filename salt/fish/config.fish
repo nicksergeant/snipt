@@ -89,12 +89,12 @@ end
 # Virtualenv {{{ 
 
 set -x WORKON_HOME '/var/www/.virtualenvs'
-source ~/.config/fish/virtualenv.fish
+. ~/.config/fish/virtualenv.fish
 
 # }}}
 # Z {{{ 
 
-source /etc/z.fish
+. /etc/z.fish
 
 function j
     z $argv

@@ -33,6 +33,7 @@ virtualenvwrapper:
 
   git.latest:
     - name: https://github.com/nicksergeant/snipt.git
+    - rev: master
     - target: /var/www/snipt
     - user: deploy
 

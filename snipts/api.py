@@ -222,6 +222,10 @@ class PublicSniptResource(ModelResource):
         bundle.data['raw_url'] = bundle.obj.get_raw_url()
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
         bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
+
+        if 'omit_code' in bundle.request.GET:
+            del bundle.data['code']
+
         return bundle
 
     def build_filters(self, filters=None):
