@@ -209,7 +209,7 @@ class PublicSniptResource(ModelResource):
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
         fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count',
-                  'stylized', 'created', 'modified', 'publish_date',]
+                  'stylized', 'created', 'modified', 'publish_date', 'blog_post']
         include_absolute_url = True
         allowed_methods = ['get']
         filtering = { 'user': 'exact', }
