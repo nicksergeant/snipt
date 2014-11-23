@@ -212,7 +212,7 @@ class PublicSniptResource(ModelResource):
                   'stylized', 'created', 'modified', 'publish_date', 'blog_post']
         include_absolute_url = True
         allowed_methods = ['get']
-        filtering = { 'user': 'exact', }
+        filtering = { 'user': 'exact', 'blog_post': 'exact' }
         ordering = ['created', 'modified',]
         max_limit = 200
         cache = SimpleCache()
