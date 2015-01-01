@@ -1661,6 +1661,15 @@ div.get-support {
   right: 20px;
   position: fixed;
 }
+div.dmca {
+  background: #e8e8e8;
+  border-top: 1px solid #DDDDDD;
+  font-size: 18px;
+  padding: 40px;
+  position: relative;
+  text-align: center;
+  z-index: 999;
+}
 
 // Pages
 body.account {
