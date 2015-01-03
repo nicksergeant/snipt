@@ -172,6 +172,7 @@ class PublicUserResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['snipts'] = '/api/public/snipt/?user=%d' % bundle.obj.id
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
+        bundle.data['snipts_count'] = Snipt.objects.filter(user=bundle.obj.id, public=True).count()
         return bundle
 
 class PublicTagResource(ModelResource):
@@ -287,6 +288,12 @@ class PrivateUserResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
         bundle.data['is_pro'] = bundle.obj.profile.is_pro
+        bundle.data['stats'] = {
+            'public_snipts': Snipt.objects.filter(user=bundle.obj.id, public=True).count(),
+            'private_snipts': Snipt.objects.filter(user=bundle.obj.id, public=False).count(),
+            'total_snipts': Snipt.objects.filter(user=bundle.obj.id).count(),
+            'total_views': Snipt.objects.filter(user=bundle.obj.id).aggregate(models.Sum('views'))['views__sum']
+        }
         bundle.data['lexers'] = [snipt['lexer'] for snipt in \
             Snipt.objects.filter(user=bundle.obj).values('lexer').distinct()]
         return bundle
