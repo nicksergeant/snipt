@@ -227,6 +227,9 @@ class PublicSniptResource(ModelResource):
         if 'omit_code' in bundle.request.GET:
             del bundle.data['code']
 
+        if 'omit_stylized' in bundle.request.GET:
+            del bundle.data['stylized']
+
         return bundle
 
     def build_filters(self, filters=None):
