@@ -163,13 +163,12 @@
             {% else %}
                 <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturaltime }}</li>
             {% endif %}
-            <li class="created" title="{{ snipt.modified|date:"Y-m-d\TH:i:s" }}">Edited {{ snipt.modified|naturaltime }}</li>
             {% if snipt.public and not detail %}
                 <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
             {% endif %}
             <li class="raw">
                 <a href="{{ snipt.get_raw_url }}">Raw</a> / 
-                <a href="{{ snipt.get_raw_url }}?nice">Nice</a>
+                <a href="{{ snipt.get_raw_url }}?nice">Raw Nice</a>
             </li>
             {% if detail and snipt.public %}
                 <li class="tweet">
