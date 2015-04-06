@@ -210,7 +210,7 @@ class PublicSniptResource(ModelResource):
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
         fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count',
-                  'stylized', 'created', 'modified', 'publish_date', 'blog_post']
+                  'stylized', 'created', 'modified', 'publish_date', 'blog_post', 'meta',]
         include_absolute_url = True
         allowed_methods = ['get']
         filtering = { 'user': 'exact', 'blog_post': 'exact' }
@@ -309,7 +309,7 @@ class PrivateSniptResource(ModelResource):
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
         fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count', 'stylized',
-                  'key', 'public', 'blog_post', 'created', 'modified', 'publish_date',]
+                  'key', 'public', 'blog_post', 'created', 'modified', 'publish_date', 'meta',]
         include_absolute_url = True
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
