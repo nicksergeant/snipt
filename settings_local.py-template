@@ -5,6 +5,7 @@ POSTMARK_API_KEY = ''
 RAVEN_CONFIG = { 'dsn': '' }
 SECRET_KEY = 'changeme'
 SESSION_COOKIE_SECURE = False
+SSLIFY_DISABLE = False
 STRIPE_SECRET_KEY = ''
 USE_HTTPS = False
 
