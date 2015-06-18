@@ -35,7 +35,7 @@
   <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/{% if 'plan' in request.GET %}?plan={{ request.GET.plan }}{% endif %}">
     <fieldset>
       <div class="info">
-        Go <span class="pro">Pro</span> for just <span>$29</span> (one-time fee).
+        Go <span class="pro">Pro</span> for just <span>five bucks</span> a month.
         <p class="sub">
           As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
           custom-domain <a href="/blogging/">blogging</a>, instant chat support, and more.
@@ -46,6 +46,15 @@
       </div>
       <div class="payment-loading"><span>Please wait&hellip;</span></div>
       <div class="payment-errors alert alert-error"></div>
+      <div class="control-group">
+        <label class="control-label" for="name">Payment plan:</label>
+        <div class="controls">
+          <select name="plan" type="text" class="input-medium" id="plan">
+            <option value="snipt-pro-monthly">$5/month</option>
+            <option value="snipt-pro-yearly">$60/year</option>
+          </select>
+        </div>
+      </div>
       <div class="control-group">
         <label class="control-label" for="name">Name on card:</label>
         <div class="controls">
@@ -104,13 +113,16 @@
       </div>
       <div class="form-actions">
         {% csrf_token %}
-        <button type="submit" class="btn btn-success">Pay Now</button>
+        <button type="submit" class="btn btn-success">Subscribe</button>
         <div class="security">
           <a href="https://stripe.com/help/security">Secure</a> by default. Every Snipt page is secure.
         </div>
         <div class="stripe">
           Your credit card is stored securely with <a href="https://stripe.com">Stripe</a> and we use <a href="https://stripe.com/docs/stripe.js">Stripe.js</a> for maximum security.
         </div>
+      </div>
+      <div class="form-actions" style="color: #A2A2A2;">
+        Prefer to pay by PayPal? Email <a href="mailto:support@snipt.net">support@snipt.net</a>
       </div>
     </fieldset>
   </form>

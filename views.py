@@ -105,13 +105,15 @@ def pro_complete(request):
         token = request.POST['token']
         stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
 
+        if 'plan' in request.GET:
+            plan = request.GET['plan']
+        else:
+            plan = request.POST['plan']
+
         try:
-            customer = stripe.Customer.create(email=request.user.email,
-                                              card=token)
-            stripe.Charge.create(amount=2900,
-                                 currency='usd',
-                                 customer=customer.id,
-                                 description='Snipt.net')
+            customer = stripe.Customer.create(card=token,
+                                              plan=plan,
+                                              email=request.user.email)
         except stripe.CardError, e:
             error_message = e.json_body['error']['message']
             return HttpResponseRedirect('/pro/?declined=%s' % error_message or 'Your card was declined.')
