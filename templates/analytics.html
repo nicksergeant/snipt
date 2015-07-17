@@ -1,4 +1,15 @@
 {% if not debug %}
+    <script>
+      +function(l,y,t,i,c,s) {
+        l['LocalyticsGlobal'] = i;
+        l[i] = function() { (l[i].q = l[i].q || []).push(arguments) };
+        l[i].t = +new Date;
+        (s = y.createElement(t)).type = 'text/javascript';
+        s.src = '//web.localytics.com/v3/localytics.js';
+        (c = y.getElementsByTagName(t)[0]).parentNode.insertBefore(s, c);
+        ll('init', 'a62d3f2d950818261a89f2f-70c7cac4-2c9f-11e5-de49-00f078254409', {} /* Options */);
+      }(window, document, 'script', 'll');
+    </script>
     <script type="text/javascript">
 
         var _gaq = _gaq || [];

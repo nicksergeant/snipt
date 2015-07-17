@@ -424,38 +424,6 @@
 </div>
 
 {% if request.user.is_authenticated and not debug %}
-  <script id="IntercomSettingsScriptTag">
-    var intercomSettings = {
-      app_id: 'sajf131y',
-      user_id: {{ request.user.id }},
-      user_hash: '{{ request.user.id|intercom_sha_256 }}',
-      email: '{{ request.user.email }}',
-      created_at: {{ request.user.date_joined|date:"U" }},
-      custom_data: {
-        'snipts count': {% snipts_count_for_user %},
-        'profile link': 'https://snipt.net/{{ request.user.username }}/',
-        'is pro': window.user_is_pro,
-        'blog domain': '{{ request.user.profile.blog_domain }}',
-        'pro date': {% firstof request.user.profile.pro_date|date:"U" 'null' %},
-      }
-    };
-  </script>
-  <script>
-    (function() {
-      function async_load() {
-        var s = document.createElement('script');
-        s.type = 'text/javascript'; s.async = true;
-        s.src = 'https://static.intercomcdn.com/intercom.v1.js';
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-      }
-      if (window.attachEvent) {
-        window.attachEvent('onload', async_load);
-      } else {
-        window.addEventListener('load', async_load, false);
-      }
-    })();
-  </script>
   {% if request.user.profile.get_account_age <= 7 or request.user.profile.is_pro %}
     {% block olark %}
       <!-- begin olark code -->
