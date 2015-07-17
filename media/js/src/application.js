@@ -37,6 +37,16 @@ jQuery(function($) {
 
   root.app = app;
 
+  if (root.location.pathname === '/account/stats/') {
+    root.ll('tagEvent', 'Viewed stats page');
+  }
+  if (root.location.pathname === '/pro/') {
+    root.ll('tagEvent', 'Viewed Pro page');
+  }
+  if (root.location.pathname === '/pro/signup/') {
+    root.ll('tagEvent', 'Viewed Pro signup page');
+  }
+
   app.controller('AppController', function($scope) {
     $scope.ads = [
       {

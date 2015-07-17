@@ -55,6 +55,8 @@
 
         copy: function() {
 
+            window.ll('tagEvent', 'Copied snipt');
+
             $('textarea', this.$copyModal).remove();
 
             window.ui_halted = true;
@@ -83,6 +85,8 @@
             this.model.destroy();
         },
         edit: function(adding) {
+
+            window.ll('tagEvent', 'Edited snipt');
 
             window.editing = true;
             window.ui_halted = true;
@@ -255,6 +259,8 @@
         },
         embed: function() {
 
+            window.ll('tagEvent', 'Embedded snipt');
+
             $('textarea', this.$embedModal).remove();
 
             window.ui_halted = true;
@@ -314,6 +320,7 @@
                     success: function() {
                         that.$el.removeClass('favorited');
                         that.$favorite.text('Favorite');
+                        window.ll('tagEvent', 'Unfavorited snipt');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -328,6 +335,7 @@
                         that.$el.addClass('favorited');
                         that.model.set({'favorite_id': resp.id}, {'silent': true});
                         that.$favorite.text('Favorited');
+                        window.ll('tagEvent', 'Favorited snipt');
                     },
                     headers: {
                         'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
@@ -654,6 +662,8 @@
             });
         },
         addNewSnipt: function() {
+
+            window.ll('tagEvent', 'Added snipt');
 
             var $articleNewSnipt = $('article#new-snipt');
 
