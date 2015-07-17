@@ -10,6 +10,9 @@
         ll('init', 'a62d3f2d950818261a89f2f-70c7cac4-2c9f-11e5-de49-00f078254409', {
           trackPageView: true
         } /* Options */);
+        {% if request.user.is_authenticated and not debug %}
+          ll('setCustomerID', '{{ request.user.username }}');
+        {% endif %}
       }(window, document, 'script', 'll');
     </script>
     <script type="text/javascript">
