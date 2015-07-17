@@ -101,3 +101,14 @@
         }());
     </script>
 {% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Search view');
+    {% if query %}
+      window.ll('tagEvent', 'Searched', { query: "{{ query }}" });
+    {% else %}
+      window.ll('tagEvent', 'Visited search page');
+    {% endif %}
+  {% endif %}
+{% endblock %}

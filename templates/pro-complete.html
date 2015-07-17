@@ -23,3 +23,9 @@
     </fieldset>
   </form>
 {% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Pro signup complete view');
+  {% endif %}
+{% endblock %}

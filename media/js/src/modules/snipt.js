@@ -664,6 +664,7 @@
         addNewSnipt: function() {
 
             window.ll('tagEvent', 'Added snipt');
+            window.ll('tagScreen', 'Add snipt view');
 
             var $articleNewSnipt = $('article#new-snipt');
 

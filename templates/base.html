@@ -466,6 +466,8 @@
 
 {% include 'analytics.html' %}
 
+{% block analytics %}{% endif %}
+
 {% block preload %}
   <div class="hidden">
     <img src="{{ STATIC_URL }}img/header-fixed-save.gif" alt="" />
