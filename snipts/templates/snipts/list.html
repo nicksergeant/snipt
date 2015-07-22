@@ -17,7 +17,7 @@
             ng-cloak ng-show="$root.account.id"
         {% endif %}>
         {% if not request.user.is_authenticated %}
-            {% include 'ad-leaderboard.html' %}
+            {% include 'ad-leaderboard-pro.html' %}
         {% elif not request.user.profile.teams_beta_seen %}
             {% include 'ad-leaderboard-pro.html' %}
         {% endif %}

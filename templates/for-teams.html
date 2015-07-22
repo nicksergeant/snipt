@@ -27,6 +27,20 @@
             <li>Beta period is a one-time fee of $49, then plans starting at $49/month.</li>
           </ul>
         </div>
+        {% if not request.user.is_authenticated %}
+          <div class="control-group">
+            <label class="control-label" for="name">Your name:</label>
+            <div class="controls">
+              <input required type="text" class="input-xlarge" name="username" id="username" />
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="name">Your email:</label>
+            <div class="controls">
+              <input required type="email" class="input-xlarge" name="email" id="email" />
+            </div>
+          </div>
+        {% endif %}
         <div class="control-group">
           <label class="control-label" for="name">Team name:</label>
           <div class="controls">

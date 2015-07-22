@@ -27,27 +27,43 @@ def for_teams(request):
         profile.save()
     return {}
 
-@login_required
 @render_to('for-teams-complete.html')
 def for_teams_complete(request):
 
     if request.method == 'POST':
-        name = request.POST['name']
-        members = request.POST['members']
-        info = request.POST['info']
-        send_mail('[Snipt] New Snipt for Teams beta request.', """
-          User: %s (%s)
-          Team name: %s
-          Team members: %s
-          Info:
 
-          %s
-        """ % (request.user.username, request.user.email, name, members, info), 'support@snipt.net',
-            ['nick@nicksergeant.com'], fail_silently=False)
+        if request.user.is_authenticated():
+            name = request.POST['name']
+            members = request.POST['members']
+            info = request.POST['info']
+            send_mail('[Snipt] New Snipt for Teams beta request.', """
+              User: %s (%s)
+              Team name: %s
+              Team members: %s
+              Info:
 
-        profile = request.user.profile
-        profile.teams_beta_applied = True
-        profile.save()
+              %s
+            """ % (request.user.username, request.user.email, name, members, info), 'support@snipt.net',
+                ['nick@nicksergeant.com'], fail_silently=False)
+
+            profile = request.user.profile
+            profile.teams_beta_applied = True
+            profile.save()
+        else:
+            username = request.POST['username']
+            email = request.POST['email']
+            name = request.POST['name']
+            members = request.POST['members']
+            info = request.POST['info']
+            send_mail('[Snipt] New Snipt for Teams beta request.', """
+              User: %s (%s) (not authenticated)
+              Team name: %s
+              Team members: %s
+              Info:
+
+              %s
+            """ % (username, email, name, members, info), 'support@snipt.net',
+                ['nick@nicksergeant.com'], fail_silently=False)
 
         return {}
 
