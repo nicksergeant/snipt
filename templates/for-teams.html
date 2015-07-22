@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block page-title %}Request beta access to Snipt for Teams{% endblock %}
+
+{% block body-class %}{{ block.super }} static signup pro pro-signup{% endblock %}
+
+{% block breadcrumb %}
+  <li><a href="/for-teams/">Snipt for Teams</a></li>
+{% endblock %}
+
+{% block content %}
+  {% if request.user.profile.teams_beta_applied %}
+    <div class="alert alert-success" style="margin: 30px;">
+      You've successfully applied for the beta program - we'll email you as soon as we're ready!
+    </div>
+  {% else %}
+    <form class="form-horizontal static-box" id="pro-signup" method="post" action="/for-teams/complete/">
+      <fieldset>
+        <div class="info">
+          Snipt for Teams private beta!
+          <ul class="features">
+            <li>Team profile at snipt.net/{team-name}.</li>
+            <li>Members can create public or private snipts on a team.</li>
+            <li>Public team posts are public to the world, as they are now.</li>
+            <li>Private team posts are editable by all team members.</li>
+            <li>All team members are automatically granted personal <span class="pro">Pro</span> accounts.</li>
+            <li>Beta period is a one-time fee of $49, then plans starting at $49/month.</li>
+          </ul>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="name">Team name:</label>
+          <div class="controls">
+            <input required type="text" class="input-xlarge" name="name" id="name" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="members">How many users?</label>
+          <div class="controls">
+            <input required type="number" class="input-medium" name="members" id="members" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label style="float: none; width: auto; text-align: left; padding-left: 180px; margin-bottom: 10px;" class="control-label" for="members">Tell us a bit about your organization and how<br />you'd like to use Snipt for your team:</label>
+          <div class="controls">
+            <textarea required name="info" name="info" id="info" class="input-xlarge" style="height: 100px;"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Request beta access &raquo;</button>
+        </div>
+      </fieldset>
+    </form>
+  {% endif %}
+{% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Team beta signup view');
+  {% endif %}
+{% endblock %}

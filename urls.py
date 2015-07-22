@@ -13,7 +13,7 @@ from tastypie.api import Api
 from utils.views import SniptRegistrationView
 from jobs.views import jobs, jobs_json
 from views import (homepage, lexers, login_redirect, pro, sitemap, tags,
-                   pro_complete, user_api_key)
+                   pro_complete, user_api_key, for_teams, for_teams_complete)
 
 import admin as custom_admin
 import os
@@ -49,6 +49,9 @@ urlpatterns = patterns('',
 
     url(r'^pro/$', pro),
     url(r'^pro/complete/$', pro_complete),
+
+    url(r'^for-teams/$', for_teams),
+    url(r'^for-teams/complete/$', for_teams_complete),
 
     url(r'^account/', include('accounts.urls')),
 

@@ -2222,6 +2222,24 @@ div.info {
     }
   }
 }
+body.pro-signup {
+  div.info {
+    padding: 49px 0;
+  }
+  form ul.features {
+    margin: 20px auto 0 auto;
+    padding: 0;
+    width: 328px;
+
+    li {
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 22px;
+      margin: 10px 20px;
+      text-align: left;
+    }
+  }
+}
 body.pro-signup-complete {
   div.info {
     margin-bottom: 0;

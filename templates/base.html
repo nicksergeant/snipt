@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?113" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?114" />
   {% endif %}
 
   {% if has_snipts and not detail %}
@@ -104,6 +104,9 @@
             <li>
               <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
             </li>
+            <li>
+              <a href="/for-teams/" {% if '/for-teams/' in request.path %} class="active"{% endif %}>Teams</a>
+            </li>
             {% block add-snipt %}{% endblock %}
           {% endif %}
         </ul>
@@ -151,6 +154,12 @@
                 </a>
               </li>
             {% endif %}
+            <li>
+              <a href="/for-teams/">
+                <i class="icon-star-empty icon-white"></i>
+                For Teams
+              </a>
+            </li>
             {% if request.user.is_superuser %}
               <li>
                 <a href="/admin/">
@@ -208,6 +217,9 @@
                 <a href="/pro/"><span>Go Pro</span></a>
               </li>
             {% endif %}
+            <li class="pro">
+              <a href="/for-teams/"><span>For Teams</span></a>
+            </li>
             <li class="blog">
               <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
             </li>

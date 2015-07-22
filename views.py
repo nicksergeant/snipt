@@ -12,21 +12,47 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 from snipts.models import Snipt
 from taggit.models import Tag
+from django.core.mail import send_mail
 
 import datetime
 import hashlib
 import os
 import stripe
 
-@ajax_request
-def user_api_key(request):
+@render_to('for-teams.html')
+def for_teams(request):
+    if request.user.is_authenticated():
+        profile = request.user.profile
+        profile.teams_beta_seen = True
+        profile.save()
+    return {}
 
-  if not request.user.is_authenticated():
-    return HttpResponseBadRequest()
+@login_required
+@render_to('for-teams-complete.html')
+def for_teams_complete(request):
 
-  return {
-      'api_key': request.user.api_key.key
-  }
+    if request.method == 'POST':
+        name = request.POST['name']
+        members = request.POST['members']
+        info = request.POST['info']
+        send_mail('[Snipt] New Snipt for Teams beta request.', """
+          User: %s (%s)
+          Team name: %s
+          Team members: %s
+          Info:
+
+          %s
+        """ % (request.user.username, request.user.email, name, members, info), 'support@snipt.net',
+            ['nick@nicksergeant.com'], fail_silently=False)
+
+        profile = request.user.profile
+        profile.teams_beta_applied = True
+        profile.save()
+
+        return {}
+
+    else:
+        return HttpResponseBadRequest()
 
 @render_to('homepage.html')
 def homepage(request):
@@ -156,3 +182,13 @@ def tags(request):
         'all_tags': all_tags,
         'tags': popular_tags
     }
+@ajax_request
+def user_api_key(request):
+
+  if not request.user.is_authenticated():
+    return HttpResponseBadRequest()
+
+  return {
+      'api_key': request.user.api_key.key
+  }
+

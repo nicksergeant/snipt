@@ -44,6 +44,8 @@ class UserProfile(models.Model):
     # User
     user            = models.ForeignKey(User, unique=True)
     is_pro          = models.BooleanField(default=False)
+    teams_beta_seen = models.BooleanField(default=False)
+    teams_beta_applied = models.BooleanField(default=False)
     pro_date        = models.DateTimeField(blank=True, null=True)
     stripe_id       = models.CharField(max_length=100, null=True, blank=True)
     has_gravatar    = models.BooleanField(default=False)
