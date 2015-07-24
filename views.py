@@ -180,7 +180,7 @@ def sitemap(request):
     return render_to_response('sitemap.xml',
                               {'tags': tags},
                               context_instance=RequestContext(request),
-                              mimetype='application/xml')
+                              content_type='application/xml')
 
 @render_to('tags.html')
 def tags(request):

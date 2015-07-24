@@ -111,5 +111,5 @@ def rss(request, context):
             'blogs/themes/default/rss.xml',
             context,
             context_instance=RequestContext(request),
-            mimetype="application/rss+xml"
+            content_type="application/rss+xml"
         )

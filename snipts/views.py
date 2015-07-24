@@ -73,7 +73,7 @@ def embed(request, snipt_key):
     return render_to_response('snipts/embed.html',
                               {'lines': lines, 'snipt': snipt},
                               context_instance=RequestContext(request),
-                              mimetype='application/javascript')
+                              content_type='application/javascript')
 
 @render_to('snipts/list-user.html')
 def blog_posts(request, username):
@@ -250,22 +250,22 @@ def raw(request, snipt_key, lexer=None):
                     snipt.lexer = lexer
                     snipt.save()
 
-    mimetype='text/plain'
+    content_type='text/plain'
 
     if 'nice' in request.GET:
-        mimetype='text/html'
+        content_type='text/html'
 
     return render_to_response('snipts/raw.html',
                               {'snipt': snipt},
                               context_instance=RequestContext(request),
-                              mimetype=mimetype)
+                              content_type=content_type)
 
 def rss(request, context):
     return render_to_response(
             'rss.xml',
             context,
             context_instance=RequestContext(request),
-            mimetype="application/rss+xml"
+            content_type="application/rss+xml"
         )
 
 def search(request, template='search/search.html', load_all=True,
