@@ -47,6 +47,7 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 RAVEN_CONFIG = { 'dsn': os.environ.get('RAVEN_CONFIG_DSN', '') }
+REGISTRATION_EMAIL_HTML = False
 ROOT_URLCONF = 'urls'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -86,7 +87,6 @@ INSTALLED_APPS = (
     'pagination',
     'postmark',
     'registration',
-    'south',
     'storages',
     'taggit',
     'tastypie',
