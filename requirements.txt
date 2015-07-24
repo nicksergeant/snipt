@@ -1,4 +1,5 @@
 dj-database-url==0.3.0
+dj-static==0.0.6
 Django==1.8.3
 django-annoying==0.8.3
 django-bcrypt==0.9.2
