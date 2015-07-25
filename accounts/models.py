@@ -42,7 +42,7 @@ class UserProfile(models.Model):
     )
 
     # User
-    user            = models.ForeignKey(User, unique=True)
+    user            = models.OneToOneField(User)
     is_pro          = models.BooleanField(default=False)
     teams_beta_seen = models.BooleanField(default=False)
     teams_beta_applied = models.BooleanField(default=False)
