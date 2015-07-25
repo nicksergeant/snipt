@@ -12,19 +12,26 @@ class BlogMiddleware:
         host = request.META.get('HTTP_HOST', '')
         host_s = host.replace('www.', '').split('.')
 
-        if host != 'snipt.net' and host != 'snipt.localhost' and host != 'local.snipt.net':
+        if host != 'snipt.net' and \
+                host != 'snipt.localhost' and \
+                host != 'local.snipt.net':
             if len(host_s) > 2:
                 if host_s[1] == 'snipt':
 
                     blog_user = ''.join(host_s[:-2])
 
                     if '-' in blog_user:
-                        request.blog_user = get_object_or_None(User, username__iexact=blog_user)
+                        request.blog_user = \
+                            get_object_or_None(User,
+                                               username__iexact=blog_user)
 
                         if request.blog_user is None:
-                            request.blog_user = get_object_or_404(User, username__iexact=blog_user.replace('-', '_'))
+                            request.blog_user = \
+                                get_object_or_404(User,
+                                                  username__iexact=blog_user.replace('-', '_'))
                     else:
-                        request.blog_user = get_object_or_404(User, username__iexact=blog_user)
+                        request.blog_user = \
+                            get_object_or_404(User, username__iexact=blog_user)
 
             if request.blog_user is None:
                 pro_users = User.objects.filter(userprofile__is_pro=True)

@@ -11,6 +11,7 @@ import hashlib
 
 register = template.Library()
 
+
 @tag(register, [Constant('as'), Variable()])
 def snipt_is_favorited_by_user(context, asvar):
 
@@ -30,6 +31,7 @@ def snipt_is_favorited_by_user(context, asvar):
 
     return ''
 
+
 @tag(register, [])
 def snipts_count_for_user(context):
 
@@ -42,10 +44,12 @@ def snipts_count_for_user(context):
 
     return snipts
 
+
 @tag(register, [Constant('as'), Variable()])
 def get_lexers(context, asvar):
     context[asvar] = get_lexers_list()
     return ''
+
 
 @tag(register, [Constant('for'), Variable()])
 def generate_line_numbers(context, line_numbers):
@@ -55,6 +59,7 @@ def generate_line_numbers(context, line_numbers):
         html = html + '<span class="special">{}</span>'.format(i)
 
     return html
+
 
 @register.filter
 def md5(string):

@@ -1,10 +1,9 @@
 from accounts.models import UserProfile
-from annoying.decorators import ajax_request
+from annoying.decorators import ajax_request, render_to
 from blogs.views import blog_list
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from annoying.decorators import ajax_request, render_to
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from snipts.utils import get_lexers_list
@@ -19,6 +18,7 @@ import hashlib
 import os
 import stripe
 
+
 @render_to('for-teams.html')
 def for_teams(request):
     if request.user.is_authenticated():
@@ -26,6 +26,7 @@ def for_teams(request):
         profile.teams_beta_seen = True
         profile.save()
     return {}
+
 
 @render_to('for-teams-complete.html')
 def for_teams_complete(request):
@@ -43,7 +44,8 @@ def for_teams_complete(request):
               Info:
 
               %s
-            """ % (request.user.username, request.user.email, name, members, info), 'support@snipt.net',
+            """ % (request.user.username, request.user.email, name, members,
+                   info), 'support@snipt.net',
                 ['nick@nicksergeant.com'], fail_silently=False)
 
             profile = request.user.profile
@@ -69,6 +71,7 @@ def for_teams_complete(request):
 
     else:
         return HttpResponseBadRequest()
+
 
 @render_to('homepage.html')
 def homepage(request):
@@ -99,6 +102,7 @@ def homepage(request):
         'users_count': User.objects.all().count(),
     }
 
+
 @ajax_request
 def lexers(request):
     lexers = get_lexers_list()
@@ -125,11 +129,13 @@ def lexers(request):
 
     return {'objects': objects}
 
+
 def login_redirect(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/' + request.user.username + '/')
     else:
         return HttpResponseRedirect('/')
+
 
 @login_required
 @render_to('pro.html')
@@ -138,6 +144,7 @@ def pro(request):
         return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
 
+
 @login_required
 @render_to('pro-complete.html')
 def pro_complete(request):
@@ -145,7 +152,8 @@ def pro_complete(request):
     if request.method == 'POST':
 
         token = request.POST['token']
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
+                                        settings.STRIPE_SECRET_KEY)
 
         if 'plan' in request.GET:
             plan = request.GET['plan']
@@ -158,7 +166,8 @@ def pro_complete(request):
                                               email=request.user.email)
         except stripe.CardError, e:
             error_message = e.json_body['error']['message']
-            return HttpResponseRedirect('/pro/?declined=%s' % error_message or 'Your card was declined.')
+            return HttpResponseRedirect('/pro/?declined=%s' % error_message or
+                                        'Your card was declined.')
 
         profile = request.user.profile
         profile.is_pro = True
@@ -171,6 +180,7 @@ def pro_complete(request):
     else:
         return HttpResponseBadRequest()
 
+
 def sitemap(request):
 
     tags = Tag.objects.filter(snipt__public=True)
@@ -181,6 +191,7 @@ def sitemap(request):
                               {'tags': tags},
                               context_instance=RequestContext(request),
                               content_type='application/xml')
+
 
 @render_to('tags.html')
 def tags(request):
@@ -198,13 +209,14 @@ def tags(request):
         'all_tags': all_tags,
         'tags': popular_tags
     }
+
+
 @ajax_request
 def user_api_key(request):
 
-  if not request.user.is_authenticated():
-    return HttpResponseBadRequest()
+    if not request.user.is_authenticated():
+        return HttpResponseBadRequest()
 
-  return {
-      'api_key': request.user.api_key.key
-  }
-
+    return {
+        'api_key': request.user.api_key.key
+    }

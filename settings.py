@@ -1,13 +1,15 @@
-import dj_database_url, os
+import dj_database_url
+import os
 
 from urlparse import urlparse
 
 
 if 'DATABASE_URL' in os.environ:
 
-    DATABASES = { 'default': dj_database_url.config() }
+    DATABASES = {'default': dj_database_url.config()}
 
-    es = urlparse(os.environ.get('SEARCHBOX_SSL_URL') or 'http://127.0.0.1:9200/')
+    es = urlparse(os.environ.get('SEARCHBOX_SSL_URL') or
+                  'http://127.0.0.1:9200/')
     port = es.port or 80
 
     HAYSTACK_CONNECTIONS = {
@@ -19,9 +21,11 @@ if 'DATABASE_URL' in os.environ:
     }
 
     if es.username:
-        HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
+        HAYSTACK_CONNECTIONS['default']['KWARGS'] = {
+            "http_auth": es.username + ':' + es.password
+        }
 
-ABSOLUTE_URL_OVERRIDES = { 'auth.user': lambda u: "/%s/" % u.username, }
+ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
 ACCOUNT_ACTIVATION_DAYS = 0
 ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
 ALLOWED_HOSTS = ['*']
@@ -46,7 +50,7 @@ MEDIA_URL = '/media/uploads/'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-RAVEN_CONFIG = { 'dsn': os.environ.get('RAVEN_CONFIG_DSN', '') }
+RAVEN_CONFIG = {'dsn': os.environ.get('RAVEN_CONFIG_DSN', '')}
 REGISTRATION_EMAIL_HTML = False
 ROOT_URLCONF = 'urls'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
@@ -57,11 +61,14 @@ SESSION_COOKIE_AGE = 15801100
 SESSION_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 SITE_ID = 1
 STATICFILES_DIRS = (os.path.join(BASE_PATH, 'media'),)
-STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder','django.contrib.staticfiles.finders.AppDirectoriesFinder',)
+STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder',
+                       'django.contrib.staticfiles.finders.AppDirectoriesFinder')
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 STATIC_URL = '/static/'
-TASTYPIE_CANNED_ERROR = "There was an error with your request. The site developers have a record of this error, please email api@snipt.net and we'll help you out."
+TASTYPIE_CANNED_ERROR = """There was an error with your request. The site
+    developers have a record of this error, please email api@snipt.net and
+    we'll help you out."""
 TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)
 TEMPLATE_DEBUG = DEBUG
 TIME_ZONE = 'America/New_York'
@@ -93,7 +100,6 @@ INSTALLED_APPS = (
     'typogrify',
     'accounts',
     'blogs',
-    'jobs',
     'snipts',
     'utils',
 )

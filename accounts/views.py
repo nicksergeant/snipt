@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request, render_to
 from snipts.models import Snipt
 
-import os, stripe
+import os
+import stripe
 
 
 @login_required
@@ -19,7 +20,8 @@ def cancel_subscription(request):
     if request.user.profile.stripe_id is None:
         return {}
     else:
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
+                                        settings.STRIPE_SECRET_KEY)
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
         customer.delete()
 
@@ -28,7 +30,8 @@ def cancel_subscription(request):
         profile.stripe_id = None
         profile.save()
 
-        return { 'deleted': True }
+        return {'deleted': True}
+
 
 @login_required
 @ajax_request
@@ -37,7 +40,8 @@ def stripe_account_details(request):
     if request.user.profile.stripe_id is None:
         return {}
     else:
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', settings.STRIPE_SECRET_KEY)
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
+                                        settings.STRIPE_SECRET_KEY)
         customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
 
         data = {

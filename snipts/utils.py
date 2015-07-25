@@ -17,6 +17,7 @@ def slugify_uniquely(value, model, slugfield="slug"):
             return potential
         suffix = str(uuid.uuid4()).split('-')[0]
 
+
 def activate_user(user, request, **kwargs):
     user.is_active = True
     user.save()
@@ -24,6 +25,7 @@ def activate_user(user, request, **kwargs):
     user = authenticate(username=request.POST['username'],
                         password=request.POST['password1'])
     login(request, user)
+
 
 def get_lexers_list():
     lexers = list(get_all_lexers())

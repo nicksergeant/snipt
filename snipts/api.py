@@ -12,12 +12,14 @@ from haystack.query import SearchQuerySet
 from accounts.models import UserProfile
 from tastypie.cache import SimpleCache
 from tastypie.fields import ListField
-from django.http import HttpResponse
 from taggit.models import Tag
 from django.db import models
 from tastypie import fields
 
-import datetime, hashlib, time, re
+import datetime
+import hashlib
+import re
+import time
 
 import parsedatetime as pdt
 
@@ -49,6 +51,7 @@ class PrivateFavoriteAuthorization(Authorization):
     def delete_detail(self, object_list, bundle):
         return bundle.obj.user == bundle.request.user
 
+
 class PrivateSniptAuthorization(Authorization):
     def read_list(self, object_list, bundle):
         return object_list.filter(user=bundle.request.user)
@@ -74,6 +77,7 @@ class PrivateSniptAuthorization(Authorization):
     def delete_detail(self, object_list, bundle):
         return bundle.obj.user == bundle.request.user
 
+
 class PrivateUserProfileAuthorization(Authorization):
     def read_list(self, object_list, bundle):
         raise Unauthorized()
@@ -98,6 +102,7 @@ class PrivateUserProfileAuthorization(Authorization):
 
     def delete_detail(self, object_list, bundle):
         raise Unauthorized()
+
 
 class PrivateUserAuthorization(Authorization):
     def read_list(self, object_list, bundle):
@@ -130,21 +135,26 @@ class FavoriteValidation(Validation):
         errors = {}
         snipt = bundle.data['snipt']
 
-        if Favorite.objects.filter(user=bundle.request.user, snipt=snipt).count():
+        if Favorite.objects.filter(user=bundle.request.user,
+                                   snipt=snipt).count():
             errors['duplicate'] = 'User has already favorited this snipt.'
 
         return errors
+
 
 class SniptValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
         if 'pk' not in bundle.data and \
-            request.user.profile.get_account_age() > 7 and \
-            request.user.profile.is_pro == False:
-            errors['expired'] = "Your trial has expired. You'll need to go Pro (https://snipt.net/pro/) in order to create new snipts."
+                request.user.profile.get_account_age() > 7 and \
+                request.user.profile.is_pro is False:
+                    errors['expired'] = """Your trial has expired. You'll need
+                                           to go Pro (https://snipt.net/pro/)
+                                           in order to create new snipts."""
 
         return errors
+
 
 class UserProfileValidation(Validation):
     def is_valid(self, bundle, request=None):
@@ -153,7 +163,9 @@ class UserProfileValidation(Validation):
         for field in bundle.data:
             if bundle.data[field]:
                 if not re.match('^[ A-Za-z0-9\/\@\._-]*$', bundle.data[field]):
-                    errors[field] = 'Only spaces, letters, numbers, underscores, dashes, periods, forward slashes, and "at sign" are valid.'
+                    errors[field] = """Only spaces, letters, numbers,
+                                       underscores, dashes, periods, forward
+                                       slashes, and "at sign" are valid."""
 
         return errors
 
@@ -162,26 +174,31 @@ class PublicUserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
-        fields = ['id', 'username',]
+        fields = ['id', 'username']
         include_absolute_url = True
         allowed_methods = ['get']
-        filtering = { 'username': 'exact', }
+        filtering = {'username': 'exact'}
         max_limit = 200
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['snipts'] = '/api/public/snipt/?user=%d' % bundle.obj.id
-        bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
-        bundle.data['snipts_count'] = Snipt.objects.filter(user=bundle.obj.id, public=True).count()
+        bundle.data['email_md5'] = hashlib \
+            .md5(bundle.obj.email.lower()) \
+            .hexdigest()
+        bundle.data['snipts_count'] = Snipt.objects.filter(user=bundle.obj.id,
+                                                           public=True).count()
         return bundle
+
 
 class PublicTagResource(ModelResource):
     class Meta:
         queryset = Tag.objects.filter()
-        queryset = queryset.annotate(count=models.Count('taggit_taggeditem_items__id'))
+        queryset = queryset.annotate(
+            count=models.Count('taggit_taggeditem_items__id'))
         queryset = queryset.order_by('-count', 'name')
         resource_name = 'tag'
-        fields = ['id', 'name',]
+        fields = ['id', 'name']
         allowed_methods = ['get']
         max_limit = 200
         cache = SimpleCache()
@@ -202,19 +219,22 @@ class PublicTagResource(ModelResource):
         bundle.data['snipts'] = '/api/public/snipt/?tag=%d' % bundle.obj.id
         return bundle
 
+
 class PublicSniptResource(ModelResource):
     user = fields.ForeignKey(PublicUserResource, 'user', full=True)
-    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag', full=True)
+    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag',
+                              full=True)
 
     class Meta:
         queryset = Snipt.objects.filter(public=True).order_by('-created')
         resource_name = 'snipt'
-        fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count',
-                  'stylized', 'created', 'modified', 'publish_date', 'blog_post', 'meta',]
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'description',
+                  'line_count', 'stylized', 'created', 'modified',
+                  'publish_date', 'blog_post', 'meta']
         include_absolute_url = True
         allowed_methods = ['get']
-        filtering = { 'user': 'exact', 'blog_post': 'exact' }
-        ordering = ['created', 'modified',]
+        filtering = {'user': 'exact', 'blog_post': 'exact'}
+        ordering = ['created', 'modified']
         max_limit = 200
         cache = SimpleCache()
 
@@ -222,7 +242,8 @@ class PublicSniptResource(ModelResource):
         bundle.data['embed_url'] = bundle.obj.get_embed_url()
         bundle.data['raw_url'] = bundle.obj.get_raw_url()
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
-        bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
+        bundle.data['description_rendered'] = \
+            linebreaksbr(urlize(bundle.obj.description))
 
         if 'omit_code' in bundle.request.GET:
             del bundle.data['code']
@@ -272,8 +293,10 @@ class PrivateUserProfileResource(ModelResource):
         bundle.data['is_pro'] = bundle.obj.user.profile.is_pro
         return bundle
 
+
 class PrivateUserResource(ModelResource):
-    profile = fields.ForeignKey(PrivateUserProfileResource, 'profile', full=False)
+    profile = fields.ForeignKey(PrivateUserProfileResource, 'profile',
+                                full=False)
 
     class Meta:
         queryset = User.objects.all()
@@ -289,17 +312,24 @@ class PrivateUserResource(ModelResource):
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
-        bundle.data['email_md5'] = hashlib.md5(bundle.obj.email.lower()).hexdigest()
+        bundle.data['email_md5'] = hashlib \
+            .md5(bundle.obj.email.lower()) \
+            .hexdigest()
         bundle.data['is_pro'] = bundle.obj.profile.is_pro
         bundle.data['stats'] = {
-            'public_snipts': Snipt.objects.filter(user=bundle.obj.id, public=True).count(),
-            'private_snipts': Snipt.objects.filter(user=bundle.obj.id, public=False).count(),
+            'public_snipts': Snipt.objects.filter(user=bundle.obj.id,
+                                                  public=True).count(),
+            'private_snipts': Snipt.objects.filter(user=bundle.obj.id,
+                                                   public=False).count(),
             'total_snipts': Snipt.objects.filter(user=bundle.obj.id).count(),
-            'total_views': Snipt.objects.filter(user=bundle.obj.id).aggregate(models.Sum('views'))['views__sum']
+            'total_views': Snipt.objects.filter(user=bundle.obj.id).aggregate(
+                models.Sum('views'))['views__sum']
         }
-        bundle.data['lexers'] = [snipt['lexer'] for snipt in \
-            Snipt.objects.filter(user=bundle.obj).values('lexer').distinct()]
+        bundle.data['lexers'] = [
+            snipt['lexer'] for snipt in Snipt.objects.filter(user=bundle.obj)
+            .values('lexer').distinct()]
         return bundle
+
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
@@ -308,15 +338,16 @@ class PrivateSniptResource(ModelResource):
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
-        fields = ['id', 'title', 'slug', 'lexer', 'code', 'description', 'line_count', 'stylized',
-                  'key', 'public', 'blog_post', 'created', 'modified', 'publish_date', 'meta',]
+        fields = ['id', 'title', 'slug', 'lexer', 'code', 'description',
+                  'line_count', 'stylized', 'key', 'public', 'blog_post',
+                  'created', 'modified', 'publish_date', 'meta']
         include_absolute_url = True
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
         authorization = PrivateSniptAuthorization()
         validation = SniptValidation()
-        ordering = ['created', 'modified',]
+        ordering = ['created', 'modified']
         always_return_data = True
         max_limit = 200
         cache = SimpleCache()
@@ -326,12 +357,14 @@ class PrivateSniptResource(ModelResource):
         bundle.data['raw_url'] = bundle.obj.get_raw_url()
         bundle.data['tags_list'] = edit_string_for_tags(bundle.obj.tags.all())
         bundle.data['full_absolute_url'] = bundle.obj.get_full_absolute_url()
-        bundle.data['description_rendered'] = linebreaksbr(urlize(bundle.obj.description))
+        bundle.data['description_rendered'] = \
+            linebreaksbr(urlize(bundle.obj.description))
         bundle.data['views'] = bundle.obj.views
         bundle.data['favs'] = bundle.obj.favs()
 
         if bundle.data['publish_date']:
-            bundle.data['publish_date'] = date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')
+            bundle.data['publish_date'] = \
+                date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')
 
         return bundle
 
@@ -342,8 +375,9 @@ class PrivateSniptResource(ModelResource):
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
 
-        return super(PrivateSniptResource, self).obj_create(bundle,
-                     user=bundle.request.user, **kwargs)
+        return super(PrivateSniptResource, self) \
+            .obj_create(bundle,
+                        user=bundle.request.user, **kwargs)
 
     def obj_update(self, bundle, **kwargs):
         bundle.data['user'] = bundle.request.user
@@ -359,8 +393,9 @@ class PrivateSniptResource(ModelResource):
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
 
-        return super(PrivateSniptResource, self).obj_update(bundle,
-                     user=bundle.request.user, **kwargs)
+        return super(PrivateSniptResource, self) \
+            .obj_update(bundle,
+                        user=bundle.request.user, **kwargs)
 
     def _clean_publish_date(self, bundle):
         if bundle.data['blog_post'] and 'publish_date' not in bundle.data:
@@ -407,6 +442,7 @@ class PrivateSniptResource(ModelResource):
         else:
             bundle.obj.tags.set()
 
+
 class PrivateFavoriteResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
     snipt = fields.ForeignKey(PrivateSniptResource, 'snipt', full=False)
@@ -414,24 +450,24 @@ class PrivateFavoriteResource(ModelResource):
     class Meta:
         queryset = Favorite.objects.all().order_by('-created')
         resource_name = 'favorite'
-        fields = ['id',]
+        fields = ['id']
         validation = FavoriteValidation()
         detail_allowed_methods = ['get', 'post', 'delete']
-        list_allowed_methods = ['get', 'post',]
+        list_allowed_methods = ['get', 'post']
         authentication = ApiKeyAuthentication()
         authorization = PrivateFavoriteAuthorization()
-        ordering = ['created',]
+        ordering = ['created']
         always_return_data = True
         max_limit = 200
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
         bundle.data['snipt'] = '/api/public/snipt/{}/'.format(
-                bundle.obj.snipt.pk)
+            bundle.obj.snipt.pk)
         return bundle
 
     def obj_create(self, bundle, **kwargs):
         bundle.data['user'] = bundle.request.user
         bundle.data['snipt'] = Snipt.objects.get(pk=bundle.data['snipt'])
-        return super(PrivateFavoriteResource, self).obj_create(bundle,
-                     user=bundle.request.user, **kwargs)
+        return super(PrivateFavoriteResource, self) \
+            .obj_create(bundle, user=bundle.request.user, **kwargs)

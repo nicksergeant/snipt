@@ -62,9 +62,11 @@ def detail(request, username, snipt_slug):
         'user': user,
     }
 
+
 def download(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
     return HttpResponse(snipt.code, content_type='application/x-download')
+
 
 def embed(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
@@ -74,6 +76,7 @@ def embed(request, snipt_key):
                               {'lines': lines, 'snipt': snipt},
                               context_instance=RequestContext(request),
                               content_type='application/javascript')
+
 
 @render_to('snipts/list-user.html')
 def blog_posts(request, username):
@@ -92,7 +95,8 @@ def blog_posts(request, username):
         public_user = True
         user = get_object_or_404(User, username=username)
         snipts = Snipt.objects.filter(blog_post=True, user=user, public=True)
-        tags = Tag.objects.filter(snipt__user=user, snipt__public=True).distinct()
+        tags = Tag.objects.filter(snipt__user=user,
+                                  snipt__public=True).distinct()
 
     tags = tags.order_by('name')
     snipts = snipts.order_by('-created')
@@ -111,6 +115,7 @@ def blog_posts(request, username):
         return rss(request, context)
 
     return context
+
 
 @render_to('snipts/list-user.html')
 def favorites(request, username):
@@ -148,6 +153,7 @@ def favorites(request, username):
 
     return context
 
+
 @render_to('snipts/list-public.html')
 def list_public(request, tag_slug=None):
 
@@ -175,6 +181,7 @@ def list_public(request, tag_slug=None):
 
     return context
 
+
 @render_to('snipts/list-user.html')
 def list_user(request, username_or_custom_slug, tag_slug=None):
 
@@ -190,7 +197,8 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
     tags = Tag.objects
     snipts = Snipt.objects
 
-    if user == request.user or (request.GET.get('api_key') == user.api_key.key):
+    if user == request.user or \
+            (request.GET.get('api_key') == user.api_key.key):
         public = False
 
         favorites = Favorite.objects.filter(user=user).values('snipt')
@@ -232,6 +240,7 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
 
     return context
 
+
 def raw(request, snipt_key, lexer=None):
     snipt = get_object_or_404(Snipt, key=snipt_key)
 
@@ -250,23 +259,23 @@ def raw(request, snipt_key, lexer=None):
                     snipt.lexer = lexer
                     snipt.save()
 
-    content_type='text/plain'
+    content_type = 'text/plain'
 
     if 'nice' in request.GET:
-        content_type='text/html'
+        content_type = 'text/html'
 
     return render_to_response('snipts/raw.html',
                               {'snipt': snipt},
                               context_instance=RequestContext(request),
                               content_type=content_type)
 
+
 def rss(request, context):
-    return render_to_response(
-            'rss.xml',
-            context,
-            context_instance=RequestContext(request),
-            content_type="application/rss+xml"
-        )
+    return render_to_response('rss.xml',
+                              context,
+                              context_instance=RequestContext(request),
+                              content_type="application/rss+xml")
+
 
 def search(request, template='search/search.html', load_all=True,
            form_class=ModelSearchForm, searchqueryset=None,
@@ -279,12 +288,18 @@ def search(request, template='search/search.html', load_all=True,
     # We have a query.
     if request.GET.get('q'):
 
-        if request.user.is_authenticated() and '--mine' in request.GET.get('q'):
-            searchqueryset = SearchQuerySet().filter(author=request.user).order_by('-pub_date')
+        if request.user.is_authenticated() and '--mine' in \
+                request.GET.get('q'):
+            searchqueryset = SearchQuerySet().filter(author=request.user) \
+                .order_by('-pub_date')
         else:
-            searchqueryset = SearchQuerySet().filter(Q(public=True) | Q(author=request.user)).order_by('-pub_date')
+            searchqueryset = SearchQuerySet() \
+                .filter(Q(public=True) | Q(author=request.user)) \
+                .order_by('-pub_date')
 
-        form = ModelSearchForm(request.GET, searchqueryset=searchqueryset, load_all=load_all)
+        form = ModelSearchForm(request.GET,
+                               searchqueryset=searchqueryset,
+                               load_all=load_all)
 
         if form.is_valid():
             query = form.cleaned_data['q']
@@ -314,19 +329,24 @@ def search(request, template='search/search.html', load_all=True,
     if extra_context:
         context.update(extra_context)
 
-    return render_to_response(template, context, context_instance=context_class(request))
+    return render_to_response(template,
+                              context,
+                              context_instance=context_class(request))
 
 
 def redirect_snipt(request, snipt_key, lexer=None):
     snipt = get_object_or_404(Snipt, key=snipt_key)
     return HttpResponseRedirect(snipt.get_absolute_url())
 
+
 def redirect_public_tag_feed(request, tag_slug):
     return HttpResponseRedirect('/public/tag/{}/?rss'.format(tag_slug))
+
 
 def redirect_user_feed(request, username):
     user = get_object_or_404(User, username=username)
     return HttpResponseRedirect(user.get_absolute_url() + '?rss')
+
 
 def redirect_user_tag_feed(request, username, tag_slug):
     return HttpResponseRedirect(u'/{}/tag/{}/?rss'.format(username, tag_slug))
