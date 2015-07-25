@@ -440,7 +440,7 @@
     var intercomSettings = {
       app_id: 'bde5yvi6',
       user_id: {{ request.user.id }},
-      username: {{ request.user.username }},
+      username: '{{ request.user.username }}',
       user_hash: '{{ request.user.id|intercom_sha_256 }}',
       email: '{{ request.user.email }}',
       created_at: {{ request.user.date_joined|date:"U" }},
