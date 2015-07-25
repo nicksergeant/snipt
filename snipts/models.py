@@ -1,24 +1,20 @@
-from annoying.functions import get_object_or_None
-
-from django.contrib.auth.models import User
-from django.conf import settings
-from django.db import models
-
-from taggit.managers import TaggableManager
-from taggit.utils import edit_string_for_tags
-
-from markdown_deux import markdown
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name
-from pygments.util import ClassNotFound
-from pygments.formatters import HtmlFormatter
-
-from snipts.utils import slugify_uniquely
-
 import datetime
 import hashlib
 import random
 import re
+
+from annoying.functions import get_object_or_None
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.db import models
+from markdown_deux import markdown
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
+from pygments.util import ClassNotFound
+from snipts.utils import slugify_uniquely
+from taggit.managers import TaggableManager
+from taggit.utils import edit_string_for_tags
 
 
 class Snipt(models.Model):

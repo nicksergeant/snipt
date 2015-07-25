@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from tastypie.test import ResourceTestCase
-from tastypie.models import ApiKey
 from snipts.models import Snipt
+from tastypie.models import ApiKey
+from tastypie.test import ResourceTestCase
 
 
 class SniptResourceTest(ResourceTestCase):

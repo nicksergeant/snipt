@@ -1,5 +1,4 @@
 from django.conf.urls import *
-
 from snipts import views
 
 

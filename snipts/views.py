@@ -1,21 +1,19 @@
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
-from django.core.paginator import Paginator, InvalidPage
-from annoying.functions import get_object_or_None
-from pygments.lexers import get_lexer_by_name
-from django.contrib.auth.models import User
-from django.template import RequestContext
 from annoying.decorators import render_to
-from snipts.models import Favorite, Snipt
-from django.db.models import Count
+from annoying.functions import get_object_or_None
 from blogs.views import blog_list
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator, InvalidPage
+from django.db.models import Count
 from django.db.models import Q
-from taggit.models import Tag
-
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import RequestContext
 from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
-
+from pygments.lexers import get_lexer_by_name
+from snipts.models import Favorite, Snipt
+from taggit.models import Tag
 
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 

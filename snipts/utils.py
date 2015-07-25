@@ -1,9 +1,9 @@
+import uuid
+
 from django.contrib.auth import authenticate, login
 from django.template.defaultfilters import slugify
-from registration.signals import user_registered
 from pygments.lexers import get_all_lexers
-
-import uuid
+from registration.signals import user_registered
 
 
 def slugify_uniquely(value, model, slugfield="slug"):

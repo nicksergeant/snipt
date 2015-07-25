@@ -1,27 +1,26 @@
-from taggit.utils import edit_string_for_tags, parse_tags
-from tastypie.authentication import ApiKeyAuthentication
-from tastypie.authorization import Authorization
-from django.template.defaultfilters import date, urlize, linebreaksbr
-from tastypie.resources import ModelResource
-from tastypie.exceptions import Unauthorized
-from django.contrib.auth.models import User
-from tastypie.validation import Validation
-from tastypie.models import create_api_key
-from snipts.models import Favorite, Snipt
-from haystack.query import SearchQuerySet
-from accounts.models import UserProfile
-from tastypie.cache import SimpleCache
-from tastypie.fields import ListField
-from taggit.models import Tag
-from django.db import models
-from tastypie import fields
-
 import datetime
 import hashlib
+import parsedatetime as pdt
 import re
 import time
 
-import parsedatetime as pdt
+from accounts.models import UserProfile
+from django.contrib.auth.models import User
+from django.db import models
+from django.template.defaultfilters import date, urlize, linebreaksbr
+from haystack.query import SearchQuerySet
+from snipts.models import Favorite, Snipt
+from taggit.models import Tag
+from taggit.utils import edit_string_for_tags, parse_tags
+from tastypie import fields
+from tastypie.authentication import ApiKeyAuthentication
+from tastypie.authorization import Authorization
+from tastypie.cache import SimpleCache
+from tastypie.exceptions import Unauthorized
+from tastypie.fields import ListField
+from tastypie.models import create_api_key
+from tastypie.resources import ModelResource
+from tastypie.validation import Validation
 
 models.signals.post_save.connect(create_api_key, sender=User)
 

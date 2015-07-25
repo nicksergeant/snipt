@@ -1,13 +1,10 @@
-from django import template
-
-from templatetag_sugar.register import tag
-from templatetag_sugar.parser import Variable, Constant
-
-from snipts.models import Favorite, Snipt
-from snipts.utils import get_lexers_list
-
 import hashlib
 
+from django import template
+from snipts.models import Favorite, Snipt
+from snipts.utils import get_lexers_list
+from templatetag_sugar.parser import Variable, Constant
+from templatetag_sugar.register import tag
 
 register = template.Library()
 

@@ -1,9 +1,9 @@
-from django.conf import settings
-from django import template
-
 import hmac
 import hashlib
 import os
+
+from django import template
+from django.conf import settings
 
 register = template.Library()
 

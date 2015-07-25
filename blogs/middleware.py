@@ -1,8 +1,7 @@
+from annoying.functions import get_object_or_None
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
-
-from annoying.functions import get_object_or_None
 
 
 class BlogMiddleware:
@@ -28,7 +27,8 @@ class BlogMiddleware:
                         if request.blog_user is None:
                             request.blog_user = \
                                 get_object_or_404(User,
-                                                  username__iexact=blog_user.replace('-', '_'))
+                                                  username__iexact=blog_user
+                                                  .replace('-', '_'))
                     else:
                         request.blog_user = \
                             get_object_or_404(User, username__iexact=blog_user)
@@ -41,5 +41,10 @@ class BlogMiddleware:
                         if host in pro_user.profile.blog_domain.split(' '):
                             request.blog_user = pro_user
 
-                            if host != pro_user.profile.get_primary_blog_domain():
-                                return HttpResponseRedirect('http://' + pro_user.profile.get_primary_blog_domain())
+                            if host != \
+                                    pro_user.profile.get_primary_blog_domain():
+                                return HttpResponseRedirect(
+                                    'http://' +
+                                    pro_user
+                                    .profile
+                                    .get_primary_blog_domain())

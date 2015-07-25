@@ -1,22 +1,22 @@
-from accounts.models import UserProfile
-from annoying.decorators import ajax_request, render_to
-from blogs.views import blog_list
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from snipts.utils import get_lexers_list
-from django.contrib.auth.models import User
-from django.db.models import Count
-from snipts.models import Snipt
-from taggit.models import Tag
-from django.core.mail import send_mail
-
 import datetime
 import hashlib
 import os
 import stripe
+
+from accounts.models import UserProfile
+from annoying.decorators import ajax_request, render_to
+from blogs.views import blog_list
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.db.models import Count
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from snipts.models import Snipt
+from snipts.utils import get_lexers_list
+from taggit.models import Tag
 
 
 @render_to('for-teams.html')

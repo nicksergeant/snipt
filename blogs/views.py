@@ -1,10 +1,9 @@
-from django.shortcuts import get_object_or_404, render_to_response
-from annoying.functions import get_object_or_None
-from django.template import RequestContext
-
-from snipts.models import Snipt
-
 import datetime
+
+from annoying.functions import get_object_or_None
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import RequestContext
+from snipts.models import Snipt
 
 THEME_CHOICES = {
     'D': 'blogs/themes/default/',

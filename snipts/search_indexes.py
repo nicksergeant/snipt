@@ -1,4 +1,5 @@
 import datetime
+
 from haystack import indexes
 from snipts.models import Snipt
 

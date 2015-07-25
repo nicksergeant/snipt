@@ -1,6 +1,5 @@
-from django.conf.urls import *
-
 from accounts import views
+from django.conf.urls import *
 
 urlpatterns = \
     patterns('',
