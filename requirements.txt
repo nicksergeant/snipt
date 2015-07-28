@@ -16,6 +16,7 @@ ecdsa==0.13
 elasticsearch==1.6.0
 Fabric==1.10.2
 gunicorn==19.3.0
+lxml==3.4.4
 markdown2==2.3.0
 mercurial==3.4
 paramiko==1.15.2
