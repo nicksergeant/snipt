@@ -262,11 +262,6 @@
 {% block main-edit %}
   <section class="main group hidden" id="main-edit"></section>
 {% endblock %}
-{% if request.user.is_authenticated and request.user.profile.get_account_age > 7 %}
-<div class="get-support">
-  <a class="btn btn-info" href="/pro/">Get support &raquo;</a>
-</div>
-{% endif %}
 {% block keyboard-shortcuts %}
   <div class="modal hide" id="keyboard-shortcuts">
     <div class="modal-header">
