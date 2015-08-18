@@ -2,7 +2,6 @@ import datetime
 import hashlib
 import os
 import stripe
-import requests
 
 from accounts.models import UserProfile
 from annoying.decorators import ajax_request, render_to
@@ -10,7 +9,6 @@ from blogs.views import blog_list
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render_to_response
@@ -18,6 +16,7 @@ from django.template import RequestContext
 from snipts.models import Snipt
 from snipts.utils import get_lexers_list
 from taggit.models import Tag
+from teams.models import Team
 
 
 @render_to('for-teams.html')
@@ -31,59 +30,16 @@ def for_teams(request):
 
 @render_to('for-teams-complete.html')
 def for_teams_complete(request):
+    if request.method == 'POST' and request.user.is_authenticated():
 
-    if request.method == 'POST':
-
-        if 'g-recaptcha-response' not in request.POST:
-            return HttpResponseBadRequest()
-
-        payload = {
-            'secret': settings.RECAPTCHA_SECRET,
-            'response': request.POST['g-recaptcha-response'],
-            'remoteip': request.META.get('REMOTE_ADDR')
-        }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify',
-                          data=payload)
-
-        if not r.json()['success']:
-            return HttpResponseBadRequest()
-
-        if request.user.is_authenticated():
-            name = request.POST['name']
-            members = request.POST['members']
-            info = request.POST['info']
-            send_mail('[Snipt] New Snipt for Teams beta request.', """
-              User: %s (%s)
-              Team name: %s
-              Team members: %s
-              Info:
-
-              %s
-            """ % (request.user.username, request.user.email, name, members,
-                   info), 'support@snipt.net',
-                ['nick@nicksergeant.com'], fail_silently=False)
-
-            profile = request.user.profile
-            profile.teams_beta_applied = True
-            profile.save()
-        else:
-            username = request.POST['username']
-            email = request.POST['email']
-            name = request.POST['name']
-            members = request.POST['members']
-            info = request.POST['info']
-            send_mail('[Snipt] New Snipt for Teams beta request.', """
-              User: %s (%s) (not authenticated)
-              Team name: %s
-              Team members: %s
-              Info:
-
-              %s
-            """ % (username, email, name, members, info), 'support@snipt.net',
-                ['nick@nicksergeant.com'], fail_silently=False)
+        team = Team(name=request.POST['name'],
+                    email='nick@snipt.net',
+                    owner=request.user)
+        user = User.objects.create_user(team.slug, team.email, 'password')
+        team.user = user
+        team.save()
 
         return {}
-
     else:
         return HttpResponseBadRequest()
 

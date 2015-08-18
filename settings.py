@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'storages',
     'taggit',
     'tastypie',
+    'teams',
     'typogrify',
     'user-admin',
     'utils',
