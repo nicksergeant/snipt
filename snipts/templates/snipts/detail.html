@@ -50,8 +50,6 @@
     <section class="snipts" id="snipts">
         {% if not request.user.is_authenticated %}
             {% include 'ad-leaderboard-pro.html' %}
-        {% elif not request.user.profile.teams_beta_seen %}
-            {% include 'ad-leaderboard-pro.html' %}
         {% endif %}
         {% with 'true' as detail %}
             {% include "snipts/snipt-list.html" %}

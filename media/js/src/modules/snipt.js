@@ -111,12 +111,12 @@
             $selectLexer.chosen();
 
             // Blog post
-            $('label.blog-post input', window.site.$main_edit).on('change', function() {
+            $('label.blog-post input', window.site.$main_edit).change(function() {
                 var $checkbox = $(this);
                 var $label = $checkbox.parent();
                 var $publish_date = $label.siblings('label.publish-date');
 
-                if ($checkbox.attr('checked')) {
+                if ($checkbox.is(':checked')) {
                     $label.removeClass('is-not-blog-post').addClass('is-blog-post');
                     $publish_date.show();
                 } else {
@@ -124,20 +124,23 @@
                     $publish_date.hide();
                 }
                 return false;
-            }).trigger('change');
+            }).change();
 
             // Public / private
-            $('label.public input', window.site.$main_edit).on('change', function() {
+            $('label.public input', window.site.$main_edit).change(function() {
                 var $checkbox = $(this);
                 var $label = $checkbox.parent();
 
-                if ($checkbox.attr('checked')) {
+                $('div.alert-not-pro').hide();
+                if ($checkbox.is(':checked')) {
                     $label.removeClass('is-private').addClass('is-public');
+                    if (!window.user_is_pro) $('div.alert-not-pro').hide();
                 } else {
                     $label.addClass('is-private').removeClass('is-public');
+                    if (!window.user_is_pro) $('div.alert-not-pro').show();
                 }
                 return false;
-            }).trigger('change');
+            }).change();
 
             window.site.$main_edit.show();
 
@@ -488,7 +491,7 @@
                             window.site.$main_edit).removeAttr('disabled');
                 },
                 error: function(model, response) {
-                    alert('There was a problem saving your snipt. We\'ve been notified. Sorry about that!');
+                  alert(JSON.stringify(response.responseJSON.snipt));
                 }
             });
         },
@@ -588,11 +591,7 @@
             $('span.cmd-ctrl').text(cmd);
 
             $('button#add-snipt').click(function() {
-                if (window.user_account_age > 7 && !window.user_is_pro) {
-                  window.location = '/pro/?expired=true';
-                } else {
-                  that.addNewSnipt();
-                }
+                that.addNewSnipt();
             });
         },
 
@@ -682,7 +681,7 @@
                     lexer: 'text',
                     lexer_name: 'Text only',
                     new_from_js: true,
-                    public: false,
+                    public: true,
                     user: {
                         username: '',
                         profile: {
