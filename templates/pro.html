@@ -22,11 +22,6 @@
 {% endblock %}
 
 {% block content %}
-  {% if request.GET.expired %}
-    <div class="alert alert-error" style="margin: 30px; padding-right: 14px;">
-      <strong>Your trial has expired.</strong> You'll need to go Pro in order to create new snipts.
-    </div>
-  {% endif %}
   {% if request.GET.declined %}
     <div class="alert alert-error" style="margin: 30px;">
       <strong>{{ request.GET.declined }}</strong> You have not been charged. Please try again.
@@ -37,7 +32,8 @@
       <div class="info">
         Go <span class="pro">Pro</span> for just <span>$5/month</span>.
         <p class="sub">
-          As a paid Snipt member, you'll have unrestricted access to the app, <a href="/api/">API</a>,
+          As a paid Snipt member you'll unlock the ability to post private snipts,
+          have unrestricted access to the app, <a href="/api/">API</a>,
           custom-domain <a href="/blogging/">blogging</a>, instant chat support, and more.
         </p>
         <p class="sub" style="font-size: .6em; margin-top: 15px;">

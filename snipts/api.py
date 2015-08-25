@@ -145,12 +145,14 @@ class SniptValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
-        if 'pk' not in bundle.data and \
-                request.user.profile.get_account_age() > 7 and \
+        print bundle.data['public']
+
+        if bundle.data['public'] is False and \
                 request.user.profile.is_pro is False:
-                    errors['expired'] = """Your trial has expired. You'll need
-                                           to go Pro (https://snipt.net/pro/)
-                                           in order to create new snipts."""
+                errors['not-pro'] = ("You'll need to go Pro "
+                                     "(https://snipt.net/pro/) "
+                                     "in order to create private "
+                                     "snipts.")
 
         return errors
 
@@ -162,9 +164,9 @@ class UserProfileValidation(Validation):
         for field in bundle.data:
             if bundle.data[field]:
                 if not re.match('^[ A-Za-z0-9\/\@\._-]*$', bundle.data[field]):
-                    errors[field] = """Only spaces, letters, numbers,
-                                       underscores, dashes, periods, forward
-                                       slashes, and "at sign" are valid."""
+                    errors[field] = ("Only spaces, letters, numbers, "
+                                     "underscores, dashes, periods, forward "
+                                     "slashes, and \"at sign\" are valid.")
 
         return errors
 

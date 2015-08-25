@@ -369,7 +369,6 @@
       window.user_ip = '{{ request.META.REMOTE_ADDR }}';
       window.user_profile_id = {% firstof request.user.profile.id 'null' %};
       window.user_email = '{{ request.user.email }}';
-      window.user_account_age = {% firstof request.user.profile.get_account_age 'null' %};
 
       {% if public %}
         window.pub = {{ public|lower }};
