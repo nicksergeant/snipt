@@ -326,9 +326,23 @@ class PrivateUserResource(ModelResource):
             'total_views': Snipt.objects.filter(user=bundle.obj.id).aggregate(
                 models.Sum('views'))['views__sum']
         }
+
+        user_snipts = Snipt.objects.filter(user=bundle.obj)
+        user_tags = [
+            snipt['tags'] for snipt in user_snipts.values('tags').distinct()
+        ]
+
+        tags = [
+            tag['name'] for tag in
+            Tag.objects.filter(id__in=user_tags).values('name').distinct()
+        ]
+
+        bundle.data['tags'] = tags
+
         bundle.data['lexers'] = [
-            snipt['lexer'] for snipt in Snipt.objects.filter(user=bundle.obj)
+            snipt['lexer'] for snipt in user_snipts
             .values('lexer').distinct()]
+
         return bundle
 
 
