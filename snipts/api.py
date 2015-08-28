@@ -445,7 +445,8 @@ class PrivateSniptResource(ModelResource):
             orm_filters['pk__in'] = [i.object_id for i in tagged_items]
 
         if 'q' in filters:
-            sqs = SearchQuerySet().auto_query(filters['q'])
+            user = User.objects.get(username=filters['username'])
+            sqs = SearchQuerySet().filter(author=user, content=filters['q'])
             orm_filters['pk__in'] = [i.pk for i in sqs]
 
         return orm_filters
