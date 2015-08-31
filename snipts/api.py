@@ -145,10 +145,8 @@ class SniptValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
-        print bundle.data['public']
-
-        if bundle.data['public'] is False and \
-                request.user.profile.is_pro is False:
+        if request.user.profile.is_pro is False:
+            if ('public' not in bundle.data or bundle.data['public'] is False):
                 errors['not-pro'] = ("You'll need to go Pro "
                                      "(https://snipt.net/pro/) "
                                      "in order to create private "
