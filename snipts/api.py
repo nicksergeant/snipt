@@ -234,7 +234,7 @@ class PublicSniptResource(ModelResource):
         allowed_methods = ['get']
         filtering = {'user': 'exact', 'blog_post': 'exact'}
         ordering = ['created', 'modified']
-        max_limit = 20
+        max_limit = 200
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
@@ -362,7 +362,7 @@ class PrivateSniptResource(ModelResource):
         validation = SniptValidation()
         ordering = ['created', 'modified']
         always_return_data = True
-        max_limit = 20
+        max_limit = 200
         cache = SimpleCache()
 
     def dehydrate(self, bundle):
