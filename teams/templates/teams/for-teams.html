@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block page-title %}Request beta access to Snipt for Teams{% endblock %}
+
+{% block body-class %}{{ block.super }} static signup pro pro-signup{% endblock %}
+
+{% block breadcrumb %}
+  <li><a href="/for-teams/">Snipt for Teams</a></li>
+{% endblock %}
+
+{% block content %}
+  <form class="form-horizontal static-box" id="pro-signup" method="post" action="/for-teams/complete/">
+    <fieldset>
+      <div class="info">
+        Snipt for Teams
+        <ul class="features">
+          <li>Team profile at snipt.net/{team-name}.</li>
+          <li>Members can create public or private snipts on a team.</li>
+          <li>Public team posts are public to the world, as they are now.</li>
+          <li>Private team posts are editable by all team members.</li>
+          <li>All team members are automatically granted personal <span class="pro">Pro</span> accounts.</li>
+          <li>Plans starting at $49/month.</li>
+        </ul>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="name">Team name:</label>
+        <div class="controls">
+          <input required type="text" class="input-xlarge" name="name" id="name" />
+        </div>
+        <div class="form-actions">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Request more info &raquo;</button>
+        </div>
+      </fieldset>
+    </form>
+  {% endif %}
+{% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Team beta signup view');
+  {% endif %}
+{% endblock %}

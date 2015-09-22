@@ -10,9 +10,10 @@ from snipts.api import (PublicSniptResource,
                         PrivateUserResource, PublicTagResource)
 from snipts.views import search
 from tastypie.api import Api
+from teams.views import for_teams, for_teams_complete
 from utils.views import SniptRegistrationView
 from views import (homepage, lexers, login_redirect, pro, sitemap, tags,
-                   pro_complete, user_api_key, for_teams, for_teams_complete)
+                   pro_complete, user_api_key)
 
 public_api = Api(api_name='public')
 public_api.register(PublicSniptResource())

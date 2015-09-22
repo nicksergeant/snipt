@@ -16,32 +16,6 @@ from django.template import RequestContext
 from snipts.models import Snipt
 from snipts.utils import get_lexers_list
 from taggit.models import Tag
-from teams.models import Team
-
-
-@render_to('for-teams.html')
-def for_teams(request):
-    if request.user.is_authenticated():
-        profile = request.user.profile
-        profile.teams_beta_seen = True
-        profile.save()
-    return {}
-
-
-@render_to('for-teams-complete.html')
-def for_teams_complete(request):
-    if request.method == 'POST' and request.user.is_authenticated():
-
-        team = Team(name=request.POST['name'],
-                    email='nick@snipt.net',
-                    owner=request.user)
-        user = User.objects.create_user(team.slug, team.email, 'password')
-        team.user = user
-        team.save()
-
-        return {}
-    else:
-        return HttpResponseBadRequest()
 
 
 @render_to('homepage.html')
