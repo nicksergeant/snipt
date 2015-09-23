@@ -34,6 +34,9 @@ def for_teams_complete(request):
 
     if request.method == 'POST':
 
+        if 'g-recaptcha-response' not in request.META:
+            return HttpResponseBadRequest()
+
         payload = {
             'secret': settings.RECAPTCHA_SECRET,
             'response': request.POST['g-recaptcha-response'],
