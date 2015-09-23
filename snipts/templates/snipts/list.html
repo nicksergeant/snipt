@@ -18,6 +18,8 @@
         {% endif %}>
         {% if not request.user.is_authenticated %}
             {% include 'ad-leaderboard-pro.html' %}
+        {% elif not request.user.profile.teams_beta_seen %}
+            {% include 'ad-leaderboard-teams.html' %}
         {% endif %}
         {% autopaginate snipts 10 %}
         {% for snipt in snipts %}
