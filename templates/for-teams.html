@@ -17,14 +17,14 @@
     <form class="form-horizontal static-box" id="pro-signup" method="post" action="/for-teams/complete/">
       <fieldset>
         <div class="info">
-          Snipt for Teams private beta!
+          Snipt for Teams
           <ul class="features">
             <li>Team profile at snipt.net/{team-name}.</li>
             <li>Members can create public or private snipts on a team.</li>
             <li>Public team posts are public to the world, as they are now.</li>
             <li>Private team posts are editable by all team members.</li>
             <li>All team members are automatically granted personal <span class="pro">Pro</span> accounts.</li>
-            <li>Beta period is a one-time fee of $49, then plans starting at $49/month.</li>
+            <li>Plans starting at $49/month.</li>
           </ul>
         </div>
         {% if not request.user.is_authenticated %}
@@ -61,7 +61,7 @@
         </div>
         <div class="form-actions">
           {% csrf_token %}
-          <button type="submit" class="btn btn-success">Request beta access &raquo;</button>
+          <button type="submit" class="btn btn-success">Request more info &raquo;</button>
         </div>
       </fieldset>
     </form>
