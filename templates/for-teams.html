@@ -14,7 +14,7 @@
       You've successfully applied for the beta program - we'll email you as soon as we're ready!
     </div>
   {% else %}
-    <form class="form-horizontal static-box" id="pro-signup" method="post" action="/for-teams/complete/">
+    <form class="form-horizontal static-box" id="teams-signup" method="post" action="/for-teams/complete/">
       <fieldset>
         <div class="info">
           Snipt for Teams
@@ -59,6 +59,7 @@
             <textarea required name="info" name="info" id="info" class="input-xlarge" style="height: 100px;"></textarea>
           </div>
         </div>
+        <div style="margin-left: 180px;" class="g-recaptcha" data-sitekey="6LerYA0TAAAAAFJaMf7JMnlQR2wzqd_3dMRvLd-4"></div>
         <div class="form-actions">
           {% csrf_token %}
           <button type="submit" class="btn btn-success">Request more info &raquo;</button>

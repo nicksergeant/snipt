@@ -2,6 +2,7 @@ import datetime
 import hashlib
 import os
 import stripe
+import requests
 
 from accounts.models import UserProfile
 from annoying.decorators import ajax_request, render_to
@@ -32,6 +33,17 @@ def for_teams(request):
 def for_teams_complete(request):
 
     if request.method == 'POST':
+
+        payload = {
+            'secret': settings.RECAPTCHA_SECRET,
+            'response': request.POST['g-recaptcha-response'],
+            'remoteip': request.META.get('REMOTE_ADDR')
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify',
+                          data=payload)
+
+        if not r.json()['success']:
+            return HttpResponseBadRequest()
 
         if request.user.is_authenticated():
             name = request.POST['name']
