@@ -17,10 +17,13 @@
       </div>
       <ul>
         <li>
-          <a href="/{{ team.user.username }}">Add some members</a>
+          <a href="/{{ team.user.username }}">View your team profile</a>
         </li>
         <li>
-          <a href=""></a>
+          <a href="/{{ team.user.username }}/members">Add some members</a>
+        </li>
+        <li>
+          <a href="/{{ team.user.username }}/billing">View billing info</a>
         </li>
       </ul>
     </fieldset>
