@@ -104,11 +104,11 @@
             <li>
               <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
             </li>
-            <li>
-              <a href="/for-teams/" {% if '/for-teams/' in request.path %} class="active"{% endif %}>Teams</a>
-            </li>
             {% block add-snipt %}{% endblock %}
           {% endif %}
+          <li>
+            <a href="/for-teams/" {% if '/for-teams/' in request.path %} class="active"{% endif %}>Teams</a>
+          </li>
         </ul>
       </nav>
       {% if request.user.is_authenticated %}
