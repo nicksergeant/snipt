@@ -16,7 +16,7 @@ admin.site.register(Snipt, SniptAdmin)
 
 
 class SniptLogEntryAdmin(admin.ModelAdmin):
-    readonly_fields = ('user',)
+    readonly_fields = ('snipt', 'user',)
     list_display = ('snipt_name', 'user', 'created', 'modified')
 
 admin.site.register(SniptLogEntry, SniptLogEntryAdmin)
