@@ -14,8 +14,6 @@ from utils.views import SniptRegistrationView
 from views import (homepage, lexers, login_redirect, pro, sitemap, tags,
                    pro_complete, user_api_key, for_teams, for_teams_complete)
 
-admin.autodiscover()
-
 public_api = Api(api_name='public')
 public_api.register(PublicSniptResource())
 public_api.register(PublicTagResource())
