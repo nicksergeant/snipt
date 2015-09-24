@@ -172,11 +172,13 @@ class Snipt(models.Model):
         snipt = super(Snipt, self).save(*args, **kwargs)
 
         diff = self._unidiff_output(self.original_code or '', self.code)
-        log_entry = SniptLogEntry(user=self.user,
-                                  snipt=self,
-                                  code=self.code,
-                                  diff=diff)
-        log_entry.save()
+
+        if (diff != ''):
+            log_entry = SniptLogEntry(user=self.user,
+                                      snipt=self,
+                                      code=self.code,
+                                      diff=diff)
+            log_entry.save()
 
         return snipt
 
