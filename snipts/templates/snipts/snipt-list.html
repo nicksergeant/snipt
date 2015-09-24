@@ -169,6 +169,9 @@
             <li class="raw">
                 <a href="{{ snipt.get_raw_url }}">Raw</a> / 
                 <a href="{{ snipt.get_raw_url }}?nice">Raw Nice</a>
+                {% if snipt.public %}
+                  / <a href="/api/public/snipt/{{ snipt.id }}/?format=json">API</a>
+                {% endif %}
             </li>
             {% if detail and snipt.public %}
                 <li class="tweet">

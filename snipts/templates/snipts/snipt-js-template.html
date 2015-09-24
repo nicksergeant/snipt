@@ -86,6 +86,9 @@
                 <li class="raw">
                     <a href="<%= snipt.raw_url %>">Raw</a> / 
                     <a href="<%= snipt.raw_url %>?nice">Raw Nice</a>
+                    <% if (snipt.public) { %>
+                      / <a href="/api/public/snipt/<%= snipt.id %>/?format=json">API</a>
+                      <% } %>
                 </li>
             </ul>
         </footer>
