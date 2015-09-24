@@ -1,4 +1,5 @@
 import datetime
+import difflib
 import hashlib
 import random
 import re
@@ -46,6 +47,18 @@ class Snipt(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
     publish_date = models.DateTimeField(blank=True, null=True)
+
+    def _unidiff_output(self, expected, actual):
+        expected = expected.splitlines(1)
+        actual = actual.splitlines(1)
+
+        diff = difflib.unified_diff(expected, actual)
+
+        return ''.join(diff)
+
+    def __init__(self, *args, **kwargs):
+        super(Snipt, self).__init__(*args, **kwargs)
+        self.original_code = self.code
 
     def save(self, *args, **kwargs):
 
@@ -156,7 +169,16 @@ class Snipt(models.Model):
                             .replace('background: #202020', ''))
         self.embedded = embedded
 
-        return super(Snipt, self).save(*args, **kwargs)
+        snipt = super(Snipt, self).save(*args, **kwargs)
+
+        diff = self._unidiff_output(self.original_code or '', self.code)
+        log_entry = SniptLogEntry(user=self.user,
+                                  snipt=self,
+                                  code=self.code,
+                                  diff=diff)
+        log_entry.save()
+
+        return snipt
 
     def __unicode__(self):
         return self.title
@@ -273,6 +295,23 @@ class Snipt(models.Model):
             return 'Markdown'
         else:
             return get_lexer_by_name(self.lexer).name
+
+
+class SniptLogEntry(models.Model):
+    """An individual log entry for a Snipt changeset."""
+
+    user = models.ForeignKey(User)
+    snipt = models.ForeignKey(Snipt)
+
+    code = models.TextField()
+    diff = models.TextField()
+
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
+
+    @property
+    def snipt_name(self):
+        return self.snipt.title or 'Untitled'
 
 
 class Favorite(models.Model):

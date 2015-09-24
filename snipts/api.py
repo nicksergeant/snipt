@@ -244,6 +244,19 @@ class PublicSniptResource(ModelResource):
         bundle.data['description_rendered'] = \
             linebreaksbr(urlize(bundle.obj.description))
 
+        log_entries = bundle.obj.sniptlogentry_set.all()
+        bundle_log_entries = []
+
+        for entry in log_entries:
+            bundle_log_entries.append({
+                'created': entry.created,
+                'user': entry.user,
+                'code': entry.code,
+                'diff': entry.diff
+            })
+
+        bundle.data['log_entries'] = bundle_log_entries
+
         if 'omit_code' in bundle.request.GET:
             del bundle.data['code']
 

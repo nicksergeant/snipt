@@ -1,5 +1,5 @@
 from django.contrib import admin
-from snipts.models import Favorite, Snipt
+from snipts.models import Favorite, Snipt, SniptLogEntry
 
 
 class SniptAdmin(admin.ModelAdmin):
@@ -13,6 +13,13 @@ class SniptAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 admin.site.register(Snipt, SniptAdmin)
+
+
+class SniptLogEntryAdmin(admin.ModelAdmin):
+    readonly_fields = ('user',)
+    list_display = ('snipt_name', 'user', 'created', 'modified')
+
+admin.site.register(SniptLogEntry, SniptLogEntryAdmin)
 
 
 class FavoriteAdmin(admin.ModelAdmin):
