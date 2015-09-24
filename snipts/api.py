@@ -392,6 +392,19 @@ class PrivateSniptResource(ModelResource):
             bundle.data['publish_date'] = \
                 date(bundle.data['publish_date'], 'M d, Y \\a\\t h:i A')
 
+        log_entries = bundle.obj.sniptlogentry_set.all()
+        bundle_log_entries = []
+
+        for entry in log_entries:
+            bundle_log_entries.append({
+                'created': entry.created,
+                'user': entry.user,
+                'code': entry.code,
+                'diff': entry.diff
+            })
+
+        bundle.data['log_entries'] = bundle_log_entries
+
         return bundle
 
     def obj_create(self, bundle, **kwargs):
