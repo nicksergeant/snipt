@@ -97,7 +97,7 @@
                         </a>
                     {% endif %}
                 {% endif %}
-                {% if snipt.line_count <= 300 and not detail %}
+                {% if snipt.line_count <= 300 or detail %}
                   <textarea class="raw">{{ snipt.code }}</textarea>
                 {% endif %}
                 <textarea class="description">{{ snipt.description }}</textarea>
@@ -233,6 +233,8 @@
         <div class="hide resource-uri">/api/public/snipt/{{ snipt.pk }}/</div>
     {% endif %}
     <div class="hide slug">{{ snipt.slug }}</div>
-    <div class="hide stylized">{{ snipt.stylized }}</div>
+    {% if snipt.line_count <= 300 or detail %}
+      <div class="hide stylized">{{ snipt.stylized }}</div>
+    {% endif %}
     <div class="hide tags-list">{{ snipt.tags_list }}</div>
 </article>
