@@ -97,7 +97,9 @@
                         </a>
                     {% endif %}
                 {% endif %}
-                <textarea class="raw">{{ snipt.code }}</textarea>
+                {% if snipt.line_count <= 300 and not detail %}
+                  <textarea class="raw">{{ snipt.code }}</textarea>
+                {% endif %}
                 <textarea class="description">{{ snipt.description }}</textarea>
             </section>
             {% if snipt.description and detail %}
