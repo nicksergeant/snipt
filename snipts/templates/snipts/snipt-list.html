@@ -1,4 +1,4 @@
-{% load humanize snipt_tags %}
+{% load humanize snipt_tags truncate_lines %}
 
 {% snipt_is_favorited_by_user as 'is_favorited' %}
 
@@ -57,7 +57,26 @@
                             </tbody>
                         </table>
                     {% else %}
-                        {{ snipt.stylized|safe }}
+                      {% if snipt.line_count > 300 and not detail %}
+                          <table class="highlighttable">
+                              <tbody>
+                                  <tr>
+                                      <td class="linenos">
+                                          <div class="linenodiv">
+                                              <pre></pre>
+                                          </div>
+                                      </td>
+                                      <td class="code">
+                                        <div class="highlight">
+                                          <pre><span>{{ snipt.code|truncate_lines }}</span></pre>
+                                        </div>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        {% else %}
+                          {{ snipt.stylized|safe }}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
                 {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
