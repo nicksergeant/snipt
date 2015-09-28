@@ -115,16 +115,24 @@
             <aside ng-show="!account || account.list_view == 'N'">
                 <ul class="options">
                     {% if snipt.user == request.user %}
-                        <li>
-                            <a class="edit" href="#">Edit</a>
-                        </li>
+                        {% if snipt.line_count <= 300 or detail %}
+                          <li>
+                              <a class="edit" href="#">Edit</a>
+                          </li>
+                        {% else %}
+                          <li>
+                            <a class="view" href="{{ snipt.get_absolute_url }}">View</a>
+                          </li>
+                        {% endif %}
                     {% endif %}
                     <li>
                         <a class="embed" href="#">Embed</a>
                     </li>
-                    <li>
-                        <a class="copy" href="#">Copy</a>
-                    </li>
+                    {% if snipt.line_count <= 300 or detail %}
+                      <li>
+                          <a class="copy" href="#">Copy</a>
+                      </li>
+                    {% endif %}
                     {% if snipt.user != request.user and request.user.is_authenticated %}
                         <li>
                             {% if is_favorited %}
