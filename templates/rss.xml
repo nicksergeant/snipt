@@ -8,7 +8,11 @@
             <item>
                 <title>{{ snipt.title }}</title>
                 <link>{{ snipt.get_full_absolute_url }}</link>
-                <description><![CDATA[{{ snipt.code }}]]></description>
+                {% if snipt.line_count > 300 %}
+                  <description><![CDATA[{{ snipt.code|truncate_lines }}]]></description>
+                {% else %}
+                  <description><![CDATA[{{ snipt.code }}]]></description>
+                {% endif %}
                 <tags>{% for tag in snipt.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}</tags>
                 <pubDate>{{ snipt.created|date:"r" }}</pubDate>
                 <guid isPermaLink="false">snipt-net-{{ snipt.id }}</guid>
