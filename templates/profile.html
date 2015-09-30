@@ -1,6 +1,6 @@
 {% load snipt_tags %}
 
-{% if user.profile.has_team %}
+{% if user.profile.is_a_team %}
   <div class="profile group">
       <a href="/{{ user.username }}/">
           <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=300" alt="{{ user.username }}" title="{{ user.username }}" />
