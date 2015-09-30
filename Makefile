@@ -153,6 +153,9 @@ pulldb:
 	@cat snipt.dump.gz | gunzip | psql snipt
 	@rm snipt.dump.gz
 
+sass:
+	sass --watch -t compressed --scss media/css/style.scss:media/css/style.css
+
 .PHONY: assets, \
 	db, \
 	deploy, \
@@ -162,5 +165,6 @@ pulldb:
 	provision-vagrant, \
 	salt-server, \
 	salt-vagrant, \
+	sass, \
 	server, \
 	vagrant
