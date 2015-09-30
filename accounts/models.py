@@ -1,7 +1,10 @@
+from annoying.functions import get_object_or_None
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
+from itertools import chain
 from snipts.models import Snipt
+from teams.models import Team
 
 
 class UserProfile(models.Model):
@@ -109,6 +112,14 @@ class UserProfile(models.Model):
             if Snipt.objects.filter(user=self,
                                     public=True).count() > 0 \
             else False
+
+    def has_team(self):
+        return True if get_object_or_None(Team, user=self.user) else False
+
+    def teams(self):
+        teams_owned = Team.objects.filter(owner=self.user)
+        teams_in = Team.objects.filter(members=self.user)
+        return list(chain(teams_owned, teams_in))
 
     def get_account_age(self):
         delta = datetime.now().replace(tzinfo=None) - \

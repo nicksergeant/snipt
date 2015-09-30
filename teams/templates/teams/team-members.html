@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page-title %}Team Members{% endblock %}
+
+{% block body-class %}{{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+  <li><a href="/{{ team.user.username }}/">{{ team.user.username }}</a></li>
+  <span class="prompt">/</span> <li><a href="/{{ team.user.username }}/members/">Members</a></li>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Team members view');
+  {% endif %}
+{% endblock %}

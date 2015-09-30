@@ -10,7 +10,6 @@ from snipts.api import (PublicSniptResource,
                         PrivateUserResource, PublicTagResource)
 from snipts.views import search
 from tastypie.api import Api
-from teams.views import for_teams, for_teams_complete
 from utils.views import SniptRegistrationView
 from views import (homepage, lexers, login_redirect, pro, sitemap, tags,
                    pro_complete, user_api_key)
@@ -47,9 +46,6 @@ urlpatterns = \
              url(r'^pro/$', pro),
              url(r'^pro/complete/$', pro_complete),
 
-             url(r'^for-teams/$', for_teams),
-             url(r'^for-teams/complete/$', for_teams_complete),
-
              url(r'^account/', include('accounts.urls')),
 
              url(r'^api/public/lexer/$', lexers),
@@ -65,6 +61,7 @@ urlpatterns = \
                  name='registration_register'),
              url(r'', include('registration.backends.default.urls')),
 
+             url(r'^', include('teams.urls')),
              url(r'^', include('snipts.urls')),
 
              url(r'^(?P<path>favicon\.ico)$', 'django.views.static.serve', {

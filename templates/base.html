@@ -106,8 +106,24 @@
             </li>
             {% block add-snipt %}{% endblock %}
           {% endif %}
-          <li>
-            <a href="/for-teams/" {% if '/for-teams/' in request.path %} class="active"{% endif %}>Teams</a>
+          <li class="teams-nav">
+            <a href="#" class="teams-nav {% if '/for-teams/' in request.path %}active{% endif %}">Teams</a>
+            <ul>
+              {% for team in request.user.profile.teams %}
+                <li>
+                  <a href="/{{ team.user.username }}/">
+                    <i class="icon-user icon-white"></i>
+                    {{ team.user.username }}
+                  </a>
+                </li>
+              {% endfor %}
+                <li>
+                  <a href="/for-teams/">
+                    <i class="icon-plus icon-white"></i>
+                    Create new team
+                  </a>
+                </li>
+            </ul>
           </li>
         </ul>
       </nav>

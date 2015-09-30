@@ -18,22 +18,34 @@
           <li>Members can create public or private snipts on a team.</li>
           <li>Public team posts are public to the world, as they are now.</li>
           <li>Private team posts are editable by all team members.</li>
-          <li>All team members are automatically granted personal <span class="pro">Pro</span> accounts.</li>
-          <li>Plans starting at $49/month.</li>
+          <li>Plans from $49/month, all with a 7-day free trial.</li>
         </ul>
       </div>
       <div class="control-group">
-        <label class="control-label" for="name">Team name:</label>
+        <label class="control-label" for="name">Team username:</label>
         <div class="controls">
-          <input required type="text" class="input-xlarge" name="name" id="name" />
+          <input maxlength="30" required type="text" class="input-xlarge" name="name" id="name" />
+          <p class="sub" style="margin-top: 3px; color: #999999;">
+            Maximum of 30 characters.
+          </p>
         </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="name">Team email:</label>
+        <div class="controls">
+          <input required type="text" class="input-xlarge" name="email" id="email" />
+          <p class="sub" style="margin-top: 3px; color: #999999;">
+            For billing and your team's Gravatar. Will remain private.
+          </p>
+        </div>
+      </div>
+      <div class="control-group">
         <div class="form-actions">
           {% csrf_token %}
-          <button type="submit" class="btn btn-success">Request more info &raquo;</button>
+          <button type="submit" class="btn btn-success">Create team &raquo;</button>
         </div>
       </fieldset>
     </form>
-  {% endif %}
 {% endblock %}
 
 {% block analytics %}

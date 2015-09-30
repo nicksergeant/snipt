@@ -209,6 +209,57 @@ header.main {
             float: right;
             margin-right: 13px;
           }
+          &.teams-nav {
+            position: relative;
+
+            ul {
+              background: transparent url('../img/aside-nav-open-bottom-bg.gif') top left repeat;
+              display: none;
+              left: -5px;
+              padding: 10px 0;
+              position: absolute;
+              top: 48px;
+              width: 189px;
+              @include multi-border-radius(0, 0, 10px, 10px);
+
+              li {
+                float: none;
+                list-style-type: none;
+
+                a {
+                  border: none;
+                  color: #B0D7DD;
+                  display: block;
+                  float: none;
+                  font: bold 12px $Helvetica;
+                  margin: 0;
+                  overflow: hidden;
+                  padding: 7px 20px 7px 20px;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+
+                  &:hover {
+                    background: rgba(#103A42, .5);
+                    text-decoration: none;
+                  }
+                  i {
+                    margin-right: 9px;
+                    opacity: .3;
+                  }
+                }
+              }
+            }
+
+            &.open {
+              > a {
+                background: #406064;
+                border-radius: 5px;
+              }
+              > ul {
+                display: block;
+              }
+            }
+          }
         }
       }
     }

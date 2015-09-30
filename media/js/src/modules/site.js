@@ -42,6 +42,7 @@
             this.$html_body = this.$body.add(this.$html);
             this.$aside_main = $('aside.main', this.$body);
             this.$aside_nav = $('aside.nav', this.$body);
+            this.$teams_nav = $('li.teams-nav', this.$body);
             this.$aside_nav_ul = $('ul', this.$aside_nav);
             this.$search_form = $('form.search', this.$body);
             this.$search_query = $('input#search-query', this.$body);
@@ -69,6 +70,7 @@
                     window.from_modal = false;
                 }
                 that.$aside_nav.removeClass('open');
+                that.$teams_nav.removeClass('open');
             });
 
             this.$aside_nav_ul.click(function(e) {
@@ -190,7 +192,8 @@
         },
         events: {
             'showKeyboardShortcuts': 'showKeyboardShortcuts',
-            'click a.mini-profile':  'toggleMiniProfile'
+            'click a.mini-profile':  'toggleMiniProfile',
+            'click a.teams-nav':  'toggleTeamsNav'
         },
 
         keyboardShortcuts: function() {
@@ -235,6 +238,10 @@
         },
         toggleMiniProfile: function(e) {
             this.$aside_nav.toggleClass('open');
+            return false;
+        },
+        toggleTeamsNav: function(e) {
+            this.$teams_nav.toggleClass('open');
             return false;
         },
         inFieldLabels: function () {
