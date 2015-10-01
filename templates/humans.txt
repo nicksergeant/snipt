@@ -2,18 +2,12 @@
 
 Founder and Developer: Nick Sergeant
 Contact: nick@snipt.net
-Site: http://nicksergeant.com
+Site: https://nicksergeant.com
 Twitter: @nicksergeant
-Location: Rochester, NY
-
-Designer: Nick Adams
-Contact: nick@nick-adams.com
-Site: http://nick-adams.com
-Twitter: @nickadamssays
 Location: Rochester, NY
 
 /* SITE */
 
 Standards: CSS3, HTML5
-Components: Backbone.js, Twitter Bootstrap, jQuery, Underscore.js
+Components: Angular, Backbone.js, Twitter Bootstrap, jQuery, Underscore.js
 Software: Django
