@@ -4,6 +4,19 @@
 
 {% block body-class %}{{ block.super }} static signup pro pro-signup{% endblock %}
 
+{% block extra-scripts %}
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script> 
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% if debug %}
+    Stripe.setPublishableKey('pk_test_cgknmaWRMQeJt2adEdvH3T9l');
+  {% else %}
+    Stripe.setPublishableKey('pk_live_gUO2nCl7dhx6j0posz6gnbhA');
+  {% endif %}
+{% endblock %}
+
 {% block breadcrumb %}
   <li><a href="/for-teams/">Snipt for Teams</a></li>
 {% endblock %}
