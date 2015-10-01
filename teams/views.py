@@ -1,8 +1,11 @@
+import os
+import stripe
 import uuid
 
 from annoying.decorators import render_to
+from django.conf import settings
 from django.contrib.auth.models import User
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
 from teams.models import Team
 
@@ -28,9 +31,26 @@ def team_members(request, username):
 def for_teams_complete(request):
     if request.method == 'POST' and request.user.is_authenticated():
 
+        token = request.POST['token']
+        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
+                                        settings.STRIPE_SECRET_KEY)
+
+        plan = request.POST['plan']
+
+        try:
+            customer = stripe.Customer.create(card=token,
+                                              plan=plan,
+                                              email=request.user.email)
+        except stripe.CardError, e:
+            error_message = e.json_body['error']['message']
+            return HttpResponseRedirect('/for-teams/?declined=%s' %
+                                        error_message or
+                                        'Your card was declined.')
+
         team = Team(name=request.POST['name'],
                     email=request.POST['email'],
                     owner=request.user)
+        team.stripe_id = customer.id
         team.save()
 
         user = User.objects.create_user(team.slug,
