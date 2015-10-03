@@ -47,7 +47,7 @@ def for_teams_complete(request):
                                         error_message or
                                         'Your card was declined.')
 
-        team = Team(name=request.POST['name'],
+        team = Team(name=request.POST['team-name'],
                     email=request.POST['email'],
                     owner=request.user)
         team.stripe_id = customer.id

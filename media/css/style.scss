@@ -1989,9 +1989,9 @@ body.pro {
     div.payment-loading {
       background: rgba(#F2F2F2, .6);
       display: none;
-      height: 287px;
+      height: 410px;
       position: absolute;
-      top: 261px;
+      top: 278px;
       width: 100%;
 
       span {
@@ -2005,6 +2005,10 @@ body.pro {
         text-align: center;
         width: 120px;
         @include border-radius;
+      }
+      &.-teams {
+        height: 523px;
+        top: 449px;
       }
     }
     div.stripe {
@@ -2029,6 +2033,19 @@ body.pro {
         margin-top: 18px;
       }
     }
+  }
+  div.login-first {
+    background: #FFF;
+    border: 3px solid #3299B7;
+    color: #666;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 10px auto;
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    @include border-radius;
   }
 }
 body.search {

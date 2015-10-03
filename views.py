@@ -82,11 +82,8 @@ def login_redirect(request):
         return HttpResponseRedirect('/')
 
 
-@login_required
 @render_to('pro.html')
 def pro(request):
-    if request.user.profile.is_pro:
-        return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
 
 

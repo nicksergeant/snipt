@@ -98,7 +98,6 @@
                 var $form = $('form#pro-signup');
                 var $submit = $('button[type="submit"]', $form);
 
-                var $name = $('input#name');
                 var $cardNumber = $('input#number');
                 var $expMonth = $('select#exp-month');
                 var $expYear = $('select#exp-year');
@@ -137,7 +136,6 @@
                         $('.payment-loading').show();
 
                         Stripe.createToken({
-                            name: $name.val(),
                             number: $cardNumber.val(),
                             cvc: $cvc.val(),
                             exp_month: $expMonth.val(),
