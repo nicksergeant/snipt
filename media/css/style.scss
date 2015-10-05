@@ -119,7 +119,7 @@ header.main {
     height: 65px;
     margin: 0 auto;
     position: relative;
-    width: 939px;
+    width: 95%;
 
     div.shadey {
       background: transparent url('../img/header-inner-bg.png') top left no-repeat;
@@ -135,6 +135,7 @@ header.main {
       padding: 17px 0 0 20px;
       position: relative;
       z-index: 50;
+      width: 25%;
 
       input {
         background: #17484F url('../img/search-icon.png') top left no-repeat;
@@ -145,7 +146,7 @@ header.main {
         height: auto;
         margin: 0;
         padding: 7px 7px 7px 28px;
-        width: 154px;
+        width: 86%;
         @include border-radius(3px);
         @include inset-box-shadow(0, 1px, 0px, #1D4249);
 
@@ -212,7 +213,6 @@ header.main {
       }
     }
     aside.nav {
-      border-left: 1px solid rgba(229, 229, 229, .25);
       float: right;
       height: 65px;
       margin: 0;
@@ -220,7 +220,6 @@ header.main {
       width: 189px;
 
       a.mini-profile {
-        border-right: 1px solid rgba(#4D6768, .25);
         display: block;
         padding: 14px 13px 8px 13px;
 
@@ -367,15 +366,14 @@ header.sub {
     border-left: 1px solid #d0d0d0;
     margin: 0 auto;
     position: relative;
-    width: 939px;
+    width: 95%;
     z-index: 49;
 
     ul.bcrumb {
-      border-right: 1px solid #d0d0d0;
       float: left;
       margin: 0;
       padding-left: 16px;
-      width: 733px;
+      width: 82%;
 
       li {
         display: inline-block;
@@ -453,7 +451,7 @@ section.main {
   height: 100%;
   margin: 0 auto;
   position: relative;
-  width: 940px;
+  width: 95%;
 
   .site-notice {
     border-left: 1px solid #DDDDDD;
@@ -484,17 +482,18 @@ section.main {
     margin-left: 0;
   }
   div.right-y {
-    margin-left: 750px;
+    margin-left: 77%;
   }
   div.inner {
+    box-sizing: border-box;
     float: left;
-    margin-left: 1px;
-    width: 749px;
+    padding-left: 1px;
+    width: 81%;
   }
   aside.main {
     float: right;
     padding-top: 30px;
-    width: 190px;
+    width: 18%;
 
     div.save-nate {
       a {
@@ -649,7 +648,7 @@ section.main {
         margin: 0;
 
         li {
-          background: transparent url('../img/api-icon.png') center left no-repeat;
+          background: transparent url('../img/api-icon.png') top left no-repeat;
           list-style-type: none;
           margin: 0;
           padding-left: 22px;
@@ -657,7 +656,7 @@ section.main {
           a {
             color: #999;
             display: block;
-            font: bold 12px $Helvetica;
+            font: bold 12px/18px $Helvetica;
             padding: 3px 0;
             text-decoration: none;
 
@@ -681,13 +680,13 @@ section.main {
             padding-top: 1px;
           }
           &.twitter {
-            background: transparent url('../img/twitter-icon.png') 4px center no-repeat;
+            background: transparent url('../img/twitter-icon.png') 4px 7px no-repeat;
           }
           &.pro {
-            background: transparent url('../img/upgrade-icon.png') 2px center no-repeat;
+            background: transparent url('../img/upgrade-icon.png') 2px 7px no-repeat;
           }
           &.groups {
-            background: transparent url('../img/groups-icon.png') 2px center no-repeat;
+            background: transparent url('../img/groups-icon.png') 2px 7px no-repeat;
           }
           &:first-of-type {
             a {
@@ -695,10 +694,10 @@ section.main {
             }
           }
           &.blog {
-            background: transparent url('../img/blog-icon.png') 3px center no-repeat;
+            background: transparent url('../img/blog-icon.png') 3px 7px no-repeat;
           }
           &.roadmap {
-            background: transparent url('../img/roadmap-icon.png') 2px center no-repeat;
+            background: transparent url('../img/roadmap-icon.png') 2px 7px no-repeat;
           }
         }
       }
@@ -781,7 +780,7 @@ article.snipt {
     border-left: 0;
     float: left;
     position: relative;
-    width: 618px;
+    width: 85%;
 
     div.ruler {
       background: #DDD;
@@ -1061,9 +1060,9 @@ article.snipt {
     }
   }
   aside {
-    float: right;
-    margin: 23px 30px 0 0;
-    width: 100px;
+    float: left;
+    margin: 23px 0 0 0;
+    width: 14%;
 
     ul.options {
       margin: 0;
@@ -1236,7 +1235,7 @@ article.snipt {
         &.raw {
           background-image: none;
           float: right;
-          margin-right: 130px;
+          margin-right: 15%;
         }
         &.tweet {
           background: none;
@@ -1514,7 +1513,7 @@ div.modal {
 div#disqus_thread {
   margin-bottom: 0;
   margin-left: 15px;
-  width: 719px;
+  width: 97%;
 
   #dsq-content {
     margin-top: -44px;
@@ -1660,6 +1659,7 @@ div.dmca {
   border-top: 1px solid #DDDDDD;
   font-size: 18px;
   line-height: 26px;
+  margin-top: 50px;
   padding: 40px;
   position: relative;
   text-align: center;
@@ -1672,7 +1672,7 @@ body.account {
     aside {
       float: left;
       padding-top: 35px;
-      width: 190px;
+      width: 16%;
 
       ul {
         li {
@@ -1693,9 +1693,10 @@ body.account {
       background: white;
       border-bottom: 1px solid #DDDDDD;
       border-left: 4px solid #DDDDDD;
+      box-sizing: border-box;
       float: right;
       min-height: 272px;
-      width: 555px;
+      width: 84%;
       @include multi-border-radius(0, 0, 0, 10px);
 
       div.def {
@@ -1993,7 +1994,7 @@ body.search {
       margin-bottom: 0;
 
       input.search-query {
-        width: 460px;
+        width: 73%;
       }
       label.mine-only {
         margin: -7px 10px 0 10px;
@@ -2078,7 +2079,7 @@ body.snipt-page {
     }
   }
   div#disqus_thread {
-    width: 719px;
+    width: 97%;
   }
 }
 body.signup {
@@ -2179,7 +2180,7 @@ body.static {
   }
   div#disqus_thread {
     margin-left: 20px;
-    width: 709px;
+    width: 96%;
 
     div#dsq-content {
       margin-top: 23px;
@@ -2300,14 +2301,11 @@ body.editing {
       float: none;
       margin: 0 auto;
       padding-top: 6px;
-      width: 940px;
+      width: 95%;
 
       .cancel, .save, .save-and-close {
         float: right;
         margin-left: 10px;
-      }
-      .save-and-close {
-        margin-right: 242px;
       }
     }
   }
@@ -2319,7 +2317,8 @@ body.editing {
           margin-top: 15px;
 
           div.container {
-            width: 839px;
+            box-sizing: border-box;
+            width: 78%;
 
             header {
               h1 {
@@ -2363,7 +2362,7 @@ body.editing {
             margin-top: 50px;
           }
           div.container {
-            width: 696px;
+            width: 78%;
 
             section.code {
               padding: 0;
@@ -2395,8 +2394,7 @@ body.editing {
                   color: #666;
                   font: bold 16px/20px $Helvetica;
                   margin: 0;
-                  width: 811px;
-                  width: 666px;
+                  width: 97%;
                 }
               }
               h2 {
@@ -2406,7 +2404,7 @@ body.editing {
           }
           aside {
             margin-top: 0;
-            width: 243px;
+            width: 22%;
 
             div.type-lexer {
               padding-right: 10px;
@@ -2432,10 +2430,11 @@ body.editing {
                 margin-top: 6px;
               }
               textarea {
+                box-sizing: border-box;
                 height: 100px;
                 font: normal 12px $Helvetica;
                 padding: 7px 9px;
-                width: 202px;
+                width: 96%;
               }
               label.public, label.blog-post {
                 background: #EFEEEF;
