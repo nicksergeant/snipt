@@ -10,6 +10,7 @@
 
 settings_local.py
 settings_local_server.py
+snipt.dump
 
 media/cache
 media/css/pro.css

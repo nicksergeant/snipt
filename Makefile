@@ -145,10 +145,20 @@ vagrant:
 	@$(ssh-vagrant) '$(pm) backfill_api_keys;'
 	@$(ssh-vagrant) '$(pm) rebuild_index --noinput;'
 
+pulldb:
+	@ssh nick@snipt.net -p 55555 'sudo su -c "pg_dump snipt|gzip > /tmp/snipt.dump" postgres'
+	@scp -q -P 55555 nick@snipt.net:/tmp/snipt.dump snipt.dump.gz
+	@dropdb snipt
+	@createdb snipt
+	@cat snipt.dump | gunzip | psql snipt
+	@cat snipt.dump | psql snipt
+	@rm snipt.dump snipt.dump.gz
+
 .PHONY: assets, \
 	db, \
 	deploy, \
 	deploy-heroku, \
+	pulldb, \
 	provision-server, \
 	provision-vagrant, \
 	salt-server, \
