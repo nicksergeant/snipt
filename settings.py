@@ -48,6 +48,15 @@ MANAGERS = ADMINS
 MEDIA_ROOT = os.path.join(BASE_PATH, 'media/uploads')
 MEDIA_URL = '/media/uploads/'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 RAVEN_CONFIG = {'dsn': os.environ.get('RAVEN_CONFIG_DSN', '')}
@@ -88,7 +97,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    'django_bcrypt',
     'gunicorn',
     'haystack',
     'markdown_deux',
