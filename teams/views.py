@@ -22,6 +22,8 @@ def for_teams(request):
 @render_to('teams/team-billing.html')
 def team_billing(request, username):
     team = get_object_or_404(Team, slug=username)
+    if team.owner != request.user:
+        raise Http404
     return {
         'team': team
     }
@@ -30,8 +32,6 @@ def team_billing(request, username):
 @render_to('teams/team-members.html')
 def team_members(request, username):
     team = get_object_or_404(Team, slug=username)
-    if team.owner != request.user:
-        raise Http404
     return {
         'team': team
     }

@@ -176,7 +176,7 @@ class PublicUserResource(ModelResource):
         fields = ['id', 'username']
         include_absolute_url = True
         allowed_methods = ['get']
-        filtering = {'username': 'exact'}
+        filtering = {'username': ['contains', 'exact']}
         max_limit = 200
         cache = SimpleCache()
 
