@@ -5,7 +5,7 @@ import uuid
 from annoying.decorators import render_to
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
 from teams.models import Team
 
@@ -19,9 +19,19 @@ def for_teams(request):
     return {}
 
 
+@render_to('teams/team-billing.html')
+def team_billing(request, username):
+    team = get_object_or_404(Team, slug=username)
+    return {
+        'team': team
+    }
+
+
 @render_to('teams/team-members.html')
 def team_members(request, username):
     team = get_object_or_404(Team, slug=username)
+    if team.owner != request.user:
+        raise Http404
     return {
         'team': team
     }
@@ -49,6 +59,7 @@ def for_teams_complete(request):
 
         team = Team(name=request.POST['team-name'],
                     email=request.POST['email'],
+                    plan=plan,
                     owner=request.user)
         team.stripe_id = customer.id
         team.save()

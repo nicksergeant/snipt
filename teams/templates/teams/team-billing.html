@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block page-title %}Team Billing{% endblock %}
+
+{% block body-class %}account {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+  <li><a href="/{{ team.user.username }}/">{{ team.user.username }}</a></li>
+  <span class="prompt">/</span> <li><a href="/{{ team.user.username }}/billing/">Billing</a></li>
+{% endblock %}
+
+{% block content %}
+  <section class="snipts" id="snipts"></section>
+  <section class="profile group">
+    <aside>
+      <ul class="nav nav-list ng-cloak" ng-cloak>
+        <li class="nav-header">Team: {{ team.name }}</li>
+        <li>
+          <a href="/{{ team.slug }}/members/">Members</a>
+        </li>
+        <li class="active">
+          <a href="/{{ team.slug }}/billing/">Billing</a>
+        </li>
+      </ul>
+    </aside>
+    <section class="content">
+      <div class="def" data-title="Plan">
+        25 users
+      </div>
+      <div class="def" data-title="Price">
+        $49.00 USD / month
+      </div>
+      <div class="def" data-title="Card">
+        xxxx-xxxx-xxxx-4242
+      </div>
+      <div class="def" data-title="Status">
+        Active
+      </div>
+      <div class="def" data-title="Team since">
+        August 29, 2015
+      </div>
+      <div class="def" data-title="Next bill date" ng-show="user.stripeAccount.status != 'inactive'">
+        November 29, 2015
+      </div>
+      <p class="alert alert-info group" style="padding-right: 8px;">
+        <a href="/{{ team.slug }}/billing/cancel/" class="btn btn-danger pull-right">Cancel subscription</a>
+      </p>
+    </section>
+  </section>
+{% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Team billing view');
+  {% endif %}
+{% endblock %}

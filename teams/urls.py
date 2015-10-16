@@ -8,4 +8,7 @@ urlpatterns = \
              url(r'^for-teams/complete/$', views.for_teams_complete),
              url(r'^(?P<username>[^/]+)/members/$',
                  views.team_members,
-                 name='team-members'))
+                 name='team-members'),
+             url(r'^(?P<username>[^/]+)/billing/$',
+                 views.team_billing,
+                 name='team-billing'))

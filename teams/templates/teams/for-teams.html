@@ -37,7 +37,7 @@
           <li>Public team posts are public to the world, as they are now.</li>
           <li>Private team posts are editable by all team members.</li>
           <li>All team members are automatically granted personal <a href="/pro/"><span class="pro">Pro</span></a> accounts.</li>
-          <li>Plans from $49/month, all with a 7-day free trial.</li>
+          <li>Plans from $49/month, all with a 14-day free trial.</li>
         </ul>
       </div>
       {% if not request.user.is_authenticated %}
@@ -61,7 +61,7 @@
         <div class="control-group">
           <label class="control-label" for="email">Team email:</label>
           <div class="controls">
-            <input required type="text" class="input-xlarge" name="email" id="email" />
+            <input required type="email" class="input-xlarge" name="email" id="email" />
             <p class="sub" style="margin-top: 3px; color: #999999;">
               For billing and your team's Gravatar. Will remain private.
             </p>
@@ -72,12 +72,12 @@
           <div class="controls">
             <select name="plan" type="text" class="input-xlarge" id="plan">
               <option value="snipt-teams-25-monthly">25 users - $49/month</option>
-              <option value="snipt-teams-25-yearly">25 users - $588/year</option>
               <option value="snipt-teams-100-monthly">100 users - $149/month</option>
-              <option value="snipt-teams-100-yearly">100 users - $1,788/year</option>
               <option value="snipt-teams-250-monthly">250 users - $299/month</option>
-              <option value="snipt-teams-250-yearly">250 users - $3,588/year</option>
               <option value="snipt-teams-unlimited-monthly">Unlimited users - $499/month</option>
+              <option value="snipt-teams-25-yearly">25 users - $588/year</option>
+              <option value="snipt-teams-100-yearly">100 users - $1,788/year</option>
+              <option value="snipt-teams-250-yearly">250 users - $3,588/year</option>
               <option value="snipt-teams-unlimited-yearly">Unlimited users - $5,988/year</option>
             </select>
           </div>

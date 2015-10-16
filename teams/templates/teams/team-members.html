@@ -2,7 +2,7 @@
 
 {% block page-title %}Team Members{% endblock %}
 
-{% block body-class %}{{ block.super }}{% endblock %}
+{% block body-class %}account {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
   <li><a href="/{{ team.user.username }}/">{{ team.user.username }}</a></li>
@@ -10,7 +10,32 @@
 {% endblock %}
 
 {% block content %}
-
+  <section class="snipts" id="snipts"></section>
+  <section class="profile group">
+    <aside>
+      <ul class="nav nav-list ng-cloak" ng-cloak>
+        <li class="nav-header">Team: {{ team.name }}</li>
+        <li class="active">
+          <a href="/{{ team.slug }}/members/">Members</a>
+        </li>
+        <li>
+          <a href="/{{ team.slug }}/billing/">Billing</a>
+        </li>
+      </ul>
+    </aside>
+    <section class="content">
+      <div class="def" data-title="Owner">
+        {{ team.owner }}
+      </div>
+      <div class="def" data-title="Members ({{ team.members.all|length }} of {{ team.member_limit }})">
+        <ul style="margin-bottom: 0">
+          {% for member in team.members.all %}
+            <li>{{ member }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </section>
 {% endblock %}
 
 {% block analytics %}
