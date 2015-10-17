@@ -37,6 +37,19 @@ def team_members(request, username):
     }
 
 
+def add_team_member(request, username, member):
+    team = get_object_or_404(Team, slug=username)
+    user = get_object_or_404(User, username=member)
+
+    if (team.owner != request.user):
+        raise Http404
+
+    team.members.add(user)
+    team.save()
+
+    return HttpResponseRedirect('/' + team.slug + '/members/')
+
+
 @render_to('teams/for-teams-complete.html')
 def for_teams_complete(request):
     if request.method == 'POST' and request.user.is_authenticated():

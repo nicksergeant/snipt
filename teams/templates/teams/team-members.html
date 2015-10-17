@@ -38,14 +38,20 @@
             type="search"
             value=""
           />
-          <ul ng-cloak ng-if="members.length">
-            <li ng-repeat="member in members">{[{ member.username }]}</li>
+          <ul ng-cloak ng-if="users.length">
+            <li ng-repeat="user in users">
+              <img src="https://secure.gravatar.com/avatar/{[{ user.email_md5 }]}?s=26" />
+              <span>{[{ user.username }]}</span>
+              <a class="btn btn-small" href="/{{ team.slug }}/members/add/{[{ user.username }]}/">Add &raquo;</a>
+            </li>
           </ul>
         </div>
         <div class="def" data-title="Members ({{ team.members.all|length }} of {{ team.member_limit }})">
           <ul style="margin-bottom: 0">
             {% for member in team.members.all %}
-              <li>{{ member }}</li>
+              <li>
+                {{ member }}
+              </li>
             {% endfor %}
           </ul>
         </div>
