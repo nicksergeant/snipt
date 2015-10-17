@@ -20,9 +20,26 @@
                   </a>
               </div>
           {% endif %}
-          <div class="member-since">{{ user.team.members.all|length }} member{{ user.team.members.all|pluralize }}</div>
+          <div class="member-since">
+            {% if user.team.owner == request.user %}
+              <a href="/{{ user.username }}/members/">
+                {{ user.team.member_count }} member{{ user.team.member_count|pluralize }}
+              </a>
+            {% else %}
+              {{ user.team.member_count }} member{{ user.team.member_count|pluralize }}
+            {% endif %}
+          </div>
       </div>
   </div>
+  {% if user.team.owner == request.user %}
+    <div class="profile team-settings group">
+      <div class="meta">
+        <span class="title">Team settings</span>
+        <a href="/{{ user.username }}/billing/">Billing &raquo;</a>
+        <a href="/{{ user.username }}/members/">Members &raquo;</a>
+      </div>
+    </div>
+  {% endif %}
 {% else %}
   <div class="profile group">
       <a href="/{{ user.username }}/">

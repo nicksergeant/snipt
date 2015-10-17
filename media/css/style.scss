@@ -1666,6 +1666,34 @@ div.profile {
       text-decoration: none;
     }
   }
+  &.team-settings {
+    margin-top: -20px;
+
+    span.title {
+      color: #949494;
+      display: block;
+      font-size: 11px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    a {
+      background: #dbdbdb;
+      box-sizing: border-box;
+      display: block;
+      margin-bottom: 5px;
+      padding: 5px 8px;
+      text-decoration: none;
+      width: 100%;
+      @include border-radius(3px);
+
+      &:hover {
+        background: #c8c8c8;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 div.empty-snipts {
   background: rgba(128, 128, 128, .08);

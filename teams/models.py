@@ -38,6 +38,10 @@ class Team(models.Model):
         return self.name
 
     @property
+    def member_count(self):
+        return self.members.all().count() + 1
+
+    @property
     def member_limit(self):
         plan_map = {
             'snipt-teams-25-monthly': 25,
