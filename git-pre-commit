@@ -35,6 +35,7 @@ cat media/js/src/snipts.js|jsmin > media/js/src/snipts.min.js
 cat media/js/src/search.js|jsmin > media/js/src/search.min.js
 cat media/js/src/jobs.js|jsmin > media/js/src/jobs.min.js
 cat media/js/src/application.js|jsmin > media/js/src/application.min.js
+cat media/js/src/team.js|jsmin > media/js/src/team.min.js
 cat media/js/src/modules/site.js|jsmin > media/js/src/modules/site.min.js
 cat media/js/src/modules/snipt.js|jsmin > media/js/src/modules/snipt.min.js
 cat media/js/src/pro.js|jsmin > media/js/src/pro.min.js

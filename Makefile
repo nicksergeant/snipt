@@ -37,6 +37,7 @@ assets:
 	@cat media/js/src/search.js > media/js/src/search.min.js
 	@cat media/js/src/jobs.js > media/js/src/jobs.min.js
 	@cat media/js/src/application.js > media/js/src/application.min.js
+	@cat media/js/src/team.js > media/js/src/team.min.js
 	@cat media/js/src/modules/site.js > media/js/src/modules/site.min.js
 	@cat media/js/src/modules/snipt.js > media/js/src/modules/snipt.min.js
 	@cat media/js/src/pro.js > media/js/src/pro.min.js
