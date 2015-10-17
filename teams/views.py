@@ -45,7 +45,18 @@ def add_team_member(request, username, member):
         raise Http404
 
     team.members.add(user)
-    team.save()
+
+    return HttpResponseRedirect('/' + team.slug + '/members/')
+
+
+def remove_team_member(request, username, member):
+    team = get_object_or_404(Team, slug=username)
+    user = get_object_or_404(User, username=member)
+
+    if (team.owner != request.user):
+        raise Http404
+
+    team.members.remove(user)
 
     return HttpResponseRedirect('/' + team.slug + '/members/')
 

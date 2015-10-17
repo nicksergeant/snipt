@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load snipt_tags %}
+
 {% block page-title %}Team Members{% endblock %}
 
 {% block body-class %}account {{ block.super }}{% endblock %}
@@ -39,7 +41,7 @@
             value=""
           />
           <ul ng-cloak ng-if="users.length">
-            <li ng-repeat="user in users">
+            <li ng-repeat="user in users" class="user">
               <img src="https://secure.gravatar.com/avatar/{[{ user.email_md5 }]}?s=26" />
               <span>{[{ user.username }]}</span>
               <a class="btn btn-small" href="/{{ team.slug }}/members/add/{[{ user.username }]}/">Add &raquo;</a>
@@ -47,10 +49,12 @@
           </ul>
         </div>
         <div class="def" data-title="Members ({{ team.members.all|length }} of {{ team.member_limit }})">
-          <ul style="margin-bottom: 0">
+          <ul class="member-list">
             {% for member in team.members.all %}
-              <li>
-                {{ member }}
+              <li class="user">
+                <img src="https://secure.gravatar.com/avatar/{{ member.email|md5 }}?s=26" />
+                <span>{{ member.username }}</span>
+                <a class="btn btn-small" href="/{{ team.slug }}/members/remove/{{ member.username }}/">Remove &raquo;</a>
               </li>
             {% endfor %}
           </ul>

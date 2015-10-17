@@ -3093,31 +3093,33 @@ div.team-controller {
     }
     ul {
       margin: 12px 0 0 0;
-
-      li {
-        box-sizing: border-box;
-        list-style-type: none;
-        margin: 0;
-        padding: 10px;
-        width: 42%;
-        @include border-radius(3px);
-
-        span {
-          font-size: 16px;
-        }
-        a.btn {
-          float: right;
-        }
-        img {
-          margin-right: 10px;
-        }
-        &:last-of-type {
-          margin-bottom: 0;
-        }
-        &:hover {
-          background: #ebebeb;
-        }
-      }
     }
+  }
+  li.user {
+    box-sizing: border-box;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    width: 42%;
+    @include border-radius(3px);
+
+    span {
+      font-size: 16px;
+    }
+    a.btn {
+      float: right;
+    }
+    img {
+      margin-right: 10px;
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &:hover {
+      background: #ebebeb;
+    }
+  }
+  ul.member-list {
+    margin: 0;
   }
 }
