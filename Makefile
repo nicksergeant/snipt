@@ -147,9 +147,9 @@ vagrant:
 	@$(ssh-vagrant) '$(pm) rebuild_index --noinput;'
 
 pulldb:
-	# @ssh nick@snipt.net -p 55555 'sudo su -c "pg_dump snipt|gzip > /tmp/snipt.dump" postgres'
-	# @scp -q -P 55555 nick@snipt.net:/tmp/snipt.dump snipt.dump.gz
-	# @dropdb snipt
+	@ssh nick@snipt.net -p 55555 'sudo su -c "pg_dump snipt|gzip > /tmp/snipt.dump" postgres'
+	@scp -q -P 55555 nick@snipt.net:/tmp/snipt.dump snipt.dump.gz
+	@dropdb snipt
 	@createdb snipt
 	@cat snipt.dump.gz | gunzip | psql snipt
 	@rm snipt.dump.gz
