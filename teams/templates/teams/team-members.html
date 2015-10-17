@@ -10,12 +10,15 @@
 {% endblock %}
 
 {% block content %}
-  <div ng-controller="TeamController">
+  <div ng-controller="TeamController" class="team-controller">
     <section class="snipts" id="snipts"></section>
     <section class="profile group">
       <aside>
         <ul class="nav nav-list ng-cloak" ng-cloak>
           <li class="nav-header">Team: {{ team.name }}</li>
+          <li>
+            <a href="/{{ team.slug }}/">Profile</a>
+          </li>
           <li class="active">
             <a href="/{{ team.slug }}/members/">Members</a>
           </li>
@@ -27,6 +30,17 @@
       <section class="content">
         <div class="def" data-title="Owner">
           {{ team.owner }}
+        </div>
+        <div class="def add-member" data-title="Add member">
+          <input
+            ng-model="search"
+            placeholder="Search users..."
+            type="search"
+            value=""
+          />
+          <ul ng-cloak ng-if="members.length">
+            <li ng-repeat="member in members">{[{ member.username }]}</li>
+          </ul>
         </div>
         <div class="def" data-title="Members ({{ team.members.all|length }} of {{ team.member_limit }})">
           <ul style="margin-bottom: 0">

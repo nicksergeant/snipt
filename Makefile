@@ -155,7 +155,7 @@ pulldb:
 	@rm snipt.dump.gz
 
 sass:
-	sass --watch -t compressed --scss media/css/style.scss:media/css/style.css
+	sass --sourcemap=none --watch -t compressed --scss media/css/style.scss:media/css/style.css
 
 .PHONY: assets, \
 	db, \
