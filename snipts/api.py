@@ -74,7 +74,7 @@ class PrivateSniptAuthorization(Authorization):
         raise Unauthorized()
 
     def delete_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        return bundle.obj.is_authorized_user(bundle.request.user)
 
 
 class PrivateUserProfileAuthorization(Authorization):
@@ -359,7 +359,9 @@ class PrivateUserResource(ModelResource):
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
-    last_user_saved = fields.ForeignKey(PrivateUserResource, 'last_user_saved', full=False)
+    last_user_saved = fields.ForeignKey(PrivateUserResource,
+                                        'last_user_saved',
+                                        full=False)
     tags_list = ListField()
 
     class Meta:
