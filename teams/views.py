@@ -4,6 +4,7 @@ import uuid
 
 from annoying.decorators import render_to
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
@@ -19,6 +20,7 @@ def for_teams(request):
     return {}
 
 
+@login_required
 @render_to('teams/team-billing.html')
 def team_billing(request, username):
     team = get_object_or_404(Team, slug=username)
@@ -29,14 +31,18 @@ def team_billing(request, username):
     }
 
 
+@login_required
 @render_to('teams/team-members.html')
 def team_members(request, username):
     team = get_object_or_404(Team, slug=username)
+    if not team.user_is_member(request.user):
+        raise Http404
     return {
         'team': team
     }
 
 
+@login_required
 def add_team_member(request, username, member):
     team = get_object_or_404(Team, slug=username)
     user = get_object_or_404(User, username=member)
@@ -49,6 +55,7 @@ def add_team_member(request, username, member):
     return HttpResponseRedirect('/' + team.slug + '/members/')
 
 
+@login_required
 def remove_team_member(request, username, member):
     team = get_object_or_404(Team, slug=username)
     user = get_object_or_404(User, username=member)
@@ -61,6 +68,7 @@ def remove_team_member(request, username, member):
     return HttpResponseRedirect('/' + team.slug + '/members/')
 
 
+@login_required
 @render_to('teams/for-teams-complete.html')
 def for_teams_complete(request):
     if request.method == 'POST' and request.user.is_authenticated():

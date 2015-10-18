@@ -411,6 +411,7 @@ class PrivateSniptResource(ModelResource):
         return bundle
 
     def obj_create(self, bundle, **kwargs):
+        bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
 
@@ -430,10 +431,10 @@ class PrivateSniptResource(ModelResource):
         else:
             user = bundle.request.user
 
-        bundle.data['last_user_saved'] = bundle.request.user
-        bundle.data['user'] = user
         bundle.data['created'] = None
+        bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['modified'] = None
+        bundle.data['user'] = user
 
         if type(bundle.data['tags']) in (str, unicode):
             bundle.data['tags_list'] = bundle.data['tags']
