@@ -196,7 +196,9 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
     snipts = Snipt.objects
 
     if user == request.user or \
-            (request.GET.get('api_key') == user.api_key.key):
+            (request.GET.get('api_key') == user.api_key.key) or \
+            (user.team and user.team.user_is_member(request.user)):
+
         public = False
 
         favorites = Favorite.objects.filter(user=user).values('snipt')

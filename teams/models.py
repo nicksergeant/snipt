@@ -58,3 +58,8 @@ class Team(models.Model):
             return 'Unlimited'
         else:
             return plan_map[self.plan]
+
+    def user_is_member(self, user):
+        if self.owner == user or user in self.members:
+            return True
+        return False

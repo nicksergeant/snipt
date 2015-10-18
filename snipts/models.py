@@ -298,6 +298,11 @@ class Snipt(models.Model):
         else:
             return get_lexer_by_name(self.lexer).name
 
+    @property
+    def is_authorized_user(self, user):
+        if self.user == user:
+            return True
+
 
 class SniptLogEntry(models.Model):
     """An individual log entry for a Snipt changeset."""
