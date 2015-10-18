@@ -56,7 +56,7 @@ class PrivateSniptAuthorization(Authorization):
         return object_list.filter(user=bundle.request.user)
 
     def read_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        return bundle.obj.is_authorized_user(bundle.request.user)
 
     def create_list(self, object_list, bundle):
         raise Unauthorized()
@@ -68,7 +68,7 @@ class PrivateSniptAuthorization(Authorization):
         raise Unauthorized()
 
     def update_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        return bundle.obj.is_authorized_user(bundle.request.user)
 
     def delete_list(self, object_list, bundle):
         raise Unauthorized()
@@ -359,6 +359,7 @@ class PrivateUserResource(ModelResource):
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
+    last_user_saved = fields.ForeignKey(PrivateUserResource, 'last_user_saved', full=False)
     tags_list = ListField()
 
     class Meta:
@@ -419,7 +420,16 @@ class PrivateSniptResource(ModelResource):
                         user=bundle.request.user, **kwargs)
 
     def obj_update(self, bundle, **kwargs):
-        bundle.data['user'] = bundle.request.user
+
+        instance = Snipt.objects.get(pk=bundle.data['id'])
+
+        if (instance.user.profile.is_a_team):
+            user = instance.user
+        else:
+            user = bundle.request.user
+
+        bundle.data['last_user_saved'] = bundle.request.user
+        bundle.data['user'] = user
         bundle.data['created'] = None
         bundle.data['modified'] = None
 
@@ -433,8 +443,7 @@ class PrivateSniptResource(ModelResource):
             bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self) \
-            .obj_update(bundle,
-                        user=bundle.request.user, **kwargs)
+            .obj_update(bundle, **kwargs)
 
     def _clean_publish_date(self, bundle):
         if bundle.data['blog_post'] and 'publish_date' not in bundle.data:

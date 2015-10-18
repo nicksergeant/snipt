@@ -491,7 +491,11 @@
                             window.site.$main_edit).removeAttr('disabled');
                 },
                 error: function(model, response) {
-                  alert(JSON.stringify(response.responseJSON.snipt));
+                  if (response.responseJSON) {
+                    alert(JSON.stringify(response.responseJSON.snipt));
+                  } else {
+                    alert(JSON.stringify(response.statusText));
+                  }
                 }
             });
         },

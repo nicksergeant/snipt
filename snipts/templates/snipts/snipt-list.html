@@ -15,7 +15,7 @@
     {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
         expandable
     {% endif %}
-    {% if snipt.user == request.user %}
+    {% if snipt|is_authorized_user:request.user %}
         editable
     {% endif %}
     {% if is_favorited %}
@@ -113,7 +113,7 @@
         {% block aside %}
             <aside ng-show="!account || account.list_view == 'N'">
                 <ul class="options">
-                    {% if snipt.user == request.user %}
+                    {% if snipt|is_authorized_user:request.user %}
                         {% if snipt.line_count <= 300 or detail %}
                           <li>
                               <a class="edit" href="#">Edit</a>
@@ -132,7 +132,7 @@
                           <a class="copy" href="#">Copy</a>
                       </li>
                     {% endif %}
-                    {% if snipt.user != request.user and request.user.is_authenticated %}
+                    {% if snipt.user != request.user and request.user.is_authenticated and not snipt.user.team %}
                         <li>
                             {% if is_favorited %}
                                 <a class="favorite favorited" href="#">Favorited</a>
@@ -178,7 +178,9 @@
                 <li class="author">
                     <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ snipt.user.email|md5 }}?s=15&amp;d=https://snipt.s3.amazonaws.com/img/author-icon.png');"></span>
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
-                    {% if snipt.user.profile.is_pro %}
+                    {% if snipt.user.profile.is_a_team %}
+                        <span class="pro"><a href="/for-teams/">Team</a></span>
+                    {% elif snipt.user.profile.is_pro %}
                         <span class="pro"><a href="/pro/">Pro</a></span>
                     {% endif %}
                     {% if snipt.user.profile.gittip_username %}
@@ -234,7 +236,7 @@
     <div class="hide public">{{ snipt.public }}</div>
     <div class="hide blog-post">{{ snipt.blog_post }}</div>
     <div class="hide publish-date">{{ snipt.publish_date|date:"M d, Y \a\t h:i A" }}</div>
-    {% if snipt.user == request.user %}
+    {% if snipt|is_authorized_user:request.user %}
         <div class="hide resource-uri">/api/private/snipt/{{ snipt.pk }}/</div>
     {% else %}
         <div class="hide resource-uri">/api/public/snipt/{{ snipt.pk }}/</div>

@@ -61,3 +61,8 @@ def generate_line_numbers(context, line_numbers):
 @register.filter
 def md5(string):
     return hashlib.md5(string.lower()).hexdigest()
+
+
+@register.filter
+def is_authorized_user(snipt, user):
+    return snipt.is_authorized_user(user)

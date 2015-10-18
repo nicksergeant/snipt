@@ -60,6 +60,6 @@ class Team(models.Model):
             return plan_map[self.plan]
 
     def user_is_member(self, user):
-        if self.owner == user or user in self.members:
+        if self.owner == user or user in self.members.all():
             return True
         return False

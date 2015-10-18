@@ -113,6 +113,7 @@ class UserProfile(models.Model):
                                     public=True).count() > 0 \
             else False
 
+    @property
     def is_a_team(self):
         return True if get_object_or_None(Team, user=self.user) else False
 

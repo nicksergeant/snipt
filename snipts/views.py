@@ -197,7 +197,8 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
 
     if user == request.user or \
             (request.GET.get('api_key') == user.api_key.key) or \
-            (user.team and user.team.user_is_member(request.user)):
+            (user.profile.is_a_team and
+                user.team.user_is_member(request.user)):
 
         public = False
 
