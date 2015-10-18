@@ -50,9 +50,12 @@ def add_team_member(request, username, member):
     if (team.owner != request.user):
         raise Http404
 
-    team.members.add(user)
-
-    return HttpResponseRedirect('/' + team.slug + '/members/')
+    if ((team.members.all().count() + 1) > team.member_limit):
+        return HttpResponseRedirect('/' + team.slug +
+                                    '/members/?limit-reached')
+    else:
+        team.members.add(user)
+        return HttpResponseRedirect('/' + team.slug + '/members/')
 
 
 @login_required
