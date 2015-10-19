@@ -674,6 +674,8 @@
             if ($articleNewSnipt.length === 0) {
                 window.site.snipt_list.$el.prepend('<article id="new-snipt" class="hidden snipt"></article>');
 
+                var user = window.user;
+
                 var data = {
                     id: '',
                     blog_post: false,
@@ -686,6 +688,7 @@
                     lexer_name: 'Text only',
                     new_from_js: true,
                     public: true,
+                    intended_user: user,
                     user: {
                         username: '',
                         profile: {

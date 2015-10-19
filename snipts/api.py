@@ -62,7 +62,12 @@ class PrivateSniptAuthorization(Authorization):
         raise Unauthorized()
 
     def create_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        user = bundle.obj.user
+        if user == bundle.request.user:
+            return True
+        if user.profile.is_a_team:
+            return user.team.user_is_member(bundle.request.user)
+        return False
 
     def update_list(self, object_list, bundle):
         raise Unauthorized()
@@ -414,13 +419,14 @@ class PrivateSniptResource(ModelResource):
         bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = ''
+        bundle.data['user'] = \
+            User.objects.get(username=bundle.data['intended_user'])
 
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self) \
-            .obj_create(bundle,
-                        user=bundle.request.user, **kwargs)
+            .obj_create(bundle, **kwargs)
 
     def obj_update(self, bundle, **kwargs):
 
