@@ -43,6 +43,7 @@
             this.$aside_main = $('aside.main', this.$body);
             this.$aside_nav = $('aside.nav', this.$body);
             this.$teams_nav = $('li.teams-nav', this.$body);
+            this.$add_snipt = $('li.add-snipt', this.$body);
             this.$aside_nav_ul = $('ul', this.$aside_nav);
             this.$search_form = $('form.search', this.$body);
             this.$search_query = $('input#search-query', this.$body);
@@ -71,6 +72,7 @@
                 }
                 that.$aside_nav.removeClass('open');
                 that.$teams_nav.removeClass('open');
+                that.$add_snipt.removeClass('open');
             });
 
             this.$aside_nav_ul.click(function(e) {

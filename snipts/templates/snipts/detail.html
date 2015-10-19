@@ -1,12 +1,7 @@
 {% extends "base.html" %}
 
 {% block add-snipt %}
-  <li class="add-snipt">
-    <button class="btn btn-info btn-large" id="add-snipt">
-      Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
-      <i class="icon-search icon-plus icon-white"></i>
-    </button>
-  </li>
+  {% include 'add-snipt.html' %}
 {% endblock %}
 
 {% block page-title %}/ {% if snipt.title %}{{ snipt.title }}{% else %}Untitled{% endif %} / {{ user.username }} - {{ block.super }}{% endblock %}

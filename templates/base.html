@@ -113,22 +113,24 @@
           {% else %}
             <li class="teams-nav">
               <a href="#" class="teams-nav {% if '/for-teams/' in request.path %}active{% endif %}">Teams</a>
-              <ul>
-                {% for team in request.user.profile.teams|dictsort:'name' %}
-                  <li>
-                    <a href="/{{ team.user.username }}/">
-                      <i class="icon-user icon-white"></i>
-                      {{ team.name }}
-                    </a>
-                  </li>
-                {% endfor %}
-                  <li>
-                    <a href="/for-teams/">
-                      <i class="icon-plus icon-white"></i>
-                      Create new team
-                    </a>
-                  </li>
-              </ul>
+              {% if request.user.profile.has_teams %}
+                <ul>
+                  {% for team in request.user.profile.teams|dictsort:'name' %}
+                    <li>
+                      <a href="/{{ team.user.username }}/">
+                        <i class="icon-user icon-white"></i>
+                        {{ team.name }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                    <li>
+                      <a href="/for-teams/">
+                        <i class="icon-plus icon-white"></i>
+                        Create new team
+                      </a>
+                    </li>
+                </ul>
+              {% endif %}
             </li>
           {% endif %}
         </ul>

@@ -209,10 +209,10 @@ header.main {
             float: right;
             margin-right: 13px;
           }
-          &.teams-nav {
+          &.teams-nav, &.add-snipt {
             position: relative;
 
-            ul {
+            > ul {
               background: transparent url('../img/aside-nav-open-bottom-bg.gif') top left repeat;
               display: none;
               left: -5px;
@@ -258,6 +258,10 @@ header.main {
               > ul {
                 display: block;
               }
+            }
+            span.as {
+              color: #7C8D8E;
+              margin-right: 2px;
             }
           }
         }

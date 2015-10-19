@@ -110,10 +110,6 @@
             var $selectLexer = $('select#id_lexer', window.site.$main_edit);
             $selectLexer.chosen();
 
-            // Init user
-            var $selectUser = $('select#id_user', window.site.$main_edit);
-            $selectUser.chosen();
-
             // Blog post
             $('label.blog-post input', window.site.$main_edit).change(function() {
                 var $checkbox = $(this);
@@ -225,14 +221,20 @@
 
             if (window.editor_theme != 'default') {
                 $selectTheme.val(window.editor_theme);
-                $selectTheme.trigger('liszt:updated');
+                $selectTheme.trigger('chosen:updated');
                 $selectTheme.trigger('change');
             }
             if (window.default_editor != 'codemirror') {
                 $selectEditor.val(window.default_editor);
-                $selectEditor.trigger('liszt:updated');
+                $selectEditor.trigger('chosen:updated');
                 $selectEditor.trigger('change');
             }
+
+            // Init user
+            var $selectUser = $('select#id_user', window.site.$main_edit);
+            $selectUser.chosen();
+            $selectUser.val(window.intended_user);
+            $selectUser.trigger('chosen:updated');
 
             // Full-screen mode.
             this.setupCodeMirrorFullScreen();
@@ -600,8 +602,22 @@
             }
             $('span.cmd-ctrl').text(cmd);
 
-            $('button#add-snipt').click(function() {
-                that.addNewSnipt();
+            var $buttonAddSnipt = $('button#add-snipt');
+            $buttonAddSnipt.click(function(e) {
+                if (window.teams.length) {
+                  e.stopPropagation();
+                  $buttonAddSnipt.parent().toggleClass('open');
+                } else {
+                  that.addNewSnipt();
+                }
+            });
+
+            var $addSniptTeams = $('ul.add-snipt-teams a');
+            $addSniptTeams.click(function(e) {
+              e.stopPropagation();
+              window.intended_user = $(e.target).attr('data-intended-user') ||
+                 $(e.target).parent().attr('data-intended-user');
+              that.addNewSnipt();
             });
         },
 
