@@ -79,9 +79,6 @@
                 <% if (!snipt.new_from_js) { %>
                     <li class="created" title="<%= snipt.created %>"><%= snipt.created_formatted %></li>
                 <% } %>
-                <% if (snipt.public && !window.detail) { %>
-                    <li class="comments"><a href="<%= snipt.absolute_url %>#disqus_thread" data-disqus-identifier="<%= snipt.id %>"></a></li>
-                <% } %>
                 <li class="raw">
                     <a href="<%= snipt.raw_url %>">Raw</a> / 
                     <a href="<%= snipt.raw_url %>?nice">Raw Nice</a>
