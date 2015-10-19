@@ -494,6 +494,7 @@
                 success: function(model, response) {
                     $('button.save, button.save-and-close, button.delete, button.cancel',
                             window.site.$main_edit).removeAttr('disabled');
+                    that.model.set('new_from_js', false);
                 },
                 error: function(model, response) {
                   if (response.responseJSON) {
