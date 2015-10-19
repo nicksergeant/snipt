@@ -35,11 +35,9 @@
             </div>
             <aside>
                 <ul class="options">
-                    <% if (snipt.user.username === window.user) { %>
-                        <li>
-                            <a class="edit" href="#">Edit</a>
-                        </li>
-                        <% } %>
+                    <li>
+                      <a class="edit" href="#">Edit</a>
+                    </li>
                     <li>
                         <a class="embed" href="#">Embed</a>
                     </li>
@@ -47,16 +45,18 @@
                         <a class="copy" href="#">Copy</a>
                     </li>
                 </ul>
-                <section class="meta tags">
-                    <h2><%= snipt.tags.length %> tag<% if ((snipt.tags.length > 1) || (snipt.tags.length === 0)) { print('s'); } %></h2>
-                    <ul>
-                        <% for (var i=0; i < snipt.tags.length; i++) { %>
-                            <li <% if (i > 2 && !window.detail) { %>class="hidden"<% } %>>
-                                <a href="<%= snipt.tags[i].absolute_url %>"><%= snipt.tags[i].name %></a>
-                            </li>
-                        <% } %>
-                    </ul>
-                </section>
+                <% if (typeof(snipt.tags) === 'object') { %>
+                  <section class="meta tags">
+                      <h2><%= snipt.tags.length %> tag<% if ((snipt.tags.length > 1) || (snipt.tags.length === 0)) { print('s'); } %></h2>
+                      <ul>
+                          <% for (var i=0; i < snipt.tags.length; i++) { %>
+                              <li <% if (i > 2 && !window.detail) { %>class="hidden"<% } %>>
+                                  <a href="<%= snipt.tags[i].absolute_url %>"><%= snipt.tags[i].name %></a>
+                              </li>
+                          <% } %>
+                      </ul>
+                  </section>
+                <% } %>
                 <section class="meta stats">
                     <ul>
                         <li><%= snipt.views %> views</li>

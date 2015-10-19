@@ -368,6 +368,8 @@ class PrivateSniptResource(ModelResource):
                                         'last_user_saved',
                                         full=False)
     tags_list = ListField()
+    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag',
+                              full=True)
 
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
@@ -418,7 +420,7 @@ class PrivateSniptResource(ModelResource):
     def obj_create(self, bundle, **kwargs):
         bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['tags_list'] = bundle.data.get('tags')
-        bundle.data['tags'] = ''
+        bundle.data['tags'] = []
         bundle.data['user'] = \
             User.objects.get(username=bundle.data['intended_user'])
 
