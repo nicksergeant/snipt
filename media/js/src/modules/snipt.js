@@ -607,7 +607,7 @@
             var $public = $('div.public', $el);
             var $blog_post = $('div.blog-post', $el);
             var $publish_date = $('div.publish-date', $el);
-            var $user = $('li.author a', $el);
+            var $user = $('li.author > a', $el);
 
             var is_public = $public.text() === 'True' ? true : false;
             var is_blog_post = $blog_post.text() === 'True' ? true : false;

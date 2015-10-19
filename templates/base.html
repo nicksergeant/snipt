@@ -386,6 +386,11 @@
       window.user_ip = '{{ request.META.REMOTE_ADDR }}';
       window.user_profile_id = {% firstof request.user.profile.id 'null' %};
       window.user_email = '{{ request.user.email }}';
+      window.teams = [
+        {% for team in request.user.profile.teams %}
+          '{{ team.slug }}',
+        {% endfor %}
+      ]
 
       {% if public %}
         window.pub = {{ public|lower }};
