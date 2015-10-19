@@ -44,6 +44,10 @@ class Team(models.Model):
 
     @property
     def member_limit(self):
+
+        if self.disabled:
+            return 0
+
         plan_map = {
             'snipt-teams-25-monthly': 25,
             'snipt-teams-100-monthly': 100,
@@ -61,6 +65,8 @@ class Team(models.Model):
             return plan_map[self.plan]
 
     def user_is_member(self, user):
+        if self.disabled:
+            return False
         if self.owner == user or user in self.members.all():
             return True
         return False
