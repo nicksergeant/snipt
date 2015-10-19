@@ -23,7 +23,7 @@ def for_teams(request):
 @login_required
 @render_to('teams/team-billing.html')
 def team_billing(request, username):
-    team = get_object_or_404(Team, slug=username)
+    team = get_object_or_404(Team, slug=username, disabled=False)
     if team.owner != request.user:
         raise Http404
     return {
@@ -34,7 +34,7 @@ def team_billing(request, username):
 @login_required
 @render_to('teams/team-members.html')
 def team_members(request, username):
-    team = get_object_or_404(Team, slug=username)
+    team = get_object_or_404(Team, slug=username, disabled=False)
     if not team.user_is_member(request.user):
         raise Http404
     return {
@@ -44,7 +44,7 @@ def team_members(request, username):
 
 @login_required
 def add_team_member(request, username, member):
-    team = get_object_or_404(Team, slug=username)
+    team = get_object_or_404(Team, slug=username, disabled=False)
     user = get_object_or_404(User, username=member)
 
     if (team.owner != request.user):
@@ -60,7 +60,7 @@ def add_team_member(request, username, member):
 
 @login_required
 def remove_team_member(request, username, member):
-    team = get_object_or_404(Team, slug=username)
+    team = get_object_or_404(Team, slug=username, disabled=False)
     user = get_object_or_404(User, username=member)
 
     if (team.owner != request.user):

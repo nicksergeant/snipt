@@ -174,7 +174,7 @@ if (typeof angular !== 'undefined') {
     AccountStorage.getAccount().then(function(response) {
       $scope.user = response.data;
 
-      if ($scope.user.is_pro && $scope.user.stripe_id && $scope.user.stripe_id !== 'COMP') {
+      if ($scope.user.has_pro && $scope.user.stripe_id && $scope.user.stripe_id !== 'COMP') {
         AccountStorage.getStripeAccount().then(function(response) {
           $scope.user.stripeAccount = response.data;
         });

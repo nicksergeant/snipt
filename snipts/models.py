@@ -307,7 +307,7 @@ class Snipt(models.Model):
         if self.user == user:
             return True
         if self.user.profile.is_a_team:
-            team = Team.objects.get(user=self.user)
+            team = Team.objects.get(user=self.user, disabled=False)
             return team.user_is_member(user)
         return False
 

@@ -24,7 +24,8 @@ class Team(models.Model):
     stripe_id = models.CharField(max_length=100, null=True, blank=True)
     user = models.OneToOneField(User, blank=True, null=True)
     plan = models.CharField(max_length=100, default='snipt-teams-25-monthly',
-                            choices=PLANS)
+                            choices=PLANS, blank=True, null=True)
+    disabled = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)

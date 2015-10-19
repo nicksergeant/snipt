@@ -15,13 +15,13 @@
   </div>
 </div>
 <div ng-show="!cancelled">
-  <div ng-show="!user.is_pro">
+  <div ng-show="!user.has_pro">
       <p class="alert alert-info">
           You're not a Pro yet, so we have nothing to show you here.<br />
           <br /><a class="btn btn-success" href="/pro/">Signup for Pro &raquo;</a>
       </p>
   </div>
-  <div ng-show="user.is_pro">
+  <div ng-show="user.has_pro">
       <div class="def" data-title="Plan" ng-show="user.stripeAccount.status != 'inactive'">
           {[{ user.stripeAccount.name || 'Loading...' }]}
       </div>

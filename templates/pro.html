@@ -46,7 +46,7 @@
             To go <span class="pro">Pro</span>, <a href="/signup/?next=/pro/">sign up</a> or <a href="/login/?next=/pro/">log in</a>.
           </span>
         </div>
-      {% elif request.user.profile.is_pro %}
+      {% elif request.user.profile.has_pro %}
         <div class="login-first">
           <span>
             You're already a <span class="pro">Pro</span>.

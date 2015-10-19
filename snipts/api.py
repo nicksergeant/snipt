@@ -145,7 +145,7 @@ class SniptValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
-        if request.user.profile.is_pro is False:
+        if request.user.profile.has_pro is False:
             if ('public' not in bundle.data or bundle.data['public'] is False):
                 errors['not-pro'] = ("You'll need to go Pro "
                                      "(https://snipt.net/pro/) "
@@ -302,7 +302,7 @@ class PrivateUserProfileResource(ModelResource):
         bundle.data['username'] = bundle.obj.user.username
         bundle.data['user_id'] = bundle.obj.user.id
         bundle.data['api_key'] = bundle.obj.user.api_key.key
-        bundle.data['is_pro'] = bundle.obj.user.profile.is_pro
+        bundle.data['has_pro'] = bundle.obj.user.profile.has_pro
         return bundle
 
 
@@ -327,7 +327,7 @@ class PrivateUserResource(ModelResource):
         bundle.data['email_md5'] = hashlib \
             .md5(bundle.obj.email.lower()) \
             .hexdigest()
-        bundle.data['is_pro'] = bundle.obj.profile.is_pro
+        bundle.data['has_pro'] = bundle.obj.profile.has_pro
         bundle.data['stats'] = {
             'public_snipts': Snipt.objects.filter(user=bundle.obj.id,
                                                   public=True).count(),

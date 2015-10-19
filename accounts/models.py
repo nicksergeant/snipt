@@ -115,16 +115,35 @@ class UserProfile(models.Model):
 
     @property
     def is_a_team(self):
-        return True if get_object_or_None(Team, user=self.user) else False
+        if get_object_or_None(Team, user=self.user, disabled=False):
+            return True
+        else:
+            return False
 
     def teams(self):
-        teams_owned = Team.objects.filter(owner=self.user)
-        teams_in = Team.objects.filter(members=self.user)
+        teams_owned = Team.objects.filter(owner=self.user, disabled=False)
+        teams_in = Team.objects.filter(members=self.user, disabled=False)
         return list(chain(teams_owned, teams_in))
+
+    @property
+    def has_teams(self):
+        if (len(self.teams()) > 0):
+            return True
+        else:
+            return False
 
     def get_account_age(self):
         delta = datetime.now().replace(tzinfo=None) - \
             self.user.date_joined.replace(tzinfo=None)
         return delta.days
+
+    @property
+    def has_pro(self):
+        if (self.is_pro or
+                self.has_teams or
+                self.is_a_team):
+            return True
+        else:
+            return False
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

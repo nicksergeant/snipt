@@ -77,7 +77,7 @@
                 <script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
             </div>
         {% endif %}
-        {% if not blog_user.profile.is_pro %}
+        {% if not blog_user.profile.has_pro %}
             <nav class="footer {% if sidebar %}with-sidebar{% endif %}">
                 <ul class="powered">
                     <li class="snipt"><a href="https://snipt.net/blogging/">Blog powered by Snipt</a></li>

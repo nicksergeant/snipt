@@ -65,7 +65,7 @@
               </div>
           {% endif %}
       </div>
-      {% if user.profile.is_pro %}
+      {% if user.profile.has_pro %}
           <a class="pro" href="/pro/">Pro</a>
       {% endif %}
       {% if user.profile.gittip_username %}

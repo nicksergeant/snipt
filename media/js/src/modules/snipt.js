@@ -134,10 +134,10 @@
                 $('div.alert-not-pro').hide();
                 if ($checkbox.is(':checked')) {
                     $label.removeClass('is-private').addClass('is-public');
-                    if (!window.user_is_pro) $('div.alert-not-pro').hide();
+                    if (!window.user_has_pro) $('div.alert-not-pro').hide();
                 } else {
                     $label.addClass('is-private').removeClass('is-public');
-                    if (!window.user_is_pro) $('div.alert-not-pro').show();
+                    if (!window.user_has_pro) $('div.alert-not-pro').show();
                 }
                 return false;
             }).change();
@@ -623,7 +623,7 @@
                 };
             }
 
-            var is_pro = $user.siblings('span.pro').length ? true : false;
+            var has_pro = $user.siblings('span.pro').length ? true : false;
 
             var data = {
                 code: $('textarea.raw', $el).text(),
@@ -651,7 +651,7 @@
                     absolute_url: $user.attr('href'),
                     username: $user.text(),
                     profile: {
-                        is_pro: is_pro
+                        has_pro: has_pro
                     }
                 }
             };
@@ -689,7 +689,7 @@
                     user: {
                         username: '',
                         profile: {
-                            is_pro: window.user_is_pro
+                            has_pro: window.user_has_pro
                         }
                     }
                 };

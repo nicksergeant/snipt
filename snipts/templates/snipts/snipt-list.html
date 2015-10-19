@@ -180,7 +180,7 @@
                     <a href="{{ snipt.user.get_absolute_url }}">{{ snipt.user.username }}</a>
                     {% if snipt.user.profile.is_a_team %}
                         <span class="pro"><a href="/for-teams/">Team</a></span>
-                    {% elif snipt.user.profile.is_pro %}
+                    {% elif snipt.user.profile.has_pro %}
                         <span class="pro"><a href="/pro/">Pro</a></span>
                     {% endif %}
                     {% if snipt.user.profile.gittip_username %}
