@@ -37,6 +37,23 @@
                         </div>
                         <aside>
                             <div class="in">
+                                <% if (snipt.new_from_js) { %>
+                                  {% endverbatim %}
+                                  {% if request.user.profile.has_teams %}
+                                    <div class="user">
+                                      <label class="user">
+                                          <span>User / team</span>
+                                          <select name="user" id="id_user">
+                                                <option value="{{ request.user.username }}">{{ request.user.username }}</option>
+                                              {% for team in request.user.profile.teams %}
+                                                <option value="{{ team.slug }}">{{ team.name }}</option>
+                                              {% endfor %}
+                                          </select>
+                                      </label>
+                                    </div>
+                                  {% endif %}
+                                  {% verbatim %}
+                                <% } %>
                                 <div class="type-lexer">
                                   <label class="lexer type-lexer">
                                       <span>Type</span>

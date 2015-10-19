@@ -110,6 +110,10 @@
             var $selectLexer = $('select#id_lexer', window.site.$main_edit);
             $selectLexer.chosen();
 
+            // Init user
+            var $selectUser = $('select#id_user', window.site.$main_edit);
+            $selectUser.chosen();
+
             // Blog post
             $('label.blog-post input', window.site.$main_edit).change(function() {
                 var $checkbox = $(this);
@@ -479,6 +483,7 @@
                 'tags': $('label.tags textarea').val(),
                 'tags_list': $('label.tags textarea').val(),
                 'lexer': $('select[name="lexer"]').val(),
+                'intended_user': $('select[name="user"]').val(),
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
                 'code': code,
                 'description': $('textarea[name="description"]').val(),
@@ -674,8 +679,6 @@
             if ($articleNewSnipt.length === 0) {
                 window.site.snipt_list.$el.prepend('<article id="new-snipt" class="hidden snipt"></article>');
 
-                var user = window.user;
-
                 var data = {
                     id: '',
                     blog_post: false,
@@ -688,7 +691,6 @@
                     lexer_name: 'Text only',
                     new_from_js: true,
                     public: true,
-                    intended_user: user,
                     user: {
                         username: '',
                         profile: {
