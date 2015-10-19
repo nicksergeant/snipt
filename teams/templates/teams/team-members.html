@@ -41,28 +41,32 @@
         <div class="def" data-title="Owner">
           {{ team.owner }}
         </div>
-        <div class="def add-member" data-title="Add member">
-          <input
-            ng-model="search"
-            placeholder="Search users..."
-            type="search"
-            value=""
-          />
-          <ul ng-cloak ng-if="users.length">
-            <li ng-repeat="user in users" class="user">
-              <img src="https://secure.gravatar.com/avatar/{[{ user.email_md5 }]}?s=26" />
-              <span>{[{ user.username }]}</span>
-              <a class="btn btn-small" href="/{{ team.slug }}/members/add/{[{ user.username }]}/">Add &raquo;</a>
-            </li>
-          </ul>
-        </div>
+        {% if team.owner == request.user %}
+          <div class="def add-member" data-title="Add member">
+            <input
+              ng-model="search"
+              placeholder="Search users..."
+              type="search"
+              value=""
+            />
+            <ul ng-cloak ng-if="users.length">
+              <li ng-repeat="user in users" class="user">
+                <img src="https://secure.gravatar.com/avatar/{[{ user.email_md5 }]}?s=26" />
+                <a href="/{[{ user.username }]}/"><span>{[{ user.username }]}</span></a>
+                <a class="btn btn-small" href="/{{ team.slug }}/members/add/{[{ user.username }]}/">Add &raquo;</a>
+              </li>
+            </ul>
+          </div>
+        {% endif %}
         <div class="def" data-title="Members ({{ team.members.all|length }} of {{ team.member_limit }})">
           <ul class="member-list">
             {% for member in team.members.all %}
               <li class="user">
                 <img src="https://secure.gravatar.com/avatar/{{ member.email|md5 }}?s=26" />
-                <span>{{ member.username }}</span>
-                <a class="btn btn-small" href="/{{ team.slug }}/members/remove/{{ member.username }}/">Remove &raquo;</a>
+                <a href="/{{ member.username }}/"><span>{{ member.username }}</span></a>
+                {% if team.owner == request.user %}
+                  <a class="btn btn-small" href="/{{ team.slug }}/members/remove/{{ member.username }}/">Remove &raquo;</a>
+                {% endif %}
               </li>
             {% endfor %}
           </ul>
