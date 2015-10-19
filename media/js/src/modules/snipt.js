@@ -231,10 +231,12 @@
             }
 
             // Init user
-            var $selectUser = $('select#id_user', window.site.$main_edit);
-            $selectUser.chosen();
-            $selectUser.val(window.intended_user);
-            $selectUser.trigger('chosen:updated');
+            if (window.teams.length) {
+              var $selectUser = $('select#id_user', window.site.$main_edit);
+              $selectUser.chosen();
+              $selectUser.val(window.intended_user);
+              $selectUser.trigger('chosen:updated');
+            }
 
             // Full-screen mode.
             this.setupCodeMirrorFullScreen();
@@ -480,12 +482,19 @@
                 code = window.editor.getValue();
             }
 
+            var intendedUser;
+            if (window.teams.length) {
+              intendedUser = $('select[name="user"]').val();
+            } else {
+              intendedUser = window.intended_user;
+            }
+
             that.model.save({
                 'title': $('input#snipt_title').val(),
                 'tags': $('label.tags textarea').val(),
                 'tags_list': $('label.tags textarea').val(),
                 'lexer': $('select[name="lexer"]').val(),
-                'intended_user': $('select[name="user"]').val(),
+                'intended_user': intendedUser,
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
                 'code': code,
                 'description': $('textarea[name="description"]').val(),
