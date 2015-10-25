@@ -2022,8 +2022,9 @@ body.pro {
       background: rgba(#F2F2F2, .6);
       display: none;
       height: 410px;
+      left: 0;
       position: absolute;
-      top: 278px;
+      top: 254px;
       width: 100%;
 
       span {
@@ -2039,7 +2040,7 @@ body.pro {
         @include border-radius;
       }
       &.-teams {
-        height: 523px;
+        height: 581px;
         top: 449px;
       }
     }
