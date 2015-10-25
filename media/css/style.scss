@@ -3132,3 +3132,29 @@ div.payment-form {
   margin: 0 auto;
   width: 86%;
 }
+
+div.with-teams-search {
+  display: inline-block;
+  width: 87%;
+
+  input.search-query {
+    width: 69% !important;
+  }
+  select {
+    display: inline-block;
+    width: 25%;
+  }
+}
+
+div.team-search {
+  form {
+    margin: 0;
+    padding: 5px;
+  }
+  input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 15px 10px;
+    width: 100%;
+  }
+}

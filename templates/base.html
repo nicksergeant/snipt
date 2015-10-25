@@ -75,7 +75,7 @@
     <div class="inner">
       <div class="shadey"></div>
       <h1 class="main-logo"><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
-      <form class="search" action="/search/" method="get" ng-controller="HeaderSearchController">
+      <form class="search" action="/search/" method="get">
         <fieldset>
           <div class="fields">
             <input ng-model="search.query" type="text" class="search-query" name="q"
@@ -433,7 +433,6 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/src/modules/snipt.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/src/account.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/src/snipts.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/src/search.js"></script>
 {% else %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/snipt-all.min.js?74"></script>
 {% endif %}

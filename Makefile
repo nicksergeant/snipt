@@ -34,7 +34,6 @@ assets:
 		> media/css/snipt.css
 	@cat media/js/src/account.js > media/js/src/account.min.js
 	@cat media/js/src/snipts.js > media/js/src/snipts.min.js
-	@cat media/js/src/search.js > media/js/src/search.min.js
 	@cat media/js/src/jobs.js > media/js/src/jobs.min.js
 	@cat media/js/src/application.js > media/js/src/application.min.js
 	@cat media/js/src/team.js > media/js/src/team.min.js

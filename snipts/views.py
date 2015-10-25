@@ -14,6 +14,7 @@ from haystack.query import EmptySearchQuerySet, SearchQuerySet
 from pygments.lexers import get_lexer_by_name
 from snipts.models import Favorite, Snipt
 from taggit.models import Tag
+from teams.models import Team
 
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
@@ -286,17 +287,33 @@ def search(request, template='search/search.html', load_all=True,
     query = ''
     results = EmptySearchQuerySet()
 
-    # We have a query.
     if request.GET.get('q'):
 
-        if request.user.is_authenticated() and '--mine' in \
-                request.GET.get('q'):
+        searchqueryset = SearchQuerySet() \
+            .filter(Q(public=True) | Q(author=request.user)) \
+            .order_by('-pub_date')
+
+        if request.user.is_authenticated() and \
+                'mine-only' in request.GET:
             searchqueryset = SearchQuerySet().filter(author=request.user) \
                 .order_by('-pub_date')
-        else:
-            searchqueryset = SearchQuerySet() \
-                .filter(Q(public=True) | Q(author=request.user)) \
-                .order_by('-pub_date')
+
+        elif request.user.is_authenticated() and \
+                ('author' in request.GET and
+                    request.GET.get('author')):
+
+            author = request.GET.get('author')
+
+            if author == request.user.username:
+                searchqueryset = SearchQuerySet().filter(author=request.user) \
+                    .order_by('-pub_date')
+
+            else:
+                team = get_object_or_None(Team, slug=author)
+
+                if team and team.user_is_member(request.user):
+                    searchqueryset = SearchQuerySet().filter(author=team) \
+                        .order_by('-pub_date')
 
         form = ModelSearchForm(request.GET,
                                searchqueryset=searchqueryset,
