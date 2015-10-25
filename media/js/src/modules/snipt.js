@@ -506,6 +506,12 @@
                     $('button.save, button.save-and-close, button.delete, button.cancel',
                             window.site.$main_edit).removeAttr('disabled');
                     that.model.set('new_from_js', false);
+
+                    var $pres = $('td.code pre');
+                    $pres.each(function(i) {
+                      var pre = $pres.eq(i);
+                      pre.width(pre.parents('section.code').width());
+                    });
                 },
                 error: function(model, response) {
                   if (response.responseJSON) {

@@ -945,11 +945,11 @@ article.snipt {
               font: normal 12px/16px $Consolas;
               margin: 0;
               min-height: 220px;
+              min-width: 589px;
               overflow-x: auto;
               padding: 4px 0 4px 0;
               white-space: pre;
               word-wrap: normal;
-              width: 589px;
               @include border-radius(0);
 
               &::-webkit-scrollbar {

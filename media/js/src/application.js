@@ -17,6 +17,12 @@ var snipt = {
 jQuery(function($) {
   var SiteView = snipt.module('site').SiteView;
   window.site = new SiteView();
+
+  var $pres = $('td.code pre');
+  $pres.each(function(i) {
+    var pre = $pres.eq(i);
+    pre.width(pre.parents('section.code').width());
+  });
 });
 
 // Angular app init.
