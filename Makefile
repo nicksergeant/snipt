@@ -58,6 +58,7 @@ assets:
 		media/js/src/snipts.min.js \
 		media/js/src/search.min.js \
 		media/js/src/jobs.min.js \
+		media/js/src/team.min.js \
 		media/js/libs/codemirror.js \
 		media/js/libs/highlight.js \
 		> media/js/snipt-all.min.js
