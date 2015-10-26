@@ -32,7 +32,7 @@
       <div class="def" data-title="Plan">
         {{ name }}
       </div>
-      {% if status != 'inactive' %}
+      {% if status != 'inactive' and status != 'promo' %}
         <div class="def" data-title="Price">
           ${{ amount|currency_convert }}.00 USD / {{ interval }}
         </div>
