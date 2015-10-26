@@ -21,9 +21,13 @@
               </div>
           {% endif %}
           <div class="member-since">
-            <a href="/{{ user.username }}/members/">
-              {{ user.team.member_count }} member{{ user.team.member_count|pluralize }}
-            </a>
+            {% if user.team|user_is_member:request.user %}
+              <a href="/{{ user.username }}/members/">
+                {{ user.team.member_count }} member{{ user.team.member_count|pluralize }}
+              </a>
+            {% else %}
+              {{ user.team.member_count }} members
+            {% endif %}
           </div>
       </div>
   </div>
