@@ -152,6 +152,7 @@ def cancel_team_subscription(request, username):
 
     team.disabled = True
     team.stripe_id = None
+    team.plan = None
     team.save()
 
     return HttpResponseRedirect('/' + team.slug + '/?team-cancelled=true')
