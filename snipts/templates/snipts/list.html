@@ -12,6 +12,11 @@
 {% endblock %}
 
 {% block content %}
+    {% if 'team-cancelled' in request.GET %}
+      <div class="alert alert-success" style="margin: 30px;">
+        Your team plan has been succesfully cancelled.
+      </div>
+    {% endif %}
     <section class="snipts" id="snipts" ng-controller="SniptListController"
         {% if request.user.profile.list_view == 'C' %}
             ng-cloak ng-show="$root.account.id"

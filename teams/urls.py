@@ -17,4 +17,7 @@ urlpatterns = \
                  name='team-members'),
              url(r'^(?P<username>[^/]+)/billing/$',
                  views.team_billing,
-                 name='team-billing'))
+                 name='team-billing'),
+             url(r'^(?P<username>[^/]+)/billing/cancel/$',
+                 views.cancel_team_subscription,
+                 name='team-cancel-subscription'))

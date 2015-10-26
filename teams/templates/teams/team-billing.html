@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load team_tags %}
+
 {% block page-title %}Team Billing{% endblock %}
 
 {% block body-class %}account {{ block.super }}{% endblock %}
@@ -28,26 +30,29 @@
     </aside>
     <section class="content">
       <div class="def" data-title="Plan">
-        25 users
+        {{ name }}
       </div>
       <div class="def" data-title="Price">
-        $49.00 USD / month
+        ${{ amount|currency_convert }}.00 USD / {{ interval }}
       </div>
       <div class="def" data-title="Card">
-        xxxx-xxxx-xxxx-4242
+        xxxx-xxxx-xxxx-{{ last4 }}
       </div>
       <div class="def" data-title="Status">
-        Active
+        {{ status }}
       </div>
       <div class="def" data-title="Team since">
-        August 29, 2015
+        {{ team.created|date:'M d, Y' }}
       </div>
       <div class="def" data-title="Next bill date" ng-show="user.stripeAccount.status != 'inactive'">
-        November 29, 2015
+        {{ nextBill|to_date|date:'M d, Y' }}
       </div>
-      <p class="alert alert-info group" style="padding-right: 8px;">
-        <a href="/{{ team.slug }}/billing/cancel/" class="btn btn-danger pull-right">Cancel subscription</a>
-      </p>
+      <form class="alert alert-info group" style="margin: 15px; padding-right: 8px;" id="cancel-team-subscription" action="/{{ team.slug }}/billing/cancel/" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger pull-right">
+          Cancel subscription
+        </button>
+      </form>
     </section>
   </section>
 {% endblock %}

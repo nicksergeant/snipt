@@ -23,6 +23,7 @@ if (typeof angular !== 'undefined') {
   // Controllers.
   controllers.TeamController = function($scope, $timeout, TeamStorage) {
     $scope.users = [];
+    $scope.search = '';
     $scope.$watch('search', function(val) {
       $timeout.cancel($scope.timeout);
 
