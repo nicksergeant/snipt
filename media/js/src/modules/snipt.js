@@ -510,7 +510,7 @@
                     var $pres = $('td.code pre');
                     $pres.each(function(i) {
                       var pre = $pres.eq(i);
-                      pre.width(pre.parents('section.code').width());
+                      pre.width(pre.parents('section.code').width() - 30);
                     });
                 },
                 error: function(model, response) {
