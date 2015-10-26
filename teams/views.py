@@ -83,7 +83,8 @@ def team_billing(request, username):
     if team.stripe_id == 'COMP':
         return {
             'name': 'Promotional trial',
-            'team': team
+            'team': team,
+            'status': 'promo'
         }
 
     stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
