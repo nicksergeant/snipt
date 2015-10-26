@@ -6,6 +6,7 @@ from annoying.decorators import render_to
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
 from teams.models import Team
@@ -54,6 +55,16 @@ def for_teams_complete(request):
 
         team.user = user
         team.save()
+
+        send_mail('[Snipt] New team signup: {}'.format(team.name),
+                  """
+                  Team: https://snipt.net/{}
+                  Email: {}
+                  Plan: {}
+                  """.format(team.slug, team.email, team.plan),
+                  'support@snipt.net',
+                  ['nick@snipt.net'],
+                  fail_silently=False)
 
         return {
             'team': team
@@ -154,5 +165,14 @@ def cancel_team_subscription(request, username):
     team.stripe_id = None
     team.plan = None
     team.save()
+
+    send_mail('[Snipt] Team cancelled plan: {}'.format(team.name),
+              """
+              Team: https://snipt.net/{}
+              Email: {}
+              """.format(team.slug, team.email),
+              'support@snipt.net',
+              ['nick@snipt.net'],
+              fail_silently=False)
 
     return HttpResponseRedirect('/' + team.slug + '/?team-cancelled=true')

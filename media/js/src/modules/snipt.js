@@ -872,22 +872,6 @@
             $document.bind('keydown', 'esc', function() {
                 that.escapeUI();
             });
-            $document.bind('keydown', 'g', function() {
-                if (!window.ui_halted) {
-                    if (window.$selected) {
-                        window.$selected.trigger('deselect');
-                    }
-                    window.scrollTo(0, 0);
-                }
-            });
-            $document.bind('keydown', 'Shift+g', function() {
-                if (!window.ui_halted) {
-                    if (window.$selected) {
-                        window.$selected.trigger('deselect');
-                    }
-                    window.scrollTo(0, document.body.scrollHeight);
-                }
-            });
             $document.bind('keydown', 'n', function() {
                 if (!window.ui_halted) {
                     var $anc = $('li.next a');
