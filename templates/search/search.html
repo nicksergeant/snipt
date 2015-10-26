@@ -22,15 +22,47 @@
 {% block content %}
     <section class="snipts" id="snipts"></section>
     <div class="static-box {% if page.object_list|length > 0 %}has-snipts{% endif %}">
-        <form method="get" class="form-search" action="." ng-controller="SearchController">
-            <input ng-model="search.query" type="text" class="search-query" name="q"
-                   ng-init="search.query='{{ query|escapejs }}'"
-                   placeholder="Search snipts" id="id_q"
-                   value="{{ query }}" />
-            <label class="checkbox inline mine-only" ng-click="toggleMineOnly()">
-                <input {% if '--mine' in query %}checked="checked"{% endif %} ng-model="search.mineOnly" type="checkbox" id="inlineCheckbox1" value="option1"> Mine only
-            </label>
-            <button type="submit" class="btn">Search</button>
+        <form method="get" class="form-search" action=".">
+            {% if not request.user.profile.has_teams %}
+              <input type="text" class="search-query" name="q"
+                     placeholder="Search snipts" id="id_q"
+                     value="{{ query }}" />
+              {% if request.user.is_authenticated %}
+                <label class="checkbox inline mine-only">
+                  <input {% if 'mine-only' in request.GET %}checked{% endif %} type="checkbox" name="mine-only"> Mine only
+                </label>
+              {% endif %}
+            {% else %}
+              <div class="with-teams-search">
+                <input type="text" class="search-query" name="q"
+                       placeholder="Search snipts" id="id_q"
+                       value="{{ query }}"
+                />
+                <select name="author">
+                  <option
+                    {% if not request.GET.author or request.GET.author == '' %}selected{% endif %}
+                    value=""
+                  >
+                    Mine and all public
+                  </option>
+                  <option
+                    {% if request.GET.author == request.user.username %}selected{% endif %}
+                    value="{{ request.user.username }}"
+                  >
+                    Mine only
+                  </option>
+                  {% for team in request.user.profile.teams %}
+                    <option
+                      {% if request.GET.author == team.slug %}selected{% endif %}
+                      value="{{ team.slug }}"
+                    >
+                      {{ team.name }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endif %}
+              <button type="submit" class="btn">Search</button>
         </form>
     </div>
     {% if query %}

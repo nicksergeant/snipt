@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_PATH = os.path.dirname(__file__)
-CSRF_COOKIE_DOMAIN = '.snipt.net'
+CSRF_COOKIE_DOMAIN = '.snipt.net' if 'USE_SSL' in os.environ else False
 CSRF_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 DEBUG = True if 'DEBUG' in os.environ else False
 DEFAULT_FROM_EMAIL = 'support@snipt.net'
@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
+    'django_extensions',
     'gunicorn',
     'haystack',
     'markdown_deux',
@@ -108,6 +109,7 @@ INSTALLED_APPS = (
     'storages',
     'taggit',
     'tastypie',
+    'teams',
     'typogrify',
     'user-admin',
     'utils',
@@ -125,6 +127,7 @@ LOGGING = {
 }
 MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

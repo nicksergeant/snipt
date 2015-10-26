@@ -56,25 +56,30 @@ class PrivateSniptAuthorization(Authorization):
         return object_list.filter(user=bundle.request.user)
 
     def read_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        return bundle.obj.is_authorized_user(bundle.request.user)
 
     def create_list(self, object_list, bundle):
         raise Unauthorized()
 
     def create_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        user = bundle.obj.user
+        if user == bundle.request.user:
+            return True
+        if user.profile.is_a_team:
+            return user.team.user_is_member(bundle.request.user)
+        return False
 
     def update_list(self, object_list, bundle):
         raise Unauthorized()
 
     def update_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        return bundle.obj.is_authorized_user(bundle.request.user)
 
     def delete_list(self, object_list, bundle):
         raise Unauthorized()
 
     def delete_detail(self, object_list, bundle):
-        return bundle.obj.user == bundle.request.user
+        return bundle.obj.is_authorized_user(bundle.request.user)
 
 
 class PrivateUserProfileAuthorization(Authorization):
@@ -145,7 +150,7 @@ class SniptValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
-        if request.user.profile.is_pro is False:
+        if request.user.profile.has_pro is False:
             if ('public' not in bundle.data or bundle.data['public'] is False):
                 errors['not-pro'] = ("You'll need to go Pro "
                                      "(https://snipt.net/pro/) "
@@ -176,7 +181,7 @@ class PublicUserResource(ModelResource):
         fields = ['id', 'username']
         include_absolute_url = True
         allowed_methods = ['get']
-        filtering = {'username': 'exact'}
+        filtering = {'username': ['contains', 'exact']}
         max_limit = 200
         cache = SimpleCache()
 
@@ -302,7 +307,7 @@ class PrivateUserProfileResource(ModelResource):
         bundle.data['username'] = bundle.obj.user.username
         bundle.data['user_id'] = bundle.obj.user.id
         bundle.data['api_key'] = bundle.obj.user.api_key.key
-        bundle.data['is_pro'] = bundle.obj.user.profile.is_pro
+        bundle.data['has_pro'] = bundle.obj.user.profile.has_pro
         return bundle
 
 
@@ -327,7 +332,7 @@ class PrivateUserResource(ModelResource):
         bundle.data['email_md5'] = hashlib \
             .md5(bundle.obj.email.lower()) \
             .hexdigest()
-        bundle.data['is_pro'] = bundle.obj.profile.is_pro
+        bundle.data['has_pro'] = bundle.obj.profile.has_pro
         bundle.data['stats'] = {
             'public_snipts': Snipt.objects.filter(user=bundle.obj.id,
                                                   public=True).count(),
@@ -359,7 +364,12 @@ class PrivateUserResource(ModelResource):
 
 class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
+    last_user_saved = fields.ForeignKey(PrivateUserResource,
+                                        'last_user_saved',
+                                        full=False)
     tags_list = ListField()
+    tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag',
+                              full=True)
 
     class Meta:
         queryset = Snipt.objects.all().order_by('-created')
@@ -408,20 +418,31 @@ class PrivateSniptResource(ModelResource):
         return bundle
 
     def obj_create(self, bundle, **kwargs):
+        bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['tags_list'] = bundle.data.get('tags')
-        bundle.data['tags'] = ''
+        bundle.data['tags'] = []
+        bundle.data['user'] = \
+            User.objects.get(username=bundle.data['intended_user'])
 
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self) \
-            .obj_create(bundle,
-                        user=bundle.request.user, **kwargs)
+            .obj_create(bundle, **kwargs)
 
     def obj_update(self, bundle, **kwargs):
-        bundle.data['user'] = bundle.request.user
+
+        instance = Snipt.objects.get(pk=bundle.data['id'])
+
+        if (instance.user.profile.is_a_team):
+            user = instance.user
+        else:
+            user = bundle.request.user
+
         bundle.data['created'] = None
+        bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['modified'] = None
+        bundle.data['user'] = user
 
         if type(bundle.data['tags']) in (str, unicode):
             bundle.data['tags_list'] = bundle.data['tags']
@@ -433,8 +454,7 @@ class PrivateSniptResource(ModelResource):
             bundle = self._clean_publish_date(bundle)
 
         return super(PrivateSniptResource, self) \
-            .obj_update(bundle,
-                        user=bundle.request.user, **kwargs)
+            .obj_update(bundle, **kwargs)
 
     def _clean_publish_date(self, bundle):
         if bundle.data['blog_post'] and 'publish_date' not in bundle.data:

@@ -134,10 +134,10 @@
                 $('div.alert-not-pro').hide();
                 if ($checkbox.is(':checked')) {
                     $label.removeClass('is-private').addClass('is-public');
-                    if (!window.user_is_pro) $('div.alert-not-pro').hide();
+                    if (!window.user_has_pro) $('div.alert-not-pro').hide();
                 } else {
                     $label.addClass('is-private').removeClass('is-public');
-                    if (!window.user_is_pro) $('div.alert-not-pro').show();
+                    if (!window.user_has_pro) $('div.alert-not-pro').show();
                 }
                 return false;
             }).change();
@@ -221,13 +221,21 @@
 
             if (window.editor_theme != 'default') {
                 $selectTheme.val(window.editor_theme);
-                $selectTheme.trigger('liszt:updated');
+                $selectTheme.trigger('chosen:updated');
                 $selectTheme.trigger('change');
             }
             if (window.default_editor != 'codemirror') {
                 $selectEditor.val(window.default_editor);
-                $selectEditor.trigger('liszt:updated');
+                $selectEditor.trigger('chosen:updated');
                 $selectEditor.trigger('change');
+            }
+
+            // Init user
+            if (window.teams.length) {
+              var $selectUser = $('select#id_user', window.site.$main_edit);
+              $selectUser.chosen();
+              $selectUser.val(window.intended_user);
+              $selectUser.trigger('chosen:updated');
             }
 
             // Full-screen mode.
@@ -474,11 +482,19 @@
                 code = window.editor.getValue();
             }
 
+            var intendedUser;
+            if (window.teams.length) {
+              intendedUser = $('select[name="user"]').val();
+            } else {
+              intendedUser = window.intended_user;
+            }
+
             that.model.save({
                 'title': $('input#snipt_title').val(),
                 'tags': $('label.tags textarea').val(),
                 'tags_list': $('label.tags textarea').val(),
                 'lexer': $('select[name="lexer"]').val(),
+                'intended_user': intendedUser,
                 'lexer_name': $('select[name="lexer"] option:selected').text(),
                 'code': code,
                 'description': $('textarea[name="description"]').val(),
@@ -489,9 +505,20 @@
                 success: function(model, response) {
                     $('button.save, button.save-and-close, button.delete, button.cancel',
                             window.site.$main_edit).removeAttr('disabled');
+                    that.model.set('new_from_js', false);
+
+                    var $pres = $('td.code pre');
+                    $pres.each(function(i) {
+                      var pre = $pres.eq(i);
+                      pre.width(pre.parents('section.code').width() - 30);
+                    });
                 },
                 error: function(model, response) {
-                  alert(JSON.stringify(response.responseJSON.snipt));
+                  if (response.responseJSON) {
+                    alert(JSON.stringify(response.responseJSON.snipt));
+                  } else {
+                    alert(JSON.stringify(response.statusText));
+                  }
                 }
             });
         },
@@ -590,8 +617,22 @@
             }
             $('span.cmd-ctrl').text(cmd);
 
-            $('button#add-snipt').click(function() {
-                that.addNewSnipt();
+            var $buttonAddSnipt = $('button#add-snipt');
+            $buttonAddSnipt.click(function(e) {
+                if (window.teams.length) {
+                  e.stopPropagation();
+                  $buttonAddSnipt.parent().toggleClass('open');
+                } else {
+                  that.addNewSnipt();
+                }
+            });
+
+            var $addSniptTeams = $('ul.add-snipt-teams a');
+            $addSniptTeams.click(function(e) {
+              e.stopPropagation();
+              window.intended_user = $(e.target).attr('data-intended-user') ||
+                 $(e.target).parent().attr('data-intended-user');
+              that.addNewSnipt();
             });
         },
 
@@ -603,7 +644,7 @@
             var $public = $('div.public', $el);
             var $blog_post = $('div.blog-post', $el);
             var $publish_date = $('div.publish-date', $el);
-            var $user = $('li.author a', $el);
+            var $user = $('li.author > a', $el);
 
             var is_public = $public.text() === 'True' ? true : false;
             var is_blog_post = $blog_post.text() === 'True' ? true : false;
@@ -619,7 +660,7 @@
                 };
             }
 
-            var is_pro = $user.siblings('span.pro').length ? true : false;
+            var has_pro = $user.siblings('span.pro').length ? true : false;
 
             var data = {
                 code: $('textarea.raw', $el).text(),
@@ -647,7 +688,7 @@
                     absolute_url: $user.attr('href'),
                     username: $user.text(),
                     profile: {
-                        is_pro: is_pro
+                        has_pro: has_pro
                     }
                 }
             };
@@ -685,7 +726,7 @@
                     user: {
                         username: '',
                         profile: {
-                            is_pro: window.user_is_pro
+                            has_pro: window.user_has_pro
                         }
                     }
                 };
@@ -830,22 +871,6 @@
             });
             $document.bind('keydown', 'esc', function() {
                 that.escapeUI();
-            });
-            $document.bind('keydown', 'g', function() {
-                if (!window.ui_halted) {
-                    if (window.$selected) {
-                        window.$selected.trigger('deselect');
-                    }
-                    window.scrollTo(0, 0);
-                }
-            });
-            $document.bind('keydown', 'Shift+g', function() {
-                if (!window.ui_halted) {
-                    if (window.$selected) {
-                        window.$selected.trigger('deselect');
-                    }
-                    window.scrollTo(0, document.body.scrollHeight);
-                }
             });
             $document.bind('keydown', 'n', function() {
                 if (!window.ui_halted) {

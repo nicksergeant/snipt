@@ -17,6 +17,20 @@ var snipt = {
 jQuery(function($) {
   var SiteView = snipt.module('site').SiteView;
   window.site = new SiteView();
+
+  var $pres = $('td.code pre');
+  $pres.each(function(i) {
+    var pre = $pres.eq(i);
+    pre.width(pre.parents('section.code').width() - 30);
+  });
+
+  $('form#cancel-team-subscription').submit(function() {
+    if (confirm('Are you sure you want to cancel your subscription?\n\nYou will no longer be able to create new Snipts under this team. This action is effective immediately and we unfortunately cannot issue any refunds.')) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 });
 
 // Angular app init.

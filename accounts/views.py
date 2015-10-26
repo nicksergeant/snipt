@@ -4,6 +4,7 @@ import stripe
 from annoying.decorators import ajax_request, render_to
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from snipts.models import Snipt
 
 
@@ -29,6 +30,15 @@ def cancel_subscription(request):
         profile.is_pro = False
         profile.stripe_id = None
         profile.save()
+
+        send_mail('[Snipt] User cancelled Pro: {}'.format(request.user.username),
+                  """
+                  User: https://snipt.net/{}
+                  Email: {}
+                  """.format(request.user.username, request.user.email),
+                  'support@snipt.net',
+                  ['nick@snipt.net'],
+                  fail_silently=False)
 
         return {'deleted': True}
 

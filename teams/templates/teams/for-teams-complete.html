@@ -13,12 +13,19 @@
   <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/">
     <fieldset>
       <div class="info">
-        You rock.
-        <p class="sub" style="padding: 0 120px;">
-          We'll email you to get more information about your team and to help you get your first team created.
-          If you ever need anything at all, <a href="mailto:support@snipt.net">email support</a>, or use the chat in the bottom right.
-        </p>
+        Team created successfully.
       </div>
+      <ul>
+        <li>
+          <a href="/{{ team.user.username }}">View your team profile</a>
+        </li>
+        <li>
+          <a href="/{{ team.user.username }}/members">Add some members</a>
+        </li>
+        <li>
+          <a href="/{{ team.user.username }}/billing">View billing info</a>
+        </li>
+      </ul>
     </fieldset>
   </form>
 {% endblock %}

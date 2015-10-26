@@ -12,7 +12,10 @@ def slugify_uniquely(value, model, slugfield="slug"):
 
     while True:
         if suffix:
-            potential = "-".join([base, str(suffix)])
+            if value:
+                potential = "-".join([base, str(suffix)])
+            else:
+                potential = str(suffix)
         if not model.objects.filter(**{slugfield: potential}).count():
             return potential
         suffix = str(uuid.uuid4()).split('-')[0]

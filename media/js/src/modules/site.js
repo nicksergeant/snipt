@@ -42,6 +42,8 @@
             this.$html_body = this.$body.add(this.$html);
             this.$aside_main = $('aside.main', this.$body);
             this.$aside_nav = $('aside.nav', this.$body);
+            this.$teams_nav = $('li.teams-nav', this.$body);
+            this.$add_snipt = $('li.add-snipt', this.$body);
             this.$aside_nav_ul = $('ul', this.$aside_nav);
             this.$search_form = $('form.search', this.$body);
             this.$search_query = $('input#search-query', this.$body);
@@ -69,6 +71,8 @@
                     window.from_modal = false;
                 }
                 that.$aside_nav.removeClass('open');
+                that.$teams_nav.removeClass('open');
+                that.$add_snipt.removeClass('open');
             });
 
             this.$aside_nav_ul.click(function(e) {
@@ -96,7 +100,6 @@
                 var $form = $('form#pro-signup');
                 var $submit = $('button[type="submit"]', $form);
 
-                var $name = $('input#name');
                 var $cardNumber = $('input#number');
                 var $expMonth = $('select#exp-month');
                 var $expYear = $('select#exp-year');
@@ -135,7 +138,6 @@
                         $('.payment-loading').show();
 
                         Stripe.createToken({
-                            name: $name.val(),
                             number: $cardNumber.val(),
                             cvc: $cvc.val(),
                             exp_month: $expMonth.val(),
@@ -190,7 +192,8 @@
         },
         events: {
             'showKeyboardShortcuts': 'showKeyboardShortcuts',
-            'click a.mini-profile':  'toggleMiniProfile'
+            'click a.mini-profile':  'toggleMiniProfile',
+            'click a.teams-nav':  'toggleTeamsNav'
         },
 
         keyboardShortcuts: function() {
@@ -235,6 +238,10 @@
         },
         toggleMiniProfile: function(e) {
             this.$aside_nav.toggleClass('open');
+            return false;
+        },
+        toggleTeamsNav: function(e) {
+            this.$teams_nav.toggleClass('open');
             return false;
         },
         inFieldLabels: function () {

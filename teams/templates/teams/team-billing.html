@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load team_tags %}
+
+{% block page-title %}Team Billing{% endblock %}
+
+{% block body-class %}account {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+  <li><a href="/{{ team.user.username }}/">{{ team.user.username }}</a></li>
+  <span class="prompt">/</span> <li><a href="/{{ team.user.username }}/billing/">Billing</a></li>
+{% endblock %}
+
+{% block content %}
+  <section class="snipts" id="snipts"></section>
+  <section class="profile group">
+    <aside>
+      <ul class="nav nav-list ng-cloak" ng-cloak>
+        <li class="nav-header">Team: {{ team.name }}</li>
+        <li>
+          <a href="/{{ team.slug }}/">Profile</a>
+        </li>
+        <li>
+          <a href="/{{ team.slug }}/members/">Members</a>
+        </li>
+        <li class="active">
+          <a href="/{{ team.slug }}/billing/">Billing</a>
+        </li>
+      </ul>
+    </aside>
+    <section class="content">
+      <div class="def" data-title="Plan">
+        {{ name }}
+      </div>
+      <div class="def" data-title="Price">
+        ${{ amount|currency_convert }}.00 USD / {{ interval }}
+      </div>
+      <div class="def" data-title="Card">
+        xxxx-xxxx-xxxx-{{ last4 }}
+      </div>
+      <div class="def" data-title="Status">
+        {{ status }}
+      </div>
+      <div class="def" data-title="Team since">
+        {{ team.created|date:'M d, Y' }}
+      </div>
+      <div class="def" data-title="Next bill date" ng-show="user.stripeAccount.status != 'inactive'">
+        {{ nextBill|to_date|date:'M d, Y' }}
+      </div>
+      <form class="alert alert-info group" style="margin: 15px; padding-right: 8px;" id="cancel-team-subscription" action="/{{ team.slug }}/billing/cancel/" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger pull-right">
+          Cancel subscription
+        </button>
+      </form>
+    </section>
+  </section>
+{% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Team billing view');
+  {% endif %}
+{% endblock %}

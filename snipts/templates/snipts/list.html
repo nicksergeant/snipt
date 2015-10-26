@@ -12,13 +12,18 @@
 {% endblock %}
 
 {% block content %}
+    {% if 'team-cancelled' in request.GET %}
+      <div class="alert alert-success" style="margin: 30px;">
+        Your team plan has been succesfully cancelled.
+      </div>
+    {% endif %}
     <section class="snipts" id="snipts" ng-controller="SniptListController"
         {% if request.user.profile.list_view == 'C' %}
             ng-cloak ng-show="$root.account.id"
         {% endif %}>
         {% if not request.user.is_authenticated %}
             {% include 'ad-leaderboard-pro.html' %}
-        {% elif not request.user.profile.teams_beta_seen %}
+        {% elif not request.user.profile.teams_beta_seen and not request.user.team and not request.user.profile.has_teams %}
             {% include 'ad-leaderboard-teams.html' %}
         {% endif %}
         {% autopaginate snipts 10 %}

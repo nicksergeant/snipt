@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% load snipt_tags %}
+
+{% block page-title %}Team Members{% endblock %}
+
+{% block body-class %}account {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+  <li><a href="/{{ team.user.username }}/">{{ team.user.username }}</a></li>
+  <span class="prompt">/</span> <li><a href="/{{ team.user.username }}/members/">Members</a></li>
+{% endblock %}
+
+{% block content %}
+  <div ng-controller="TeamController" class="team-controller">
+    <section class="snipts" id="snipts"></section>
+    <section class="profile group">
+      <aside>
+        <ul class="nav nav-list ng-cloak" ng-cloak>
+          <li class="nav-header">Team: {{ team.name }}</li>
+          <li>
+            <a href="/{{ team.slug }}/">Profile</a>
+          </li>
+          <li class="active">
+            <a href="/{{ team.slug }}/members/">Members</a>
+          </li>
+          {% if team.owner == request.user %}
+            <li>
+              <a href="/{{ team.slug }}/billing/">Billing</a>
+            </li>
+          {% endif %}
+        </ul>
+      </aside>
+      <section class="content">
+        {% if 'limit-reached' in request.GET %}
+          <p class="alert alert-error group">
+            You have no seats available to add this member.
+            To upgrade your plan, contact <a href="mailto:support@snipt.net">support@snipt.net</a>.
+          </p>
+        {% endif %}
+        <div class="def" data-title="Owner">
+          {{ team.owner }}
+        </div>
+        {% if team.owner == request.user %}
+          <div class="def add-member" data-title="Add member">
+            <input
+              ng-model="search"
+              placeholder="Search users..."
+              type="search"
+              value=""
+            />
+            <ul ng-cloak ng-if="users.length">
+              <li ng-repeat="user in users" class="user">
+                <img src="https://secure.gravatar.com/avatar/{[{ user.email_md5 }]}?s=26" />
+                <a href="/{[{ user.username }]}/"><span>{[{ user.username }]}</span></a>
+                <a class="btn btn-small" href="/{{ team.slug }}/members/add/{[{ user.username }]}/">Add &raquo;</a>
+              </li>
+            </ul>
+          </div>
+        {% endif %}
+        <div class="def" data-title="Members ({{ team.members.all|length }} of {{ team.member_limit }})">
+          <ul class="member-list">
+            {% for member in team.members.all %}
+              <li class="user">
+                <img src="https://secure.gravatar.com/avatar/{{ member.email|md5 }}?s=26" />
+                <a href="/{{ member.username }}/"><span>{{ member.username }}</span></a>
+                {% if team.owner == request.user %}
+                  <a class="btn btn-small" href="/{{ team.slug }}/members/remove/{{ member.username }}/">Remove &raquo;</a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </section>
+  </div>
+{% endblock %}
+
+{% block analytics %}
+  {% if not debug %}
+    window.ll('tagScreen', 'Team members view');
+  {% endif %}
+{% endblock %}

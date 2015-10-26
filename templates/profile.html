@@ -1,33 +1,81 @@
-{% load snipt_tags %}
+{% load snipt_tags team_tags %}
 
-<div class="profile group">
-    <a href="/{{ user.username }}/">
-        <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=300" alt="{{ user.username }}" title="{{ user.username }}" />
-    </a>
-    <div class="meta">
-        <div class="username" title="{{ user.username }}">
-            <a href="">
-                {{ user.username }}
+{% if user.profile.is_a_team %}
+  <div class="profile group">
+      <a href="/{{ user.username }}/">
+          <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=300" alt="{{ user.username }}" title="{{ user.username }}" />
+      </a>
+      <div class="meta">
+          <div class="username" title="{{ user.username }}">
+              <a href="">
+                  {{ user.username }}
+              </a>
+          </div>
+          <div class="member-since">Team since {{ user.date_joined|date:"Y" }}</div>
+          {% if user.profile.get_blog_posts %}
+              <div class="urls">
+                  Snipt Blog:
+                  <a href="{{ user.profile.get_user_profile_url }}">
+                      {{ user.profile.get_user_profile_url }}
+                  </a>
+              </div>
+          {% endif %}
+          <div class="member-since">
+            <a href="/{{ user.username }}/members/">
+              {{ user.team.member_count }} member{{ user.team.member_count|pluralize }}
             </a>
-        </div>
-        {% if user.username == 'nick' %}
-            <div class="member-since">Snipt Founder in {{ user.date_joined|date:"Y" }}</div>
-        {% else %}
-            <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
-        {% endif %}
-        {% if user.profile.get_blog_posts %}
-            <div class="urls">
-                Snipt Blog:
-                <a href="{{ user.profile.get_user_profile_url }}">
-                    {{ user.profile.get_user_profile_url }}
-                </a>
-            </div>
-        {% endif %}
+          </div>
+      </div>
+  </div>
+  {% if user.team|user_is_member:request.user %}
+    <div class="profile team-settings group">
+      <div class="team-search">
+        <form action="/search/" method="get">
+          <input type="text" class="text" value="" name="q" placeholder="Search team snipts...">
+          <input type="hidden" class="text" value="{{ user.username }}" name="author">
+        </form>
+      </div>
     </div>
-    {% if user.profile.is_pro %}
-        <a class="pro" href="/pro/">Pro</a>
-    {% endif %}
-    {% if user.profile.gittip_username %}
-        <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
-    {% endif %}
-</div>
+  {% endif %}
+  {% if user.team.owner == request.user %}
+    <div class="profile team-settings group">
+      <div class="meta">
+        <span class="title">Team settings</span>
+        <a href="/{{ user.username }}/billing/">Billing &raquo;</a>
+        <a href="/{{ user.username }}/members/">Members &raquo;</a>
+      </div>
+    </div>
+  {% endif %}
+{% else %}
+  <div class="profile group">
+      <a href="/{{ user.username }}/">
+          <img src="https://secure.gravatar.com/avatar/{{ user.email|md5 }}?s=300" alt="{{ user.username }}" title="{{ user.username }}" />
+      </a>
+      <div class="meta">
+          <div class="username" title="{{ user.username }}">
+              <a href="">
+                  {{ user.username }}
+              </a>
+          </div>
+          {% if user.username == 'nick' %}
+              <div class="member-since">Snipt Founder in {{ user.date_joined|date:"Y" }}</div>
+          {% else %}
+              <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
+          {% endif %}
+          {% if user.profile.get_blog_posts %}
+              <div class="urls">
+                  Snipt Blog:
+                  <a href="{{ user.profile.get_user_profile_url }}">
+                      {{ user.profile.get_user_profile_url }}
+                  </a>
+              </div>
+          {% endif %}
+      </div>
+      {% if user.profile.has_pro %}
+          <a class="pro" href="/pro/">Pro</a>
+      {% endif %}
+      {% if user.profile.gittip_username %}
+          <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
+      {% endif %}
+  </div>
+{% endif %}

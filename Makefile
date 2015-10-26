@@ -34,9 +34,9 @@ assets:
 		> media/css/snipt.css
 	@cat media/js/src/account.js > media/js/src/account.min.js
 	@cat media/js/src/snipts.js > media/js/src/snipts.min.js
-	@cat media/js/src/search.js > media/js/src/search.min.js
 	@cat media/js/src/jobs.js > media/js/src/jobs.min.js
 	@cat media/js/src/application.js > media/js/src/application.min.js
+	@cat media/js/src/team.js > media/js/src/team.min.js
 	@cat media/js/src/modules/site.js > media/js/src/modules/site.min.js
 	@cat media/js/src/modules/snipt.js > media/js/src/modules/snipt.min.js
 	@cat media/js/src/pro.js > media/js/src/pro.min.js
@@ -146,12 +146,15 @@ vagrant:
 	@$(ssh-vagrant) '$(pm) rebuild_index --noinput;'
 
 pulldb:
-	# @ssh nick@snipt.net -p 55555 'sudo su -c "pg_dump snipt|gzip > /tmp/snipt.dump" postgres'
-	# @scp -q -P 55555 nick@snipt.net:/tmp/snipt.dump snipt.dump.gz
-	# @dropdb snipt
+	@ssh nick@snipt.net -p 55555 'sudo su -c "pg_dump snipt|gzip > /tmp/snipt.dump" postgres'
+	@scp -q -P 55555 nick@snipt.net:/tmp/snipt.dump snipt.dump.gz
+	@dropdb snipt
 	@createdb snipt
 	@cat snipt.dump.gz | gunzip | psql snipt
 	@rm snipt.dump.gz
+
+sass:
+	sass --sourcemap=none --watch -t compressed --scss media/css/style.scss:media/css/style.css
 
 .PHONY: assets, \
 	db, \
@@ -162,5 +165,6 @@ pulldb:
 	provision-vagrant, \
 	salt-server, \
 	salt-vagrant, \
+	sass, \
 	server, \
 	vagrant

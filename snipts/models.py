@@ -16,12 +16,17 @@ from pygments.util import ClassNotFound
 from snipts.utils import slugify_uniquely
 from taggit.managers import TaggableManager
 from taggit.utils import edit_string_for_tags
+from teams.models import Team
 
 
 class Snipt(models.Model):
     """An individual Snipt."""
 
     user = models.ForeignKey(User, blank=True, null=True)
+    last_user_saved = models.ForeignKey(User,
+                                        blank=True,
+                                        null=True,
+                                        related_name='last_user_saved')
 
     title = models.CharField(max_length=255, blank=True, null=True,
                              default='Untitled')
@@ -174,7 +179,7 @@ class Snipt(models.Model):
         diff = self._unidiff_output(self.original_code or '', self.code)
 
         if (diff != ''):
-            log_entry = SniptLogEntry(user=self.user,
+            log_entry = SniptLogEntry(user=self.last_user_saved,
                                       snipt=self,
                                       code=self.code,
                                       diff=diff)
@@ -297,6 +302,14 @@ class Snipt(models.Model):
             return 'Markdown'
         else:
             return get_lexer_by_name(self.lexer).name
+
+    def is_authorized_user(self, user):
+        if self.user == user:
+            return True
+        if self.user.profile.is_a_team:
+            team = Team.objects.get(user=self.user, disabled=False)
+            return team.user_is_member(user)
+        return False
 
 
 class SniptLogEntry(models.Model):

@@ -2,7 +2,6 @@ import datetime
 import hashlib
 import os
 import stripe
-import requests
 
 from accounts.models import UserProfile
 from annoying.decorators import ajax_request, render_to
@@ -18,74 +17,6 @@ from django.template import RequestContext
 from snipts.models import Snipt
 from snipts.utils import get_lexers_list
 from taggit.models import Tag
-
-
-@render_to('for-teams.html')
-def for_teams(request):
-    if request.user.is_authenticated():
-        profile = request.user.profile
-        profile.teams_beta_seen = True
-        profile.save()
-    return {}
-
-
-@render_to('for-teams-complete.html')
-def for_teams_complete(request):
-
-    if request.method == 'POST':
-
-        if 'g-recaptcha-response' not in request.POST:
-            return HttpResponseBadRequest()
-
-        payload = {
-            'secret': settings.RECAPTCHA_SECRET,
-            'response': request.POST['g-recaptcha-response'],
-            'remoteip': request.META.get('REMOTE_ADDR')
-        }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify',
-                          data=payload)
-
-        if not r.json()['success']:
-            return HttpResponseBadRequest()
-
-        if request.user.is_authenticated():
-            name = request.POST['name']
-            members = request.POST['members']
-            info = request.POST['info']
-            send_mail('[Snipt] New Snipt for Teams beta request.', """
-              User: %s (%s)
-              Team name: %s
-              Team members: %s
-              Info:
-
-              %s
-            """ % (request.user.username, request.user.email, name, members,
-                   info), 'support@snipt.net',
-                ['nick@nicksergeant.com'], fail_silently=False)
-
-            profile = request.user.profile
-            profile.teams_beta_applied = True
-            profile.save()
-        else:
-            username = request.POST['username']
-            email = request.POST['email']
-            name = request.POST['name']
-            members = request.POST['members']
-            info = request.POST['info']
-            send_mail('[Snipt] New Snipt for Teams beta request.', """
-              User: %s (%s) (not authenticated)
-              Team name: %s
-              Team members: %s
-              Info:
-
-              %s
-            """ % (username, email, name, members, info), 'support@snipt.net',
-                ['nick@nicksergeant.com'], fail_silently=False)
-
-        return {}
-
-    else:
-        return HttpResponseBadRequest()
 
 
 @render_to('homepage.html')
@@ -152,11 +83,8 @@ def login_redirect(request):
         return HttpResponseRedirect('/')
 
 
-@login_required
 @render_to('pro.html')
 def pro(request):
-    if request.user.profile.is_pro:
-        return HttpResponseRedirect('/' + request.user.username + '/')
     return {}
 
 
@@ -189,6 +117,16 @@ def pro_complete(request):
         profile.pro_date = datetime.datetime.now()
         profile.stripe_id = customer.id
         profile.save()
+
+        send_mail('[Snipt] New Pro signup: {}'.format(request.user.username),
+                  """
+                  User: https://snipt.net/{}
+                  Email: {}
+                  Plan: {}
+                  """.format(request.user.username, request.user.email, plan),
+                  'support@snipt.net',
+                  ['nick@snipt.net'],
+                  fail_silently=False)
 
         return {}
 

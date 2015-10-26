@@ -209,6 +209,61 @@ header.main {
             float: right;
             margin-right: 13px;
           }
+          &.teams-nav, &.add-snipt {
+            position: relative;
+
+            > ul {
+              background: transparent url('../img/aside-nav-open-bottom-bg.gif') top left repeat;
+              display: none;
+              left: -5px;
+              padding: 10px 0;
+              position: absolute;
+              top: 48px;
+              width: 189px;
+              @include multi-border-radius(0, 0, 10px, 10px);
+
+              li {
+                float: none;
+                list-style-type: none;
+
+                a {
+                  border: none;
+                  color: #B0D7DD;
+                  display: block;
+                  float: none;
+                  font: bold 12px $Helvetica;
+                  margin: 0;
+                  overflow: hidden;
+                  padding: 7px 20px 7px 20px;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+
+                  &:hover {
+                    background: rgba(#103A42, .5);
+                    text-decoration: none;
+                  }
+                  i {
+                    margin-right: 9px;
+                    opacity: .3;
+                  }
+                }
+              }
+            }
+
+            &.open {
+              > a {
+                background: #406064;
+                border-radius: 5px;
+              }
+              > ul {
+                display: block;
+              }
+            }
+            span.as {
+              color: #7C8D8E;
+              margin-right: 2px;
+            }
+          }
         }
       }
     }
@@ -890,11 +945,11 @@ article.snipt {
               font: normal 12px/16px $Consolas;
               margin: 0;
               min-height: 220px;
+              min-width: 589px;
               overflow-x: auto;
               padding: 4px 0 4px 0;
               white-space: pre;
               word-wrap: normal;
-              width: 589px;
               @include border-radius(0);
 
               &::-webkit-scrollbar {
@@ -1615,6 +1670,34 @@ div.profile {
       text-decoration: none;
     }
   }
+  &.team-settings {
+    margin-top: -20px;
+
+    span.title {
+      color: #949494;
+      display: block;
+      font-size: 11px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    a {
+      background: #dbdbdb;
+      box-sizing: border-box;
+      display: block;
+      margin-bottom: 5px;
+      padding: 5px 8px;
+      text-decoration: none;
+      width: 100%;
+      @include border-radius(3px);
+
+      &:hover {
+        background: #c8c8c8;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 div.empty-snipts {
   background: rgba(128, 128, 128, .08);
@@ -1938,9 +2021,10 @@ body.pro {
     div.payment-loading {
       background: rgba(#F2F2F2, .6);
       display: none;
-      height: 287px;
+      height: 410px;
+      left: 0;
       position: absolute;
-      top: 261px;
+      top: 254px;
       width: 100%;
 
       span {
@@ -1954,6 +2038,10 @@ body.pro {
         text-align: center;
         width: 120px;
         @include border-radius;
+      }
+      &.-teams {
+        height: 581px;
+        top: 449px;
       }
     }
     div.stripe {
@@ -1978,6 +2066,19 @@ body.pro {
         margin-top: 18px;
       }
     }
+  }
+  div.login-first {
+    background: #FFF;
+    border: 3px solid #3299B7;
+    color: #666;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 10px auto;
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    @include border-radius;
   }
 }
 body.search {
@@ -2986,5 +3087,75 @@ a.snipt-promo {
   }
   &:hover {
     background: #55a955;
+  }
+}
+
+div.team-controller {
+  div.add-member {
+    input {
+      margin-bottom: 0;
+      width: 50%;
+    }
+    ul {
+      margin: 12px 0 0 0;
+    }
+  }
+  li.user {
+    box-sizing: border-box;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    width: 42%;
+    @include border-radius(3px);
+
+    span {
+      font-size: 16px;
+    }
+    a.btn {
+      float: right;
+    }
+    img {
+      margin-right: 10px;
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &:hover {
+      background: #ebebeb;
+    }
+  }
+  ul.member-list {
+    margin: 0;
+  }
+}
+
+div.payment-form {
+  margin: 0 auto;
+  width: 86%;
+}
+
+div.with-teams-search {
+  display: inline-block;
+  width: 87%;
+
+  input.search-query {
+    width: 69% !important;
+  }
+  select {
+    display: inline-block;
+    width: 25%;
+  }
+}
+
+div.team-search {
+  form {
+    margin: 0;
+    padding: 5px;
+  }
+  input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 15px 10px;
+    width: 100%;
   }
 }
