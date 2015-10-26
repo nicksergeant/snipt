@@ -80,6 +80,12 @@ def team_billing(request, username):
     if team.owner != request.user:
         raise Http404
 
+    if team.stripe_id == 'COMP':
+        return {
+            'name': 'Promotional trial',
+            'team': team
+        }
+
     stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
                                     settings.STRIPE_SECRET_KEY)
     customer = stripe.Customer.retrieve(team.stripe_id)
