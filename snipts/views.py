@@ -279,6 +279,7 @@ def rss(request, context):
                               content_type="application/rss+xml")
 
 
+@cache_control(no_cache=True)
 def search(request, template='search/search.html', load_all=True,
            form_class=ModelSearchForm, searchqueryset=None,
            context_class=RequestContext, extra_context=None,
