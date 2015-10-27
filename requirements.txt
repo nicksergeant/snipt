@@ -27,7 +27,6 @@ parsedatetime==1.5
 psycopg2==2.6.1
 py-bcrypt==0.4
 pycrypto==2.6.1
-pylibmc==1.5.0
 python-dateutil==2.4.2
 python-mimeparse==0.1.4
 python-postmark==0.4.7
