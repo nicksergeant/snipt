@@ -1,7 +1,9 @@
+Django==1.8.3
+Fabric==1.10.2
+Pygments==2.0.2
 defusedxml==0.4.1
 dj-database-url==0.3.0
 dj-static==0.0.6
-Django==1.8.3
 django-annoying==0.8.3
 django-bcrypt==0.9.2
 django-debug-toolbar==1.3.2
@@ -16,7 +18,6 @@ django-tastypie==0.12.2
 django-templatetag-sugar==1.0
 ecdsa==0.13
 elasticsearch==1.6.0
-Fabric==1.10.2
 gunicorn==19.3.0
 lxml==3.4.4
 markdown2==2.3.0
@@ -26,7 +27,7 @@ parsedatetime==1.5
 psycopg2==2.6.1
 py-bcrypt==0.4
 pycrypto==2.6.1
-Pygments==2.0.2
+pylibmc==1.5.0
 python-dateutil==2.4.2
 python-mimeparse==0.1.4
 python-postmark==0.4.7
