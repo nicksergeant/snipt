@@ -9,6 +9,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.views.decorators.cache import cache_control
 from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
 from pygments.lexers import get_lexer_by_name
