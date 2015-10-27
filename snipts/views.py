@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
-from django.views.decorators.cache import cache_control
+from django.views.decorators.cache import never_cache
 from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
 from pygments.lexers import get_lexer_by_name
@@ -280,7 +280,7 @@ def rss(request, context):
                               content_type="application/rss+xml")
 
 
-@cache_control(no_cache=True)
+@never_cache
 def search(request, template='search/search.html', load_all=True,
            form_class=ModelSearchForm, searchqueryset=None,
            context_class=RequestContext, extra_context=None,
