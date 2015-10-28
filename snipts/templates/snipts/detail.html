@@ -44,7 +44,7 @@
 {% block content %}
     <section class="snipts" id="snipts">
         {% if not request.user.is_authenticated %}
-            {% include 'ad-leaderboard-pro.html' %}
+            {% include 'ad-leaderboard-teams.html' %}
         {% elif not request.user.profile.teams_beta_seen and not request.user.team and not request.user.profile.has_teams %}
             {% include 'ad-leaderboard-teams.html' %}
         {% endif %}
