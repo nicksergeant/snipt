@@ -2846,6 +2846,7 @@ body.homepage {
       div.feature {
         background: none !important;
         height: auto !important;
+        margin-left: 0 !important;
 
         div.inner {
           margin: 0 auto;
@@ -2901,6 +2902,7 @@ body.homepage {
       div.feature {
         background: none !important;
         height: auto !important;
+        margin-left: 0 !important;
 
         div.inner {
           margin: 0 auto;
@@ -2920,7 +2922,11 @@ body.homepage {
 
   /* Landscape phones and down */
   @media (max-width: 480px) {
-
+    section.features {
+      div.feature {
+        margin-left: 0 !important;
+      }
+    }
   }
 
 }
