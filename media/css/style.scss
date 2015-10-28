@@ -2774,7 +2774,7 @@ body.homepage {
     div.row {
       div.inner {
         margin: 0 auto;
-        width: 460px;
+        width: 360px;
       }
       h2 {
         color: #3A5159;
@@ -2792,19 +2792,26 @@ body.homepage {
       }
       &.feature {
         height: 232px;
-        margin: 10px 0;
+        margin: 10px 0 10px 43px;
       }
       &.blog {
-        background: url('../img/homepage-feature-blog.png') 78px top no-repeat;
+        background: url('../img/homepage-feature-blog.png') 699px 34px no-repeat;
+        height: 176px;
       }
       &.browse {
         background: url('../img/homepage-feature-browse.png') 720px top no-repeat;
+        height: 140px;
       }
       &.share {
-        background: url('../img/homepage-feature-share.png') 720px top no-repeat;
+        background: url('../img/homepage-feature-share.png') left top no-repeat;
+        height: 176px;
       }
       &.store {
         background: url('../img/homepage-feature-store.png') left top no-repeat;
+
+        div.inner {
+          margin-top: 65px;
+        }
       }
     }
   }
@@ -2818,13 +2825,13 @@ body.homepage {
           width: 560px;
         }
         &.blog {
-          background: url('../img/homepage-feature-blog.png') 914px top no-repeat;
+          background: url('../img/homepage-feature-blog.png') 914px 27px no-repeat;
         }
         &.browse {
-          background: url('../img/homepage-feature-browse.png') 78px top no-repeat;
+          background: url('../img/homepage-feature-browse.png') 914px top no-repeat;
         }
         &.share {
-          background: url('../img/homepage-feature-share.png') right top no-repeat;
+          background: url('../img/homepage-feature-share.png') 37px top no-repeat;
         }
         &.store {
           background: url('../img/homepage-feature-store.png') left top no-repeat;
@@ -2843,6 +2850,11 @@ body.homepage {
         div.inner {
           margin: 0 auto;
           width: 80%;
+        }
+        &.store {
+          div.inner {
+            margin-top: 0 !important;
+          }
         }
         &:last-of-type {
           margin-bottom: 35px;
@@ -2893,6 +2905,11 @@ body.homepage {
         div.inner {
           margin: 0 auto;
           width: 80%;
+        }
+        &.store {
+          div.inner {
+            margin-top: 0 !important;
+          }
         }
         &:last-of-type {
           margin-bottom: 35px;
