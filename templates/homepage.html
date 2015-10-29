@@ -122,8 +122,12 @@
             <h1>See it in action</h1>
           </header>
         </div>
-        <div style="text-align: center;">
-          <img style="width: 80%; margin-top: 50px;" src="https://snipt.s3.amazonaws.com/preview.gif" alt="">
+        <div class="video-container">
+          <video controls loop autoplay src="{{ STATIC_URL }}/video/demo.mp4">
+            <source src="{{ STATIC_URL }}/video/demo.mp4" type="video/mp4">
+            {# <source src="movie.ogg" type="video/ogg"> #}
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>

@@ -3182,3 +3182,16 @@ div.team-search {
     width: 100%;
   }
 }
+
+div.video-container {
+  text-align: center;
+  padding: 20px;
+}
+
+video {
+  border: 10px solid #E4E2E4;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 50px;
+  max-width: 100%;
+}
