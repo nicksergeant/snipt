@@ -366,6 +366,7 @@ class PrivateSniptResource(ModelResource):
     user = fields.ForeignKey(PrivateUserResource, 'user', full=True)
     last_user_saved = fields.ForeignKey(PrivateUserResource,
                                         'last_user_saved',
+                                        null=True,
                                         full=False)
     tags_list = ListField()
     tags = fields.ToManyField(PublicTagResource, 'tags', related_name='tag',
