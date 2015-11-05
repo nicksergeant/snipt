@@ -150,6 +150,9 @@ class SniptValidation(Validation):
     def is_valid(self, bundle, request=None):
         errors = {}
 
+        if (len(bundle.data['title']) > 255):
+            errors['title-length'] = ("Title must be 255 characters or less.")
+
         if request.user.profile.has_pro is False:
             if ('public' not in bundle.data or bundle.data['public'] is False):
                 errors['not-pro'] = ("You'll need to go Pro "
