@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load humanize pygmentize snipt_tags %}
+
 {% block add-snipt %}
   {% include 'add-snipt.html' %}
 {% endblock %}
@@ -51,6 +53,22 @@
         {% with 'true' as detail %}
             {% include "snipts/snipt-list.html" %}
         {% endwith %}
+        <div class="snipt-log" id="history">
+          {% for log_entry in snipt.sniptlogentry_set.all|dictsortreversed:"created" %}
+            <section class="code autumn">
+              {{ log_entry.diff|pygmentize|safe }}
+            </section>
+            <footer class="snipt-attrs">
+              <ul class="attrs">
+                <li class="author">
+                  <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ log_entry.user.email|md5 }}?s=15&amp;d=https://snipt.s3.amazonaws.com/img/author-icon.png');"></span>
+                  <a href="{{ log_entry.user.get_absolute_url }}">{{ log_entry.user.username }}</a>
+                </li>
+                <li class="created" title="{{ log_entry.created|date:"Y-m-d\TH:i:s" }}">{{ log_entry.created|naturaltime }}</li>
+              </ul>
+            </footer>
+          {% endfor %}
+        </div>
         <div id="disqus_thread">
             {% if snipt.public %}
                 <script type="text/javascript">

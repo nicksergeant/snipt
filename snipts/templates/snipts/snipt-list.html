@@ -145,6 +145,9 @@
                         <li>
                             <a class="download" href="{{ snipt.get_download_url }}">Download</a>
                         </li>
+                        <li>
+                            <a class="history" href="#history">History</a>
+                        </li>
                     {% endif %}
                 </ul>
                 {% if snipt.tags.all %}
@@ -172,7 +175,7 @@
             </aside>
         {% endblock %}
     </div>
-    <footer ng-show="!account || account.list_view == 'N'">
+    <footer class="snipt-attrs" ng-show="!account || account.list_view == 'N'">
         <ul class="attrs">
             {% block author %}
                 <li class="author">

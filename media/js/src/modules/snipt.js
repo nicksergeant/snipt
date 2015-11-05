@@ -32,6 +32,7 @@
         },
         events: {
             'click a.copy':     'copyFromClick',
+            'click a.history':  'toggleHistory',
             'click a.edit':     'edit',
             'click a.favorite': 'favoriteToggle',
             'click a.embed':    'embedFromClick',
@@ -594,6 +595,9 @@
                     if (isFullScreen(cm)) setFullScreen(cm, false);
                 }
             });
+        },
+        toggleHistory: function() {
+          $('div.snipt-log').toggle();
         }
     });
     Snipt.SniptListView = Backbone.View.extend({
