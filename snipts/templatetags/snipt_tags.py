@@ -30,6 +30,19 @@ def snipt_is_favorited_by_user(context, asvar):
 
 
 @tag(register, [])
+def private_snipts_count_for_user(context):
+
+    user = context['request'].user
+
+    if user.is_authenticated():
+        snipts = Snipt.objects.filter(user=user, public=False).values('id').count()
+    else:
+        snipts = 0
+
+    return snipts
+
+
+@tag(register, [])
 def snipts_count_for_user(context):
 
     user = context['request'].user
