@@ -425,8 +425,12 @@ class PrivateSniptResource(ModelResource):
         bundle.data['last_user_saved'] = bundle.request.user
         bundle.data['tags_list'] = bundle.data.get('tags')
         bundle.data['tags'] = []
-        bundle.data['user'] = \
-            User.objects.get(username=bundle.data['intended_user'])
+
+        if 'intended_user' in bundle.data:
+            bundle.data['user'] = \
+                User.objects.get(username=bundle.data['intended_user'])
+        else:
+            bundle.data['user'] = bundle.request.user
 
         if 'blog_post' in bundle.data:
             bundle = self._clean_publish_date(bundle)
