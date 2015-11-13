@@ -36,7 +36,7 @@ def for_teams_complete(request):
             customer = stripe.Customer.create(card=token,
                                               plan=plan,
                                               email=request.user.email)
-        except stripe.CardError, e:
+        except stripe.CardError as e:
             error_message = e.json_body['error']['message']
             return HttpResponseRedirect('/for-teams/?declined=%s' %
                                         error_message or

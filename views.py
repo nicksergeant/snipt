@@ -36,7 +36,8 @@ def homepage(request):
             user=user, public=True).values('pk').count()
 
         if public_snipts_count:
-            user.email_md5 = hashlib.md5(user.email.lower()).hexdigest()
+            user.email_md5 = hashlib.md5(user.email.lower().encode('utf-8')) \
+                .hexdigest()
             coders.append(user)
 
         if len(coders) == 35:
@@ -107,7 +108,7 @@ def pro_complete(request):
             customer = stripe.Customer.create(card=token,
                                               plan=plan,
                                               email=request.user.email)
-        except stripe.CardError, e:
+        except stripe.CardError as e:
             error_message = e.json_body['error']['message']
             return HttpResponseRedirect('/pro/?declined=%s' % error_message or
                                         'Your card was declined.')

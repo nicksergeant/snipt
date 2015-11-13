@@ -60,7 +60,7 @@ def generate_line_numbers(context, line_numbers):
 
 @register.filter
 def md5(string):
-    return hashlib.md5(string.lower()).hexdigest()
+    return hashlib.md5(string.lower().encode('utf-8')).hexdigest()
 
 
 @register.filter

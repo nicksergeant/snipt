@@ -1,7 +1,10 @@
 import dj_database_url
 import os
 
-from urlparse import urlparse
+try:
+    from urlparse import urlparse
+except ImportError:
+    from urllib import parse as urlparse
 
 
 if 'DATABASE_URL' in os.environ:
