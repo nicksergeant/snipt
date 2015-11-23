@@ -2562,13 +2562,34 @@ body.editing {
                   text-transform: none;
                   vertical-align: -3px;
                 }
+                div.info {
+                  background: transparent;
+                  color: #7B7B79;
+                  font-size: 12px;
+                  font-style: italic;
+                  margin: 0;
+                  padding: 10px;
+                }
                 &.is-private {
-                  background: #EFEEEF url('../img/private-icon-edit.png') 199px center no-repeat;
+                  background: #EFEEEF url('../img/private-icon-edit.png') 199px 6px no-repeat;
+
+                  div.info.private {
+                    display: block;
+                  }
+                  div.info.public {
+                    display: none;
+                  }
                 }
                 &.is-public {
                   background: #F2DEDE;
                   border: 1px solid #EED3D7;
 
+                  div.info.private {
+                    display: none;
+                  }
+                  div.info.public {
+                    display: block;
+                  }
                   span {
                     color: #B94A48;
                   }
