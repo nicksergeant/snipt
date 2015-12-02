@@ -452,7 +452,7 @@ class PrivateSniptResource(ModelResource):
         bundle.data['modified'] = None
         bundle.data['user'] = user
 
-        if type(bundle.data['tags']) == str:
+        if type(bundle.data['tags']) == str or type(bundle.data['tags']) == unicode:
             bundle.data['tags_list'] = bundle.data['tags']
         else:
             bundle.data['tags_list'] = ''
