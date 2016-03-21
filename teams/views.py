@@ -41,8 +41,7 @@ def for_teams_complete(request):
                   """
                   Team: https://snipt.net/{}
                   Email: {}
-                  Plan: {}
-                  """.format(team.slug, team.email, team.plan),
+                  """.format(team.slug, team.email),
                   'support@snipt.net',
                   ['nick@snipt.net'],
                   fail_silently=False)
