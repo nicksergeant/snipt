@@ -24,11 +24,6 @@
           <li class="active">
             <a href="/{{ team.slug }}/members/">Members</a>
           </li>
-          {% if team.owner == request.user %}
-            <li>
-              <a href="/{{ team.slug }}/billing/">Billing</a>
-            </li>
-          {% endif %}
         </ul>
       </aside>
       <section class="content">

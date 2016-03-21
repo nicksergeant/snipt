@@ -1,15 +1,9 @@
-import datetime
 import hashlib
-import os
-import stripe
 
 from accounts.models import UserProfile
 from annoying.decorators import ajax_request, render_to
 from blogs.views import blog_list
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render_to_response
@@ -82,57 +76,6 @@ def login_redirect(request):
         return HttpResponseRedirect('/' + request.user.username + '/')
     else:
         return HttpResponseRedirect('/')
-
-
-@render_to('pro.html')
-def pro(request):
-    return {}
-
-
-@login_required
-@render_to('pro-complete.html')
-def pro_complete(request):
-
-    if request.method == 'POST':
-
-        token = request.POST['token']
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
-                                        settings.STRIPE_SECRET_KEY)
-
-        if 'plan' in request.GET:
-            plan = request.GET['plan']
-        else:
-            plan = request.POST['plan']
-
-        try:
-            customer = stripe.Customer.create(card=token,
-                                              plan=plan,
-                                              email=request.user.email)
-        except stripe.CardError as e:
-            error_message = e.json_body['error']['message']
-            return HttpResponseRedirect('/pro/?declined=%s' % error_message or
-                                        'Your card was declined.')
-
-        profile = request.user.profile
-        profile.is_pro = True
-        profile.pro_date = datetime.datetime.now()
-        profile.stripe_id = customer.id
-        profile.save()
-
-        send_mail('[Snipt] New Pro signup: {}'.format(request.user.username),
-                  """
-                  User: https://snipt.net/{}
-                  Email: {}
-                  Plan: {}
-                  """.format(request.user.username, request.user.email, plan),
-                  'support@snipt.net',
-                  ['nick@snipt.net'],
-                  fail_silently=False)
-
-        return {}
-
-    else:
-        return HttpResponseBadRequest()
 
 
 def sitemap(request):

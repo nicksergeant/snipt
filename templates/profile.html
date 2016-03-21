@@ -45,7 +45,6 @@
     <div class="profile team-settings group">
       <div class="meta">
         <span class="title">Team settings</span>
-        <a href="/{{ user.username }}/billing/">Billing &raquo;</a>
         <a href="/{{ user.username }}/members/">Members &raquo;</a>
       </div>
     </div>
@@ -75,9 +74,6 @@
               </div>
           {% endif %}
       </div>
-      {% if user.profile.has_pro %}
-          <a class="pro" href="/pro/">Pro</a>
-      {% endif %}
       {% if user.profile.gittip_username %}
           <a class="gittip" href="https://www.gittip.com/{{ user.profile.gittip_username }}/">Tip</a>
       {% endif %}

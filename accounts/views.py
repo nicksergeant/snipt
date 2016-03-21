@@ -1,10 +1,5 @@
-import os
-import stripe
-
-from annoying.decorators import ajax_request, render_to
-from django.conf import settings
+from annoying.decorators import render_to
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
 from snipts.models import Snipt
 
 
@@ -12,64 +7,6 @@ from snipts.models import Snipt
 @render_to('account.html')
 def account(request):
     return {}
-
-
-@login_required
-@ajax_request
-def cancel_subscription(request):
-
-    if request.user.profile.stripe_id is None:
-        return {}
-    else:
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
-                                        settings.STRIPE_SECRET_KEY)
-        customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
-        customer.delete()
-
-        profile = request.user.profile
-        profile.is_pro = False
-        profile.stripe_id = None
-        profile.save()
-
-        send_mail('[Snipt] User cancelled Pro: {}'.format(request.user.username),
-                  """
-                  User: https://snipt.net/{}
-                  Email: {}
-                  """.format(request.user.username, request.user.email),
-                  'support@snipt.net',
-                  ['nick@snipt.net'],
-                  fail_silently=False)
-
-        return {'deleted': True}
-
-
-@login_required
-@ajax_request
-def stripe_account_details(request):
-
-    if request.user.profile.stripe_id is None:
-        return {}
-    else:
-        stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
-                                        settings.STRIPE_SECRET_KEY)
-        customer = stripe.Customer.retrieve(request.user.profile.stripe_id)
-
-        data = {
-            'last4': customer.active_card.last4,
-            'created': customer.created,
-            'email': customer.email,
-        }
-
-        if customer.subscription:
-            data['amount'] = customer.subscription.plan.amount
-            data['interval'] = customer.subscription.plan.interval
-            data['name'] = customer.subscription.plan.name
-            data['status'] = customer.subscription.status
-            data['nextBill'] = customer.subscription.current_period_end
-        else:
-            data['status'] = 'inactive'
-
-        return data
 
 
 @login_required

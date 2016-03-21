@@ -132,13 +132,10 @@
                 var $checkbox = $(this);
                 var $label = $checkbox.parent();
 
-                $('div.alert-not-pro').hide();
                 if ($checkbox.is(':checked')) {
                     $label.removeClass('is-private').addClass('is-public');
-                    if (!window.user_has_pro) $('div.alert-not-pro').hide();
                 } else {
                     $label.addClass('is-private').removeClass('is-public');
-                    if (!window.user_has_pro) $('div.alert-not-pro').show();
                 }
                 return false;
             }).change();
@@ -664,8 +661,6 @@
                 };
             }
 
-            var has_pro = $user.siblings('span.pro').length ? true : false;
-
             var data = {
                 code: $('textarea.raw', $el).text(),
                 description: $('textarea.description', $el).text(),
@@ -691,9 +686,7 @@
                 user: {
                     absolute_url: $user.attr('href'),
                     username: $user.text(),
-                    profile: {
-                        has_pro: has_pro
-                    }
+                    profile: {}
                 }
             };
 
@@ -729,9 +722,7 @@
                     public: true,
                     user: {
                         username: '',
-                        profile: {
-                            has_pro: window.user_has_pro
-                        }
+                        profile: {}
                     }
                 };
 

@@ -137,13 +137,4 @@ class UserProfile(models.Model):
             self.user.date_joined.replace(tzinfo=None)
         return delta.days
 
-    @property
-    def has_pro(self):
-        if (self.is_pro or
-                self.has_teams or
-                self.is_a_team):
-            return True
-        else:
-            return False
-
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

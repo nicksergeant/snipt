@@ -153,13 +153,6 @@ class SniptValidation(Validation):
         if (len(bundle.data['title']) > 255):
             errors['title-length'] = ("Title must be 255 characters or less.")
 
-        if request.user.profile.has_pro is False:
-            if ('public' not in bundle.data or bundle.data['public'] is False):
-                errors['not-pro'] = ("You'll need to go Pro "
-                                     "(https://snipt.net/pro/) "
-                                     "in order to create private "
-                                     "snipts.")
-
         return errors
 
 
@@ -310,7 +303,6 @@ class PrivateUserProfileResource(ModelResource):
         bundle.data['username'] = bundle.obj.user.username
         bundle.data['user_id'] = bundle.obj.user.id
         bundle.data['api_key'] = bundle.obj.user.api_key.key
-        bundle.data['has_pro'] = bundle.obj.user.profile.has_pro
         return bundle
 
 
@@ -335,7 +327,6 @@ class PrivateUserResource(ModelResource):
         bundle.data['email_md5'] = hashlib \
             .md5(bundle.obj.email.lower().encode('utf-8')) \
             .hexdigest()
-        bundle.data['has_pro'] = bundle.obj.profile.has_pro
         bundle.data['stats'] = {
             'public_snipts': Snipt.objects.filter(user=bundle.obj.id,
                                                   public=True).count(),

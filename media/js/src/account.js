@@ -15,10 +15,6 @@ if (typeof angular !== 'undefined') {
       templateUrl: '/static/js/src/modules/partials/profile.html',
       controller: controllers.ProfileController
     });
-    $routeProvider.when('/account/billing/', {
-      templateUrl: '/static/js/src/modules/partials/billing.html',
-      controller: controllers.BillingController
-    });
     $routeProvider.when('/account/blogging/', {
       templateUrl: '/static/js/src/modules/partials/blogging.html',
       controller: controllers.BloggingController
@@ -59,15 +55,6 @@ if (typeof angular !== 'undefined') {
           headers: {
             'Authorization': 'ApiKey ' + window.user + ':' + window.api_key
           }
-        });
-
-        return promise;
-      },
-      getStripeAccount: function() {
-
-        var promise = $http({
-          method: 'GET',
-          url: '/account/stripe-account-details/'
         });
 
         return promise;
@@ -173,12 +160,6 @@ if (typeof angular !== 'undefined') {
 
     AccountStorage.getAccount().then(function(response) {
       $scope.user = response.data;
-
-      if ($scope.user.has_pro && $scope.user.stripe_id && $scope.user.stripe_id !== 'COMP') {
-        AccountStorage.getStripeAccount().then(function(response) {
-          $scope.user.stripeAccount = response.data;
-        });
-      }
     });
 
     $scope.saveFields = function(fields) {

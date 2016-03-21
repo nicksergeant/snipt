@@ -26,9 +26,6 @@
                 <li ng-class="{active: route.current.scope.section == 'Editor'}">
                     <a href="/account/editor/">Editor</a>
                 </li>
-                <li ng-show="user.has_pro && user.stripe_id && user.stripe_id != 'COMP'" ng-class="{active: route.current.scope.section == 'Billing'}">
-                    <a href="/account/billing/">Billing</a>
-                </li>
             </ul>
         </aside>
         <section class="content" ng-class="{'with-message': message}">

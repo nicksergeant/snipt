@@ -11,8 +11,8 @@ from snipts.api import (PublicSniptResource,
 from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
-from views import (homepage, lexers, login_redirect, pro, sitemap, tags,
-                   pro_complete, user_api_key)
+from views import (homepage, lexers, login_redirect, sitemap, tags,
+                   user_api_key)
 
 public_api = Api(api_name='public')
 public_api.register(PublicSniptResource())
@@ -42,9 +42,6 @@ urlpatterns = \
                  TemplateView.as_view(template_name='humans.txt')),
              url(r'^sitemap.xml$', sitemap),
              url(r'^tags/$', tags),
-
-             url(r'^pro/$', pro),
-             url(r'^pro/complete/$', pro_complete),
 
              url(r'^account/', include('accounts.urls')),
 

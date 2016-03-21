@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-  <form class="form-horizontal static-box" id="pro-signup" method="post" action="/pro/complete/">
+  <form class="form-horizontal static-box" id="pro-signup" method="post">
     <fieldset>
       <div class="info">
         Team created successfully.
@@ -21,9 +21,6 @@
         </li>
         <li>
           <a href="/{{ team.user.username }}/members">Add some members</a>
-        </li>
-        <li>
-          <a href="/{{ team.user.username }}/billing">View billing info</a>
         </li>
       </ul>
     </fieldset>

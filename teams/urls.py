@@ -14,10 +14,4 @@ urlpatterns = \
                  name='add-team-member'),
              url(r'^(?P<username>[^/]+)/members/$',
                  views.team_members,
-                 name='team-members'),
-             url(r'^(?P<username>[^/]+)/billing/$',
-                 views.team_billing,
-                 name='team-billing'),
-             url(r'^(?P<username>[^/]+)/billing/cancel/$',
-                 views.cancel_team_subscription,
-                 name='team-cancel-subscription'))
+                 name='team-members'))

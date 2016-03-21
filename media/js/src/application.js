@@ -23,14 +23,6 @@ jQuery(function($) {
     var pre = $pres.eq(i);
     pre.width(pre.parents('section.code').width() - 30);
   });
-
-  $('form#cancel-team-subscription').submit(function() {
-    if (confirm('Are you sure you want to cancel your subscription?\n\nYou will no longer be able to create new Snipts under this team. This action is effective immediately and we unfortunately cannot issue any refunds.')) {
-      return true;
-    } else {
-      return false;
-    }
-  });
 });
 
 // Angular app init.
@@ -54,12 +46,6 @@ jQuery(function($) {
   if (root.ll) {
     if (root.location.pathname === '/account/stats/') {
       root.ll('tagEvent', 'Viewed stats page');
-    }
-    if (root.location.pathname === '/pro/') {
-      root.ll('tagEvent', 'Viewed Pro page');
-    }
-    if (root.location.pathname === '/pro/signup/') {
-      root.ll('tagEvent', 'Viewed Pro signup page');
     }
   }
 

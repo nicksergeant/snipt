@@ -68,7 +68,7 @@
   <script src="https://www.google.com/recaptcha/api.js"></script>
 
 </head>
-<body class="{% block body-class %}{% endblock %} {% if request.user.profile.has_pro %}is-pro{% endif %}" ng-controller="AppController">
+<body class="{% block body-class %}{% endblock %} is-pro" ng-controller="AppController">
 
 {% block header %}
   <header class="main">
@@ -146,7 +146,7 @@
                 {% if request.user.profile.has_pro %}
                   <span class="is-pro">Pro</span>
                 {% else %}
-                  Basic member
+                  Snipt user
                 {% endif %}
               </span>
             </span>
@@ -170,14 +170,6 @@
                 Account
               </a>
             </li>
-            {% if not request.user.profile.has_pro %}
-              <li>
-                <a href="/pro/">
-                  <i class="icon-star-empty icon-white"></i>
-                  Go Pro
-                </a>
-              </li>
-            {% endif %}
             <li>
               <a href="/for-teams/">
                 <i class="icon-star-empty icon-white"></i>
@@ -222,7 +214,7 @@
     {% block aside %}
       <aside class="main">
         {% block ad %}
-          {% if not request.user.profile.has_pro %}
+          {% if not request.user.is_authenticated %}
             {% include 'ad-sidebar.html' %}
           {% endif %}
         {% endblock %}
@@ -236,11 +228,6 @@
             <li class="twitter">
               <a href="https://twitter.com/#!/snipt"><span>@snipt</span></a>
             </li>
-            {% if not request.user.profile.has_pro %}
-              <li class="pro">
-                <a href="/pro/"><span>Go Pro</span></a>
-              </li>
-            {% endif %}
             <li class="pro">
               <a href="/for-teams/"><span>For Teams</span></a>
             </li>
@@ -395,11 +382,6 @@
 
       window.api_key = '{{ request.user.api_key.key }}';
     {% endblock %}
-    {% if request.user.profile.has_pro %}
-      window.user_has_pro = true;
-    {% else %}
-      window.user_has_pro = false;
-    {% endif %}
     window.default_editor = '{{ request.user.profile.get_default_editor_display|lower }}';
     window.editor_theme = '{{ request.user.profile.editor_theme }}';
   </script>
@@ -455,7 +437,6 @@
       custom_data: {
         'snipts count': {% snipts_count_for_user %},
         'profile link': 'https://snipt.net/{{ request.user.username }}/',
-        'is pro': window.user_has_pro,
         'blog domain': '{{ request.user.profile.blog_domain }}',
         'pro date': {% firstof request.user.profile.pro_date|date:"U" 'null' %},
         'username': '{{ request.user.username }}'
