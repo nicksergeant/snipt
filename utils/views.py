@@ -1,7 +1,7 @@
 import requests
 
 from django.conf import settings
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponse
 from registration.backends.default.views import RegistrationView
 from utils.forms import SniptRegistrationForm
 
@@ -24,7 +24,7 @@ class SniptRegistrationView(RegistrationView):
                               data=payload)
 
             if not r.json()['success']:
-                return HttpResponseBadRequest()
+                return HttpResponse('You failed the robot check. Go back and try again.')
 
         return super(RegistrationView, self).dispatch(request, *args, **kwargs)
 
