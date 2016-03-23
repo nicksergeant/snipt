@@ -84,24 +84,6 @@ if (typeof angular !== 'undefined') {
   });
 
   // Controllers.
-  controllers.BillingController = function($scope, AccountStorage) {
-    $scope.section = 'Billing';
-
-    $scope.cancelSubscription = function() {
-      if (confirm('Are you sure you want to cancel your subscription?\n\nYou will no longer be able to create new Snipts. Your existing snipts will still be accessible. This action is effective immediately and we unfortunately cannot issue any refunds.')) {
-        $scope.cancelled = true;
-        $scope.cancelling = true;
-        AccountStorage.cancelSubscription().then(function(response) {
-          if (response.data.deleted) {
-            $scope.cancelling = false;
-          } else {
-            $scope.cancelling = false;
-            $scope.cancelled = false;
-          }
-        });
-      }
-    };
-  };
   controllers.BloggingController = function($scope) {
     $scope.fields = [
       'blog_title',
