@@ -3,7 +3,7 @@ from snipts.models import Favorite, Snipt, SniptLogEntry
 
 
 class SniptAdmin(admin.ModelAdmin):
-    readonly_fields = ('user',)
+    readonly_fields = ('last_user_saved', 'user',)
     list_display = ('title', 'slug', 'views', 'favs', 'user', 'lexer',
                     'public', 'blog_post', 'created', 'modified',
                     'publish_date')

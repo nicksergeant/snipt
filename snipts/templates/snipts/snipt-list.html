@@ -204,6 +204,11 @@
                   / <a href="/api/public/snipt/{{ snipt.id }}/?format=json">API</a>
                 {% endif %}
             </li>
+            {% if snipt.user != request.user %}
+              <li class="report-spam">
+                <a target="_blank" href="/report-spam/{{ snipt.id }}/">Report Spam</a>
+              </li>
+            {% endif %}
             {% if detail and snipt.public %}
                 <li class="tweet">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none" data-url="{{ snipt.get_full_absolute_url }}" data-text="&ldquo;{{ snipt.title }}&rdquo; on @Snipt">Tweet</a>

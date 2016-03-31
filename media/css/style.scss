@@ -1024,6 +1024,15 @@ footer.snipt-attrs {
         background-image: none;
         float: right;
         margin-right: 15%;
+        padding-left: 0;
+      }
+      &.report-spam {
+        background-image: none;
+        float: right;
+
+        a {
+          color: #eaa4a6;
+        }
       }
       &.tweet {
         background: none;

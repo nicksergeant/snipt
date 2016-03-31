@@ -3,6 +3,7 @@ from annoying.functions import get_object_or_None
 from blogs.views import blog_list
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Count
 from django.db.models import Q
@@ -76,6 +77,22 @@ def embed(request, snipt_key):
                               {'lines': lines, 'snipt': snipt},
                               context_instance=RequestContext(request),
                               content_type='application/javascript')
+
+
+def report_spam(request, snipt_id):
+    snipt = get_object_or_404(Snipt, pk=snipt_id)
+
+    send_mail('[Snipt] Spam reported',
+              """
+              Snipt: https://snipt.net/admin/snipts/snipt/{}/
+              User: https://snipt.net/admin/auth/user/{}/delete/
+              """.format(snipt.id, snipt.user.id),
+              'support@snipt.net',
+              ['nick@snipt.net'],
+              fail_silently=False)
+
+    return HttpResponse("""Thanks! Your report has been
+                           submitted to the site admins.""")
 
 
 @render_to('snipts/list-user.html')
