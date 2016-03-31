@@ -205,9 +205,15 @@
                 {% endif %}
             </li>
             {% if snipt.user != request.user %}
-              <li class="report-spam">
-                <a target="_blank" href="/report-spam/{{ snipt.id }}/">Report Spam</a>
-              </li>
+              {% if request.user.is_superuser %}
+                <li class="report-spam">
+                  <a target="_blank" href="/admin/auth/user/{{ snipt.user.id }}/delete/">Delete User</a>
+                </li>
+              {% else %}
+                <li class="report-spam">
+                  <a target="_blank" href="/report-spam/{{ snipt.id }}/">Report Spam</a>
+                </li>
+              {% endif %}
             {% endif %}
             {% if detail and snipt.public %}
                 <li class="tweet">
