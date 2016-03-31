@@ -204,7 +204,7 @@
                   / <a href="/api/public/snipt/{{ snipt.id }}/?format=json">API</a>
                 {% endif %}
             </li>
-            {% if snipt.user != request.user %}
+            {% if request.user.is_authenticated and snipt.user != request.user %}
               {% if request.user.is_superuser %}
                 <li class="report-spam">
                   <a target="_blank" href="/admin/auth/user/{{ snipt.user.id }}/delete/">Delete User</a>
