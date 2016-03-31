@@ -86,7 +86,8 @@ def report_spam(request, snipt_id):
               """
               Snipt: https://snipt.net/admin/snipts/snipt/{}/
               User: https://snipt.net/admin/auth/user/{}/delete/
-              """.format(snipt.id, snipt.user.id),
+              Reporter: https://snipt.net/{}/
+              """.format(snipt.id, snipt.user.id, request.user.username),
               'support@snipt.net',
               ['nick@snipt.net'],
               fail_silently=False)
