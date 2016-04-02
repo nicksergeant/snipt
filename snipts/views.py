@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Count
 from django.db.models import Q
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
@@ -80,6 +80,10 @@ def embed(request, snipt_key):
 
 
 def report_spam(request, snipt_id):
+
+    if not request.user.is_authenticated():
+        return HttpResponseBadRequest()
+
     snipt = get_object_or_404(Snipt, pk=snipt_id)
 
     send_mail('[Snipt] Spam reported',
