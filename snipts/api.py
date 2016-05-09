@@ -2,9 +2,11 @@ import datetime
 import hashlib
 import parsedatetime as pdt
 import re
+import requests
 import time
 
 from accounts.models import UserProfile
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import date, urlize, linebreaksbr
@@ -141,7 +143,7 @@ class FavoriteValidation(Validation):
 
         if Favorite.objects.filter(user=bundle.request.user,
                                    snipt=snipt).count():
-            errors['duplicate'] = 'User has already favorited this snipt.'
+            errors = 'User has already favorited this snipt.'
 
         return errors
 
@@ -151,7 +153,24 @@ class SniptValidation(Validation):
         errors = {}
 
         if (len(bundle.data['title']) > 255):
-            errors['title-length'] = ("Title must be 255 characters or less.")
+            errors = 'Title must be 255 characters or less.'
+
+        akismet_url = 'https://{}.rest.akismet.com/1.1/comment-check'.format(
+            settings.AKISMET_KEY)
+        blog = 'https://snipt.net'
+        user_ip = bundle.request.META.get('REMOTE_ADDR')
+        comment_content = bundle.obj.code
+
+        payload = {
+            'blog': blog,
+            'user_ip': user_ip,
+            'comment_content': comment_content
+        }
+        r = requests.post(akismet_url,
+                          data=payload)
+
+        if r.text == 'true':
+            errors = 'This snipt looks like spam. If you believe that your snipt is not spam, please email support@snipt.net.'
 
         return errors
 
@@ -163,9 +182,9 @@ class UserProfileValidation(Validation):
         for field in bundle.data:
             if bundle.data[field]:
                 if not re.match('^[ A-Za-z0-9\/\@\._-]*$', bundle.data[field]):
-                    errors[field] = ("Only spaces, letters, numbers, "
-                                     "underscores, dashes, periods, forward "
-                                     "slashes, and \"at sign\" are valid.")
+                    errors[field] = ('Only spaces, letters, numbers, '
+                                     'underscores, dashes, periods, forward '
+                                     'slashes, and "at sign" are valid.')
 
         return errors
 
@@ -466,7 +485,7 @@ class PrivateSniptResource(ModelResource):
             publish_date, result = p.parse(bundle.data['publish_date'])
 
             if result != 0:
-                publish_date = time.strftime("%Y-%m-%d %H:%M:%S", publish_date)
+                publish_date = time.strftime('%Y-%m-%d %H:%M:%S', publish_date)
             else:
                 publish_date = datetime.datetime.now()
 
