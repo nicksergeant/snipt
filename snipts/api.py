@@ -155,23 +155,6 @@ class SniptValidation(Validation):
         if (len(bundle.data['title']) > 255):
             errors = 'Title must be 255 characters or less.'
 
-        akismet_url = 'https://{}.rest.akismet.com/1.1/comment-check'.format(
-            settings.AKISMET_KEY)
-        blog = 'https://snipt.net'
-        user_ip = bundle.request.META.get('REMOTE_ADDR')
-        comment_content = bundle.obj.code
-
-        payload = {
-            'blog': blog,
-            'user_ip': user_ip,
-            'comment_content': comment_content
-        }
-        r = requests.post(akismet_url,
-                          data=payload)
-
-        if r.text == 'true':
-            errors = 'This snipt looks like spam. If you believe that your snipt is not spam, please email support@snipt.net.'
-
         return errors
 
 
