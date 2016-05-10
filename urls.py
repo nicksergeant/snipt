@@ -3,7 +3,7 @@ import os
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView, TemplateView
 from snipts.api import (PublicSniptResource,
                         PublicUserResource, PrivateSniptResource,
                         PrivateFavoriteResource, PrivateUserProfileResource,
@@ -56,6 +56,8 @@ urlpatterns = \
              url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
              url(r'^signup/$', SniptRegistrationView.as_view(),
                  name='registration_register'),
+             url(r'^activate/complete/$', RedirectView.as_view(
+                 url='/login-redirect/')),
              url(r'', include('registration.backends.default.urls')),
 
              url(r'^', include('teams.urls')),

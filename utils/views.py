@@ -2,7 +2,7 @@ import requests
 
 from django.conf import settings
 from django.http import HttpResponse
-from registration.backends.default.views import RegistrationView
+from registration.backends.default.views import ActivationView, RegistrationView
 from utils.forms import SniptRegistrationForm
 
 

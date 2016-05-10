@@ -22,9 +22,6 @@ def slugify_uniquely(value, model, slugfield="slug"):
 
 
 def activate_user(user, request, **kwargs):
-    user.is_active = True
-    user.save()
-
     user = authenticate(username=request.POST['username'],
                         password=request.POST['password1'])
     login(request, user)

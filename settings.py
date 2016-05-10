@@ -29,7 +29,7 @@ if 'DATABASE_URL' in os.environ:
         }
 
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
-ACCOUNT_ACTIVATION_DAYS = 0
+ACCOUNT_ACTIVATION_DAYS = 14
 ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
 ALLOWED_HOSTS = ['*']
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
