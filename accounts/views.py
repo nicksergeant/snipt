@@ -32,7 +32,7 @@ def activate(request):
         try:
             customer = stripe.Customer.create(card=token,
                                               email=request.user.email)
-            stripe.Charge.create(amount=900,
+            stripe.Charge.create(amount=500,
                                  currency='usd',
                                  customer=customer.id,
                                  description='Snipt.net')
