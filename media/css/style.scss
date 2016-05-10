@@ -2027,11 +2027,11 @@ body.pro {
     }
     div.payment-loading {
       background: rgba(#F2F2F2, .6);
-      display: none;
-      height: 410px;
+      display: block;
+      height: 345px;
       left: 0;
       position: absolute;
-      top: 254px;
+      top: 127px;
       width: 100%;
 
       span {
