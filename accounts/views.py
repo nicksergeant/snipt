@@ -6,7 +6,7 @@ from annoying.decorators import render_to
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from snipts.models import Snipt
 
 
@@ -21,6 +21,9 @@ def account(request):
 def activate(request):
 
     if request.method == 'POST':
+
+        if 'token' not in request.POST:
+            return HttpResponseBadRequest()
 
         token = request.POST['token']
         stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
