@@ -96,6 +96,62 @@
                 window.ui_halted = false;
             });
 
+            if (this.$body.hasClass('pro-signup')) {
+                var $form = $('form#pro-signup');
+                var $submit = $('button[type="submit"]', $form);
+
+                var $cardNumber = $('input#number');
+                var $expMonth = $('select#exp-month');
+                var $expYear = $('select#exp-year');
+                var $cvc = $('input#cvc');
+
+                $form.submit(function() {
+
+                    $submit.attr('disabled', 'disabled');
+
+                    var errors = false;
+
+                    if (!Stripe.validateCardNumber($cardNumber.val())) {
+                        $cardNumber.parents('div.control-group').addClass('error');
+                        errors = true;
+                    } else {
+                        $cardNumber.parents('div.control-group').removeClass('error');
+                    }
+
+                    if (!Stripe.validateExpiry($expMonth.val(), $expYear.val())) {
+                        $expMonth.parents('div.control-group').addClass('error');
+                        errors = true;
+                    } else {
+                        $expMonth.parents('div.control-group').removeClass('error');
+                    }
+
+                    if (!Stripe.validateCVC($cvc.val())) {
+                        $cvc.parents('div.control-group').addClass('error');
+                        errors = true;
+                    } else {
+                        $cvc.parents('div.control-group').removeClass('error');
+                    }
+
+                    if (!errors) {
+
+                        $('.payment-errors').hide();
+                        $('.payment-loading').show();
+
+                        Stripe.createToken({
+                            number: $cardNumber.val(),
+                            cvc: $cvc.val(),
+                            exp_month: $expMonth.val(),
+                            exp_year: $expYear.val()
+                        }, that.stripeResponseHandler);
+
+                    } else {
+                        $submit.removeAttr('disabled');
+                    }
+
+                    return false;
+                });
+            }
+
             if (this.$body.hasClass('login')) {
                 $('input#id_username').focus();
             }
@@ -192,6 +248,30 @@
             $('div.infield label', this.$body).inFieldLabels({
                 fadeDuration: 200
             });
+        },
+        stripeResponseHandler: function(status, response) {
+
+            var $form = $('form#pro-signup');
+
+            if (response.error) {
+                $('button[type="submit"]', $form).removeAttr('disabled');
+                $('.payment-loading').hide();
+                $('.payment-errors').text(response.error.message).show();
+            } else {
+                var token = response.id;
+
+                // Kill all of the form details so none of it touches our server.
+                // Note, this is unnecessary, because the inputs themselves do not
+                // have a name attr, meaning they'll never get sent to begin with.
+                $('input#name').val('');
+                $('input#number').val('');
+                $('select#exp-month').val('');
+                $('select#exp-year').val('');
+                $('input#cvc').val('');
+
+                $form.append("<input type='hidden' name='token' value='" + token + "'/>");
+                $form.get(0).submit();
+            }
         }
     });
 

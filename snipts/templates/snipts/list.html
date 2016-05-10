@@ -27,9 +27,13 @@
         {% empty %}
             <div class="empty-snipts">
                 {% if request.user == user and not request.user.is_active %}
-                  Welcome! Please click the activation link in your email in order to create your first snipt.
+                  Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
                 {% else %}
-                  No snipts to show here. Sorry!
+                  {% if request.user == user %}
+                    Welcome! Create your first snipt by clicking "Add Snipt" above.
+                  {% else %}
+                    No snipts to show here. Sorry!
+                  {% endif %}
                 {% endif %}
             </div>
         {% endfor %}

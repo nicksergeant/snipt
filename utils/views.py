@@ -12,4 +12,4 @@ class SniptRegistrationView(RegistrationView):
         return super(RegistrationView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self, request, user):
-        return '/{}/'.format(user.username)
+        return '/account/activate/'

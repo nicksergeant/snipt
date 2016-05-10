@@ -11,8 +11,8 @@ from snipts.api import (PublicSniptResource,
 from snipts.views import search
 from tastypie.api import Api
 from utils.views import SniptRegistrationView
-from views import (homepage, lexers, login_redirect, sitemap, tags,
-                   user_api_key)
+from views import (homepage, lexers, login_redirect, sitemap,
+                   tags, user_api_key)
 
 public_api = Api(api_name='public')
 public_api.register(PublicSniptResource())

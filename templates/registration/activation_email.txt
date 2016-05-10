@@ -2,10 +2,6 @@ Hey there,
 
 Welcome to Snipt. If you ever have any thoughts or issues with the site whatsoever, please feel free to contact me directly.
 
-To complete your registration, please activate your account here:
-
-https://{{site.domain}}{% url 'registration_activate' activation_key %}
-
 Thanks!
 
 Nick Sergeant
