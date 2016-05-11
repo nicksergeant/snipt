@@ -4,6 +4,7 @@ from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.views.generic import RedirectView, TemplateView
+from forms import AuthenticationFormWithInactiveUsersOkay
 from snipts.api import (PublicSniptResource,
                         PublicUserResource, PrivateSniptResource,
                         PrivateFavoriteResource, PrivateUserProfileResource,
@@ -58,6 +59,9 @@ urlpatterns = \
                  name='registration_register'),
              url(r'^activate/complete/$', RedirectView.as_view(
                  url='/login-redirect/')),
+             url(r'^login/?$', 'django.contrib.auth.views.login', {
+                 'authentication_form': AuthenticationFormWithInactiveUsersOkay
+                 }),
              url(r'', include('registration.backends.default.urls')),
 
              url(r'^', include('teams.urls')),
