@@ -372,8 +372,8 @@ class PrivateSniptResource(ModelResource):
         queryset = Snipt.objects.all().order_by('-created')
         resource_name = 'snipt'
         fields = ['id', 'title', 'slug', 'lexer', 'code', 'description',
-                  'line_count', 'stylized', 'key', 'public', 'blog_post',
-                  'created', 'modified', 'publish_date', 'meta']
+                  'line_count', 'stylized', 'key', 'public', 'secure',
+                  'blog_post', 'created', 'modified', 'publish_date', 'meta']
         include_absolute_url = True
         detail_allowed_methods = ['get', 'patch', 'put', 'delete']
         list_allowed_methods = ['get', 'post']

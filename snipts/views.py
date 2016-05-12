@@ -14,7 +14,7 @@ from django.views.decorators.cache import never_cache
 from haystack.forms import ModelSearchForm
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
 from pygments.lexers import get_lexer_by_name
-from snipts.models import Favorite, Snipt
+from snipts.models import Favorite, Snipt, SniptSecureView
 from taggit.models import Tag
 from teams.models import Team
 
@@ -39,8 +39,15 @@ def detail(request, username, snipt_slug):
                 if request.GET.get('key') != snipt.key:
                     raise Http404
 
+                if snipt.secure and not request.user.is_authenticated():
+                    raise Http404
+
         snipt.views = snipt.views + 1
         snipt.save()
+
+    if snipt.secure:
+        secure_view = SniptSecureView(user=request.user, snipt=snipt)
+        secure_view.save()
 
     tags = Tag.objects
 

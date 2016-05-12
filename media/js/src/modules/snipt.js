@@ -33,6 +33,7 @@
         events: {
             'click a.copy':     'copyFromClick',
             'click a.history':  'toggleHistory',
+            'click a.secure-view-log': 'toggleSecureView',
             'click a.edit':     'edit',
             'click a.favorite': 'favoriteToggle',
             'click a.embed':    'embedFromClick',
@@ -134,8 +135,33 @@
 
                 if ($checkbox.is(':checked')) {
                     $label.removeClass('is-private').addClass('is-public');
+                    $('label.secure').addClass('disabled');
+                    $('label.secure').removeClass('is-secure');
+                    $('label.secure input').attr('checked', false);
                 } else {
                     $label.addClass('is-private').removeClass('is-public');
+                    $('label.secure').removeClass('disabled');
+                }
+                return false;
+            }).change();
+
+            // Secure / insecure
+            $('label.secure', window.site.$main_edit).click(function(e) {
+              if ($('label.public input').is(':checked')) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            });
+
+            // Secure / insecure
+            $('label.secure input', window.site.$main_edit).change(function(e) {
+                var $checkbox = $(this);
+                var $label = $checkbox.parent();
+
+                if ($checkbox.is(':checked')) {
+                    $label.addClass('is-secure');
+                } else {
+                    $label.removeClass('is-secure');
                 }
                 return false;
             }).change();
@@ -445,6 +471,12 @@
                 this.$el.addClass('private-snipt');
             }
 
+            if (this.model.get('secure') === true) {
+                this.$el.addClass('secure-snipt');
+            } else {
+                this.$el.removeClass('secure-snipt');
+            }
+
             if (this.model.get('user').username === window.user) {
                 this.$el.addClass('editable');
             } else {
@@ -498,7 +530,8 @@
                 'description': $('textarea[name="description"]').val(),
                 'blog_post': $('label.blog-post input').is(':checked'),
                 'publish_date': $('label.publish-date input').val(),
-                'public': $('label.public input').is(':checked')
+                'public': $('label.public input').is(':checked'),
+                'secure': $('label.secure input').is(':checked')
                 }, {
                 success: function(model, response) {
                     $('button.save, button.save-and-close, button.delete, button.cancel',
@@ -593,6 +626,9 @@
                 }
             });
         },
+        toggleSecureView: function() {
+          $('div.secure-view-log').toggle();
+        },
         toggleHistory: function() {
           $('div.snipt-log').toggle();
         }
@@ -643,11 +679,13 @@
             var $created = $('li.created', $el);
             var $h1 = $('header h1 a', $el);
             var $public = $('div.public', $el);
+            var $secure = $('div.secure', $el);
             var $blog_post = $('div.blog-post', $el);
             var $publish_date = $('div.publish-date', $el);
             var $user = $('li.author > a', $el);
 
             var is_public = $public.text() === 'True' ? true : false;
+            var is_secure = $secure.text() === 'True' ? true : false;
             var is_blog_post = $blog_post.text() === 'True' ? true : false;
 
             var tag_lis = $('section.tags li', $el);
@@ -690,6 +728,7 @@
                 }
             };
 
+            data['secure'] = is_secure;
             data['public'] = is_public;
             data.blog_post = is_blog_post;
 
@@ -720,6 +759,7 @@
                     lexer_name: 'Text only',
                     new_from_js: true,
                     public: true,
+                    secure: false,
                     user: {
                         username: '',
                         profile: {}

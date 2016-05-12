@@ -1260,6 +1260,9 @@ article.snipt {
           &.history {
             background-image: url('../img/copy-icon.png');
           }
+          &.secure-view-log {
+            background-image: url('../img/copy-icon.png');
+          }
           &.embed {
             background-image: url('../img/embed-icon.png');
           }
@@ -1529,6 +1532,20 @@ article.private-snipt {
         @include vertical-gradient-with-image(url('../img/private-icon.png') right -7px no-repeat, #FFF, #FFFAF2);
         background-size: 24px 29px;
       }
+    }
+  }
+}
+article.secure-snipt {
+  div.container {
+    header h1:after {
+      color: #468847;
+      content: 'secure';
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      position: absolute;
+      right: 48px;
+      top: 21px;
     }
   }
 }
@@ -2544,7 +2561,7 @@ body.editing {
                 padding: 7px 9px;
                 width: 96%;
               }
-              label.public, label.blog-post {
+              label.public, label.blog-post, label.secure {
                 background: #EFEEEF;
                 border: 1px solid #DDDDDD;
                 cursor: pointer;
@@ -2575,7 +2592,7 @@ body.editing {
                   padding: 10px;
                 }
                 &.is-private {
-                  background: #EFEEEF url('../img/private-icon-edit.png') 199px 6px no-repeat;
+                  background: #EFEEEF;
 
                   div.info.private {
                     display: block;
@@ -2601,6 +2618,14 @@ body.editing {
                 &.is-blog-post {
                   background: #DAE3EE;
                   border: 1px solid #C8D1DE;
+                }
+                &.secure {
+                  &.is-secure {
+                    background: #DFF0D8;
+                  }
+                  &.disabled {
+                    opacity: .2;
+                  }
                 }
               }
             }
@@ -3236,5 +3261,15 @@ div.snipt-log {
     border: 1px solid #DDDDDD;
     height: auto;
     margin-top: 10px
+  }
+}
+div.secure-view-log {
+  background: #E9E9E9;
+  display: none;
+  padding: 10px 0 25px 0;
+  margin-bottom: 20px;
+
+  footer {
+    padding-bottom: 0;
   }
 }

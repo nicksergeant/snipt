@@ -73,6 +73,13 @@
                                       Public snipts are accessible by all Snipt.net users and appear in the public listing.
                                     </div>
                                 </label>
+                                <label class="secure">
+                                    <input type="checkbox" <% if (snipt.secure) { %>checked="checked"<% } %> name="" value="" />
+                                    <span>Secure</span>
+                                    <div class="info">
+                                      Secure snipts are available by the direct URL, but require the user to be logged in, and views are recorded with the viewer's username.
+                                    </div>
+                                </label>
                                 <label class="blog-post is-blog-post">
                                     <input type="checkbox" <% if (snipt.blog_post) { %>checked="checked"<% } %> name="" value="" />
                                     <span>Blog post</span>

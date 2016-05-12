@@ -12,6 +12,9 @@
     {% if not snipt.public %}
         private-snipt
     {% endif %}
+    {% if snipt.secure %}
+        secure-snipt
+    {% endif %}
     {% if snipt.line_count > 8 and not detail and 'snipt-expand' not in snipt.tags_list %}
         expandable
     {% endif %}
@@ -148,6 +151,11 @@
                         <li>
                             <a class="history" href="#history">History</a>
                         </li>
+                        {% if snipt.secure %}
+                          <li>
+                              <a class="secure-view-log" href="#secure-view-log">View Log</a>
+                          </li>
+                        {% endif %}
                     {% endif %}
                 </ul>
                 {% if snipt.tags.all %}
@@ -246,6 +254,7 @@
     <div class="hide line-count">{{ snipt.line_count }}</div>
     <div class="hide modified">{{ snipt.modified|date:"Y-m-d\TH:i:s" }}</div>
     <div class="hide public">{{ snipt.public }}</div>
+    <div class="hide secure">{{ snipt.secure }}</div>
     <div class="hide blog-post">{{ snipt.blog_post }}</div>
     <div class="hide publish-date">{{ snipt.publish_date|date:"M d, Y \a\t h:i A" }}</div>
     {% if snipt|is_authorized_user:request.user %}

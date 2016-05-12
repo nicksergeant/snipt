@@ -48,6 +48,19 @@
         {% with 'true' as detail %}
             {% include "snipts/snipt-list.html" %}
         {% endwith %}
+        <div class="secure-view-log" id="secure-view-log">
+          {% for secure_view in snipt.sniptsecureview_set.all|dictsortreversed:"created" %}
+            <footer class="snipt-attrs">
+              <ul class="attrs">
+                <li class="author">
+                  <span class="avatar" style="background-image: url('https://secure.gravatar.com/avatar/{{ secure_view.user.email|md5 }}?s=15&amp;d=https://snipt.s3.amazonaws.com/img/author-icon.png');"></span>
+                  <a href="{{ secure_view.user.get_absolute_url }}">{{ secure_view.user.username }} ({{ secure_view.user.email }})</a>
+                </li>
+                <li class="created" title="{{ secure_view.created|date:"Y-m-d\TH:i:s" }}">{{ secure_view.created|naturaltime }}</li>
+              </ul>
+            </footer>
+          {% endfor %}
+        </div>
         <div class="snipt-log" id="history">
           {% for log_entry in snipt.sniptlogentry_set.all|dictsortreversed:"created" %}
             <section class="code autumn">
@@ -83,8 +96,8 @@
                 </script>
             {% else %}
                 <p class="alert alert-info">
-                    <strong>Disqus comments have been disabled on private snipts.</strong><br /><br />
-                    See <a href="https://github.com/nicksergeant/snipt/issues/53">https://github.com/nicksergeant/snipt/issues/53</a> if you would like more information on this decision.
+                    <strong>Disqus comments are disabled on private snipts.</strong><br /><br />
+                    See <a href="https://github.com/nicksergeant/snipt/issues/53">https://github.com/nicksergeant/snipt/issues/53</a> for more information.
                 </p>
             {% endif %}
         </div>
