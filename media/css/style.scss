@@ -3273,3 +3273,11 @@ div.secure-view-log {
     padding-bottom: 0;
   }
 }
+
+div.ad-inner {
+  text-align: center;
+
+  > div {
+    display: inline-block !important;
+  }
+}
