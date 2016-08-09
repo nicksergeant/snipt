@@ -2294,6 +2294,8 @@ body.static {
     }
     div.form-actions {
       margin-top: 27px;
+      padding-left: 0;
+      text-align: center;
     }
     fieldset {
       padding-top: 27px;
@@ -3207,7 +3209,8 @@ div.team-controller {
 
 div.payment-form {
   margin: 0 auto;
-  width: 86%;
+  text-align: center;
+  width: 100%;
 }
 
 div.with-teams-search {

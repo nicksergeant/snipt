@@ -22,10 +22,10 @@ def activate(request):
 
     if request.method == 'POST':
 
-        if 'token' not in request.POST:
+        if 'stripeToken' not in request.POST:
             return HttpResponseBadRequest()
 
-        token = request.POST['token']
+        token = request.POST['stripeToken']
         stripe.api_key = os.environ.get('STRIPE_SECRET_KEY',
                                         settings.STRIPE_SECRET_KEY)
 

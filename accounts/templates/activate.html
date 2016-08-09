@@ -4,19 +4,6 @@
 
 {% block body-class %}{{ block.super }} static signup pro pro-signup{% endblock %}
 
-{% block extra-scripts %}
-  <script type="text/javascript" src="https://js.stripe.com/v1/"></script> 
-{% endblock %}
-
-{% block js %}
-  {{ block.super }}
-  {% if debug %}
-    Stripe.setPublishableKey('pk_test_cgknmaWRMQeJt2adEdvH3T9l');
-  {% else %}
-    Stripe.setPublishableKey('pk_live_gUO2nCl7dhx6j0posz6gnbhA');
-  {% endif %}
-{% endblock %}
-
 {% block breadcrumb %}
   <li><a href="/account/activate/">Activate</a></li>
 {% endblock %}
@@ -34,67 +21,18 @@
         <small style="font-size: 14px; color: #C0C0C0;">(fully refundable within 3 days of signup)</small>
       </div>
       <div class="payment-form">
-        <div class="payment-loading"><span>Please wait&hellip;</span></div>
         <div class="payment-errors alert alert-error"></div>
-        <div class="control-group">
-          <label class="control-label" for="number">Card number:</label>
-          <div class="controls cards">
-            <input type="text" class="input-xlarge" id="number" />
-            <img src="{{ STATIC_URL }}img/card-visa.png" alt="Visa" />
-            <img src="{{ STATIC_URL }}img/card-mastercard.png" alt="MasterCard" />
-            <img src="{{ STATIC_URL }}img/card-discover.png" alt="Discover" />
-            <img src="{{ STATIC_URL }}img/card-american-express.png" alt="American Express" />
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="exp-month">Expiration date:</label>
-          <div class="controls">
-            <select id="exp-month" class="span2 exp-month">
-              <option value="">----</option>
-              <option value="01">01 - January</option>
-              <option value="02">02 - February</option>
-              <option value="03">03 - March</option>
-              <option value="04">04 - April</option>
-              <option value="05">05 - May</option>
-              <option value="06">06 - June</option>
-              <option value="07">07 - July</option>
-              <option value="08">08 - August</option>
-              <option value="09">09 - September</option>
-              <option value="10">10 - October</option>
-              <option value="11">11 - November</option>
-              <option value="12">12 - December</option>
-            </select>
-            <select id="exp-year" class="span2">
-              <option value="">----</option>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-            </select>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="cvc">Security code (CVC):</label>
-          <div class="controls">
-            <input type="text" class="input-min span1" id="cvc">
-          </div>
-        </div>
-      </div>
-      <div class="form-actions">
+        <script
+          src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-email="{{ request.user.email }}"
+          data-key="{% if debug %}pk_test_cgknmaWRMQeJt2adEdvH3T9l{% else %}pk_live_gUO2nCl7dhx6j0posz6gnbhA{% endif %}"
+          data-image="{{ STATIC_URL }}img/avatar.png"
+          data-name="Snipt"
+          data-description="Full Snipt.net Account ($5.00)"
+          data-amount="500">
+        </script>
         {% csrf_token %}
-        <button type="submit" class="btn btn-success">Activate &raquo;</button>
-        <div class="security">
-          <a href="https://stripe.com/help/security">Secure</a> by default. Every Snipt page is secure.
-        </div>
-        <div class="stripe">
-          Your credit card is stored securely with <a href="https://stripe.com">Stripe</a> and we use <a href="https://stripe.com/docs/stripe.js">Stripe.js</a> for maximum security.
-        </div>
       </div>
       <div class="form-actions" style="color: #A2A2A2;">
         Prefer to pay with PayPal? Email <a href="mailto:support@snipt.net">support@snipt.net</a>.
