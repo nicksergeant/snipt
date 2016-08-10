@@ -565,41 +565,6 @@ section.main {
         }
       }
     }
-    div.carbonad {
-      border-width: 0;
-      border-bottom: 0;
-      height: 231px;
-      width: auto;
-      @include multi-border-radius(5px, 5px, 0, 0);
-
-      div#azcarbon {
-        span.carbonad-image {
-          a {
-            img {
-              margin-left: 21px;
-              margin-top: 21px;
-            }
-          }
-        }
-        span.carbonad-text {
-          color: #999999;
-          margin-left: 21px;
-
-          a {
-            color: #999999;
-          }
-        }
-        span.carbonad-tag {
-          margin-left: 0;
-          text-align: center;
-          width: 100%;
-
-          a {
-            margin-left: 3px;
-          }
-        }
-      }
-    }
     section.ad {
       background: #FBFBFB;
       border: 1px solid #E8E8E8;
@@ -3282,5 +3247,25 @@ div.ad-inner {
 
   > div {
     display: inline-block !important;
+  }
+}
+
+div.bsap_adhere {
+  text-align: center;
+
+  a {
+    background: none !important;
+    border: none !important;
+    border-top: 1px solid #DDDDDD !important;
+    color: #B3B3B3 !important;
+    font: bold 11px Helvetica !important;
+    letter-spacing: 1px !important;
+    margin: 16px 0 5px 1px !important;
+    padding-top: 12px !important;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #6F6F6F !important;
+    }
   }
 }
