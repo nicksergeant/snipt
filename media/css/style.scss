@@ -1047,6 +1047,9 @@ article.snipt {
     div.bottom-x {
       bottom: -1px;
     }
+    div.ad-x {
+      bottom: 24px;
+    }
     header {
       border-bottom: 1px solid #F1F1EE;
       min-height: 58px;
@@ -3267,5 +3270,39 @@ div.bsap_adhere {
     &:hover {
       color: #6F6F6F !important;
     }
+  }
+}
+
+div.inline-ad {
+  background: #FBFBFB;
+  border-top: 1px solid #DDDDDD;
+  height: 24px;
+
+  span.block {
+    background-color: #BB0017;
+    border-right: 1px solid #DDDDDD;
+    display: inline-block;
+    height: 24px;
+    width: 28px;
+  }
+  p {
+    color: #6A6A6A;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 0 0 3px;
+    vertical-align: top;
+
+    a {
+      color: #6A6A6A;
+      text-decoration: underline;
+    }
+  }
+  span.ad {
+    color: #9E9E9E;
+    display: inline-block;
+    float: right;
+    font-size: 10px;
+    margin: 3px 7px 0 0;
+    text-transform: uppercase;
   }
 }

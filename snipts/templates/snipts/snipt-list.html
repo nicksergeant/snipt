@@ -112,6 +112,18 @@
             {% endif %}
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
+            {% if detail %}
+              <div class="ruler ad-x"></div>
+              <div class="inline-ad">
+                <span class="block"></span>
+                <p>
+                  Want to make sure your code is always working?
+                  Try <a href="https://instrumentalapp.com/">custom application monitoring</a>
+                  from Instrumental!
+                </p>
+                <span class="ad">Advertisement</span>
+              </div>
+            {% endif %}
         </div>
         {% block aside %}
             <aside ng-show="!account || account.list_view == 'N'">
