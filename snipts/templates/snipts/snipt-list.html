@@ -112,7 +112,7 @@
             {% endif %}
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
-            {% if detail %}
+            {% if detail and not request.user.is_authenticated %}
               <div class="ruler ad-x"></div>
               <div class="inline-ad">
                 <span class="block"></span>
