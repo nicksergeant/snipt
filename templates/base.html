@@ -230,11 +230,13 @@
         {% endblock %}
         {% block aside-top %}{% endblock %}
         {% block aside-inner %}{% endblock %}
-        <div style="margin-left: 15px; margin-bottom: 30px;">
-          <div style="background-color: white; border-radius: 5px; margin-top: 30px; padding: 10px; box-sizing: border-box;">
-            <script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js"></script>
+        {% if not request.user.is_authenticated %}
+          <div style="margin-left: 15px; margin-bottom: 30px;">
+            <div style="background-color: white; border-radius: 5px; margin-top: 30px; padding: 10px; box-sizing: border-box;">
+              <script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js"></script>
+            </div>
           </div>
-        </div>
+        {% endif %}
         <nav class="footer">
           <ul>
             <li class="api">
