@@ -443,7 +443,7 @@
   Email <a href="mailto:support@snipt.net">support@snipt.net</a>.
 </div>
 
-{% if request.user.is_authenticated and not debug %}
+{% if not debug %}
   <!-- Start of Async Drift Code -->
   <script>
   !function() {
