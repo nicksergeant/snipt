@@ -61,10 +61,6 @@ assets:
 		> media/js/pro-all.min.js
 
 deploy:
-	make assets
-	git add .
-	git commit -m "Asset autocompilation."
-	git push
 	git push heroku heroku:master
 
 sass:
