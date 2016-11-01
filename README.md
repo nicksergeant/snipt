@@ -27,6 +27,7 @@ Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://ww
 2. `heroku create`
 3. `heroku addons:add heroku-postgresql:hobby-dev`
 4. `heroku addons:add searchbox`
+5. `heroku addons:create postmark:10k`
 8. `heroku config:add DEBUG=False`
 9. `heroku config:add POSTMARK_API_KEY=`
 12. `heroku config:add SECRET_KEY=`
