@@ -14,7 +14,7 @@ if 'DATABASE_URL' in os.environ:
     es = urlparse(os.environ.get('SEARCHBOX_SSL_URL') or
                   'http://127.0.0.1:9200/')
 
-    port = es.port or 80
+    port = es.port or 443
 
     HAYSTACK_CONNECTIONS = {
         'default': {
