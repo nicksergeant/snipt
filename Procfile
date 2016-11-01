@@ -1,1 +1,1 @@
-web: gunicorn snipt.wsgi --log-file -
+web: gunicorn wsgi --log-file -
