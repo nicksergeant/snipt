@@ -65,7 +65,7 @@ REGISTRATION_EMAIL_HTML = False
 ROOT_URLCONF = 'urls'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True if 'USE_SSL' in os.environ else False
 SEND_BROKEN_LINK_EMAILS = False
 SERVER_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
 SESSION_COOKIE_AGE = 15801100
@@ -142,6 +142,7 @@ LOGGING = {
     'loggers': {}
 }
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
