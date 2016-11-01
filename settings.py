@@ -74,7 +74,7 @@ SITE_ID = 1
 STATICFILES_DIRS = (os.path.join(BASE_PATH, 'media'),)
 STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder',
                        'django.contrib.staticfiles.finders.AppDirectoriesFinder')
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 STATIC_URL = '/static/'
 TASTYPIE_CANNED_ERROR = """There was an error with your request. The site
