@@ -17,7 +17,7 @@ django-registration-redux==1.4
 django-storages==1.1.8
 django-taggit==0.21.3
 django-tastypie==0.13.3
-git://github.com/nicksergeant/django-templatetag-sugar.git#egg=django-templatetag-sugar
+git+git://github.com/nicksergeant/django-templatetag-sugar.git#egg=django-templatetag-sugar
 ecdsa==0.13
 elasticsearch==1.6.0
 gunicorn==19.6.0
