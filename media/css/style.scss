@@ -3306,3 +3306,27 @@ div.inline-ad {
     text-transform: uppercase;
   }
 }
+
+div.closing {
+  background: #D9534F;
+  color: white;
+  font-size: 18px;
+  padding: 50px;
+  text-align: center;
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  strong {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    line-height: 22px;
+    font-size: 18px;
+  }
+}
