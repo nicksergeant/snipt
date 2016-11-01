@@ -7,13 +7,13 @@ from django.http import HttpResponseRedirect
 from django.views.generic import RedirectView, TemplateView
 from django.views.static import serve
 from forms import AuthenticationFormWithInactiveUsersOkay
+from registration.backends.default.views import RegistrationView
 from snipts.api import (PublicSniptResource,
                         PublicUserResource, PrivateSniptResource,
                         PrivateFavoriteResource, PrivateUserProfileResource,
                         PrivateUserResource, PublicTagResource)
 from snipts.views import search
 from tastypie.api import Api
-from utils.views import SniptRegistrationView
 from views import (homepage, lexers, login_redirect,
                    tags, user_api_key)
 
@@ -53,6 +53,8 @@ urlpatterns = [
 
      url(r'^search/$', search),
 
+     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
+     url(r'^signup/$', RegistrationView.as_view()),
      url(r'^activate/complete/$', RedirectView.as_view(
          url='/login-redirect/')),
      url(r'^login/?$', login, {
