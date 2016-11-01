@@ -40,7 +40,6 @@ DEBUG = True if 'DEBUG' in os.environ else False
 DEFAULT_FROM_EMAIL = 'support@snipt.net'
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-INTERCOM_SECRET_KEY = os.environ.get('INTERCOM_SECRET_KEY', '')
 INTERNAL_IPS = ('127.0.0.1',)
 LANGUAGE_CODE = 'en-us'
 LOGIN_REDIRECT_URL = '/login-redirect/'
@@ -61,7 +60,6 @@ PASSWORD_HASHERS = (
 )
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-RAVEN_CONFIG = {'dsn': os.environ.get('RAVEN_CONFIG_DSN', '')}
 REGISTRATION_EMAIL_HTML = False
 ROOT_URLCONF = 'urls'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
@@ -121,7 +119,6 @@ INSTALLED_APPS = (
     'markdown_deux',
     'pagination',
     'postmark',
-    'raven.contrib.django.raven_compat',
     'registration',
     'snipts',
     'storages',
