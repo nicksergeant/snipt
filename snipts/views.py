@@ -18,6 +18,9 @@ from snipts.models import Favorite, Snipt, SniptSecureView
 from taggit.models import Tag
 from teams.models import Team
 
+import os
+
+
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
 
@@ -99,7 +102,7 @@ def report_spam(request, snipt_id):
               User: https://snipt.net/admin/auth/user/{}/delete/
               Reporter: https://snipt.net/{}/
               """.format(snipt.id, snipt.user.id, request.user.username),
-              'support@snipt.net',
+              os.environ.get('POSTMARK_INBOUND_ADDRESS', 'snipt@localhost'),
               ['nick@snipt.net'],
               fail_silently=False)
 

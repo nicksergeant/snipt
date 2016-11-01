@@ -42,7 +42,7 @@ def for_teams_complete(request):
                   Team: https://snipt.net/{}
                   Email: {}
                   """.format(team.slug, team.email),
-                  'support@snipt.net',
+                  os.environ.get('POSTMARK_INBOUND_ADDRESS', 'snipt@localhost'),
                   ['nick@snipt.net'],
                   fail_silently=False)
 
