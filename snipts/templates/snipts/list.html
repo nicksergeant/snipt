@@ -21,23 +21,41 @@
         {% if request.user.profile.list_view == 'C' %}
             ng-cloak ng-show="$root.account.id"
         {% endif %}>
-        {% autopaginate snipts 10 %}
-        {% for snipt in snipts %}
-            {% include "snipts/snipt-list.html" %}
-        {% empty %}
-            <div class="empty-snipts">
-                {% if request.user == user and not request.user.is_active %}
-                  Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
-                {% else %}
-                  {% if request.user == user %}
-                    Welcome! Create your first snipt by clicking "Add Snipt" above.
+        {% if request.user.username == user.username and user.username in users_for_full_page %}
+          {% for snipt in snipts %}
+              {% include "snipts/snipt-list.html" %}
+          {% empty %}
+              <div class="empty-snipts">
+                  {% if request.user == user and not request.user.is_active %}
+                    Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
                   {% else %}
-                    No snipts to show here. Sorry!
+                    {% if request.user == user %}
+                      Welcome! Create your first snipt by clicking "Add Snipt" above.
+                    {% else %}
+                      No snipts to show here. Sorry!
+                    {% endif %}
                   {% endif %}
-                {% endif %}
-            </div>
-        {% endfor %}
-        {% paginate %}
+              </div>
+          {% endfor %}
+        {% else %}
+          {% autopaginate snipts 10 %}
+          {% for snipt in snipts %}
+              {% include "snipts/snipt-list.html" %}
+          {% empty %}
+              <div class="empty-snipts">
+                  {% if request.user == user and not request.user.is_active %}
+                    Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
+                  {% else %}
+                    {% if request.user == user %}
+                      Welcome! Create your first snipt by clicking "Add Snipt" above.
+                    {% else %}
+                      No snipts to show here. Sorry!
+                    {% endif %}
+                  {% endif %}
+              </div>
+          {% endfor %}
+          {% paginate %}
+        {% endif %}
     </section>
     <script type="text/javascript" id="disqus">
         var disqus_shortname = 'snipt-net';

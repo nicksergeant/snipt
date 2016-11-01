@@ -264,6 +264,7 @@ def list_user(request, username_or_custom_slug, tag_slug=None):
         'tags': tags,
         'tag': tag,
         'user': user,
+        'users_for_full_page': ['robertbanh'],
     }
 
     if 'rss' in request.GET:
