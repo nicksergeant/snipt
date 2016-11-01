@@ -102,7 +102,7 @@ def report_spam(request, snipt_id):
               User: https://snipt.net/admin/auth/user/{}/delete/
               Reporter: https://snipt.net/{}/
               """.format(snipt.id, snipt.user.id, request.user.username),
-              os.environ.get('POSTMARK_EMAIL', 'snipt@localhost'),
+              os.environ.get('POSTMARK_EMAIL', 'support@snipt.net'),
               ['nick@snipt.net'],
               fail_silently=False)
 

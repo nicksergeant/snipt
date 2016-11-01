@@ -2,7 +2,6 @@ import datetime
 
 from annoying.functions import get_object_or_None
 from django.shortcuts import get_object_or_404, render
-from django.template import RequestContext
 from snipts.models import Snipt
 
 THEME_CHOICES = {

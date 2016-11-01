@@ -6,8 +6,6 @@ from blogs.views import blog_list
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import render
-from django.template import RequestContext
 from snipts.models import Snipt
 from snipts.utils import get_lexers_list
 from taggit.models import Tag
