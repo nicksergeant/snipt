@@ -23,18 +23,18 @@ Install [Vagrant](https://www.vagrantup.com/) and either [VirtualBox](https://ww
 
 # Deploying to Heroku
 
-1. Clone the repo.
-2. `heroku create`
-3. `heroku addons:add heroku-postgresql:hobby-dev`
-4. `heroku addons:add searchbox`
-5. `heroku addons:create postmark:10k`
-8. `heroku config:add DEBUG=False`
-9. `heroku config:add POSTMARK_API_KEY=`
-12. `heroku config:add SECRET_KEY=`
-13. `heroku config:add STRIPE_SECRET_KEY=`
-14. `heroku config:add USE_SSL=False`
-15. `git push heroku`
-16. `heroku run python manage.py syncdb`
-17. `heroku run python manage.py migrate`
+- Clone the repo.
+- `heroku create`
+- `heroku addons:add heroku-postgresql:hobby-dev`
+- `heroku addons:add searchbox`
+- `heroku addons:create postmark:10k`
+- `heroku addons:open postmark` -> use an email you control
+- `heroku config:add POSTMARK_EMAIL=<email_from_above>`
+- `heroku config:add DEBUG=False`
+- `heroku config:add SECRET_KEY=`
+- `git push heroku`
+- `heroku run python manage.py migrate`
+- `heroku run python manage.py createsuperuser`
+- Visit yourapp.herokuapp.com and login with the user you just created.
 
 Any problems / questions / bugs, [create an issue](https://github.com/nicksergeant/snipt/issues). Thanks! :)
