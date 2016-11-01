@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, InvalidPage
 from django.db.models import Count
 from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from haystack.forms import ModelSearchForm
@@ -80,10 +80,10 @@ def embed(request, snipt_key):
     snipt = get_object_or_404(Snipt, key=snipt_key)
 
     lines = snipt.embedded.split('\n')
-    return render_to_response('snipts/embed.html',
-                              {'lines': lines, 'snipt': snipt},
-                              context_instance=RequestContext(request),
-                              content_type='application/javascript')
+    return render(request,
+                  'snipts/embed.html',
+                  {'lines': lines, 'snipt': snipt},
+                  content_type='application/javascript')
 
 
 def report_spam(request, snipt_id):
@@ -297,17 +297,17 @@ def raw(request, snipt_key, lexer=None):
     if 'nice' in request.GET:
         content_type = 'text/html'
 
-    return render_to_response('snipts/raw.html',
-                              {'snipt': snipt},
-                              context_instance=RequestContext(request),
-                              content_type=content_type)
+    return render(request,
+                  'snipts/raw.html',
+                  {'snipt': snipt},
+                  content_type=content_type)
 
 
 def rss(request, context):
-    return render_to_response('rss.xml',
-                              context,
-                              context_instance=RequestContext(request),
-                              content_type="application/rss+xml")
+    return render(request,
+                  'rss.xml',
+                  context,
+                  content_type="application/rss+xml")
 
 
 @never_cache
@@ -379,9 +379,7 @@ def search(request, template='search/search.html', load_all=True,
     if extra_context:
         context.update(extra_context)
 
-    return render_to_response(template,
-                              context,
-                              context_instance=context_class(request))
+    return render(request, template, context)
 
 
 def redirect_snipt(request, snipt_key, lexer=None):

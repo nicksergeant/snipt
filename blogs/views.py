@@ -1,7 +1,7 @@
 import datetime
 
 from annoying.functions import get_object_or_None
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from snipts.models import Snipt
 
@@ -58,10 +58,11 @@ def blog_list(request, username_or_custom_slug=None):
 
     template = '{}/list.html'.format(template)
 
-    return render_to_response(
+    return render(
+        request,
         template,
         context,
-        context_instance=RequestContext(request))
+    )
 
 
 def blog_post(request, username_or_custom_slug):
@@ -115,13 +116,9 @@ def blog_post(request, username_or_custom_slug):
 
     template = '{}/post.html'.format(template)
 
-    return render_to_response(template,
-                              context,
-                              context_instance=RequestContext(request))
+    return render(request, template, context)
 
 
 def rss(request, context):
-    return render_to_response('blogs/themes/default/rss.xml',
-                              context,
-                              context_instance=RequestContext(request),
-                              content_type="application/rss+xml")
+    return render(request, 'blogs/themes/default/rss.xml', context,
+                  content_type="application/rss+xml")

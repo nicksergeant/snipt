@@ -205,7 +205,7 @@ class PublicTagResource(ModelResource):
         max_limit = 200
         cache = SimpleCache()
 
-    def build_filters(self, filters=None):
+    def build_filters(self, filters=None, **kwargs):
         if filters is None:
             filters = {}
 
@@ -268,7 +268,7 @@ class PublicSniptResource(ModelResource):
 
         return bundle
 
-    def build_filters(self, filters=None):
+    def build_filters(self, filters=None, **kwargs):
         if filters is None:
             filters = {}
 
@@ -478,7 +478,7 @@ class PrivateSniptResource(ModelResource):
 
         return bundle
 
-    def build_filters(self, filters=None):
+    def build_filters(self, filters=None, **kwargs):
         if filters is None:
             filters = {}
 

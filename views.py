@@ -6,7 +6,7 @@ from blogs.views import blog_list
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from snipts.models import Snipt
 from snipts.utils import get_lexers_list
@@ -76,18 +76,6 @@ def login_redirect(request):
         return HttpResponseRedirect('/' + request.user.username + '/')
     else:
         return HttpResponseRedirect('/')
-
-
-def sitemap(request):
-
-    tags = Tag.objects.filter(snipt__public=True)
-    tags = tags.annotate(count=Count('taggit_taggeditem_items__id'))
-    tags = tags.order_by('-count')[:1000]
-
-    return render_to_response('sitemap.xml',
-                              {'tags': tags},
-                              context_instance=RequestContext(request),
-                              content_type='application/xml')
 
 
 @render_to('tags.html')

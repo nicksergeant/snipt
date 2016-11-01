@@ -5,7 +5,7 @@
 {% block body-class %}{{ block.super }} static login{% endblock %}
 
 {% block content %}
-    <form class="form-horizontal static-box" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    <form class="form-horizontal static-box" method="post" action="{% url 'login' %}">
         {% if request.GET.activationcomplete %}
             <div class="alert alert-success">
                 Successfully confirmed email! Log in below.

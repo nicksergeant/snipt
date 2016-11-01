@@ -79,8 +79,24 @@ STATIC_URL = '/static/'
 TASTYPIE_CANNED_ERROR = """There was an error with your request. The site
     developers have a record of this error, please email api@snipt.net and
     we'll help you out."""
-TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)
-TEMPLATE_DEBUG = DEBUG
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(PROJECT_PATH, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.template.context_processors.static',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 TIME_ZONE = 'America/New_York'
 USE_HTTPS = True if 'USE_SSL' in os.environ else False
 USE_I18N = True
@@ -111,7 +127,6 @@ INSTALLED_APPS = (
     'taggit',
     'tastypie',
     'teams',
-    'typogrify',
     'user-admin',
     'utils',
 )
@@ -135,19 +150,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'blogs.middleware.BlogMiddleware',
-)
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.request',
-    'django.core.context_processors.static',
-    'django.contrib.messages.context_processors.messages',
-)
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
 )
 
 try:

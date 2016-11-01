@@ -1,3 +1,5 @@
-from django.conf.urls import *
+from blogs import views
+from django.conf.urls import url
 
-urlpatterns = patterns('', url(r'^$', views.blog, name='blog'))
+
+urlpatterns = [url(r'^$', views.blog, name='blog')]
