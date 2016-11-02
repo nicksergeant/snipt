@@ -50,8 +50,6 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
   {% endif %}
 
-  <link rel="author" href="/humans.txt" />
-
   {% block css %}{% endblock %}
 
   <!--[if IE]>

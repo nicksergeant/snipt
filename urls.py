@@ -48,8 +48,6 @@ urlpatterns += [
 
      url(r'^robots.txt$',
          TemplateView.as_view(template_name='robots.txt')),
-     url(r'^humans.txt$',
-         TemplateView.as_view(template_name='humans.txt')),
      url(r'^tags/$', tags),
 
      url(r'^account/', include('accounts.urls')),
