@@ -28,7 +28,16 @@ private_api.register(PrivateUserResource())
 private_api.register(PrivateFavoriteResource())
 private_api.register(PrivateUserProfileResource())
 
-urlpatterns = [
+urlpatterns = []
+
+if os.environ.get("DISABLE_SIGNUP") != "true":
+    urlpatterns += [
+         url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
+         url(r'^signup/$', SniptRegistrationView.as_view(),
+             name='registration_register'),
+    ]
+
+urlpatterns += [
      url(r'^$', homepage),
      url(r'^login-redirect/$', login_redirect),
 
@@ -53,9 +62,6 @@ urlpatterns = [
 
      url(r'^search/$', search),
 
-     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
-     url(r'^signup/$', SniptRegistrationView.as_view(),
-         name='registration_register'),
      url(r'^activate/complete/$', RedirectView.as_view(
          url='/login-redirect/')),
      url(r'^login/?$', login, {
