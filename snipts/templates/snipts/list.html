@@ -29,7 +29,7 @@
                   {% if request.user == user and not request.user.is_active and not public %}
                     Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
                   {% else %}
-                    {% if request.user == user %}
+                    {% if request.user == user and request.user.is_authenticated %}
                       Welcome! Create your first snipt by clicking "Add Snipt" above.
                     {% else %}
                       No snipts to show here. Sorry!
@@ -46,7 +46,7 @@
                   {% if request.user == user and not request.user.is_active and not public %}
                     Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
                   {% else %}
-                    {% if request.user == user %}
+                    {% if request.user == user and request.user.is_authenticated %}
                       Welcome! Create your first snipt by clicking "Add Snipt" above.
                     {% else %}
                       No snipts to show here. Sorry!
