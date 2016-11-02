@@ -1,5 +1,7 @@
 {% load snipt_tags static %}
 
+{% signup_enabled as 'signup_is_enabled' %}
+
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}" ng-app="Snipt">
 <head>
@@ -92,6 +94,11 @@
             <li>
               <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
             </li>
+            {% if signup_is_enabled %}
+              <li>
+                <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
+              </li>
+            {% endif %}
           {% else %}
             <li>
               <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
@@ -163,12 +170,6 @@
               <a href="/account/">
                 <i class="icon-cog icon-white"></i>
                 Account
-              </a>
-            </li>
-            <li>
-              <a href="/for-teams/">
-                <i class="icon-star-empty icon-white"></i>
-                For Teams
               </a>
             </li>
             {% if request.user.is_superuser %}
