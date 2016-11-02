@@ -19,3 +19,7 @@
 If you want to disable user-facing signup:
 
 - `heroku config:set DISABLE_SIGNUP=true`
+
+If you want to enable Disqus comments:
+
+- `heroku config:set DISQUS_SHORTNAME=whatever`

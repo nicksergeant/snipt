@@ -478,9 +478,6 @@
                 this.$el.removeClass('expandable');
             }
 
-            $('script#disqus').remove();
-            window.site.$body.append('<script id="disqus" type="text/javascript">' + $('script#disqus-template').text() + '</script>');
-
             // For new snipts.
             if (this.$el.attr('id') === 'new-snipt') {
                 this.$el.fadeIn('fast');

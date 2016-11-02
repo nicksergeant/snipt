@@ -106,30 +106,4 @@
             </div>
         {% endif %}
     {% endif %}
-    <script type="text/javascript" id="disqus">
-        var disqus_shortname = 'snipt-net';
-        {% if debug %}
-            var disqus_developer = 1;
-        {% endif %}
-
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-    <script type="text/html" id="disqus-template">
-        var disqus_shortname = 'snipt-net';
-        {% if debug %}
-            var disqus_developer = 1;
-        {% endif %}
-
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
 {% endblock %}

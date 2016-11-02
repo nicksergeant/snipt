@@ -20,7 +20,7 @@
         {% endwith %}
         <div id="disqus_thread"></div>
         <script type="text/javascript">
-            var disqus_shortname = '{% firstof blog_user.profile.disqus_shortname "snipt-net" %}';
+            var disqus_shortname = '{{ blog_user.profile.disqus_shortname }}';
             {% if debug %}
                 var disqus_developer = 1;
             {% endif %}
