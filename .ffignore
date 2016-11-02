@@ -1,8 +1,0 @@
-syntax: literal
-/migrations/
-/static/
-/media/js/libs/
-
-syntax: re
-/.*\.min\.js$
-/.*\jquery.*\.js$
