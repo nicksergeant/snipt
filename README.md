@@ -15,3 +15,7 @@
 - `heroku run python manage.py migrate`
 - `heroku run python manage.py createsuperuser`
 - Visit yourapp.herokuapp.com and login with the user you just created.
+
+If you want to disable user-facing signup:
+
+- `heroku config:set DISABLE_SIGNUP=true`
