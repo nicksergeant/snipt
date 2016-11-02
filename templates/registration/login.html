@@ -60,9 +60,3 @@
         {% csrf_token %}
     </form>
 {% endblock %}
-
-{% block analytics %}
-  {% if not debug %}
-    window.ll('tagScreen', 'Login view');
-  {% endif %}
-{% endblock %}

@@ -64,9 +64,3 @@
     </fieldset>
   </form>
 {% endblock %}
-
-{% block analytics %}
-  {% if not debug %}
-    window.ll('tagScreen', 'Team beta signup view');
-  {% endif %}
-{% endblock %}

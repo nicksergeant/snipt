@@ -86,9 +86,3 @@
     </form>
   {% endif %}
 {% endblock %}
-
-{% block analytics %}
-  {% if not debug %}
-    window.ll('tagScreen', 'Signup view');
-  {% endif %}
-{% endblock %}
