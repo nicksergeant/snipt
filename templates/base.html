@@ -111,9 +111,6 @@
             <li>
               <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
             </li>
-            <li>
-              <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
-            </li>
           {% else %}
             <li>
               <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>

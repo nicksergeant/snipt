@@ -53,9 +53,6 @@ urlpatterns = [
 
      url(r'^search/$', search),
 
-     url(r'^register/$', lambda x: HttpResponseRedirect('/signup/')),
-     url(r'^signup/$', SniptRegistrationView.as_view(),
-         name='registration_register'),
      url(r'^activate/complete/$', RedirectView.as_view(
          url='/login-redirect/')),
      url(r'^login/?$', login, {
