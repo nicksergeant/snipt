@@ -227,11 +227,6 @@
   <section class="main group" id="main">
     {% block aside %}
       <aside class="main">
-        {% block ad %}
-          {% if not request.user.is_authenticated %}
-            {% include 'ad-sidebar.html' %}
-          {% endif %}
-        {% endblock %}
         {% block aside-top %}{% endblock %}
         {% block aside-inner %}{% endblock %}
         {% if not request.user.is_authenticated %}
