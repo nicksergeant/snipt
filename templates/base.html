@@ -213,36 +213,16 @@
         <nav class="footer">
           <ul>
             <li class="api">
-              <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}><span>API</span></a>
-            </li>
-            <li class="twitter">
-              <a href="https://twitter.com/#!/snipt"><span>@snipt</span></a>
-            </li>
-            <li class="pro">
-              <a href="/for-teams/"><span>For Teams</span></a>
+              <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}><span>API Docs</span></a>
             </li>
             <li class="blog">
-              <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
-            </li>
-            <li class="blog">
-              <a href="/apps/" {% if '/apps/' in request.path %}class="active"{% endif %}><span>Snipt Apps</span></a>
-            </li>
-            <li class="blog">
-              <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging on Snipt</span></a>
+              <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging Docs</span></a>
             </li>
             <li class="roadmap">
-              <a href="https://github.com/nicksergeant/snipt/"><span>Open source on GitHub</span></a>
-            </li>
-            <li class="roadmap">
-              <a href="https://github.com/nicksergeant/snipt/issues?state=open"><span>Bugs & feature requests</span></a>
+              <a href="https://github.com/nicksergeant/snipt/"><span>GitHub Source</span></a>
             </li>
           </ul>
         </nav>
-        <div class="linode">
-          <a href="https://www.linode.com/?utm_source=referral&utm_medium=website&utm_content=[Snipt.net]&utm_campaign=sponsorship" title="Sponsored by Linode" target="blank">
-            <span>Sponsored by</span>
-          </a>
-        </div>
       </aside>
     {% endblock %}
     <div class="inner">
@@ -407,11 +387,6 @@
     {% include 'snipts/snipt-edit-js-template.html' %}
   </div>
 {% endblock %}
-
-<div class="dmca">
-  <strong>Copyrighted, illegal, or inappropriate content?</strong>
-  Email <a href="mailto:support@snipt.net">support@snipt.net</a>.
-</div>
 
 <script type="text/javascript">{% block analytics %}{% endblock %}</script>
 
