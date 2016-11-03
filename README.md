@@ -18,13 +18,11 @@ username and password you provided. Snipt will work fine, but you will not
 receive any emails if there are server errors.
 
 If you would like to configure your instance to use a free Postmark addon, do
-the following after deploying:
+the following after deploying (you'll need the
+[Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)):
 
-- `git clone https://github.com/nicksergeant/snipt.git`
-- `cd snipt`
-- `heroku git:remote -a <your-instance-name>`
-- `heroku addons:open postmark` -> use an email you control and confirm it
-- `heroku config:add POSTMARK_EMAIL=<email_from_above>`
+- `heroku run -a <your-instance-name> addons:open postmark` -> use an email you control and confirm it
+- `heroku <your-instance-name> config:add -a <your-instance-name> POSTMARK_EMAIL=<email_from_above>`
 
 **Manual:**
 
