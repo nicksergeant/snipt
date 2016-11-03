@@ -11,6 +11,8 @@ if 'DATABASE_URL' in os.environ:
 
     DATABASES = {'default': dj_database_url.config()}
 
+if 'SEARCHBOX_SSL_URL' in os.environ:
+
     es = urlparse(os.environ.get('SEARCHBOX_SSL_URL') or
                   'http://127.0.0.1:9200/')
 
