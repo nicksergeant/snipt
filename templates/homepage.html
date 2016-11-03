@@ -63,8 +63,6 @@
         </div>
         {% if request.user.is_authenticated %}
             <a href="/{{ request.user.username }}/" class="button">My snipts</a>
-        {% else %}
-            <a href="/signup/" class="button">Sign up</a>
         {% endif %}
         <div class="faces group">
             <div class="inner">
