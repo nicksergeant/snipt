@@ -23,7 +23,6 @@ the following after deploying:
 - `git clone https://github.com/nicksergeant/snipt.git`
 - `cd snipt`
 - `heroku git:remote -a <your-instance-name>`
-- `heroku addons:create postmark:10k`
 - `heroku addons:open postmark` -> use an email you control and confirm it
 - `heroku config:add POSTMARK_EMAIL=<email_from_above>`
 
