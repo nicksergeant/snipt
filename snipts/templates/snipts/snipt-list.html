@@ -209,17 +209,6 @@
                   / <a href="/api/public/snipt/{{ snipt.id }}/?format=json">API</a>
                 {% endif %}
             </li>
-            {% if request.user.is_authenticated and snipt.user != request.user %}
-              {% if request.user.is_superuser %}
-                <li class="report-spam">
-                  <a target="_blank" href="/admin/auth/user/{{ snipt.user.id }}/delete/">Delete User</a>
-                </li>
-              {% else %}
-                <li class="report-spam">
-                  <a target="_blank" href="/report-spam/{{ snipt.id }}/">Report Spam</a>
-                </li>
-              {% endif %}
-            {% endif %}
             {% if detail and snipt.public %}
                 <li class="tweet">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none" data-url="{{ snipt.get_full_absolute_url }}" data-text="&ldquo;{{ snipt.title }}&rdquo; on @Snipt">Tweet</a>

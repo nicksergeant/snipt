@@ -89,27 +89,6 @@ def embed(request, snipt_key):
                   content_type='application/javascript')
 
 
-def report_spam(request, snipt_id):
-
-    if not request.user.is_authenticated():
-        return HttpResponseBadRequest()
-
-    snipt = get_object_or_404(Snipt, pk=snipt_id)
-
-    send_mail('[Snipt] Spam reported',
-              """
-              Snipt: https://snipt.net/admin/snipts/snipt/{}/
-              User: https://snipt.net/admin/auth/user/{}/delete/
-              Reporter: https://snipt.net/{}/
-              """.format(snipt.id, snipt.user.id, request.user.username),
-              os.environ.get('POSTMARK_EMAIL', 'support@snipt.net'),
-              ['nick@snipt.net'],
-              fail_silently=False)
-
-    return HttpResponse("""Thanks! Your report has been
-                           submitted to the site admins.""")
-
-
 @render_to('snipts/list-user.html')
 def blog_posts(request, username):
 
