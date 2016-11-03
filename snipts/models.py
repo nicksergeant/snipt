@@ -236,18 +236,12 @@ class Snipt(models.Model):
                 return u'https://{}.snipt.net/{}/'.format(
                     self.user.username, self.slug)
 
-        if settings.DEBUG:
-            root = 'http://local.snipt.net'
-        else:
-            root = 'https://snipt.net'
-
         if self.public:
-            return u'{}/{}/{}/'.format(root, self.user.username, self.slug)
+            return u'/{}/{}/'.format(self.user.username, self.slug)
         else:
-            return u'{}/{}/{}/?key={}'.format(root,
-                                              self.user.username,
-                                              self.slug,
-                                              self.key)
+            return u'/{}/{}/?key={}'.format(self.user.username,
+                                            self.slug,
+                                            self.key)
 
     def get_download_url(self):
 
@@ -264,12 +258,7 @@ class Snipt(models.Model):
             else:
                 filename = u'{}.txt'.format(self.slug)
 
-        if settings.DEBUG:
-            root = 'http://local.snipt.net'
-        else:
-            root = 'https://snipt.net'
-
-        return u'{}/download/{}/{}'.format(root, self.key, filename)
+        return u'/download/{}/{}'.format(self.key, filename)
 
     def get_embed_url(self):
 
@@ -281,13 +270,7 @@ class Snipt(models.Model):
         return '{}/embed/{}/'.format(root, self.key)
 
     def get_raw_url(self):
-
-        if settings.DEBUG:
-            root = 'http://local.snipt.net'
-        else:
-            root = 'https://snipt.net'
-
-        return '{}/raw/{}/'.format(root, self.key)
+        return '/raw/{}/'.format(self.key)
 
     @property
     def sorted_tags(self):
