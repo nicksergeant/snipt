@@ -9,7 +9,6 @@
 - `heroku addons:create postmark:10k`
 - `heroku addons:open postmark` -> use an email you control
 - `heroku config:add POSTMARK_EMAIL=<email_from_above>`
-- `heroku config:add DEBUG=False`
 - `heroku config:add SECRET_KEY=`
 - `git push heroku`
 - `heroku run python manage.py migrate`
@@ -23,3 +22,11 @@ If you want to disable user-facing signup:
 If you want to enable Disqus comments:
 
 - `heroku config:set DISQUS_SHORTNAME=whatever`
+
+If you want to enable Django's DEBUG mode:
+
+- `heroku config:add DEBUG=False`
+
+If you want to enable SSL (after you've configured your Heroku SSL cert):
+
+- `heroku config:add USE_SSL=False`
