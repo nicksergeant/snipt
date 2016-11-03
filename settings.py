@@ -31,6 +31,16 @@ if 'SEARCHBOX_SSL_URL' in os.environ:
             "http_auth": es.username + ':' + es.password
         }
 
+if 'HAYSTACK_URL' in os.environ:
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': os.environ.get('HAYSTACK_URL'),
+            'INDEX_NAME': 'snipts',
+        },
+    }
+
+
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
 ACCOUNT_ACTIVATION_DAYS = 14
 ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
