@@ -1,8 +1,6 @@
 # Snipt
 
-# Deploying to Heroku
-
-**Automatic:**
+## Automatic deploy to Heroku
 
 You can click the button below to automatically deploy Snipt to Heroku.
 
@@ -24,7 +22,7 @@ the following after deploying (you'll need the
 - `heroku run -a <your-instance-name> addons:open postmark` -> use an email you control and confirm it
 - `heroku <your-instance-name> config:add -a <your-instance-name> POSTMARK_EMAIL=<email_from_above>`
 
-**Manual:**
+## Manual deploy to Heroku
 
 - Clone the repo.
 - `heroku create`
@@ -39,18 +37,17 @@ the following after deploying (you'll need the
 - `heroku run python manage.py createsuperuser`
 - Visit yourapp.herokuapp.com and login with the user you just created.
 
+## Options
+
 If you want to disable user-facing signup:
 
 - `heroku config:set DISABLE_SIGNUP=true`
-
-If you want to enable Disqus comments:
-
-- `heroku config:set DISQUS_SHORTNAME=whatever`
 
 If you want to enable Django's DEBUG mode:
 
 - `heroku config:add DEBUG=False`
 
-If you want to enable SSL (after you've configured your Heroku SSL cert):
+If you want to enable SSL on a custom domain after you've configured your
+Heroku SSL cert:
 
 - `heroku config:add USE_SSL=False`
