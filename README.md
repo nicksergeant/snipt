@@ -2,13 +2,13 @@
 
 # Deploying to Heroku
 
-*Automatic:*
+**Automatic:**
 
 You can click the button below to automatically deploy Snipt to Heroku.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nicksergeant/snipt/tree/heroku)
 
-*Please note:* this method will work fine, but you will not have email support
+**Please note:** this method will work fine, but you will not have email support
 unless you manually configure Postmark. You don't necessarily need this,
 though.  After deploying the instance, visit
 `https://<your-instance-name>/signup`, and create a user. You will get a 500
@@ -26,7 +26,7 @@ the following after deploying:
 - `heroku addons:open postmark` -> use an email you control and confirm it
 - `heroku config:add POSTMARK_EMAIL=<email_from_above>`
 
-*Manual:*
+**Manual:**
 
 - Clone the repo.
 - `heroku create`
