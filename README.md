@@ -2,6 +2,12 @@
 
 # Deploying to Heroku
 
+*Automatic:*
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nicksergeant/snipt/tree/heroku)
+
+*Manual:*
+
 - Clone the repo.
 - `heroku create`
 - `heroku addons:add heroku-postgresql:hobby-dev`
