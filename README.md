@@ -37,6 +37,14 @@ the following after deploying (you'll need the
 - `heroku run python manage.py createsuperuser`
 - Visit yourapp.herokuapp.com and login with the user you just created.
 
+## Updating your Heroku instance after an automatic deploy
+
+- `git clone https://github.com/nicksergeant/snipt`
+- `cd snipt`
+- `git checkout heroku`
+- `heroku git:remote -a <your-instance-name>`
+- `git push heroku heroku:master`
+
 ## Options
 
 If you want to disable user-facing signup:
