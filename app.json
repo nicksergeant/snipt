@@ -20,7 +20,6 @@
   },
   "addons": [
     "heroku-postgresql:hobby-dev",
-    "postmark:10k",
     "searchbox"
   ]
 }
