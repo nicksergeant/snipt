@@ -1,4 +1,4 @@
-from registration.backends.default.views import RegistrationView
+from registration.backends.simple.views import RegistrationView
 from utils.forms import SniptRegistrationForm
 
 
@@ -12,4 +12,4 @@ class SniptRegistrationView(RegistrationView):
         return super(RegistrationView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self, request):
-        return '/account/activate/'
+        return '/login-redirect'
