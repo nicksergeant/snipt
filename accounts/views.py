@@ -11,14 +11,6 @@ def account(request):
 
 
 @login_required
-@render_to('activate.html')
-def activate(request):
-    request.user.is_active = True
-    request.user.save()
-    return HttpResponseRedirect('/login-redirect/')
-
-
-@login_required
 @render_to('stats.html')
 def stats(request):
 
