@@ -1,0 +1,25 @@
+{
+  "name": "Snipt",
+  "description": "Code snippets for teams and individuals.",
+  "keywords": [
+    "snipt",
+    "code snippets"
+  ],
+  "website": "https://snipt.net",
+  "repository": "https://github.com/nicksergeant/snipt",
+  "logo": "https://snipt.s3.amazonaws.com/logo.png",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "python manage.py migrate"
+  },
+  "env": {
+    "SECRET_KEY": {
+      "description": "Secret key for Django to use.",
+      "generator": "secret"
+    }
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "searchbox"
+  ]
+}

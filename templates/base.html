@@ -1,5 +1,7 @@
 {% load snipt_tags static %}
 
+{% signup_enabled as 'signup_is_enabled' %}
+
 <!DOCTYPE html>
 <html lang="en" class="{% block html-class %}{% endblock %}" ng-app="Snipt">
 <head>
@@ -41,14 +43,12 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/highlightjs-themes/tomorrow.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/default/style.css" />
   {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?127" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/snipt.css?129" />
   {% endif %}
 
   {% if has_snipts and not detail %}
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ request.path }}?rss{% if not public %}&amp;api_key={{ request.user.api_key.key }}{% endif %}" />
   {% endif %}
-
-  <link rel="author" href="/humans.txt" />
 
   {% block css %}{% endblock %}
 
@@ -67,25 +67,6 @@
 
 </head>
 <body class="{% block body-class %}{% endblock %} is-pro" ng-controller="AppController">
-
-<!-- BuySellAds Ad Code -->
-<script type="text/javascript">
-(function(){
-  var bsa = document.createElement('script');
-     bsa.type = 'text/javascript';
-     bsa.async = true;
-     bsa.src = '//s3.buysellads.com/ac/bsa.js';
-  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
-})();
-</script>
-<!-- End BuySellAds Ad Code -->
-
-<div class="closing">
-  <strong>Snipt.net is closing on December 31st, 2016</strong>
-  <p>
-    For more information, please visit <a href="https://blog.snipt.net/snipt-is-closing/">this blog post</a>.
-  </p>
-</div>
 
 {% block header %}
   <header class="main">
@@ -111,6 +92,11 @@
             <li>
               <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
             </li>
+            {% if signup_is_enabled %}
+              <li>
+                <a href="/signup/" {% if '/signup/' in request.path %} class="active"{% endif %}>Sign up</a>
+              </li>
+            {% endif %}
           {% else %}
             <li>
               <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
@@ -184,12 +170,6 @@
                 Account
               </a>
             </li>
-            <li>
-              <a href="/for-teams/">
-                <i class="icon-star-empty icon-white"></i>
-                For Teams
-              </a>
-            </li>
             {% if request.user.is_superuser %}
               <li>
                 <a href="/admin/">
@@ -229,49 +209,19 @@
       <aside class="main">
         {% block aside-top %}{% endblock %}
         {% block aside-inner %}{% endblock %}
-        {% if not request.user.is_authenticated %}
-          <div style="margin-left: 15px; margin-bottom: 30px;">
-            <div style="background-color: white; border-radius: 5px; margin-top: 30px; padding: 10px; box-sizing: border-box;">
-              <script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js"></script>
-            </div>
-          </div>
-        {% endif %}
         <nav class="footer">
           <ul>
             <li class="api">
-              <a href="/api/" {% if '/api/' in request.path %}class="active"{% endif %}><span>API</span></a>
-            </li>
-            <li class="twitter">
-              <a href="https://twitter.com/#!/snipt"><span>@snipt</span></a>
-            </li>
-            <li class="pro">
-              <a href="/for-teams/"><span>For Teams</span></a>
+              <a href="https://github.com/nicksergeant/snipt/wiki/API-Docs"><span>API Docs</span></a>
             </li>
             <li class="blog">
-              <a href="https://blog.snipt.net/"><span>Snipt Blog</span></a>
-            </li>
-            <li class="blog">
-              <a href="/apps/" {% if '/apps/' in request.path %}class="active"{% endif %}><span>Snipt Apps</span></a>
-            </li>
-            <li class="blog">
-              <a href="/blogging/" {% if '/blogging/' in request.path %}class="active"{% endif %}><span>Blogging on Snipt</span></a>
+              <a href="https://github.com/nicksergeant/snipt/wiki/Blogging-Docs"><span>Blogging Docs</span></a>
             </li>
             <li class="roadmap">
-              <a href="https://github.com/nicksergeant/snipt/"><span>Open source on GitHub</span></a>
-            </li>
-            <li class="roadmap">
-              <a href="https://github.com/nicksergeant/snipt/issues?state=open"><span>Bugs & feature requests</span></a>
-            </li>
-            <li class="roadmap">
-              <a href="http://getsentry.com/"><span>Shipped with confidence</span></a>
+              <a href="https://github.com/nicksergeant/snipt/"><span>GitHub Source</span></a>
             </li>
           </ul>
         </nav>
-        <div class="linode">
-          <a href="https://www.linode.com/?utm_source=referral&utm_medium=website&utm_content=[Snipt.net]&utm_campaign=sponsorship" title="Sponsored by Linode" target="blank">
-            <span>Sponsored by</span>
-          </a>
-        </div>
       </aside>
     {% endblock %}
     <div class="inner">
@@ -436,13 +386,6 @@
     {% include 'snipts/snipt-edit-js-template.html' %}
   </div>
 {% endblock %}
-
-<div class="dmca">
-  <strong>Copyrighted, illegal, or inappropriate content?</strong>
-  Email <a href="mailto:support@snipt.net">support@snipt.net</a>.
-</div>
-
-{% include 'analytics.html' %}
 
 <script type="text/javascript">{% block analytics %}{% endblock %}</script>
 

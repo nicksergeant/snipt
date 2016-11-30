@@ -112,18 +112,6 @@
             {% endif %}
             <div class="ruler top-x"></div>
             <div class="ruler bottom-x"></div>
-            {% if detail and not request.user.is_authenticated %}
-              <div class="ruler ad-x"></div>
-              <div class="inline-ad">
-                <span class="block"></span>
-                <p>
-                  Want to make sure your code is always working?
-                  Try <a href="https://instrumentalapp.com/">custom application monitoring</a>
-                  from Instrumental!
-                </p>
-                <span class="ad">Advertisement</span>
-              </div>
-            {% endif %}
         </div>
         {% block aside %}
             <aside ng-show="!account || account.list_view == 'N'">
@@ -214,9 +202,6 @@
             {% else %}
                 <li class="created" title="{{ snipt.created|date:"Y-m-d\TH:i:s" }}">{{ snipt.created|naturaltime }}</li>
             {% endif %}
-            {% if snipt.public and not detail %}
-                <li class="comments"><a href="{{ snipt.get_full_absolute_url }}#disqus_thread" data-disqus-identifier="{{ snipt.pk }}"></a></li>
-            {% endif %}
             <li class="raw">
                 <a href="{{ snipt.get_raw_url }}">Raw</a> / 
                 <a href="{{ snipt.get_raw_url }}?nice">Raw Nice</a>
@@ -224,17 +209,6 @@
                   / <a href="/api/public/snipt/{{ snipt.id }}/?format=json">API</a>
                 {% endif %}
             </li>
-            {% if request.user.is_authenticated and snipt.user != request.user %}
-              {% if request.user.is_superuser %}
-                <li class="report-spam">
-                  <a target="_blank" href="/admin/auth/user/{{ snipt.user.id }}/delete/">Delete User</a>
-                </li>
-              {% else %}
-                <li class="report-spam">
-                  <a target="_blank" href="/report-spam/{{ snipt.id }}/">Report Spam</a>
-                </li>
-              {% endif %}
-            {% endif %}
             {% if detail and snipt.public %}
                 <li class="tweet">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none" data-url="{{ snipt.get_full_absolute_url }}" data-text="&ldquo;{{ snipt.title }}&rdquo; on @Snipt">Tweet</a>

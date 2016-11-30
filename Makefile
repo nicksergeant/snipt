@@ -1,8 +1,3 @@
-pm = /var/www/.virtualenvs/snipt/bin/python /var/www/snipt/manage.py
-ssh-server-deploy = ssh deploy@96.126.110.160 -p 55555
-ssh-server-root = ssh root@96.126.110.160
-ssh-vagrant = ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key
-
 assets:
 	@cat media/css/bootstrap.min.css \
 		media/css/blog-themes/pro-adams/style.css \
@@ -56,7 +51,6 @@ assets:
 		media/js/src/modules/snipt.min.js \
 		media/js/src/account.min.js \
 		media/js/src/snipts.min.js \
-		media/js/src/search.min.js \
 		media/js/src/jobs.min.js \
 		media/js/src/team.min.js \
 		media/js/libs/codemirror.js \
@@ -66,106 +60,10 @@ assets:
 		media/js/src/pro.js \
 		> media/js/pro-all.min.js
 
-db:
-	@echo Creating database user snipt:
-	@sudo -u postgres bash -c 'createuser snipt -P'
-	@sudo -u postgres bash -c 'createdb snipt -O snipt'
-
 deploy:
-	@$(ssh-server-deploy) 'cd /var/www/snipt; git pull;'
-	@$(ssh-server-deploy) 'cd /var/www/snipt; make assets;'
-	@$(ssh-server-deploy) '$(pm) collectstatic --noinput'
-	@$(ssh-server-deploy) '$(pm) migrate'
-	@$(ssh-server-deploy) 'sudo supervisorctl restart snipt'
-
-deploy-heroku:
-	@git push heroku
-
-run:
-	@vagrant up
-	@vagrant ssh -c 'sudo supervisorctl restart snipt && sudo supervisorctl tail -f snipt stderr'
-
-salt-server:
-	@scp -q -P 55555 settings_local_server.py deploy@96.126.110.160:/var/www/snipt/settings_local.py
-	@scp -q -P 55555 -r ./salt/ deploy@96.126.110.160:salt
-	@scp -q -P 55555 -r ./pillar/ deploy@96.126.110.160:pillar
-	@$(ssh-server-deploy) 'sudo rm -rf /srv'
-	@$(ssh-server-deploy) 'sudo mkdir /srv'
-	@$(ssh-server-deploy) 'sudo mv ~/salt /srv/salt'
-	@$(ssh-server-deploy) 'sudo mv ~/pillar /srv/pillar'
-	@$(ssh-server-deploy) 'sudo salt-call --local state.highstate'
-
-salt-vagrant:
-	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
-	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
-	@$(ssh-vagrant) 'sudo rm -rf /srv'
-	@$(ssh-vagrant) 'sudo mkdir /srv'
-	@$(ssh-vagrant) 'sudo mv ~/salt /srv/salt'
-	@$(ssh-vagrant) 'sudo mv ~/pillar /srv/pillar'
-	@$(ssh-vagrant) 'sudo salt-call --local state.highstate'
-
-server:
-	@$(ssh-server-root) 'sudo apt-get update'
-	@$(ssh-server-root) 'sudo apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade'
-	@$(ssh-server-root) 'sudo apt-get install -y software-properties-common python-software-properties'
-	@$(ssh-server-root) 'sudo add-apt-repository -y ppa:saltstack/salt'
-	@$(ssh-server-root) 'sudo apt-get update'
-	@$(ssh-server-root) 'sudo apt-get install -y salt-minion'
-	@scp -q -r ./salt/ root@96.126.110.160:salt
-	@scp -q -r ./pillar/ root@96.126.110.160:pillar
-	@$(ssh-server-root) 'sudo rm -rf /srv'
-	@$(ssh-server-root) 'sudo mkdir /srv'
-	@$(ssh-server-root) 'sudo mv ~/salt /srv/salt'
-	@$(ssh-server-root) 'sudo mv ~/pillar /srv/pillar'
-	@$(ssh-server-root) 'sudo salt-call --local state.highstate'
-	@scp -q -P 55555 settings_local_server.py root@96.126.110.160:/var/www/snipt/settings_local.py
-	@$(ssh-server-deploy) 'cd /var/www/snipt; make db;'
-	@$(ssh-server-deploy) '$(pm) syncdb --noinput;'
-	@$(ssh-server-deploy) '$(pm) migrate;'
-	@$(ssh-server-deploy) '$(pm) backfill_api_keys;'
-	@$(ssh-server-deploy) '$(pm) rebuild_index --noinput;'
-
-vagrant:
-	@vagrant up --provider=vmware_fusion
-	@$(ssh-vagrant) 'sudo apt-get update'
-	@$(ssh-vagrant) 'sudo apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade'
-	@$(ssh-vagrant) 'sudo apt-get install -y software-properties-common python-software-properties'
-	@$(ssh-vagrant) 'sudo add-apt-repository -y ppa:saltstack/salt'
-	@$(ssh-vagrant) 'sudo apt-get update'
-	@$(ssh-vagrant) 'sudo apt-get install -y salt-minion'
-	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./salt/ vagrant@localhost:salt
-	@scp -q -P 2222 -i ~/.vagrant.d/insecure_private_key -r ./pillar/ vagrant@localhost:pillar
-	@$(ssh-vagrant) 'sudo rm -rf /srv'
-	@$(ssh-vagrant) 'sudo mkdir /srv'
-	@$(ssh-vagrant) 'sudo mv ~/salt /srv/salt'
-	@$(ssh-vagrant) 'sudo mv ~/pillar /srv/pillar'
-	@$(ssh-vagrant) 'sudo salt-call --local state.highstate'
-	@vagrant ssh -c 'cd /var/www/snipt; make db;'
-	@vagrant ssh -c '$(pm) syncdb;'
-	@$(ssh-vagrant) '$(pm) migrate;'
-	@$(ssh-vagrant) '$(pm) backfill_api_keys;'
-	@$(ssh-vagrant) '$(pm) rebuild_index --noinput;'
-
-pulldb:
-	@ssh nick@snipt.net -p 55555 'sudo su -c "pg_dump snipt|gzip > /tmp/snipt.dump" postgres'
-	@scp -q -P 55555 nick@snipt.net:/tmp/snipt.dump snipt.dump.gz
-	@dropdb snipt
-	@createdb snipt
-	@cat snipt.dump.gz | gunzip | psql snipt
-	@rm snipt.dump.gz
+	git push heroku heroku:master
 
 sass:
 	sass --sourcemap=none --watch -t compressed --scss media/css/style.scss:media/css/style.css
 
-.PHONY: assets, \
-	db, \
-	deploy, \
-	deploy-heroku, \
-	pulldb, \
-	provision-server, \
-	provision-vagrant, \
-	salt-server, \
-	salt-vagrant, \
-	sass, \
-	server, \
-	vagrant
+.PHONY: deploy sass

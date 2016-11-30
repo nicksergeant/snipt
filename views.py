@@ -1,14 +1,7 @@
-import hashlib
-
-from accounts.models import UserProfile
 from annoying.decorators import ajax_request, render_to
 from blogs.views import blog_list
-from django.contrib.auth.models import User
 from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import render
-from django.template import RequestContext
-from snipts.models import Snipt
 from snipts.utils import get_lexers_list
 from taggit.models import Tag
 
@@ -19,29 +12,7 @@ def homepage(request):
     if request.blog_user:
         return blog_list(request)
 
-    coders = []
-
-    users_with_gravatars = User.objects.filter(
-        userprofile__in=UserProfile.objects.filter(has_gravatar=True)
-    ).order_by('?')
-
-    for user in users_with_gravatars:
-        public_snipts_count = Snipt.objects.filter(
-            user=user, public=True).values('pk').count()
-
-        if public_snipts_count:
-            user.email_md5 = hashlib.md5(user.email.lower().encode('utf-8')) \
-                .hexdigest()
-            coders.append(user)
-
-        if len(coders) == 35:
-            break
-
-    return {
-        'coders': coders,
-        'snipts_count': Snipt.objects.all().count(),
-        'users_count': User.objects.all().count(),
-    }
+    return {}
 
 
 @ajax_request

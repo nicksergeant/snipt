@@ -57,58 +57,14 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <h4>{{ users_count|intcomma }} coders in over 120 countries have stored {{ snipts_count|intcomma }} snipts, in 145 languages.</h4>
+                    <h4>This is a private instance of <a href="https://github.com/nicksergeant/snipt">Snipt</a>.</h4>
                 </div>
             </div>
         </div>
         {% if request.user.is_authenticated %}
             <a href="/{{ request.user.username }}/" class="button">My snipts</a>
+        {% else %}
+            <a href="/login/" class="button">Log in</a>
         {% endif %}
-        <div class="faces group">
-            <div class="inner">
-                {% for coder in coders %}
-                    <a href="/{{ coder.username }}/" title="{{ coder.username }}">
-                        <img alt="{{ coder.username }}" title="{{ coder.username }}" src="https://secure.gravatar.com/avatar/{{ coder.email_md5 }}?s=50" />
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <section class="features">
-        <div class="container">
-            <div class="row">
-                <header class="span4 offset4">
-                    <h1>For teams or individuals</h1>
-                </header>
-            </div>
-            <div class="feature row share">
-                <div class="inner">
-                    <h2>Team accounts</h2>
-                    <p>
-                      Create a <a href="/for-teams/">Team</a> account and allow your team members to create and
-                      edit private and public code snippets. Search through all your team's snippets, and
-                      view detailed diffs of changes to each snippet.
-                    </p>
-                </div>
-            </div>
-            <div class="feature row blog">
-                <div class="inner">
-                    <h2>Personal accounts</h2>
-                    <p>
-                      Individuals can post public and <code>private</code> snippets, making them perfect
-                      for storing and organizing code you never want to forget.
-                    </p>
-                </div>
-            </div>
-            <div class="feature row store">
-                <div class="inner">
-                    <h2>Code-focused blogs</h2>
-                    <p>
-                      <a href="/blogging/">A full blog in seconds</a>: mark a snipt as "Blog Post", and it'll
-                      appear on <code>{your-username}.snipt.net</code>. Markdown support built-in. Your domain, or ours.
-                    </p>
-                </div>
-            </div>
-        </div>
     </section>
 {% endblock %}

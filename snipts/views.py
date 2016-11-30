@@ -18,6 +18,9 @@ from snipts.models import Favorite, Snipt, SniptSecureView
 from taggit.models import Tag
 from teams.models import Team
 
+import os
+
+
 RESULTS_PER_PAGE = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
 
 
@@ -84,27 +87,6 @@ def embed(request, snipt_key):
                   'snipts/embed.html',
                   {'lines': lines, 'snipt': snipt},
                   content_type='application/javascript')
-
-
-def report_spam(request, snipt_id):
-
-    if not request.user.is_authenticated():
-        return HttpResponseBadRequest()
-
-    snipt = get_object_or_404(Snipt, pk=snipt_id)
-
-    send_mail('[Snipt] Spam reported',
-              """
-              Snipt: https://snipt.net/admin/snipts/snipt/{}/
-              User: https://snipt.net/admin/auth/user/{}/delete/
-              Reporter: https://snipt.net/{}/
-              """.format(snipt.id, snipt.user.id, request.user.username),
-              'support@snipt.net',
-              ['nick@snipt.net'],
-              fail_silently=False)
-
-    return HttpResponse("""Thanks! Your report has been
-                           submitted to the site admins.""")
 
 
 @render_to('snipts/list-user.html')

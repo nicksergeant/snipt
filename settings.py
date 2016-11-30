@@ -11,10 +11,12 @@ if 'DATABASE_URL' in os.environ:
 
     DATABASES = {'default': dj_database_url.config()}
 
+if 'SEARCHBOX_SSL_URL' in os.environ:
+
     es = urlparse(os.environ.get('SEARCHBOX_SSL_URL') or
                   'http://127.0.0.1:9200/')
 
-    port = es.port or 80
+    port = es.port or 443
 
     HAYSTACK_CONNECTIONS = {
         'default': {
@@ -29,18 +31,28 @@ if 'DATABASE_URL' in os.environ:
             "http_auth": es.username + ':' + es.password
         }
 
+if 'HAYSTACK_URL' in os.environ:
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': os.environ.get('HAYSTACK_URL'),
+            'INDEX_NAME': 'snipts',
+        },
+    }
+
+
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
-ACCOUNT_ACTIVATION_DAYS = 14
+ACCOUNT_ACTIVATION_DAYS = 0
 ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
 ALLOWED_HOSTS = ['*']
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_PATH = os.path.dirname(__file__)
+CSRF_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 DEBUG = True if 'DEBUG' in os.environ else False
-DEFAULT_FROM_EMAIL = 'support@snipt.net'
+DEFAULT_FROM_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-INTERCOM_SECRET_KEY = os.environ.get('INTERCOM_SECRET_KEY', '')
 INTERNAL_IPS = ('127.0.0.1',)
 LANGUAGE_CODE = 'en-us'
 LOGIN_REDIRECT_URL = '/login-redirect/'
@@ -61,20 +73,20 @@ PASSWORD_HASHERS = (
 )
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY', '')
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-RAVEN_CONFIG = {'dsn': os.environ.get('RAVEN_CONFIG_DSN', '')}
 REGISTRATION_EMAIL_HTML = False
 ROOT_URLCONF = 'urls'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True if 'USE_SSL' in os.environ else False
 SEND_BROKEN_LINK_EMAILS = False
-SERVER_EMAIL = 'support@snipt.net'
+SERVER_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
 SESSION_COOKIE_AGE = 15801100
 SESSION_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 SITE_ID = 1
 STATICFILES_DIRS = (os.path.join(BASE_PATH, 'media'),)
 STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder',
                        'django.contrib.staticfiles.finders.AppDirectoriesFinder')
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 STATIC_URL = '/static/'
 TASTYPIE_CANNED_ERROR = """There was an error with your request. The site
@@ -121,7 +133,6 @@ INSTALLED_APPS = (
     'markdown_deux',
     'pagination',
     'postmark',
-    'raven.contrib.django.raven_compat',
     'registration',
     'snipts',
     'storages',
@@ -143,6 +154,7 @@ LOGGING = {
     'loggers': {}
 }
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',

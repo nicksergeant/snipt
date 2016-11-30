@@ -1,4 +1,5 @@
 import hashlib
+import os
 
 from django import template
 from snipts.models import Favorite, Snipt
@@ -40,6 +41,12 @@ def snipts_count_for_user(context):
         snipts = 0
 
     return snipts
+
+
+@tag(register, [Constant('as'), Variable()])
+def signup_enabled(context, asvar):
+    context[asvar] = os.environ.get("DISABLE_SIGNUP") != "true"
+    return ''
 
 
 @tag(register, [Constant('as'), Variable()])
