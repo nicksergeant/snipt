@@ -10,7 +10,7 @@
   "logo": "https://snipt.s3.amazonaws.com/logo.png",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "python manage.py migrate && python manage.py createsuperuser"
+    "postdeploy": "python manage.py migrate"
   },
   "env": {
     "SECRET_KEY": {
