@@ -4,7 +4,7 @@
 
 You can click the button below to automatically deploy Snipt to Heroku.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nicksergeant/snipt/tree/heroku)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nicksergeant/snipt)
 
 ## Manual deploy to Heroku
 
