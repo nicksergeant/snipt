@@ -18,6 +18,8 @@ closes on December 31st, 2016, follow these steps:
 4. `cd snipt`
 5. `heroku git:remote -a <your-heroku-app-name>`
 6. `heroku run python manage.py createsuperuser`
+7. Get your [Snipt.net API key](https://snipt.net/api/).
+8. `heroku run python manage.py import_snipts <snipt.net-api-key> <snipt.net-username> <your-instance-superuser-username>`
 
 ## Manual deploy to Heroku
 
