@@ -65,7 +65,7 @@ class Command(BaseCommand):
                 views=snipt["views"]
             )
 
-            s.created = snipt["created"],
+            s.created = snipt["created"]
             s.modified = snipt["modified"]
 
             for tag in snipt["tags"]:
