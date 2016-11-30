@@ -61,7 +61,7 @@ assets:
 		> media/js/pro-all.min.js
 
 deploy:
-	git push heroku heroku:master
+	git push heroku
 
 sass:
 	sass --sourcemap=none --watch -t compressed --scss media/css/style.scss:media/css/style.css
