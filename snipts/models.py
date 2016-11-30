@@ -50,8 +50,8 @@ class Snipt(models.Model):
 
     views = models.IntegerField(default=0)
 
-    created = models.DateTimeField(auto_now_add=True, editable=True)
-    modified = models.DateTimeField(auto_now=True, editable=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
     publish_date = models.DateTimeField(blank=True, null=True)
 
     def _unidiff_output(self, expected, actual):

@@ -43,19 +43,18 @@ class Command(BaseCommand):
         print(u"Fetching snipts...")
 
         items = get_snipts(api_key, from_username)
+        items.reverse()
 
         for snipt in items:
             s = Snipt(
                 blog_post=snipt["blog_post"],
                 code=snipt["code"],
-                created=snipt["created"],
                 description=snipt["description"],
                 id=snipt["id"],
                 key=snipt["key"],
                 lexer=snipt["lexer"],
                 line_count=snipt["line_count"],
                 meta=snipt["meta"],
-                modified=snipt["modified"],
                 public=snipt["public"],
                 publish_date=snipt["publish_datetime"],
                 secure=snipt["secure"],
@@ -65,6 +64,9 @@ class Command(BaseCommand):
                 user=to_user,
                 views=snipt["views"]
             )
+
+            s.created = snipt["created"],
+            s.modified = snipt["modified"]
 
             for tag in snipt["tags"]:
                 s.tags.add(tag["name"])
