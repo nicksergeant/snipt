@@ -55,9 +55,9 @@ If you want to disable user-facing signup:
 
 If you want to enable Django's DEBUG mode:
 
-- `heroku config:add DEBUG=True`
+- `heroku config:add DEBUG=true`
 
 If you want to enable SSL on a custom domain after you've configured your
 Heroku SSL cert:
 
-- `heroku config:add USE_SSL=True`
+- `heroku config:add USE_SSL=true`
