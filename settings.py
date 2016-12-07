@@ -49,6 +49,7 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_PATH = os.path.dirname(__file__)
 CSRF_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
+CORS_ORIGIN_ALLOW_ALL = True
 DEBUG = True if 'DEBUG' in os.environ else False
 DEFAULT_FROM_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
@@ -119,6 +120,7 @@ USE_TZ = True
 INSTALLED_APPS = (
     'accounts',
     'blogs',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -157,6 +159,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
