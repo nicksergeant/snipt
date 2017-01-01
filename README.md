@@ -6,21 +6,6 @@ You can click the button below to automatically deploy Snipt to Heroku.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nicksergeant/snipt)
 
-#### Importing your snipts from Snipt.net
-
-If you would like to import your snipts from Snipt.net before the service
-closes on December 31st, 2016, follow these steps:
-
-1. Deploy your own instance of Snipt using the "Deploy to Heroku" button
-   above.
-2. Download the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and set it up.
-3. `git clone https://github.com/nicksergeant/snipt`
-4. `cd snipt`
-5. `heroku git:remote -a <your-heroku-app-name>`
-6. `heroku run python manage.py createsuperuser`
-7. Get your [Snipt.net API key](https://snipt.net/api/).
-8. `heroku run python manage.py import_snipts <snipt.net-api-key> <snipt.net-username> <your-instance-superuser-username>`
-
 ## Manual deploy to Heroku
 
 - Clone the repo.
