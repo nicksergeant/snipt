@@ -13,8 +13,7 @@ if 'DATABASE_URL' in os.environ:
 
 if 'SEARCHBOX_SSL_URL' in os.environ:
 
-    es = urlparse(os.environ.get('SEARCHBOX_SSL_URL') or
-                  'http://127.0.0.1:9200/')
+    es = urlparse(os.environ.get('SEARCHBOX_SSL_URL'))
 
     port = es.port or 443
 
@@ -31,14 +30,13 @@ if 'SEARCHBOX_SSL_URL' in os.environ:
             "http_auth": es.username + ':' + es.password
         }
 
-if 'HAYSTACK_URL' in os.environ:
+else:
     HAYSTACK_CONNECTIONS = {
         'default': {
-            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-            'URL': os.environ.get('HAYSTACK_URL'),
-            'INDEX_NAME': 'snipts',
-        },
+            'ENGINE': 'haystack.backends.simple_backend.SimpleEngine'
+        }
     }
+
 
 
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
