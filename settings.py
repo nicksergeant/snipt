@@ -1,10 +1,6 @@
 import dj_database_url
 import os
-
-try:
-    from urlparse import urlparse
-except ImportError:
-    from urllib import parse as urlparse
+import urllib
 
 
 if 'DATABASE_URL' in os.environ:
@@ -13,14 +9,12 @@ if 'DATABASE_URL' in os.environ:
 
 if 'SEARCHBOX_SSL_URL' in os.environ:
 
-    es = urlparse(os.environ.get('SEARCHBOX_SSL_URL'))
-
-    port = es.port or 443
+    es = urllib.parse(os.environ.get('SEARCHBOX_SSL_URL'))
 
     HAYSTACK_CONNECTIONS = {
         'default': {
             'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-            'URL': es.scheme + '://' + es.hostname + ':' + str(port),
+            'URL': es.scheme + '://' + es.hostname + ':443',
             'INDEX_NAME': 'snipts',
         },
     }
