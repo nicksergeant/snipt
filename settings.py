@@ -9,7 +9,9 @@ if 'DATABASE_URL' in os.environ:
 
 if 'SEARCHBOX_SSL_URL' in os.environ:
 
-    es = urllib.parse(os.environ.get('SEARCHBOX_SSL_URL'))
+    url = os.environ.get('SEARCHBOX_SSL_URL')
+
+    es = urllib.parse(url)
 
     HAYSTACK_CONNECTIONS = {
         'default': {
