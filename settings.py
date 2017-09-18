@@ -1,6 +1,7 @@
+from urllib.parse import urlparse
+
 import dj_database_url
 import os
-import urllib
 
 
 if 'DATABASE_URL' in os.environ:
@@ -11,7 +12,7 @@ if 'SEARCHBOX_SSL_URL' in os.environ:
 
     url = os.environ.get('SEARCHBOX_SSL_URL')
 
-    es = urllib.parse(url)
+    es = urlparse(url)
 
     HAYSTACK_CONNECTIONS = {
         'default': {
