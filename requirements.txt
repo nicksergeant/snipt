@@ -20,7 +20,7 @@ git+git://github.com/matagus/django-pagination-py3.git#egg=django-pagination
 git+git://github.com/nicksergeant/django-templatetag-sugar.git#egg=django-templatetag-sugar
 gunicorn==19.6.0
 parsedatetime==2.1
-psycopg2==2.6.2
+psycopg2==2.7.3
 py-bcrypt==0.4
 pycrypto==2.6.1
 python-dateutil==2.5.3
