@@ -79,12 +79,12 @@ class Snipt(models.Model):
         if self.lexer == 'markdown':
             self.stylized = markdown(self.code, 'default')
 
-            # Snipt embeds
+            # Snippet embeds
             for match in re.findall('\[\[(\w{32})\]\]', self.stylized):
                 self.stylized = self.stylized.replace('[[' + str(match) + ']]',
                                                       """
                         <script type="text/javascript"
-                                   src="https://snipt.net/embed/{}/?snipt">
+                                   src="https://snippets.siftie.com/embed/{}/?snipt">
                            </script>
                        <div id="snipt-embed-{}"></div>""".format(match, match))
 
@@ -123,10 +123,10 @@ class Snipt(models.Model):
                         '<div class="embedded-tweet" data-tweet-id="{}"></div>'
                         .format(str(match)))
 
-            # Parse Snipt usernames
+            # Parse usernames
             for match in re.findall('@(\w+) ', self.stylized):
 
-                # Try and get the Snipt user by username.
+                # Try and get the user by username.
                 user = get_object_or_None(User, username=match)
 
                 if user:
@@ -214,7 +214,7 @@ class Snipt(models.Model):
                 return u'http://{}/{}/'.format(
                     self.user.profile.blog_domain.split(' ')[0], self.slug)
             else:
-                return u'https://{}.snipt.net/{}/'.format(
+                return u'https://{}.snippets.siftie.com/{}/'.format(
                     self.user.username.replace('_', '-'), self.slug)
 
         if self.custom_slug:
@@ -233,7 +233,7 @@ class Snipt(models.Model):
                 return u'http://{}/{}/'.format(
                     self.user.profile.blog_domain.split(' ')[0], self.slug)
             else:
-                return u'https://{}.snipt.net/{}/'.format(
+                return u'https://{}.snippets.siftie.com/{}/'.format(
                     self.user.username, self.slug)
 
         if self.public:
@@ -263,9 +263,9 @@ class Snipt(models.Model):
     def get_embed_url(self):
 
         if settings.DEBUG:
-            root = 'http://local.snipt.net'
+            root = 'http://local.snippets.siftie.com'
         else:
-            root = 'https://snipt.net'
+            root = 'https://snippets.siftie.com'
 
         return '{}/embed/{}/'.format(root, self.key)
 
@@ -297,7 +297,7 @@ class Snipt(models.Model):
 
 
 class SniptLogEntry(models.Model):
-    """An individual log entry for a Snipt changeset."""
+    """An individual log entry for a snippet changeset."""
 
     user = models.ForeignKey(User)
     snipt = models.ForeignKey(Snipt)
@@ -314,7 +314,7 @@ class SniptLogEntry(models.Model):
 
 
 class SniptSecureView(models.Model):
-    """A single view to a secure snipt."""
+    """A single view to a secure snippet."""
 
     user = models.ForeignKey(User)
     snipt = models.ForeignKey(Snipt)

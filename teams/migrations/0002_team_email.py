@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='team',
             name='email',
-            field=models.EmailField(default='nick@snipt.net', max_length=255),
+            field=models.EmailField(default='nick@siftie.com', max_length=255),
             preserve_default=False,
         ),
     ]

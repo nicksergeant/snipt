@@ -11,9 +11,9 @@ class BlogMiddleware:
         host = request.META.get('HTTP_HOST', '')
         host_s = host.replace('www.', '').split('.')
 
-        if host != 'snipt.net' and \
+        if host != 'snippets.siftie.com' and \
                 host != 'snipt.localhost' and \
-                host != 'local.snipt.net':
+                host != 'local.snippets.siftie.com':
             if len(host_s) > 2:
                 if host_s[1] == 'snipt':
 

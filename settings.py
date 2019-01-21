@@ -38,7 +38,7 @@ else:
 
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
 ACCOUNT_ACTIVATION_DAYS = 0
-ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
+ADMINS = (('Siftie', 'team@siftie.com'),)
 ALLOWED_HOSTS = ['*']
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
@@ -46,7 +46,7 @@ BASE_PATH = os.path.dirname(__file__)
 CSRF_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 CORS_ORIGIN_ALLOW_ALL = True
 DEBUG = True if 'DEBUG' in os.environ else False
-DEFAULT_FROM_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
+DEFAULT_FROM_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@siftie.com')
 EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 INTERNAL_IPS = ('127.0.0.1',)
@@ -75,7 +75,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True if 'USE_SSL' in os.environ else False
 SEND_BROKEN_LINK_EMAILS = False
-SERVER_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
+SERVER_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@siftie.com')
 SESSION_COOKIE_AGE = 15801100
 SESSION_COOKIE_SECURE = True if 'USE_SSL' in os.environ else False
 SITE_ID = 1
@@ -86,7 +86,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 STATIC_URL = '/static/'
 TASTYPIE_CANNED_ERROR = """There was an error with your request. The site
-    developers have a record of this error, please email api@snipt.net and
+    developers have a record of this error, please email support@siftie.com and
     we'll help you out."""
 
 TEMPLATES = [

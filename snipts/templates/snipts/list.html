@@ -27,10 +27,10 @@
           {% empty %}
               <div class="empty-snipts">
                   {% if request.user == user and not request.user.is_active and not public %}
-                    Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
+                    Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snippet.
                   {% else %}
                     {% if request.user == user and request.user.is_authenticated %}
-                      Welcome! Create your first snipt by clicking "Add Snipt" above.
+                      Welcome! Create your first snippet by clicking "Add Snippet" above.
                     {% else %}
                       No snipts to show here. Sorry!
                     {% endif %}
@@ -44,10 +44,10 @@
           {% empty %}
               <div class="empty-snipts">
                   {% if request.user == user and not request.user.is_active and not public %}
-                    Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snipt.
+                    Welcome! Please <a target="_self" href="/account/activate/">activate your account</a> to create your first snippet.
                   {% else %}
                     {% if request.user == user and request.user.is_authenticated %}
-                      Welcome! Create your first snipt by clicking "Add Snipt" above.
+                      Welcome! Create your first snippet by clicking "Add Snippet" above.
                     {% else %}
                       No snipts to show here. Sorry!
                     {% endif %}

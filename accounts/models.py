@@ -99,11 +99,11 @@ class UserProfile(models.Model):
 
         # Otherwise, if they have blog posts, use their Snipt blog URL.
         elif self.get_blog_posts():
-            url = 'https://{}.snipt.net/'.format(self.user.username)
+            url = 'https://{}.snippets.siftie.com/'.format(self.user.username)
 
         # Otherwise, use their regular Snipt profile page.
         else:
-            url = 'https://snipt.net/{}/'.format(self.user.username)
+            url = 'https://snippets.siftie.com/{}/'.format(self.user.username)
 
         return url
 

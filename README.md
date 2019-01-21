@@ -1,10 +1,10 @@
-# Snipt
+# Siftie Snippets
 
 ## Automatic deploy to Heroku
 
-You can click the button below to automatically deploy Snipt to Heroku.
+You can click the button below to automatically deploy Siftie Snippets to Heroku.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nicksergeant/snipt)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/siftie/snippets)
 
 ## Manual deploy to Heroku
 
@@ -20,8 +20,8 @@ You can click the button below to automatically deploy Snipt to Heroku.
 
 ## Updating your Heroku instance after an automatic deploy
 
-- `git clone https://github.com/nicksergeant/snipt`
-- `cd snipt`
+- `git clone https://github.com/siftie/snippets`
+- `cd snippets`
 - `git checkout heroku`
 - `heroku git:remote -a <your-instance-name>`
 - `git push heroku heroku:master`
