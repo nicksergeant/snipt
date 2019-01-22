@@ -22,11 +22,12 @@ from teams.models import Team
 class Snipt(models.Model):
     """An individual Snipt."""
 
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
     last_user_saved = models.ForeignKey(User,
                                         blank=True,
                                         null=True,
-                                        related_name='last_user_saved')
+                                        related_name='last_user_saved',
+                                        on_delete=models.DO_NOTHING)
 
     title = models.CharField(max_length=255, blank=True, null=True,
                              default='Untitled')
@@ -299,8 +300,8 @@ class Snipt(models.Model):
 class SniptLogEntry(models.Model):
     """An individual log entry for a snippet changeset."""
 
-    user = models.ForeignKey(User)
-    snipt = models.ForeignKey(Snipt)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    snipt = models.ForeignKey(Snipt, on_delete=models.DO_NOTHING)
 
     code = models.TextField()
     diff = models.TextField()
@@ -316,8 +317,8 @@ class SniptLogEntry(models.Model):
 class SniptSecureView(models.Model):
     """A single view to a secure snippet."""
 
-    user = models.ForeignKey(User)
-    snipt = models.ForeignKey(Snipt)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    snipt = models.ForeignKey(Snipt, on_delete=models.DO_NOTHING)
 
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -328,8 +329,8 @@ class SniptSecureView(models.Model):
 
 
 class Favorite(models.Model):
-    snipt = models.ForeignKey(Snipt)
-    user = models.ForeignKey(User)
+    snipt = models.ForeignKey(Snipt, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)

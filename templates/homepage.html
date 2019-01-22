@@ -26,11 +26,11 @@
                     <ul>
                         {% if request.user.is_authenticated %}
                             <li>
-                                <a href="/{{ request.user.username }}/">My snipts</a>
+                                <a href="/{{ request.user.username }}/">My snippets</a>
                             </li>
                         {% endif %}
                         <li>
-                            <a href="/public/">Public snipts</a>
+                            <a href="/public/">Public snippets</a>
                         </li>
                         <li>
                             <a href="/search/">Search</a>
@@ -62,7 +62,7 @@
             </div>
         </div>
         {% if request.user.is_authenticated %}
-            <a href="/{{ request.user.username }}/" class="button">My snipts</a>
+            <a href="/{{ request.user.username }}/" class="button">My snippets</a>
         {% else %}
             <a href="/login/" class="button">Log in</a>
         {% endif %}

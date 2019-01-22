@@ -61,9 +61,12 @@ assets:
 		> media/js/pro-all.min.js
 
 deploy:
-	git push heroku
+	git push dokku
+
+run:
+	~/.virtualenvs/snipt/bin/python manage.py runserver
 
 sass:
-	sass --sourcemap=none --watch -t compressed --scss media/css/style.scss:media/css/style.css
+	sass media/css/style.scss > media/css/style.css
 
-.PHONY: deploy sass
+.PHONY: deploy run sass

@@ -1,5 +1,23 @@
 # Siftie Snippets
 
+## Running locally:
+
+- Clone the repo.
+- `cd snippets`
+- `python3 -m venv ~/.virtualenvs/snipt`
+- `source ~/.virtualenvs/snipt/bin/activate`
+- `pip install -r requirements.txt`
+- `brew install postgresql`
+- `brew services start postgresql`
+- `createuser snippets`
+- `createdb snippets --owner=snippets`
+- `cp settings_local.py-template settings_local.py` // modify if necessary
+- `brew install elasticsearch`
+- `brew services start elasticsearch`
+- `curl -X PUT "localhost:9200/haystack?pretty"`
+- `python manage.py update_index` // optional if you have a local DB dump with snippets
+- `make run`
+
 ## Automatic deploy to Heroku
 
 You can click the button below to automatically deploy Siftie Snippets to Heroku.
