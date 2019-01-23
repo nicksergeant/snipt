@@ -4,8 +4,8 @@
 
 - Clone the repo.
 - `cd snippets`
-- `python3 -m venv ~/.virtualenvs/snipt`
-- `source ~/.virtualenvs/snipt/bin/activate`
+- `python3 -m venv ~/.virtualenvs/snippets`
+- `source ~/.virtualenvs/snippets/bin/activate`
 - `pip install -r requirements.txt`
 - `brew install postgresql`
 - `brew services start postgresql`
