@@ -2,6 +2,7 @@
 .sass-cache
 .vagrant
 .venv
+.whoosh_index
 
 *.log
 *.un~

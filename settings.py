@@ -3,38 +3,8 @@ from urllib.parse import urlparse
 import dj_database_url
 import os
 
-
 if 'DATABASE_URL' in os.environ:
-
     DATABASES = {'default': dj_database_url.config()}
-
-if 'SEARCHBOX_SSL_URL' in os.environ:
-
-    url = os.environ.get('SEARCHBOX_SSL_URL')
-
-    es = urlparse(url)
-
-    HAYSTACK_CONNECTIONS = {
-        'default': {
-            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-            'URL': es.scheme + '://' + es.hostname + ':443',
-            'INDEX_NAME': 'snipts',
-        },
-    }
-
-    if es.username:
-        HAYSTACK_CONNECTIONS['default']['KWARGS'] = {
-            "http_auth": es.username + ':' + es.password
-        }
-
-else:
-    HAYSTACK_CONNECTIONS = {
-        'default': {
-            'ENGINE': 'haystack.backends.simple_backend.SimpleEngine'
-        }
-    }
-
-
 
 ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/%s/" % u.username}
 ACCOUNT_ACTIVATION_DAYS = 0

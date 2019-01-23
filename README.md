@@ -12,8 +12,6 @@
 - `createuser snippets`
 - `createdb snippets --owner=snippets`
 - `cp settings_local.py-template settings_local.py` // modify if necessary
-- `brew install elasticsearch`
-- `brew services start elasticsearch`
 - `curl -X PUT "localhost:9200/haystack?pretty"`
 - `python manage.py update_index` // optional if you have a local DB dump with snippets
 - `make run`
@@ -29,7 +27,6 @@
 - `dokku config:set DOKKU_LETSENCRYPT_EMAIL=team@siftie.com SECRET_KEY=<some-secret-key> USE_SSL=true`
 - `git remote add dokku dokku@server.nicksergeant.com:snippets`
 - `git push dokku`
-- Elasticsearch 2.x only!
 
 ## Automatic deploy to Heroku
 
