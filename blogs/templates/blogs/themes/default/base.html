@@ -17,9 +17,6 @@
 {% block js %}
         {{ block.super }}
         window.blog_post = true;
-        {% if blog_user.profile.gittip_username %}
-            window.gittip_username = '{{ blog_user.profile.gittip_username }}';
-        {% endif %}
 {% endblock %}
 
 {% block css %}

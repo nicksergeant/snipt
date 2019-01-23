@@ -1,6 +1,6 @@
 # Siftie Snippets
 
-## Running locally:
+## Running locally
 
 - Clone the repo.
 - `cd snippets`
@@ -17,6 +17,10 @@
 - `curl -X PUT "localhost:9200/haystack?pretty"`
 - `python manage.py update_index` // optional if you have a local DB dump with snippets
 - `make run`
+
+## Deploying on Dokku
+
+- Elasticsearch 2.x only!
 
 ## Automatic deploy to Heroku
 

@@ -20,12 +20,6 @@
         <meta name="robots" content="noindex, follow" />
     {% endif %}
 
-    {% if blog_user.profile.gittip_username %}
-        <script type="text/javascript" charset="utf-8">
-            window.gittip_username = '{{ blog_user.profile.gittip_username }}';
-        </script>
-    {% endif %}
-
     {% if debug %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blog-themes/pro-adams/style.css" />
