@@ -20,6 +20,15 @@
 
 ## Deploying on Dokku
 
+- `dokku apps:create snippets`
+- `dokku postgres:create snippets`
+- `dokku postgres:link snippets snippets`
+- `scp snipt.dump nsergeant@server.nicksergeant.com:/home/nsergeant`
+- `dokku postgres:connect snippets < snipt.dump`
+- `dokku domains:add snippets snippets.siftie.com`
+- `dokku config:set DOKKU_LETSENCRYPT_EMAIL=team@siftie.com SECRET_KEY=<some-secret-key> USE_SSL=true`
+- `git remote add dokku dokku@server.nicksergeant.com:snippets`
+- `git push dokku`
 - Elasticsearch 2.x only!
 
 ## Automatic deploy to Heroku
