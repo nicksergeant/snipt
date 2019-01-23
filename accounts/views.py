@@ -5,17 +5,15 @@ from snipts.models import Snipt
 
 
 @login_required
-@render_to('account.html')
+@render_to("account.html")
 def account(request):
     return {}
 
 
 @login_required
-@render_to('stats.html')
+@render_to("stats.html")
 def stats(request):
 
-    snipts = Snipt.objects.filter(user=request.user).order_by('-views')
+    snipts = Snipt.objects.filter(user=request.user).order_by("-views")
 
-    return {
-        'snipts': snipts
-    }
+    return {"snipts": snipts}

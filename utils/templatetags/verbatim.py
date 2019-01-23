@@ -17,7 +17,6 @@ register = template.Library()
 
 
 class VerbatimNode(template.Node):
-
     def __init__(self, text):
         self.text = text
 
@@ -30,15 +29,15 @@ def verbatim(parser, token):
     text = []
     while 1:
         token = parser.tokens.pop(0)
-        if token.contents == 'endverbatim':
+        if token.contents == "endverbatim":
             break
         if token.token_type == template.TOKEN_VAR:
-            text.append('{{')
+            text.append("{{")
         elif token.token_type == template.TOKEN_BLOCK:
-            text.append('{%')
+            text.append("{%")
         text.append(token.contents)
         if token.token_type == template.TOKEN_VAR:
-            text.append('}}')
+            text.append("}}")
         elif token.token_type == template.TOKEN_BLOCK:
-            text.append('%}')
-    return VerbatimNode(''.join(text))
+            text.append("%}")
+    return VerbatimNode("".join(text))

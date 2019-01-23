@@ -18,12 +18,13 @@ def slugify_uniquely(value, model, slugfield="slug"):
                 potential = str(suffix)
         if not model.objects.filter(**{slugfield: potential}).count():
             return potential
-        suffix = str(uuid.uuid4()).split('-')[0]
+        suffix = str(uuid.uuid4()).split("-")[0]
 
 
 def activate_user(user, request, **kwargs):
-    user = authenticate(username=request.POST['username'],
-                        password=request.POST['password1'])
+    user = authenticate(
+        username=request.POST["username"], password=request.POST["password1"]
+    )
     login(request, user)
 
 
@@ -31,12 +32,13 @@ def get_lexers_list():
     lexers = list(get_all_lexers())
 
     for l in lexers:
-        if l[0] == 'ANTLR With Java Target':
+        if l[0] == "ANTLR With Java Target":
             lexers.remove(l)
 
-    lexers.append(('Markdown', ('markdown',),))
+    lexers.append(("Markdown", ("markdown",)))
     lexers = sorted(lexers)
 
     return lexers
+
 
 user_registered.connect(activate_user)

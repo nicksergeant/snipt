@@ -8,15 +8,22 @@ import requests
 
 
 def get_snipts(api_key, from_username, url=None, snipts=[]):
-    path = url or '/api/private/snipt/?limit=50&api_key={}&username={}&format=json'.format(api_key, from_username)
-    res = requests.get('https://snippets.siftie.com' + path)
+    path = (
+        url
+        or "/api/private/snipt/?limit=50&api_key={}&username={}&format=json".format(
+            api_key, from_username
+        )
+    )
+    res = requests.get("https://snippets.siftie.com" + path)
     json = res.json()
 
-    print(u"Fetched snipts {} through {} of {}".format(
-        json["meta"]["offset"],
-        json["meta"]["offset"] + json["meta"]["limit"],
-        json["meta"]["total_count"]
-    ))
+    print(
+        u"Fetched snipts {} through {} of {}".format(
+            json["meta"]["offset"],
+            json["meta"]["offset"] + json["meta"]["limit"],
+            json["meta"]["total_count"],
+        )
+    )
 
     snipts.extend(json["objects"])
 
@@ -30,14 +37,14 @@ class Command(BaseCommand):
     help = u"Import snipts from Siftie Snippets."
 
     def add_arguments(self, parser):
-        parser.add_argument('api_key', nargs='+', type=str)
-        parser.add_argument('from_username', nargs='+', type=str)
-        parser.add_argument('to_username', nargs='+', type=str)
+        parser.add_argument("api_key", nargs="+", type=str)
+        parser.add_argument("from_username", nargs="+", type=str)
+        parser.add_argument("to_username", nargs="+", type=str)
 
     def handle(self, *args, **options):
-        api_key = options['api_key'][0]
-        from_username = options['from_username'][0]
-        to_username = options['to_username'][0]
+        api_key = options["api_key"][0]
+        from_username = options["from_username"][0]
+        to_username = options["to_username"][0]
         to_user = User.objects.get(username=to_username)
 
         print(u"Fetching snipts...")
@@ -62,7 +69,7 @@ class Command(BaseCommand):
                 stylized=snipt["stylized"],
                 title=snipt["title"],
                 user=to_user,
-                views=snipt["views"]
+                views=snipt["views"],
             )
 
             s.created = snipt["created"]

@@ -6,14 +6,10 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('teams', '0006_team_plan'),
-    ]
+    dependencies = [("teams", "0006_team_plan")]
 
     operations = [
         migrations.AddField(
-            model_name='team',
-            name='disabled',
-            field=models.BooleanField(default=False),
-        ),
+            model_name="team", name="disabled", field=models.BooleanField(default=False)
+        )
     ]

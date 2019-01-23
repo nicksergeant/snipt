@@ -9,18 +9,26 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('snipts', '0004_auto_20160512_1058'),
+        ("snipts", "0004_auto_20160512_1058"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='SniptSecureView',
+            name="SniptSecureView",
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('modified', models.DateTimeField(auto_now=True)),
-                ('snipt', models.ForeignKey(to='snipts.Snipt')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        serialize=False,
+                        primary_key=True,
+                        auto_created=True,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("modified", models.DateTimeField(auto_now=True)),
+                ("snipt", models.ForeignKey(to="snipts.Snipt")),
+                ("user", models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
-        ),
+        )
     ]

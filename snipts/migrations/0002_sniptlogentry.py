@@ -9,20 +9,28 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('snipts', '0001_initial'),
+        ("snipts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='SniptLogEntry',
+            name="SniptLogEntry",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('code', models.TextField()),
-                ('diff', models.TextField()),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('modified', models.DateTimeField(auto_now=True)),
-                ('snipt', models.ForeignKey(to='snipts.Snipt')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("code", models.TextField()),
+                ("diff", models.TextField()),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("modified", models.DateTimeField(auto_now=True)),
+                ("snipt", models.ForeignKey(to="snipts.Snipt")),
+                ("user", models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
-        ),
+        )
     ]

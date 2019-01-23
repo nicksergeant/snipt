@@ -14,9 +14,9 @@ class Command(BaseCommand):
         self.stdout.write(u"Updating %s user passwords..." % users.count())
 
         for user in users:
-            if user.password[0:3] == 'bc$':
+            if user.password[0:3] == "bc$":
                 pw = user.password
-                new_password = pw[0:3].replace('bc$', 'bcrypt$') + pw[3:]
+                new_password = pw[0:3].replace("bc$", "bcrypt$") + pw[3:]
                 user.password = new_password
                 user.save()
 

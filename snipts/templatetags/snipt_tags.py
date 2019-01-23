@@ -10,11 +10,11 @@ from templatetag_sugar.register import tag
 register = template.Library()
 
 
-@tag(register, [Constant('as'), Variable()])
+@tag(register, [Constant("as"), Variable()])
 def snipt_is_favorited_by_user(context, asvar):
 
-    user = context['request'].user
-    snipt = context['snipt']
+    user = context["request"].user
+    snipt = context["snipt"]
 
     is_favorited = False
 
@@ -27,37 +27,37 @@ def snipt_is_favorited_by_user(context, asvar):
 
     context[asvar] = is_favorited
 
-    return ''
+    return ""
 
 
 @tag(register, [])
 def snipts_count_for_user(context):
 
-    user = context['request'].user
+    user = context["request"].user
 
     if user.is_authenticated():
-        snipts = Snipt.objects.filter(user=user).values('id').count()
+        snipts = Snipt.objects.filter(user=user).values("id").count()
     else:
         snipts = 0
 
     return snipts
 
 
-@tag(register, [Constant('as'), Variable()])
+@tag(register, [Constant("as"), Variable()])
 def signup_enabled(context, asvar):
     context[asvar] = os.environ.get("DISABLE_SIGNUP") != "true"
-    return ''
+    return ""
 
 
-@tag(register, [Constant('as'), Variable()])
+@tag(register, [Constant("as"), Variable()])
 def get_lexers(context, asvar):
     context[asvar] = get_lexers_list()
-    return ''
+    return ""
 
 
-@tag(register, [Constant('for'), Variable()])
+@tag(register, [Constant("for"), Variable()])
 def generate_line_numbers(context, line_numbers):
-    html = ''
+    html = ""
 
     for i in range(1, line_numbers + 1):
         html = html + '<span class="special">{}</span>'.format(i)
@@ -67,7 +67,7 @@ def generate_line_numbers(context, line_numbers):
 
 @register.filter
 def md5(string):
-    return hashlib.md5(string.lower().encode('utf-8')).hexdigest()
+    return hashlib.md5(string.lower().encode("utf-8")).hexdigest()
 
 
 @register.filter

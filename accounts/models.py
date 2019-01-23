@@ -9,39 +9,30 @@ from teams.models import Team
 
 class UserProfile(models.Model):
 
-    LIST_VIEW_CHOICES = (
-        ('N', 'Normal'),
-        ('C', 'Compact'),
-    )
+    LIST_VIEW_CHOICES = (("N", "Normal"), ("C", "Compact"))
 
-    EDITOR_CHOICES = (
-        ('C', 'CodeMirror'),
-        ('T', 'Textarea'),
-    )
+    EDITOR_CHOICES = (("C", "CodeMirror"), ("T", "Textarea"))
 
-    THEME_CHOICES = (
-        ('D', 'Default'),
-        ('A', 'Pro Adams'),
-    )
+    THEME_CHOICES = (("D", "Default"), ("A", "Pro Adams"))
 
     EDITOR_THEME_CHOICES = (
-        ('default',         'Default'),
-        ('ambiance',        'Ambiance'),
-        ('blackboard',      'Blackboard'),
-        ('cobalt',          'Cobalt'),
-        ('eclipse',         'Eclipse'),
-        ('elegant',         'Elegant'),
-        ('erlang-dark',     'Erlang Dark'),
-        ('lesser-dark',     'Lesser Dark'),
-        ('monokai',         'Monokai'),
-        ('neat',            'Neat'),
-        ('night',           'Night'),
-        ('rubyblue',        'Ruby Blue'),
-        ('solarized dark',  'Solarized Dark'),
-        ('solarized light', 'Solarized Light'),
-        ('twilight',        'Twilight'),
-        ('vibrant-ink',     'Vibrant Ink'),
-        ('xq-dark',         'XQ Dark'),
+        ("default", "Default"),
+        ("ambiance", "Ambiance"),
+        ("blackboard", "Blackboard"),
+        ("cobalt", "Cobalt"),
+        ("eclipse", "Eclipse"),
+        ("elegant", "Elegant"),
+        ("erlang-dark", "Erlang Dark"),
+        ("lesser-dark", "Lesser Dark"),
+        ("monokai", "Monokai"),
+        ("neat", "Neat"),
+        ("night", "Night"),
+        ("rubyblue", "Ruby Blue"),
+        ("solarized dark", "Solarized Dark"),
+        ("solarized light", "Solarized Light"),
+        ("twilight", "Twilight"),
+        ("vibrant-ink", "Vibrant Ink"),
+        ("xq-dark", "XQ Dark"),
     )
 
     # User
@@ -52,27 +43,35 @@ class UserProfile(models.Model):
     pro_date = models.DateTimeField(blank=True, null=True)
     stripe_id = models.CharField(max_length=100, null=True, blank=True)
     has_gravatar = models.BooleanField(default=False)
-    list_view = models.CharField(max_length=1, null=False, blank=False,
-                                 default='N', choices=LIST_VIEW_CHOICES)
+    list_view = models.CharField(
+        max_length=1, null=False, blank=False, default="N", choices=LIST_VIEW_CHOICES
+    )
 
     # Blog
     blog_title = models.CharField(max_length=250, null=True, blank=True)
-    blog_theme = models.CharField(max_length=1, null=False, blank=False,
-                                  default='A', choices=THEME_CHOICES)
+    blog_theme = models.CharField(
+        max_length=1, null=False, blank=False, default="A", choices=THEME_CHOICES
+    )
     blog_domain = models.CharField(max_length=250, null=True, blank=True)
 
     # Editor
-    default_editor = models.CharField(max_length=250, null=False, blank=False,
-                                      default='C', choices=EDITOR_CHOICES)
-    editor_theme = models.CharField(max_length=250, null=False, blank=False,
-                                    default='default',
-                                    choices=EDITOR_THEME_CHOICES)
+    default_editor = models.CharField(
+        max_length=250, null=False, blank=False, default="C", choices=EDITOR_CHOICES
+    )
+    editor_theme = models.CharField(
+        max_length=250,
+        null=False,
+        blank=False,
+        default="default",
+        choices=EDITOR_THEME_CHOICES,
+    )
 
     # Services and Analytics
     gittip_username = models.CharField(max_length=250, null=True, blank=True)
     disqus_shortname = models.CharField(max_length=250, null=True, blank=True)
-    google_analytics_tracking_id = models.CharField(max_length=250, null=True,
-                                                    blank=True)
+    google_analytics_tracking_id = models.CharField(
+        max_length=250, null=True, blank=True
+    )
     gauges_site_id = models.CharField(max_length=250, null=True, blank=True)
 
     # Google Ads
@@ -82,36 +81,34 @@ class UserProfile(models.Model):
     google_ad_height = models.CharField(max_length=250, null=True, blank=True)
 
     def get_blog_posts(self):
-        return Snipt.objects.filter(user=self.user, blog_post=True,
-                                    public=True)
+        return Snipt.objects.filter(user=self.user, blog_post=True, public=True)
 
     def get_primary_blog_domain(self):
         if not self.blog_domain:
             return None
         else:
-            return self.blog_domain.split(' ')[0]
+            return self.blog_domain.split(" ")[0]
 
     def get_user_profile_url(self):
 
         # If the user has a blog domain, use that.
         if self.blog_domain:
-            url = 'http://{}'.format(self.get_primary_blog_domain())
+            url = "http://{}".format(self.get_primary_blog_domain())
 
         # Otherwise, if they have blog posts, use their Snipt blog URL.
         elif self.get_blog_posts():
-            url = 'https://{}.snippets.siftie.com/'.format(self.user.username)
+            url = "https://{}.snippets.siftie.com/".format(self.user.username)
 
         # Otherwise, use their regular Snipt profile page.
         else:
-            url = 'https://snippets.siftie.com/{}/'.format(self.user.username)
+            url = "https://snippets.siftie.com/{}/".format(self.user.username)
 
         return url
 
     def has_public_snipts(self):
-        return True \
-            if Snipt.objects.filter(user=self,
-                                    public=True).count() > 0 \
-            else False
+        return (
+            True if Snipt.objects.filter(user=self, public=True).count() > 0 else False
+        )
 
     @property
     def is_a_team(self):
@@ -127,14 +124,16 @@ class UserProfile(models.Model):
 
     @property
     def has_teams(self):
-        if (len(self.teams()) > 0):
+        if len(self.teams()) > 0:
             return True
         else:
             return False
 
     def get_account_age(self):
-        delta = datetime.now().replace(tzinfo=None) - \
-            self.user.date_joined.replace(tzinfo=None)
+        delta = datetime.now().replace(tzinfo=None) - self.user.date_joined.replace(
+            tzinfo=None
+        )
         return delta.days
+
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

@@ -6,7 +6,7 @@ from snipts.utils import get_lexers_list
 from taggit.models import Tag
 
 
-@render_to('homepage.html')
+@render_to("homepage.html")
 def homepage(request):
 
     if request.blog_user:
@@ -32,39 +32,32 @@ def lexers(request):
         except IndexError:
             mimetypes = []
 
-        objects.append({
-            'name': l[0],
-            'lexers': l[1],
-            'filters': filters,
-            'mimetypes': mimetypes
-        })
+        objects.append(
+            {"name": l[0], "lexers": l[1], "filters": filters, "mimetypes": mimetypes}
+        )
 
-    return {'objects': objects}
+    return {"objects": objects}
 
 
 def login_redirect(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/' + request.user.username + '/')
+        return HttpResponseRedirect("/" + request.user.username + "/")
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect("/")
 
 
-@render_to('tags.html')
+@render_to("tags.html")
 def tags(request):
 
-    all_tags = Tag.objects.filter(snipt__public=True).order_by('name')
-    all_tags = all_tags.annotate(count=Count('taggit_taggeditem_items__id'))
+    all_tags = Tag.objects.filter(snipt__public=True).order_by("name")
+    all_tags = all_tags.annotate(count=Count("taggit_taggeditem_items__id"))
 
     popular_tags = Tag.objects.filter(snipt__public=True)
-    popular_tags = popular_tags.annotate(
-        count=Count('taggit_taggeditem_items__id'))
-    popular_tags = popular_tags.order_by('-count')[:20]
+    popular_tags = popular_tags.annotate(count=Count("taggit_taggeditem_items__id"))
+    popular_tags = popular_tags.order_by("-count")[:20]
     popular_tags = sorted(popular_tags, key=lambda tag: tag.name)
 
-    return {
-        'all_tags': all_tags,
-        'tags': popular_tags
-    }
+    return {"all_tags": all_tags, "tags": popular_tags}
 
 
 @ajax_request
@@ -73,6 +66,4 @@ def user_api_key(request):
     if not request.user.is_authenticated():
         return HttpResponseBadRequest()
 
-    return {
-        'api_key': request.user.api_key.key
-    }
+    return {"api_key": request.user.api_key.key}

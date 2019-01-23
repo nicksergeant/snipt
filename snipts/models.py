@@ -23,14 +23,15 @@ class Snipt(models.Model):
     """An individual Snipt."""
 
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
-    last_user_saved = models.ForeignKey(User,
-                                        blank=True,
-                                        null=True,
-                                        related_name='last_user_saved',
-                                        on_delete=models.DO_NOTHING)
+    last_user_saved = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        related_name="last_user_saved",
+        on_delete=models.DO_NOTHING,
+    )
 
-    title = models.CharField(max_length=255, blank=True, null=True,
-                             default='Untitled')
+    title = models.CharField(max_length=255, blank=True, null=True, default="Untitled")
     slug = models.SlugField(max_length=255, blank=True)
     custom_slug = models.SlugField(max_length=255, blank=True)
     tags = TaggableManager()
@@ -61,7 +62,7 @@ class Snipt(models.Model):
 
         diff = difflib.unified_diff(expected, actual)
 
-        return ''.join(diff)
+        return "".join(diff)
 
     def __init__(self, *args, **kwargs):
         super(Snipt, self).__init__(*args, **kwargs)
@@ -73,92 +74,101 @@ class Snipt(models.Model):
             self.slug = slugify_uniquely(self.title, Snipt)
 
         if not self.key:
-            self.key = hashlib.md5((self.slug +
-                                    str(datetime.datetime.now()) +
-                                    str(random.random())).encode('utf-8')).hexdigest()
+            self.key = hashlib.md5(
+                (
+                    self.slug + str(datetime.datetime.now()) + str(random.random())
+                ).encode("utf-8")
+            ).hexdigest()
 
-        if self.lexer == 'markdown':
-            self.stylized = markdown(self.code, 'default')
+        if self.lexer == "markdown":
+            self.stylized = markdown(self.code, "default")
 
             # Snippet embeds
-            for match in re.findall('\[\[(\w{32})\]\]', self.stylized):
-                self.stylized = self.stylized.replace('[[' + str(match) + ']]',
-                                                      """
+            for match in re.findall("\[\[(\w{32})\]\]", self.stylized):
+                self.stylized = self.stylized.replace(
+                    "[[" + str(match) + "]]",
+                    """
                         <script type="text/javascript"
                                    src="https://snippets.siftie.com/embed/{}/?snipt">
                            </script>
-                       <div id="snipt-embed-{}"></div>""".format(match, match))
+                       <div id="snipt-embed-{}"></div>""".format(
+                        match, match
+                    ),
+                )
 
             # YouTube embeds
-            for match in re.findall('\[\[youtube-(\w{11})\-(\d+)x(\d+)\]\]',
-                                    self.stylized):
-                self.stylized = self.stylized \
-                    .replace('[[youtube-{}-{}x{}]]'.format(
-                        str(match[0]),
-                        str(match[1]),
-                        str(match[2])),
-                        """<iframe width="{}" height="{}"
+            for match in re.findall(
+                "\[\[youtube-(\w{11})\-(\d+)x(\d+)\]\]", self.stylized
+            ):
+                self.stylized = self.stylized.replace(
+                    "[[youtube-{}-{}x{}]]".format(
+                        str(match[0]), str(match[1]), str(match[2])
+                    ),
+                    """<iframe width="{}" height="{}"
                            src="https://www.youtube.com/embed/{}"
-                           frameborder="0" allowfullscreen></iframe>"""
-                        .format(match[1], match[2], match[0]))
+                           frameborder="0" allowfullscreen></iframe>""".format(
+                        match[1], match[2], match[0]
+                    ),
+                )
 
             # Vimeo embeds
-            for match in re.findall('\[\[vimeo-(\d+)\-(\d+)x(\d+)\]\]',
-                                    self.stylized):
-                self.stylized = self.stylized \
-                    .replace('[[vimeo-{}-{}x{}]]'.format(
-                        str(match[0]),
-                        str(match[1]),
-                        str(match[2])),
-                        """<iframe src="https://player.vimeo.com/video/{}"
+            for match in re.findall("\[\[vimeo-(\d+)\-(\d+)x(\d+)\]\]", self.stylized):
+                self.stylized = self.stylized.replace(
+                    "[[vimeo-{}-{}x{}]]".format(
+                        str(match[0]), str(match[1]), str(match[2])
+                    ),
+                    """<iframe src="https://player.vimeo.com/video/{}"
                            width="{}" height="{}" frameborder="0"
                            webkitAllowFullScreen mozallowfullscreen
-                           allowFullScreen></iframe>"""
-                        .format(match[0], match[1], match[2]))
+                           allowFullScreen></iframe>""".format(
+                        match[0], match[1], match[2]
+                    ),
+                )
 
             # Tweet embeds
-            for match in re.findall('\[\[tweet-(\d+)\]\]', self.stylized):
-                self.stylized = self.stylized \
-                    .replace(
-                        '[[tweet-{}]]'.format(str(match)),
-                        '<div class="embedded-tweet" data-tweet-id="{}"></div>'
-                        .format(str(match)))
+            for match in re.findall("\[\[tweet-(\d+)\]\]", self.stylized):
+                self.stylized = self.stylized.replace(
+                    "[[tweet-{}]]".format(str(match)),
+                    '<div class="embedded-tweet" data-tweet-id="{}"></div>'.format(
+                        str(match)
+                    ),
+                )
 
             # Parse usernames
-            for match in re.findall('@(\w+) ', self.stylized):
+            for match in re.findall("@(\w+) ", self.stylized):
 
                 # Try and get the user by username.
                 user = get_object_or_None(User, username=match)
 
                 if user:
                     url = user.profile.get_user_profile_url()
-                    self.stylized = self.stylized \
-                        .replace('@{} '.format(str(match)),
-                                 '<a href="{}">@{}</a> '.format(url, match))
+                    self.stylized = self.stylized.replace(
+                        "@{} ".format(str(match)),
+                        '<a href="{}">@{}</a> '.format(url, match),
+                    )
 
         else:
-            self.stylized = highlight(self.code,
-                                      get_lexer_by_name(self.lexer,
-                                                        encoding='UTF-8'),
-                                      HtmlFormatter(linenos='table',
-                                                    anchorlinenos=True,
-                                                    lineanchors='L',
-                                                    linespans='L',
-                                                    ))
-        self.line_count = len(self.code.split('\n'))
+            self.stylized = highlight(
+                self.code,
+                get_lexer_by_name(self.lexer, encoding="UTF-8"),
+                HtmlFormatter(
+                    linenos="table", anchorlinenos=True, lineanchors="L", linespans="L"
+                ),
+            )
+        self.line_count = len(self.code.split("\n"))
 
-        if self.lexer == 'markdown':
-            lexer_for_embedded = 'text'
+        if self.lexer == "markdown":
+            lexer_for_embedded = "text"
         else:
             lexer_for_embedded = self.lexer
 
-        embedded = highlight(self.code,
-                             get_lexer_by_name(lexer_for_embedded,
-                                               encoding='UTF-8'),
-                             HtmlFormatter(
-                                 style='native',
-                                 noclasses=True,
-                                 prestyles="""
+        embedded = highlight(
+            self.code,
+            get_lexer_by_name(lexer_for_embedded, encoding="UTF-8"),
+            HtmlFormatter(
+                style="native",
+                noclasses=True,
+                prestyles="""
                                      background-color: #1C1C1C;
                                      border-radius: 5px;
                                      color: #D0D0D0;
@@ -169,22 +179,25 @@ class Snipt(models.Model):
                                      padding: 15px;
                                      -webkit-border-radius: 5px;
                                      -moz-border-radius: 5px;
-                                     """))
-        embedded = (embedded.replace("\\\"", "\\\\\"")
-                            .replace('\'', '\\\'')
-                            .replace("\\", "\\\\")
-                            .replace('background: #202020', ''))
+                                     """,
+            ),
+        )
+        embedded = (
+            embedded.replace('\\"', '\\\\"')
+            .replace("'", "\\'")
+            .replace("\\", "\\\\")
+            .replace("background: #202020", "")
+        )
         self.embedded = embedded
 
         snipt = super(Snipt, self).save(*args, **kwargs)
 
-        diff = self._unidiff_output(self.original_code or '', self.code)
+        diff = self._unidiff_output(self.original_code or "", self.code)
 
-        if (diff != ''):
-            log_entry = SniptLogEntry(user=self.last_user_saved,
-                                      snipt=self,
-                                      code=self.code,
-                                      diff=diff)
+        if diff != "":
+            log_entry = SniptLogEntry(
+                user=self.last_user_saved, snipt=self, code=self.code, diff=diff
+            )
             log_entry.save()
 
         return snipt
@@ -197,52 +210,52 @@ class Snipt(models.Model):
 
     def get_stylized_min(self):
         if self.stylized_min is None:
-            if self.lexer == 'markdown':
-                self.stylized_min = markdown(self.code[:1000], 'default')
+            if self.lexer == "markdown":
+                self.stylized_min = markdown(self.code[:1000], "default")
             else:
                 self.stylized_min = highlight(
                     self.code[:1000],
-                    get_lexer_by_name(self.lexer, encoding='UTF-8'),
-                    HtmlFormatter(linenos='table',
-                                  linenospecial=1,
-                                  lineanchors='line'))
+                    get_lexer_by_name(self.lexer, encoding="UTF-8"),
+                    HtmlFormatter(linenos="table", linenospecial=1, lineanchors="line"),
+                )
         return self.stylized_min
 
     def get_absolute_url(self):
 
         if self.blog_post:
             if self.user.profile.blog_domain:
-                return u'http://{}/{}/'.format(
-                    self.user.profile.blog_domain.split(' ')[0], self.slug)
+                return u"http://{}/{}/".format(
+                    self.user.profile.blog_domain.split(" ")[0], self.slug
+                )
             else:
-                return u'https://{}.snippets.siftie.com/{}/'.format(
-                    self.user.username.replace('_', '-'), self.slug)
+                return u"https://{}.snippets.siftie.com/{}/".format(
+                    self.user.username.replace("_", "-"), self.slug
+                )
 
         if self.custom_slug:
-            return u'/{}/'.format(self.custom_slug)
+            return u"/{}/".format(self.custom_slug)
 
         if self.public:
-            return u'/{}/{}/'.format(self.user.username, self.slug)
+            return u"/{}/{}/".format(self.user.username, self.slug)
         else:
-            return u'/{}/{}/?key={}'.format(
-                self.user.username, self.slug, self.key)
+            return u"/{}/{}/?key={}".format(self.user.username, self.slug, self.key)
 
     def get_full_absolute_url(self):
 
         if self.blog_post:
             if self.user.profile.blog_domain:
-                return u'http://{}/{}/'.format(
-                    self.user.profile.blog_domain.split(' ')[0], self.slug)
+                return u"http://{}/{}/".format(
+                    self.user.profile.blog_domain.split(" ")[0], self.slug
+                )
             else:
-                return u'https://{}.snippets.siftie.com/{}/'.format(
-                    self.user.username, self.slug)
+                return u"https://{}.snippets.siftie.com/{}/".format(
+                    self.user.username, self.slug
+                )
 
         if self.public:
-            return u'/{}/{}/'.format(self.user.username, self.slug)
+            return u"/{}/{}/".format(self.user.username, self.slug)
         else:
-            return u'/{}/{}/?key={}'.format(self.user.username,
-                                            self.slug,
-                                            self.key)
+            return u"/{}/{}/?key={}".format(self.user.username, self.slug, self.key)
 
     def get_download_url(self):
 
@@ -252,30 +265,30 @@ class Snipt(models.Model):
             lexer_obj = None
 
         if lexer_obj and lexer_obj.filenames:
-            filename = lexer_obj.filenames[0].replace('*', self.slug)
+            filename = lexer_obj.filenames[0].replace("*", self.slug)
         else:
-            if self.lexer == 'markdown':
-                filename = u'{}.md'.format(self.slug)
+            if self.lexer == "markdown":
+                filename = u"{}.md".format(self.slug)
             else:
-                filename = u'{}.txt'.format(self.slug)
+                filename = u"{}.txt".format(self.slug)
 
-        return u'/download/{}/{}'.format(self.key, filename)
+        return u"/download/{}/{}".format(self.key, filename)
 
     def get_embed_url(self):
 
         if settings.DEBUG:
-            root = 'http://local.snippets.siftie.com'
+            root = "http://local.snippets.siftie.com"
         else:
-            root = 'https://snippets.siftie.com'
+            root = "https://snippets.siftie.com"
 
-        return '{}/embed/{}/'.format(root, self.key)
+        return "{}/embed/{}/".format(root, self.key)
 
     def get_raw_url(self):
-        return '/raw/{}/'.format(self.key)
+        return "/raw/{}/".format(self.key)
 
     @property
     def sorted_tags(self):
-        return self.tags.all().order_by('name')
+        return self.tags.all().order_by("name")
 
     @property
     def tags_list(self):
@@ -283,8 +296,8 @@ class Snipt(models.Model):
 
     @property
     def lexer_name(self):
-        if self.lexer == 'markdown':
-            return 'Markdown'
+        if self.lexer == "markdown":
+            return "Markdown"
         else:
             return get_lexer_by_name(self.lexer).name
 
@@ -311,7 +324,7 @@ class SniptLogEntry(models.Model):
 
     @property
     def snipt_name(self):
-        return self.snipt.title or 'Untitled'
+        return self.snipt.title or "Untitled"
 
 
 class SniptSecureView(models.Model):
@@ -325,7 +338,7 @@ class SniptSecureView(models.Model):
 
     @property
     def snipt_name(self):
-        return self.snipt.title or 'Untitled'
+        return self.snipt.title or "Untitled"
 
 
 class Favorite(models.Model):
@@ -336,5 +349,4 @@ class Favorite(models.Model):
     modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
-        return u'{} favorited by {}'.format(self.snipt.title,
-                                            self.user.username)
+        return u"{} favorited by {}".format(self.snipt.title, self.user.username)

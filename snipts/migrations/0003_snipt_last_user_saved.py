@@ -9,13 +9,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('snipts', '0002_sniptlogentry'),
+        ("snipts", "0002_sniptlogentry"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='snipt',
-            name='last_user_saved',
-            field=models.ForeignKey(related_name='last_user_saved', blank=True, to=settings.AUTH_USER_MODEL, null=True),
-        ),
+            model_name="snipt",
+            name="last_user_saved",
+            field=models.ForeignKey(
+                related_name="last_user_saved",
+                blank=True,
+                to=settings.AUTH_USER_MODEL,
+                null=True,
+            ),
+        )
     ]
