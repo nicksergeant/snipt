@@ -64,7 +64,7 @@ deploy:
 	git push dokku
 
 run:
-	~/.virtualenvs/snipt/bin/python manage.py runserver
+	~/.virtualenvs/snippets/bin/python manage.py runserver
 
 sass:
 	sass media/css/style.scss > media/css/style.css
