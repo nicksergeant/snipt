@@ -24,7 +24,8 @@
 - `scp snipt.dump nsergeant@server.nicksergeant.com:/home/nsergeant`
 - `dokku postgres:connect snippets < snipt.dump`
 - `dokku domains:add snippets snippets.siftie.com`
-- `dokku config:set DOKKU_LETSENCRYPT_EMAIL=team@siftie.com SECRET_KEY=<some-secret-key> USE_SSL=true`
+- `dokku config:set DOKKU_LETSENCRYPT_EMAIL=team@siftie.com SECRET_KEY=<some-secret-key> USE_SSL=true WHOOSH_PATH=/app/snippets-whoosh`
+- `dokku storage:mount snippets /var/lib/dokku/data/storage/snippets-whoosh:/app/snippets-whoosh`
 - `git remote add dokku dokku@server.nicksergeant.com:snippets`
 - `git push dokku`
 
