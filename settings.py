@@ -18,14 +18,14 @@ CORS_ORIGIN_ALLOW_ALL = True
 DEBUG = True if "DEBUG" in os.environ else False
 DEFAULT_FROM_EMAIL = os.environ.get("POSTMARK_EMAIL", "support@siftie.com")
 EMAIL_BACKEND = "postmark.django_backend.EmailBackend"
-HAYSTACK_CONNECTIONS = {
-    "default": {
-        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
-        "PATH": os.environ.get("WHOOSH_PATH", "./.whoosh_index"),
-        "STORAGE": "file",
-    }
-}
-HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
+# HAYSTACK_CONNECTIONS = {
+#     "default": {
+#         "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+#         "PATH": os.environ.get("WHOOSH_PATH", "./.whoosh_index"),
+#         "STORAGE": "file",
+#     }
+# }
+# HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
 INTERNAL_IPS = ("127.0.0.1",)
 LANGUAGE_CODE = "en-us"
 LOGIN_REDIRECT_URL = "/login-redirect/"
@@ -105,7 +105,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "django_extensions",
     "gunicorn",
-    "haystack",
+    # "haystack",
     "markdown_deux",
     "pagination",
     "postmark",

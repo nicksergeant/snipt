@@ -73,16 +73,16 @@
     <div class="inner">
       <div class="shadey"></div>
       <h1 class="main-logo"><a href="{% if request.user.is_authenticated %}/{{ request.user.username }}/{% else %}/{% endif %}">snip<span>t</span></a></h1> 
-      <form class="search" action="/search/" method="get">
-        <fieldset>
-          <div class="fields">
-            <input ng-model="search.query" type="text" class="search-query" name="q"
-            ng-init="search.query='{{ query|escapejs }}'"
-            placeholder="Search snippets" id="id_q"
-            value="{{ query }}" />
-          </div>
-        </fieldset>
-      </form>
+      <!-- <form class="search" action="/search/" method="get"> -->
+      <!--   <fieldset> -->
+      <!--     <div class="fields"> -->
+      <!--       <input ng-model="search.query" type="text" class="search-query" name="q" -->
+      <!--       ng-init="search.query='{{ query|escapejs }}'" -->
+      <!--       placeholder="Search snippets" id="id_q" -->
+      <!--       value="{{ query }}" /> -->
+      <!--     </div> -->
+      <!--   </fieldset> -->
+      <!-- </form> -->
       <nav class="public">
         <ul>
           {% if not request.user.is_authenticated %}

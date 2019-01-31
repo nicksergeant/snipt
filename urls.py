@@ -15,7 +15,7 @@ from snipts.api import (
     PrivateUserResource,
     PublicTagResource,
 )
-from snipts.views import search
+# from snipts.views import search
 from tastypie.api import Api
 from views import homepage, lexers, login_redirect, tags, user_api_key
 
@@ -56,7 +56,7 @@ urlpatterns += [
     url(r"^api/private/key/$", user_api_key),
     url(r"^api/", include(public_api.urls)),
     url(r"^api/", include(private_api.urls)),
-    url(r"^search/$", search),
+    # url(r"^search/$", search),
     url(r"^", include("teams.urls")),
     url(r"^", include("snipts.urls")),
     url(

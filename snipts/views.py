@@ -16,8 +16,8 @@ from django.http import (
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
-from haystack.forms import ModelSearchForm
-from haystack.query import EmptySearchQuerySet, SearchQuerySet
+# from haystack.forms import ModelSearchForm
+# from haystack.query import EmptySearchQuerySet, SearchQuerySet
 from pygments.lexers import get_lexer_by_name
 from snipts.models import Favorite, Snipt, SniptSecureView
 from taggit.models import Tag
@@ -26,7 +26,7 @@ from teams.models import Team
 import os
 
 
-RESULTS_PER_PAGE = getattr(settings, "HAYSTACK_SEARCH_RESULTS_PER_PAGE", 20)
+# RESULTS_PER_PAGE = getattr(settings, "HAYSTACK_SEARCH_RESULTS_PER_PAGE", 20)
 
 
 @render_to("snipts/detail.html")
@@ -290,86 +290,86 @@ def rss(request, context):
     return render(request, "rss.xml", context, content_type="application/rss+xml")
 
 
-@never_cache
-def search(
-    request,
-    template="search/search.html",
-    load_all=True,
-    form_class=ModelSearchForm,
-    searchqueryset=None,
-    context_class=RequestContext,
-    extra_context=None,
-    results_per_page=None,
-):
+# @never_cache
+# def search(
+#     request,
+#     template="search/search.html",
+#     load_all=True,
+#     form_class=ModelSearchForm,
+#     searchqueryset=None,
+#     context_class=RequestContext,
+#     extra_context=None,
+#     results_per_page=None,
+# ):
 
-    query = ""
-    results = EmptySearchQuerySet()
+#     query = ""
+#     results = EmptySearchQuerySet()
 
-    if request.GET.get("q"):
+#     if request.GET.get("q"):
 
-        searchqueryset = (
-            SearchQuerySet()
-            .filter(Q(public=True) | Q(author=request.user))
-            .order_by("-pub_date")
-        )
+#         searchqueryset = (
+#             SearchQuerySet()
+#             .filter(Q(public=True) | Q(author=request.user))
+#             .order_by("-pub_date")
+#         )
 
-        if request.user.is_authenticated() and "mine-only" in request.GET:
-            searchqueryset = (
-                SearchQuerySet().filter(author=request.user).order_by("-pub_date")
-            )
+#         if request.user.is_authenticated() and "mine-only" in request.GET:
+#             searchqueryset = (
+#                 SearchQuerySet().filter(author=request.user).order_by("-pub_date")
+#             )
 
-        elif request.user.is_authenticated() and (
-            "author" in request.GET and request.GET.get("author")
-        ):
+#         elif request.user.is_authenticated() and (
+#             "author" in request.GET and request.GET.get("author")
+#         ):
 
-            author = request.GET.get("author")
+#             author = request.GET.get("author")
 
-            if author == request.user.username:
-                searchqueryset = (
-                    SearchQuerySet().filter(author=request.user).order_by("-pub_date")
-                )
+#             if author == request.user.username:
+#                 searchqueryset = (
+#                     SearchQuerySet().filter(author=request.user).order_by("-pub_date")
+#                 )
 
-            else:
-                team = get_object_or_None(Team, slug=author)
+#             else:
+#                 team = get_object_or_None(Team, slug=author)
 
-                if team and team.user_is_member(request.user):
-                    searchqueryset = (
-                        SearchQuerySet().filter(author=team).order_by("-pub_date")
-                    )
+#                 if team and team.user_is_member(request.user):
+#                     searchqueryset = (
+#                         SearchQuerySet().filter(author=team).order_by("-pub_date")
+#                     )
 
-        form = ModelSearchForm(
-            request.GET, searchqueryset=searchqueryset, load_all=load_all
-        )
+#         form = ModelSearchForm(
+#             request.GET, searchqueryset=searchqueryset, load_all=load_all
+#         )
 
-        if form.is_valid():
-            query = form.cleaned_data["q"]
-            results = form.search()
-    else:
-        form = form_class(searchqueryset=searchqueryset, load_all=load_all)
+#         if form.is_valid():
+#             query = form.cleaned_data["q"]
+#             results = form.search()
+#     else:
+#         form = form_class(searchqueryset=searchqueryset, load_all=load_all)
 
-    paginator = Paginator(results, results_per_page or RESULTS_PER_PAGE)
+#     paginator = Paginator(results, results_per_page or RESULTS_PER_PAGE)
 
-    try:
-        page = paginator.page(int(request.GET.get("page", 1)))
-    except InvalidPage:
-        raise Http404("No such page of results!")
+#     try:
+#         page = paginator.page(int(request.GET.get("page", 1)))
+#     except InvalidPage:
+#         raise Http404("No such page of results!")
 
-    context = {
-        "form": form,
-        "has_snipts": True,
-        "page": page,
-        "paginator": paginator,
-        "query": query,
-        "suggestion": None,
-    }
+#     context = {
+#         "form": form,
+#         "has_snipts": True,
+#         "page": page,
+#         "paginator": paginator,
+#         "query": query,
+#         "suggestion": None,
+#     }
 
-    if results.query.backend.include_spelling:
-        context["suggestion"] = form.get_suggestion()
+#     if results.query.backend.include_spelling:
+#         context["suggestion"] = form.get_suggestion()
 
-    if extra_context:
-        context.update(extra_context)
+#     if extra_context:
+#         context.update(extra_context)
 
-    return render(request, template, context)
+#     return render(request, template, context)
 
 
 def redirect_snipt(request, snipt_key, lexer=None):
