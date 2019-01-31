@@ -64,6 +64,7 @@ header.main div.inner div.shadey {
   background: transparent url("../img/header-inner-bg.png") top left no-repeat;
   height: 65px;
   left: -157px;
+  pointer-events: none;
   position: absolute;
   top: 0;
   width: 432px;
