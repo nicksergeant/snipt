@@ -23,6 +23,7 @@ urlpatterns = [
     url(
         r"^public/tag/(?P<tag_slug>[^/]+)/$", views.list_public, name="list-public-tag"
     ),
+    url(r'^report-spam/(?P<snipt_id>[^/]+)/$', views.report_spam, name='report-spam'),
     url(r"^download/(?P<snipt_key>[^/]+).*$", views.download, name="download"),
     url(r"^embed/(?P<snipt_key>[^/]+)/$", views.embed, name="embed"),
     url(r"^raw/(?P<snipt_key>[^/]+)/(?P<lexer>[^\?]+)?$", views.raw, name="raw"),

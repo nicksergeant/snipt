@@ -388,3 +388,18 @@ def redirect_user_feed(request, username):
 
 def redirect_user_tag_feed(request, username, tag_slug):
     return HttpResponseRedirect(u"/{}/tag/{}/?rss".format(username, tag_slug))
+
+def report_spam(request, snipt_id):
+    snipt = get_object_or_404(Snipt, pk=snipt_id)
+
+    send_mail('[Snipt] Spam reported',
+              """
+              Snipt: https://snippets.siftie.com/admin/snipts/snipt/{}/
+              User: https://snippets.siftie.com/admin/auth/user/{}/delete/
+              """.format(snipt.id, snipt.user.id),
+              'team@siftie.com',
+              ['nick@siftie.com'],
+              fail_silently=False)
+
+    return HttpResponse("""Thanks! Your report has been
+                           submitted to the site admins.""")

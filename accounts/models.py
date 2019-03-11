@@ -36,7 +36,7 @@ class UserProfile(models.Model):
     )
 
     # User
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_pro = models.BooleanField(default=False)
     teams_beta_seen = models.BooleanField(default=False)
     teams_beta_applied = models.BooleanField(default=False)

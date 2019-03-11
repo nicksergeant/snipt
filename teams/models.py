@@ -19,11 +19,11 @@ class Team(models.Model):
     email = models.EmailField(max_length=255)
     members = models.ManyToManyField(User, related_name="member", blank=True)
     name = models.CharField(max_length=30)
-    owner = models.ForeignKey(User, related_name="owner", on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, related_name="owner", on_delete=models.CASCADE)
     slug = models.SlugField(max_length=255, blank=True)
     stripe_id = models.CharField(max_length=100, null=True, blank=True)
     user = models.OneToOneField(
-        User, blank=True, null=True, on_delete=models.DO_NOTHING
+        User, blank=True, null=True, on_delete=models.CASCADE
     )
     plan = models.CharField(
         max_length=100,
