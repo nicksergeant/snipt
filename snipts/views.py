@@ -396,7 +396,8 @@ def report_spam(request, snipt_id):
               """
               Snipt: https://snippets.siftie.com/admin/snipts/snipt/{}/
               User: https://snippets.siftie.com/admin/auth/user/{}/delete/
-              """.format(snipt.id, snipt.user.id),
+              User who reported: https://snippets.siftie.com/admin/auth/user/{}/
+              """.format(snipt.id, snipt.user.id, request.user.id),
               'team@siftie.com',
               ['nick@siftie.com'],
               fail_silently=False)
