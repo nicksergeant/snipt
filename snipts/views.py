@@ -10,8 +10,9 @@ from django.db.models import Q
 from django.http import (
     Http404,
     HttpResponse,
-    HttpResponseRedirect,
     HttpResponseBadRequest,
+    HttpResponseForbidden,
+    HttpResponseRedirect,
 )
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
@@ -390,6 +391,9 @@ def redirect_user_tag_feed(request, username, tag_slug):
     return HttpResponseRedirect(u"/{}/tag/{}/?rss".format(username, tag_slug))
 
 def report_spam(request, snipt_id):
+    if not request.user.is_authenticated():
+        return HttpResponseForbidden()
+
     snipt = get_object_or_404(Snipt, pk=snipt_id)
 
     send_mail('[Snipt] Spam reported',
