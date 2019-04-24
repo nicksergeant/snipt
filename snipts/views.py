@@ -398,12 +398,12 @@ def report_spam(request, snipt_id):
 
     send_mail('[Snipt] Spam reported',
               """
-              Snipt: https://snippets.siftie.com/admin/snipts/snipt/{}/
-              User: https://snippets.siftie.com/admin/auth/user/{}/delete/
-              User who reported: https://snippets.siftie.com/admin/auth/user/{}/
+              Snipt: https://snipt.net/admin/snipts/snipt/{}/
+              User: https://snipt.net/admin/auth/user/{}/delete/
+              User who reported: https://snipt.net/admin/auth/user/{}/
               """.format(snipt.id, snipt.user.id, request.user.id),
-              'team@siftie.com',
-              ['nick@siftie.com'],
+              'support@snipt.net',
+              ['support@snipt.net'],
               fail_silently=False)
 
     return HttpResponse("""Thanks! Your report has been

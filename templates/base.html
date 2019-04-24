@@ -78,7 +78,7 @@
       <!--     <div class="fields"> -->
       <!--       <input ng-model="search.query" type="text" class="search-query" name="q" -->
       <!--       ng-init="search.query='{{ query|escapejs }}'" -->
-      <!--       placeholder="Search snippets" id="id_q" -->
+      <!--       placeholder="Search snipts" id="id_q" -->
       <!--       value="{{ query }}" /> -->
       <!--     </div> -->
       <!--   </fieldset> -->
@@ -87,7 +87,7 @@
         <ul>
           {% if not request.user.is_authenticated %}
             <li>
-              <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snippets</a>
+              <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
             </li>
             <li>
               <a href="/login/?next={{ request.path }}" {% if '/login/' in request.path %} class="active"{% endif %}>Log in</a>
@@ -99,10 +99,10 @@
             {% endif %}
           {% else %}
             <li>
-              <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snippets</a>
+              <a href="/{{ request.user.username }}/" {% if request.user.username in request.path %} class="active"{% endif %}>My snipts</a>
             </li>
             <li>
-              <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snippets</a>
+              <a href="/public/" {% if '/public/' in request.path or public %} class="active"{% endif %}>Public snipts</a>
             </li>
             {% block add-snipt %}{% endblock %}
           {% endif %}

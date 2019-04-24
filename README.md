@@ -3,30 +3,30 @@
 ## Running locally
 
 - Clone the repo.
-- `cd snippets`
-- `python3 -m venv ~/.virtualenvs/snippets`
-- `source ~/.virtualenvs/snippets/bin/activate`
+- `cd snipt`
+- `python3 -m venv ~/.virtualenvs/snipt`
+- `source ~/.virtualenvs/snipt/bin/activate`
 - `pip install -r requirements.txt`
 - `brew install postgresql`
 - `brew services start postgresql`
-- `createuser snippets`
-- `createdb snippets --owner=snippets`
+- `createuser snipt`
+- `createdb snipt --owner=snipt`
 - `cp settings_local.py-template settings_local.py` // modify if necessary
 - `curl -X PUT "localhost:9200/haystack?pretty"`
-- `python manage.py update_index` // optional if you have a local DB dump with snippets
+- `python manage.py update_index` // optional if you have a local DB dump with snipt
 - `make run`
 
 ## Deploying on Dokku
 
-- `dokku apps:create snippets`
-- `dokku postgres:create snippets`
-- `dokku postgres:link snippets snippets`
+- `dokku apps:create snipt`
+- `dokku postgres:create snipt`
+- `dokku postgres:link snipt snipt`
 - `scp snipt.dump nsergeant@server.nicksergeant.com:/home/nsergeant`
-- `dokku postgres:connect snippets < snipt.dump`
-- `dokku domains:add snippets snippets.siftie.com`
-- `dokku storage:mount snippets /var/lib/dokku/data/storage/snippets-whoosh:/app/snippets-whoosh`
-- `dokku config:set DOKKU_LETSENCRYPT_EMAIL=team@siftie.com SECRET_KEY=<some-secret-key> USE_SSL=true WHOOSH_PATH=/app/snippets-whoosh/whoosh_index`
-- `git remote add dokku dokku@server.nicksergeant.com:snippets`
+- `dokku postgres:connect snipt < snipt.dump`
+- `dokku domains:add snipt snipt.net`
+- `dokku storage:mount snipt /var/lib/dokku/data/storage/snipt-whoosh:/app/snipt-whoosh`
+- `dokku config:set DOKKU_LETSENCRYPT_EMAIL=support@snipt.net SECRET_KEY=<some-secret-key> USE_SSL=true WHOOSH_PATH=/app/snipt-whoosh/whoosh_index`
+- `git remote add dokku dokku@server.nicksergeant.com:snipt`
 - `git push dokku`
 
 ## Automatic deploy to Heroku

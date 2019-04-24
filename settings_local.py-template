@@ -9,8 +9,8 @@ USE_HTTPS = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'snippets',
-        'USER': 'snippets',
+        'NAME': 'snipt',
+        'USER': 'snipt',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': ''
