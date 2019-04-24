@@ -8,14 +8,12 @@ class BlogMiddleware:
     def process_request(self, request):
         request.blog_user = None
 
-        host = request.META.get("HTTP_HOST", "")
-        host_s = host.replace("www.", "").split(".")
+        host = request.META.get('HTTP_HOST', '')
+        host_s = host.replace('www.', '').split('.')
 
-        if (
-            host != "snippets.siftie.com"
-            and host != "snipt.localhost"
-            and host != "local.snippets.siftie.com"
-        ):
+        if host != 'snipt.net' and \
+                host != 'snipt.localhost' and \
+                host != 'local.snipt.net':
             if len(host_s) > 2:
                 if host_s[1] == "snipt":
 

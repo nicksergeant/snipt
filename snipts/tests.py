@@ -11,36 +11,34 @@ class SniptResourceTest(ResourceTestCase):
         super(SniptResourceTest, self).setUp()
 
         # Johnny
-        self.johnny = User.objects.create_user(
-            "johnny", "johnny@siftie.com", "password"
-        )
+        self.johnny = User.objects.create_user('johnny', 'johnny@snipt.net',
+                                               'password')
         ApiKey.objects.get_or_create(user=self.johnny)
-        self.johnny_auth = self.create_apikey(self.johnny, self.johnny.api_key.key)
-        self.johnny_private = Snipt(
-            title="Private snippet for Johnny",
-            lexer="text",
-            public=False,
-            user=self.johnny,
-        )
-        self.johnny_public = Snipt(
-            title="Public snippet for Johnny",
-            lexer="text",
-            public=True,
-            user=self.johnny,
-        )
+        self.johnny_auth = self.create_apikey(self.johnny,
+                                              self.johnny.api_key.key)
+        self.johnny_private = Snipt(title='Private snipt for Johnny',
+                                    lexer='text',
+                                    public=False,
+                                    user=self.johnny)
+        self.johnny_public = Snipt(title='Public snipt for Johnny',
+                                   lexer='text',
+                                   public=True,
+                                   user=self.johnny)
         self.johnny_private.save()
         self.johnny_public.save()
 
         # Bob
-        self.bob = User.objects.create_user("bob", "bob@siftie.com", "password")
+        self.bob = User.objects.create_user('bob', 'bob@snipt.net', 'password')
         ApiKey.objects.get_or_create(user=self.bob)
         self.bob_auth = self.create_apikey(self.bob, self.bob.api_key.key)
-        self.bob_private = Snipt(
-            title="Private snippet for Bob", lexer="text", public=False, user=self.bob
-        )
-        self.bob_public = Snipt(
-            title="Public snippet for Bob", lexer="text", public=True, user=self.bob
-        )
+        self.bob_private = Snipt(title='Private snipt for Bob',
+                                 lexer='text',
+                                 public=False,
+                                 user=self.bob)
+        self.bob_public = Snipt(title='Public snipt for Bob',
+                                lexer='text',
+                                public=True,
+                                user=self.bob)
         self.bob_private.save()
         self.bob_public.save()
 
@@ -83,9 +81,9 @@ class SniptResourceTest(ResourceTestCase):
     def test_post_private_list(self):
 
         new_snipt = {
-            "title": "A new private snippet.",
-            "lexer": "text",
-            "public": False,
+            'title': 'A new private snipt.',
+            'lexer': 'text',
+            'public': False,
         }
 
         resp = self.api_client.post(

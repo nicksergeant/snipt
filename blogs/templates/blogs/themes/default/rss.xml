@@ -1,9 +1,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <atom:link href="{% if request.blog_user.profile.get_primary_blog_domain and request.blog_user.profile.blog_domain != '' %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snippets.siftie.com/?rss{% endif %}" rel="self" type="application/rss+xml" />
+        <atom:link href="{% if request.blog_user.profile.get_primary_blog_domain and request.blog_user.profile.blog_domain != '' %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}" rel="self" type="application/rss+xml" />
         <description>{% firstof request.blog_user.profile.blog_title request.blog_user.username %}</description>
         <title>{% firstof request.blog_user.profile.blog_title request.blog_user.username %}</title>
-        <link>{% if request.blog_user.profile.get_primary_blog_domain %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snippets.siftie.com/?rss{% endif %}</link>
+        <link>{% if request.blog_user.profile.get_primary_blog_domain %}http://{{ request.blog_user.profile.blog_domain }}/?rss{% else %}https://{{ request.blog_user.username }}.snipt.net/?rss{% endif %}</link>
         {% for snipt in snipts %}
             <item>
                 <title>{{ snipt.title }}</title>
@@ -11,7 +11,7 @@
                 <description><![CDATA[{{ snipt.stylized|safe }}]]></description>
                 <tags>{% for tag in snipt.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}</tags>
                 <pubDate>{{ snipt.created|date:"r" }}</pubDate>
-                <guid isPermaLink="false">siftie-snippets-com-{{ snipt.id }}</guid>
+                <guid isPermaLink="false">snipt-net-{{ snipt.id }}</guid>
             </item>
         {% endfor %}
     </channel>

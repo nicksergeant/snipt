@@ -8,13 +8,8 @@ import requests
 
 
 def get_snipts(api_key, from_username, url=None, snipts=[]):
-    path = (
-        url
-        or "/api/private/snipt/?limit=50&api_key={}&username={}&format=json".format(
-            api_key, from_username
-        )
-    )
-    res = requests.get("https://snippets.siftie.com" + path)
+    path = url or '/api/private/snipt/?limit=50&api_key={}&username={}&format=json'.format(api_key, from_username)
+    res = requests.get('https://snipt.net' + path)
     json = res.json()
 
     print(
@@ -34,7 +29,7 @@ def get_snipts(api_key, from_username, url=None, snipts=[]):
 
 
 class Command(BaseCommand):
-    help = u"Import snipts from Siftie Snippets."
+    help = u"Import snipts from snipt.net."
 
     def add_arguments(self, parser):
         parser.add_argument("api_key", nargs="+", type=str)

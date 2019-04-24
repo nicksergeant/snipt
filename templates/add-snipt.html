@@ -1,7 +1,7 @@
 <li class="add-snipt">
   {% if request.user.is_active %}
     <button class="btn btn-info btn-large" id="add-snipt">
-      Add {% if request.user.username == 'blog' %}Post{% else %}Snippet{% endif %}
+      Add {% if request.user.username == 'blog' %}Post{% else %}Snipt{% endif %}
       <i class="icon-search icon-plus icon-white"></i>
     </button>
   {% endif %}

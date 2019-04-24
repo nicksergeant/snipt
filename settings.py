@@ -8,29 +8,22 @@ if "DATABASE_URL" in os.environ:
 
 ABSOLUTE_URL_OVERRIDES = {"auth.user": lambda u: "/%s/" % u.username}
 ACCOUNT_ACTIVATION_DAYS = 0
-ADMINS = (("Siftie", "team@siftie.com"),)
-ALLOWED_HOSTS = ["*"]
-AUTH_PROFILE_MODULE = "accounts.UserProfile"
-AUTHENTICATION_BACKENDS = ("utils.backends.EmailOrUsernameModelBackend",)
+ADMINS = (('Nick Sergeant', 'nick@snipt.net'),)
+ALLOWED_HOSTS = ['*']
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+AUTHENTICATION_BACKENDS = ('utils.backends.EmailOrUsernameModelBackend',)
 BASE_PATH = os.path.dirname(__file__)
 CSRF_COOKIE_SECURE = True if "USE_SSL" in os.environ else False
 CORS_ORIGIN_ALLOW_ALL = True
-DEBUG = True if "DEBUG" in os.environ else False
-DEFAULT_FROM_EMAIL = os.environ.get("POSTMARK_EMAIL", "team@siftie.com")
-EMAIL_BACKEND = "postmark.django_backend.EmailBackend"
-# HAYSTACK_CONNECTIONS = {
-#     "default": {
-#         "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
-#         "PATH": os.environ.get("WHOOSH_PATH", "./.whoosh_index"),
-#         "STORAGE": "file",
-#     }
-# }
-# HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
-INTERNAL_IPS = ("127.0.0.1",)
-LANGUAGE_CODE = "en-us"
-LOGIN_REDIRECT_URL = "/login-redirect/"
-LOGIN_URL = "/login/"
-LOGOUT_URL = "/logout/"
+DEBUG = True if 'DEBUG' in os.environ else False
+DEFAULT_FROM_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
+EMAIL_BACKEND = 'postmark.django_backend.EmailBackend'
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+INTERNAL_IPS = ('127.0.0.1',)
+LANGUAGE_CODE = 'en-us'
+LOGIN_REDIRECT_URL = '/login-redirect/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
 MANAGERS = ADMINS
 MEDIA_ROOT = os.path.join(BASE_PATH, "media/uploads")
 MEDIA_URL = "/media/uploads/"
@@ -52,7 +45,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "changeme")
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = True if "USE_SSL" in os.environ else False
 SEND_BROKEN_LINK_EMAILS = False
-SERVER_EMAIL = os.environ.get("POSTMARK_EMAIL", "team@siftie.com")
+SERVER_EMAIL = os.environ.get('POSTMARK_EMAIL', 'support@snipt.net')
 SESSION_COOKIE_AGE = 15801100
 SESSION_COOKIE_SECURE = True if "USE_SSL" in os.environ else False
 SITE_ID = 1
@@ -65,7 +58,7 @@ STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_PATH, "static")
 STATIC_URL = "/static/"
 TASTYPIE_CANNED_ERROR = """There was an error with your request. The site
-    developers have a record of this error, please email team@siftie.com and
+    developers have a record of this error, please email api@snipt.net and
     we'll help you out."""
 
 TEMPLATES = [

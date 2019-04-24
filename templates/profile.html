@@ -14,7 +14,7 @@
           <div class="member-since">Team since {{ user.date_joined|date:"Y" }}</div>
           {% if user.profile.get_blog_posts %}
               <div class="urls">
-                  Siftie Snippets Blog:
+                  Snipt Blog:
                   <a href="{{ user.profile.get_user_profile_url }}">
                       {{ user.profile.get_user_profile_url }}
                   </a>
@@ -61,13 +61,13 @@
               </a>
           </div>
           {% if user.username == 'nick' %}
-              <div class="member-since">Snippets Founder in {{ user.date_joined|date:"Y" }}</div>
+              <div class="member-since">Snipt Founder in {{ user.date_joined|date:"Y" }}</div>
           {% else %}
               <div class="member-since">Member since {{ user.date_joined|date:"Y" }}</div>
           {% endif %}
           {% if user.profile.get_blog_posts %}
               <div class="urls">
-                  Snippets Blog:
+                  Snipt Blog:
                   <a href="{{ user.profile.get_user_profile_url }}">
                       {{ user.profile.get_user_profile_url }}
                   </a>
