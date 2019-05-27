@@ -1,5 +1,4 @@
 Django==1.11.20
-Fabric==1.12.0
 Pygments==2.1.3
 Whoosh==2.7.4
 black==18.9b0
@@ -11,8 +10,8 @@ django-debug-toolbar==1.3.2
 django-extensions==1.7.4
 django-haystack==2.8.1
 django-markdown-deux==1.0.5
-django-registration-redux==1.4
-django-storages==1.5.1
+django-registration-redux==2.6
+django-storages==1.7.1
 django-taggit==0.21.3
 django-tastypie==0.14
 git+git://github.com/matagus/django-pagination-py3.git#egg=django-pagination
@@ -26,6 +25,6 @@ python-postmark==0.4.10
 requests==2.20.*
 six==1.9.0
 smartypants==1.8.6
-stripe==1.41.1
+stripe==2.29
 urllib3==1.24.2
 whitenoise==3.2.2
