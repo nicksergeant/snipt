@@ -6,12 +6,16 @@
 - `cd snipt`
 - `python3 -m venv ~/.virtualenvs/snipt`
 - `source ~/.virtualenvs/snipt/bin/activate`
+- `From the requirements.txt remove line number 17 and line number 21`
+- `Run the following commands: pip install django-pagination-py3 and pip install psycopg2-binary`
 - `pip install -r requirements.txt`
 - `brew install postgresql`
 - `brew services start postgresql`
 - `createuser snipt`
 - `createdb snipt --owner=snipt`
 - `cp settings_local.py-template settings_local.py` // modify if necessary
+- `python manage.py migrate auth`
+- `python manage.py migrate`
 - `make run`
 
 ## Deploying on Dokku
