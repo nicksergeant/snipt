@@ -12,6 +12,7 @@
 - `createuser snipt`
 - `createdb snipt --owner=snipt`
 - `cp settings_local.py-template settings_local.py` // modify if necessary
+- `python manage.py migrate`
 - `make run`
 
 ## Deploying on Dokku
