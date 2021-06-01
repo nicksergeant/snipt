@@ -26,5 +26,5 @@ requests==2.22.0
 six==1.9.0
 smartypants==1.8.6
 stripe==2.29
-urllib3==1.25.8
+urllib3==1.26.5
 whitenoise==3.2.2
