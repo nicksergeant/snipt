@@ -4,7 +4,27 @@
 
 - Clone the repo.
 - `cd snipt`
-- `python3 -m venv ~/.virtualenvs/snipt`
+- Install Python 3.7 (required for Django 1.11 compatibility):
+  - Install pyenv if not already installed:
+    ```bash
+    brew install pyenv
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+    source ~/.zshrc
+    ```
+  - Install build dependencies for Python 3.7 on macOS:
+    ```bash
+    brew install zlib bzip2 openssl readline sqlite3 xz
+    ```
+  - Install and use Python 3.7:
+    ```bash
+    CFLAGS="-I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include" \
+    LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" \
+    pyenv install 3.7.17
+    pyenv local 3.7.17
+    ```
+- `python3.7 -m venv ~/.virtualenvs/snipt`
 - `source ~/.virtualenvs/snipt/bin/activate`
 - `pip install -r requirements.txt`
 - `brew install postgresql`
