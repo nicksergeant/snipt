@@ -82,7 +82,11 @@ TIME_ZONE = "America/New_York"
 USE_HTTPS = True if "USE_SSL" in os.environ else False
 USE_I18N = True
 USE_L10N = True
+
+# Monkey patch for Django 1.11 PostgreSQL timezone issue
 USE_TZ = True
+from django.db.backends.postgresql import utils
+utils.utc_tzinfo_factory = lambda offset: None
 
 INSTALLED_APPS = (
     "accounts",
